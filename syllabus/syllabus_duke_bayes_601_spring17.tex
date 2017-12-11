@@ -1,0 +1,313 @@
+\documentclass[11pt]{article}
+\usepackage[dvips]{color}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topmargin}{-0.75in}
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6in}
+\usepackage{fullpage} %%set margins
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{setspace,hyperref}
+\usepackage{cite}
+\usepackage{bm}
+
+\usepackage{fancyhdr}
+
+%\usepackage{titlesec}
+
+%\titlespacing{\chapter}{-30pt}{-10pt}{10pt}
+
+%\pagestyle{empty}
+\date{}
+\setlength{\parindent}{0in}
+\begin{document}
+%\maketitle
+%\thispagestyle{empty}
+
+\begin{center}
+%%{\Large\bf Applied Multivariate Methods} \\
+{\Large\bf STA 360/602: Bayesian Methods and Modern Statistics} \\
+
+{\Large\bf Duke University, Spring 2017} \\
+\end{center}
+
+\emph{Instructor}: Rebecca C. Steorts,  Assistant Professor, Dept of Statistical Science, beka@stat.duke.edu\\
+\emph{Course Time}: T/Th: 11:45 am -- 1:00 pm\\
+\emph{Steorts Office Hours}: Tu: 1:00-2:00 pm \\
+\emph{Course webpage:} \url{https://stat.duke.edu/~rcs46/bayes17.html} \\
+\vspace*{1em}
+
+\emph{Head TA}:  Lei Qian, lsq3@duke.edu\\
+\emph{Lab Time:} W 10:05AM to 11:20AM.\\
+\emph{Office hours}:  Thursday, 9:00--11:00 AM
+\vspace*{1em}
+
+\emph{Course TA}: Derek Owan-Oas, derek.owens.oas@duke.edu \\
+\emph{Lab Time}: Wednesday: 1:25 PM - 2:40 PM \\
+\emph{Office hours}: W 6:00 PM - 8:00 PM \\
+
+\emph{Course TA}: Xingyu Yan, xingyu.yan@duke.edu \\
+\emph{Lab Time}: W 11:45 AM - 1:00 PM\\
+\emph{Office hours}: Monday: 4:30--6:30 PM  \\
+
+%\emph{Course TA}: Wenli Shi, wenli.shi@duke.edu\\
+%\emph{Lab Time}: W 11:45 AM - 01:00 PM\\
+%\emph{Office hours}:  Wednesday, 3:00-5:00 PM
+%\vspace*{1em}
+
+%\emph{Office hours Ye}: Thursday, MTuTh: 2 - 3 pm, Old Chem 211A. \\
+
+
+
+
+
+
+
+Bayesian methods are an increasingly important tools
+in both industry and academia. We will start by understanding the basics of Bayesian methods and inference, what this is and how why it's important. 
+This course is an introduction to Bayesian theory and methods, emphasizing both conceptual foundations and implementation. We will introduce the essential distinctions between classical and Bayesian methods and discuss the origins of Bayesian inference. After exploring the convenience of conjugate families of distributions, we will cover problems when the posterior is intractable. Topics include hierarchical and empirical Bayesian models, the foundations of subjective and objective priors, Bayesian credible intervals and hypothesis testing. Furthermore, we 
+will  concentrate on more advanced concepts such as how to evaluate Bayesian procedures, evaluating integrals that cannot be computed in closed form (Monte Carlo and MCMC). We will be following the flow of the required text throughout the course (see below). \\
+
+As part of the course we will learn tools that will aide us in Bayesian modeling and applied Bayesian methods such reproducible research through Markdown, RStudio. \textbf{Download the latest version of RStudio onto your desktop.} You will be responsible for learning these. You will be responsible for turn in reports that are well explained and well written (in additional to having code that is easily read and well documented). \textbf{Failure to produce clear reports will result in deduction of points from all assignments.} 
+\\
+
+\emph{Prerequisites} You are expected to have all pre-reqs to be in the course. Students are expected to be very familiar with \texttt{R} and are \textbf{encouraged} to have learned \texttt{LaTex} by the end of the course. 
+
+
+%\emph{Units:} 6.\\
+\begin{itemize}
+\item[] Course Sakai website: \url{https://sakai.duke.edu}
+\item[] Required Textbook: \textit{A First Course in Bayesian Statistical Methods}, Peter D.\ Hoff, 2009, New York: Springer. \textit{(Note: We will only loosely follow the book.)}
+\item[] Optional supplementary text:  \textit{Some of Bayesian Statistics: The Essential Parts}. Rebecca C. Steorts, Copyright, 2015. \url{https://stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf}
+\item[] Optional supplementary text:  \textit{Baby Bayes using \texttt{R}}. Rebecca C. Steorts, Copyright, 2016. 
+\url{https://stat.duke.edu/~rcs46/books/babybayes-master.pdf}
+\item[] Optional supplementary text:  \textit{Bayesian Data Analysis}. Gelman, A., Carlin, J.B., Stern, H.S., Dunson, D.B., Vehtari, A., \& Rubin, D.B. (2013). CRC press.
+\end{itemize}
+
+%\emph{Elements of Statistical Learning: Data Mining, Inference, and Prediction, Second Ed.}, Trevor Hastie, Robert Tibshirani, and Jerome Friedman (2009). \url{http://statweb.stanford.edu/~tibs/ElemStatLearn/}\\
+
+
+
+\emph{Grading Policy:} 
+\begin{table}[htdp]
+%\begin{center}
+\begin{tabular}{ll}
+%Attendance/Participation & \phantom{1}5\%\\
+%%3 take-home exams (data analysis projects)
+%%homework every week when there isn't an exam
+
+
+%Class Participation & 10 \%\\
+Labs and Homework (expect one per week) & 25\%\\
+Exam I  (in class):  Thursday 2/9 & 30\%\\
+Exam II  (in class): Thursday 3/9 & 30\%\\
+Final Exam (in class): 05/04/2017, 7:00-10:00 PM, Old Chem 116 & 15\%\\
+%Final Project &10\%\\
+\end{tabular}
+%\end{center}
+\label{default}
+\end{table}%
+
+Homeworks will be given on a weekly basis. They will be bases on both lecture and lab. \\
+
+An overall score of $s$ will result in a grade of:
+\begin{quote}
+A if $90\leq s\leq 100$ \\
+B if $80\leq s < 90$ \\
+C if $70\leq s < 80$ \\
+D if $60\leq s < 70$ \\
+F if $0\leq s < 60$
+\end{quote}
+or, for those taking the course on a Satisfactory/Unsatisfactory basis:
+\begin{quote}
+S if $70\leq s\leq 100$ \\
+U if $0\leq s < 60$.
+\end{quote}
+For graduate students, it appears that there is no ``D'' grade (only A, B, C, or F)---consequently, in this case anything between $0$ and $60$ is an F. \\
+
+You may come to the instructor during office hours to ask for you class ranking or current grade in the course. 
+%\emph{Topics to be covered}
+%
+%The course is designed to provide in-depth coverage of essential core topics, as well as a high-level overview of a wide range of other topics. The following is a rough outline of what we plan to cover.
+%
+%\subsubsection*{Foundations}
+%\begin{quote}
+%Bayes' theorem, Definitions \& notation, Decision theory \\
+%Beta-Bernoulli model, Gamma-Exponential model, Gamma-Poisson model
+%\end{quote}
+%
+%\subsubsection*{Background and motivation}
+%\begin{quote}
+%What is Bayesian inference? Why use Bayes? A brief history of statistics
+%\end{quote}
+%
+%\subsubsection*{Exponential families}
+%\begin{quote}
+%One-parameter exponential families, Natural/canonical form, Conjugate priors \\
+%Multi-parameter exponential families, Motivations for using exponential families
+%\end{quote}
+%
+%\subsubsection*{Univariate normal model}
+%\begin{quote}
+%Normal with conjugate Normal-Gamma prior, Sensitivity to outliers
+%\end{quote}
+%
+%\subsubsection*{Conditional independence relationships}
+%\begin{quote}
+%Graphical models, De Finetti's theorem, exchangeability
+%\end{quote}
+%
+%\subsubsection*{Dirichlet-multinomial model}
+%\begin{quote}
+%Dirichlet distribution, multinomial distribution, mixture models, Bayesian naive Bayes
+%\end{quote}
+%
+%\subsubsection*{Monte Carlo approximation}
+%\begin{quote}
+%Monte Carlo, rejection sampling, importance sampling
+%\end{quote}
+%
+%\subsubsection*{Gibbs sampling}
+%\begin{quote}
+%Markov chain Monte Carlo (MCMC) with Gibbs sampling, Markov chain basics, MCMC diagnostics
+%\end{quote}
+%
+%\subsubsection*{Multivariate normal model}
+%\begin{quote}
+%Normal distribution, Wishart distribution, Normal with Normal$\times$Wishart prior
+%\end{quote}
+%
+%\subsubsection*{Linear regression}
+%\begin{quote}
+%Linear regression, basis functions, regularized least-squares, Bayesian linear regression
+%\end{quote}
+%
+%\subsubsection*{Hierarchical models and group comparisons}
+%\begin{quote}
+%Hierarchical models, comparing multiple groups
+%\end{quote}
+%
+%\subsubsection*{Bayesian hypothesis testing}
+%\begin{quote}
+%Testing hypotheses, Model selection/inference, Variable selection in linear regression
+%\end{quote}
+%
+%\subsubsection*{Frequentist evaluations}
+%\begin{quote}
+%Empirical assessment: cross-validation, test sets, posterior predictive checks \\
+%Theoretical properties: consistency, rates of convergence, coverage
+%\end{quote}
+%
+%\subsubsection*{Priors}
+%\begin{quote}
+%Informative vs.\ non-informative, proper vs.\ improper, Jeffreys priors, Reference priors, robust Bayes
+%\end{quote}
+%
+%\subsubsection*{Metropolis--Hastings MCMC}
+%\begin{quote}
+%Metropolis algorithm, Metropolis--Hastings algorithm
+%\end{quote}
+%
+%\subsubsection*{Generalized linear models (GLMs)}
+%\begin{quote}
+%GLMs, examples (logistic, probit, Poisson), generalized linear mixed effects model
+%\end{quote}
+%
+%\subsubsection*{Approximating Bayes factors and model evidence}
+%\begin{quote}
+%Laplace approximation, importance sampling, path sampling
+%\end{quote}
+%
+%\subsubsection*{Mixture models}
+%\begin{quote}
+%Finite mixtures, prior on the number of components, Dirichlet process mixtures
+%\end{quote}
+%
+%\subsubsection*{Overview of advanced Monte Carlo methods}
+%\begin{quote}
+%Slice sampling, Hamiltonian MCMC, approximate Bayesian computation (ABC), quasi-Monte Carlo, reversible jump MCMC, sequential Monte Carlo (SMC)
+%\end{quote}
+%
+%\subsubsection*{Time-series models}
+%\begin{quote}
+%Autoregressive models, hidden Markov models, Kalman filters
+%\end{quote}
+%
+%\subsubsection*{A sampling of topics beyond the scope of this course}
+%\begin{quote}
+%Overview of further interesting and current topics
+%\end{quote}
+%
+
+
+\vspace{0.4cm}
+
+
+\emph{Course Policies:} 
+Homework assignments will be announced on Sakai (along with the due date). It must be turned in electronically through Sakai. \textbf{Late homework will not be accepted}.\\
+
+Office hours are not meant to be as a review session if you missed class. Office hours are meant for clarifying questions, review of concepts that were not clear in lecture, and help with homework. \\
+
+\newpage
+%\textbf{Read this paragraph very carefully.}
+% All homework's and labs \emph{must} be submitted in either Markdown Rmd and .pdf format OR .R, LaTex (.tex and .pdf) formats or any readable form of a .pdf document (.html, Word, etc are not valid). 
+
+All reports (homeworks) must be submitted in .pdf format (word, html, etc is not acceptable). If you use Markdown or LaTeX please attach all source files). There are example files posted on Sakai. \\
+
+If you prefer to scan part of your homework and then submit the computational parts separately, then all computational parts (that require any coding) must be submitted using Markdown or LaTeX along with .R code and all source files.  You must submit all files that are necessary to reproduce both any computational part of your homework, code, as well as the written part of this problem. 
+
+Please note that any work that is not legible by the instructor or TA's will not be graded (so given a grade of 0). Your report file should be in the form of \texttt{LastNameFirstname.Rmd} or  \texttt{LastNameFirstname.Rmd.tex}. 
+Submissions via email to the TA's or instructor will not be accepted for credit.\footnote{Information and tutorial about LaTex can be found at \url{https://www.tug.org/begin.html}.} Every write up must be clearly written in full sentences and clear English. Failure to submit a clear report will result in a minimum of a 10 point deduction. Any assignment that is completely unclear to the instructors and/or TA's, may result in a grade of a 0. Finally, failure to turn in the computational part of the report that is completely reproducible, will result in a grade of 0 (so make sure you submit all your files).    \\
+
+%You must submit all files that are necessary to reproduce both your report and code. 
+
+
+
+
+
+
+
+
+\textbf{Your lowest homework grade will be dropped. Please note that the grading scale in Sakai is NOT the same as the grading scale for the course when it calculates your grade.}\\
+
+There is a Google course discussion page. Please direct questions about homeworks and other matters to that page. You can join the Google group at \url{https://groups.google.com/forum/?hl=en#!forum/bayes17}
+Otherwise, you can email the instructors (TAs and professor). Note that we are more likely to respond to the Google questions than to the email, and your classmates may respond too, so that is a good place to start. If you don't feel comfortable posting a question with your name attached, send me or the TAs and email and we will post it anonymously.\\
+
+Cell phones should be turned off (or set on silent). If you bring your laptop to class, please sit in the back as to not disrupt others. \\
+
+
+
+%All quizzes and exams are closed-book, closed-notes. 
+%You should bring a calculator to the quizzes and exams.
+
+
+\emph{Missing class/exams/work:}
+You are responsible for everything from lecture, mentioned in class, and in the Hoff book. You will be expected to follow along the Hoff book as we go along in lecture. Suggested readings have been posted at on the Google group, bayes17.
+
+Students who miss graded work due to a scheduled varsity trip, religious holiday or short-term illness should fill out an online NOVAP, religious observance notification or short-term illness notification form respectively. If you are faced with a personal or family emergency or a long-range or chronic health condition that interferes with your ability to attend or complete classes, you should contact your academic dean's office. See more information on policies surrounding these conditions at \url{http://trinity.duke.edu/undergraduate/academic-policies}. Also, your academic dean can provide more information as well.\\
+
+\textbf{There will be no make up exams. If a midterm exam must be missed, absence must be officially excused in advance, in which case the missing exam score will be imputed using the final exam score. This policy only applies to the first \texbf{two} exams. All other missed assessments will receive a grade of 0. The final exam must be taken at the stated time. You must take the final exam at the scheduled time in order to pass the course.}\\
+
+%Exams that are missed for excused absenses will be replaced by your final exam grade. Exam dates cannot be changed and no make-up exams will be given. If you cannot take the exams on these dates you should drop this class. You cannot pass the class if you do not take the final exam.}
+ All work turned in for a grade must be entirely your own. This particularly relates to homework. You are encouraged to talk to each other regarding homework problems or to the instructor/TA, however the write up, solution, and code \emph{must} be entirely your own solution and work. \\
+
+
+\emph{Academic Honesty:} Duke University is a community dedicated to scholarship, leadership, and service and to the principles of honesty, fairness, respect, and accountability. Citizens of this community commit to reflect upon and uphold these principles in all academic and non-academic endeavors, and to protect and promote a culture of integrity. Cheating on exams and quizzes, plagiarism on homework assignments, projects, and code, lying about an illness or absence and other forms of academic dishonesty are a breach of trust with classmates and faculty, violate the Duke Community Standard, and will not be tolerated. Such incidences will result in a 0 grade for all parties involved as well as being reported to the University Judicial Board. Additionally, there may be penalties to your final class grade. Please review Duke's Standards of Conduct.
+For more information on the Duke honor code (known as Duke Community Standard), please go to \url{http://integrity.duke.edu/faq/faq1.html.}\\
+
+
+
+
+\emph{Students with Disabilities:} Students who require special accommodations in class or during exams should follow the procedures outlined by the Disability Management Program \\ http://access.duke.edu/students. Students with disabilities who believe they may need accommodations in this class are encouraged to contact the Student Disability Access Office at (919) 668-1267 as soon as possible to better ensure that such accommodations can be made. \\
+
+\emph{Privacy Policies:} 
+Student records are confidential.
+\end{document}
+
+
+%Lab 1: Reproducible research, R, Latex
+% Lab 2: Linear regression and R
+% Follow the book basically with the topics I'm doing. 
