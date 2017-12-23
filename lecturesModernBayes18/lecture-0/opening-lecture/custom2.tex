@@ -1,0 +1,178 @@
+% Custom definitions
+% To use this customization file, insert the line "\input{custom}" in the header of the tex file.
+
+% Formatting
+
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[page number]
+\usepackage{bbm}
+% Packages
+\usepackage{amssymb,amsfonts,amsmath,latexsym,amsthm}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[]{graphicx}
+%\usepackage[space]{grffile}
+\usepackage{mathrsfs} 
+ \usepackage{amssymb,latexsym}
+\usepackage{amssymb,amsfonts,amsmath,latexsym,amsthm, bm}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[]{graphicx}
+%\usepackage[space]{grffile}
+\usepackage{mathrsfs}   % fancy math font
+% \usepackage[font=small,skip=0pt]{caption}
+%\usepackage[skip=0pt]{caption}
+%\usepackage{subcaption}
+%\usepackage{verbatim}
+%\usepackage{url}
+%\usepackage{bm}
+\usepackage{dsfont}
+\usepackage{multirow}
+%\usepackage{extarrows}
+%\usepackage{multirow}
+%% \usepackage{wrapfig}
+%% \usepackage{epstopdf}
+%\usepackage{rotating}
+%\usepackage{tikz}
+%\usetikzlibrary{fit}					% fitting shapes to coordinates
+%\usetikzlibrary{backgrounds}	% drawing the background after the foreground
+
+
+% \usepackage[dvipdfm,colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+%\usepackage[citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
+%%\usepackage{hyperref}
+%\usepackage[authoryear,round]{natbib}
+
+
+%  Theorems, etc.
+
+%\theoremstyle{plain}
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{condition}[theorem]{Condition}
+% \newtheorem{conditions}[theorem]{Conditions}
+
+%\theoremstyle{definition}
+%\newtheorem{definition}[theorem]{Definition}
+%% \newtheorem*{unnumbered-definition}{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\theoremstyle{remark}
+%\newtheorem*{remark}{Remark}
+%\numberwithin{equation}{section}
+
+
+
+
+
+
+% Document-specific shortcuts
+\newcommand{\btheta}{{\bm\theta}}
+\newcommand{\bbtheta}{{\pmb{\bm\theta}}}
+
+\newcommand{\commentary}[1]{\ifx\showcommentary\undefined\else \emph{#1}\fi}
+
+\newcommand{\term}[1]{\textit{\textbf{#1}}}
+
+% Math shortcuts
+
+% Probability distributions
+\DeclareMathOperator*{\Exp}{Exp}
+\DeclareMathOperator*{\TExp}{TExp}
+\DeclareMathOperator*{\Bernoulli}{Bernoulli}
+\DeclareMathOperator*{\Beta}{Beta}
+\DeclareMathOperator*{\Ga}{Gamma}
+\DeclareMathOperator*{\TGamma}{TGamma}
+\DeclareMathOperator*{\Poisson}{Poisson}
+\DeclareMathOperator*{\Binomial}{Binomial}
+\DeclareMathOperator*{\NormalGamma}{NormalGamma}
+\DeclareMathOperator*{\InvGamma}{InvGamma}
+\DeclareMathOperator*{\Cauchy}{Cauchy}
+\DeclareMathOperator*{\Uniform}{Uniform}
+\DeclareMathOperator*{\Gumbel}{Gumbel}
+\DeclareMathOperator*{\Pareto}{Pareto}
+\DeclareMathOperator*{\Mono}{Mono}
+\DeclareMathOperator*{\Geometric}{Geometric}
+\DeclareMathOperator*{\Wishart}{Wishart}
+
+% Math operators
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\Cov}{Cov}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\median}{median}
+\DeclareMathOperator*{\Vol}{Vol}
+
+% Math characters
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\Pr}{\mathbb{P}}
+\newcommand{\I}{\mathds{1}}
+\newcommand{\V}{\mathbb{V}}
+
+\newcommand{\A}{\mathcal{A}}
+%\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Zcal}{\mathcal{Z}}
+\renewcommand{\P}{\mathcal{P}}
+
+\newcommand{\T}{\mathtt{T}}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\bmu}{\bm{\mu}}
+\newcommand{\bX}   {\bm{X}}
+\newcommand{\sig}   {\Sigma}
+\newcommand{\bx}{\ensuremath{\mathbf{X}}}
+%\newcommand{\X}{\ensuremath{\mathbf{x}}}
+%\newcommand{\w}{\ensuremath{\mathbf{w}}}
+%\newcommand{\h}{\ensuremath{\mathbf{h}}}
+%\newcommand{\V}{\ensuremath{\mathbf{v}}}
+%\newcommand{\cov}{\text{Cov}}
+\newcommand{\var}{\text{Var}}
+
+
+% Miscellaneous commands
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+\newcommand{\matrixsmall}[1]{\bigl(\begin{smallmatrix}#1\end{smallmatrix} \bigr)}
+
+\newcommand{\items}[1]{\begin{itemize} #1 \end{itemize}}
+
+\newcommand{\todo}[1]{\emph{\textcolor{red}{(#1)}}}
+
+\newcommand{\branch}[4]{
+\left\{
+	\begin{array}{ll}
+		#1  & \mbox{if } #2 \\
+		#3 & \mbox{if } #4
+	\end{array}
+\right.
+}
+
+% approximately proportional to
+\def\app#1#2{%
+  \mathrel{%
+    \setbox0=\hbox{$#1\sim$}%
+    \setbox2=\hbox{%
+      \rlap{\hbox{$#1\propto$}}%
+      \lower1.3\ht0\box0%
+    }%
+    \raise0.25\ht2\box2%
+  }%
+}
+\def\approxprop{\mathpalette\app\relax}
+
+% \newcommand{\approptoinn}[2]{\mathrel{\vcenter{
+  % \offinterlineskip\halign{\hfil$##$\cr
+    % #1\propto\cr\noalign{\kern2pt}#1\sim\cr\noalign{\kern-2pt}}}}}
+
+% \newcommand{\approxpropto}{\mathpalette\approptoinn\relax}
+
+
+
+
+
