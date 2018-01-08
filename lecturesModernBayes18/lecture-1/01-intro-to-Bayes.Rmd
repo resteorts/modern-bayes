@@ -21,31 +21,6 @@ Agenda
 - Marginal likelihood
 - Posterior Prediction
 
-Social networks
-===
-\begin{figure}
-  \begin{center}
-    \includegraphics[width=0.85\textwidth]{figures/multi_view}
-  \end{center}
-\end{figure}
-
-Precision Medicine
-===
-\begin{figure}
-  \begin{center}
-    \includegraphics[width=0.85\textwidth]{figures/suchi}
-  \end{center}
-\end{figure}
-
-Estimating Rent Prices in Small Domains
-===
-\begin{figure}
-  \begin{center}
-    \includegraphics[width=\textwidth]{figures/BenchandSmooth}
-  \end{center}
-\end{figure}
-
-
 
 Traditional inference
 ===
@@ -57,16 +32,6 @@ How would you estimate $\theta$?
 - Find the maximum likelihood estimate (MLE) of $\theta$ by looking at the likelihood of the data. 
 - If you cannot remember the definition of an unbiased estimator or the MLE, review these before our next class. 
 
-Bayesian Motivation
-===
-\begin{figure}
-  \begin{center}
-    \includegraphics[width=\textwidth]{figures/beingBayesian}
-  \end{center}
-\end{figure}
-
-[credit: Peter Orbanz, Columbia University]
-
 Bayesian inference
 ===
 Bayesian methods trace its origin to the 18th century and English Reverend Thomas Bayes, who along with Pierre-Simon Laplace discovered what we now call **Bayes' Theorem**
@@ -76,7 +41,7 @@ Bayesian methods trace its origin to the 18th century and English Reverend Thoma
 - $p(\theta \mid x)$ posterior
 - $p(x)$ marginal distribution
 
-$$p(\theta|x) = \frac{p(\theta,x)}{p(x)} = \frac{p(x|\theta)p(\theta)}{p(x)} \propto p(x|\theta)p(\theta)$$
+Derive the posterior distribution of $p(\theta \mid x).$
 
 Bernoulli distribution
 ===
@@ -144,6 +109,24 @@ $$\begin{aligned}
 \end{aligned}
 $$
 
+Conjugacy
+===
+
+What do you notice about the prior and the posterior from the Bernoulli-Beta example that we just considered? 
+
+Conjugacy
+===
+
+If the posterior distribution comes from the same family of distributions as the prior, we say that the prior and posterior are conjugate distributions. 
+
+More formally, the prior is called a conjugate family for the likelihood funtion. 
+
+Example
+===
+
+- The Gaussian family is conjugate to itself with respect to a Gaussian likelihood.
+
+- That is, if the likelihood function is Gaussian, choosing a Gaussian prior over the mean will ensure that the posterior distribution is also Gaussian. 
 
 Approval ratings of Obama
 ===
