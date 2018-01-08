@@ -3,9 +3,10 @@
 
 % Formatting
 
-
+\pagenumbering{arabic} 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}[page number]
+
 \usepackage{bbm}
 % Packages
 \usepackage{amssymb,amsfonts,amsmath,latexsym,amsthm}
@@ -27,41 +28,8 @@
 %\usepackage{bm}
 \usepackage{dsfont}
 \usepackage{multirow}
-%\usepackage{extarrows}
-%\usepackage{multirow}
-%% \usepackage{wrapfig}
-%% \usepackage{epstopdf}
-%\usepackage{rotating}
-%\usepackage{tikz}
-%\usetikzlibrary{fit}					% fitting shapes to coordinates
-%\usetikzlibrary{backgrounds}	% drawing the background after the foreground
-
-
-% \usepackage[dvipdfm,colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
-%\usepackage[citecolor=blue,linkcolor=blue,urlcolor=blue]{hyperref}
-%%\usepackage{hyperref}
-%\usepackage[authoryear,round]{natbib}
-
-
-%  Theorems, etc.
-
-%\theoremstyle{plain}
-%\newtheorem{theorem}{Theorem}[section]
-%\newtheorem{corollary}[theorem]{Corollary}
-%\newtheorem{lemma}[theorem]{Lemma}
-%\newtheorem{proposition}[theorem]{Proposition}
-%\newtheorem{condition}[theorem]{Condition}
-% \newtheorem{conditions}[theorem]{Conditions}
-
-%\theoremstyle{definition}
-%\newtheorem{definition}[theorem]{Definition}
-%% \newtheorem*{unnumbered-definition}{Definition}
-%\newtheorem{example}[theorem]{Example}
-%\theoremstyle{remark}
-%\newtheorem*{remark}{Remark}
-%\numberwithin{equation}{section}
-
-
+\newcommand{\lam}{\lambda}
+%\newcommand{\bmu}{\bm{\mu}}
 
 
 
@@ -126,8 +94,9 @@
 
 \newcommand{\bmu}{\bm{\mu}}
 \newcommand{\bX}   {\bm{X}}
+\newcommand{\bx}   {\bm{x}}
 \newcommand{\sig}   {\Sigma}
-\newcommand{\bx}{\ensuremath{\mathbf{X}}}
+%\newcommand{\bx}{\ensuremath{\mathbf{X}}}
 %\newcommand{\X}{\ensuremath{\mathbf{x}}}
 %\newcommand{\w}{\ensuremath{\mathbf{w}}}
 %\newcommand{\h}{\ensuremath{\mathbf{h}}}
@@ -166,11 +135,67 @@
 }
 \def\approxprop{\mathpalette\app\relax}
 
+
+\definecolor{dbrown}{rgb}{0.59, 0.29, 0.0}
+\definecolor{bbrown}{rgb}{0.54, 0.2, 0.14}
+
 % \newcommand{\approptoinn}[2]{\mathrel{\vcenter{
   % \offinterlineskip\halign{\hfil$##$\cr
     % #1\propto\cr\noalign{\kern2pt}#1\sim\cr\noalign{\kern-2pt}}}}}
 
 % \newcommand{\approxpropto}{\mathpalette\approptoinn\relax}
+
+\newcommand{\tth}   {\mbox{$\theta$}}
+\newcommand{\thh}   {\mbox{$\theta$}}
+\newcommand{\su}   {\mbox{$\sigma^2$}}
+\newcommand{\so}   {\mbox{$\sigma_0^2$}}
+\newcommand{\ko}   {\mbox{$\kappa_0$}}
+\newcommand{\no}   {\mbox{$\nu_0$}}
+\newcommand{\mo}   {\mbox{$\mu_0$}}
+\newcommand{\ti}   {\mbox{$\tilde{x}$}}
+\newcommand{\la}   {\mbox{$\lambda$}}
+\newcommand{\bZ}   {\mbox{$\bm{Z}$}}
+\newcommand{\bY}   {\mbox{$\bm{Y}$}}
+\newcommand{\bA}   {\mbox{$\bm{A}$}}
+\newcommand{\ba}   {\mbox{$\bm{a}$}}
+\newcommand{\bb}   {\mbox{$\bm{b}$}}
+\newcommand{\bt}   {\mbox{$\bm{t}$}}
+\newcommand{\bz}   {\mbox{$\bm{z}$}}
+\newcommand{\bw}   {\mbox{$\bm{w}$}}
+\newcommand{\bbeta}   {\mbox{$\bm{\beta}$}}
+
+\newcommand{\be}   {\mbox{$\bm{e}$}}
+\newcommand{\bu}   {\mbox{$\bm{u}$}}
+\newcommand{\bv}   {\mbox{$\bm{v}$}}
+\newcommand{\sigx}   {\mbox{$\Sigma_{XX}$}}
+\newcommand{\sigxy}   {\mbox{$\Sigma_{XY}$}}
+\newcommand{\tr}   {\mbox{$\text{tr}$}}
+\newcommand{\ddet}   {\mbox{$\text{det}$}}
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\newcommand{\bya} {\bm{Y_1}}
+\newcommand{\byk} {\bm{Y_K}}
+\newcommand{\bxa} {\bm{X_1}}
+\newcommand{\bxp} {\bm{X_p}}
+
+\newcommand{\bxi} {\bm{x_i}}
+%\newcommand{\bX} {\bm{X}}
+\newcommand{\bmk} {\bm{\mu_k}}
+\newcommand{\bmka} {\bm{\mu_{k_1}}}
+\newcommand{\bmkb} {\bm{\mu_{k_2}}}
+%\newcommand{\ba} {\bm{a}}
+\newcommand{\baa} {\bm{a_1}}
+\newcommand{\bak} {\bm{a_k}}
+\newcommand{\bab} {\bm{a_2}}
+\newcommand{\bxpp} {\bm{x^{''}}}
+\newcommand{\bxap} {\bm{x_1^{'}}}
+\newcommand{\bxbp} {\bm{x_2^{'}}}
+\newcommand{\bxapp} {\bm{x_1^{''}}}
+\newcommand{\bxbpp} {\bm{x_2^{''}}}
+\newcommand{\bxkpp} {\bm{x_k^{''}}}
+\newcommand{\bmkh} {\bm{\hat{\mu_k}}}
+\def\hbeta{\hat{\beta}}
+
+
 
 
 
