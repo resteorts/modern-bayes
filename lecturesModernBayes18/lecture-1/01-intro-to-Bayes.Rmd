@@ -128,6 +128,10 @@ Example
 
 - That is, if the likelihood function is Gaussian, choosing a Gaussian prior over the mean will ensure that the posterior distribution is also Gaussian. 
 
+- We will return to conjugacy later. 
+
+- First, we will look at a simple example to illustrate the idea of the bernoulli-beta. 
+
 Approval ratings of Obama
 ===
 What is the proportion of people that approve of President Obama in PA?
