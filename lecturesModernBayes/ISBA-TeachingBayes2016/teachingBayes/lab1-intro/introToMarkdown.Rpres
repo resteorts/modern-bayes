@@ -1,0 +1,83 @@
+Teaching Bayes: Markdown
+================================================
+author: Rebecca C. Steorts
+date: June 12, 2016
+
+
+Who am I? 
+============================================
+- Beka Steorts, Assistant Professor at Duke University.
+- Background: Mathematics, Applied Mathematics and CS, and Statistics
+- PhD: University of Florida, 2012, Advisor: Malay Ghosh
+- Visiting Assiting Professor, Carnegie Mellon University, Mentor: Steve Fienberg
+- Research areas: Record linkage, privacy, networks, Bayesian nonparametric clustering models, precision medecine, and small area estiamtion. 
+
+
+Outline
+============================================
+Part I: What is RStudio and Markdown
+- Integration of computing in your Bayesian course. 
+
+Part II: Two sample labs. 
+- Pretend to be the students. 
+- Imagine being a graduate student or yet an undergraduate. 
+- I'm going to walk you through two sample labs I taught at Duke
+this year in my Bayesian course. 
+
+
+Reproducible Research
+============================================
+
+Reproducible research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them.
+
+-Johns Hopkins, Coursera
+
+
+ RStudio
+============================================
+- RStudio is very easy and simple to use. It can be downloaded from [R Studio Download](https://www.rstudio.com). 
+- RStudio is not R.
+- RStudio mediates your interaction with R. 
+
+What is Markdown?
+============================================
+
+- Markdown is a lightweight markup language for creating HTML, PDF, or other documents.
+- Markup languages are designed to produce documents from human readable text.
+- This promotes research/materials that are reproducible.
+- Also, RStudio integrates with LaTeX. 
+
+Why Markdown?
+============================================
+
+- It's easy to learn.
+- It really pushes at reproducible code  
+ and documentation.
+- Once this basics are down, you can do things that are more fancy. 
+
+
+Getting started with RStudio + Markdown
+============================================
+
+- A cheatsheet is given for simple markdown commands [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+- Tysetting equations can be slightly different than LaTeX. There are some resources here! [LaTeX Typesetting](http://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html)
+
+Simple Example
+============================================
+```{r}
+1+6
+x <- 4
+(x + 2)
+set.seed(738)
+```
+
+Bayesian illustration
+============================================
+Let's now go through two labs using RStudio
+such that we can see how to use this tool with students.
+
+- Lab 1: Binomial-Beta example
+- Lab 2: Gibbs sampling
+
+
+

@@ -1,0 +1,19 @@
+
+\begin{verbatim}
+th = seq(0,1,length=500)
+a = 3.3
+b = 7.2
+n = 27
+x = 11
+prior = dbeta(th,a,b)
+like = dbeta(th,x+1,n-x+1)
+post = dbeta(th,x+a,n-x+b)
+pdf("sleep.pdf",width=7,height=5)
+plot(th,post,type="l",ylab="Density",lty=2,lwd=3,
+xlab = expression(theta))
+lines(th,like,lty=1,lwd=3)
+lines(th,prior,lty=3,lwd=3)
+legend(0.7,4,c("Prior","Likelihood","Posterior"),
+lty=c(3,1,2),lwd=c(3,3,3))
+dev.off()
+\end{verbatim}

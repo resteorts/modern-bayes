@@ -1,0 +1,60 @@
+---
+title: "Lab Exercise"
+author: "Rebecca C. Steorts"
+date: "June 9, 2016"
+output: html_document
+---
+
+
+# Lab setup and assigned tasks
+
+Consider the following Exponential model for multiple observation(s) $x = (x_1\ldots,x_n)$. (Please note that in the attached data there are 40 observations):
+$$ p(x|a,b) = a b \exp(- a b x) I(x>0)$$
+and suppose the prior is 
+$$ p(a,b) = \exp(- a - b)I(a,b>0). $$
+You want to sample from the posterior $p(a,b|x)$.  
+
+- Task 1: Find the conditional distributions needed for implementing a Gibbs sampler.
+- Task 2: Code up your own Gibbs sampler in Task 1.
+- Task 3: Plot a histogram or a density estimate of the estimated posterior in Task 2. 
+- Task 4: How do you know that your estimated posterior in Task 3 is reliable? Provide convergence diagnostic plots and commentary. 
+
+# Solution to Task 1
+Note that there are multiple observed values.  Assuming that the observations are independent, we have
+\begin{align*}
+p(\boldsymbol{x}|a,b) &= \prod_{i=1}^n p(x_i|a,b) \\
+&= \prod_{i=1}^n ab\exp(-abx_i) \\
+&= (ab)^n\exp\left(-ab\sum_{i=1}^nx_i\right).
+\end{align*}
+The function is symmetric for $a$ and $b$, so we only need to derive $p(a|\boldsymbol{x},b)$.  This conditional distribution satisfies
+\begin{align*}
+p(a|\boldsymbol{x},b) &\propto_a p(a,b,\boldsymbol{x}) \\
+&= p(\boldsymbol{x}|a,b)p(a,b) \\
+&=(ab)^n\exp\left(-ab\sum_{i=1}^nx_i\right)\left(\exp(-a-b)I(a,b>0)\right) \\
+&= a^nb^n\exp\left(-ab\sum_{i=1}^n x_i \right)\exp(-a)\exp(-b)I(a,b>0) \\
+&\propto_a a^n \exp\left(-a\left(b\sum_{i=1}^n x_i +1\right)\right)I(a>0),
+\end{align*}
+which is the kernel of a Gamma distribution with shape $n+1$ and rate $b\sum_{i=1}^n x_i +1$.  By the symmetry of the distribution we also find $p(b|\boldsymbol{x},a)$ to be Gamma$\left(n+1,a\sum_{i=1}^n x_i +1\right)$.  This will always be a valid Gamma distribution because we have $a,b>0$ and $x_i > 0$ for all $i$, which will ensure that the parameters of the Gamma are always positive.
+
+# Solution to Task 2 
+
+
+
+# Solution to Task 3
+
+
+
+# Solution to Task 4
+
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

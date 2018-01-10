@@ -1,0 +1,32 @@
+---
+title: "Untitled"
+author: "Rebecca C. Steorts"
+date: "June 10, 2016"
+output: 
+  ioslides_presentation:
+      includes:
+          in_header: multisymbols.sty            
+---
+
+## Exponential Model
+
+- Consider the following Exponential model for multiple observation(s) $x = (x_1,\ldots,x_n)$. 
+- Please note that in the attached data there are 40 observations
+
+$$ p(x|a,b) = a b \exp(- a b x) I(x>0)$$
+
+and suppose the prior is 
+
+$$ p(a,b) = \exp(- a - b)I(a,b>0). $$
+
+You want to sample from the posterior $p(a,b|x)$.  
+
+## Goals and Tasks
+
+- Task 1: Find the conditional distributions needed for implementing a Gibbs sampler.
+- Task 2: Code up your own Gibbs sampler in Task 1.
+- Task 3: Plot a histogram or a density estimate of the estimated posterior in Task 2. 
+- Task 4: How do you know that your estimated posterior in Task 3 is reliable? Provide convergence diagnostic plots and commentary. 
+
+## Task 1: Conditional distributions
+

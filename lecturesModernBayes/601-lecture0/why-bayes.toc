@@ -1,0 +1,7 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Motivations}{4}{0}{1}
+\beamer@sectionintoc {2}{Bayes' Theorem}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{Polling Example}{14}{0}{2}
+\beamer@sectionintoc {3}{History}{22}{0}{3}
+\beamer@sectionintoc {4}{Only the Likelihood Matters!}{24}{0}{4}
+\beamer@sectionintoc {5}{Hierarchical Bayesian Models}{45}{0}{5}

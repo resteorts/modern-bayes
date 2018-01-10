@@ -1,0 +1,562 @@
+\documentclass[mathserif]{beamer}
+
+\setbeamertemplate{frametitle}[default][center]%Centers the frame title.
+\setbeamertemplate{navigation symbols}{}%Removes navigation symbols.
+\setbeamertemplate{footline}{\raisebox{5pt}{\makebox[\paperwidth]{\hfill\makebox[10pt]{\scriptsize\insertframenumber}}}}
+\setbeamertemplate{caption}[numbered]
+
+%\input{multi_symbols.tex}
+
+\usepackage{float,bm}
+\floatstyle{boxed}
+\newfloat{code}{tp}{code}
+\floatname{code}{Code Example}
+\input{multi_symbols}
+%\usepackage{fontspec}
+%\setmainfont{Tahoma}
+
+\newcommand{\del}   {\mbox{$\delta(x)$}}
+
+%\newcommand{\lam}{\lambda}
+%\newcommand{\bmu}{\bm{\mu}}
+%%\newcommand{\bx}{\ensuremath{\mathbf{X}}}
+%\newcommand{\X}{\ensuremath{\mathbf{x}}}
+%\newcommand{\w}{\ensuremath{\mathbf{w}}}
+%\newcommand{\h}{\ensuremath{\mathbf{h}}}
+%\newcommand{\V}{\ensuremath{\mathbf{v}}}
+%\newcommand{\cov}{\text{Cov}}
+%\newcommand{\var{\text{Var}}}
+
+%\DeclareMathOperator{\var}{Var}
+%\DeclareMathOperator{\cov}{Cov}
+
+%\newcommand{\indep}{\rotatebox{90}{\ensuremath{\models}}}
+%\newcommand{\notindep}{\not\hspace{-.05in}\indep}
+
+%\newcommand{\bX}   {\mbox{$\bm{X}$}}
+%\newcommand{\bx}   {\mbox{$\bm{x}$}}
+%\newcommand{\V}   {\mbox{\text{Var}}}
+%\newcommand{\tth}   {\mbox{$\theta$}}
+%\newcommand{\su}   {\mbox{$\sigma^2$}}
+%\newcommand{\so}   {\mbox{$\sigma_0^2$}}
+%\newcommand{\ko}   {\mbox{$\kappa_0$}}
+%\newcommand{\no}   {\mbox{$\nu_0$}}
+%\newcommand{\mo}   {\mbox{$\mu_0$}}
+%\newcommand{\ti}   {\mbox{$\tilde{x}$}}
+%\newcommand{\la}   {\mbox{$\lambda$}}
+
+\newtheoremstyle{example}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+
+
+\newtheoremstyle{definition}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\newtheoremstyle{algorithm}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+
+
+\newtheoremstyle{theorem}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+
+
+
+\usepackage{graphicx} %The mode "LaTeX => PDF" allows the following formats: .jpg  .png  .pdf  .mps
+\graphicspath{{./PresentationPictures/}} %Where the figures folder is located
+\usepackage{listings}
+\usepackage{media9}
+\usepackage{movie15}
+\addmediapath{./Movies/}
+
+\newcommand{\beginbackup}{
+   \newcounter{framenumbervorappendix}
+   \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumbervorappendix}} 
+}
+
+
+%\usepackage{algorithm2e}
+\usepackage[ruled,lined]{algorithm2e}
+\def\algorithmautorefname{Algorithm}
+\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{endif}
+%\usepackage{times}
+%\usepackage[tbtags]{amsmath}
+%\usepackage{amssymb}
+\usepackage{amsfonts}
+%\usepackage{slfortheorems}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage[small]{caption}
+%\usepackage[square]{natbib}
+%\newcommand{\newblock}{}
+%\bibpunct{(}{)}{;}{a}{}{,}
+%\bibliographystyle{ims}
+%\usepackage[letterpaper]{geometry}
+\usepackage{color}
+\setlength{\parindent}{0pt}
+
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+%\usepackage{hyperref}
+
+
+
+%\usepackage{zref-savepos}
+%
+%\newcounter{restofframe}
+%\newsavebox{\restofframebox}
+%\newlength{\mylowermargin}
+%\setlength{\mylowermargin}{2pt}
+%
+%\newenvironment{restofframe}{%
+%    \par%\centering
+%    \stepcounter{restofframe}%
+%    \zsavepos{restofframe-\arabic{restofframe}-begin}%
+%    \begin{lrbox}{\restofframebox}%
+%}{%
+%    \end{lrbox}%
+%    \setkeys{Gin}{keepaspectratio}%
+%    \raisebox{\dimexpr-\height+\ht\strutbox\relax}[0pt][0pt]{%
+%    \resizebox*{!}{\dimexpr\zposy{restofframe-\arabic{restofframe}-begin}sp-\zposy{restofframe-\arabic{restofframe}-end}sp-\mylowermargin\relax}%
+%        {\usebox{\restofframebox}}%
+%    }%
+%    \vskip0pt plus 1filll\relax
+%    \mbox{\zsavepos{restofframe-\arabic{restofframe}-end}}%
+%    \par
+%}
+
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+%\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tkz-berge}
+\usetikzlibrary{fit,shapes}
+
+\usepackage{calc}
+%%
+%% The tikz package is used for doing the actual drawing.
+%\usepackage{tikz}
+%%
+%% In order to be able to put arrowheads in the middle of directed edges, we need an extra library.
+\usetikzlibrary{decorations.markings}
+%%
+%% The next line says how the "vertex" style of nodes should look: drawn as small circles.
+\tikzstyle{vertex}=[circle, draw, inner sep=0pt, minimum size=6pt]
+%%
+%% Next, we make a \vertex command as a shorthand in place of \node[vertex} to get that style.
+\newcommand{\vertex}{\node[vertex]}
+%%
+%% Finally, we declare a "counter", which is what LaTeX calls an integer variable, for use in
+%% the calculations of angles for evenly spacing vertices in circular arrangements.
+\newcounter{Angle}
+
+\newtheoremstyle{example}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{example}
+\newtheorem{ex}{Example}[section]
+
+\newtheoremstyle{definition}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\theoremstyle{rem}
+\newtheorem{rem}{Remark}[section]
+
+\newtheoremstyle{theorem}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{theorm}
+\newtheorem{thm}{Theorem}[section]
+
+
+
+%%%to add in new counter for slides in beamer
+
+%\setbeamertemplate{footline}{
+%  \leavevmode%
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\insertshortauthor~~(\insertshortinstitute)
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%    \insertframenumber{} \hspace*{2ex} % hier hat's sich geändert
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+
+
+
+%%%%%
+
+\newcommand*\oldmacro{}
+\let\oldmacro\insertshortauthor
+\renewcommand*\insertshortauthor{
+  \leftskip=.3cm
+\insertframenumber\,/\,\inserttotalframenumber\hfill\oldmacro}
+
+
+
+
+%\excludecomment{notbeamer}
+%\includecomment{beamer}
+
+
+
+\title{More on Bayesian Methods: Part II}
+\author{Rebecca C. Steorts \\ Bayesian Methods and Modern Statistics: STA 360/601}
+\date{Lecture 5}
+
+\begin{document}
+
+
+
+
+\maketitle
+%\frame{
+%\tableofcontents
+%}
+
+
+
+
+%\pagestyle{plain} for plain doc
+%\excludecomment{notreport}
+%\includecomment{report}
+
+%\include{cover}
+
+%\tableofcontents
+%\baselineskip 24pt
+%\setlength{\parskip}{0.3cm}
+%\setlength{\parindent}{0cm}
+%\setcounter{chapter}{0}
+
+
+%\chapter{Introduction}
+%\emph{There are three kinds of lies: lies, damned lies and statistics.}\\
+%---Mark Twain
+%\newpage
+%\frame{
+%\center
+%\textbf{Intro to Bayesian concepts}
+%\vspace*{2em}
+%
+%}
+
+\frame{
+\frametitle{Today's menu}
+\begin{itemize}
+\item Confidence intervals
+\item Credible Intervals
+\item Example
+%\item Prediction intervals
+\end{itemize}
+}
+
+\frame{
+\frametitle{Confidence intervals vs credible intervals}
+
+A confidence interval for an unknown (fixed) parameter $\theta$ is an interval of numbers that we believe is likely to contain the true value of $\theta.$
+\vskip 1em
+ Intervals are important because they provide us with an idea of how well we can estimate~$\theta.$ 
+
+
+}
+
+\frame{
+\frametitle{Confidence intervals vs credible intervals}
+\begin{itemize}
+\item A \emph{confidence interval} is constructed to contain $\theta$ a percentage of the time, say 95\%.
+\item  Suppose our confidence level is 95\% and our interval is $(L,U)$. Then we are 95\% confident that the true value of $\theta$ is contained in $(L,U)$ in \emph{the long run}. 
+\item In the long run means that this would occur nearly 95\% of the time if we repeated our study millions and millions of times.
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Common Misconceptions in Statistical Inference}
+\begin{itemize}
+\item A confidence interval is a statement about $\theta$ (a \textcolor{blue}{population parameter}). 
+\item It is \emph{not} a statement about the sample.
+\item It is also \emph{not} a statement about individual subjects in the population. 
+\end{itemize}
+}
+
+\frame{
+\frametitle{Common Misconceptions in Statistical Inference}
+\begin{itemize}
+\item Let a 95\% confidence interval for the average amount of television watched by Americans be (2.69, 6.04) hours. 
+\item This \emph{doesn't} mean we can say that 95\% of all Americans watch between 2.69 and 6.04 hours of television. 
+\item We also \emph{cannot} say that 95\% of Americans in the sample watch between 2.69 and 6.04 hours of television. 
+\item Beware that statements such as these are false. 
+\item However, we can say that we are 95 percent confident that the \textcolor{blue}{\emph{average} amount of televison watched by Americans} is between 2.69 and 6.04 hours. 
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Credible intervals}
+Let $\theta$ be a random variable (parameter). A confidence (credible region) on $\theta$ is to determine $C(X_n)$ such that 
+$$\pi(\theta \in C(X_n) \mid X_n) = 1- \alpha,$$ 
+where $\alpha$ is predetermined such as 0.05.
+
+
+
+
+
+}
+
+\frame{
+\frametitle{Simple definition of credible interval}
+%In lower-level classes, you wrote down assumptions whenever you did confidence intervals. This is redundant for any problem we construct in this course since we always know the data is randomly distributed and we assume it comes from some underlying distribution, say Normal, Gamma, etc. We also always assume our observations are i.i.d.\ (independent and identically distributed), meaning that the observations are all independent and they all have the same variance. Thus, when working a particular problem, we will assume these assumptions are satisfied given the proposed model holds.
+
+A Bayesian credible interval of size $1-\alpha$ is an interval $(a,b)$ such that $$P(a\leq\theta\leq b|x)=1-\alpha.$$  $$\int_{a}^b p(\theta|x) \; d\theta = 1- \alpha.$$ 
+\begin{quote}
+Remark: When you're calculating credible intervals, you'll find the values of $a$ and $b$ by several means. You could be asked do the following:
+\begin{itemize}
+\item Find the $a,b$ using means of calculus to determine the credible interval or set. 
+\item Use a Z-table when appropriate.
+\item Use \texttt{R} to approximate the values of $a$ and $b.$
+%\item You could be given \texttt{R} code/output and asked to find the values of $a$ and $b$.
+\end{itemize}
+\end{quote}
+
+}
+
+\frame{
+\frametitle{Important Point} 
+Our definition for the credible interval could lead to many choices of $(a,b)$ for particular problems. 
+
+Suppose that we required our credible interval to have equal probability $\alpha/2$ in each tail. That is, we will assume
+$$P(\theta < a|x) = \alpha/2$$ and
+$$P(\theta > b|x) = \alpha/2.$$
+}
+
+\frame{
+\frametitle{Important Point} 
+Is the credible interval still unique? No. Consider $$\pi(\theta|x) = I(0<\theta<0.025) + I(1<\theta<1.95) + I(3<\theta<3.025)$$ so that the density has three separate plateaus. Now notice that any $(a,b)$ such that $0.025<a<1$ and $1.95<b<3$ satisfies the proposed definition of a ostensibly ``unique" credible interval. To fix this, we can simply require that 
+$$\{ \theta : \pi(\theta|x) \text{ is positive}\}$$
+(i.e., the support of the posterior) must be an interval.
+
+}
+
+\frame{
+\frametitle{Confidence interval}
+\begin{itemize}
+\item Conceptually, probability comes into play in a frequentist confidence interval \textcolor{blue}{\emph{before}} collecting the data.
+\item 
+Ex: there is a 95\% probability that we will collect data that produces an interval that contains the true parameter value. 
+\item Awkard! 
+\item We would like to make statements about the probability that the interval contains the true parameter value given the data that we actually observed.
+\end{itemize}
+}
+\frame{
+\frametitle{Credible interval}
+\begin{itemize}
+\item Meanwhile, probability comes into play in a Bayesian credible interval \textcolor{blue}{after} collecting the data
+\item Ex: based on the data, we now think there is a 95\% probability that the true parameter value is in the interval. 
+\item This is more natural because we want to make a probability statement regarding that data after we have observed it. 
+\end{itemize}
+}
+
+%\frame{
+%\frametitle{Christmas trees example}
+%\begin{itemize}
+%\item We're interested in knowing the true average number of ornaments on a Christmas tree ($\theta)$.  
+%\item   We take a random sample of $n$ Christmas trees, count the ornaments on each one, and call the results $X_1,\ldots,X_n.$ 
+%\item Let the prior on $\theta$ be $\text{Normal}(75,225).$
+%
+%\item Using data (\texttt{trees.txt}) we have, we will calculate the 95\% credible interval and confidence interval for $\theta.$ In \texttt{R} we first read in the data file \texttt{trees.txt}. 
+%\item We then set the initial values for our known parameters, $n, \sigma, \mu$, and $ \tau.$ 
+%\end{itemize}
+%}
+%
+%\frame{
+%
+%Next, we refer to Example \ref{ci:norm}, and calculate the values of $\mu^*$ and $\sigma^*$ using this example. Finally, again referring to Example \ref{ci:norm}, we recall that the formula for a 95\% credible interval here is $$\mu^*\pm1.96\sigma^*.$$ On the other hand, recalling back to any basic statistics course, a 95\% confidence interval in this situation is
+%$$\bar{x} \pm 1.96 \sigma/\sqrt{n}.$$
+%
+%From the \texttt{R} code, we find that there is a 95\% probability that the average number of ornaments per tree is in (45.00, 57.13) given the data. We also find that we are 95\% confident that the average number of ornaments per tree is contained in (43.80, 56.20). If we compare the width of each interval, we see that the credible interval is slightly narrower. It is also shifted towards slightly higher values than the confidence interval for this data, which makes sense because the prior mean was higher than the sample mean. What would happen to the width of the intervals if we increased $n$?  Does this make sense?
+%\newpage
+%\begin{verbatim}
+%x = read.table("trees.txt",header=T)
+%attach(x)
+%n = 10
+%sigma = 10
+%mu = 75
+%tau = 15
+%
+%mu.star = (n*mean(orn)*tau^2+mu*sigma^2)/(n*tau^2+sigma^2)
+%sigma.star = sqrt((sigma^2*tau^2)/(n*tau^2+sigma^2))
+%
+%(cred.i = mu.star+c(-1,1)*qnorm(0.975)*sigma.star)
+%(conf.i = mean(orn)+c(-1,1)*qnorm(0.975)*sigma/sqrt(n))
+%
+%diff(cred.i)
+%diff(conf.i)
+%detach(x)
+%\end{verbatim}
+%\end{ex}
+
+\begin{frame}[fragile]
+\frametitle{Sleep Example}
+\begin{itemize}
+\item Interested in the proportion of the population of American college students that sleep at least eight hours each night ($\theta$). 
+\item Suppose a random sample of 27 students from UF, where 11 students recorded they slept at least eight hours each night. 
+\item $X \sim \text{Binomial}(27,\theta).$ 
+\end{itemize}
+
+Suppose that the prior on $\theta$ was Beta(3.3,7.2). Thus, the posterior distribution is
+\begin{align*}
+\theta|11 &\sim \text{Beta}(11+3.3,27-11+7.2), \;\text{i.e.},\\
+\theta|11 &\sim \text{Beta}(14.3,23.2).
+\end{align*}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Sleep Example}
+\begin{itemize}
+\item Suppose now we would like to find a 90\% credible interval for $\theta.$ 
+\item We cannot compute this in closed form since computing probabilities for Beta distributions involves messy integrals that we do not know how to compute.
+\item However, we can use \texttt{R} to find the interval.
+\end{itemize}
+We need to solve 
+$$P(\theta < c|x) = 0.05$$ and 
+$$P(\theta > d|x) = 0.05 \; \text{for $c$ and $d$}.$$ 
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{Sleep Example}
+We cannot compute this in closed form because we need to compute
+$$\int_{0}^c \text{Beta}(14.3,23.2) \;d\theta = 0.05$$ and 
+$$\int_{d}^1 \text{Beta}(14.3,23.2) \;d\theta = 0.05.$$
+
+Note that \text{Beta}(14.3,23.2) represents 
+$$f(\theta) = \frac{\Gamma(37.5)}{\Gamma(14.3)\Gamma(23.2)}
+\theta^{14.3-1}(1-\theta)^{23.2-1}.$$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Sleep Example}
+
+The \texttt{R} code for this is very straightforward:
+
+\begin{verbatim}
+a = 3.3
+b = 7.2
+n = 27
+x = 11
+a.star = x+a
+b.star = n-x+b
+
+c = qbeta(0.05,a.star,b.star)
+d = qbeta(1-0.05,a.star,b.star)
+\end{verbatim}
+Running the code in \texttt{R}, we find that a 90\% credible interval for $\theta$ is (0.256,\;0.514), meaning that there is a 90\% probability that the proportion of Duke students who sleep eight or more hours per night is between 0.256 and 0.514 given the data.
+
+
+\end{frame}
+
+
+%\frame{
+%
+%Bayesian interval estimates for $\theta$ are similar to confidence intervals of classical inference. They are called credible intervals or sets. Bayesian credible intervals have a nice interpretation as we will soon see. 
+%
+%To see this more clearly, see Figure \ref{fig:ci}.
+%
+%\begin{defn}
+%A Bayesian credible set $C$ of level or size $1-\alpha$ is a set $C$ such that 
+% $1 - \alpha \leq P(C|y) = \int_{C} p(\theta|y) \;d\theta.$ (Of course in discrete settings, the integral is simply replaced by summation).
+%\end{defn}
+%Note: We use $\leq$ instead of $=$ to include discrete settings since obtaining exact coverage in a discrete setting may not be possible.
+%
+%
+%This definition enables direct probability statements about the likelihood of~$\theta$ falling in $C.$ That is, 
+%$$\text{``The probability that $\theta$ lies in $C$ given the observed data y is at least $(1-\alpha)."$}$$
+%
+%This greatly contrasts with the usual frequentist CI, for which the corresponding statement is something like
+%``If we could recompute $C$ for a large number of datasets collected in the same way as ours, about $(1-\alpha)\times 100 \%$ of them would contain the true value $\theta.$
+%
+%
+%
+%}
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,638 @@
+\documentclass[mathserif]{beamer}
+
+\setbeamertemplate{frametitle}[default][center]%Centers the frame title.
+\setbeamertemplate{navigation symbols}{}%Removes navigation symbols.
+\setbeamertemplate{footline}{\raisebox{5pt}{\makebox[\paperwidth]{\hfill\makebox[10pt]{\scriptsize\insertframenumber}}}}
+\setbeamertemplate{caption}[numbered]
+
+\usepackage{amssymb,amsfonts,amsmath,latexsym,amsthm}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[]{graphicx}
+%\usepackage[space]{grffile}
+\usepackage{mathrsfs}   % fancy math font
+% \usepackage[font=small,skip=0pt]{caption}
+\usepackage[skip=0pt]{caption}
+\usepackage{subcaption}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{dsfont}
+\usepackage{extarrows}
+\usepackage{multirow, bm}
+%\input{multi_symbols.tex}
+
+\usepackage{float,bm}
+\floatstyle{boxed}
+\newfloat{code}{tp}{code}
+\floatname{code}{Code Example}
+%\input{multi_symbols}
+%\usepackage{fontspec}
+%\setmainfont{Tahoma}
+
+%\newcommand{\lam}{\lambda}
+\newcommand{\bmu}{\bm{\mu}}
+\newcommand{\bX}   {\bm{X}}
+\newcommand{\sig}   {\Sigma}
+\newcommand{\bx}{\ensuremath{\mathbf{X}}}
+%\newcommand{\X}{\ensuremath{\mathbf{x}}}
+%\newcommand{\w}{\ensuremath{\mathbf{w}}}
+%\newcommand{\h}{\ensuremath{\mathbf{h}}}
+%\newcommand{\V}{\ensuremath{\mathbf{v}}}
+%\newcommand{\cov}{\text{Cov}}
+\newcommand{\var}{\text{Var}}
+
+%\DeclareMathOperator{\var}{Var}
+%\DeclareMathOperator{\cov}{Cov}
+
+%\newcommand{\indep}{\rotatebox{90}{\ensuremath{\models}}}
+%\newcommand{\notindep}{\not\hspace{-.05in}\indep}
+
+\usepackage{graphicx} %The mode "LaTeX => PDF" allows the following formats: .jpg  .png  .pdf  .mps
+\graphicspath{{./PresentationPictures/}} %Where the figures folder is located
+\usepackage{listings}
+\usepackage{media9}
+\usepackage{movie15}
+\addmediapath{./Movies/}
+
+\newcommand{\beginbackup}{
+   \newcounter{framenumbervorappendix}
+   \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumbervorappendix}} 
+}
+
+
+%\usepackage{algorithm2e}
+\usepackage[ruled,lined]{algorithm2e}
+\def\algorithmautorefname{Algorithm}
+\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{endif}
+%\usepackage{times}
+%\usepackage[tbtags]{amsmath}
+%\usepackage{amssymb}
+\usepackage{amsfonts}
+%\usepackage{slfortheorems}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage[small]{caption}
+%\usepackage[square]{natbib}
+%\newcommand{\newblock}{}
+%\bibpunct{(}{)}{;}{a}{}{,}
+%\bibliographystyle{ims}
+%\usepackage[letterpaper]{geometry}
+%\usepackage{color}
+%\setlength{\parindent}{0pt}
+
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+%\usepackage{hyperref}
+
+\DeclareMathOperator*{\Exp}{Exp}
+\DeclareMathOperator*{\TExp}{TExp}
+\DeclareMathOperator*{\Bernoulli}{Bernoulli}
+\DeclareMathOperator*{\Beta}{Beta}
+\DeclareMathOperator*{\Ga}{Gamma}
+\DeclareMathOperator*{\TGamma}{TGamma}
+\DeclareMathOperator*{\Poisson}{Poisson}
+\DeclareMathOperator*{\Binomial}{Binomial}
+\DeclareMathOperator*{\NormalGamma}{NormalGamma}
+\DeclareMathOperator*{\InvGamma}{InvGamma}
+\DeclareMathOperator*{\Cauchy}{Cauchy}
+\DeclareMathOperator*{\Uniform}{Uniform}
+\DeclareMathOperator*{\Gumbel}{Gumbel}
+\DeclareMathOperator*{\Pareto}{Pareto}
+\DeclareMathOperator*{\Mono}{Mono}
+\DeclareMathOperator*{\Geometric}{Geometric}
+\DeclareMathOperator*{\Wishart}{Wishart}
+
+\newcommand{\N}{\mathcal{N}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\Pr}{\mathbb{P}}
+\newcommand{\I}{\mathds{1}}
+\newcommand{\V}{\mathbb{V}}
+
+% Math operators
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\median}{median}
+\DeclareMathOperator*{\Vol}{Vol}
+
+% Miscellaneous commands
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+\newcommand{\matrixsmall}[1]{\bigl(\begin{smallmatrix}#1\end{smallmatrix} \bigr)}
+
+\newcommand{\items}[1]{\begin{itemize} #1 \end{itemize}}
+
+\newcommand{\todo}[1]{\emph{\textcolor{red}{(#1)}}}
+
+\newcommand{\branch}[4]{
+\left\{
+	\begin{array}{ll}
+		#1  & \mbox{if } #2 \\
+		#3 & \mbox{if } #4
+	\end{array}
+\right.
+}
+
+% approximately proportional to
+\def\app#1#2{%
+  \mathrel{%
+    \setbox0=\hbox{$#1\sim$}%
+    \setbox2=\hbox{%
+      \rlap{\hbox{$#1\propto$}}%
+      \lower1.3\ht0\box0%
+    }%
+    \raise0.25\ht2\box2%
+  }%
+}
+\def\approxprop{\mathpalette\app\relax}
+
+\newcommand{\btheta}{{\bm\theta}}
+\newcommand{\bbtheta}{{\pmb{\bm\theta}}}
+
+%\usepackage{zref-savepos}
+%
+%\newcounter{restofframe}
+%\newsavebox{\restofframebox}
+%\newlength{\mylowermargin}
+%\setlength{\mylowermargin}{2pt}
+%
+%\newenvironment{restofframe}{%
+%    \par%\centering
+%    \stepcounter{restofframe}%
+%    \zsavepos{restofframe-\arabic{restofframe}-begin}%
+%    \begin{lrbox}{\restofframebox}%
+%}{%
+%    \end{lrbox}%
+%    \setkeys{Gin}{keepaspectratio}%
+%    \raisebox{\dimexpr-\height+\ht\strutbox\relax}[0pt][0pt]{%
+%    \resizebox*{!}{\dimexpr\zposy{restofframe-\arabic{restofframe}-begin}sp-\zposy{restofframe-\arabic{restofframe}-end}sp-\mylowermargin\relax}%
+%        {\usebox{\restofframebox}}%
+%    }%
+%    \vskip0pt plus 1filll\relax
+%    \mbox{\zsavepos{restofframe-\arabic{restofframe}-end}}%
+%    \par
+%}
+
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+%\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tkz-berge}
+\usetikzlibrary{fit,shapes}
+
+\usepackage{calc}
+%%
+%% The tikz package is used for doing the actual drawing.
+%\usepackage{tikz}
+%%
+%% In order to be able to put arrowheads in the middle of directed edges, we need an extra library.
+\usetikzlibrary{decorations.markings}
+%%
+%% The next line says how the "vertex" style of nodes should look: drawn as small circles.
+\tikzstyle{vertex}=[circle, draw, inner sep=0pt, minimum size=6pt]
+%%
+%% Next, we make a \vertex command as a shorthand in place of \node[vertex} to get that style.
+\newcommand{\vertex}{\node[vertex]}
+%%
+%% Finally, we declare a "counter", which is what LaTeX calls an integer variable, for use in
+%% the calculations of angles for evenly spacing vertices in circular arrangements.
+\newcounter{Angle}
+
+\newtheoremstyle{example}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{example}
+\newtheorem{ex}{Example}[section]
+
+\newtheoremstyle{definition}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\theoremstyle{rem}
+\newtheorem{rem}{Remark}[section]
+
+\newtheoremstyle{theorem}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{theorm}
+\newtheorem{thm}{Theorem}[section]
+
+
+
+%%%to add in new counter for slides in beamer
+
+%\setbeamertemplate{footline}{
+%  \leavevmode%
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\insertshortauthor~~(\insertshortinstitute)
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%    \insertframenumber{} \hspace*{2ex} % hier hat's sich geändert
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+
+
+
+%%%%%
+
+\newcommand*\oldmacro{}
+\let\oldmacro\insertshortauthor
+\renewcommand*\insertshortauthor{
+  \leftskip=.3cm
+\insertframenumber\,/\,\inserttotalframenumber\hfill\oldmacro}
+
+
+
+
+%\excludecomment{notbeamer}
+%\includecomment{beamer}
+
+
+
+\title{The Multivariate Distributions: Normal and inverse Wishart}
+\author{Rebecca C. Steorts \\ Bayesian Methods and Modern Statistics: STA 360/601}
+\date{Module 10}
+
+\begin{document}
+
+\maketitle
+
+\frame{
+
+\begin{itemize}
+\item Moving from univariate to multivariate distributions. 
+\item The multivariate normal (MVN) distribution.
+\item Conjugate for the MVN distribution.  
+\item The inverse Wishart distribution. 
+\item Conjugate for the MVN distribution (but on the covariance matrix). 
+\item Combining the MVN with inverse Wishart. 
+\end{itemize}
+
+}
+
+
+
+
+\section{Distribution of MVN}
+
+\frame{
+We assume that the population mean is $\bmu = E(\bX)$ and $\Sigma = \var(\bX) = E[(\bX - \bmu)(\bX - \bmu)^T],$ 
+where 
+\[  \bmu= \left( \begin{array}{c}
+\mu_1\\
+\mu_2\\
+\vdots\\
+\mu_p
+\end{array} \right) \]
+and 
+
+$$\sig = 
+\left( \begin{array}{cccc}
+\sigma_1^2 & \sigma_{12} & \ldots&  \sigma_{1p}\\
+\sigma_{21} & \sigma_2^2 & \ldots& \sigma_{2p}\\
+\vdots & \vdots & \ddots & \vdots \\
+\sigma_{p1} & \sigma_{p2} &\ldots& \sigma_p^2
+\end{array} \right).
+$$
+
+
+}
+
+\frame{
+\frametitle{Notation}
+
+Determinant and Trace of Matrices
+
+}
+
+\frame{
+Suppose matrix $A$  is invertible. The 
+$$\det(A) = \sum_{i=1}^{j=n} a_{ij} A_{ij}.$$
+\vskip 1em 
+
+I recommend using the det() commend in R. 
+\vskip 1em 
+
+Suppose now we have a square matrix $H_{p \times p}.$
+
+$$\text{trace}(H) = \sum_i h_{ii},$$ where $h_{ii}$ are the diagonal elements of $H.$
+
+
+
+
+
+
+
+
+}
+
+%\frame{
+%
+%Define $\sigma_j^2 = \var(X_j)$ and $\sigma_{jk} = \cov(X_j, X_k).$
+%
+%Assume
+%$\bX \sim (\bmu, \Sigma).$
+%
+%\begin{rem}
+%Let $$\bX \sim (\bmu, \Sigma)$$ be a $p$-variate random vector. Let $A_{p\times k}$ and $B_{p\times \ell}$ be matrices. Then
+%\begin{enumerate}
+%\item The mean and covariance of $A^T\bX$ are
+%$$A^T\bX \sim (A^T\bmu, A^T \Sigma A). $$
+%\item The random vectors $A^T\bX$ and $B^T\bX$ are uncorrelated if and only if $A^T \Sigma B = 0_{k \times \ell}.$
+%\end{enumerate}
+%\end{rem}
+%
+%
+%}
+
+\frame{
+\begin{itemize}
+\item MVN is generalization of univariate normal.
+\item For the MVN, we write $\bX \sim
+\mathcal{MVN}(\bmu,\Sigma)$. 
+\item The $(i,j)^{\text{th}}$
+component of $\Sigma$ is the covariance between $X_i$ and~$X_j$ (so
+the diagonal of $\Sigma$ gives the component variances).
+\end{itemize}
+
+}
+
+\frame{
+Just as the probability density of a scalar normal is
+\begin{equation}
+p(x) = {\left(2\pi\sigma^2\right)}^{-1/2}\exp{\left\{ -\frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}\right\}},
+\end{equation}
+the probability density of the multivariate normal is
+\begin{equation}
+p(\vec{x}) = {\left(2\pi\right)}^{-p/2}(\det{\Sigma})^{-1/2} \exp{\left\{-\frac{1}{2} (\bx-\bmu)^T\Sigma^{-1} (\bx - \bmu)\right\}}.
+\end{equation}
+\textcolor{blue}{Univariate normal is special case of the multivariate normal with a one-dimensional mean ``vector'' and a one-by-one variance ``matrix.''}
+
+}
+
+\frame{
+
+Please review the first section for Chapter 7 if you're uncomfortable with the density of the standard normal or MVN.
+
+
+}
+
+\frame{
+\frametitle{Conjugate to MVN}
+Suppose that $$X_1 \ldots X_n \stackrel{iid}{\sim} MVN(\theta, \Sigma). $$
+Let $$\pi(\btheta) \sim MVN(\bmu, \Omega). $$
+
+What is the full conditional distribution of $\btheta \mid \bX, \Sigma$?
+}
+
+\frame{
+\frametitle{Prior}
+\begin{align}
+\pi(\btheta) &= {\left(2\pi\right)}^{-p/2}\det{\Omega}^{-1/2} \exp{\left\{-\frac{1}{2} (\btheta-\bmu)^T\Omega^{-1} (\btheta - \bmu)\right\}} \\
+& \propto \exp{\left\{-\frac{1}{2} (\btheta-\bmu)^T\Omega^{-1} (\btheta - \bmu)\right\}} \\
+& \propto \exp-\frac{1}{2} {\left \{\btheta^T\Omega^{-1} \btheta - 2 \btheta^T \Omega^{-1} \mu + \mu^T \Omega^{-1} \mu \right \}} \\
+& \propto \exp-\frac{1}{2} {\left \{\btheta^T\Omega^{-1} \btheta - 2 \btheta^T \Omega^{-1} \mu  \right \}}\\
+&= \exp-\frac{1}{2} {\left \{\btheta^TA_o \btheta - 2 \btheta^T  b_o  \right \}}
+\end{align}
+$\pi(\btheta) \sim MVN(\bmu, \Omega)$ implies that $A_o = \Omega^{-1}$ and $b_o = \Omega^{-1} \mu.$
+}
+
+\frame{
+\frametitle{Likelihood}
+\begin{align}
+p(\bx \mid \btheta, \Sigma) &= \prod_{i=1}^n
+{\left(2\pi\right)}^{-p/2}\det{\Sigma}^{-n/2} \exp{\left\{-\frac{1}{2} (x_i-\btheta)^T\Sigma^{-1} (x_i - \btheta)\right\}}\\
+\propto 
+& \exp-\frac{1}{2} {\left \{ \sum_i x_i^T \Sigma^{-1} x_i -2 \sum_i \btheta^T \Sigma^{-1} x_i + 
+\sum_i \btheta^T\Sigma^{-1} \btheta 
+ \right \}}\\
+ & \exp-\frac{1}{2} {\left \{  -2 \btheta^T \Sigma^{-1} n\bar{x} + 
+n \btheta^T\Sigma^{-1} \btheta 
+ \right \}}\\
+  & \exp-\frac{1}{2} {\left \{  -2 \btheta^T b_1+ 
+\btheta^T A_1 \btheta \right \}},
+\end{align}
+where $$b_1= \Sigma^{-1} n\bar{x}, \quad A_1 = n\Sigma^{-1}$$ and 
+$$\bar{x} := (\frac{1}{n}\sum_i x_{i1} ,\ldots, \frac{1}{n} x_{ip})^T.$$
+
+
+
+}
+
+\frame{
+\frametitle{Full conditional}
+\begin{align}
+p(\btheta \mid \bx, \Sigma) &\propto
+p(\bx \mid \btheta, \Sigma) \times p(\btheta) \\
+&\propto 
+\exp-\frac{1}{2} {\left \{  -2 \btheta^T b_1+ 
+\btheta^T A_1 \btheta \right \}} \\
+&\times
+\exp-\frac{1}{2} {\left \{\btheta^TA_o \btheta - 2 \btheta^T b_o  \right \}}\\
+%%%
+&\propto \exp\{\btheta^T b_1 - \frac{1}{2}\btheta^T A_1 \btheta- \frac{1}{2}\btheta^TA_o  \btheta
++ \btheta^T b_o\}\\
+& \propto\exp\{
+\btheta^T( b_o + b_1) -\frac{1}{2}\theta^T(A_o + A_1) \theta
+\}
+\end{align}
+Then $$A_n = A_o + A_1 = \Omega^{-1}+n\Sigma^{-1}$$ and $$b_n = b_o + b_1 = \Omega^{-1}\mu + \Sigma^{-1} n\bar{x}$$
+$$\btheta \mid \bx, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n)$$
+}
+
+\frame{
+\frametitle{Interpretations?}
+$$\btheta \mid \bx, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n)$$
+\begin{align}
+\mu_n &= A_n^{-1}b_n = [\Omega^{-1}\mu+n\Sigma^{-1}]^{-1}(b_o + b_1)\\
+&=  [\Omega^{-1}\mu+n\Sigma^{-1}]^{-1}(\Omega^{-1}\mu+ \Sigma^{-1} n\bar{x} )
+\end{align}
+\vskip 1em
+\begin{align}
+\Sigma_n &= A_n^{-1} = [\Omega^{-1}\mu+n\Sigma^{-1}]^{-1}
+\end{align}
+}
+
+
+\frame{
+\frametitle{inverse Wishart  distribution}
+
+Suppose $\Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1})$
+where $\nu_o$ is a scalar and $S_o^{-1}$ is a matrix.
+\vskip 1em
+
+Then $$p(\Sigma) \propto
+\det(\Sigma)^{-(\nu_o + p +1)/2} \times \exp\{
+-\text{tr}(S_o\Sigma^{-1})/2
+\}$$
+
+\vskip 1em
+For the full distribution, see Hoff, Chapter 7 (p. 110).
+}
+
+\frame{
+\frametitle{inverse Wishart  distribution}
+
+\begin{itemize}
+\item The inverse Wishart distribution is the multivariate version of the Gamma distribution. 
+\item The full hierarchy we're interested in is 
+$$\bm{X} \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
+$$ \btheta \sim MVN(\mu, \Omega)$$
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
+\end{itemize}
+We first consider the conjugacy of the MVN and the inverse Wishart, i.e.
+$$\bm{X} \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
+}
+
+\frame{
+
+What about $p(\Sigma \mid \bX,  \btheta) = p(\Sigma) \times p(\bX \mid \btheta, \Sigma).$
+Let's first look at 
+\begin{align}
+&p(\bX \mid \btheta, \Sigma) \\
+&\propto
+\det(\Sigma)^{-n/2}\exp\{-
+\sum_i (\bx_i - \btheta)^T\Sigma^{-1} (\bx_i - \btheta)/2
+\}\\
+&\propto 
+\det(\Sigma)^{-n/2}\exp\{-
+\text{tr}(S_\theta \Sigma^{-1}/2)
+\}
+\end{align}
+Now we can calculate $p(\Sigma \mid \bX,  \btheta)$
+}
+
+
+\frame{
+\begin{align}
+&p(\Sigma \mid \bX,  \btheta) \\ & \quad= p(\Sigma) \times p(\bX \mid \btheta, \Sigma) \\
+& \quad \propto 
+\det(\Sigma)^{-(\nu_o + p +1)/2} \times \exp\{
+-\text{tr}(S_o\Sigma^{-1})/2
+\} \\
+& \qquad \times
+\det(\Sigma)^{-n/2}\exp\{-
+\text{tr}(S_\theta \Sigma^{-1})/2\}\\
+& \quad \propto 
+\det(\Sigma)^{-(\nu_o + n + p +1)/2}
+\exp\{-
+\text{tr}((S_o +S_\theta) \Sigma^{-1})/2\}
+\end{align}
+This implies that 
+$$\Sigma \mid \bX,  \btheta \sim \text{inverseWishart}(\nu_o + n, [S_o + S_\theta]^{-1} =: S_n)$$
+}
+
+\frame{
+Suppose that we wish now to take 
+
+$$\btheta \mid \bX, \Sigma \sim MVN(\mu_n, \Sigma_n)$$ (which we finished an example on earlier).
+Now let $$\Sigma \mid \bX, \btheta \sim \text{inverseWishart}(\nu_n, S_n^{-1})$$
+\vskip 1em There is no closed form expression for this posterior. Solution?
+
+}
+
+\frame{
+Suppose the Gibbs sampler is at iteration $s.$
+\begin{enumerate}
+\item Sample $\btheta^{(s+1)}$ from it's full conditional:
+\begin{enumerate}
+\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bX$ and $\Sigma^{(s+1)}$
+\item[b)] Sample $\btheta^{(s+1)}\sim MVN(\mu_n, \Sigma_n)$
+\end{enumerate}
+\item Sample $\Sigma^{(s+1)}$ from its full conditional:
+\begin{enumerate}
+\item[a)] Compute $S_n$ from $\bX$ and $\Sigma^{(s+1)}$
+\item[b)] Sample $\Sigma^{(s+1)} \sim \text{inverseWishart}(\nu_n, S_n^{-1})$
+\end{enumerate}
+\end{enumerate}
+
+
+}
+
+\frame{
+\frametitle{Exercise}
+We want to model the probability of recovery for patients admitted to the hospital in severe cardiac distress.
+\vskip 1em
+Suppose ``recovery'' means the patient survived long enough to be discharged from the hospital.
+\vskip 1em
+You have past data from a number of patients from 6 different hospitals.
+
+For each patient $i$, you have various information 
+\begin{itemize}
+\item $x_i = (x_{i 1},\ldots,x_{i p})$ (e.g., gender, weight, age, blood pressure, etc.),
+\item and a binary outcome $y_i$ (did the patient recover or not).
+\end{itemize}
+Design a Bayesian model for this problem.
+
+
+}
+
+%\frame{
+%
+%Many ways to approach this problem. 
+%\vskip 1em
+%One natural way is to use a hierarchical Probit regression model, as follows. 
+%Let's divide up the patients according to hospital,
+%and let $y_{hi}$ be the outcome for the $i$th patient in hospital $h$, and let $x_{hi} = (x_{hi1},\ldots,x_{hip})$ be the corresponding information.
+%\begin{align*}
+%    & Y_{hi}|\theta_h \,\sim\, \text{Bernoulli}(\Phi(\theta_h^T x_{hi})) \text{ independently} \\
+%    & \theta_h|\mu,\Sigma \,\iid\, \text{MVN}(\mu,\Sigma) \\
+%    & \mu \sim \N(\mu_0,\Sigma_0) \\
+%    & \Sigma \sim \mathrm{InverseWishart}(S,\nu).
+%\end{align*}
+%
+%}
+%
+%\frame{
+%
+%This would be appropriate if the effect of the predictors/covariates $x$ was expected to be different for the different hospitals.
+%~\\~\\
+%Another way would be to augment the covariate vector with indicator variables for the hospital, i.e., for $j = 1,\ldots,6$, define
+%$x_{h,i,p+j} = \I(j = h)$, and use a Probit regression model with a Normal prior on $\theta = (\theta_1,\ldots,\theta_{p+6})$.
+%This would be appropriate if the effect of the predictors/covariates was expected to be the same for the different hospitals,
+%but the overall recovery rate varied among hospitals.
+%
+%
+%}
+
+
+
+\end{document}

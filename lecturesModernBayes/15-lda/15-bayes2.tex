@@ -1,0 +1,401 @@
+%% This PNAS example would make a great lab or longer example to post for reading. 
+%% Post a review article of Jordan and Blei for reading
+\documentclass[mathserif]{beamer}
+
+\setbeamertemplate{frametitle}[default][center]%Centers the frame title.
+\setbeamertemplate{navigation symbols}{}%Removes navigation symbols.
+\setbeamertemplate{footline}{\raisebox{5pt}{\makebox[\paperwidth]{\hfill\makebox[10pt]{\scriptsize\insertframenumber}}}}
+\setbeamertemplate{caption}[numbered]
+
+%\input{multi_symbols.tex}
+
+\usepackage{float,verbatim}
+\floatstyle{boxed}
+\newfloat{code}{tp}{code}
+\floatname{code}{Code Example}
+\input{multi_symbols}
+%\usepackage{fontspec}
+%\setmainfont{Tahoma}
+
+%\newcommand{\lam}{\lambda}
+%\newcommand{\bmu}{\bm{\mu}}
+%%\newcommand{\bx}{\ensuremath{\mathbf{X}}}
+%\newcommand{\X}{\ensuremath{\mathbf{x}}}
+%\newcommand{\w}{\ensuremath{\mathbf{w}}}
+%\newcommand{\h}{\ensuremath{\mathbf{h}}}
+%\newcommand{\V}{\ensuremath{\mathbf{v}}}
+%\newcommand{\cov}{\text{Cov}}
+%\newcommand{\var{\text{Var}}}
+
+%\DeclareMathOperator{\var}{Var}
+%\DeclareMathOperator{\cov}{Cov}
+
+%\newcommand{\indep}{\rotatebox{90}{\ensuremath{\models}}}
+%\newcommand{\notindep}{\not\hspace{-.05in}\indep}
+
+\usepackage{graphicx, bm} %The mode "LaTeX => PDF" allows the following formats: .jpg  .png  .pdf  .mps
+\graphicspath{{./PresentationPictures/}} %Where the figures folder is located
+\usepackage{listings}
+\usepackage{media9}
+\usepackage{movie15}
+\addmediapath{./Movies/}
+
+\newcommand{\beginbackup}{
+   \newcounter{framenumbervorappendix}
+   \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumbervorappendix}} 
+}
+
+
+%\usepackage{algorithm2e}
+\usepackage[ruled,lined]{algorithm2e}
+\def\algorithmautorefname{Algorithm}
+\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{endif}
+%\usepackage{times}
+%\usepackage[tbtags]{amsmath}
+%\usepackage{amssymb}
+\usepackage{amsfonts}
+%\usepackage{slfortheorems}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage[small]{caption}
+%\usepackage[square]{natbib}
+%\newcommand{\newblock}{}
+%\bibpunct{(}{)}{;}{a}{}{,}
+%\bibliographystyle{ims}
+%\usepackage[letterpaper]{geometry}
+\usepackage{color}
+\setlength{\parindent}{0pt}
+
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+%\usepackage{hyperref}
+
+
+
+%\usepackage{zref-savepos}
+%
+%\newcounter{restofframe}
+%\newsavebox{\restofframebox}
+%\newlength{\mylowermargin}
+%\setlength{\mylowermargin}{2pt}
+%
+%\newenvironment{restofframe}{%
+%    \par%\centering
+%    \stepcounter{restofframe}%
+%    \zsavepos{restofframe-\arabic{restofframe}-begin}%
+%    \begin{lrbox}{\restofframebox}%
+%}{%
+%    \end{lrbox}%
+%    \setkeys{Gin}{keepaspectratio}%
+%    \raisebox{\dimexpr-\height+\ht\strutbox\relax}[0pt][0pt]{%
+%    \resizebox*{!}{\dimexpr\zposy{restofframe-\arabic{restofframe}-begin}sp-\zposy{restofframe-\arabic{restofframe}-end}sp-\mylowermargin\relax}%
+%        {\usebox{\restofframebox}}%
+%    }%
+%    \vskip0pt plus 1filll\relax
+%    \mbox{\zsavepos{restofframe-\arabic{restofframe}-end}}%
+%    \par
+%}
+
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+%\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tkz-berge}
+\usetikzlibrary{fit,shapes}
+
+\usepackage{calc}
+%%
+%% The tikz package is used for doing the actual drawing.
+%\usepackage{tikz}
+%%
+%% In order to be able to put arrowheads in the middle of directed edges, we need an extra library.
+\usetikzlibrary{decorations.markings}
+%%
+%% The next line says how the "vertex" style of nodes should look: drawn as small circles.
+\tikzstyle{vertex}=[circle, draw, inner sep=0pt, minimum size=6pt]
+%%
+%% Next, we make a \vertex command as a shorthand in place of \node[vertex} to get that style.
+\newcommand{\vertex}{\node[vertex]}
+%%
+%% Finally, we declare a "counter", which is what LaTeX calls an integer variable, for use in
+%% the calculations of angles for evenly spacing vertices in circular arrangements.
+\newcounter{Angle}
+
+\newtheoremstyle{example}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{example}
+\newtheorem{ex}{Example}[section]
+
+\newtheoremstyle{definition}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\theoremstyle{rem}
+\newtheorem{rem}{Remark}[section]
+
+\newtheoremstyle{theorem}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{theorm}
+\newtheorem{thm}{Theorem}[section]
+
+
+
+%%%to add in new counter for slides in beamer
+
+%\setbeamertemplate{footline}{
+%  \leavevmode%
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\insertshortauthor~~(\insertshortinstitute)
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%    \insertframenumber{} \hspace*{2ex} % hier hat's sich geändert
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+
+
+
+%%%%%
+
+\newcommand*\oldmacro{}
+\let\oldmacro\insertshortauthor
+\renewcommand*\insertshortauthor{
+  \leftskip=.3cm
+\insertframenumber\,/\,\inserttotalframenumber\hfill\oldmacro}
+
+
+
+
+%\excludecomment{notbeamer}
+%\includecomment{beamer}
+
+
+
+\title{Latent Dirichlet Allocation (LDA)}
+\author{Rebecca C. Steorts \\ Predictive Modeling and Data Mining: STA 521}
+\date{October 2015}
+
+\begin{document}
+
+
+
+\maketitle
+
+
+\frame{
+\begin{itemize}
+\item Recall what we did in information retrieval. 
+\item Review this. 
+\end{itemize}
+
+
+}
+
+\frame{
+\frametitle{Intuition behind LDA}
+
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{prob-model-1}
+\caption{Simple intuition: Documents exhibit multiple topics}
+\label{default}
+\end{center}
+\end{figure}
+
+}
+
+\frame{
+\frametitle{Probabilitistic Model}
+
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{lda}
+\label{default}
+\end{center}
+\end{figure}
+\begin{itemize}
+\item Each document is a random mixture of corpus-wide topics.
+\item Each word is drawn from one of those topics.
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Probabilistic Model}
+
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{lda2}
+\label{default}
+\end{center}
+\end{figure}
+\begin{itemize}
+\item We ONLY observe the documents.
+\item Our goal is to infer the underlying topic structure. 
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Probabilistic Model}
+
+
+
+\begin{itemize}
+\item Observations come from a generative model that include hidden or latent (unknown, random) variables.
+\item Infer the hidden structure using posterior inference. 
+\item Situate new data into the estimated model. How does a query or new document fit into the estimated topic structure? 
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Notation}
+
+
+
+\begin{itemize}
+\item word $1, \ldots, V$
+\item document: $\bm{w} = (w_1, \ldots, w_N)$ which is a sequence of N words
+\item corpus: $D = (\bm{w}_1, \ldots, \bm{w}_M)$ collection of M documents
+\end{itemize}
+}
+
+\frame{
+\frametitle{Probabilitistic Model}
+
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{graphical-model-simple}
+\label{default}
+\end{center}
+\end{figure}
+\begin{align}
+N &\sim Poisson(\eta)\\
+\theta &\sim Dir(\alpha)
+\end{align}
+\text{For each of N words} $w_n:$
+$$
+z_n (topic) \sim Multinomial(\theta) $$
+$$w_n (word) \sim P(w_n \mid z_n, \beta)
+$$
+
+}
+
+\frame{
+\frametitle{Does this model make sense?}
+\begin{itemize}
+\item N: total number of words (Poisson seems reasonable).
+\item $\theta$: is the parameter from the Multinomial. 
+\item What about the topics?
+\end{itemize}
+Note: if you're not familiar with the Dirichlet distribution, please go look up some basic facts about it. 
+}
+
+\begin{frame}[fragile]
+\frametitle{LDA in R}
+\begin{verbatim}
+install.packages(c("RTextTools","topicmodels"))
+library(RTextTools)
+library(topicmodels)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{LDA in R}
+\begin{itemize}
+\item This dataset contains headlines from front-page NYTimes articles. 
+\item We will take a random sample of 1000 articles.
+\end{itemize}
+\begin{verbatim}
+data(NYTimes)
+data <- NYTimes[sample(1:3100,size=1000,replace=FALSE),]
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{I love that DTM}
+\begin{itemize}
+\item Our text data consists of the Title and Subject columns of the NYTimes data. 
+\item We will be removing numbers, stemming words, and weighting the DocumentTermMatrix by term frequency.\end{itemize}
+\begin{verbatim}
+matrix <- create_matrix(cbind(as.vector(data$Title),
+as.vector(data$Subject)), language="english",
+removeNumbers=TRUE, stemWords=TRUE, weighting=weightTf)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Perform LDA}
+\begin{itemize}
+\item First, determine the number of topics in the dataset.
+\end{itemize}
+\begin{verbatim}
+k <- length(unique(data$Topic.Code))
+lda <- LDA(matrix, k)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Results of LDA}
+\begin{itemize}
+\item View the results most likely topic per document. 
+\end{itemize}
+\begin{verbatim}
+terms(lda)
+Topic 1  "campaign"  Topic 2  "kill"      Topic 3  "elect"     Topic 4  "china"     Topic 5  "govern"    Topic 6  "fight" Topic 7  "leader"    Topic 8  "york"      Topic 9  "isra"      Topic 10 "win"       Topic 11 "report"    Topic 12 "plan"
+Topic 13 "republican"Topic 14 "aid"       Topic 15 "set"       Topic 16 "clinton"   Topic 17 "nation"    Topic 18 "hous"
+Topic 19 "iraq"      Topic 20 "bush"      Topic 21 "citi"      Topic 22 "rais"      Topic 23 "overview"  Topic 24 "money"
+Topic 25 "basebal"   Topic 26 "court"     Topic 27 "war"
+topics(lda)
+\end{verbatim}
+\end{frame}
+
+
+\end{document}

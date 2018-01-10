@@ -1,0 +1,23 @@
+\begin{verbatim}
+
+##two plots: trace of theta and
+comparing the empirical distribution
+##of simulated values to the true posterior
+
+par(mar=c(3,3,1,1),mgp=c(1.75,.75,0))
+par(mfrow=c(1,2))
+
+# creating a sequence
+skeep<-seq(10,S,by=10)
+# making a trace place
+plot(skeep,THETA[skeep],type="l",
+xlab="iteration",ylab=expression(theta))
+
+# making a histogram
+hist(THETA[-(1:50)],prob=TRUE,main="",
+xlab=expression(theta),ylab="density")
+th<-seq(min(THETA),max(THETA),length=100)
+lines(th,dnorm(th,mu.n,sqrt(t2.n)) )
+\end{verbatim}
+
+

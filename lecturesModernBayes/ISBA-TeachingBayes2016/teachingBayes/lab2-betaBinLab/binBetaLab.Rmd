@@ -1,0 +1,41 @@
+---
+title: "Teaching Bayes: A Binomial-Beta Lab"
+author: "Rebecca C. Steorts"
+date: "June 9, 2016"
+output: pdf_document
+---
+
+# Goal of the Lab and Tasks
+
+Recall the Beta-Bernoulli model:
+$$X\mid \theta \sim \text{Bernoulli}(\theta) $$
+$$\theta \sim \text{Beta}(a,b)$$
+where $a,b$ are fixed parameters. 
+
+
+-  Let's determine whether the probability that a worker will fake an illness is truly 1\%. Your task is to assist me!
+- Let's outline our tasks and then solve them.
+
+
+# Task 1 
+- Simulate some data using the \textsf{rbinom} function of size $n = 100$ and probability equal to 1\%. 
+- In order to replicate results, let's set our seed using \textsf{set.seed(123)}.
+
+# Task 2
+- Write a function that takes as its inputs the data you simulated above and a sequence of $\theta$ values of length 1000 and produces Likelihood values based on the Binomial Likelihood. 
+- Plot your sequence and its corresponding Likelihood function.
+
+# Task 3
+- Write a function that takes as its inputs  prior parameters \textsf{a} and \textsf{b} for the Beta-Bernoulli model and the observed data, and produces the posterior parameters you need for the model. 
+- Generate the posterior parameters for a non-informative prior i.e. \textsf{(a,b) = (1,1)} and for an informative case \textsf{(a,b) = (3,1)}.
+
+# Task 4
+- Create two plots, one for the informative and one for the non-informative case to show the posterior distribution and superimpose the prior distributions on each along with the likelihood. 
+- What do you see? (Remember to turn the y-axis ticks off since superimposing may make the scale non-sense). 
+
+# Task 5
+- Based on the informative case, generate a 95\% credible interval with 1000 posterior draws and a 95\% confidence interval for your parameter of interest, and use \textsf{xtable} to output these. What is the problem?
+- Based on the data you simulated, do you conclude that the true value higher or lower than 1\%?
+
+
+

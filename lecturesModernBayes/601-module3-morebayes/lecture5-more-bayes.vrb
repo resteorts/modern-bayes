@@ -1,0 +1,18 @@
+\frametitle{Sleep Example}
+
+The \texttt{R} code for this is very straightforward:
+
+\begin{verbatim}
+a = 3.3
+b = 7.2
+n = 27
+x = 11
+a.star = x+a
+b.star = n-x+b
+
+c = qbeta(0.05,a.star,b.star)
+d = qbeta(1-0.05,a.star,b.star)
+\end{verbatim}
+Running the code in \texttt{R}, we find that a 90\% credible interval for $\theta$ is (0.256,\;0.514), meaning that there is a 90\% probability that the proportion of Duke students who sleep eight or more hours per night is between 0.256 and 0.514 given the data.
+
+

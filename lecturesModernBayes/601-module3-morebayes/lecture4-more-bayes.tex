@@ -1,0 +1,668 @@
+\documentclass[mathserif]{beamer}
+
+\setbeamertemplate{frametitle}[default][center]%Centers the frame title.
+\setbeamertemplate{navigation symbols}{}%Removes navigation symbols.
+\setbeamertemplate{footline}{\raisebox{5pt}{\makebox[\paperwidth]{\hfill\makebox[10pt]{\scriptsize\insertframenumber}}}}
+\setbeamertemplate{caption}[numbered]
+
+%\input{multi_symbols.tex}
+
+\usepackage{float,bm}
+\floatstyle{boxed}
+\newfloat{code}{tp}{code}
+\floatname{code}{Code Example}
+\input{multi_symbols}
+%\usepackage{fontspec}
+%\setmainfont{Tahoma}
+
+\newcommand{\del}   {\mbox{$\delta(x)$}}
+
+%\newcommand{\lam}{\lambda}
+%\newcommand{\bmu}{\bm{\mu}}
+%%\newcommand{\bx}{\ensuremath{\mathbf{X}}}
+%\newcommand{\X}{\ensuremath{\mathbf{x}}}
+%\newcommand{\w}{\ensuremath{\mathbf{w}}}
+%\newcommand{\h}{\ensuremath{\mathbf{h}}}
+%\newcommand{\V}{\ensuremath{\mathbf{v}}}
+%\newcommand{\cov}{\text{Cov}}
+%\newcommand{\var{\text{Var}}}
+
+%\DeclareMathOperator{\var}{Var}
+%\DeclareMathOperator{\cov}{Cov}
+
+%\newcommand{\indep}{\rotatebox{90}{\ensuremath{\models}}}
+%\newcommand{\notindep}{\not\hspace{-.05in}\indep}
+
+%\newcommand{\bX}   {\mbox{$\bm{X}$}}
+%\newcommand{\bx}   {\mbox{$\bm{x}$}}
+%\newcommand{\V}   {\mbox{\text{Var}}}
+%\newcommand{\tth}   {\mbox{$\theta$}}
+%\newcommand{\su}   {\mbox{$\sigma^2$}}
+%\newcommand{\so}   {\mbox{$\sigma_0^2$}}
+%\newcommand{\ko}   {\mbox{$\kappa_0$}}
+%\newcommand{\no}   {\mbox{$\nu_0$}}
+%\newcommand{\mo}   {\mbox{$\mu_0$}}
+%\newcommand{\ti}   {\mbox{$\tilde{x}$}}
+%\newcommand{\la}   {\mbox{$\lambda$}}
+
+\newtheoremstyle{example}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+
+
+\newtheoremstyle{definition}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\newtheoremstyle{algorithm}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+
+
+\newtheoremstyle{theorem}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+
+
+
+\usepackage{graphicx} %The mode "LaTeX => PDF" allows the following formats: .jpg  .png  .pdf  .mps
+\graphicspath{{./PresentationPictures/}} %Where the figures folder is located
+\usepackage{listings}
+\usepackage{media9}
+\usepackage{movie15}
+\addmediapath{./Movies/}
+
+\newcommand{\beginbackup}{
+   \newcounter{framenumbervorappendix}
+   \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumbervorappendix}} 
+}
+
+
+%\usepackage{algorithm2e}
+\usepackage[ruled,lined]{algorithm2e}
+\def\algorithmautorefname{Algorithm}
+\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{endif}
+%\usepackage{times}
+%\usepackage[tbtags]{amsmath}
+%\usepackage{amssymb}
+\usepackage{amsfonts}
+%\usepackage{slfortheorems}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage[small]{caption}
+%\usepackage[square]{natbib}
+%\newcommand{\newblock}{}
+%\bibpunct{(}{)}{;}{a}{}{,}
+%\bibliographystyle{ims}
+%\usepackage[letterpaper]{geometry}
+\usepackage{color}
+\setlength{\parindent}{0pt}
+
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+%\usepackage{hyperref}
+
+
+
+%\usepackage{zref-savepos}
+%
+%\newcounter{restofframe}
+%\newsavebox{\restofframebox}
+%\newlength{\mylowermargin}
+%\setlength{\mylowermargin}{2pt}
+%
+%\newenvironment{restofframe}{%
+%    \par%\centering
+%    \stepcounter{restofframe}%
+%    \zsavepos{restofframe-\arabic{restofframe}-begin}%
+%    \begin{lrbox}{\restofframebox}%
+%}{%
+%    \end{lrbox}%
+%    \setkeys{Gin}{keepaspectratio}%
+%    \raisebox{\dimexpr-\height+\ht\strutbox\relax}[0pt][0pt]{%
+%    \resizebox*{!}{\dimexpr\zposy{restofframe-\arabic{restofframe}-begin}sp-\zposy{restofframe-\arabic{restofframe}-end}sp-\mylowermargin\relax}%
+%        {\usebox{\restofframebox}}%
+%    }%
+%    \vskip0pt plus 1filll\relax
+%    \mbox{\zsavepos{restofframe-\arabic{restofframe}-end}}%
+%    \par
+%}
+
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+%\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tkz-berge}
+\usetikzlibrary{fit,shapes}
+
+\usepackage{calc}
+%%
+%% The tikz package is used for doing the actual drawing.
+%\usepackage{tikz}
+%%
+%% In order to be able to put arrowheads in the middle of directed edges, we need an extra library.
+\usetikzlibrary{decorations.markings}
+%%
+%% The next line says how the "vertex" style of nodes should look: drawn as small circles.
+\tikzstyle{vertex}=[circle, draw, inner sep=0pt, minimum size=6pt]
+%%
+%% Next, we make a \vertex command as a shorthand in place of \node[vertex} to get that style.
+\newcommand{\vertex}{\node[vertex]}
+%%
+%% Finally, we declare a "counter", which is what LaTeX calls an integer variable, for use in
+%% the calculations of angles for evenly spacing vertices in circular arrangements.
+\newcounter{Angle}
+
+\newtheoremstyle{example}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{example}
+\newtheorem{ex}{Example}[section]
+
+\newtheoremstyle{definition}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\theoremstyle{rem}
+\newtheorem{rem}{Remark}[section]
+
+\newtheoremstyle{theorem}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{theorm}
+\newtheorem{thm}{Theorem}[section]
+
+
+
+%%%to add in new counter for slides in beamer
+
+%\setbeamertemplate{footline}{
+%  \leavevmode%
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\insertshortauthor~~(\insertshortinstitute)
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%    \insertframenumber{} \hspace*{2ex} % hier hat's sich geändert
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+
+
+
+%%%%%
+
+\newcommand*\oldmacro{}
+\let\oldmacro\insertshortauthor
+\renewcommand*\insertshortauthor{
+  \leftskip=.3cm
+\insertframenumber\,/\,\inserttotalframenumber\hfill\oldmacro}
+
+
+
+
+%\excludecomment{notbeamer}
+%\includecomment{beamer}
+
+
+
+\title{More on Bayesian Methods}
+\author{Rebecca C. Steorts \\ Bayesian Methods and Modern Statistics: STA 360/601}
+\date{Lecture 4}
+
+\begin{document}
+
+
+
+
+\maketitle
+%\frame{
+%\tableofcontents
+%}
+
+
+
+
+%\pagestyle{plain} for plain doc
+%\excludecomment{notreport}
+%\includecomment{report}
+
+%\include{cover}
+
+%\tableofcontents
+%\baselineskip 24pt
+%\setlength{\parskip}{0.3cm}
+%\setlength{\parindent}{0cm}
+%\setcounter{chapter}{0}
+
+
+%\chapter{Introduction}
+%\emph{There are three kinds of lies: lies, damned lies and statistics.}\\
+%---Mark Twain
+%\newpage
+%\frame{
+%\center
+%\textbf{Intro to Bayesian concepts}
+%\vspace*{2em}
+%
+%}
+
+\frame{
+\frametitle{Today's menu}
+\begin{itemize}
+\item Review of notation
+\item When are Bayesian and frequentist methods the same? 
+\item Example: Normal-Normal
+\item Posterior predictive inference
+\item Example
+\item Credible Intervals
+\item Example
+%\item Prediction intervals
+\end{itemize}
+}
+
+\frame{
+\frametitle{Notation}
+
+\begin{align*}
+p(x|\tth) &\qquad \text{likelihood}\\
+\pi(\tth) &\qquad \text{prior}\\
+p(x) = \int p(x|\tth) \pi(\tth)  \;d\theta&\qquad \text{marginal likelihood} \\
+p(\tth|x) = \frac{ p(x|\tth) \pi(\tth)}{p(x)} &\qquad \text{posterior probability}\\
+p(x_{new}|x) = \int p(x_{new}|\tth) \pi(\tth|x) \; d\tth &\qquad \text{predictive probability}
+\end{align*} 
+}
+
+\frame{
+\frametitle{Another conjugate example}
+Suppose $$X_1\ldots X_n\mid \lambda \stackrel{iid}{\sim} \text{Poisson} (\lambda) $$
+$$\lambda \sim \text{Gamma}(\alpha,\beta).$$
+
+\textcolor{red}{Find $p(\lambda \mid X).$}
+\textcolor{red}{\begin{align}
+p(\lambda \mid X) 
+= \prod_{i=1}^n \left[\lambda^{x_i} e^{-\lambda} /x_i!
+\right] \times 
+\frac{\beta^\alpha}{\gamma(\alpha)} \lambda^{\alpha-1} e^{-\beta \times \lambda} \\
+\propto
+\lambda^{n\bar{x}} e^{-n \lambda} \times \lambda^{\alpha-1} e^{-\beta \times \lambda} \\
+\propto \lambda^{n\bar{x} + \alpha-1} e^{- \lambda (n + \beta)} 
+\end{align}}
+\textcolor{red}{
+$$\lambda \mid X \sim \text{Gamma}(n\bar{x}+\alpha, n + \beta)$$}
+
+}
+
+\frame{
+\frametitle{Normal-Normal}
+\begin{align*}
+X_1,\ldots,X_n|\theta &\stackrel{iid}{\sim} \text{N}(\theta,\sigma^2)\\
+\theta &\sim \text{N}(\mu, \tau^2),
+\end{align*}
+where $\su$ is known.
+Calculate the distribution of $\theta|x_1,\ldots,x_n.$
+Using a ton of math and algebra, you can show that 
+\begin{align*}
+\tth|x_1,\ldots,x_n &\sim N\left(\frac{\frac{n\bar{x}}{\su} + \frac{\mu}{\tau^2}}{\frac{n}{\su}+\frac{1}{\tau^2}}, \frac{1}{\frac{n}{\su}+\frac{1}{\tau^2}}\right)\\
+&= N\left(\frac{n\bar{x}\tau^2 + \mu\su}{n\tau^2 + \su}, \frac{\su\tau^2}{n\tau^2+\su}\right).
+\end{align*}
+
+}
+
+\frame{
+\frametitle{Two Useful Things to Know}
+
+\begin{defn}
+The reciprocal of the variance is referred to as the \emph{precision}. Then $$\text{Precision} = \frac{1}{\text{Variance}}.$$
+\end{defn}
+
+Suppose the loss we assume is squared error. Let $\delta(x)$ be an estimator of true parameter $\theta.$ Then 
+\textcolor{red}{\begin{align}
+MSE(\delta(x)) & = Bias^2 + Variance\\
+& = \left\{\tth-  E_{\tth}[\del] \right\}^2+ E_{\tth}\left[\left\{\del-  E_{\tth}[\del] \right\}^2 \right]
+\end{align}
+}
+
+}
+
+\frame{
+
+\begin{thm}
+Let $\delta_n$ be a sequence of estimators of $g(\theta)$ with mean squared error $E(\delta_n - g(\theta))^2.$
+Let $b_n(\theta)$ be the bias.
+\begin{enumerate}
+\item[(i)] If $E[\delta_n - g(\theta)]^2 \rightarrow 0$ then $\delta_n$ is consistent for $g(\theta).$
+\item[(ii)] Equivalent to the above, $\delta_n$ is consistent if 
+$b_n(\theta) \rightarrow 0$ and $Var(\delta_n) \rightarrow 0$ for all $\theta.$
+\item[(iii)] \textcolor{blue}{In particular (and most useful), $\delta_n$ is consistent if it is unbiased for each $n$ and if 
+$Var(\delta_n) \rightarrow 0$ for all $\theta.$}
+\end{enumerate}
+We omit the proof since it requires Chebychev's Inequality along with a bit of probability theory. See Problem 1.8.1 in TPE for the exercise of proving this. 
+\end{thm}
+
+
+
+
+}
+
+\frame{
+\frametitle{Normal-Normal Revisited}
+We write the posterior mean and posterior variance out.
+ \begin{align*}
+E(\theta|x) &= \frac{\frac{n\bar{x}}{\su} + \frac{\mu}{\tau^2}}{\frac{n}{\su}+\frac{1}{\tau^2}}.\\
+&= \frac{\frac{n\bar{x}}{\su}}{\frac{n}{\su}+\frac{1}{\tau^2}}
++ \frac{\frac{\mu}{\tau^2}}{\frac{n}{\su}+\frac{1}{\tau^2}}.
+\end{align*} 
+\begin{align*}
+V(\theta|x) &=
+\frac{1}{\frac{n}{\su}+\frac{1}{\tau^2}}.
+\end{align*} 
+Can someone given an explanation of what's happening here? How does this contrast frequentist inference?
+}
+%\frame{
+%\frametitle{Normal-Normal Revisited}
+%
+%We can see that the posterior mean is a weighted average of the sample mean and the prior mean. The weights are proportional to the reciprocal of the respective variances (precision).  In this case, 
+%\begin{align*}
+%\text{Posterior Precision} &= 
+%\frac{1}{\text{Posterior Variance}}\\
+%&=(n/\sigma^2 ) + (1/\tau^2) \\
+%&= \text{Sample Precision}
+%+ \text{Prior Precision} .
+%\end{align*}
+%The posterior precision is larger than either the sample precision or the prior precision. Equivalently, the posterior variance, denoted by $V(\theta|x)$, is smaller than either the sample variance or the prior variance.
+%}
+
+\frame{
+\frametitle{A consistent estimator}
+
+Let $\hat{\delta}(x) = E[\theta \mid \bm{X}].$ Show that the posterior mean is consistent. 
+\pause
+
+First consider the posterior mean as $n \rightarrow \infty.$
+
+\pause
+
+%Divide the posterior mean (numerator and denominator) by $n$. Now take $n \rightarrow \infty.$
+%Then
+\begin{align*}
+E(\theta|x)
+=
+\frac{\dfrac{1}{n}\dfrac{n\bar{x}}{\sigma^2}+\dfrac{1}{n}\dfrac{\mu}{\tau^2}}
+{\dfrac{1}{n}\dfrac{n}{\sigma^2}+\dfrac{1}{n}\dfrac{1}{\tau^2}}
+\rightarrow
+\frac{\dfrac{\bar{x}}{\sigma^2}}
+{\dfrac{1}{\sigma^2}}
+= \bar{x} \quad \text{as $n \rightarrow \infty.$}
+\end{align*}
+\pause
+Now consider
+
+$$ E[\bar{x}] = E[ E [\bar{x} \mid \theta ]] = \theta. \;\; (\text{unbiased})$$
+\pause
+
+In the case of the posterior variance, divide the denominator and numerator by $n$.  Then
+\begin{align*}
+V(\theta|x)
+=
+\frac{\dfrac{1}{n}}{\dfrac{1}{n}\dfrac{n}{\su}+\dfrac{1}{n}\dfrac{1}{\tau^2}}
+\approx \frac{\sigma^2}{n} \rightarrow 0 \quad \text{as $n \rightarrow \infty.$}
+\end{align*} 
+\pause
+\pause
+Thus, the posterior mean is consistent by our Theorem, part (iii).
+
+}
+
+\frame{
+\frametitle{Posterior Predictive Distributions}
+
+\begin{itemize}
+\item We have just seen how estimation can be done in Bayesian analysis. 
+\item  Another goal might be prediction. 
+\item That is given some data $y$ and a new observation $\tilde{y}$, we may wish to find the conditional distribution of $\tilde{y}$ given $y$.
+\item  This distribution is referred to as the \emph{posterior predictive distribution}. 
+\item That is, our goal is to find 
+$p(\tilde{y}|y).$ 
+
+
+
+\end{itemize}
+}
+
+\frame{
+\frametitle{Posterior Predictive Distributions}
+
+Consider
+\begin{align}
+p(\tilde{y}|y) &=
+\frac{p(\tilde{y},y)}{p(y)}\\
+&=\frac{\int_{\tth} p(\tilde{y},y,\tth)\; d\theta}{p(y)} \\
+&=\frac{\int_{\tth} p(\tilde{y}|y,\tth)p(y,\tth)\; d\theta}{p(y)} \\
+&=\int_{\tth} p(\tilde{y}|y,\tth)p(\tth|y)\; d\theta.
+\end{align}
+In most contexts, if $\theta$ is given, then $\tilde{y}|\theta$ is independent of $y,$ i.e., the value of $\theta$ determines the distribution of $\tilde{y},$ without needing to also know $y.$  When this is the case, we say that $\tilde{y}$ and $y$ are \emph{conditionally independent} given $\theta.$  Then the above becomes
+$$
+p(\tilde{y}|y)=\int_{\tth} p(\tilde{y}|\tth)p(\tth|y)\; d\theta.
+$$
+
+
+}
+
+\frame{
+
+\begin{thm} If \tth \;is discrete and $\tilde{y}$ and $y$ are conditionally independent given $\theta,$ then the posterior predictive distribution is 
+$$p(\tilde{y}|y)=\sum_{\tth} p(\tilde{y}|\tth)p(\tth|y).$$
+\end{thm}
+If \tth \;is continuous and $\tilde{y}$ and $y$ are conditionally independent given $\theta,$ then the posterior predictive distribution is 
+$$p(\tilde{y}|y)=\int_{\tth} p(\tilde{y}|\tth)p(\tth|y)\; d\tth.$$
+
+
+}
+
+\frame{
+\frametitle{Negative Binomial Distribution}
+\begin{itemize}
+
+\item We reintroduce the Negative Binomial distribution. 
+\item The binomial distribution counts the numbers of successes in a fixed number of iid Bernoulli trials.
+\item  Recall, a Bernoulli trial has a fixed success probability $p$.
+
+\item Suppose instead that we count the number of Bernoulli trials required to get a fixed number of successes. This formulation leads to the \emph{Negative Binomial distribution}.
+
+\item In a sequence of independent Bernoulli($p$) trials, let $X$ denote the trial at which the $r$th success occurs, where $r$ is a fixed integer.
+
+Then $$f(x) = \binom{x-1}{r-1}\; p^r(1-p)^{x-r}, \;x=r,r+1,\ldots$$
+and we say $X \sim \text{Negative Binom}(r,p).$
+\end{itemize}
+}
+
+
+\frame{
+\frametitle{Negative Binomial Distribution}
+\begin{itemize}
+\item There is another useful formulation of the Negative Binomial distribution. 
+\item In many cases, it is defined as 
+$Y =$ number of failures before the $r$th success. This formulation is statistically equivalent to the one given above in term of $X =$ trial at which the $r$th success occurs, since $Y = X - r.$
+Then
+$$f(y) = \binom{r+y-1}{y}\; p^r(1-p)^{y}, \;y=0,1,2,\ldots$$
+and we say $Y \sim \text{Negative Binom}(r,p).$
+
+
+\item When we refer to the Negative Binomial distribution in this class, we will refer to the second one defined unless we indicate otherwise.
+\end{itemize}
+
+}
+
+\frame{
+
+\begin{align*}
+X|\lambda &\sim \text{Poisson}(\lambda)\\
+\lambda &\sim \text{Gamma}(a,b)
+\end{align*}
+Assume that $\tilde{X}|\lambda \sim \text{Poisson}(\lambda)$ is independent of $X.$
+Assume we have a new observation \ti. Find the posterior predictive distribution, $p(\ti|x).$ Assume that $a$ is an integer.
+First, we must find $p(\lambda|x).$
+
+}
+
+\frame{
+
+
+Recall 
+\begin{align*}
+p(\lambda|x) &\propto 
+p(x|\lambda)(p(\lambda)\\
+&\propto e^{-\lambda}\lambda^{x}\lambda^{a-1}e^{-\lambda/b}\\
+&= \lambda^{x+a-1}e^{-\lambda(1+1/b)}.\\
+\end{align*}
+Thus, $\lambda|x \sim \text{Gamma}(x+a,\frac{1}{1+1/b}),$
+i.e., $\lambda|x \sim \text{Gamma}(x+a,\frac{b}{b+1}).$
+Finish the problem for homework.
+
+}
+
+%\frame{
+%Do this for homework. 
+
+%It then follows that 
+%\begin{align*}
+%p(\ti|x) &= \int_{\lambda}  p(\ti|\lambda)p(\lambda|x) \; d\lambda\\
+%&=\int_{\lambda} \frac{e^{-\lambda}\lambda^{\ti}}{\ti!}
+%\frac{1}{\Gamma(x+a)(\frac{b}{b+1})^{x+a}}
+%\lambda^{x+a-1}e^{-{\lambda(b+1)/b}}
+%\; d\lambda\\
+%&= \frac{1}{\tilde{x}!\;\Gamma(x+a)(\frac{b}{b+1})^{x+a}}
+%\int_{\lambda}  \lambda^{\tilde{x} + x + a - 1}e^{-\lambda(2b+1/b)}\; d\lambda\\
+%&= \frac{1}{\tilde{x}!\;\Gamma(x+a)(\frac{b}{b+1})^{x+a}}
+%\Gamma(\tilde{x} + x + a) (b/(2b+1)^{\tilde{x} + x + a}\\
+%&= \frac{\Gamma(\tilde{x} + x + a) (b/(2b+1)^{\tilde{x} + x + a}}{\tilde{x}!\;\Gamma(x+a)(\frac{b}{b+1})^{x+a}}\\
+%&= \frac{\Gamma(\tilde{x} + x + a)}{\tilde{x}!\;\Gamma(x+a)} \; \frac{b^{\;\tilde{x}+x+a}}{b^{x+a}}
+%\frac{(b+1)^{x+a}}{(2b+1)^{\;\tilde{x}+x+a}}\\
+%&=\frac{ (\;\tilde{x}+x+a-1)!}{(x+a-1)!\;\tilde{x}!}
+%\frac{b^{\tilde{x}} \;(b+1)^{x+a}}{(2b+1)^{\tilde{x} + x + a}}\\
+%&= \binom{\;\tilde{x}+x+a-1}{\tilde{x}} 
+%\left(\frac{b}{2b+1}\right)^{\tilde{x}}
+%\left(\frac{b+1}{2b+1}\right)^{x+a}.
+%\end{align*}
+
+
+
+
+
+%}
+
+%\frame{
+%
+%Then 
+%$$
+%p(\ti|x) = \binom{\;\tilde{x}+x+a-1}{\tilde{x}} 
+%p^{\tilde{x}}
+%(1-p)^{x+a}.
+%$$
+%Thus, $$\tilde{x}|x \sim \text{Negative Binom}\left(x+a,\frac{b}{2b+1}\right).$$
+%
+%
+%}
+
+\frame{
+\begin{itemize}
+\item Suppose that $X$ is the number of pregnant women arriving at a particular hospital to deliver their babies during a given month. 
+\item The discrete count nature of the data plus its natural interpretation as an arrival rate suggest modeling it with a Poisson likelihood. 
+
+\item To use a Bayesian analysis, we require a prior distribution for $\theta$ having support on the positive real line. A convenient choice is given by the Gamma distribution, since it's conjugate for the Poisson likelihood. 
+\end{itemize}
+
+The model is given by
+\begin{align*}
+X|\la &\sim \text{Poisson}(\la)\\
+\la &\sim \text{Gamma}(a,b).
+\end{align*}
+
+}
+
+\frame{
+\begin{itemize}
+\item
+We are also told 42 moms are observed arriving at the particular hospital during December 2007. Using prior study information given, we are told $a=5$ and $b=6$. 
+\item
+(We found $a,b$ by working backwards from a prior mean of~30 and prior variance of 180).
+\end{itemize}
+We would like to find several things in this example:
+\begin{enumerate}
+\item Plot the likelihood, prior, and posterior distributions as functions of $\lambda$ in \texttt{R}.
+\item Plot the posterior predictive distribution where the number of pregnant women arriving falls between [0,100], integer valued.
+\item Find the posterior predictive probability that the number of pregnant women arrive is between 40 and 45 (inclusive).
+Do this for homework. 
+\item You are expected to have this done by early this week or next week since you have an exam on Thursday, Feb 11 (in class). (This material will not be turned in but could appear on the exam). 
+\end{enumerate}
+
+}
+
+\end{document}

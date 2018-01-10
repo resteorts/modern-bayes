@@ -1,0 +1,12 @@
+\frametitle{Results of LDA}
+\begin{itemize}
+\item View the results most likely topic per document.
+\end{itemize}
+\begin{verbatim}
+terms(lda)
+Topic 1  "campaign"  Topic 2  "kill"      Topic 3  "elect"     Topic 4  "china"     Topic 5  "govern"    Topic 6  "fight" Topic 7  "leader"    Topic 8  "york"      Topic 9  "isra"      Topic 10 "win"       Topic 11 "report"    Topic 12 "plan"
+Topic 13 "republican"Topic 14 "aid"       Topic 15 "set"       Topic 16 "clinton"   Topic 17 "nation"    Topic 18 "hous"
+Topic 19 "iraq"      Topic 20 "bush"      Topic 21 "citi"      Topic 22 "rais"      Topic 23 "overview"  Topic 24 "money"
+Topic 25 "basebal"   Topic 26 "court"     Topic 27 "war"
+topics(lda)
+\end{verbatim}

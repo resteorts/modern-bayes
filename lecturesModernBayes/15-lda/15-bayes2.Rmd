@@ -1,0 +1,246 @@
+---
+title: "Lecture X: Bayes, the linear model, and caterpillars."
+output: ioslides_presentation
+---
+
+## Previously...
+
+Topics we got to earlier in the course:
+
+- Linear model from a frequentist 
+point of view
+- Review (or intro) to Bayes
+- Understanding how to explore data
+
+
+## Today...
+
+- Bayesian linear model
+- Caterpillar data 
+- Next time: Model selection!
+
+
+## Linear Model Set up
+
+- Response, $y = (y_1, \ldots, y_n)$
+- Exploratory variables $X_{n \times p} = (x_1, \ldots, x_p).$
+- Want to address the linear influence of $x_j$ on $y$ once the linear influence has been taken into account (e.g. medical studies)
+
+## Caterpillar Example
+- From 1973 study on pine processionary caterpillars
+- Assesses the influence of some forest settlement characteristics on the development of caterpillar colonies
+- y: logarithmic transform of the average number of nests of caterpillars per tree in an area of 500 $m^2$
+- p = 8, n = 33
+
+## Explanatory variables (Domain knowledge!!)
+
+- altitude, slope, number of pine trees, height of tree, orientation of area, height of dominant tree, number of vegetation strata, mix settlement index 
+
+## What is the goal of regression analysis?
+
+- Decide which explanatory variables have a strong influence on the number of nests.
+-  How do these influences overlap with one another?
+
+## Let's do some exploring! 
+- Be sure to load the bayess library
+```{r}
+library("bayess")
+```
+
+## The caterpillar matrix
+```{r}
+data(caterpillar)
+caterpillar
+y=log(caterpillar$y)
+X=as.matrix(caterpillar[,1:8])
+data("caterpillar")
+```
+
+## Strong influcnce of $x_5, x_7, x_8.$
+```{r}
+y=log(caterpillar$y)
+X=as.matrix(caterpillar[,1:8])
+par(mfrow=c(2,4),mar=c(4.2,2,2,1.2))
+for (j in 1:8) plot(X[,j],y,xlab="",pch=19,col="sienna4",xaxt="n",yaxt="n")       
+```
+
+## Linear model
+- We assume an ordinary linear regression model
+$$y \mid \alpha, \beta, \sigma^2 \sim N_n (\alpha 1_n +X\beta, \sigma^2 I_n),$$
+where $N_n$ denotes the multivariate normal distribution with dimension $n.$
+
+## Caterpillar dataset
+- For caterpillar, $n=33, p=8.$    
+
+- Assume the expected log-number $y_i$ of caterpillar nests per tree over an area is modeled as a linear combination of an intercept and 8 predictor variables
+- That is,
+$$E[y \mid \alpha, \beta, \sigma^2 ] = \alpha + \sum_{i=1}^8 \beta_j x_{ij}$$
+- Assume the variation around this expectation is supposed to be normally distributed. 
+
+## Classical LSE
+
+- Recall that $\beta$ can be estimated using MLE.
+- To avoid identifiability, we standardize the data.
+- We center and scale the columns of $X$ (so we can compare the estimated values of $\beta$).
+```{r}
+X = scale(X)
+```
+- What is the likelihood of the standard normal linear model in matrix representation? 
+$$
+\frac{1}{2\pi\sigma^2}
+\exp\left\{
+-\frac{1}{2\sigma^2}
+(y-\alpha 1_n - X\beta)^T
+(y-\alpha 1_n - X\beta)
+\right\}
+$$
+- What is the MLE solution in terms of $\alpha$ and $\beta?$
+
+## MLE estimates
+```{r}
+(summary(lm(y~X)))
+```
+
+## Turning to Bayes
+- Suppose that we have no domain knowledge (pretend) on the parameters of the linear model
+- We look at this simple case first based upon Jeffreys' prior.
+- Jeffreys' prior of $\theta$
+$$
+\sqrt{\det(I(\theta))},
+$$
+where $I(\theta)$ is the Fisher infomration of $\theta.$
+- It is easy to show that 
+$\pi(\alpha,\beta,\sigma^2)
+\propto \sigma^{-2}$
+
+## Bayesian model 
+
+
+
+The full Bayesian model is
+$$
+\begin{aligned}
+&\pi(y \mid \alpha, \beta, \sigma^2) \\
+& \qquad \propto
+\frac{1}{2\pi\sigma^2}
+\exp\left\{
+-\frac{1}{2\sigma^2}
+(y-\alpha 1_n - X\beta)^T
+(y-\alpha 1_n - X\beta)
+\right\}
+\\
+&\pi(\alpha,\beta,\sigma^2)
+\propto \sigma^{-2}
+\end{aligned}
+$$
+
+## Posterior 
+
+By Bayes' rule, 
+$$
+\begin{aligned}
+&\pi(\alpha, \beta, \sigma^2 \mid y) \\
+& \qquad \propto
+\frac{1}{2\pi\sigma^2}
+\exp\left\{
+-\frac{1}{2\sigma^2}
+(y-\alpha 1_n - X\beta)^T
+(y-\alpha 1_n - X\beta)
+\right\} \\
+&\qquad \times \; \sigma^{-n/2}
+\end{aligned}
+$$
+(The likelihood portion can be simplified as shown in Marin and Robert, Ch 3, p. 73).
+
+## Conditional and Marginal Posteriors 
+
+The posterior distribution can be written such that the conditional and marginal distributions posterior distributions are in closed form (see \S 3.3 for details):
+
+$$
+\begin{aligned}
+\alpha \mid \sigma^2, y &\sim N(\hat{\alpha}, \sigma^2/2) \\
+\beta \mid \sigma^2, y &\sim N(\hat{\beta},
+\sigma^2 (X^TX)^{-1}) \\
+\sigma^2 \mid y &\sim \text{InverseGamma}((n-p-1)/2, s^2/2)
+\end{aligned}
+$$
+where 
+$$\hat{\alpha} = \bar{y} \;\; \text{and} \;\; 
+s^2 = (y -\hat{\alpha} 1_n - X\hat{\beta} )^T
+(y -\hat{\alpha} 1_n - X\hat{\beta} )$$
+and 
+$$\hat{\beta} = (X^TX)^{-1}X^T(y - \bar{y}).$$
+
+## Observations
+
+- What are the Bayes estimates (under squared error loss)? 
+- It's just the posterior mean. 
+$$E[\alpha \mid y] = \hat{\alpha} \;\;
+E[\beta \mid y] = \hat{\beta} $$ and 
+$$E[\sigma^2 \mid y] = \frac{s^2}{2}/[\frac{n-p-1}{2} -1] = \frac{s^2}{
+n-p-3}$$
+- The Jeffreys' prior estiamte of $\alpha$ is the empirical mean. 
+- The posterior mean of $\beta$ is the MLE.
+- J's prior of $\sigma^2$ is larger and (more pessimistic) than both the MLE $s^2/n$ and the classical unbiased estiamte $\frac{s^2}{n-p-1}.$
+
+## Credible Intervals
+- This is Fig 3.3 on page 75 of Marin and Robert. 
+- Still working to reproduce it. 
+```{r}
+n = 33; p = 8
+alpha <- (n - p -1)/2
+alphaHat <- mean(y)
+betaHat <- solve(t(X) %*% X) %*% t(X) %*% (y - mean(y))
+one <- rep(1,33)
+s2 <- t(y - alphaHat *(one) - X %*% betaHat)%*%
+  (y - alphaHat * (one) - X %*% betaHat)
+beta <- s2/2
+postVarSigma <- sqrt((beta)^2/((alpha-1)^2%*%(alpha-2)))
+plotCI(x = betaHat,  y=  c(1,2,3,4,5,6,7,8), uiw=
+    postVarSigma)
+```
+
+## Semi-noninfomative solution
+- Can use a conjugate prior family of the form
+
+$$\begin{aligned}
+(\alpha,\beta) \mid \sigma^2 &\sim N_{p+1} (\tilde{\alpha},\tilde{\beta}, \sigma^2 M^{-1}) \\
+\sigma^2 &\sim \text{InverseGamma}(a,b),
+\end{aligned}
+$$
+where $a,b > 0$ and $M_{p+1, p+1}$ is a postive definite symmetric matrix.
+
+- However, we will not move into this more as the posterior variances are sensitives the the choices of $M, a, b$ known as hyper-parameters.
+
+## Zellner's G-prior
+- Allow the experimenter to introduce (possibly weak) information about the location parameter of the regression but to bypass the most difficult aspects of the prior specification
+
+$$ \beta \mid \alpha, \sigma^2 \sim N(\tilde{beta}, g\; \sigma^2  (X^TX)^{-1})$$
+
+$$ \pi (\alpha, \sigma^2 ) \propto \sigma^{-2}.$$
+
+## Zellner's G-prior
+- G-prior: decomposed as a (conditional) Gaussian prior for $\beta$ and an improper (Jeffreys) prior for $\alpha, \sigma^2$. 
+- This modelling somehow appears as a data-dependent prior through its dependence on $X,$ but this is not a genuine issue since the whole model is conditional on $X.$
+- You restrict prior determination to the choices of $\tilde{\beta}$ and the constant $g.$
+- The factor g can be interpreted as being inversely proportional to the amount of information available in the prior relative to the sample.
+- For instance, setting g = n gives the prior the same weight as one observation of the sample.
+
+## The BayesReg Function
+bayesReg function implements Zellner's G-prior.
+
+```{r}
+BayesReg(y, X, g=length(y),  betatilde = rep(0, dim(X)[2]))
+```
+
+## Next Time
+- Model Comparison
+- Bayes' Factors 
+- Bayesian Model Averaging
+
+
+
+
+
+
+

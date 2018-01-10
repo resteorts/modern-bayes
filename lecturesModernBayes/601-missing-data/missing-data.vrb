@@ -1,0 +1,18 @@
+Health related measurements on women from Pima Indian heritage village\\
+\begin{itemize}
+\item glu: glucose concentration
+\item bp: diastolic blood pressure
+\item skin: skin fold thickness
+\item bmi: body mass index
+\end{itemize}
+\begin{verbatim}
+  glu bp skin  bmi
+1  86 68   28 30.2
+2 195 70   33   NA
+3  77 82   NA 35.8
+4  NA 76   43 47.9
+5 107 60   NA   NA
+6  97 76   27   NA
+\end{verbatim}
+
+

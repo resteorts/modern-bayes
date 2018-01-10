@@ -1,0 +1,474 @@
+\documentclass[mathserif]{beamer}
+
+\setbeamertemplate{frametitle}[default][center]%Centers the frame title.
+\setbeamertemplate{navigation symbols}{}%Removes navigation symbols.
+\setbeamertemplate{footline}{\raisebox{5pt}{\makebox[\paperwidth]{\hfill\makebox[10pt]{\scriptsize\insertframenumber}}}}
+\setbeamertemplate{caption}[numbered]
+
+\usepackage{amssymb,amsfonts,amsmath,latexsym,amsthm,verbatim}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[]{graphicx}
+%\usepackage[space]{grffile}
+\usepackage{mathrsfs}   % fancy math font
+% \usepackage[font=small,skip=0pt]{caption}
+\usepackage[skip=0pt]{caption}
+\usepackage{subcaption}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{dsfont}
+\usepackage{extarrows}
+\usepackage{multirow, bm}
+%\input{multi_symbols.tex}
+
+\usepackage{float,bm}
+\floatstyle{boxed}
+\newfloat{code}{tp}{code}
+\floatname{code}{Code Example}
+%\input{multi_symbols}
+%\usepackage{fontspec}
+%\setmainfont{Tahoma}
+
+%\newcommand{\lam}{\lambda}
+\newcommand{\bmu}{\bm{\mu}}
+\newcommand{\bX}   {\bm{X}}
+\newcommand{\sig}   {\Sigma}
+\newcommand{\bx}{\ensuremath{\mathbf{X}}}
+\newcommand{\Y}{\ensuremath{\mathbf{Y}}}
+%\newcommand{\w}{\ensuremath{\mathbf{w}}}
+%\newcommand{\h}{\ensuremath{\mathbf{h}}}
+%\newcommand{\V}{\ensuremath{\mathbf{v}}}
+%\newcommand{\cov}{\text{Cov}}
+\newcommand{\var}{\text{Var}}
+
+%\DeclareMathOperator{\var}{Var}
+%\DeclareMathOperator{\cov}{Cov}
+
+%\newcommand{\indep}{\rotatebox{90}{\ensuremath{\models}}}
+%\newcommand{\notindep}{\not\hspace{-.05in}\indep}
+
+\usepackage{graphicx} %The mode "LaTeX => PDF" allows the following formats: .jpg  .png  .pdf  .mps
+\graphicspath{{./PresentationPictures/}} %Where the figures folder is located
+\usepackage{listings}
+\usepackage{media9}
+\usepackage{movie15}
+\addmediapath{./Movies/}
+
+\newcommand{\beginbackup}{
+   \newcounter{framenumbervorappendix}
+   \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumbervorappendix}} 
+}
+
+
+%\usepackage{algorithm2e}
+\usepackage[ruled,lined]{algorithm2e}
+\def\algorithmautorefname{Algorithm}
+\SetKwIF{If}{ElseIf}{Else}{if}{then}{else if}{else}{endif}
+%\usepackage{times}
+%\usepackage[tbtags]{amsmath}
+%\usepackage{amssymb}
+\usepackage{amsfonts}
+%\usepackage{slfortheorems}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage[small]{caption}
+%\usepackage[square]{natbib}
+%\newcommand{\newblock}{}
+%\bibpunct{(}{)}{;}{a}{}{,}
+%\bibliographystyle{ims}
+%\usepackage[letterpaper]{geometry}
+%\usepackage{color}
+%\setlength{\parindent}{0pt}
+
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+%\usepackage{hyperref}
+
+\DeclareMathOperator*{\Exp}{Exp}
+\DeclareMathOperator*{\TExp}{TExp}
+\DeclareMathOperator*{\Bernoulli}{Bernoulli}
+\DeclareMathOperator*{\Beta}{Beta}
+\DeclareMathOperator*{\Ga}{Gamma}
+\DeclareMathOperator*{\TGamma}{TGamma}
+\DeclareMathOperator*{\Poisson}{Poisson}
+\DeclareMathOperator*{\Binomial}{Binomial}
+\DeclareMathOperator*{\NormalGamma}{NormalGamma}
+\DeclareMathOperator*{\InvGamma}{InvGamma}
+\DeclareMathOperator*{\Cauchy}{Cauchy}
+\DeclareMathOperator*{\Uniform}{Uniform}
+\DeclareMathOperator*{\Gumbel}{Gumbel}
+\DeclareMathOperator*{\Pareto}{Pareto}
+\DeclareMathOperator*{\Mono}{Mono}
+\DeclareMathOperator*{\Geometric}{Geometric}
+\DeclareMathOperator*{\Wishart}{Wishart}
+
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\bY}   {\mbox{$\bm{Y}$}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\Pr}{\mathbb{P}}
+\newcommand{\I}{\mathds{1}}
+\newcommand{\V}{\mathbb{V}}
+
+% Math operators
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\median}{median}
+\DeclareMathOperator*{\Vol}{Vol}
+
+% Miscellaneous commands
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+\newcommand{\matrixsmall}[1]{\bigl(\begin{smallmatrix}#1\end{smallmatrix} \bigr)}
+
+\newcommand{\items}[1]{\begin{itemize} #1 \end{itemize}}
+
+\newcommand{\todo}[1]{\emph{\textcolor{red}{(#1)}}}
+
+\newcommand{\branch}[4]{
+\left\{
+	\begin{array}{ll}
+		#1  & \mbox{if } #2 \\
+		#3 & \mbox{if } #4
+	\end{array}
+\right.
+}
+
+% approximately proportional to
+\def\app#1#2{%
+  \mathrel{%
+    \setbox0=\hbox{$#1\sim$}%
+    \setbox2=\hbox{%
+      \rlap{\hbox{$#1\propto$}}%
+      \lower1.3\ht0\box0%
+    }%
+    \raise0.25\ht2\box2%
+  }%
+}
+\def\approxprop{\mathpalette\app\relax}
+
+\newcommand{\btheta}{{\bm\theta}}
+\newcommand{\bbtheta}{{\pmb{\bm\theta}}}
+
+%\usepackage{zref-savepos}
+%
+%\newcounter{restofframe}
+%\newsavebox{\restofframebox}
+%\newlength{\mylowermargin}
+%\setlength{\mylowermargin}{2pt}
+%
+%\newenvironment{restofframe}{%
+%    \par%\centering
+%    \stepcounter{restofframe}%
+%    \zsavepos{restofframe-\arabic{restofframe}-begin}%
+%    \begin{lrbox}{\restofframebox}%
+%}{%
+%    \end{lrbox}%
+%    \setkeys{Gin}{keepaspectratio}%
+%    \raisebox{\dimexpr-\height+\ht\strutbox\relax}[0pt][0pt]{%
+%    \resizebox*{!}{\dimexpr\zposy{restofframe-\arabic{restofframe}-begin}sp-\zposy{restofframe-\arabic{restofframe}-end}sp-\mylowermargin\relax}%
+%        {\usebox{\restofframebox}}%
+%    }%
+%    \vskip0pt plus 1filll\relax
+%    \mbox{\zsavepos{restofframe-\arabic{restofframe}-end}}%
+%    \par
+%}
+
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+%\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tkz-berge}
+\usetikzlibrary{fit,shapes}
+
+\usepackage{calc}
+%%
+%% The tikz package is used for doing the actual drawing.
+%\usepackage{tikz}
+%%
+%% In order to be able to put arrowheads in the middle of directed edges, we need an extra library.
+\usetikzlibrary{decorations.markings}
+%%
+%% The next line says how the "vertex" style of nodes should look: drawn as small circles.
+\tikzstyle{vertex}=[circle, draw, inner sep=0pt, minimum size=6pt]
+%%
+%% Next, we make a \vertex command as a shorthand in place of \node[vertex} to get that style.
+\newcommand{\vertex}{\node[vertex]}
+%%
+%% Finally, we declare a "counter", which is what LaTeX calls an integer variable, for use in
+%% the calculations of angles for evenly spacing vertices in circular arrangements.
+\newcounter{Angle}
+
+\newtheoremstyle{example}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\bf} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{example}
+\newtheorem{ex}{Example}[section]
+
+\newtheoremstyle{definition}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\theoremstyle{rem}
+\newtheorem{rem}{Remark}[section]
+
+\newtheoremstyle{theorem}
+{\topsep} % space above
+{\topsep} % space below
+{} % body font
+{} % indent
+{\sc} % head font
+{:} % punctuation between head and body
+{0.5em} % space after head
+{} % manually specify head
+%{\thmname{#1}\thmnumber{ #2}\thmnote{:#3}} % manually specify head
+
+\theoremstyle{theorm}
+\newtheorem{thm}{Theorem}[section]
+
+
+
+%%%to add in new counter for slides in beamer
+
+%\setbeamertemplate{footline}{
+%  \leavevmode%
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\insertshortauthor~~(\insertshortinstitute)
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%    \insertframenumber{} \hspace*{2ex} % hier hat's sich geändert
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+
+
+
+%%%%%
+
+\newcommand*\oldmacro{}
+\let\oldmacro\insertshortauthor
+\renewcommand*\insertshortauthor{
+  \leftskip=.3cm
+\insertframenumber\,/\,\inserttotalframenumber\hfill\oldmacro}
+
+
+
+
+%\excludecomment{notbeamer}
+%\includecomment{beamer}
+
+
+
+\title{Missing Data and Imputation}
+\author{Rebecca C. Steorts \\ Bayesian Methods and Modern Statistics: STA 360/601}
+\date{Lecture }
+
+\begin{document}
+
+\maketitle
+
+\frame{
+
+\begin{itemize}
+\item Missing data for real applications
+\item Common approaches
+\item Bayesian approach
+\item Lab: Example
+\end{itemize}
+
+}
+
+
+\begin{frame}[fragile]
+Health related measurements on women from Pima Indian heritage village\\
+\begin{itemize}
+\item glu: glucose concentration
+\item bp: diastolic blood pressure
+\item skin: skin fold thickness
+\item bmi: body mass index
+\end{itemize}
+\begin{verbatim}
+  glu bp skin  bmi
+1  86 68   28 30.2
+2 195 70   33   NA
+3  77 82   NA 35.8
+4  NA 76   43 47.9
+5 107 60   NA   NA
+6  97 76   27   NA
+\end{verbatim}
+
+
+\end{frame}
+
+\frame{
+How would we do parameter estimate with missing values?
+\vskip 1em
+
+Remove the missing values (throwing away data).
+
+\vskip 1em
+
+Impute these with the population mean (statistically incorrect). 
+
+
+}
+
+\frame{
+\frametitle{Notation and Missing at Random}
+\begin{itemize}
+\item $\bm{Y}$ are observed covariates.
+\item $\bm{O}_i = (O_1,\ldots, O_p)^T$ 
+\item $O_i = 1$ implies $Y_{ij}$ is not missing, 0 otherwise.
+\item We assume data is missing data random, meaning that $\bm{O}_i$ are $\bm{Y}_i$ are statistically independent
+\item We assume also that $\bm{O}_i$ does not depend on $\btheta$ or $\Sigma.$
+\item For when it's not missing at random, see Gelman and Rubin, Chapter 21. 
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{ Missing at Random}
+
+\begin{align}
+&p(\{y_{ij}: o_{ij} =1 \}\mid \btheta,\Sigma)\\ &= p(\bm{o}_i) \times p(\{y_{ij}: o_{ij} =1 \}\mid \btheta,\Sigma)\\
+&= p(\bm{o}_i) \times \int \left\{
+ p(y_{i,1},\ldots, y_{i,p} \mid \btheta,\Sigma) \prod_{y_{ij}:o_{ij}=0} \; d y_{ij}
+\right\}
+\end{align}
+Main point: integrate out all the missing y's.
+
+}
+
+\frame{
+\frametitle{Simple Example}
+
+
+Let $\bm{y}_i = (y_{i1}, \texttt{NA}, y_{i3}, \texttt{NA})^T.$
+\vskip 1em
+Then $\bm{o}_i = (1,0,1,0)^T.$
+\vskip 1em
+\begin{align}
+&p(\{y_{ij}: o_{ij} =1 \}\mid \btheta,\Sigma)\\ &=
+p(\bm{o}_i, y_{i1}, y_{i3} \mid \btheta,\Sigma)\\
+&=  p(\bm{o}_i) \times \int \left\{
+ p(\bm{y_i} \mid \btheta,\Sigma)  \; dy_2 \; d_4
+\right\}
+\end{align}
+
+
+}
+
+\frame{
+\frametitle{Missing data with Gibbs Sampling}
+\begin{itemize}
+\item Let $\bY$ be the observed data. 
+\item Let $\bY_{obs}$ be the data we do observe (not missing).
+\item Let $\bY_{miss}$ be the data we do not observe (missing). 
+\end{itemize}
+
+For any observed data, we want to estimate
+$$p(\btheta, \Sigma, \bY_{miss} \mid \bY_{obs}).$$
+\vskip 1em
+We do this via Gibbs sampling. 
+
+}
+
+\frame{
+Suppose starting values $\Sigma^{(o)}, \bY_{miss}^{(o)}.$
+\vskip 1em
+We generate $$\btheta^{(s+1)}, \Sigma^{(s+1)}, \bY_{miss}^{(s+1)}$$ and 
+$$\btheta^{(s)}, \Sigma^{(s)}, \bY_{miss}^{(s)}$$ by
+\begin{enumerate}
+\item Sampling $\btheta^{(s)}$ from $p(\btheta \mid \bY_{obs}, \bY_{miss}^{(s)},\Sigma^{(s)})$
+\item Sampling $\Sigma^{(s+1)}$ from $p(\Sigma \mid \bY_{obs}, \bY_{miss}^{(s)},\btheta^{(s+1)})$
+\item Sampling  $\bY_{miss}^{(s+1)}$ from $p(\bY_{miss} \mid \bY_{obs}, \btheta^{(s+1)}, \Sigma^{(s)})$
+\end{enumerate}
+Using steps 1 and 2, we obtain a full matrix $\bY.$
+}
+
+\frame{
+
+Then $\btheta \mid \bY, \Sigma \sim MVN(\mu_n, \Sigma_n)$ \\(Slide 10, MVN and Wishart Lecture, Hoff eqn 7.6)
+\vskip 1em
+
+Also,
+$\Sigma \mid \bY, \theta \sim \text{inverseWishart}(\nu_o + n, S_n)$ \\(Slide 15, MVN and Wishart Lecture, Hoff eqn 7.9).
+
+\vskip 1em
+Consider 
+\begin{align}
+p(\bY_{miss} \mid \bY_{obs}, \btheta, \Sigma) 
+&\propto p(\bY_{miss},\bY_{obs} \mid  \btheta, \Sigma) \\
+& \propto \prod_i p(\bm{y}_{i,miss},\bm{y}_{i,obs} \mid  \btheta, \Sigma)\\
+&\propto \prod_i p(\bm{y}_{i,miss} \mid  \bm{y}_{i,obs},\btheta, \Sigma)
+\end{align}
+How can we compute this? There's clever little result (eqn 7.11, Hoff) that makes it possible. 
+(It's just another MVN result). 
+}
+
+\frame{
+\frametitle{Illustration from Hoff's example, p. 120}
+The prior mean is set at $(120, 64,26,26)^T$
+\vskip 1em
+We use Hoff's code given in the book and run 1,000 iterations of the GS.
+\vskip 1em
+Posterior mean is $(123.46  71.03  29.35  32.18)^T$
+\vskip 1em
+We convert the covariance matrix into a correlation matrix (see Hoff for formula).
+\vskip 1em
+Then we look at the marginal posterior of 95 percent quantile based confidence infervals. 
+
+}
+
+\frame{
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figure7dot4}
+\caption{95 percent posterior confidence intervals for correlations and regression coefficients.}
+\label{default}
+\end{center}
+\end{figure}
+
+
+
+}
+
+\frame{
+
+
+Then do the prediction example from Hoff
+
+
+}
+
+
+
+\end{document}
