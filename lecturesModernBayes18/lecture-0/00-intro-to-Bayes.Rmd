@@ -292,6 +292,20 @@ General structure of the course.
 
 Place to post questions that only the class can see. 
 
+Other stuff
+===
+
+- Where can I learn more about R Markdown?
+[R Markdown](http://rmarkdown.rstudio.com/)
+[R markdown](https://stat.ethz.ch/education/semesters/ss2016/CompStat/Exercises/rmarkdown.pdf)
+
+- Where can I refresh on my R skills? 
+[R tutorial](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes18/lecture-0/introToR.Rmd)
+[R lab](http://www2.stat.duke.edu/~rcs46/modern_bayes17/labs/lab1IntroductiontoR.pdf)
+
+- Where can I pre-view what I need to know about linear algebra? (See the Module 9 lecture)
+
+
 
 
 
