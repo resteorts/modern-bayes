@@ -275,6 +275,23 @@ Takeaways
 5. Install RStudio and markdown. Use the lab with this lecture to make sure that you can do basic exercises
 in R and that they are reproducible. (If you have trouble with the lab or first few homework assignments and exam, then please see me quickly to resolve issues.)
 
+Key pages
+===
+
+- Sakai webpage (homeworks posted and your upload homeworks here). See the syllabus for how to upload your homeworks. 
+
+- [Github page](http://www2.stat.duke.edu/~rcs46/bayes18.html)
+
+This is where you can find all the course lectures labs, and syllabus. (For more about github and git, please see a TA or you can learn more about it on my teaching page).
+
+- [Course webpage](http://www2.stat.duke.edu/~rcs46/bayes18.html)
+
+General structure of the course. 
+
+- [Google group](https://groups.google.com/forum/#!forum/bayes18)
+
+Place to post questions that only the class can see. 
+
 
 
 
