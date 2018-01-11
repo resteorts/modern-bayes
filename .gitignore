@@ -1,0 +1,13 @@
+.lecturesModernBayes/
+.DStore
+.RData
+.Rhistory
+.Rapp.history
+.Rroject.user/
+.homeworks18/
+.exams18/
+.labs/
+*.aux
+*.bbl
+*.log
+*.out
