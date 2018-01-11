@@ -280,7 +280,7 @@ Key pages
 
 - Sakai webpage (homeworks posted and your upload homeworks here). See the syllabus for how to upload your homeworks. 
 
-- [Github page](http://www2.stat.duke.edu/~rcs46/bayes18.html)
+- [Github page](https://github.com/resteorts/modern-bayes)
 
 This is where you can find all the course lectures labs, and syllabus. (For more about github and git, please see a TA or you can learn more about it on my teaching page).
 
