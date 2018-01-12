@@ -146,7 +146,8 @@ What is the proportion of people that approve of President Obama in PA?
 
 Obama Example
 ===
-```{r}
+
+```r
 n = 10
 # Fixing values of a,b. 
 a = 21/8
@@ -165,37 +166,38 @@ post = dbeta(th, x+a, n-x+b)
 
 Likelihood
 ===
-```{r}
+
+```r
 plot(th, like, type='l', ylab = "Density", 
      lty = 3, lwd = 3, xlab = expression(theta))
 ```
 
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-2-1.pdf)<!-- --> 
+
 
 Prior
 ===
-```{r}
+
+```r
 plot(th, prior, type='l', ylab = "Density", 
      lty = 3, lwd = 3, xlab = expression(theta))
 ```
 
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-3-1.pdf)<!-- --> 
+
 Posterior
 ===
-```{r}
+
+```r
 plot(th, post, type='l', ylab = "Density", 
      lty = 3, lwd = 3, xlab = expression(theta))
 ```
 
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-4-1.pdf)<!-- --> 
+
 Likelihood, Prior, and Posterior
 ===
-```{r, echo=FALSE}
-plot(th, like, type = "l", ylab = "Density", 
-     xlab = expression(theta), lty = 2, lwd = 3, 
-     col = "green",ylim = c(0,3.5) )
-lines(th, prior, lty = 3, lwd = 3, col= "red")
-lines(th, post, lty=1, lwd = 3, col= "blue")
-legend(0.1,3, c("Prior", "Likelihood", "Posterior"), lty=c(2,3,1), lwd=c(3,3,3), 
-       col = c("red", "green", "blue"))
-```
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-5-1.pdf)<!-- --> 
 
 Cast of characters
 ===
