@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{graphicx}
+\input{custom2}
+
+\begin{document}
+
+\title{Lab 3: Introduction to Decision Theory in \textsf{R} - STA 360/602}
+\author{Rebecca C. Steorts}
+\date{}
+\maketitle
+
+%\section{Agenda}
+%\begin{enumerate}
+%%\item{Common errors from Lab 6}
+%\item{Importance of writing well and documenting code well}
+%\item{Using \textsf{dbeta}}
+%\item{Using \textsf{rbeta}}
+%\item{Generating a sequence using \textsf{seq}}
+%\item{Plotting multiple items in the same window using \textsf{plot}}
+%\end{enumerate}
+
+\section{Agenda}
+
+In class, you saw the resource allocation example. We will now go through how to reproduce parts of the lecture using R  in Tasks 1-2 and Tasks 3--5 should be completed in your weekly homework assignment. Let's briefly recall the problem statement and set up. 
+
+Suppose public health officials in a small city need to decide how much resources to devote toward prevention and treatment of a certain disease, but the fraction $\theta$ of infected individuals in the city is unknown.
+
+Suppose they allocate enough resources to accomodate a fraction $c$ of the population. If $c$ is too large, there will be wasted resources, while if it is too small, preventable cases may occur and some individuals may go untreated. After deliberation, they tentatively adopt the following loss function:
+$$\ell(\theta,c) =\branch{|\theta-c|}{c\geq\theta}
+                       {10|\theta-c|}{c<\theta.}$$
+                       
+By considering data from other similar cities, they determine a prior $p(\theta)$. For simplicity, suppose $\btheta\sim\Beta(a,b)$ (i.e., $p(\theta) =\Beta(\theta|a,b)$), with $a=0.05$ and $b=1$. They conduct a survey assessing the disease status of $n=30$ individuals, $x_1,\ldots,x_n$. This is modeled as $X_1,\ldots,X_n \stackrel{iid}{\sim} \Bernoulli(\theta)$, which is reasonable if the individuals are uniformly sampled and the population is large. Suppose all but one are disease-free, i.e.,
+    $\sum_{i=1}^n x_i = 1$.                       
+
+
+
+\begin{enumerate}
+\item We know $p(\theta|x)$ as an updated Beta, so we can numerically compute this integral for each $c$.  Reproduce Figure 1 from lecture, illustrating $\rho(c,x)$ for our example. Also, work through where the minimum occurs numerically (
+$c\approx 0.08$).
+\item Now perform a sensitivity analysis for the prior assumption (Beta(a,b)). What do you find? 
+\item Consider the Bayes procedure ($c\approx 0.08$), $c=\bar{x}, c=0.1.$ Reproduce Figure 2. Explain your findings. 
+\item Plot the frequentist risk $R(\theta, \delta)$ as a function of $\theta$ for the three procedures in the previous task. Report your findings. 
+\item Based on your plot of the frequentist risk, consider the three estimators---the constant, the mean, and the Bayes estimators. Which estimators are admissible? Be sure to explain why or why they are not admissible. 
+
+\end{enumerate}
+
+%\section{Directions}
+%
+%In general for Labs, at the top of any file you are asked to submit, please list the following:
+%
+%\begin{enumerate}
+%\item{First Name Last Name}
+%\item{Lab Date}
+%\item{Team Member(s)}
+%\end{enumerate}
+%
+%\noindent
+%With respect to any item for which you are asked to generate any output, please provide the actual \textsf{R} output as a part of your solution and any explanation needed as well. For any functions/ computations that you will write, please list the following as comments before the step in \textsf{R}:
+%
+%\begin{enumerate}
+%\item{Task number and descriptions.}
+%\item{Input(s) with descriptions.}
+%\item{Outputs(s) with descriptions.}
+%\item{Function/ output summary (along with intermediate step comments).}
+%\end{enumerate} 
+%
+%\noindent
+%For Lab 7, please provide the following deliverable items:
+%
+%\begin{enumerate}
+%\item{Please provide your solutions using Markdown as a .pdf with the following naming convention: LastName\textunderscore FirstName\textunderscore Solutions\textunderscore Lab7.pdf.}
+%\item{Provide your .Rmd file (this \textbf{MUST} compile) for the lab using the following naming convention: LastName\textunderscore FirstName\textunderscore Solutions\textunderscore Lab7.Rmd}
+%\end{enumerate}
+
+
+\end{document}
