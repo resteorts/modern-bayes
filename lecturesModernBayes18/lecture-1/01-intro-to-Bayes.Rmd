@@ -251,13 +251,17 @@ $$
 $$
 by the integral definition of the Beta function.
 
-Example continued
+Posterior predictive distribution
 ===
 Let $a_n = a +\sum x_i$ and $b_n = b + n-\sum x_i.$
 
-It follows that the posterior distribution is
+Recall that the posterior distribution is
 $p(\theta|x_{1:n}) = \Beta(\theta|a_n,b_n).$ 
 
+Let's derive the posterior preditive distribution. 
+
+Posterior predictive distribution
+===
 The posterior predictive can be derived to be
 $$
 \begin{aligned}
@@ -265,6 +269,14 @@ $$
 & =\int \theta\,\Beta(\theta|a_n,b_n) =\frac{a_n}{a_n + b_n},
 \end{aligned}
 $$
+
+Similarly, 
+$$
+\begin{aligned}
+\Pr(X_{n+1} = 0 \mid x_{1:n}) & = 1- \Pr(X_{n+1} = 1 \mid x_{1:n}) = \frac{b_n}{a_n + b_n}
+\end{aligned}
+$$
+
 hence, the posterior predictive p.m.f. is
 
 $$
