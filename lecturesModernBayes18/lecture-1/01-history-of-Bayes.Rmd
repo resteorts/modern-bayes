@@ -67,7 +67,6 @@ We can decompose Bayes' Theorem into three principal terms:
 p(\theta|x) & \qquad \text{posterior}\\
 p(x|\theta) & \qquad \text{likelihood}\\
 p(\theta) & \qquad \text{prior}\\
-p(x) & \qquad \text{marginal likelihood}
 \end{align*}
 
 Bayes Theorem (continued)
