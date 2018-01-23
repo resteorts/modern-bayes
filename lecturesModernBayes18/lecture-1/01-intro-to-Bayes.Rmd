@@ -478,5 +478,24 @@ for $x\in\{0,1,2,\dotsc\}$ (and is $0$ otherwise). Suppose $X_1,\dotsc,X_n \stac
 $$ p(\theta) =\Ga(\theta|a,b) =\frac{b^a}{\Gamma(a)} \theta^{a-1} e^{-b\theta}\I(\theta>0) .$$
 What is the posterior distribution on $\theta$?
 
+Solution
+===
+Since the data is independent given $\theta$, the likelihood factors and we get
+\begin{align*}
+p(x_{1:n}|\theta) & = \prod_{i = 1}^n p(x_i|\theta) \\
+& = \prod_{i = 1}^n e^{-\theta} \theta^{x_i} / x_i! \\
+& \underset{\theta}{\propto} e^{-n\theta} \theta^{\sum x_i}.
+\end{align*}
 
+Solution
+===
+Thus, using Bayes' theorem,
+\begin{align*}
+p(\theta|x_{1:n}) &\propto p(x_{1:n}|\theta) p(\theta) \\
+& \propto e^{-n\theta} \theta^{\sum x_i} \theta^{a-1} e^{-b\theta}\I(\theta>0) \\
+& \propto e^{-(b+n)\theta} \theta^{a+\sum x_i-1}\I(\theta>0) \\
+& \propto \Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).
+\end{align*}
+Therefore, since the posterior density must integrate to $1$, we have
+$$p(\theta|x_{1:n}) =\Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).$$
 

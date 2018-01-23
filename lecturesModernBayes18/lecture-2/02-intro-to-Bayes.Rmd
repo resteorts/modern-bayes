@@ -8,11 +8,6 @@ output:
           in_header: custom2.tex
 font-size: 8px
 ---
-Exercise
-===
-Suppose $X \mid \theta \sim  Bin(n,\theta)$ and $\theta \mid Beta(a,b).$ Derive the posterior distribution of $\theta$. Now derive the marginal distribution $p(x).$ How does this differ from the Bernoulli-Beta example? Is one a special case of the other?
-
-
 
 Agenda
 ===
