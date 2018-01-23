@@ -9,6 +9,14 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+- I will be out of town on Thursday January 25, 2017. Andee Kaplan will be covering the lecture. 
+- Homework 1 is due today (see Sakai). Please make sure that you upload your submissions as a .zip file. 
+- Late homeworks won't be accepted. - Homework 2 (and lab 2) are both posted. 
+- Exam 2 will proceed as scheduled. We will discuss this more closer to the exam. 
+- The class period before Exam 2 will be a review session. 
+
 Agenda
 ===
 - Motivations
@@ -18,6 +26,7 @@ Agenda
 - Posterior of Bernoulli-Beta
 - Conjugacy
 - Example with 2012 election data
+- No sleep example
 - Marginal likelihood
 - Posterior Prediction
 
@@ -468,4 +477,6 @@ for $x\in\{0,1,2,\dotsc\}$ (and is $0$ otherwise). Suppose $X_1,\dotsc,X_n \stac
 \Poisson(\theta)$ given $\theta$, and your prior is
 $$ p(\theta) =\Ga(\theta|a,b) =\frac{b^a}{\Gamma(a)} \theta^{a-1} e^{-b\theta}\I(\theta>0) .$$
 What is the posterior distribution on $\theta$?
+
+
 
