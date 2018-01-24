@@ -1,0 +1,40 @@
+---
+title: "Lab 2 Solutions  - STA 360/601"
+author: "Abbas Zaidi, Rebecca C. Steorts, and Derek Owens-Oas"
+date: "January, 2016"
+output: pdf_document
+---
+
+
+
+1. Problem 1
+
+A derivation of the posterior for a beta prior and binomial likelihood (with N observations, each having $n_i$ trials and success probability $\theta$) is:
+
+$$p(\theta | x_1, ..., x_N) = p(x_1, ..., x_N | \theta) p(\theta) / p(x_1, ..., x_N)$$
+
+$$p(\theta | x_1, ..., x_N) \propto [\prod_{i=1}^N binom(x_i | n_i, \theta)] beta(\theta | a, b)$$
+
+$$p(\theta | x_1, ..., x_N) \sim Beta(a + \sum_{i=1}^N x_i, b + \sum_{i=1}^N n_i - \sum_{i=1}^N x_i)$$
+
+We can find the posterior for a beta prior and Bernoulli likelihood as the special case when the number of trials on each observation n_i = n = 1. The posterior is:
+
+$$p(\theta | x_1, ..., x_N) \sim Beta(a + \sum_{i=1}^{N} x_i, b + N - \sum_{i=1}^{N} x_i)$$
+
+
+2. Problem 2
+
+First we note that in R, n is the number of observations, size is the number of bernoulli trials on each observation, and prob is the success probability on each trial. When we have a binomial(size=100, prob=.01) likelihood for each observation, the data can be simulated as follows:
+```{r,echo=TRUE}
+set.seed(123)
+obs.data.binom <- rbinom(n = 100, size = 100, prob = 0.01)
+obs.data.binom
+```
+
+When we have a bernoulli likelihood binomial(size=1, prob=.01) for each observation, the data can be simulated as follows:
+```{r,echo=TRUE}
+set.seed(123)
+obs.data <- rbinom(n = 100, size = 1, prob = 0.01)
+obs.data
+```
+
