@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+\begin{document}
+
+\title{Lab 2: Bayesian Statistics in \textsf{R} - STA 360/602}
+\author{Abbas Zaidi and Rebecca C. Steorts}
+\date{}
+\maketitle
+
+%\section{Agenda}
+%\begin{enumerate}
+%%\item{Common errors from Lab 6}
+%\item{Importance of writing well and documenting code well}
+%\item{Using \textsf{dbeta}}
+%\item{Using \textsf{rbeta}}
+%\item{Generating a sequence using \textsf{seq}}
+%\item{Plotting multiple items in the same window using \textsf{plot}}
+%\end{enumerate}
+
+\section{Agenda}
+
+In class, you saw the Binomial-Beta model. We will now use this to solve a very real problem! Suppose I wish to determine whether the probability that a worker will fake an illness is truly 1\%. Your task is to assist me! Tasks 1--2 will be completed in lab and tasks 3--5 should be completed in your weekly homework assignment. 
+
+\begin{enumerate}
+%\item Recall the Binomial-Beta from class and take a few minutes to work out the posterior distribution. 
+\item Recall the Bernoulli-Beta from class and take a few minutes to work out the posterior distribution. 
+%\item{Simulate some data using the \textsf{rbinom} function of size $n = 100$ and probability equal to 1\%. Remember to \textsf{set.seed(123)} so that you can replicate your results.}
+\item{Simulate some data with $n = 100$ observations, each having $size=1$ Bernoulli trial and success probability equal to $.01$. It's possible to sample from the Bernoulli distribution by using the \textsf{rbinom} function with $size=1$. Remember to \textsf{set.seed(123)} so that you can replicate your results.}
+\item{Write a function that takes as its inputs that data you simulated (or any data of the same type) and a sequence of $\theta$ values of length 1000 and produces Likelihood values based on the Bernoulli Likelihood. Plot your sequence and its corresponding Likelihood function.}
+\item{Write a function that takes as its inputs  prior parameters \textsf{a} and \textsf{b} for the Beta-Bernoulli model and the observed data, and produces the posterior parameters you need for the model. Generate the posterior parameters for a non-informative prior i.e. \textsf{(a,b) = (1,1)} and for an informative case \textsf{(a,b) = (3,1)}}
+\item{Create two plots, one for the informative and one for the non-informative case to show the posterior distribution and superimpose the prior distributions on each along with the likelihood. What do you see? Remember to turn the y-axis ticks off since superimposing may make the scale non-sense.}
+%\item{Based on the informative case, generate a 95\% credible interval with 1000 posterior draws and a 95\% confidence interval for your parameter of interest, and use \textsf{xtable} to output these. What is the problem?}
+%\item{Based on the data you simulated, do you conclude that the true value higher or lower than 1\%?}
+%\item Finally, please look at the Rmd file that produces the above and the .pdf file. The code is well documented and well explained. This should serve as an example for what to strive for in terms of your homework write ups. 
+%(Also, please note how the plots are made
+%and very easy to read). 
+\end{enumerate}
+
+%\section{Directions}
+%
+%In general for Labs, at the top of any file you are asked to submit, please list the following:
+%
+%\begin{enumerate}
+%\item{First Name Last Name}
+%\item{Lab Date}
+%\item{Team Member(s)}
+%\end{enumerate}
+%
+%\noindent
+%With respect to any item for which you are asked to generate any output, please provide the actual \textsf{R} output as a part of your solution and any explanation needed as well. For any functions/ computations that you will write, please list the following as comments before the step in \textsf{R}:
+%
+%\begin{enumerate}
+%\item{Task number and descriptions.}
+%\item{Input(s) with descriptions.}
+%\item{Outputs(s) with descriptions.}
+%\item{Function/ output summary (along with intermediate step comments).}
+%\end{enumerate} 
+%
+%\noindent
+%For Lab 7, please provide the following deliverable items:
+%
+%\begin{enumerate}
+%\item{Please provide your solutions using Markdown as a .pdf with the following naming convention: LastName\textunderscore FirstName\textunderscore Solutions\textunderscore Lab7.pdf.}
+%\item{Provide your .Rmd file (this \textbf{MUST} compile) for the lab using the following naming convention: LastName\textunderscore FirstName\textunderscore Solutions\textunderscore Lab7.Rmd}
+%\end{enumerate}
+
+
+\end{document}
