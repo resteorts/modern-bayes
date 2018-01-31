@@ -145,7 +145,6 @@ p(\theta \mid x_{1:n})
 
 This implies that 
 $$\theta \mid x_{1:n} \sim N(\bar{x}, (n\ell)^{-1})$$
-where $\ell^{-1} = \sigma^2.$
 
 
 
