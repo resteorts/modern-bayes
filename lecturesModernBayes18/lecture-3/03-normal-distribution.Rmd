@@ -8,6 +8,16 @@ output:
           in_header: custom2.tex
 font-size: 8px
 ---
+Announcements
+===
+- Exam I: Feb 8, in class
+- Exam I: closed notes
+- Exam I: will answer questions regarding what is on the exam on Thursday. Review session will be on Tuesday Feb 6. 
+- Homework 2 due today 10 PM, Sakai.
+- Homework 3 posted, due Sunday 10 PM. Based on lab from tomorrow. 
+- Exam I material: everything we have covered in class, hw, lab so far (including today and lab tomorrow). 
+- See Sakai for exam cover page. 
+
 Exercise
 ===
 Suppose $a < x < b.$ Consider the notation
@@ -29,11 +39,28 @@ X|\theta &\sim \text{Uniform}(0,\theta)\\
 where $p(\theta) = \dfrac{\alpha \beta^\alpha}{\theta^{\alpha +1}}I_{(\beta,\infty)}(\theta).$
 Write out the likelihood $p(x\mid \theta).$ Then calculate the posterior distribution of $\theta|x.$  
 
+Solution
+===
+\begin{align}
+P(\theta \mid x)
+&\propto p(x \mid \theta) p(\theta)\\
+& \propto \frac{1}{\theta} I(0 < x < \theta)
+\frac{\alpha \beta^{\alpha}}{\theta{\alpha+1}}I(\theta > \beta) \\
+& \propto \frac{\alpha \beta^{\alpha}}
+{\theta^{\alpha+2}}I(\theta> x) I(\theta > \beta) \\
+& \propto 
+\frac{\alpha \beta^{\alpha}}
+{\theta^{\alpha+2}}
+I( \theta > \max\{x, \beta \}).
+\end{align}
+
+Thus, $$\theta \mid x \sim \text{Pareto} (\alpha + 1, \max\{x, \beta \}).$$
 
 Agenda
 ===
 - The normal distribution
 - Common properties
+- The normal uniform
 - The normal-normal model
 
 Normal distribution
@@ -93,9 +120,40 @@ a X + b Y\sim\N(a\mu + b m,\,a^2\sigma^2+ b^2 s^2).
 \item Careful: \texttt{rnorm}, \texttt{dnorm}, \texttt{pnorm}, and \texttt{qnorm} in \texttt{R} take the mean and \textcolor{red}{standard deviation} $\sigma$ as arguments (not mean and variance $\sigma^2$). For example, \texttt{rnorm(n,m,s)} generates $n$ normal random variables from $\N(m,s^2)$.
 \end{itemize}
 
+Normal-Uniform
+===
+$$ X_1,\dotsc,X_n \mid \theta \iid\N(\theta,\sigma^2). $$
+
+Assume the prior on $\theta$ is constant over the real line. We can write this as $p(\theta) \propto 1.$
+
+Derive the posterior distribution. 
+
+Solution
+===
+\begin{align}
+p(\theta \mid x_{1:n}) 
+&\propto
+\N(\theta,\sigma^2) \times 1 \\
+& \propto (\frac{\ell}{2\pi})^{n/2}\exp\big(-\tfrac{1}{2}\ell \sum_i(x_i-\theta)^2\big)\notag\\
+& \propto \exp\big(-\tfrac{1}{2}\ell \sum_i(x_i -\bar{x} + \bar{x} - \theta)^2\big)\notag\\
+& \propto \exp\big(-\tfrac{1}{2}\ell \sum_i(x_i -\bar{x})^2)
+\exp\big(-\tfrac{1}{2}\ell \sum_i( \bar{x} - \theta)^2\big)\notag\\
+&\propto 
+\exp\big(-\tfrac{1}{2}\ell \sum_i( \bar{x} - \theta)^2\big) \\
+&= \exp\big(-\tfrac{n \ell}{2} \sum_i(\theta - \bar{x} )^2\big)
+\end{align}
+
+This implies that 
+$$\theta \mid x_{1:n} \sim N(\bar{x}, (n\ell)^{-1})$$
+where $\ell^{-1} = \sigma^2.$
+
+
+
+
+
+
 Normal-Normal
 ===
-
 $$ X_1,\dotsc,X_n \mid \theta \iid\N(\theta,\lambda^{-1}). $$
 Assume the precision $\lambda = 1/\sigma^2$ is known and fixed, and $\theta$ is given a $\N(\mu_0,\lambda_0^{-1})$ prior:
 $$\btheta \sim \N(\mu_0,\lambda_0^{-1})$$
