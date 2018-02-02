@@ -66,8 +66,10 @@ $$ M =\frac{c}{c + n} m + \frac{n}{c + n}\bar x. $$
 \item $C$: ``Sample size'' for estimating $\mu$. (The standard deviation of $\mu|\lambda$ is $\lambda^{-1/2}/\sqrt C$.)
 \item $A$: Shape for posterior on $\lambda$. Grows linearly with sample size.
 \item $B$: Rate (1/scale) for posterior on $\lambda$. Equation \ref{equation:B} decomposes $B$ into the prior variation, observed variation (sample variance), and variation between the prior mean and sample mean:
-$$ B = (\text{prior variation}) + \tfrac{1}{2}n\text{(observed variation)} + \tfrac{1}{2}\tfrac{c n}{c + n}\text{(variation bw means)}. $$
 \end{itemize}
+\begin{align}
+ B &= (\text{prior variation}) + \tfrac{1}{2}n\text{(observed variation)}\\ &+ \tfrac{1}{2}\tfrac{c n}{c + n}\text{(variation bw means)}. 
+ \end{align}
 
 Posterior derivation 
 ===

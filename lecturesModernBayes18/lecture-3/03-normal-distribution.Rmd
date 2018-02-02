@@ -45,7 +45,7 @@ Solution
 P(\theta \mid x)
 &\propto p(x \mid \theta) p(\theta)\\
 & \propto \frac{1}{\theta} I(0 < x < \theta)
-\frac{\alpha \beta^{\alpha}}{\theta{\alpha+1}}I(\theta > \beta) \\
+\frac{\alpha \beta^{\alpha}}{\theta^{\alpha+1}}I(\theta > \beta) \\
 & \propto \frac{\alpha \beta^{\alpha}}
 {\theta^{\alpha+2}}I(\theta> x) I(\theta > \beta) \\
 & \propto 
@@ -145,11 +145,6 @@ p(\theta \mid x_{1:n})
 
 This implies that 
 $$\theta \mid x_{1:n} \sim N(\bar{x}, (n\ell)^{-1})$$
-
-
-
-
-
 
 Normal-Normal
 ===
@@ -327,4 +322,49 @@ so we can compute $\Pr(\text{bimodal}\mid \text{data})$ using the normal c.d.f.\
 
 Intuitive interpretation: The posteriors are about 13 or 14 centimeters apart, which is under the $2\sigma = 16$ threshold for bimodality, and they are sufficiently concentrated that the posterior probability of bimodality is essentially zero.
 
+
+Exercise
+===
+Suppose $a < x < b.$ Consider the notation
+$I_{(a,b)}(x),$ where $I$ denotes the indicator function. We define $I_{(a,b)}(x)$ to be the following:
+$$
+I_{(a,b)}(x)=
+\begin{cases} 
+1 & \text{if $a < x < b$,}
+\\
+0 &\text{otherwise.}
+\end{cases}
+$$
+
+Let 
+\begin{align*}
+X_1 \ldots, X_n|\theta &\sim \text{Uniform}(0,\theta)\\
+\theta &\sim \text{Pareto}(\alpha,\beta),
+\end{align*}
+where $p(\theta) = \dfrac{\alpha \beta^\alpha}{\theta^{\alpha +1}}I_{(\beta,\infty)}(\theta).$
+
+Write out the likelihood $p(x\mid \theta).$ Then calculate the posterior distribution of $\theta|x.$  
+
+Likelihood
+===
+
+\begin{align}
+p(x_{1:n} \mid \theta) &= \prod_{i=1}^n \frac{1}{\theta} I(\theta > x_i)\\
+&= \frac{1}{\theta^n} \prod_{i=1}^n I(\theta > x_i)\\
+&= \frac{1}{\theta^n} I( \theta > \max \{ x_{1:n} \})
+\end{align}
+
+
+Posterior 
+===
+
+\begin{align}
+p(\theta \mid x_{1:n}) &\propto
+\frac{1}{\theta^n} I( \theta > \max \{ x_{1:n} \}) \frac{\alpha \beta^{\alpha}}{\theta^{\alpha+1}}I(\theta > \beta)\\
+& = \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}I(\theta > \beta)I( \theta > \max \{ x_{1:n} \})\\
+& = \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
+I( \theta > \max\{\beta, \max \{ x_{1:n} \}\}) \\
+& = \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
+I( \theta > \max\{\beta,  x_{1:n} \}) 
+\end{align}
 
