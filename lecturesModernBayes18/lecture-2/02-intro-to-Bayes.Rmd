@@ -281,38 +281,5 @@ p(x_{1:n} \mid \theta) &=
 &(\frac{1}{\sqrt{2\pi\sigma^2}})^n\exp\Big(-\frac{n}{2\sigma^2}(\theta - \bar{x})^2\Big)
 \end{align}
 
-Exam I
-===
-- Closed notes, closed book.
-- You will be given cover page with distributions (see Sakai under Annoucements).
-- Please come on time. 
-- Material covers lectures (slides and written material in class), labs, and homeworks. 
-- Material covers: Modules 0--2. 
-
-Exam I
-===
-- To help you study, work through the practice problems
-from class and the ones at the end of homework 3. 
-- 4 or 5 problems total. 
-
-Topics to Review
-===
-- Bayes Theorem (derivation)
-- Derivation of posterior distributions, marginals
-- How do you show the proprietry of the posterior distribution?
-- Conjugate families (i.e Beta-Bernoulli, Beta-Binomial, Galenshore, etc.)
-
-Topics to Review (continued)
-===
-- What is a loss function (examples)
-- What is the Bayes procedure? Know how to derive it.
-- Posterior risk, frequentist risk. Derivations, understand plots, know the differences of when to use these.
-- Review lab concepts. Suppose I describe some data to you. What would distribution might characterize it well. What prior would be appropriate? 
-
-Topics that will not be covered on exam I
-===
-- pseudocode, R code
-- integrated risk
-- admissibility
 
 
