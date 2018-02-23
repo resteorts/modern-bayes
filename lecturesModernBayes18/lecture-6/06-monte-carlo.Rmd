@@ -328,7 +328,7 @@ Harder example (continued)
 ===
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.35]{figures/importance_sampling2}
+	\includegraphics{figures/importance_sampling2}
 	\caption{Histograms for samples from $I_{[-1,1]}(Y)\frac{f(Y)}{g(Y)}$ when $g$ is, respectivelly, a uniform, a Cauchy and a Normal pdf.}
 	\label{ex2.IS.gaussian}
 \end{figure}
