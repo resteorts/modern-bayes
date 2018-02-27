@@ -389,7 +389,7 @@ Let's test out the Metropolis algorithm for the conjugate Normal-Normal model wi
 X_1,\ldots,X_n\mid \theta &\stackrel{iid}{\sim} \text{Normal}(\theta, \sigma^2)\\
 \theta &\sim \text{Normal}(\mu, \tau^2).\\
 \end{align*}
-Recall that the posterior of $\theta$ is Normal$(\mu_n, \tau_n^2),$
+Recall that the posterior of $\theta \mid X_1,\ldots,X_n$ is Normal$(\mu_n, \tau_n^2),$
 where
 $$\mu_n = \bar{x}\frac{n/\sigma^2}{n/\sigma^2+1/\tau^2}
 +
@@ -399,7 +399,7 @@ $$\mu_n = \bar{x}\frac{n/\sigma^2}{n/\sigma^2+1/\tau^2}
  
 Toy Example
 ===
-In this example: $\sigma^2 =1,$ $\tau^2 = 10,$ $\mu =5,$ $n = 5, $ and 
+In this example: $\sigma^2 =1,$ $\tau^2 = 10,$ $\mu =5,$ $n = 5,$ and 
 $$y = (9.37, 10.18,9.16,11.60,10.33).$$ For these data, $\mu_n = 10.03$ and 
 $\tau^2_n = 0.20.$
 
@@ -445,7 +445,7 @@ This results in
 \log  \text{dnorm}(\theta^{(s)}, \mu, \tau)
 \right].
 \end{align*}
-Then a proposal is accepted if $\log u < \log r,$ where $u$ is sample from the Uniform(0,1).
+Then a proposal is accepted if $\log u < \log r,$ where $u$ is sampled from the Uniform(0,1).
 
 Toy example
 ===
@@ -465,14 +465,12 @@ t2<-10
 mu<-5; 
 n<-5
 
-# rounding the rnorm to 2 decimal places
-y<-round(rnorm(n,10,1),2)
+# defining the data
+y<-c(9.37, 10.18, 9.16, 11.60, 10.33)
 # mean of the normal posterior
 mu.n<-( mean(y)*n/s2 + mu/t2 )/( n/s2+1/t2) 
 # variance of the normal posterior 
 t2.n<-1/(n/s2+1/t2)
-# defining the data
-y<-c(9.37, 10.18, 9.16, 11.60, 10.33)
 ```
 
 Code (continued)
