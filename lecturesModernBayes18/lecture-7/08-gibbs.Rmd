@@ -1,6 +1,6 @@
 
 ---
-title: "Module 7: Introduction to Gibbs Sampling"
+title: "Module 8: Introduction to Gibbs Sampling"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:
