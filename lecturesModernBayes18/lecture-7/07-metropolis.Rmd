@@ -1,6 +1,6 @@
 
 ---
-title: "Module 6: Introduction to Metropolis"
+title: "Module 7: Introduction to Metropolis"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:
