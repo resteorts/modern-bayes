@@ -548,7 +548,7 @@ and Rejection sampling?
 Exam II
 ===
 - Same format as exam I
-- Material covers Modules 3 -- 6 (Metropolis)
+- Material covers Modules 3 -- 7 (Metropolis)
 - You will still need to know material 
 from past modules, i.e, calculating a posterior, marginal
 distribution, etc 
