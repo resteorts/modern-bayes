@@ -176,6 +176,8 @@ Metropolis algorithm: For iterations $i=1,\ldots,n$, do:
 \item If it's accepted, you move the molecule. 
 \end{enumerate}
 
+Uniformly = pick a point at random with equal probability to all other points in the box
+
 Example of one iteration of algorithm
 ===
 Consider a molecule and a box around the molecule.
@@ -204,7 +206,7 @@ According to a ``rule", you accept or reject the point.
 
 \vskip 1em
 
-Here, it was accepted, so we move the point. 
+Here, it was accepted, so we move the molecule. 
 
 \begin{figure}
   \begin{center}
@@ -271,7 +273,7 @@ The approach is to apply the ergodic theorem.
 
 \begin{enumerate}
 \item If we run the Markov chain long enough, then the last state is approximately from $\pi.$
-\item Under some regularly conditions, 
+\item Under some regularity conditions, 
 $$\frac{1}{n}\sum_{i=1}^n f(X_i) \stackrel{a.s}{\longrightarrow} E_\pi[f(x)].$$
 \end{enumerate}
 
@@ -307,6 +309,8 @@ Metropolis Algorithm
 \end{itemize}
 \end{itemize}
 Output: $x_o,x_1,\ldots,x_n$
+
+Comment: $r$ is the rule for uniformly drawing a point in the box (slide 18).
 
 You do not need to know the general proof of this.
 
@@ -362,7 +366,7 @@ Metropolis algorithm
 The Metropolis algorithm proceeds as follows:
 \begin{enumerate}
 \item Sample $\theta^* \sim J(\theta \mid \theta^{(s)}).$
-\item Compute the acceptance ratio (r):
+\item Compute the acceptance rule (r):
 $$r = \dfrac{p(\theta^*|y)}{p(\theta^{(s)}|y)} = \dfrac{p(y \mid \theta^*)p(\theta^*)}
 {p(y \mid \theta^{(s)})p(\theta^{(s)})}.
 $$
@@ -405,7 +409,7 @@ Note: this is a toy example for illustration.
 
 Toy example
 ===
-We need to compute the acceptance ratio $r.$
+We need to compute the acceptance rule $r.$
 
 \begin{align}
 r &= \dfrac{p(\theta^{*}|x)}{p(\theta^{(s)}|x)} \\
@@ -427,7 +431,7 @@ p(\theta^{(s)})
 
 Toy example
 ===
-In many cases, computing the ratio $r$ directly can be numerically unstable, however, this can be modified by taking $\log r.$ 
+In many cases, computing the rule $r$ directly can be numerically unstable, however, this can be modified by taking $\log r.$ 
 
 This results in 
 \begin{align*}
@@ -546,7 +550,7 @@ and Rejection sampling?
 Exam II
 ===
 - Same format as exam I
-- Material covers Modules 3 -- 6
+- Material covers Modules 3 -- 6 (Metropolis)
 - You will still need to know material 
 from past modules, i.e, calculating a posterior, marginal
 distribution, etc 
