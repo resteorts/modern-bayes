@@ -20,6 +20,8 @@ Agenda
 - Markov chain Monte Carlo (MCMC)
 - Hard Discs in a Box Example
 - Metropolis Algorithm
+- Example Applied to Normal-Normal
+- Practice Excerise (Hoff 10.3)
 
 Intro to Markov chain Monte Carlo (MCMC)
 ===
@@ -401,7 +403,7 @@ $$\mu_n = \bar{x}\frac{n/\sigma^2}{n/\sigma^2+1/\tau^2}
 Toy Example
 ===
 In this example: $\sigma^2 =1,$ $\tau^2 = 10,$ $\mu =5,$ $n = 5,$ and 
-$$y = (9.37, 10.18,9.16,11.60,10.33).$$ For these data, $\mu_n = 10.03$ and 
+$$x = (9.37, 10.18,9.16,11.60,10.33).$$ For these data, $\mu_n = 10.03$ and 
 $\tau^2_n = 0.20.$
 
 \vskip 1em
@@ -456,7 +458,7 @@ $$\theta^{(s+1)} \sim \text{Normal}(\theta^{(s)},1).$$
 
 We will then generate 10,000 iterations since 500 will not be sufficient. 
 
-Figure~\ref{met_norm} shows a trace plot for this run as well as a histogram for the Metropolis algorithm compared with a draw from the true normal density. 
+Figure~\ref{met_norm} shows a traceplot for this run as well as a histogram for the Metropolis algorithm compared with a draw from the true normal density. 
 
 Code
 ===
@@ -469,9 +471,9 @@ mu<-5;
 n<-5
 
 # defining the data
-y<-c(9.37, 10.18, 9.16, 11.60, 10.33)
+x<-c(9.37, 10.18, 9.16, 11.60, 10.33)
 # mean of the normal posterior
-mu.n<-( mean(y)*n/s2 + mu/t2 )/( n/s2+1/t2) 
+mu.n<-( mean(x)*n/s2 + mu/t2 )/( n/s2+1/t2) 
 # variance of the normal posterior 
 t2.n<-1/(n/s2+1/t2)
 ```
@@ -489,9 +491,9 @@ for(s in 1:S)
 ## simulating our proposal
 theta.star<-rnorm(1,theta,sqrt(delta))
 ##taking the log of the ratio r
-log.r<-( sum(dnorm(y,theta.star,sqrt(s2),log=TRUE)) +
+log.r<-( sum(dnorm(x,theta.star,sqrt(s2),log=TRUE)) +
 dnorm(theta.star,mu,sqrt(t2),log=TRUE) ) -
-( sum(dnorm(y,theta,sqrt(s2),log=TRUE)) +
+( sum(dnorm(x,theta,sqrt(s2),log=TRUE)) +
 dnorm(theta,mu,sqrt(t2),log=TRUE) )
 if(log(runif(1))<log.r) { theta<-theta.star }
 ##updating THETA
@@ -533,9 +535,9 @@ for(s in 1:S)
 ## simulating our proposal
 theta.star<-rnorm(1,theta,sqrt(delta))
 ##taking the log of the ratio r
-log.r<-( sum(dnorm(y,theta.star,sqrt(s2),log=TRUE)) +
+log.r<-( sum(dnorm(x,theta.star,sqrt(s2),log=TRUE)) +
 dnorm(theta.star,mu,sqrt(t2),log=TRUE) ) -
-( sum(dnorm(y,theta,sqrt(s2),log=TRUE)) +
+( sum(dnorm(x,theta,sqrt(s2),log=TRUE)) +
 dnorm(theta,mu,sqrt(t2),log=TRUE) )
 if(log(runif(1))<log.r) { theta<-theta.star }
 ##updating THETA
@@ -561,7 +563,7 @@ lines(th,dnorm(th,mu.n,sqrt(t2.n)) )
 dev.off()
 ```
 
-Trace plot and Histogram
+Traceplot and Histogram
 ===
 \begin{figure}[htbp]
 \begin{center}
@@ -584,7 +586,9 @@ Traceplot and Histogram
 Traceplot
 ===
 
-Given that we have looked at n=500 iteration of the Metroplis sampler, does it seem that out approximation is a good one? 
+Given that we have looked at $n=500$ iterations of the Metroplis sampler, does it seem that our approximation is a good one?
+
+What about $n=10,000$ iterations? 
 
 Questions you should be able to answer!
 ===
@@ -621,3 +625,4 @@ Topics to Review
 - Metropolis sampling
 - Differences between the methods
 - Homework problems and labs
+- Practice exercises
