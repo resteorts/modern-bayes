@@ -56,7 +56,12 @@ $$ (X_0,Y_0), (X_1,Y_1), (X_2,Y_2), (X_3,Y_3), \ldots$$ satisfies the property o
 
 \vskip 1em
 
-The conditional distribution of $(X_i,Y_i)$ given all of the previous pairs depends only on $(X_{i-1},Y_{i-1})$
+The conditional distribution of $(X_{i+1},Y_{i+1})$ given all of the previous pairs depends only on $(X_{i},Y_{i})$
+
+\vskip 1em
+
+Example: The conditional distribution of 
+$(X_5,Y_5)$ given all of the previous pairs depends only on $(X_4,Y_4)$
 
 \vskip 1em
 
@@ -160,18 +165,14 @@ res <- sampleGibbs(.25,.25,n.sims,data)
 head(res)
 ```
 
-
-
-
-Toy Example
+Exponential Example
 ===
-\begin{itemize}
-\item The Gibbs sampling approach is to alternately sample from $p(x|y)$ and $p(y|x)$.  
-\item Note $p(x,y)$ is
-symmetric with respect to $x$ and $y$.
-\item Hence, only need to derive one of these and then we can get the other one by just swapping $x$ and $y$.
-\item Let's look at $p(x|y).$
-\end{itemize}
+
+You will explore this problem more
+in your next homework. 
+
+
+
 
 Toy Example
 ===
@@ -183,6 +184,16 @@ $$\begin{itemize}
 \item It is the same as taking $X\sim\Exp(y)$ and
  conditioning on it being less than $c$, i.e., $X\mid X<c$.
 \item Let's refer to this as the $\TExp(y,(0,c))$ distribution.
+\end{itemize}
+
+Toy Example
+===
+\begin{itemize}
+\item The Gibbs sampling approach is to alternately sample from $p(x|y)$ and $p(y|x)$.  
+\item Note $p(x,y)$ is
+symmetric with respect to $x$ and $y$.
+\item Hence, only need to derive one of these and then we can get the other one by just swapping $x$ and $y$.
+\item Let's look at $p(x|y).$
 \end{itemize}
 
 Toy Example
@@ -235,6 +246,8 @@ This is called a semi-conjugate situation, in the sense that the prior on $\mu$ 
 
 For ease of notation, denote the observed data points by $x_{1:n}.$
 
+How does one derive $p(\mu, \lambda \mid x_{1:n})$?
+
 Example
 ===
 We know that for the Normal--Normal model, we know that for any fixed value of $\lambda$,
@@ -252,11 +265,15 @@ where $\hat\sigma^2 = \frac{1}{n}\sum (x_i -\bar x)^2$.
 
 Example
 ===
+Goal: sample from $p(\mu, \lambda \mid x_{1:n})$
+
 To implement Gibbs sampling in this example, each iteration consists of sampling:
 \begin{align*}
     & \bm\mu|\lambda,x_{1:n}\, \sim \,\N(M_\lambda,L_\lambda^{-1})\\
     & \bm\lambda|\mu, x_{1:n}\,\sim\,\Ga(A_\mu, B_\mu).
 \end{align*}
+
+This will give us samples $$(\mu_0,\lambda_0),\ldots(\mu_S, \lambda_S)$$
 
 
 
@@ -284,6 +301,8 @@ $$ \Pareto(x|\alpha,c) = \frac{\alpha c^\alpha}{x^{\alpha+1}}\I(x>c)\propto \fra
 - This is referred to as a power law distribution, because the p.d.f.\ is proportional to $x$ raised to a power.
 - $c$ is a lower bound on the observed values.
 - We will use Gibbs sampling to perform inference for $\alpha$ and $c$. 
+- Let $X$ be the population of a city.
+
 
 Pareto example
 ===
@@ -326,10 +345,9 @@ Parameter intepretations
 \item $\alpha$ tells us the scaling relationship between the size of cities and their probability of occurring. 
 \begin{itemize}
 \item Let $\alpha = 1$. 
-\item 
-Density looks like $1/x^{\alpha +1} = 1/x^2$.
+\item Density looks like $1/x^{\alpha +1} = 1/x^2$.
 \item Cities with 10,000--20,000 inhabitants occur roughly $10^{\alpha+1} = 100$
-    times as frequently as cities with 100,000--110,000 inhabitants.
+    times as frequently as cities with 100,000--110,000 inhabitants (or $10^{\alpha+1}/10 = 10$ times as frequently as cities with 100,000-200,000 inhabitants)
 \end{itemize}
 \item $c$ represents the cutoff point---any cities smaller than this were not included in the dataset.
 \end{itemize}
