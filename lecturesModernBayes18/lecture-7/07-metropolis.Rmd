@@ -436,6 +436,8 @@ Toy example
 ===
 In many cases, computing the rule $r$ directly can be numerically unstable, however, this can be modified by taking $\log r.$ 
 
+
+
 This results in 
 \begin{align*}
 &\log r =\sum_i\left[
@@ -443,10 +445,10 @@ This results in
 \log  \text{dnorm}(x_i, \theta^{(s)},\sigma)
 \right] \\
 &\qquad+
-\sum_i\left[
-\log  \text{dnorm}(\theta^*, \mu, \tau) - 
+\left[
+\log  \text{dnorm}(\theta^*, \mu, \tau)\right] - 
 \log  \text{dnorm}(\theta^{(s)}, \mu, \tau)
-\right].
+.
 \end{align*}
 Then a proposal is accepted if $\log u < \log r,$ where $u$ is sampled from the Uniform(0,1).
 
@@ -495,9 +497,10 @@ log.r<-( sum(dnorm(x,theta.star,sqrt(s2),log=TRUE)) +
 dnorm(theta.star,mu,sqrt(t2),log=TRUE) ) -
 ( sum(dnorm(x,theta,sqrt(s2),log=TRUE)) +
 dnorm(theta,mu,sqrt(t2),log=TRUE) )
-if(log(runif(1))<log.r) { theta<-theta.star }
-##updating THETA
-THETA<-c(THETA,theta)
+if(log(runif(1))<log.r) { 
+  theta<-theta.star 
+  THETA<-c(THETA,theta) ##updating THETA
+  }
 }
 ```
 
@@ -617,6 +620,7 @@ Topics to Review
 ===
 - Normal-Normal model
 - Normal-Gamma model
+- Objective Bayes (Default Bayes)
 - Monte Carlo
 - Numerical integration
 - Classical Monte carlo
