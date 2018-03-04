@@ -485,7 +485,7 @@ Code (continued)
 ```{r}
 ####metropolis part####
 ##S = total num of simulations
-theta<-0 ; delta<-2 ; S<-500 ; THETA<-NULL
+theta<-0 ; delta<-1 ; S<-500 ; THETA<-NULL
 set.seed(1)
 
 for(s in 1:S)
@@ -499,8 +499,9 @@ dnorm(theta.star,mu,sqrt(t2),log=TRUE) ) -
 dnorm(theta,mu,sqrt(t2),log=TRUE) )
 if(log(runif(1))<log.r) { 
   theta<-theta.star 
-  THETA<-c(THETA,theta) ##updating THETA
-  }
+}
+THETA<-c(THETA,theta) ##updating THETA
+## contains theta's that are accepted and rejected
 }
 ```
 
