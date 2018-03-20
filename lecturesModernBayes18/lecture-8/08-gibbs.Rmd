@@ -1,6 +1,6 @@
 
 ---
-title: "Module 8: Introduction to Gibbs Sampling"
+title: "Module 8: Introduction to Gibbs Sampling and Data Augmentation"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:
@@ -11,10 +11,14 @@ font-size: 8px
 
 Agenda
 ===
-- Gibbs sampling 
+- Gibbs sampling (two-stage sampler)
 - Exponential example
 - Normal example
 - Pareto example
+- Diagnostics
+- Multi-stage sampler
+- Data augmentation  
+
 
 Gibbs sampler
 ===
@@ -102,7 +106,7 @@ This conditional distribution satisfies
 \begin{align*}
 p(a|\boldsymbol{x},b) &\propto_a p(a,b,\boldsymbol{x}) \\
 &= p(\boldsymbol{x}|a,b)p(a,b) \\
-&= \textcolor{blue}{\text{fill in full details for homework}}
+&= \textcolor{blue}{\text{fill in full details for lab this week}}
 \end{align*}
 
 Gibbs sampling code
@@ -169,7 +173,7 @@ Exponential Example
 ===
 
 You will explore this problem more
-in your next homework. 
+in lab this week and in your homework. 
 
 
 
@@ -532,8 +536,6 @@ Survival functions
 \end{center}
 \end{figure}
 
-How could we get a better empirical approximation?
-
 Multi-stage Gibbs sampler
 ===
 Assume three random variables, with joint pmf or pdf: $p(x,y,z).$.
@@ -657,7 +659,7 @@ using the fact that the prior on $\theta$ is conjugate.
 Full conditionals
 ===
 Now let's move to $z?$
-What happens here? This is the start of \textbf{Homework 6.}
+What happens here? 
 \begin{enumerate}
 \item Find the full conditional for $(z_i \mid \cdots$). 
 \item Code up your own multi-stage GS in R. Be sure to use efficient functions. 
