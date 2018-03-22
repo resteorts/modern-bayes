@@ -1,6 +1,6 @@
 
 ---
-title: "Module 8: Gibbs Sampling and Data Augmentation"
+title: "Module 8: Part III: Gibbs Sampling and Data Augmentation"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:

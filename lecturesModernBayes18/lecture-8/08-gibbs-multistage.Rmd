@@ -1,6 +1,6 @@
 
 ---
-title: "Module 8: Introduction to Gibbs Sampling (Part II) with an Application to Missing Data"
+title: "Module 8: Part II: Gibbs Sampling with an Application to Missing Data"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:
@@ -13,6 +13,27 @@ Agenda
 ===
 - Gibbs sampling (multi-stage sampler)
 - Missing data application
+
+Multi-stage Gibbs sampler
+===
+Assume three random variables, with joint pmf or pdf: $p(x,y,z).$.
+\vskip 1em
+Set $x$, $y$, and $z$ to some values $(x_o,y_o,z_o)$.
+\vskip 1em
+Sample $x|y,z$, then $y|x,z$, then $z|x,y$, then $x|y,z$, and so on. More precisely,
+\begin{enumerate}
+\item[0.] Set $(x_0,y_0,z_0)$ to some starting value.
+\item[1.] Sample $x_1\sim p(x|y_0,z_0)$. \\
+          Sample $y_1\sim p(y|x_1,z_0)$. \\
+          Sample $z_1\sim p(z|x_1,y_1)$. \\
+\item[2.] Sample $x_2\sim p(x|y_1,z_1)$. \\
+          Sample $y_2\sim p(y|x_2,z_1)$. \\
+          Sample $z_2\sim p(z|x_2,y_2)$. \\
+        $\vdots$
+\end{enumerate}
+
+
+
 
 
 Multi-stage Gibbs sampler
