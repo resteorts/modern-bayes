@@ -1,6 +1,6 @@
 
 ---
-title: "Module 8: Advanced Gibbs Sampling and Missing Data"
+title: "Module 8: Introduction to Gibbs Sampling (Part II) with an Application to Missing Data"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:
@@ -172,21 +172,165 @@ Let $F$ be the CDF of this distribution.
 
 Suppose we truncate this distribution to $(c,\infty)$.  The new CDF is
 \begin{align*}
-P(Z_i < z) &= \frac{F(z) - F(c)}{1 - F(c)}.
+Y = P(Z_i < z) &= \frac{F(z) - F(c)}{1 - F(c)}.
 \end{align*}
 
 Therefore $Y$ is a sample from the truncated Gamma.
 
-Remark: when we implement the GS, we don't sample the observed values. 
+Remark: when we implement the GS, we do not sample the observed values. 
 We impute the censored values using the method just outlined.  
 
-
-Homework 8
+Application to censored data
 ===
-\begin{enumerate}
-\item Code up your own multi-stage GS in R. Be sure to use efficient functions.
-(You will have assistance on this in lab next week). 
-\item Use the censored data 
-$$3.4, 2.9, 1.2+, 1.4, 3.2, 1.8, 4.6, 1.7+, 2.0+, 1.4+, 2.8, 0.6+$$. Specifically, give (a) give traceplots of all unknown paramaters from the G.S. (b) a running average plot,  (c) the estimated density of $\theta \mid \cdots $ and $z_9 \mid \cdots$. Be sure to give brief explanations of your results and findings.
-\end{enumerate}
+```{r}
+knitr::opts_chunk$set(cache=TRUE)
+# Samples from a truncated gamma with
+# truncation (t, infty), shape a, and rate b
+# Input: t,a,b
+# Output: truncated Gamma(a,b)
+sampleTrunGamma <- function(t, a, b){
+  p0 <- pgamma(t, shape = a, rate = b)
+  # Use the modification of the inverse CD method
+  x <- runif(1, min = p0, max = 1)
+  y <- qgamma(x, shape = a, rate = b)
+  return(y)
+}
+```
+
+Application to censored data (continued)
+===
+\footnotesize
+```{r}
+# Gibbs sampler
+# z is the fully observe data
+# c is censored data
+# n.iter is number of iterations
+# init.theta and init.miss are initial values for sampler
+# r,a, and b are fixed parameters
+# burnin is number of iterations to use as burnin
+sampleGibbs <- 
+  function(z, c, n.iter, init.theta, init.miss, r, a, b, burnin = 1){
+  z.sum <- sum(z); m <- length(c); n <- length(z) + m
+  miss.vals <- init.miss 
+  res <- matrix(NA, nrow = n.iter, ncol = 1 + m)
+  for (i in 1:n.iter){
+    var.sum <- z.sum + sum(miss.vals)
+    theta <- rgamma(1, shape = a + n*r, rate = b + var.sum)
+    miss.vals <- sapply(c, function(x) {sampleTrunGamma(x, r, theta)})
+    res[i,] <- c(theta, miss.vals)
+  } 
+  return(res[burnin:n.iter,])
+} 
+```
+
+Set parameter values
+===
+```{r}
+set.seed(5983)
+# set parameter values and enter data
+r <- 10
+a <- 1
+b <- 1
+z <- c(3.4,2.9,1.4,3.2,1.8,4.6,2.8)
+c <- c(1.2,1.7,2.0,1.4,0.6)
+n.iter <- 100
+init.theta <- 1
+init.missing <- 
+  rgamma(length(c), shape = r, rate = init.theta)
+```
+
+Run Gibbs sampler
+===
+\footnotesize
+```{r}
+res <- sampleGibbs(z, c, n.iter, init.theta, init.missing, 
+                   r, a, b) 
+```
+
+Let's first look at some diagnostics --- trace plots and runnning average plots. 
+
+Traceplot of $\theta$
+===
+\footnotesize
+```{r}
+plot(1:n.iter, res[,1], pch = 16, cex = .35,
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Traceplot of ", theta)))
+```
+
+Traceplot of censored observations
+===
+```{r,echo=FALSE}
+par(mfrow=c(3,2))
+missing.index <- c(3,8,9,10,12)
+for (ind in missing.index){
+  x.lab <- bquote(z[.(ind)])
+  plot(1:n.iter, res[,which(missing.index == ind)], pch = 16, cex = .35,
+       xlab = "Iteration", ylab = x.lab,
+       main = bquote(paste("Traceplot of ", .(x.lab))))
+}
+```
+
+Running average plots
+===
+\footnotesize
+```{r, echo=FALSE}
+# get running averages
+run.avg <- apply(res, 2, cumsum)/(1:n.iter)
+plot(1:n.iter, run.avg[,1], type = "l",
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Running Average Plot of ", theta)))
+```
+
+Running average plots
+===
+\footnotesize
+```{r,echo=FALSE}
+par(mfrow=c(3,2))     
+missing.index <- c(3,8,9,10,12)
+for (ind in missing.index){
+  x.lab <- bquote(z[.(ind)])
+  plot(1:n.iter, run.avg[,which(missing.index == ind)], type = "l",
+       xlab = "Iteration", ylab = x.lab,
+       main = bquote(paste("Running Average Plot of ", .(x.lab)))) 
+}      
+```
+
+The estimated density of $\theta$
+===
+```{r, echo=FALSE}
+plot(density(res[,1]), xlab = expression(theta), 
+     main = expression(paste("Density of ", theta)))
+abline(v = mean(res[,1]), col = "red")
+```
+
+The estimated density of $z_9$
+===
+```{r, echo=FALSE}
+plot(density(res[,4]), xlab = expression(z[9]),
+     main = expression(paste("Density of ", z[9])))
+abline(v = mean(res[,4]), col = "red")
+```
+
+Homework 8 
+===
+Using the data and functions given to you (posted to Sakai with Homework 8), investigate the following questions: 
+
+1. Write code to produce traceplots and running average plots for the censored values for 200 iterations. Do these diagnostic plots suggest that you have run the sampler long enough? Explain.  
+
+2. Now run the chain for 10,000 iterations  and update your diagnostic plots (traceplots and running average plots). Report your findings for both traceplots and the running average plots for $\theta$ and the censored values. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
+
+3. Give plots of the estimated density of $\theta \mid \cdots$ and $z_9 \mid \cdots$. Be sure to give brief explanations of your results and findings. (Present plots for 10,000 iterations). 
+
+4. Finally, let's suppose that $r=10,a=1,b=100.$ Does your posterior change? What about when $r=10, a=10,b=1?$ (Use 10,000 iterations for the Gibbs sampler). 
+
+
+
+
+
+
+
+
+
+
 
