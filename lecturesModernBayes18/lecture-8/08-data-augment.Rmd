@@ -307,7 +307,7 @@ $\sum_k \theta_k =1, \theta_i \geq 0$ for all i
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{simplex}
+\includegraphics[width=0.5\textwidth]{figures/simplex}
 \caption{3 dimensional support of the $\theta$ space. Called the simplex!}
 \end{center}
 \end{figure}
@@ -316,7 +316,7 @@ Dirichlet distribution
 ===
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=0.9\textwidth]{dir}
+\includegraphics[width=0.9\textwidth]{figures/dir}
 \caption{Far left: We get a uniform prior on the simplex. Moving to the right we get things unimodal. On the bottom, we get distributions that are multimodal at the corners.}
 \label{default}
 \end{center}
