@@ -50,7 +50,7 @@ will work in any dimension.
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.3\textwidth]{eye}
+    \includegraphics[width=0.3\textwidth]{figures/eye}
     \caption{A high dimensional space (many images). }
     \end{center}
 \end{figure}
@@ -61,7 +61,7 @@ Intuition
 ===
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.7\textwidth]{markovChainPoint}
+    \includegraphics[width=0.7\textwidth]{figures/markovChainPoint}
     \caption{Example of a Markov chain and red starting point}
     \end{center}
 \end{figure}
@@ -70,7 +70,7 @@ Intuition
 ===
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.7\textwidth]{markovChainPoint}
+    \includegraphics[width=0.7\textwidth]{figures/markovChainPoint}
     \caption{Example of a Markov chain and red starting point}
     \end{center}
 \end{figure}
@@ -79,7 +79,7 @@ Intuition
 ===
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.7\textwidth]{markovChainMove}
+    \includegraphics[width=0.7\textwidth]{figures/markovChainMove}
     \caption{Example of a Markov chain and moving from the starting point to a high probability region.}
     \end{center}
 \end{figure}
@@ -120,7 +120,7 @@ Hard Discs in a Box Example
 ===
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.8\textwidth]{phaseDiagram}
+    \includegraphics[width=0.8\textwidth]{figures/phaseDiagram}
     \caption{Example of a phase diagram in chemistry.}
     \end{center}
 \end{figure}
@@ -137,7 +137,7 @@ To understand this phenoma, a theoretical model was proposed:
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{hardDiscs}
+    \includegraphics[width=0.4\textwidth]{figures/hardDiscs}
     \caption{Example of $N$ molecules (hard discs) bouncing around in a box.}
     \end{center}
 \end{figure}
@@ -154,7 +154,7 @@ The total dimension of the space is $\mathbb{R}^{2N}.$
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{hardDiscs}
+    \includegraphics[width=0.4\textwidth]{figures/hardDiscs}
     \caption{Example of $N$ molecules (hard discs) bouncing around in a box.}
     \end{center}
 \end{figure}
@@ -187,7 +187,7 @@ Consider a molecule and a box around the molecule.
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{hardDiscsUniform}
+    \includegraphics[width=0.4\textwidth]{figures/hardDiscsUniform}
     \caption{This illustrates step 1 of the algorithm.}
     \end{center}
 \end{figure}
@@ -198,7 +198,7 @@ Uniformly draw a point in the box.
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{hardDiscsPoint}
+    \includegraphics[width=0.4\textwidth]{figures/hardDiscsPoint}
     \caption{This illustrates step 2 of the algorithm.}
     \end{center}
 \end{figure}
@@ -213,7 +213,7 @@ Here, it was accepted, so we move the molecule.
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{hardDiscsAccept}
+    \includegraphics[width=0.4\textwidth]{figures/hardDiscsAccept}
     \caption{This illustrates step 3 and 4 of the algorithm.}
     \end{center}
 \end{figure}
@@ -224,7 +224,7 @@ Here, we show one entire iteration of the algorithm.
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{hardDiscsMetropolis}
+    \includegraphics[width=0.4\textwidth]{figures/hardDiscsMetropolis}
     \caption{This illustrates one iteration of the algorithm.}
     \end{center}
 \end{figure}
@@ -571,7 +571,7 @@ Traceplot and Histogram
 ===
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[scale=0.5]{metropolis_normal-500}
+\includegraphics[scale=0.5]{figures/metropolis_normal-500}
 \caption{Left: trace plot of the Metropolis sampler. Right: Histogram versus true normal density for 500 iterations.}
 \label{met_norm}
 \end{center}
@@ -581,7 +581,7 @@ Traceplot and Histogram
 ===
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[scale=0.5]{metropolis_normal-10000}
+\includegraphics[scale=0.5]{figures/metropolis_normal-10000}
 \caption{Left: trace plot of the Metropolis sampler. Right: Histogram versus true normal density for 10,000 iterations.}
 \label{met_norm}
 \end{center}
