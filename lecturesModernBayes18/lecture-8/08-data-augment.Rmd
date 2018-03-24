@@ -373,7 +373,7 @@ Where necessary, (re)derive the full conditionals under the data augmentation sc
 
 Task 4
 ===
-In task 3 you derived all the full conditionals, and due to data augmentation scheme they are all in a form that is easy to sample. Use these full conditionals to implement Gibbs sampling using the data from ``Lab6Mixture.csv''.
+In task 3 you derived all the full conditionals, and due to data augmentation scheme they are all in a form that is easy to sample. Use these full conditionals to implement Gibbs sampling using the data from ``Lab8Mixture.csv''.
 
 Task 5
 ===
