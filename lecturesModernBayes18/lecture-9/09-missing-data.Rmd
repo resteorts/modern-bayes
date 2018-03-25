@@ -1,0 +1,354 @@
+
+---
+title: "Module 9: The Multivariate Normal Distribution and Missing Data"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+Agenda
+===
+\begin{itemize}
+\item Review of model
+\item Introduction to Pima Indian data set
+\item Approach to handling missing at random data
+\item Application to Pima Indian data set
+\end{itemize}
+
+Model set up
+===
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$ 
+$$ \btheta_i \sim MVN(\bm{\mu_0}, \Lambda_0)$$
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
+
+Pima Indian heritage data
+===
+
+We consider a dataset involving health-related measurements on 200 women of Pima Indian heritage living near Phoenix, Arizona (Smith et al, 1988). 
+
+The four variables are \texttt{glu} (blood plasma glucose concentration), \texttt{bp} (diastolic blood pressure), \texttt{skin} ( skin fold thickness) and \texttt{bmi} (body mass index). 
+
+```{r, echo=FALSE}
+Y <- structure(list(glu = c(86L, 195L, 77L, NA, 107L, 97L, NA, 193L, 
+142L, 128L, 137L, 154L, 189L, 92L, 86L, 99L, 109L, NA, 149L, 
+139L, NA, 100L, 83L, 101L, 87L, 164L, 99L, 140L, 108L, 110L, 
+79L, 148L, 121L, 158L, 105L, 145L, 79L, 71L, 102L, 119L, 176L, 
+97L, 129L, 97L, 86L, 125L, 123L, 92L, 171L, 199L, 116L, 83L, 
+154L, 114L, 106L, 127L, 124L, 109L, 123L, 167L, NA, 96L, 129L, 
+92L, 109L, 139L, 134L, 106L, 131L, 135L, 158L, 112L, 181L, 121L, 
+168L, 144L, 101L, 96L, 107L, NA, 100L, 154L, 125L, 125L, 122L, 
+114L, 115L, 114L, 115L, 130L, 79L, 112L, 150L, 91L, 100L, 140L, 
+110L, 94L, 84L, 148L, 61L, 117L, 99L, NA, 154L, 103L, 111L, 124L, 
+NA, 81L, NA, 116L, 103L, 124L, 71L, 137L, 112L, 148L, 136L, 145L, 
+NA, 107L, 151L, 97L, 144L, 112L, 99L, 109L, 120L, 187L, 129L, 
+179L, 80L, 105L, NA, 95L, 99L, 137L, NA, 100L, 167L, 180L, 122L, 
+90L, 120L, 154L, 56L, 177L, 124L, 85L, 88L, 152L, 198L, 188L, 
+139L, 168L, 197L, 142L, 126L, 158L, 130L, 100L, 164L, 95L, 122L, 
+85L, 151L, 144L, 111L, 107L, 115L, 105L, 194L, 184L, 95L, 124L, 
+111L, 137L, 57L, NA, 95L, 140L, 117L, 100L, 123L, 138L, 100L, 
+175L, NA, 133L, 119L, 155L, 128L, NA, 140L, 141L, 129L, 106L, 
+118L, 155L), bp = c(68L, 70L, 82L, 76L, 60L, 76L, 58L, 50L, 80L, 
+78L, NA, 78L, 60L, NA, 66L, 76L, 60L, NA, NA, 62L, 70L, 66L, 
+86L, 64L, NA, 84L, 58L, 65L, 72L, 74L, 60L, 66L, 66L, 64L, 80L, 
+82L, 80L, 48L, 86L, 66L, 90L, 68L, NA, 64L, 68L, 60L, 74L, 76L, 
+72L, NA, 74L, NA, 78L, 66L, 70L, 88L, 74L, 38L, 48L, NA, 84L, 
+64L, 76L, 62L, 60L, 80L, 70L, 54L, 66L, 94L, 84L, 74L, 68L, 70L, 
+88L, 82L, 58L, 68L, 62L, 78L, 64L, 72L, 78L, 70L, 76L, 68L, 70L, 
+76L, 64L, 60L, 75L, 78L, NA, 54L, 72L, 82L, 76L, 76L, 50L, NA, 
+82L, 62L, 80L, 82L, 62L, NA, 64L, 70L, 74L, 74L, 110L, 72L, 66L, 
+76L, 78L, 84L, 82L, 60L, NA, 80L, 56L, 72L, 70L, NA, 82L, NA, 
+52L, 56L, 80L, 68L, NA, 95L, 66L, 58L, 68L, 80L, 72L, 68L, 70L, 
+NA, NA, 90L, 70L, 62L, 70L, 78L, 56L, 60L, 80L, 55L, 74L, 78L, 
+66L, 82L, NA, 88L, 70L, 82L, 74L, 76L, 78L, 54L, 82L, 60L, 52L, 
+58L, 90L, 72L, 90L, 68L, 60L, 72L, NA, 78L, 85L, 70L, 62L, 90L, 
+80L, 74L, 54L, 85L, 66L, NA, 70L, 60L, 78L, 62L, 52L, NA, 64L, 
+84L, NA, 68L, 74L, 58L, 68L, 70L, 58L, 62L), skin = c(28L, 33L, 
+NA, 43L, NA, 27L, 31L, 16L, 15L, NA, NA, 30L, 23L, 7L, 52L, 15L, 
+8L, 33L, 29L, 17L, 16L, 29L, 19L, 17L, 34L, 21L, 10L, NA, 43L, 
+29L, NA, 25L, 30L, 13L, 45L, 19L, 25L, 18L, 17L, NA, 34L, 21L, 
+12L, 19L, 32L, 20L, 40L, NA, 33L, 43L, NA, 23L, 32L, 36L, 28L, 
+11L, 36L, NA, 32L, 46L, 33L, 27L, 28L, 32L, 27L, NA, 23L, 21L, 
+40L, 46L, 41L, NA, 36L, 32L, 29L, 46L, 17L, 13L, 13L, 17L, 23L, 
+29L, 31L, NA, 27L, 22L, 30L, 17L, 22L, 23L, 30L, NA, 29L, 25L, 
+12L, 43L, 20L, 18L, 23L, 48L, 28L, 12L, 11L, 31L, 31L, NA, 39L, 
+20L, 22L, 41L, 31L, 12L, 32L, 24L, 50L, 27L, 32L, 27L, 50L, 46L, 
+11L, 30L, 40L, 40L, 26L, NA, 15L, 21L, NA, NA, 49L, 31L, 30L, 
+40L, 15L, 45L, 17L, 14L, 15L, 60L, 17L, NA, 27L, 12L, 30L, 41L, 
+NA, 29L, 33L, 20L, 40L, 34L, 32L, NA, 35L, 42L, 99L, 18L, 38L, 
+36L, 23L, 28L, 43L, 32L, NA, 22L, 46L, 27L, 12L, NA, 39L, 29L, 
+28L, 39L, 25L, 33L, 13L, 41L, 37L, 35L, 14L, NA, 31L, 40L, 44L, 
+35L, 25L, 30L, NA, 28L, 18L, 44L, 45L, 22L, 26L, 34L, 49L, 37L, 
+36L, 26L), bmi = c(30.2, NA, 35.8, 47.9, NA, NA, 34.3, 25.9, 
+NA, 43.3, NA, 30.9, 30.1, 27.6, 41.3, 23.2, 25.4, 36.6, 29.3, 
+22.1, 20.4, 32, 29.3, 21, 37.6, 30.8, 25.4, 42.6, 36.1, NA, 43.5, 
+32.5, 34.3, 31.2, 33.7, 22.2, 25.4, 20.4, 29.3, 38.8, NA, 27.2, 
+NA, 18.2, 35.8, 33.8, 34.1, 24.2, 33.3, NA, 26.3, 32.2, 32.4, 
+38.1, 34.2, 34.5, 27.8, 23.1, 42.1, 37.6, 35.5, 33.2, 35.9, 32, 
+25, 31.6, NA, 30.9, 34.3, 40.6, 39.4, 31.6, 30.1, 39.1, 35, 46.1, 
+24.2, 21.1, 22.9, 26.5, 29.7, 31.3, 27.6, 31.1, 35.9, 28.7, 34.6, 
+23.8, 30.8, NA, 32, 39.4, 35.2, 25.2, 25.3, 39.2, 28.4, 31.6, 
+NA, 37.6, NA, NA, 19.3, 34.2, 32.8, 37.7, 34.2, 27.4, NA, 46.3, 
+28.5, 22.1, 39.1, 28.7, 33.2, 27.3, 34.2, 30.9, 37.4, 37.9, 22.5, 
+30.8, NA, 38.1, 32, 38.4, 24.6, 25.2, 38.9, 37.7, 36.4, 34.2, 
+26.2, 34.9, 30.9, 36.5, 25.6, 24.8, 18.2, 46.8, 23.4, 36.5, 36.8, 
+27.2, 42.9, 46.1, 24.2, 34.6, 33.2, 24.4, 35.3, NA, 41.3, 32, 
+28.6, 38.2, 34.7, 24.7, NA, 31.6, 28.4, 37.8, 32.8, 35.4, 36.2, 
+27.8, 42.1, 33.9, 28.4, 26.5, 33.7, 36.9, 35.9, NA, 37.4, 25.5, 
+24, 32, 32.8, NA, NA, 37.4, 30.8, 39.4, 33.1, 34.6, 36.6, 33.6, 
+27.8, 32.8, 34.9, 38.7, NA, 34.1, 24.1, 25.4, 38.5, 39.4, 33.3, 
+34)), .Names = c("glu", "bp", "skin", "bmi"), row.names = c(NA, 
+200L), class = "data.frame")
+```
+
+Missing data
+===
+
+- The NA’s stand for “not available,” and so some data for some individuals are “missing.”
+
+- Missing data are fairly common in survey data and other data sets. 
+
+```{r}
+head(Y)
+```
+
+Simple Approaches
+===
+
+1. Many software packages either throw away all subjects with incomplete data. 
+
+- We don't want to throw away data! 
+2. Others impute missing values with a population mean or some other fixed value, then proceed with the analysis. 
+
+- This approach is statistically incorrect, as it says we are certain about the values of the missing data when in fact we have not observed them.
+
+Notation
+===
+Let $\bm{O}_i = (O_1,\ldots, O_p)^T$ be a binary vector of 0's and 1's. 
+
+Specifically, $O_{ij} = 1$ if $Y_{ij}$ is observed and not missing. 
+
+$O_{ij} = 0$ if $Y_{ij}$ is missing. 
+
+Our observed information about subject $i$ is $\bm{O}_i = \bm{o}_i$ and $Y_{ij} = y_{ij}$ for variable $j$ such that $o_{ij}=1.$
+
+Missing at Random 
+===
+
+- We assume the data are missing at random, meaning that $\bm{O}_i$
+and $\bm{Y}_i$ are independent and the distribution of $\bm{O}_i$ does not depend on $\theta$ or $\Sigma.$
+
+- For modeling the data in a way that missing not a random, refer to Chapter 21 of Gelman et al (2004). 
+
+Missing at Random 
+===
+The sampling probability for data for subject $i$ is:
+
+\begin{align}
+&p(\bm{o}_i, \{ y_{ij}: o_{ij} = 1 \} \mid \btheta, \Sigma) \\
+&= p(\bm{o}_i) \times
+p(\{ y_{ij}: o_{ij} = 1 \} \mid \btheta, \Sigma) \\
+&= p(\bm{o}_i) \times
+\int \left\{  
+p(\{ y_{i,1},\ldots,y_{ip} \mid \btheta, \Sigma)
+\prod_{y_{ij}:o_{ij}=0}
+\, dy_{ij}
+\right\} 
+\end{align}
+
+Missing at Random 
+===
+Let's look at a special case so that the example is more concrete. 
+
+Let $\bm{y}_i = (y_{i1}, NA, y_{i3}, NA)^T.$
+
+Then $o_i = (1,0,1,0)^T.$
+
+So, when data are missing at random we integrate over the missing data to obtain the marginal probability of the observed data:
+
+\begin{align}
+p(\bm{o}_i, y_{i1}, y_{i3} \mid \btheta, \Sigma)
+& = p(\bm{o}_i) p(y_{i1}, y_{i3} \mid \btheta, \Sigma) \\
+&= p(\bm{o}_i) \int p(\bm{y}_i \mid \btheta, \Sigma) \, dy_2 dy_4
+\end{align}
+
+Notation
+===
+Let $\bm{Y}_{n\times p}$ be the matrix of all potential data in which $o_ij = 1$ if Y_ij$ is observed and 
+$o_ij = 0$ if Y_ij$ is missing. 
+
+We can think of the matrix as consisting of two parts:
+
+1. $$\bm{Y}_{obs} = \{ y_{ij}: o_{ij} = 1 \}$$
+
+2. $$\bm{Y}_{miss} = \{ y_{ij}: o_{ij} = 0 \}$$
+
+From the observed data, we want to obtain $p(\btheta, \Sigma, \bm{Y}_{miss} \mid \bm{Y}_{obs})$. 
+
+Gibbs sampler
+===
+Suppose the Gibbs sampler is at iteration $s.$
+\begin{enumerate}
+\item Sample $\btheta^{(s+1)}$ from it's full conditional:
+\begin{enumerate}
+\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bY_{obs}$, $\bY_{miss}$ and $\Sigma^{(s)}$
+\item[b)] Sample $\btheta^{(s+1)}\sim MVN(\mu_n, \Sigma_n)$
+\end{enumerate}
+\item Sample $\Sigma^{(s+1)}$ from its full conditional:
+\begin{enumerate}
+\item[a)] Compute $S_n$ from $\bY_{obs}$, $\bY_{miss}$, and $\theta^{(s+1)}$
+\item[b)] Sample $\Sigma^{(s+1)} \sim \text{inverseWishart}(\nu_n, S_n^{-1})$
+\end{enumerate}
+\item Sample $$\bm{Y}_{miss}^{s+1} \sim p(\bm{Y}_{miss} \mid \bm{Y}_{obs}, \theta^{(s+1)}, \Sigma^{(s+1)})$$
+\end{enumerate}
+
+In steps 1--2, Note the fixed value of $\bm{Y}_obs$ combines with the current value of $\bm{Y}_{miss}^(s)$ to form a current version of a complete data matrix $\bm{Y}^(s)$ with no missing values. 
+
+Step 3 of Gibbs sampler
+===
+\begin{align}
+p(\bm{Y}_{miss} \mid \bm{Y}_{obs}, \btheta, \Sigma)
+& \propto 
+p(\bm{Y}_{miss} \bm{Y}_{obs} \mid \btheta, \Sigma) \\
+&= \prod_{i=1}^n 
+p(\bm{y}_{i,miss},\bm{y}_{i,obs} \mid \theta, \Sigma ) \\
+&\propto 
+\prod_{i=1}^n 
+p(\bm{y}_{i,miss} \mid \bm{y}_{i,obs} \mid \theta, \Sigma ) 
+\end{align}
+
+We can compute the above quantity using a fact from multivariate methods. 
+
+Multivariate fact
+===
+Let $\bm{y}_{[b]}$ and $\bm{y}_{[a]}$ correspond to the elements of $y$ corresponding to the indices of $a$ and $b$. Let $\Sigma_{[a,b]}$ be a matrix with rows $a$ and columns $b.$
+
+Knowing infomation about partitioned matrices, one can show that 
+
+$$\bm{y}_{[b]} \mid \bm{y}_{[a]}, \btheta,\Sigma
+\sim MVN( \btheta_{b|a}, \Sigma_{b|a}),$$
+
+where 
+
+$$\btheta_{b|a} 
+= \btheta_{[b]} + \Sigma_{[b,a]}(\Sigma_{[a,a]})^{-1}
+(\bm{y}_{[a]} - \btheta_{[a]})$$
+
+and
+
+$$\Sigma_{[b,a]}
+= \Sigma_{[b,b]} - \Sigma_{[b,a]}
+(\Sigma_{[a,a]})^{-1}\Sigma_{[a,b]}.$$
+
+Application to Pima Indian data set
+===
+
+We first talk about hyper-parameter selection and then implement the Gibbs sampler. 
+
+Recall the full model is 
+
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$ 
+$$ \btheta_i \sim MVN(\bm{\mu_0}, \Lambda_0)$$
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
+
+Hyper-parameter selection
+===
+The prior mean of $\bm{\mu_0} = 
+(120,64,26,26)^T$ is taken from national averages. 
+
+The corresponding prior variances  are based primarily on keeping most of the prior mass on values that are above zero.
+
+These prior distributions are likely much more diffuse than more informed prior distributions that could be provided by an expert in this field of study. 
+
+The data set
+===
+```{r}
+head(Y)
+n <- dim(Y)[1]
+p <- dim(Y)[2]
+```
+
+Prior parameter specification
+===
+```{r}
+mu0 <- c(120,64,26,26)
+(sd0 <- mu0/2)
+(L0 <- matrix(0.1, p,p))
+diag(L0) <- 1
+L0 <- L0*outer(sd0,sd0)
+nu0 <- p + 2
+S0 <- L0
+```
+
+Starting values
+===
+```{r}
+Sigma <- S0
+Y.full <- Y
+# put a -1 for observed values
+# 0 for NA's
+O <- -1*(!is.na(Y))
+
+# replace the NA values with #average of all the observed 
+# values in column j
+
+for(j in 1:p){
+Y.full[is.na(Y.full[,j]),j]<- mean(Y.full[,j],na.rm=TRUE)
+}
+
+```
+
+Gibbs sampler
+===
+```{r,echo=FALSE}
+library (mvtnorm)
+library(MCMCpack)
+```
+
+Gibbs sampler
+===
+```{r}
+THETA <- SIGMA <- Y.MISS <- NULL
+set.seed(1)
+for(s in 1:100){
+## update theta
+  ybar <- apply(Y.full,2,mean)
+  Ln <- solve(solve(L0) + n*solve(Sigma))
+  mun <- Ln %*% (solve(L0) %*% mu0 + n*solve(Sigma) %*% ybar)
+  theta <- rmvnorm(1, mun, Ln)
+  
+  ## update Sigma
+  Sn <- S0 + (t(Y.full) - c(theta)) %*% t(t(Y.full)-c(theta))
+  Sigma <- solve(rwish(nu0 + n, solve(Sn)))
+  
+  #update missing data
+  for(i in 1:n){
+    b <- (O[i,] == 0)
+    a <- (O[i,] == -1)
+    iSa <- solve(Sigma[a,a])
+    beta.j <- Sigma[b,a]%*%iSa
+    Sigma.j <- Sigma[b,b] - Sigma[b,a]%*%iSa%*%Sigma[a,b]
+    theta.j <- theta[b] + beta.j%*%(t(Y.full[i,a])-theta[a])
+    Y.full[i,b] <- rmvnorm(theta.j, Sigma.j)
+  }
+  # save results
+  THETA <- rbind(THETA,theta)
+  SIGMA <- rbind(SIGMA,c(Sigma))
+  Y.MISS <- rbind(Y.MISS, Y.full[O ==0])
+}
+```
+
+Traceplots of $\theta_1$
+===
+```{r, echo=FALSE}
+n.iter<-100
+plot(1:n.iter, THETA[,1], pch = 16, cex = .35,
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Traceplot of ", theta)))
+```
+
+
+ 
+ 

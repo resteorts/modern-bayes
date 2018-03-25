@@ -280,7 +280,7 @@ Suppose the Gibbs sampler is at iteration $s.$
 \end{enumerate}
 \item Sample $\Sigma^{(s+1)}$ from its full conditional:
 \begin{enumerate}
-\item[a)] Compute $S_n$ from $\bX$ and $\theta^{(s)}$
+\item[a)] Compute $S_n$ from $\bX$ and $\theta^{(s+1)}$
 \item[b)] Sample $\Sigma^{(s+1)} \sim \text{inverseWishart}(\nu_n, S_n^{-1})$
 \end{enumerate}
 \end{enumerate}
