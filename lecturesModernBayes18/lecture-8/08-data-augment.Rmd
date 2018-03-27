@@ -76,7 +76,7 @@ Constructing a Gibbs sampler
 To construct a Gibbs sampler for this situation:
 
 \begin{itemize}
-\item Common to introduce an auxiliary variable $Z_i$ for each datapoint,
+\item Common to introduce an auxiliary variable $Z_i$ for each data point,
 indicating which mixture component it is drawn from.
 \item  In this example, $Z_i$ indicates whether subject $i$ is female or male.
 \item This results in a Gibbs sampler that is easy to derive/implement.
