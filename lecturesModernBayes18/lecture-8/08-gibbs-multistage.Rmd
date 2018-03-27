@@ -343,7 +343,7 @@ Using the data and functions given to you (posted to Sakai with Homework 8), inv
 
 3. Give plots of the estimated density of $\theta \mid \cdots$ and $z_9 \mid \cdots$. Be sure to give brief explanations of your results and findings. (Present plots for 10,000 iterations). 
 
-4. Finally, let's suppose that $r=10,a=1,b=100.$ Does your posterior change? What about when $r=10, a=10,b=1?$ (Use 10,000 iterations for the Gibbs sampler). 
+4. Finally, let's suppose that $r=10,a=1,b=100.$ Does your posterior change? What about when $r=10, a=100,b=1?$ (Use 10,000 iterations for the Gibbs sampler). 
 
 
 

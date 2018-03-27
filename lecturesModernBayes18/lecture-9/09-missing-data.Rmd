@@ -289,7 +289,7 @@ Sigma <- S0
 Y.full <- Y
 # put a -1 for observed values
 # 0 for NA's
-O <- -1*(!is.na(Y))
+O <- 1*(!is.na(Y))
 
 # replace the NA values with #average of all the observed 
 # values in column j
@@ -313,41 +313,36 @@ Gibbs sampler
 THETA <- SIGMA <- Y.MISS <- NULL
 set.seed(1)
 for(s in 1:100){
-## update theta
+
+  ## update theta
   ybar <- apply(Y.full,2,mean)
   Ln <- solve(solve(L0) + n*solve(Sigma))
   mun <- Ln %*% (solve(L0) %*% mu0 + n*solve(Sigma) %*% ybar)
   theta <- rmvnorm(1, mun, Ln)
   
+  library(MASS)
   ## update Sigma
   Sn <- S0 + (t(Y.full) - c(theta)) %*% t(t(Y.full)-c(theta))
   Sigma <- solve(rwish(nu0 + n, solve(Sn)))
   
-  #update missing data
-  for(i in 1:n){
-    b <- (O[i,] == 0)
-    a <- (O[i,] == -1)
-    iSa <- solve(Sigma[a,a])
-    beta.j <- Sigma[b,a]%*%iSa
-    Sigma.j <- Sigma[b,b] - Sigma[b,a]%*%iSa%*%Sigma[a,b]
-    theta.j <- theta[b] + beta.j%*%(t(Y.full[i,a])-theta[a])
-    Y.full[i,b] <- rmvnorm(theta.j, Sigma.j)
-  }
-  # save results
-  THETA <- rbind(THETA,theta)
-  SIGMA <- rbind(SIGMA,c(Sigma))
-  Y.MISS <- rbind(Y.MISS, Y.full[O ==0])
+  ###update missing data
+  # TODO: fill in the piece to 
+  # update the missing data
+  
+### save results
+THETA<-rbind(THETA,theta) 
+SIGMA<-rbind(SIGMA,c(Sigma))
+# TODO: update the missing data
+
 }
 ```
 
-Traceplots of $\theta_1$
+Homework
 ===
-```{r, echo=FALSE}
-n.iter<-100
-plot(1:n.iter, THETA[,1], pch = 16, cex = .35,
-     xlab = "Iteration", ylab = expression(theta),
-     main = expression(paste("Traceplot of ", theta)))
-```
+You will complete a homework assignment based upon the 
+Pima Indian example for homework. 
+
+
 
 
  
