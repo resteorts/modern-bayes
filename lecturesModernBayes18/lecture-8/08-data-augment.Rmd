@@ -220,11 +220,6 @@ Results
 \end{figure}
 
 
-
-
-
-
-
 Results
 ===
 \begin{figure}[htbp]
@@ -246,8 +241,6 @@ Results from two runs of the mixture model
 \end{center}  
 \end{figure}
 
-
-    
 Caution: watch out for modes
 ===
 Example illustrates a big thing that can go wrong with MCMC (although fortunately, in this case, the results are still valid if interpreted correctly). 
@@ -282,6 +275,15 @@ p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2)
 &\sim \text{InverseGamma}(2,2),
 \end{align*}
 for $i=1,\ldots n.$
+
+Three component mixture model
+===
+Specifically, 
+\begin{itemize}
+\item $w_1,w_2$ and $w_3$ are the mixture weight of mixture components 1,2 and 3 respectively
+\item $\mu_1,\mu_2$ and $\mu_3$ are the means of the mixture components 
+\item $\varepsilon^2$ is the variance parameter of the error term around the mixture components.
+\end{itemize}
 
 Dirichlet
 ===
@@ -322,20 +324,14 @@ Dirichlet distribution
 \end{center}
 \end{figure}
 
-
-
-Three component mixture model
+Three component mixture model (Task 1 and 2)
 ===
-Specifically, 
-\begin{itemize}
-\item $w_1,w_2$ and $w_3$ are the mixture weight of mixture components 1,2 and 3 respectively
-\item $\mu_1,\mu_2$ and $\mu_3$ are the means of the mixture components 
-\item $\varepsilon^2$ is the variance parameter of the error term around the mixture components. 
-\end{itemize}
+Derive the full conditionals for all the parameters up to a normalizing constant.
+
 
 Task 1 and 2
 ===
-Derive the full conditionals for all the parameters up to a normalizing constant. (Lab this week). 
+Specifically, you should derive the following conditional distributions below:
 
 \begin{itemize}
 \item $p(w_1,w_2,w_3|\mu_1,\mu_2,\mu_3,\varepsilon^2,Y_1,...,Y_N) \propto$
@@ -347,7 +343,40 @@ Derive the full conditionals for all the parameters up to a normalizing constant
 \item $p(\sigma_0^2|\mu_0,\mu_1,\mu_2,\mu_3) \propto$
 \end{itemize}
 
-Data augumentation scheme
+Task 1 (Solution)
+===
+We start by deriving the full conditional kernels. 
+\begin{align}
+p(\mu_0|\mu_1,\mu_2,\mu_3,\varepsilon^2,\sigma_0^2) & \propto \text{Normal-Normal mean update}\\
+p(\sigma_0^2|\mu_1,\mu_2,\mu_3,\mu_0) & \propto \text{Normal-InverseGamma variance update}
+\end{align}
+
+Task 1 (Solution)
+===
+\begin{align}
+&p(\mu_k|Y_1,...,Y_N,\sigma_0^2,\varepsilon^2,w_1,w_2,w_3) \\
+& \propto  \frac{1}{\sqrt{2 \pi \sigma_0^2}}e^{-\frac{1}{\sigma_0^2}(\mu_k -\mu_0)^2}\prod_{i=1}^N \Big(\sum_{j=1}^3 w_j\frac{1}{\sqrt{2\pi \varepsilon^2}}e^{-\frac{1}{2\varepsilon^2}(Y_i - \mu_j)^2}\Big)\\
+&\propto ? 
+\end{align}
+
+Task 1 (Solution)
+===
+\begin{align}
+& p(\varepsilon^2|Y_1,...,Y_N,\mu_1,\mu_2,\mu_3,w_1,w_2,w_3)\\ & \propto(\varepsilon^2)^{-3}e^{-\frac{2}{\varepsilon^2}} \prod_{i=1}^N \Big(\sum_{j=1}^3 w_j\frac{1}{\sqrt{2\pi \varepsilon^2}}e^{-\frac{1}{2\varepsilon^2}(Y_i - \mu_j)^2}\Big)\\
+&\propto ? 
+\end{align}
+
+Task 1 (Solution)
+===
+\begin{align}
+&p(w_1,w_2,w_3|Y_1,...,Y_N,\mu_1,\mu_2,\mu_3,\varepsilon^2) \\
+&\propto \prod_{i=1}^N \Big(\sum_{j=1}^3 w_j\frac{1}{\sqrt{2\pi \varepsilon^2}}e^{-\frac{1}{2\varepsilon^2}(Y_i - \mu_j)^2}\Big)\\
+&\propto ? 
+\end{align}
+
+Note that everything that involves the likelihood includes the products of sums, and becomes exceedingly painful. Thus, let us look at the full conditionals under data augmentation.
+
+Data augumentation scheme 
 ===
 - Neither the joint posterior nor any of the full conditionals involving the likelihood are of a form that's easy to sample from. 
 
@@ -367,9 +396,98 @@ Data augmentation (continued)
 
 - The drawback is that we also have to update ${\{Z_i\}}_{i=1}^N$ as well, introducing extra steps into our sampler. 
 
+The updated model
+===
+The model is now
+\begin{align*}
+Y_i \mid Z_i, \mu_1, \mu_2, \mu_3, \epsilon^2 &\sim N(\mu_{Z_i}, \epsilon^2) \\
+\mu_j \mid \mu_0, \sigma_0^2 &\sim N(\mu_0, \sigma_0^2) \\
+Z_i \mid w_1,w_2,w_3 &\sim \text{Cat}(3, \boldsymbol{w})\\
+\boldsymbol{w}= (w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1) \\
+\mu_0 &\sim N(0,3) \\
+\sigma_0^2 &\sim IG(2,2) \\
+\epsilon^2 &\sim IG(2,2) 
+\end{align*}
+$i=1,\ldots,n$
+$j=1,\ldots,3$
+
+Multinomial-Dirichlet
+===
+In order to proceed with the lab, we'll need to learn about the Multinomial or Categorical distribution. 
+
+Multinomial or Categorical distribution
+===
+
+\begin{itemize}
+\item $\theta = (\theta_1,\ldots,\theta_m),$
+\item $X_i \in \{1,\ldots, m\},$
+\item $\sum_i \theta_i =1.$
+\end{itemize}
+
+Assume that $${X} \mid {\theta} \stackrel{ind}{\sim} \text{Multinomial}({\theta})$$
+or 
+$$ X \mid \theta \stackrel{ind}{\sim} \text{Categorical}(\theta)$$
+\vskip 1em
+$$P(X_i = j \mid {\theta}) = \theta_j$$
+
+Conjugate prior (Dirichlet)
+===
+$$\theta \sim \text{Dirichlet}(\alpha)$$
+Recall the density of the Dirichlet is the following:
+\vskip 1em
+
+$$p(\theta \mid \alpha) \propto \prod_{j=1}^m \theta_j^{\alpha_j -1},$$ where
+$\sum_j \theta_j =1, \theta_i \geq 0$ for all i
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{figures/simplex}
+\end{center}
+
+Likelihood
+===
+
+Define the data as $D = (x_1,\ldots, x_n),$ $x_i \in \{1,\ldots m\}.$
+Consider
+\begin{align}
+p(D \mid \theta) &= \prod_{i=1}^n P(X_i = x_i \mid \theta) \\
+&= \prod_{i=1}^n \theta_{x_i} \\
+&=\prod_{i=1}^n \prod_{j=1}^m \theta_j^{I(x_i =j)}\\
+&= \prod_{j=1}^m \theta_j^{\sum_i I(x_i = j)} \\
+& = \prod_{j=1}^m \theta_j^{c_j}
+\end{align}
+where $c=(c_1,\ldots c_m)$, 
+$c_j = \# \{i: x_i =j \}.$
+
+Likelihood, Prior, and Posterior
+===
+$$p(D \mid \theta) = \prod_{j=1}^m \theta_j^{c_j}$$
+
+\vskip 1em
+
+$$P(\theta) \propto \prod_{j=1}^m \theta_j^{\alpha_j-1} I(\sum_j \theta_j =1, \theta_i \geq 0 \forall i)$$
+
+Then 
+\begin{align}
+P(\theta \mid D) &\propto \prod_{j=1}^m \theta_j^{c_j} \times \prod_{j=1}^m \theta_j^{\alpha_j-1}  I(\sum_j \theta_j =1, \theta_i \geq 0 \forall i) \\
+&\propto \prod_{j=1}^m \theta_j^{c_j + \alpha_j -1}  I(\sum_j \theta_j =1, \theta_i \geq 0 \forall i) 
+\end{align}
+This implies $$\theta \mid D \sim \text{Dirichlet}(c + \alpha).$$
+
+Takeaways
+===
+\begin{enumerate}
+\item Dirichlet is conjugate for Categorical or Multinomial.\footnote{The word Categorical seems to be used in CS and ML. The word Multinomial seems to be used in Statistics and Mathematics. I have no idea what is used in other sciences.}
+\item Useful formula:
+$$\prod_i \text{Multinomial} (x_i \mid \theta) \times \text{Dir}(\theta \mid \alpha) \propto \text{Dir}(\theta \mid c+ \alpha).$$
+\end{enumerate}
+
 Task 3
 ===
 Where necessary, (re)derive the full conditionals under the data augmentation scheme.
+
+(See the lab solutions).
+
 
 Task 4
 ===
