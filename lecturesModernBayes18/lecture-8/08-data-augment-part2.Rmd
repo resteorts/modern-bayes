@@ -332,6 +332,22 @@ and suppose the prior is
 $$ p(a,b) = \exp(- a - b)\I(a,b>0). $$
 You want to sample from the posterior $p(a,b|x)$.  Find the conditional distributions needed for implementing a Gibbs sampler.
 
+Note: you did a generalization of this problem in lab. 
+
+Solution
+===
+The Gibbs sampler consists of alternately sampling from $a|b,x$ and $b|a,x$. 
+
+First note that the joint p.d.f.\ is
+$$ p(x,a,b) = a b \exp(-a b x - a - b) \I(a,b,x>0). $$
+
+Thus,
+\begin{align*}
+    p(a|b,x) &\underset{a}{\propto} p(x,a,b) \underset{a}{\propto} a \exp(-a b x - a)\I(a>0) \\ &= a \exp(-(b x + 1)a)\I(a>0)
+    \underset{a}{\propto} \Ga(a\mid 2,\, b x + 1).
+\end{align*}
+Therefore, $p(a|b,x) = \Ga(a\mid 2,\,b x+1)$ and by symmetry, $p(b|a,x) = \Ga(b\mid 2,\,a x+1)$.
+
 
 
 

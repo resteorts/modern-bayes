@@ -121,7 +121,7 @@ f_z(z) &= \prod_{i=1}^n \frac{1}{2\pi} e^{-z_i^2/2}\\
 
 Conjugate to MVN
 ===
-Suppose that $$X_1 \ldots X_n \stackrel{iid}{\sim} MVN(\theta, \Sigma). $$
+Suppose that $$X_1 \ldots X_n \mid \theta \stackrel{iid}{\sim} MVN(\theta, \Sigma). $$
 Let $$\pi(\btheta) \sim MVN(\bmu, \Omega). $$
 
 What is the full conditional distribution of $\btheta \mid \bX, \Sigma$?
@@ -147,10 +147,10 @@ p(\bx \mid \btheta, \Sigma) &= \prod_{i=1}^n
 & \exp-\frac{1}{2} {\left \{ \sum_i x_i^T \Sigma^{-1} x_i -2 \sum_i \btheta^T \Sigma^{-1} x_i + 
 \sum_i \btheta^T\Sigma^{-1} \btheta 
  \right \}}\\
- & \exp-\frac{1}{2} {\left \{  -2 \btheta^T \Sigma^{-1} n\bar{x} + 
+ & \propto \exp-\frac{1}{2} {\left \{  -2 \btheta^T \Sigma^{-1} n\bar{x} + 
 n \btheta^T\Sigma^{-1} \btheta 
  \right \}}\\
-  & \exp-\frac{1}{2} {\left \{  -2 \btheta^T b_1+ 
+  & \propto \exp-\frac{1}{2} {\left \{  -2 \btheta^T b_1+ 
 \btheta^T A_1 \btheta \right \}},
 \end{align}
 where $$b_1= \Sigma^{-1} n\bar{x}, \quad A_1 = n\Sigma^{-1}$$ and 
@@ -478,7 +478,7 @@ for (s in 1:5000) {
 Posterior infernce
 ===
 
-Using the samples from the Gibbs sampler, we have generated 5,000 samples $$(\bm{\theta}^{1}, Sigma(1), \ldots,\bm{\theta}^{1}, Sigma(1) )$$ that approxmiates $p(\theta, \Sigma \mid y_1, \ldots, y_n).$
+Using the samples from the Gibbs sampler, we have generated 5,000 samples $$(\bm{\theta}^{1}, \Sigma^(1), \ldots,\bm{\theta}^{5000}, \Sigma^(5000) )$$ that approxmiates $p(\theta, \Sigma \mid y_1, \ldots, y_n).$
 
 Glance at Gibbs sampler
 ===
