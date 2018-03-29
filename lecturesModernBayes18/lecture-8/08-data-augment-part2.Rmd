@@ -324,6 +324,14 @@ to the multi-stage Gibbs sampler.
 5. Why would we use latent variables in a Gibbs sampler? (We looked at these for Gaussian mixture models). Notice that the hierarhical modeling setup was more complicate here, which called for this trick. 
 6. In short, we saw many ways to use Gibbs sampling in many applications and various tricks that one needs to use in order to derive the full conditionals in closed form. This is always driven by the data and will vary by the model specified. 
 
+Exercise
+===
+Consider the following Exponential model for an observation $x$:
+$$ p(x|a,b) = a b \exp(- a b x) \I(x>0)$$
+and suppose the prior is 
+$$ p(a,b) = \exp(- a - b)\I(a,b>0). $$
+You want to sample from the posterior $p(a,b|x)$.  Find the conditional distributions needed for implementing a Gibbs sampler.
+
 
 
 
