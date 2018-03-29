@@ -310,7 +310,20 @@ Now suppose you re-run the sampler using 3 different starting values, are your r
 
 Sample code
 ===
-Partial code for this problem can be found on Sakai (also on github). 
+Partial code for this problem can be found on Sakai (or Github). 
+
+Recap of Module 8 (Part I -- Part IV)
+===
+1. We introduced the two-stage Gibbs sampler.
+2. You should be able to derive conditional distributions
+for two-stage Gibbs samplers. (See Part I, Module 8 for examples).
+3. Be familar with diagnostic plots.  
+3. We then looked at a three-stage sampler and generalized
+to the multi-stage Gibbs sampler. 
+4. We looked at an application to censoring (a type of missing data here).
+5. Why would we use latent variables in a Gibbs sampler? (We looked at these for Gaussian mixture models). Notice that the hierarhical modeling setup was more complicate here, which called for this trick. 
+6. In short, we saw many ways to use Gibbs sampling in many applications and various tricks that one needs to use in order to derive the full conditionals in closed form. This is always driven by the data and will vary by the model specified. 
+
 
 
 

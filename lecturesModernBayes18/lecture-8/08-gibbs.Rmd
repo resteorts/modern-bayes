@@ -16,8 +16,6 @@ Agenda
 - Normal example
 - Pareto example
 - Diagnostics
-- Multi-stage sampler
-- Missing Data
 
 
 Gibbs sampler
