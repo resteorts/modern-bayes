@@ -218,7 +218,78 @@ The likelihood in the multivariate setting simpifies to
 \}
 \end{align}
 
+Ordinary Least Squares
+===
+We estimate the coefficients $\hbeta \in \R^p$ by least squares:
+$$\hbeta = \argmin_{\beta \in \R^p} \|y-X\hbeta\|_2^2$$
+This gives
+$$\hbeta = (X^T X)^{-1} X^T y$$
+(Check: does this match the expressions for univariate regression,
+without and with an intercept?)
 
+\bigskip
+The fitted values are
+$$\hy = X\hbeta = X(X^T X)^{-1} X^T y$$
+This is a linear function of $y$, $\hy = Hy$, where
+$H=X(X^T X)^{-1} X^T$ is sometimes called the hat matrix
+
+Ordinary Least squares estimation
+===
+Let SSR denote sum of squared residuals. 
+$$ \min_\beta SSR(\hbeta) = \min_\beta  \|y-X\hbeta\|_2^2$$
+Then 
+\begin{align}
+ \frac{\partial SSR(\hbeta)}{\partial d\hbeta} &= 
+\frac{\partial (y-X\hbeta)^T(y-X\hbeta)}{\partial d\hbeta} \\
+&= \frac{\partial \bY^T\bY - 2\hbeta^T\bX^T\bY + \hbeta^T\bX^T\bX\hbeta}{\partial d\hbeta}\\
+& = -  2\bX^T\bY + 2\bX^T\bX\hbeta
+\end{align}
+
+This implies $-\bX^T\bY + \bX^T\bX\hbeta= 0 \implies \hbeta  = (\bX^T\bX)^{-1}\bX^T\bY.$
+\vskip 1em
+Called the ordinary least squares estimator. When is it unique?
+
+Recall data set up
+===
+```{r}
+# aerobic versus running activity
+x1<-c(0,0,0,0,0,0,1,1,1,1,1,1)
+# age
+x2<-c(23,22,22,25,27,20,31,23,27,28,22,24)
+# change in maximal oxygen uptake
+y<-c(-0.87,-10.74,-3.27,-1.97,7.50,
+     -7.25,17.05,4.96,10.40,11.05,0.26,2.51)
+
+(x3 <- x2) #age
+(x2 <- x1) #aerobic versus running 
+(x1<- seq(1:length(x2))) #index of person
+(x4 <- x2*x3)
+X <- cbind(x1,x2,x3,x4)
+```
+
+OLS estimation in R
+===
+```{r}
+## using the lm function
+fit.ols<-lm(y~ X[,2] + X[,3] +X[,4])
+summary(fit.ols)$coef
+```
+
+
+Ordinary Least squares estimation
+===
+$$\hbeta  = (\bX^T\bX)^{-1}\bX^T\bY. $$
+\vskip 1em
+$$E(\hbeta ) = \bbeta.$$
+\vskip 1em
+\begin{align}
+\Var(\hbeta) &= \Var\{ (\bX^T\bX)^{-1}\bX^T\bY\}\\
+ &=
+(\bX^T\bX)^{-1}\bX^T \sigma^2 I_n \bX (\bX^T\bX)^{-1}\\
+& = \sigma^2  (\bX^T\bX)^{-1}
+\end{align}
+
+$$\hbeta \sim MVN(\bbeta, \sigma^2  (\bX^T\bX)^{-1}).$$
 
 
 Posterior computation
@@ -259,7 +330,7 @@ and $\mu = a \Lambda^{-1} X^T y.$
 Multivariate inference for regression models
 ===
 \begin{align}
-\bm{y} &\mid \bbeta \sim MVN(\bX \bbeta, \sigma^2 \bm{I})
+\bm{y} &\mid \bbeta \sim MVN(\bX \bbeta, \sigma^2 \bm{I})\\
 \bbeta &\sim MVN(\bbeta_0, \Sigma_0)
 \end{align}
 The posterior can be shown to be 
@@ -267,10 +338,26 @@ $$\bbeta \mid \bm{y}, \bX \sim MVN(\bbeta_n, \Sigma_n)$$
 
 where
 
-$$\bbeta_n = E[\bbeta\ mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}
+$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}
 (\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2)$$
 
-$$\Sigma_n = \text{Var}[\bbeta\ mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
+$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
+
+Multivariate inference for regression models
+===
+The posterior can be shown to be 
+$$\bbeta \mid \bm{y}, \bX \sim MVN(\bbeta_n, \Sigma_n)$$
+
+where
+
+$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}
+(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2)$$
+
+$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
+
+Remark: If $\Sigma_o{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{ols}$
+
+If $\Sigma_o{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
 
 
 Linear Regression Applied to Swimming
