@@ -41,7 +41,7 @@ $$
 
 \[  x_{i}= \left( \begin{array}{c}
 x_{i1}\\
-x_{ip}\\
+\textcolor{red}{x_{i2}}\\
 \vdots\\
 x_{ip}
 \end{array} \right) \]
@@ -142,7 +142,7 @@ Likelihood
 ===
 \begin{align}
 p(\bx \mid \btheta, \Sigma) &= \prod_{i=1}^n
-{\left(2\pi\right)}^{-p/2}\det{\Sigma}^{-n/2} \exp{\left\{-\frac{1}{2} (x_i-\btheta)^T\Sigma^{-1} (x_i - \btheta)\right\}}\\
+{\left(2\pi\right)}^{-p/2}\det{\Sigma}^{-1/2} \exp{\left\{-\frac{1}{2} (x_i-\btheta)^T\Sigma^{-1} (x_i - \btheta)\right\}}\\
 \propto 
 & \exp-\frac{1}{2} {\left \{ \sum_i x_i^T \Sigma^{-1} x_i -2 \sum_i \btheta^T \Sigma^{-1} x_i + 
 \sum_i \btheta^T\Sigma^{-1} \btheta 
