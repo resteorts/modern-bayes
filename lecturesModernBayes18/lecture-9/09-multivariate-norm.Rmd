@@ -173,6 +173,14 @@ p(\bx \mid \btheta, \Sigma) \times p(\btheta) \\
 \btheta^T( b_o + b_1) -\frac{1}{2}\theta^T(A_o + A_1) \theta
 \}
 \end{align}
+
+Full conditional
+===
+Recall that 
+\textcolor{red}{$\pi(\btheta) \sim MVN(\bmu, \Omega)$ implies that $A_o = \Omega^{-1}$ and $b_o = \Omega^{-1} \mu.$}
+
+Using the kernel of the multivariate normal, we can now find the posterior mean and the posterior covariance:
+
 Then $$A_n = A_o + A_1 = \Omega^{-1}+n\Sigma^{-1}$$ and $$b_n = b_o + b_1 = \Omega^{-1}\mu + \Sigma^{-1} n\bar{x}$$
 $$\btheta \mid \bx, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n)$$
 
