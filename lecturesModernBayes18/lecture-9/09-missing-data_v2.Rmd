@@ -158,8 +158,8 @@ p(\bm{o}_i, y_{i1}, y_{i3} \mid \btheta, \Sigma)
 
 Notation
 ===
-Let $\bm{Y}_{n\times p}$ be the matrix of all potential data in which $o_ij = 1$ if Y_ij$ is observed and 
-$o_ij = 0$ if Y_ij$ is missing. 
+Let $\bm{Y}_{n\times p}$ be the matrix of all potential data in which $o_{ij} = 1$ if $Y_ij$ is observed and 
+$o_{ij} = 0$ if $Y_ij$ is missing. 
 
 We can think of the matrix as consisting of two parts:
 
@@ -224,9 +224,8 @@ $$\Sigma_{[b,a]}
 = \Sigma_{[b,b]} - \Sigma_{[b,a]}
 (\Sigma_{[a,a]})^{-1}\Sigma_{[a,b]}.$$
 
-Lab 9: Application to Pima Indian data set
+Lab 10: Application to Pima Indian data set
 ===
-0. Display univariate histograms and bivariate scatterplots for four variables taken from a dataset involving health-related measurements on 200 women of Pima Indian heritage living near Phoenix, Arizona. 
 1. Write down a generative model for the Pima Indian data set.
 Derive the full conditional distributions. 
 2. Code up the corresponding Gibbs sampler.
@@ -342,7 +341,8 @@ Posterior appx of $E[\theta \mid y]$
 ===
 ```{r}
 library(knitr)
-interval.theta <-  apply(THETA, 2, quantile, c(0.025, 0.975))
+interval.theta <-  
+  apply(THETA, 2, quantile, c(0.025, 0.975))
 kable(data.frame(interval.theta))
 ```
 
@@ -364,7 +364,8 @@ apply(COR,c(1,2),mean)
 95 \% confidence intervals for $E[\Sigma \mid y]$
 ===
 ```{r}
-interval.sigma <- apply(COR, c(1,2), quantile,prob=c(.025,.975))
+interval.sigma <- 
+  apply(COR, c(1,2), quantile,prob=c(.025,.975))
 kable(data.frame(interval.sigma))
 ```
 
