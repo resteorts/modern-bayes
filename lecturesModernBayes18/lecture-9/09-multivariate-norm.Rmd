@@ -236,7 +236,7 @@ Let's first look at
 \end{align}
 where $S_\theta = \sum_i (\bx_i - \btheta) (\bx_i - \btheta)^T.$
 
-Fact: $$\sum_k b_k^TA b_k = tr(B^T B A),$$ where B is the matrix whose $k$th row is $b_k.$
+Fact: $$\sum_k b_k^TA b_k = tr(B B^T A),$$ where B is the matrix whose $k$th row is $b_k.$
 
 
 
@@ -319,14 +319,6 @@ Working with the Multivariate Normal
 rmvnorm(n = 3, mean = rep(0, 2), sigma = diag(2))
 ```
 
-Evaluation
-===
-We can evaluate the multivariate normal density at several values using the `dmvnorm` function.
-
-```{r}
-dmvnorm(rbind(rep(0, 2), rep(1, 2), rep(2, 2)), 
-        mean = rep(0, 2), sigma = diag(2))
-```
 
 Work with the Wishart density
 ===
@@ -334,21 +326,12 @@ Work with the Wishart density
 
 - We can simulate a single Wishart distributed matrix using the `rWishart` function.
 
+- Each row is a different sample from the Wishart distribution. 
+
 ```{r}
 nu0 <- 2
 Sigma0 <- diag(2)
 rWishart(1, df = nu0, Sigma = Sigma0)[, , 1]
-```
-
-inverse Wishart simulation
-===
-We can simulate a single inverse-Wishart distributed matrix using the `rWishart` function as well.
-
-```{r}
-nu0 <- 2
-Sigma0 <- diag(2)
-solve(rWishart(1, df = nu0, 
-               Sigma = solve(Sigma0))[, , 1])
 ```
 
 An Application to Reading Comprehension
@@ -394,7 +377,7 @@ $$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$
 $$ \btheta_i \sim MVN(\bm{\mu}_0, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
-Since the true mean cannot be below 0 or above 100, we will use a prior variancethat puts little probability outside of this range.
+Since the true mean cannot be below 0 or above 100, we will use a prior variance that puts little probability outside of this range.
 
 We’ll take the prior variances on $\theta_1$ and $\theta_2$ 
 to be $$\lambda_{0,1}^2 = \lambda_{0,2}^2 = (50/2)^2 = 625$$ so that the prior probability that $P(\theta_j \neq [0,100]) =0.05.$
@@ -458,15 +441,14 @@ Gibbs sampler
 THETA <- SIGMA <- NULL
 set.seed(1)
 for (s in 1:5000) {
-  
   ## update theta
   Ln <- solve(solve(L0) + n*solve(Sigma))
-  mun <- Ln %*% (solve(L0) %*% mu0 + n*solve(Sigma) %*% ybar)
+  mun <- Ln %*% (solve(L0) %*% mu0 + 
+                   n*solve(Sigma) %*% ybar)
   theta <- rmvnorm(1, mun, Ln)
   
   ## update Sigma
   Sn <- S0 + (t(Y) - c(theta)) %*% t(t(Y)-c(theta))
-  
   
   Sigma <- solve(rwish(nu0 + n, solve(Sn)))
   ## save results
@@ -475,10 +457,10 @@ for (s in 1:5000) {
 }
 ```
 
-Posterior infernce
+Posterior inference
 ===
 
-Using the samples from the Gibbs sampler, we have generated 5,000 samples $$(\bm{\theta}^{1}, \Sigma^(1), \ldots,\bm{\theta}^{5000}, \Sigma^(5000) )$$ that approxmiates $p(\theta, \Sigma \mid y_1, \ldots, y_n).$
+Using the samples from the Gibbs sampler, we have generated 5,000 samples $$(\bm{\theta}^{(1)}, \Sigma^{(1)}, \ldots,\bm{\theta}^{(5000)}, \Sigma^{(5000)}) $$ that approxmiates $p(\bm{\theta}, \Sigma \mid y_1, \ldots, y_n).$
 
 Glance at Gibbs sampler
 ===
@@ -539,7 +521,7 @@ abline(v = mean(THETA[,2]), col = "red")
 
 Traceplots and running average plots of $\sigma$
 ===
-Examine the trace plots and running average plots of $\Sigma$ on your own. 
+Examine the trace plots and running average plots of $\Sigma$ on your own.
 
 Return to posterior inference
 ===

@@ -224,12 +224,25 @@ $$\Sigma_{[b,a]}
 = \Sigma_{[b,b]} - \Sigma_{[b,a]}
 (\Sigma_{[a,a]})^{-1}\Sigma_{[a,b]}.$$
 
-Application to Pima Indian data set
+Lab 9: Application to Pima Indian data set
 ===
+0. Display univariate histograms and bivariate scatterplots for four variables taken from a dataset involving health-related measurements on 200 women of Pima Indian heritage living near Phoenix, Arizona. 
+1. Write down a generative model for the Pima Indian data set.
+Derive the full conditional distributions. 
+2. Code up the corresponding Gibbs sampler.
+3. Specify hyper-parameters for your model and back up any assumptions that you give.
+4. Provide diagnostic plots for all parameters in your model and provide commentary. (Note: do note use the word convegence in your commentary!)
+5. Based on the number of $S$ iterations of the Gibbs sampler you run, provide
+\begin{enumerate}
+\item A posterior approximation of $E[\theta \mid y]$ and 95 posterior credible intervals.
+\item A posterior approximation of $E[\Sigma \mid y]$ and 95 posterior credible intervals.
+\end{enumerate}
 
+Pima data set
+===
 We first talk about hyper-parameter selection and then implement the Gibbs sampler. 
 
-Recall the full model is 
+The full model can be written as the following:
 
 $$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$ 
 $$ \btheta_i \sim MVN(\bm{\mu_0}, \Lambda_0)$$
@@ -240,7 +253,7 @@ Hyper-parameter selection
 The prior mean of $\bm{\mu_0} = 
 (120,64,26,26)^T$ is taken from national averages. 
 
-The corresponding prior variances  are based primarily on keeping most of the prior mass on values that are above zero.
+The corresponding prior variances are based primarily on keeping most of the prior mass on values that are above zero.
 
 These prior distributions are likely much more diffuse than more informed prior distributions that could be provided by an expert in this field of study. 
 
@@ -369,11 +382,6 @@ plotci.sA(REG)
 95 percent posterior confidence intervals for correlations (left) and regression coefficients derived from the correlation matrix (right). The bottom row of plots, for example, shows that while there is strong evidence that the correlations between bmi and each of the other variables are all positive, the plots on the right-hand side suggest that bmi is nearly conditionally independent of glu and bp given skin.
 
 
-
-Homework
-===
-You will complete a homework assignment based upon the 
-Pima Indian example for homework. 
 
 
 
