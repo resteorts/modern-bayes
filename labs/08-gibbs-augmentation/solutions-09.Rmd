@@ -1,6 +1,6 @@
 
 ---
-title: "Lab 8, STA 360/602"
+title: "Lab 8 Solutions, STA 360/602"
 author: "Rebecca C. Steorts"
 output: 
      pdf_document:
@@ -8,32 +8,6 @@ output:
           in_header: custom2.tex
 font-size: 8px
 ---
-
-The model is now
-\begin{align*}
-Y_i \mid Z_i, \mu_1, \mu_2, \mu_3, \epsilon^2 &\sim N(\mu_{Z_i}, \epsilon^2) \\
-\mu_j \mid \mu_0, \sigma_0^2 &\sim N(\mu_0, \sigma_0^2) \\
-\mu_0 &\sim N(0,3) \\
-\sigma_0^2 &\sim IG(2,2) \\
-(w_1,w_2,w_3) &\sim Dirichlet(3,\boldsymbol{1}) \\
-\epsilon^2 &\sim IG(2,2) \\
-Z_i \mid w_1,w_2,w_3 &\sim Cat(3, \boldsymbol{w}).
-\end{align*}
-The full conditionals were given in the lab solutions, and are reproduced below for reference:
-\begin{align*}
-p(\mu_0 \mid \hdots) &= N\left(\frac{\sigma_0^2\sum_{i=1}^3 \mu_i}{1/3 + 3\sigma_0^{-2}}, (1/3+3\sigma_0^{-2})^{-1}\right), \\
-p(\sigma_0^2 \mid \hdots) &= IG\left(2 + 3/2, 2 + (1/2)\sum_{i=1}^3(\mu_i - \mu_0)^2\right), \\
-p(\epsilon^2 \mid \hdots) &= IG\left( 2 + n/2, 2 + (1/2)\sum_{i=1}^n (Y_i - \mu_{Z_i})^2\right), \\
-p(\boldsymbol{w} \mid \hdots) &= Dir(3,(1+N_1, 1+N_2,1+N_3)), \\
-p(\mu_j \mid \hdots) &= N\left(\left(\mu_0\sigma_0^{-2} + \epsilon^{-2}\sum_{i:Z_i = j}y_i\right)(\sigma_0^{-2} + N_j\epsilon^{-2})^{-1}, \left(\sigma_0^{-2} + N_j\epsilon^{-2}\right)^{-1}\right), \\
-P(Z_i = j) &= \frac{wjN(y_i \mid \mu_j, \epsilon^2)}{\sum_{k=1}^3 w_k N(y_i \mid \mu_k, \epsilon^2)}.
-\end{align*}
-
-The code for part of Gibbs' sampler is given below. (You will need to finish the code for your homework this week). 
-
-One thing to note about the sampler is that we do \emph{not} save the sampled values for $Z_i$.  One reason is that these variables were added to the model for convenience, so they are not necessarily of interest.  In addition, the distribution of these variables is sufficiently summarized by $\boldsymbol{w}$, which we will have a distribution for.  There is also a practical reason to discard these samples.  We must sampler 500 values at each iteration.  If we run only 1000 iterations (and we may reasonably desire to run 10 times this many iterations), we must store 500,000 values.  This is a large amount of memory and could drastically affect the speed of the sampler.
-
-
 
 ```{r}
 library(xtable)
@@ -155,7 +129,7 @@ augSampler <- function(ys, zs, mus, m0, s0, w, epsilon, n.iter,
 
 ```{r}
 # read in data and set parameters
-y.data <- read.csv("Lab8Mixture.csv", header = FALSE)$V1
+y.data <- read.csv("Lab6Mixture.csv", header = FALSE)$V1
 mus <- rnorm(3)
 m0 <- 1
 s0 <- 1
@@ -213,4 +187,8 @@ xtable(sum.data, sanitize.colnames.function = identity)
 
 
   
+
+
+
+
 
