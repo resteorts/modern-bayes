@@ -12,32 +12,11 @@ font-size: 8px
 
 Agenda
 ===
-- What is linear regression
-- Motivating Example
-- Application from Hoff
-
-Regression models
-===
- How does an outcome $Y$ vary as a function of the covariates $\bm{x} = (x_1, \ldots, x_p)$?
-
-- Which $x_j$'s have an effect?
-- What are the effect sizes?
-- Can we predict $Y$ as a function of $\bm{x}$?
-
-Such question can be assessed via a regression model $p(y \mid \bm{x}).$
-
-
-Setup
-===
-- $X_{n\times p}$: regression features or covariates (design matrix)
-- $x_{p \times 1}$: $i$th row vector of the regression covariates
-- $y_{n\times 1}$: response variable (vector)
-- $\beta_{p \times 1}$: vector of regression coefficients 
-
-Goal: Estimation of $p(y \mid x).$
-
-Dimensions: $y_i - \beta^T x_i = (1\times 1) - (1\times p)(p \times 1) = (1\times 1).$
-
+- Oxygen uptake example
+- Linear regression
+- Multiple Linear Regression
+- Ordinary Least Squares
+- Back to oxygen uptake example\footnote{Much of this lecture comes from the Hoff book.}
 
 Oxygen uptake experiment
 ===
@@ -66,7 +45,7 @@ y<-c(-0.87,-10.74,-3.27,-1.97,7.50,
      -7.25,17.05,4.96,10.40,11.05,0.26,2.51)
 ```
 
-Plot
+Exploratory Data Analysis
 ===
 ```{r, echo=FALSE}
 par(mfrow=c(1,1))
@@ -78,15 +57,13 @@ legend(27,0,legend=c("aerobic","running"),pch=c(16,16),col=c("green","red"))
 Data analysis
 ===
 
-$y$ = change in oxygen uptake
+$\by$ = change in oxygen uptake
 
 $x_1$ = exercise indicator (0 for aerobic, 1 for running)
 
 $x_2$ = age
 
-How can we estimate $p(y \mid x_1, x_2)?$
-
-Linear regression 
+How can we estimate $p(\by \mid x_1, x_2)?$
 
 Linear regression
 ===
@@ -94,24 +71,45 @@ Assume that smoothness is a function of age.
 
 For each group,
 
-$$y = \beta_o + \beta_1 x_2 + \epsilon$$
+$$\by = \beta_o + \beta_1 x_2 + \bm{\epsilon}$$
 
-This is called a linear regression model. 
-
-Linearity means linear in the parameters. 
+Linearity means linear in the parameters ($\beta$'s). 
 
 We could also try the model
 
-$$y = \beta_o + \beta_1 x_2 +  \beta_2 x_2^2 + \beta_3 x_2^3 + \epsilon$$
+$$\by = \beta_o + \beta_1 x_2 +  \beta_2 x_2^2 + \beta_3 x_2^3 + \bm{\epsilon}$$
 
 which is also a linear regression model. 
+
+Notation 
+===
+- $X_{n\times p}$: regression features or covariates (design matrix)
+- $\bx_{p \times 1}$: $i$th row vector of the regression covariates
+- $\by_{n\times 1}$: response variable (vector)
+- $\bbeta_{p \times 1}$: vector of regression coefficients 
+
+Goal: Estimation of $p(\by \mid X).$
+
+Dimensions: $\by_i - \bbeta^T x_i = (1\times 1) - (1\times p)(p \times 1) = (1\times 1).$
+
+
+Regression models
+===
+How does an outcome $\bY$ vary as a function of the covariates which we represent as $X_{n\times p}$ matrix?
+
+
+- Can we predict $\bY$ as a function of each row in the matrix $X_{n\times p}$ denoted by $\bx_j.$
+- Which $\bx_j$'s have an effect?
+
+Such question can be assessed via a linear regression model $p(\by \mid X).$
+
 
 Multiple linear regression
 ===
 We can estimate for both groups simulatenously. 
 
-$$Y_i = \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + 
-\beta_4 x_{i4} + \epsilon_i$$
+$$\bY_i = \beta_1 \bx_{i1} + \beta_2 \bx_{i2} + \beta_3 \bx_{i3} + 
+\beta_4 \bx_{i4} + \bm{\epsilon}_i$$
 
 where
 \begin{align}
@@ -122,8 +120,8 @@ x_{i4} &= x_{i2} \times x_{i3}
 \end{align}
 
 Under this model,
-$$E[Y \mid \bm{x}] = (\beta_1 + \beta_3) \times age \; \text{if} \; x_2=0$$
-$$E[Y \mid \bm{x}] = (\beta_1 + \beta_2) + (\beta_3 + \beta_4)\times age \; \text{if} \; x_2=1 $$
+$$E[\bY \mid \bm{x}] = (\beta_1 + \beta_3) \times age \; \text{if} \; x_2=0$$
+$$E[\bY \mid \bm{x}] = (\beta_1 + \beta_2) + (\beta_3 + \beta_4)\times age \; \text{if} \; x_2=1 $$
 
 Least squares regression lines 
 ===
@@ -153,6 +151,28 @@ abline(lm(y[x1==0]~x2[x1==0]),col="red")
 abline(lm(y[x1==1]~x2[x1==1]),col="green")
 ```
 
+Multivariate Setup 
+===
+Let's assume that we have data points $(\bx_i,\by_i)$ available for all  $i=1,\ldots,n.$
+
+- $y$ is the response variable
+\[  \by= \left( \begin{array}{c}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{array} \right)_{n \times 1} \]
+
+- $\bx_{i}$ is the $i$th row of the design matrix $X_{n \times p}.$
+
+Consider the regression coefficients
+
+\[  \bbeta = \left( \begin{array}{c}
+\beta_{1}\\
+\beta_{2}\\
+\vdots\\
+\beta_{p}
+\end{array} \right)_{p \times 1} \]
 
 Normal Regression Model
 ===
@@ -162,75 +182,41 @@ The Normal regression model specifies that
 - the sampling variability around the mean is independent and identically (iid) from a normal distribution
 
 \begin{align}
-Y_i &= \beta^T x_i + e_i
+Y_i &= \beta^T x_i + \bm{\epsilon}_i\\
+\epsilon_1,\ldots,\epsilon_n &\stackrel{iid}{\sim} Normal(0,\sigma^2)
 \end{align}
-$$e_1,\ldots,e_n \stackrel{iid}{\sim} Normal(0,\sigma^2)$$
+ 
+We can specify a simple Bayesian model as the following: 
+
+$$\by \mid X,\bbeta, \sigma^2 \sim MVN( X\bbeta, \sigma^2 I)$$
+$$\bbeta \sim MVN(0, \tau^2 I) $$
 
 Normal Regression Model (continued)
 ===
-This full specifies the density of the data: 
+This specifies the density of the data: 
 \begin{align}
-&p(y_1,\ldots,y_n \mid x_1,\ldots x_n, \beta, \sigma^2) \\
-&= \prod_{i=1}^n p(y_i \mid x_i, \beta, \sigma^2) \\
+&p(y_1,\ldots,y_n \mid x_1,\ldots x_n, \bbeta, \sigma^2) \\
+&= \prod_{i=1}^n p(\by_i \mid \bx_i, \bbeta, \sigma^2) \\
 &(2\pi \sigma^2 )^{-n/2} \exp\{
-\frac{-1}{2\sigma^2} \sum_{i=1}^n (y_i - \beta^T x_i)^2
-\}
+\frac{-1}{2\sigma^2} \sum_{i=1}^n (\by_i - \bbeta^T \bx_i)^2
+\}\\
+&= (2\pi \sigma^2 )^{-n/2} \exp\{ (\by - X\bbeta)^T(\by - X\bbeta)\}
 \end{align}
 
-
-Multivariate Setup 
-===
-Let's assume that we have data points $(x_i,y_i)$ available for all  $i=1,\ldots,n.$
-
-- $y$ is the response variable
-\[  y= \left( \begin{array}{c}
-y_1\\
-y_2\\
-\vdots\\
-y_n
-\end{array} \right)_{n \times 1} \]
-
-- $x_{i}$ is the $i$th row of the design matrix $X_{n \times p}.$
-
-Consider the regression coefficients
-
-\[  \beta = \left( \begin{array}{c}
-\beta_{1}\\
-\beta_{2}\\
-\vdots\\
-\beta_{p}
-\end{array} \right)_{p \times 1} \]
-
-Multivariate Setup 
-===
-$$y \mid X,\beta, \sigma^2 \sim MVN( X\beta, \sigma^2 I)$$
-$$\beta \sim MVN(0, \tau^2 I) $$
-
-The likelihood in the multivariate setting simpifies to  
-
-\begin{align}
-&p(y_1,\ldots,y_n \mid x_1,\ldots x_n, \textcolor{red}{\beta}, \sigma^2) \\
-&(2\pi \sigma^2 )^{-n/2} \exp\{
-\frac{-1}{2\sigma^2} \sum_{i=1}^n (y_i - \beta^T x_i)^2
-\} \\
-&(2\pi \sigma^2 )^{-n/2} \exp\{\frac{-1}{2\sigma^2} 
-(y- X\beta)^T (y- X\beta)
-\}
-\end{align}
 
 Ordinary Least Squares
 ===
 We estimate the coefficients $\hbeta \in \R^p$ by least squares:
-$$\hbeta = \argmin_{\beta \in \R^p} \|y-X\hbeta\|_2^2$$
+$$\hbeta = \argmin_{\bbeta \in \R^p} \|\by-X\hbeta\|_2^2$$
 This gives
-$$\hbeta = (X^T X)^{-1} X^T y$$
+$$\hbeta = (X^T X)^{-1} X^T \by$$
 (Check: does this match the expressions for univariate regression,
 without and with an intercept?)
 
 \bigskip
 The fitted values are
-$$\hy = X\hbeta = X(X^T X)^{-1} X^T y$$
-This is a linear function of $y$, $\hy = Hy$, where
+$$\hy = X\hbeta = X(X^T X)^{-1} X^T \by$$
+This is a linear function of $\by$, $\hy = H\by$, where
 $H=X(X^T X)^{-1} X^T$ is sometimes called the hat matrix
 
 Ordinary Least squares estimation
@@ -241,11 +227,11 @@ Then
 \begin{align}
  \frac{\partial SSR(\hbeta)}{\partial d\hbeta} &= 
 \frac{\partial (y-X\hbeta)^T(y-X\hbeta)}{\partial d\hbeta} \\
-&= \frac{\partial \bY^T\bY - 2\hbeta^T\bX^T\bY + \hbeta^T\bX^T\bX\hbeta}{\partial d\hbeta}\\
-& = -  2\bX^T\bY + 2\bX^T\bX\hbeta
+&= \frac{\partial \bY^T\bY - 2\hbeta^TX^T\bY + \hbeta^T(X^TX)\hbeta}{\partial d\hbeta}\\
+& = -  2X^T\bY + 2X^T\bX\hbeta
 \end{align}
 
-This implies $-\bX^T\bY + \bX^T\bX\hbeta= 0 \implies \hbeta  = (\bX^T\bX)^{-1}\bX^T\bY.$
+This implies $-X^T\bY + X^TX\hbeta= 0 \implies \hbeta  = (X^TX)^{-1}X^T\bY.$
 \vskip 1em
 Called the ordinary least squares estimator. When is it unique?
 
@@ -269,6 +255,7 @@ X <- cbind(x1,x2,x3,x4)
 
 OLS estimation in R
 ===
+\footnotesize
 ```{r}
 ## using the lm function
 fit.ols<-lm(y~ X[,2] + X[,3] +X[,4])
@@ -278,18 +265,21 @@ summary(fit.ols)$coef
 
 Ordinary Least squares estimation
 ===
-$$\hbeta  = (\bX^T\bX)^{-1}\bX^T\bY. $$
+$$\hbeta  = (X^TX)^{-1}X^T\bY. $$
 \vskip 1em
-$$E(\hbeta ) = \bbeta.$$
+$$E(\hbeta ) = E[(X^TX)^{-1}X^T\bY]= 
+(X^TX)^{-1}X^T E[\bY] = (X^TX)^{-1}X^TX
+\bbeta.$$
+
 \vskip 1em
 \begin{align}
-\Var(\hbeta) &= \Var\{ (\bX^T\bX)^{-1}\bX^T\bY\}\\
+\Var(\hbeta) &= \Var\{ (X^TX)^{-1}X^T\bY\}\\
  &=
-(\bX^T\bX)^{-1}\bX^T \sigma^2 I_n \bX (\bX^T\bX)^{-1}\\
-& = \sigma^2  (\bX^T\bX)^{-1}
+(X^TX)^{-1}X^T \sigma^2 I_n X (X^TX)^{-1}\\
+& = \sigma^2  (X^TX)^{-1}
 \end{align}
 
-$$\hbeta \sim MVN(\bbeta, \sigma^2  (\bX^T\bX)^{-1}).$$
+$$\hbeta \sim MVN(\bbeta, \sigma^2  (X^TX)^{-1}).$$
 
 
 Posterior computation
@@ -303,55 +293,55 @@ p(\beta \mid y, X) &\propto p(y\mid X, \beta) p(\beta) \\
 
 Just like in the Multivariate modules, we just simplify. (Check these details on your own). 
 
-$$p(\beta \mid y, X) \propto MVN(\beta \mid y, X, \Lambda^{-1})
+$$p(\bbeta \mid \by, X) \propto MVN(\bbeta \mid \by, X, \Lambda^{-1})
 $$
 where
 $\Lambda = a X^TX +bI$
-and $\mu = a \Lambda^{-1} X^T y.$
+and $\mu = a \Lambda^{-1} X^T \by.$
 
 Posterior computation (details)
 ===
 \begin{align}
-& p(\beta \mid y, X) \\
-& \propto \exp\{ -\frac{a}{2} (y-X\beta)^T (y-X\beta)\}
-\times \exp\{ -\frac{b}{2}\beta^T \beta)\}\\
-&\propto \exp\{ -\frac{a}{2}[\textcolor{red}{y^Ty} -2\beta^TX^Ty + \beta^TX^TX\beta] -\frac{b}{2}\beta^T \beta
+& p(\bbeta \mid \by, X) \\
+& \propto \exp\{ -\frac{a}{2} (\by-X\bbeta)^T (\by-X\bbeta)\}
+\times \exp\{ -\frac{b}{2}\bbeta^T \bbeta)\}\\
+&\propto \exp\{ -\frac{a}{2}[\textcolor{red}{\by^T\by} -2\bbeta^TX^T\by + \bbeta^TX^TX\bbeta] -\frac{b}{2}\bbeta^T \bbeta
 \}\\
-&\propto \exp\{ a\beta^TX^Ty  -\frac{a}{2}\beta^TX^TX\beta -b/2\beta^T \beta
+&\propto \exp\{ a\bbeta^TX^T\by  -\frac{a}{2}\bbeta^TX^TX\bbeta -b/2\bbeta^T \bbeta
 \}\\
-&\propto \exp\{ a\beta^T[X^Ty] -1/2\beta^T(aX^TX + bI)\beta
+&\propto \exp\{ a\bbeta^T[X^T\by] -1/2\bbeta^T(aX^TX + bI)\bbeta
 \}
 \end{align}
 
 Then 
 $\Lambda = a X^TX +bI$
-and $\mu = a \Lambda^{-1} X^T y.$
+and $\mu = a \Lambda^{-1} X^T \by.$
 
 Multivariate inference for regression models
 ===
 \begin{align}
-\bm{y} &\mid \bbeta \sim MVN(\bX \bbeta, \sigma^2 \bm{I})\\
+\bm{y} &\mid \bbeta \sim MVN(X \bbeta, \sigma^2 I)\\
 \bbeta &\sim MVN(\bbeta_0, \Sigma_0)
 \end{align}
 The posterior can be shown to be 
-$$\bbeta \mid \bm{y}, \bX \sim MVN(\bbeta_n, \Sigma_n)$$
+$$\bbeta \mid \bm{y}, X \sim MVN(\bbeta_n, \Sigma_n)$$
 
 where
 
 $$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}
 (\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2)$$
 
-$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
+$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
 
 Multivariate inference for regression models
 ===
 The posterior can be shown to be 
-$$\bbeta \mid \bm{y}, \bX \sim MVN(\bbeta_n, \Sigma_n)$$
+$$\bbeta \mid \bm{y}, X \sim MVN(\bbeta_n, \Sigma_n)$$
 
 where
 
 $$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}
-(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2)$$
+(\Sigma_o^{-1}\bbeta_0 + X^T\bm{y}/\sigma^2)$$
 
 $$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
 
