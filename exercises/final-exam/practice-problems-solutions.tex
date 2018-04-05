@@ -1,0 +1,352 @@
+\documentclass[11pt]{article}
+\usepackage{amsthm}
+\usepackage{comment}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{fancyhdr}
+\usepackage[hang,sc]{caption}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topmargin}{-0.5in}
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6in}
+
+\newcommand{\class}[1]{\mathscr{#1}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\tht}{\theta}
+\newcommand{\tho}{\theta_0}
+\newcommand{\thn}{\hat{\theta}_n}
+\newcommand{\ps}{\mathbb{P}}
+
+\begin{document}
+
+\title{Practice Problems Solutions}
+\author{Rebecca C. Steorts}
+\maketitle
+\setlength{\parindent}{0cm}
+\thispagestyle{empty}
+\begin{enumerate}
+
+
+%Question 2
+\item Let $X_1, \ldots, X_n$ be iid Poisson$(\theta)$ variables, where $\theta \in (0,\infty).$ Let 
+$L(\theta,\delta) = (\theta - \delta)^2/\theta.$ Assuming the prior,
+$$g(\theta) = \frac{\exp\{-
+\theta\alpha
+\}
+\alpha^{\beta}\theta^{\beta-1}
+}
+{
+\Gamma(\beta)
+}I_{[\theta > 0]},
+$$
+where $\alpha>0$ and $\beta>0$ are given. Show that the Bayes estimator of $\theta$ is given by 
+
+$$h(\bm{X}) =
+\begin{cases}  \dfrac{\sum_iX_i + \beta - 1}{n + \alpha} &\mbox{if }\sum_iX_i + \beta - 1 > 0 \\
+0 & \mbox{if } otherwise. \end{cases} 
+$$
+
+\emph{Solution}: Observe that $X|\theta \sim$ Poisson($\theta$) and $\theta \sim$ Gamma($\beta,\alpha$). By conjugacy, $\theta|X=x \sim$ Gamma($\beta+n\bar{x},\alpha+n$). The posterior risk for decision $a$ is:
+
+\begin{align*}
+	\int_{\Theta}{\frac{(\theta-a)^{2}}{\theta} f(\theta|x) d\theta}	&\propto \int_{\Theta}{\frac{(\theta-\delta)^{2}}{\theta} \theta^{\beta+n\bar{x}-1}e^{-\theta(\alpha+n)} d\theta} = \\
+																																		&= \int_{\Theta}{(\theta-\delta)^{2} \theta^{\beta+n\bar{x}-2}e^{-\theta(\alpha+n)} d\theta}
+\end{align*}
+
+If $\beta+n\bar{x}-1 > 0$, $\theta^{\beta+n\bar{x}-2}e^{-\theta(\alpha+n)}$ is proportional to the pdf of a Gamma($\beta+n\bar{x}-1,\alpha+n$). Hence, last expression is proportional to $E[(\theta-\delta)^{2}|X]$ when $\theta|X \sim$ Gamma($\beta+n\bar{x}-1,\alpha+n$). We know this expression is minimized with $\hat{\delta} = E[\theta|X]$. That is, the Bayes Estimator is $\hat{\delta} = \frac{n\bar{x}+\beta-1}{n+\alpha}$.
+
+If $\beta+n\bar{x}-1 \leq 0$, then for every $\delta \neq 0$, $\int_{\Theta}{(\theta-\delta)^{2} \theta^{\beta+n\bar{x}-2}e^{-\theta(\alpha+n)} d\theta} = \infty$. Similarly, if $\delta=0$, the posterior risk is proportional to
+
+\begin{align*}
+	\int_{\Theta}{\theta^{2} \theta^{\beta+n\bar{x}-2}e^{-\theta(\alpha+n)} d\theta}	&= \int_{\Theta}{\theta^{\beta+n\bar{x}+1-1}e^{-\theta(\alpha+n)} d\theta} \propto \\
+																																										&\propto \frac{\beta+n\bar{x}+1}{\alpha+n} < \infty
+\end{align*}
+
+Hence, in this case, the Bayes Estimator is $\hat{\delta} = 0$.
+
+%%TPE 4.2.1 (have solution written up)
+\item Suppose $X\mid p \sim \text{Bin}(n,p)$ and that $p \sim \text{Beta}(a,b).$
+\begin{enumerate}
+\item Show that the marginal distribution of $X$ is the beta-binomial distribution with mass function 
+$$m(x) = {n \choose x} \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}
+\dfrac{\Gamma(x+a)\Gamma(n+b-x)}{\Gamma(n+a+b)}.
+$$
+\item Show that the mean and variance of the beta-binomial is given by
+$EX = \dfrac{na}{a+b}$ and $\text{V}X = n \left(\dfrac{a}{a+b}\right)\left(\dfrac{b}{a+b}\right)\left(\dfrac{a+b+n}{a+b+1}\right).$\\
+Hint: For part(b): Use the formulas for iterated expectation and iterated variance. 
+\end{enumerate}
+
+\emph{Solution}:
+
+\begin{enumerate}
+
+\item Using the definition of $m(x)$,
+
+\begin{align*}
+m(x)	&= \int_{\Theta}{f(x|\theta)\pi(\theta)d\theta} \\
+			&= \int_{\Theta}{{n \choose x}\theta^{x}(1-\theta)^{n-x} \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\theta^{a-1}\theta^{b-1}d\theta} = \\
+			&= {n \choose x}\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \int_{\Theta}{\theta^{a+x-1}(1-\theta)^{b+n-x-1}d\theta} = \\
+			&= {n \choose x}\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \frac{\Gamma(a+x)\Gamma(b+n-x)}{\Gamma(a+b+n)}
+\end{align*}
+
+\item By the Law of Iterated Expectation
+
+\begin{align*}
+E[X] = E[E[X|\theta]] = E[n\theta] = \frac{na}{a+b}
+\end{align*}
+
+By the Law of Iterated Variance
+
+\begin{align*}
+Var[X]	&= Var[E[X|\theta]] + E[Var[X|\theta]] = \\
+				&= Var[n\theta] + E[n\theta(1-\theta)] = \\
+				&= n^{2}Var[\theta] + nE[\theta] - nE[\theta^{2}] = \\
+				&= \frac{n^{2}ab}{(a+b)^{2}(a+b+1)} + \frac{ma}{a+b} - \frac{n(a+1)}{a+b+1} = \\
+				&= \frac{n^{2}ab +na(a+b)(a+b+1) - n(a+1)(a+b)^{2}}{(a+b)^{2}(a+b+1)} = \\
+				&= n\frac{nab +(a+b)(a(a+b+1)-(a+1)(a+b))}{(a+b)^{2}(a+b+1)} = \\
+				&= n\frac{nab + ab(a+b)}{(a+b)^{2}(a+b+1)} = n\frac{a}{a+b}\frac{b}{a+b}\frac{a+b+n}{a+b+1}
+\end{align*}
+
+\end{enumerate}
+
+%%TPE 4.2.5
+\item DasGupta (1994) presents an identity relating the Bayes risk to bias, which illustrates that a small bias can help achieve a small Bayes risk. Let $X \sim f(x|\theta)$ and $\theta \sim \pi(\theta).$ The Bayes estimator under squared error loss is 
+$\hat{\delta} = E(\theta|X).$ Show that the Bayes risk of $\hat{\delta}$ can be written 
+$$r(\pi,\hat{\delta} ) 
+= \int_{\Theta} \int_{\mathcal{X}} 
+[\theta - \hat{\delta}(X)]^2 f(x|\theta) \pi(\theta) dx \; d\theta =
+- \int_{\Theta} \theta\; b(\theta) \pi(\theta)\; d\theta$$
+where $b(\theta) = E[\hat{\delta} | \theta] - \theta$ is the bias of $\hat{\delta} .$
+
+\emph{Solution}: First, observe that
+
+\begin{align}
+	\label{eqn4.1}
+	E[\theta E[\theta|X]] = E[E[(\theta E[\theta|X])|X]] = E[E[\theta|X]^{2}]
+\end{align}
+
+Now recall that
+
+\begin{align*}
+	r(\pi,E[\theta|X])	&= E[(\theta-E[\theta|X])^{2}] = E[\theta^{2}] -2E[\theta E[\theta|X]] + E[E[\theta|X]^{2}] =^{(*)} \\
+											&= E[\theta^{2}] - E[\theta E[\theta|X]] = E[\theta^{2}-\theta E[\theta|X]] = \\
+											&= E[E[(\theta^{2} - \theta E[\theta|X])|\theta]] = -E[\theta E[(E[\theta|X]-\theta)|\theta]] = \\
+											&= -E[\theta b(\theta)]
+\end{align*}
+
+The (*) equality follows from Equation \ref{eqn4.1}.
+
+%%TPE Ch 4. 
+\item Suppose that 
+\begin{align*}
+X|\theta &\sim f(x|\theta) \\
+\theta|\lambda &\sim \pi(\theta|\lambda) \\
+\lambda &\sim \pi(\lambda).
+\end{align*}
+Using the HB model above, 
+\begin{enumerate}
+\item prove that $E[\theta|x] = E[\;E[\theta|x,\lambda]\;] .$
+\item prove that $V[\theta|x] = E[\;V[\theta|x,\lambda]\;]  + V[\;E[\theta|x,\lambda]\;] .$\\
+
+Remark: when proving (a) and (b) above, you may show this two ways, either by integrals in which say what you are integrating over or you may simply just use expectations (and in this case specifying what you are taking an expectation over). 
+\end{enumerate}
+
+
+
+\begin{enumerate}
+	\item Let $f(x,\theta,\lambda)$ be the joint density function of the random variables,
+
+	\begin{align*}	
+		E[E[\theta^{k}|x,\lambda]|x]	&= \int{\int{\theta^{k} f(\theta|\lambda,x) d\theta}f(\lambda|x)d\lambda} = \\
+															&= \int{\int{\theta^{k} f(\theta|\lambda,x) f(\lambda|x) d\theta}d\lambda} = \\
+															&= \int{\int{\theta^{k} f(\theta,\lambda|x) d\theta}d\lambda} = \\
+															&= \int{\int{\theta^{k} f(\theta,\lambda|x) d\lambda}d\theta} = \\
+															&= \int{\theta^{k} f(\theta|x) d\theta} = E[\theta^{k}|x]
+	\end{align*}
+	
+	Taking $k=1$, the proof is complete.
+
+	\item 
+	
+	\begin{align*}
+		& E[V[\theta|x,\lambda]|x] + V[E[\theta|x,\lambda]|x] = \\
+		& = E[E[\theta^{2}|x,\lambda]|x] - E[E[\theta|x,\lambda]^{2}|x] + E[E[\theta|x,\lambda]^{2}|x] - (E[E[\theta|x,\lambda]|x])^{2} =^{(*)} \\
+		& = E[\theta^{2}|x] - E[\theta|x]^{2} = V(\theta|x)
+	\end{align*}
+	
+	The (*) equality follows from part (a) for $k=2$ and $k=1$. 
+	
+\end{enumerate}
+
+
+%%assign 5.3 from TPE
+\item Albert and Gupta (1985) investigate theory and application of the hierarchical model 
+\begin{align*}
+X_i| \theta_i &\stackrel{ind}{\sim} \text{Bin}(n, \theta_i),\; i=1,\ldots,p\\
+\theta_i|\eta &\sim \text{Beta}(k\eta,k(1-\eta)),\;k \text{ known}\\
+\eta &\sim \text{Uniform}(0,1).\\
+\end{align*}
+
+\begin{enumerate}
+\item Show that 
+$$E(\theta_i|x) = \dfrac{n}{n +k}\dfrac{x_i}{n} + \dfrac{k}{n +k}E(\eta|x)$$ and 
+$$V(\theta_i|x) = \frac{x_i(n+k - x_i) + E(\eta|x)k(n+k - 2 x_i) - k^2E(\eta^2|x)}{(n+k)^2(n+k+1)}
++ \frac{k^2V(\eta|x)}{(n+k)^2}.
+$$
+
+Note that $E(\eta|x)$ and $V(\eta|x)$ are not expressible in a simple form. 
+\item Unconditionally on $\eta,$ the $\theta_i$'s have conditional covariance 
+$$\text{Cov}(\theta_i,\theta_j|x) = \left(\frac{k}{n+k}\right)^2V(\eta|x)\; \;\text{for} \; i\neq j.$$
+Show this. 
+\item Ignoring the prior on $\eta,$ show how to construct an EB estimator of $\theta_i.$ Again, this is not expressible in a simple form. That is, simply derive the marginal distribution and then explain using software how you would find an estimator for $\eta.$ Then give a \emph{simple} construction for the EB estimator. 
+\end{enumerate}
+
+\emph{Solution}: Let $E_{m}[N]$ denote $E[N|M=m]$, $V_{m}(N) = V(N|M=m)$ and $\text{Cov}_{m}[N,O] = \text{Cov}[N,O|M=m]$.
+
+\begin{enumerate}
+	\item Using the model conditional independencies, observe that, for every $i \neq j$, $\theta_{i}$ is conditionally independent of $X_{j}$ given $\eta$. Hence, $\theta_{i}|\eta,x$ is identically distributed as $\theta_{i}|\eta,x_{i}$. Using conjugacy, observe that $\theta_{i}|\eta,x \sim \text{Beta}(k\eta+x_{i},k(1-\eta)+n-x_{i})$. Hence, $E_{x}[\theta_{i}|\eta] = \frac{k\eta + x_{i}}{n+k}$. By the Law of Total Expectation, $E_{x}[\theta_{i}] = E_{x}[E_{x}[\theta_{i}|\eta]]$, 
+
+	\begin{align*}	
+		E_{x}[\theta_{i}] = E_{x}\left[\frac{k\eta + x_{i}}{n+k}\right] = \frac{x_{i}}{n+k} + \frac{k E_{x}[\eta]}{n+k} = \frac{n}{n+k}\frac{x_{i}}{n} + \frac{k}{n+k}E[\eta|x]  
+	\end{align*}
+
+	Also, since $\theta_{i}|\eta,x \sim \text{Beta}(k\eta+x_{i},k(1-\eta)+n-x_{i})$, $V_{x}[\theta_{i}|\eta] = \frac{(k\eta+x_{i})(k(1-\eta)+n-x_{i})}{(n+k+1)(n+k)^2}$. By the Law of Total Variance, $V_{x}[\theta_{i}] = E_{x}[V_{x}[\theta_{i}|\eta]] + V_{x}[E_{x}[\theta_{i}|\eta]]$ and
+
+	\begin{align*}
+		V_{x}[\theta_{i}] &= E_{x}\left[\frac{(k\eta+x_{i})(k(1-\eta)+n-x_{i})}{(n+k+1)(n+k)^2}\right] + V_{x}\left[\frac{k\eta + x_{i}}{n+k}\right] \\
+											&= E_{x}\left[\frac{x_{i}(n+k-x_{i}) + \eta k (n+k-2x_{i}) - \eta^{2}k^{2}}{(n+k+1)(n+k)^2}\right] + \frac{k^{2}}{(n+k)^{2}} V_{x}[\eta] \\
+											&= \frac{x_{i}(n+k-x_{i}) + E[\eta|x]k (n+k-2x_{i}) - E[\eta^{2}|x]k^{2}}{(n+k+1)(n+k)^2} + \frac{k^{2}}{(n+k)^{2}} V[\eta|x]
+	\end{align*}
+	
+	\item	By the model conditional independencies, $(X_{i},\theta_{i})$ is conditionally independent of $(X_{j},\theta_{j})_{j \neq i}$ given $\eta$. Hence, $\text{Cov}_{x}[\theta_{i},\theta_{j}|\eta] = 0$ and $E_{x}[\text{Cov}_{x}[\theta_{i},\theta_{j}|\eta]] = 0$. By the Law of Total Covariance, 
+	
+	\begin{align*}
+		\text{Cov}_{x}[\theta_{i},\theta_{j}] &= E_{x}[\text{Cov}_{x}[\theta_{i},\theta_{j}|\eta]] + \text{Cov}_{x}[E_{x}[\theta_{i}|\eta],E_{x}[\theta_{j}|\eta]] = \\
+																					&= \text{Cov}_{x}[E_{x}[\theta_{i}|\eta],E_{x}[\theta_{j}|\eta]] = \\
+																					&= \text{Cov}_{x}\left[\frac{k\eta + x_{i}}{n+k},\frac{k\eta + x_{j}}{n+k}\right] =\\
+																					&= \text{Cov}_{x}\left[\frac{k\eta}{n+k},\frac{k\eta}{n+k}\right] = \frac{k^{2}V(\eta|x)}{(n+k)^{2}}
+	\end{align*}
+	
+	\item Assume for the moment that we have an estimator for $\eta$. Let the estimator for $\eta$ be $\hat{\eta}$. The EB estimator for $\theta_{i}$ corresponds to $\delta$ which minimizes the expected loss when $\eta$ is known and equal to $\hat{\eta}$, that is minimizes $E[L(\theta_{i},\delta_{i})|x,\eta=\hat{\eta}]$. Consider that $L(\theta,\delta_{i}) = (\theta_{i}-\delta_{i})^{2}$. In this case, we know that the EB estimator is $E[\theta_{i}|x,\eta=\hat{\eta}]$. Using part a, recall that $E[\theta_{i}|x_{i},\eta=\hat{\eta}] = \frac{k\hat{\eta} + x_{i}}{n+k}$.
+	
+	Now we need an estimator for $\hat{\eta}$. Observe that $X_{i}$ are i.d. given $\eta$ and
+	
+	\begin{align*}
+		E[\bar{X}|\eta] = E[X_{1}|\eta] = E[E[X_{1}|\theta_{1},\eta]|\eta] = E[n\theta_{1}|\eta] = n\eta 
+	\end{align*}
+	
+	Hence, the MoM (Method of Moments) estimator for $\eta$ is obtained solving for
+	
+	\begin{align*}
+		\bar{X} = n\hat{\eta} \\
+		\hat{\eta} = \bar{X}/n
+	\end{align*}
+	
+	The EB estimator for $\theta_{i}$ using the MoM estimator for $\eta$ is 
+	
+	\begin{align*}
+		\hat{\theta}_{i} \frac{k\bar{X}/n}{n+k} + \frac{x_{i}}{n+k}
+	\end{align*}
+	
+	Note: Another possible solution is the MLE (Maximum Likelihood Estimator) for $\eta$. That is to choose $\hat{\eta}$ which maximizes $f(x|\eta)$. By conditional independence, observe that
+	
+	\begin{align*}
+		f(x|\eta) = \prod_{i=1}^{p}{f(x_{i}|\eta)} 
+	\end{align*}
+	
+	Also observe from the Lecture Notes that $X_{i}|\eta$ is a Beta-Binomial$(n,k\eta,k(1-\eta))$:
+	
+	\begin{align*}
+		f(x|\eta) \propto \prod_{i=1}^{p}{\frac{\beta(k\eta+x_{i},k(1-\eta)+n-x_{i})}{\beta(k\eta,k(1-\eta))}}
+	\end{align*}
+	
+	The MLE has no analytic solution. Hence, a numerical approximation would be necessary. A standard way to perform the maximization of the likelihood is through Gradient Ascent. In this problem, another alternative is the EM Algorithm (since we have the latent variables $\theta_{i}$. 
+\end{enumerate}
+
+%
+%%\item Albert and Gupta (1985) investigate theory and applications of the hierarchical model 
+%%\begin{align*}
+%%X_i| \theta_i &\stackrel{ind}{\sim} \text{Bin}(n, \theta_i),\; i=1,\ldots,p\\
+%%\theta_i|\eta &\sim \text{Beta}(k\eta,k(1-\eta)),\;k \text{ known}\\
+%%\eta &\sim \text{Uniform}(0,1).\\
+%%\end{align*}
+%
+%
+%
+%%\item Consider 
+%%\begin{align*}
+%%X_i|\theta &\sim \text{Uniform}(0,\theta), i=1,\ldots,n\\
+%%\frac{1}{\theta} &\sim \text{Gamma}(a,b), \; \text{a, b known}
+%%\end{align*}
+%%\begin{itemize}
+%%\item[(a)] Verify that the Bayes estimator will only depend on the data through $Y = \max_i X_i.$
+%%\item[(b)]  Show that $E(\theta | y , a ,b) = \dfrac{1}{n+a-1} \dfrac{P(\chi^2_{n+a-1} < \frac{2}{by})}
+%%{P(\chi^2_{n+a} < \frac{2}{by})}
+%%$ where ($\chi^2_{v} $ is a chi-squared random variable with $v$ degrees of freedom.
+%%\end{itemize}
+%
+%%\item Consider
+%%\begin{align*}
+%%X_i &\stackrel{ind}{\sim} \text{Poisson}(\lambda_i), \; i=1,\ldots, p \\
+%%\lambda_i &\stackrel{ind}{\sim} \text{Gamma}(a,b), \; i=1,\ldots, p.
+%%\end{align*}
+%%Find the Bayes estimator $\pi(\lambda_i|x_i).$
+%
+%\item Consider
+%\begin{align*}
+%X_i &\stackrel{ind}{\sim} \text{Poisson}(\lambda_i), \; i=1,\ldots, p \\
+%\lambda_i &\stackrel{ind}{\sim} \text{Gamma}(a,b), \; i=1,\ldots, p\\
+%\pi(b) &\propto \frac{b^{a-1}}{(b+1)^{a+b}}
+%\end{align*}
+%Find the Bayes estimator $\pi(\lambda_i|x_i).$ First, calculate $\pi(b|x).$ Then find $\pi(\lambda_i|b,x).$
+%
+%%\item Suppose $X_1,\ldots,X_n|\theta \stackrel{iid}{\sim} \text{Exp}(\theta).$ Then $f(x) = \theta e^{-\theta x}, \;x>0,\; \theta>0.$ 
+%%
+%%\begin{enumerate}
+%%\item State the prior distribution on $\theta$ that is conjugate to the exponential likelihood above (give its distribution and parameters). Your prior should be a continuous distribution function and take two parameter values. (Other priors you give will not be accepted for credit.)
+%%
+%%\item Then derive the posterior distribution of $\theta|x_1,\ldots,x_n.$
+%%
+%%\item Also give the posterior mean and variance, $E(\theta|x_1,\ldots,x_n)$ and $V(\theta|x_1,\ldots,x_n).$
+%%
+%%\end{enumerate}
+%
+%
+%%%%for the chapter on credible intervals
+%%%%homework for ghosh - MS class
+%%\item Let $U|\sigma \sim \chi^2_n.$ Also, let $p(\sigma) \propto \sigma^{-1}.$
+%%\begin{enumerate}
+%%\item Show that $p(\sigma^2) \propto \sigma^{-2}.$
+%%\item Show that the $100(1-\alpha)\%$ HPD region for $\sigma^2$ is not the same as the region obtained by squaring a posterior interval for $\sigma.$
+%%\end{enumerate}
+%%
+%%\item Let $X_1,\ldots,X_m$ and $Y_1,\ldots,Y_n$ be independent random samples respectively from $N(\mu_1, \sigma^2)$ and $N(\mu_2, \sigma^2)$ populations, where $\sigma^2 > 0$ is known. Consider the uniform prior $\pi(\mu_1, \mu_2) =1.$ Find a $100(1-\alpha)\%$ HPD credible interval for $\mu_1 - \mu_2.$
+%%
+%%%%for objective bays chapter
+%%\item Let $X_1,\ldots,X_n$ be iid Poisson$(\theta).$ Find Jeffreys' prior for $\theta.$ What do you notice about this prior?
+%%
+%%%%for advanced decision theory chapter
+%%\item Let X be a rv with geometric pf
+%%$P_{\theta}(X=x) = (1-\theta)^{x-1}\theta, x=1,2,\ldots$
+%%Consider the prior under which $P(\theta = 1/4) = 2/3, P(\theta = 1) = 1/3.$
+%%\begin{enumerate}
+%%\item Find the Bayes estimator of $\theta$ under the above prior and squared error loss.
+%%\item Show that the above Bayes estimator is also a minimax estimator of $\theta$ under squared error loss.
+%%\end{enumerate}
+%
+\end{enumerate}
+
+
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

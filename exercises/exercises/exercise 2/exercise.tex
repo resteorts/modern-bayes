@@ -1,0 +1,64 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+
+\title{Exercise 2}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+\subsection*{Exercise}
+Suppose the data is modeled as i.i.d.\ $\Exp(\theta)$, and the prior is
+$$ p(\theta) =\Ga(\theta|a,b)=\frac{b^a}{\Gamma(a)}\theta^{a-1} e^{-b \theta}\I(\theta>0). $$
+We know that the posterior is
+$$p(\theta|x_{1:n}) =\Ga(\theta| \alpha,\beta)$$
+where $\alpha = a + n$ and $\beta = b +\sum_{i = 1}^n x_i$.
+
+What is the posterior predictive density $p(x_{n+1}|x_{1:n})$?
+Give your answer as a closed-form expression (not an integral). Next, find the marginal likelihood $p(x_{1:n}).$
+
+
+\newpage
+\vfill
+\rotatebox{180}{
+\begin{minipage}[t][\textheight][t]{\textwidth}
+\subsection*{Solution}\scriptsize
+Denoting $x'=x_{n+1}$ for short, the posterior predictive is
+\begin{align*}
+p(x'|x_{1:n}) & =\int p(x'|\theta) p(\theta|x_{1:n}) d\theta\\
+& =\int_0^\infty\theta e^{-\theta x'}\frac{\beta^{\alpha}}{\Gamma(\alpha)}\theta^{\alpha-1} e^{-\beta\theta}d\theta\\
+& =\frac{\beta^{\alpha}}{\Gamma(\alpha)}\int_0^\infty\theta^{(\alpha +1)-1} e^{-(\beta + x')\theta} d\theta\\
+& =\frac{\beta^{\alpha}}{\Gamma(\alpha)}\frac{\Gamma(\alpha +1)}{(\beta + x')^{\alpha +1}}\int\Ga(\theta\mid \alpha +1,\,\beta + x')d\theta\\
+& =\frac{\beta^{\alpha}}{\Gamma(\alpha)}\frac{\Gamma(\alpha +1)}{(\beta + x')^{\alpha +1}}.
+\end{align*}
+The marginal likelihood is
+\begin{align*}
+p(x_{1:n}) & =\int p(x_{1:n}|\theta) p(\theta) d\theta\\
+& =\int_0^\infty\theta^n e^{-\theta\sum x_i}\frac{b^a}{\Gamma(a)}\theta^{a - 1} e^{-b\theta} d\theta\\
+& =\frac{b^a}{\Gamma(a)}\int_0^\infty\theta^{a+n-1}\exp\big(-(b +\textstyle\sum x_i)\theta\big) d\theta\\
+& =\frac{b^a}{\Gamma(a)}\frac{\Gamma(a + n)}{(b +\sum x_i)^{a+n}}
+\int \Ga\big(\theta\mid a+n,\,b +\textstyle\sum x_i\big) d\theta\\
+& =\frac{b^a}{\Gamma(a)}\frac{\Gamma(a + n)}{(b +\sum x_i)^{a+n}} 
+= \frac{b^a}{\Gamma(a)}\frac{\Gamma(\alpha)}{\beta^\alpha}.
+\end{align*}
+The marginal likelihood can also be found by using Bayes' theorem: for any $\theta$,
+\begin{align*}
+p(x_{1:n})  = \frac{p(x_{1:n}|\theta)p(\theta)}{p(\theta|x_{1:n})}
+ = \frac{\frac{b^a}{\Gamma(a)}\theta^{\alpha-1}e^{-\beta\theta}}{\Ga(\theta|\alpha,\beta)}
+ = \frac{\frac{b^a}{\Gamma(a)}}{\frac{\beta^\alpha}{\Gamma(\alpha)}}.
+\end{align*}
+\end{minipage}}
+
+\end{document}
+
+
+
+
+
+

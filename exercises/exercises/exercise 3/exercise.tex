@@ -1,0 +1,51 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+
+\title{Exercise 3}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+
+\subsection*{Exercise}
+Suppose $\{p_\alpha(\theta):\alpha\in H\}$ is a conjugate family for some generator family $\{p(x|\theta):\theta\in\Theta\}$.  Let $g(\theta)$ be a nonnegative function, and define
+$$z(\alpha) =\int p_\alpha(\theta) g(\theta) d\theta.$$
+Show that if $0<z(\alpha)<\infty$ for all $\alpha\in H$, then
+$$\big\{p_\alpha(\theta)g(\theta)/z(\alpha) : \alpha\in H\big\}$$
+is also a conjugate family.
+
+
+
+\newpage
+\vfill
+\rotatebox{180}{
+\begin{minipage}[t][\textheight][t]{\textwidth}
+\subsection*{Solution}\scriptsize
+For $\alpha\in H$, define the p.d.f.
+$$\pi_\alpha(\theta) = \frac{p_\alpha(\theta) g(\theta)}{z(\alpha)}. $$
+Consider data $x_1,\dotsc,x_n$. Since $\{p_\alpha:\alpha\in H\}$ is a conjugate prior family, then  for any $\alpha\in H$, there is an $\alpha'\in H$ such that $p(x_{1:n}|\theta) p_\alpha(\theta)\propto p_{\alpha'}(\theta)$.
+Thus, using $\pi_\alpha(\theta)$ as the prior results in the posterior
+\begin{align*}
+p(\theta| x_{1:n}) &\propto p(x_{1:n}|\theta)\pi_\alpha(\theta)\\
+& = p(x_{1:n}|\theta)p_\alpha(\theta) \frac{g(\theta)}{z(\alpha)}\\
+&\propto p_{\alpha'}(\theta) \frac{g(\theta)}{z(\alpha)}\\
+&\propto p_{\alpha'}(\theta) \frac{g(\theta)}{z(\alpha')}\\
+&= \pi_{\alpha'}(\theta).
+\end{align*}
+Therefore, $\{\pi_\alpha:\alpha\in H\}$ is a conjugate prior family.
+\end{minipage}}
+
+\end{document}
+
+
+
+
+
+

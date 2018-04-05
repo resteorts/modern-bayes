@@ -1,0 +1,53 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+
+\title{Practice Exercise 1}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+
+\subsection*{Exercise}
+We write $X\sim\Poisson(\theta)$ if $X$ has the Poisson distribution with rate $\theta>0$, that is, its p.m.f.\ is
+$$ p(x|\theta) = \Poisson(x|\theta)= e^{-\theta} \theta^x / x!$$
+for $x\in\{0,1,2,\dotsc\}$ (and is $0$ otherwise). Suppose $X_1,\dotsc,X_n\iid\Poisson(\theta)$ given $\theta$, and your prior is
+$$ p(\theta) =\Ga(\theta|a,b) =\frac{b^a}{\Gamma(a)} \theta^{a-1} e^{-b\theta}\I(\theta>0) .$$
+What is the posterior distribution on $\theta$?
+
+\newpage
+\vfill
+\rotatebox{180}{
+\begin{minipage}[t][\textheight][t]{\textwidth}
+\subsection*{Solution}
+\scriptsize
+Since the data is independent given $\theta$, the likelihood factors and we get
+\begin{align*}
+p(x_{1:n}|\theta) & = \prod_{i = 1}^n p(x_i|\theta) \\
+& = \prod_{i = 1}^n e^{-\theta} \theta^{x_i} / x_i! \\
+& \underset{\theta}{\propto} e^{-n\theta} \theta^{\sum x_i}.
+\end{align*}
+Thus, using Bayes' theorem,
+\begin{align*}
+p(\theta|x_{1:n}) &\propto p(x_{1:n}|\theta) p(\theta) \\
+& \propto e^{-n\theta} \theta^{\sum x_i} \theta^{a-1} e^{-b\theta}\I(\theta>0) \\
+& \propto e^{-(b+n)\theta} \theta^{a+\sum x_i-1}\I(\theta>0) \\
+& \propto \Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).
+\end{align*}
+Therefore, since the posterior density must integrate to $1$, we have
+$$p(\theta|x_{1:n}) =\Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).$$
+\end{minipage}}
+
+\end{document}
+
+
+
+
+
+

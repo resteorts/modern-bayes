@@ -1,0 +1,201 @@
+\documentclass[11pt]{article}
+\usepackage{amsthm}
+\usepackage{comment}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{fancyhdr}
+\usepackage[hang,sc]{caption}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topmargin}{-0.5in}
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6in}
+
+\newcommand{\class}[1]{\mathscr{#1}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\tht}{\theta}
+\newcommand{\tho}{\theta_0}
+\newcommand{\thn}{\hat{\theta}_n}
+\newcommand{\ps}{\mathbb{P}}
+
+\begin{document}
+
+\title{Practice Problems, Part I}
+\author{Rebecca C. Steorts}
+\maketitle
+\setlength{\parindent}{0cm}
+\thispagestyle{empty}
+\begin{enumerate}
+
+\item Let $X_1, \ldots, X_n$ be iid Poisson$(\theta)$ variables, where $\theta \in (0,\infty).$ Let 
+$L(\theta,\delta) = (\theta - \delta)^2/\theta.$ Assuming the prior,
+$$g(\theta) = \frac{\exp\{-
+\theta\alpha
+\}
+\alpha^{\beta}\theta^{\beta-1}
+}
+{
+\Gamma(\beta)
+}I_{[\theta > 0]},
+$$
+where $\alpha>0$ and $\beta>0$ are given. Show that the Bayes estimator of $\theta$ is given by 
+
+
+$$h(\bm{X}) =
+\begin{cases}  \dfrac{\sum_iX_i + \beta - 1}{n + \alpha} &\mbox{if }\sum_iX_i + \beta - 1 > 0 \\
+0 & \mbox{if } otherwise. \end{cases} 
+$$
+
+
+%%TPE 4.2.1 (have solution written up)
+\item Suppose $X\mid p \sim \text{Bin}(n,p)$ and that $p \sim \text{Beta}(a,b).$
+\begin{enumerate}
+\item Show that the marginal distribution of $X$ is the beta-binomial distribution with mass function 
+$$m(x) = {n \choose x} \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}
+\dfrac{\Gamma(x+a)\Gamma(n+b-x)}{\Gamma(n+a+b)}.
+$$
+\item Show that the mean and variance of the beta-binomial is given by
+$EX = \dfrac{na}{a+b}$ and $\text{V}X = n \left(\dfrac{a}{a+b}\right)\left(\dfrac{b}{a+b}\right)\left(\dfrac{a+b+n}{a+b+1}\right).$\\
+Hint: For part(b): Use the formulas for iterated expectation and iterated variance. 
+\end{enumerate}
+
+
+%%TPE 4.2.5
+\item DasGupta (1994) presents an identity relating the Bayes risk to bias, which illustrates that a small bias can help achieve a small Bayes risk. Let $X \sim f(x|\theta)$ and $\theta \sim \pi(\theta).$ The Bayes estimator under squared error loss is 
+$\hat{\delta} = E(\theta|X).$ Show that the Bayes risk of $\hat{\delta}$ can be written 
+$$r(\pi,\hat{\delta} ) 
+= \int_{\Theta} \int_{\mathcal{X}} 
+[\theta - \hat{\delta}(X)]^2 f(x|\theta) \pi(\theta) dx \; d\theta =
+- \int_{\Theta} \theta\; b(\theta) \pi(\theta)\; d\theta$$
+where $b(\theta) = E[\hat{\delta} | \theta] - \theta$ is the bias of $\hat{\delta} .$
+
+
+%%TPE Ch 4. 
+\item Suppose that 
+\begin{align*}
+X|\theta &\sim f(x|\theta) \\
+\theta|\lambda &\sim \pi(\theta|\lambda) \\
+\lambda &\sim \pi(\lambda).
+\end{align*}
+Using the HB model above, 
+\begin{enumerate}
+\item prove that $E[\theta|x] = E[\;E[\theta|x,\lambda]\;] .$
+\item prove that $V[\theta|x] = E[\;V[\theta|x,\lambda]\;]  + V[\;E[\theta|x,\lambda]\;] .$\\
+
+Remark: when proving (a) and (b) above, you may show this two ways, either by integrals in which say what you are integrating over or you may simply just use expectations (and in this case specifying what you are taking an expectation over). 
+\end{enumerate}
+
+
+
+
+%%assign 5.3 from TPE
+\item Albert and Gupta (1985) investigate theory and application of the hierarchical model 
+\begin{align*}
+X_i| \theta_i &\stackrel{ind}{\sim} \text{Bin}(n, \theta_i),\; i=1,\ldots,p\\
+\theta_i|\eta &\sim \text{Beta}(k\eta,k(1-\eta)),\;k \text{ known}\\
+\eta &\sim \text{Uniform}(0,1).\\
+\end{align*}
+
+
+\begin{enumerate}
+\item Show that 
+$$E(\theta_i|x) = \dfrac{n}{n +k}\dfrac{x_i}{n} + \dfrac{k}{n +k}E(\eta|x)$$ and 
+\
+$$V(\theta_i|x) =\frac{E[\theta_i|x](1-E[\theta_i|x])}{ n + k + 1}
++ \frac{k^2V(\eta|x)}{(n+k)(n+k+1)}.$$
+Hint: You should show along the way that $$V(\theta_i|x) = \frac{x_i(n+k - x_i) + E(\eta|x)k(n+k - 2 x_i) - k^2E(\eta^2|x)}{(n+k)^2(n+k+1)}
++ \frac{k^2V(\eta|x)}{(n+k)^2}.
+$$
+
+General Remark: Note that $E(\eta|x)$ and $V(\eta|x)$ are not expressible in a simple form and hence you can leave them as such. 
+\item Unconditionally on $\eta,$ the $\theta_i$'s have conditional covariance 
+$$\text{Cov}(\theta_i,\theta_j|x) = \left(\frac{k}{n+k}\right)^2V(\eta|x)\; \;\text{for} \; i\neq j.$$
+Show this. 
+\item Ignoring the prior on $\eta,$ show how to construct an EB estimator of $\theta_i.$ Again, this is not expressible in a simple form. That is, simply derive the marginal distribution and then explain using software how you would find an estimator for $\eta.$ Then give a \emph{simple} construction for the EB estimator. 
+\end{enumerate}
+%
+%%\item Albert and Gupta (1985) investigate theory and applications of the hierarchical model 
+%%\begin{align*}
+%%X_i| \theta_i &\stackrel{ind}{\sim} \text{Bin}(n, \theta_i),\; i=1,\ldots,p\\
+%%\theta_i|\eta &\sim \text{Beta}(k\eta,k(1-\eta)),\;k \text{ known}\\
+%%\eta &\sim \text{Uniform}(0,1).\\
+%%\end{align*}
+%
+%
+%
+%%\item Consider 
+%%\begin{align*}
+%%X_i|\theta &\sim \text{Uniform}(0,\theta), i=1,\ldots,n\\
+%%\frac{1}{\theta} &\sim \text{Gamma}(a,b), \; \text{a, b known}
+%%\end{align*}
+%%\begin{itemize}
+%%\item[(a)] Verify that the Bayes estimator will only depend on the data through $Y = \max_i X_i.$
+%%\item[(b)]  Show that $E(\theta | y , a ,b) = \dfrac{1}{n+a-1} \dfrac{P(\chi^2_{n+a-1} < \frac{2}{by})}
+%%{P(\chi^2_{n+a} < \frac{2}{by})}
+%%$ where ($\chi^2_{v} $ is a chi-squared random variable with $v$ degrees of freedom.
+%%\end{itemize}
+%
+%%\item Consider
+%%\begin{align*}
+%%X_i &\stackrel{ind}{\sim} \text{Poisson}(\lambda_i), \; i=1,\ldots, p \\
+%%\lambda_i &\stackrel{ind}{\sim} \text{Gamma}(a,b), \; i=1,\ldots, p.
+%%\end{align*}
+%%Find the Bayes estimator $\pi(\lambda_i|x_i).$
+%
+%\item Consider
+%\begin{align*}
+%X_i &\stackrel{ind}{\sim} \text{Poisson}(\lambda_i), \; i=1,\ldots, p \\
+%\lambda_i &\stackrel{ind}{\sim} \text{Gamma}(a,b), \; i=1,\ldots, p\\
+%\pi(b) &\propto \frac{b^{a-1}}{(b+1)^{a+b}}
+%\end{align*}
+%Find the Bayes estimator $\pi(\lambda_i|x_i).$ First, calculate $\pi(b|x).$ Then find $\pi(\lambda_i|b,x).$
+%
+%%\item Suppose $X_1,\ldots,X_n|\theta \stackrel{iid}{\sim} \text{Exp}(\theta).$ Then $f(x) = \theta e^{-\theta x}, \;x>0,\; \theta>0.$ 
+%%
+%%\begin{enumerate}
+%%\item State the prior distribution on $\theta$ that is conjugate to the exponential likelihood above (give its distribution and parameters). Your prior should be a continuous distribution function and take two parameter values. (Other priors you give will not be accepted for credit.)
+%%
+%%\item Then derive the posterior distribution of $\theta|x_1,\ldots,x_n.$
+%%
+%%\item Also give the posterior mean and variance, $E(\theta|x_1,\ldots,x_n)$ and $V(\theta|x_1,\ldots,x_n).$
+%%
+%%\end{enumerate}
+%
+%
+%%%%for the chapter on credible intervals
+%%%%homework for ghosh - MS class
+%%\item Let $U|\sigma \sim \chi^2_n.$ Also, let $p(\sigma) \propto \sigma^{-1}.$
+%%\begin{enumerate}
+%%\item Show that $p(\sigma^2) \propto \sigma^{-2}.$
+%%\item Show that the $100(1-\alpha)\%$ HPD region for $\sigma^2$ is not the same as the region obtained by squaring a posterior interval for $\sigma.$
+%%\end{enumerate}
+%%
+%%\item Let $X_1,\ldots,X_m$ and $Y_1,\ldots,Y_n$ be independent random samples respectively from $N(\mu_1, \sigma^2)$ and $N(\mu_2, \sigma^2)$ populations, where $\sigma^2 > 0$ is known. Consider the uniform prior $\pi(\mu_1, \mu_2) =1.$ Find a $100(1-\alpha)\%$ HPD credible interval for $\mu_1 - \mu_2.$
+%%
+%%%%for objective bays chapter
+%%\item Let $X_1,\ldots,X_n$ be iid Poisson$(\theta).$ Find Jeffreys' prior for $\theta.$ What do you notice about this prior?
+%%
+%%%%for advanced decision theory chapter
+%%\item Let X be a rv with geometric pf
+%%$P_{\theta}(X=x) = (1-\theta)^{x-1}\theta, x=1,2,\ldots$
+%%Consider the prior under which $P(\theta = 1/4) = 2/3, P(\theta = 1) = 1/3.$
+%%\begin{enumerate}
+%%\item Find the Bayes estimator of $\theta$ under the above prior and squared error loss.
+%%\item Show that the above Bayes estimator is also a minimax estimator of $\theta$ under squared error loss.
+%%\end{enumerate}
+%
+\end{enumerate}
+
+
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
