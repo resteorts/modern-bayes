@@ -122,7 +122,7 @@ Missing at Random
 - We assume the data are missing at random, meaning that $\bm{O}_i$
 and $\bm{Y}_i$ are independent and the distribution of $\bm{O}_i$ does not depend on $\theta$ or $\Sigma.$
 
-- For modeling the data in a way that missing not a random, refer to Chapter 21 of Gelman et al (2004). 
+- For modeling the data in a way that missing not at random, refer to Chapter 21 of Gelman et al (2004). 
 
 Missing at Random 
 ===
@@ -158,8 +158,8 @@ p(\bm{o}_i, y_{i1}, y_{i3} \mid \btheta, \Sigma)
 
 Notation
 ===
-Let $\bm{Y}_{n\times p}$ be the matrix of all potential data in which $o_{ij} = 1$ if $Y_ij$ is observed and 
-$o_{ij} = 0$ if $Y_ij$ is missing. 
+Let $\bm{Y}_{n\times p}$ be the matrix of all potential data in which $o_{ij} = 1$ if $Y_{ij}$ is observed and 
+$o_{ij} = 0$ if $Y_{ij}$ is missing. 
 
 We can think of the matrix as consisting of two parts:
 
@@ -186,7 +186,7 @@ Suppose the Gibbs sampler is at iteration $s.$
 \item Sample $$\bm{Y}_{miss}^{s+1} \sim p(\bm{Y}_{miss} \mid \bm{Y}_{obs}, \theta^{(s+1)}, \Sigma^{(s+1)})$$
 \end{enumerate}
 
-In steps 1--2, Note the fixed value of $\bm{Y}_obs$ combines with the current value of $\bm{Y}_{miss}^(s)$ to form a current version of a complete data matrix $\bm{Y}^(s)$ with no missing values. 
+In steps 1--2, Note the fixed value of $\bm{Y}_{obs}$ combines with the current value of $\bm{Y}_{miss}^{(s)}$ to form a current version of a complete data matrix $\bm{Y}^{(s)}$ with no missing values. 
 
 Step 3 of Gibbs sampler
 ===
@@ -295,7 +295,7 @@ Y.full[is.na(Y.full[,j]),j]<- mean(Y.full[,j],na.rm=TRUE)
 
 Gibbs sampler
 ===
-\footnotesize
+\tiny
 ```{r}
 THETA<-SIGMA<-Y.MISS<-NULL
 set.seed(1)
