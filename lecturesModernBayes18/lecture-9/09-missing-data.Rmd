@@ -224,7 +224,7 @@ $$\Sigma_{[b,a]}
 = \Sigma_{[b,b]} - \Sigma_{[b,a]}
 (\Sigma_{[a,a]})^{-1}\Sigma_{[a,b]}.$$
 
-Lab 10: Application to Pima Indian data set
+Exercise: Application to Pima Indian data set
 ===
 1. Write down a generative model for the Pima Indian data set.
 Derive the full conditional distributions. 
@@ -346,7 +346,7 @@ interval.theta <-
 kable(data.frame(interval.theta))
 ```
 
-Lab 10: Application to Pima Indian data set
+Exercise: Application to Pima Indian data set
 ===
 1. Write down a generative model for the Pima Indian data set.
 Derive the full conditional distributions. 
@@ -359,4 +359,4 @@ Derive the full conditional distributions.
 \item A posterior approximation of $E[\Sigma \mid y]$ and 95 posterior credible intervals.
 \end{enumerate}
 
-Write up a report summarizing your results for lab 10, which will be part of your homework assignment. Be sure to summarize all findings above, include reproducible code. 
+Finish this as an extra exercise for the final exam. (Solutions are provided in the Hoff book). 
