@@ -15,12 +15,12 @@ Agenda
 
 
 
-Setup
+Notation
 ===
 - $X_{n\times p}$: regression features or covariates (design matrix)
-- $x_{p \times 1}$: $i$th row vector of the regression covariates
-- $y_{n\times 1}$: response variable (vector)
-- $\beta_{p \times 1}$: vector of regression coefficients 
+- $\bx_{p \times 1}$: $i$th row vector of the regression covariates
+- $\by_{n\times 1}$: response variable (vector)
+- $\bbeta_{p \times 1}$: vector of regression coefficients 
 
 Goal: Estimation of $p(y \mid x).$
 
