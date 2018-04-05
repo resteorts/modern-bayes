@@ -307,6 +307,8 @@ Simulating Data
 Simulate a single multivariate normal random vector using the `rmvnorm` function.
 
 ```{r}
+# Each row corresponds to a sample
+# Here we have one sample (one row)
 rmvnorm(n = 1, mean = rep(0, 2), sigma = diag(2))
 ```
 
@@ -445,6 +447,22 @@ library (mvtnorm)
 library(MCMCpack)
 ```
 
+Gibbs sampler (review)
+===
+Suppose the Gibbs sampler is at iteration $s.$
+\begin{enumerate}
+\item Sample $\btheta^{(s+1)}$ from it's full conditional:
+\begin{enumerate}
+\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bX$ and $\Sigma^{(s)}$
+\item[b)] Sample $\btheta^{(s+1)}\sim MVN(\mu_n, \Sigma_n)$
+\end{enumerate}
+\item Sample $\Sigma^{(s+1)}$ from its full conditional:
+\begin{enumerate}
+\item[a)] Compute $S_n$ from $\bX$ and $\theta^{(s+1)}$
+\item[b)] Sample $\Sigma^{(s+1)} \sim \text{inverseWishart}(\nu_n, S_n^{-1})$
+\end{enumerate}
+\end{enumerate}
+
 Gibbs sampler
 ===
 ```{r}
@@ -528,6 +546,15 @@ plot(density(THETA[,2]), xlab = expression(theta),
      main = expression(paste("Density of ", theta)))
 abline(v = mean(THETA[,2]), col = "red")
 ```
+
+Traceplots and running average plots
+===
+
+The traceplots don't tell us much of anything, so this is why we examine the running average plots. Specifically, the traceplots indicate that the chain has not failed to converged. 
+
+The running average plots indicate that the sampler appears to be mixing well by 5,000 iterations and that the chain has not failed to converged. 
+
+
 
 Traceplots and running average plots of $\sigma$
 ===
