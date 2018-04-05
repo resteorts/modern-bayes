@@ -365,10 +365,10 @@ $$
 Model set up
 ===
 $$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
-$$ \btheta_i \sim MVN(\bm{\mu_0}, \Lambda_0)$$
+$$ \btheta_j \sim MVN(\bm{\mu_0}, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
-Let $\theta_j = (\theta_1, \theta_2).$
+Let $\btheta = (\theta_1, \theta_2).$
 
 $i=1,\ldots,n$ and $j=1,2$
 
