@@ -364,16 +364,18 @@ $$
 
 Model set up
 ===
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$ 
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
 $$ \btheta_i \sim MVN(\bm{\mu_0}, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
-Let $\theta_i = (\theta_1, \theta_2).$
+Let $\theta_j = (\theta_1, \theta_2).$
+
+$i=1,\ldots,n$ and $j=1,2$
 
 Prior settings
 ===
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$ 
-$$ \btheta_i \sim MVN(\bm{\mu}_0, \Lambda_0)$$
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
+$$ \btheta_j \sim MVN(\bm{\mu}_0, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
 The exam was designed to give average scores of around 50 out of 100, 
@@ -381,8 +383,8 @@ so $\bm{\mu}_0 = (50,50)^T$ would be a good choice for our prior mean.
 
 Prior settings
 ===
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$ 
-$$ \btheta_i \sim MVN(\bm{\mu}_0, \Lambda_0)$$
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
+$$ \btheta_j \sim MVN(\bm{\mu}_0, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
 Since the true mean cannot be below 0 or above 100, we will use a prior variance that puts little probability outside of this range.
@@ -394,8 +396,8 @@ The two exams are measuring similar things, so we will take the prior correlatio
 
 Prior settings (continued)
 ===
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$ 
-$$ \btheta_i \sim MVN(\bm{\mu}_0, \Lambda_0)$$
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
+$$ \btheta_j \sim MVN(\bm{\mu}_0, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
 What about the prior settings for $\Sigma?$
