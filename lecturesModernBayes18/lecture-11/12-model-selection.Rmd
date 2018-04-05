@@ -12,6 +12,11 @@ font-size: 8px
 
 Agenda
 ===
+- Review of the Multivariate setup
+- The g-prior
+- Application to diabetes (Hoff, 9.2)
+- Bayesian model selection (g-prior)
+- Bayesian model averaging
 
 
 
@@ -22,7 +27,7 @@ Notation
 - $\by_{n\times 1}$: response variable (vector)
 - $\bbeta_{p \times 1}$: vector of regression coefficients 
 
-Goal: Estimation of $p(y \mid x).$
+Goal: Estimation of $p(y \mid X_{n \times p}).$
 
 Dimensions: $y_i - \beta^T x_i = (1\times 1) - (1\times p)(p \times 1) = (1\times 1).$
 
@@ -31,18 +36,18 @@ Multivariate Setup
 ===
 Let's assume that we have data points $(x_i,y_i)$ available for all  $i=1,\ldots,n.$
 
-- $y$ is the response variable
-\[  y= \left( \begin{array}{c}
+- $\by$ is the response variable
+\[  \by= \left( \begin{array}{c}
 y_1\\
 y_2\\
 \vdots\\
 y_n
 \end{array} \right)_{n \times 1} \]
-- $x_{i}$ is the $i$th row of the design matrix $X_{n \times p}.$
+- $\bx_{i}$ is the $i$th row of the design matrix $X_{n \times p}.$
 
 Consider the regression coefficients
 
-\[  \beta = \left( \begin{array}{c}
+\[  \bbeta = \left( \begin{array}{c}
 \beta_{1}\\
 \beta_{2}\\
 \vdots\\
@@ -107,19 +112,28 @@ The joint distribution can be written as
 $$p(\lambda^{-1}, \bbeta \mid y, X) = p(\lambda^{-1} \mid y, X) \times p(\bbeta \mid y,X, \lambda^{-1})$$
 
 Goal: simulate $(\lambda^{-1}, \beta) \sim p(\lambda^{-1}, \bbeta \mid y, X)$
+
 Starting value $(\beta_0, \lambda_0)$
+
 1. Simulate $$\lambda^{-1} \sim p(\lambda^{-1} \mid y, X)$$ Gives us  $(\lambda_1^{-1}, \beta_0)$
+
 2. Use this updated value of $\lambda_1^{-1}$ to simulate 
 $$\beta \sim p(\bbeta \mid y,X, \lambda^{-1})$$ Gives us $(\lambda_1^{-1}, \beta_1)$
 
 Run the sampler for $S$ iterations. 
 
 
-Back to the oxygen uptake example
+Application to diabetes (Exercise 9.2, part a)
+===
+As described in Exercise 7.6, suppose we have  data on health-related variables of a population of 532 women.
+
+In this exercise we will be modeling the conditional distribution of glucose level (glu) as a linear combination of the other variables, excluding the variable diabetes.
+
+Model specification
 ===
 \begin{align}
 y &\mid X,\beta, \sigma^2 \sim MVN( X\beta, \lambda^{-1} I) \\
-\beta \mid \lambda MVN(0, g (X^TX)^{-1})\\
+\beta &\mid \lambda \sim MVN(0, g (X^TX)^{-1})\\
 \lambda^{-1} &\sim \Ga(\nu_0/2,\nu_0 \lambda^{-1}/2)
 \end{align}
 
@@ -129,12 +143,6 @@ We will use the g-prior, where
 \item $\nu_0 = 1$
 \item $\sigma_0^2 = \lambda^{-1} = \hat{\sigma}_{ols} = 8.54$
 \end{enumerate}
-
-Application to diabetes (Exercise 9.2, part a)
-===
-As described in Exercise 7.6, suppose we have  data on health-related variables of a population of 532 women.
-
-In this exercise we will be modeling the conditional distribution of glucose level (glu) as a linear combination of the other variables, excluding the variable diabetes.
 
 Regression model on the g-prior
 ===
@@ -168,6 +176,7 @@ Regression model on the g-prior
 ===
 ```{r}
 y = azd_data$glu
+# remove glu and diabetes
 X = as.matrix(azd_data[,c(-2,-8)])
 head(X)
 ```
@@ -184,7 +193,6 @@ p = dim(Xs)[2]
 
 Hyper-parameters
 ===
-# hyper-parameters
 ```{r}
 g = n
 nu0 = 2
@@ -219,7 +227,7 @@ Beta_a = sweep(beta_s,2,sd_X,FUN = "/")
 
 The 95% posterior confidence intervals 
 ===
-
+\footnotesize
 ```{r}
 # 95% credible interval
 Beta_CIa = apply(Beta_a, 2, quantile, c(0.025, 0.975))
@@ -319,10 +327,9 @@ Note that a large value of $SSR_{g}^{{z_b}}$ compared to $SSR_{g}^{{z_a}}$ will 
 
 Bayesian Model Averaging
 ===
-Suppose that we are content with a estiamte of $\bbeta$ from which we can make predictions.
+Suppose that we have an estimate of $\bbeta$ from which we can make predictions.
 
 We may also want a list of relatively high probablitiy models. 
-
 We can use a Markov chain to search through the space of models  for values of $z$ with high posterior probability.
 
 Bayesian model averaging
@@ -386,10 +393,10 @@ Obtain $P(\beta_j \neq \mid y)$ as well as posterior confidence intervals for al
 Back to diabetes data (Exercise 9.2, b)
 ===
 The following function `lpy.X` calculates the log of $p(\boldsymbol{y}\mid\boldsymbol{X})$, which we will use in implementing the Gibbs sampler for Bayesian model averaging.
-
+\footnotesize
 ```{r}
 ## a function to compute the marginal probability
-lpy.X = function(y, X, g=length(y), nu0=1, s20=try(summary(lm(y~ -1+X))$sigma^2, silent=TRUE)){
+lpy.X <- function(y, X, g=length(y), nu0=1, s20=try(summary(lm(y~ -1+X))$sigma^2, silent=TRUE)){
   n = dim(X)[1]
   p = dim(X)[2]
   if (p==0) { Hg = 0; s20 = mean(y^2)}
@@ -412,6 +419,7 @@ Let $\boldsymbol{z}$ be the random binary vector of variable indicators. Generat
 
 Gibbs sampler
 ===
+\footnotesize
 ```{r}
 ## MCMC setup
 g = n
@@ -482,6 +490,7 @@ Results
 
 The 95% posterior confidence intervals for all the parameters from Bayesian model averaging are listed below. The results are similar to those in part (a) because all the predictors are included in each iteration of Gibbs sampler all the time.
 
+\footnotesize
 ```{r}
 # transform coefficients to the original scale
 #sd_X = apply(X,2,sd)
