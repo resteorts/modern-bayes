@@ -374,7 +374,7 @@ If $\Sigma_o{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
 Posterior inference applied to Oxygen uptake
 ===
 To continue the rest of the oxygen uptake example, please refer to 9.2 in Hoff
-(commentary and code).
+(commentary and code). Pages 157 -- 159 in Hoff.
 
 
 Linear Regression Applied to Swimming
