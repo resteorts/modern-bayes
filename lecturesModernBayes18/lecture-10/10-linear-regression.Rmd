@@ -118,8 +118,8 @@ x_{ip}
 Notation (continued)
 ===
 \[  \bbeta= \left( \begin{array}{c}
-\beta_0\\
 \beta_1\\
+\beta_2\\
 \vdots\\
 \beta_p
 \end{array} \right) \]
