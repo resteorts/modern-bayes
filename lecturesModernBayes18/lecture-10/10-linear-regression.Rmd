@@ -247,7 +247,7 @@ This specifies the density of the data:
 &(2\pi \sigma^2 )^{-n/2} \exp\{
 \frac{-1}{2\sigma^2} \sum_{i=1}^n (\by_i - \bbeta^T \bx_i)^2
 \}\\
-&= (2\pi \sigma^2 )^{-n/2} \exp\{ (\by - X\bbeta)^T\textcolor{red}{(\sigma^2)^{-1} I}(\by - X\bbeta)\}
+&= (2\pi \sigma^2 )^{-n/2} \exp\{\textcolor{red}{-\frac{1}{2}} (\by - X\bbeta)^T\textcolor{red}{(\sigma^2)^{-1} I}(\by - X\bbeta)\}
 \end{align}
 
 
@@ -367,9 +367,9 @@ $$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1
 
 $$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
 
-Remark: If $\Sigma_o{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{ols}$
+Remark: If $\Sigma_o^{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{ols}$
 
-If $\Sigma_o{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
+If $\Sigma_o^{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
 
 Posterior inference applied to Oxygen uptake
 ===
