@@ -15,15 +15,15 @@ Agenda
 - Ordinal, numeric, and continous variables
 - Probit versus linear regression
 - Full conditionals
-- An application to data
+- An application to the 1994 General Social Survey
 
 
 Generalized Linear Regression
 ===
+
 - Many datasets include variables whose distributions cannot be represented by the normal, binomial or Poisson distributions we have studied so far.
-- Distributions of common survey variables such as age, education level and income generally cannot be accurately described by any of the above- mentioned sampling models. 
-- We extend models to situations where the data are not normal, by expressing non-normal random variables as functions of unobserved, "latent" normally distributed random variables.
-- Multivariate normal and linear regression models then can be applied to the latent data.
+- Distributions of common survey variables such as age, education level and income generally cannot be accurately described the above sampling models. 
+- In this module, we will use the probit regression model to handle such cases. 
 
 Terminology
 ===
@@ -37,11 +37,16 @@ Terminology
 Data
 ===
 
-- The 1994 General Social Survey provides data on variables DEG, CHILD and PDEG for a sample of individuals in the United States.
+- The 1994 General Social Survey provides data on many variables in households (United States).
 
-- $DEG_i$ indicates the highest degree obtained by individual $i,$ $CHILD_i$ is the number of children and $PDEG_i$ is the binary indicator of whether or not either parent obtained a college degree. 
+- There are variables such as the following:
+1. DEG (highest degree obtained by individual)
+2. CHILD (the number of children in a household)
+3. PDEG (binary indicator of whether or not either parent obtained a college degree)
 
-Using these data, we might be tempted to investigate the relationship between the variables with a linear regression model.
+- Using these data, we might be tempted to investigate the relationship between the variables with a linear regression model.
+
+- This is problematic due to the ordinal nature of the data. 
 
 Data
 ===
@@ -72,9 +77,13 @@ plot(table(dat$CHILD)/sum(table(dat$CHILD)),lwd=2,type="h",xlab="CHILD",ylab="pr
 
 Probit regression
 ===
-- Linear or generalized linear regression models, which assume a numeric scale to the data, may be appropriate for variables like CHILD, height or weight, but are not appropriate for non-numeric ordinal variables like DEG.
 
-- This idea motivates a modeling technique known as ordered probit regression, in which we relate a variable $Y$ to a vector of predictors $x$ via a regression in terms of a latent variable $Z$.
+- Linear or generalized linear regression models, which assume a numeric scale to the data, may be appropriate for variables like height or weight, but are not appropriate for non-numeric ordinal variables like DEG or CHILD.
+
+- This idea motivates a modeling technique known as ordered probit regression.
+
+- We relate the response $Y$ to a vector of predictors $x$ via a regression model using 
+a latent variable $Z$.
 
 Probit regression model
 ===
@@ -84,12 +93,14 @@ The model can be written as
 Y_i &= g(Z_i)\\
 Z_i &= \beta^T x_i + \epsilon_i\\
 \epsilon_i &\stackrel{iid}{\sim} Normal (0,1)\\
-\beta &\sim MVN(0, n(X^TX)^{-1})
+\beta &\sim MVN(0, n(X^TX)^{-1}),
 \end{align}
+where 
 $g$ is any non-decreasing function.
 
 Notation 
 ===
+
 - $X_{n\times p}$: regression features or covariates (design matrix)
 - $Z_{n\times 1}:$ latent variable 
 - $\by_{n\times 1}$: response variable (vector)
@@ -110,6 +121,13 @@ You can think of the values of $g_1, \ldots g_{K-1}$ as thresholds so that movin
 
 Full conditional of $\beta$
 ===
+\begin{align}
+Y_{n \times 1} \mid Z &= g(Z)\\
+Z_{n \times 1}\mid \bbeta &\sim MVN(X\bbeta, I)\\
+\beta_{p \times 1} &\sim MVN(0, n(X^TX)^{-1})
+\end{align}
+
+
 $$p( \beta \mid y, z, g) \propto p(\beta) p(z \mid \beta)$$
 
 Using the MVN conjugacy that we looked at before, $\beta \mid y, z, g$ will be MVN where
@@ -151,9 +169,10 @@ Then the full conditional distribution of $g$ is then proportional to $p(g)$ but
 
 Application to data
 ===
+
 Some researchers suggest that having children reduces opportunities for educational attainment (Moore and Waite, 1977). 
 
-Here we examine this hypothesis in a sample of males in the labor force (meaning not retired, not in school and not in an institution), obtained from the 1994 General Social Survey. 
+Here we examine this hypothesis in a sample of males in the labor force (meaning not retired, not in school, and not in an institution), obtained from the 1994 General Social Survey. 
 
 For 959 of the 1,002 survey respondents we have complete data on the variables DEG, CHILD and PDEG described above. 
 
@@ -272,10 +291,13 @@ legend(-.5,6.5,legend=c("prior","posterior"),lwd=c(2,2),col=c("gray","black"),bt
 Commentary for Left Plot
 ===
 
-The posterior mean regression line for people without a college-educated parent $(x_{i,2}=0)$ is $E[Z \mid y, x_1, x_2=0] = -0.024 x_1$
+The posterior mean regression line for people without a college-educated parent $(x_{i,2}=0)$ is 
+
+$$E[Z \mid y, x_1, x_2=0] = -0.024 x_1.$$
 
 The posterior mean regression line for people with a college-educated parent
-$E[Z \mid y, x_1, x_2=0] = 0.818 + 0.054 x_1.$
+
+$$E[Z \mid y, x_1, x_2=0] = 0.818 + 0.054 x_1.$$
 
 In the above figure (left), we see that  for people whose parents did not go to college, the number of children they have is indeed weakly negatively associated with their educational outcome. (The opposite is true for people whose parents did go to college).
 
