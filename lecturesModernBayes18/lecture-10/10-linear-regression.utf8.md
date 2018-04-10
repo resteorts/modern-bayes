@@ -35,7 +35,8 @@ Experimental design: 12 male volunteers.
 
 Data
 ===
-```{r}
+
+```r
 # running is 0, 1 is aerobic
 x1<-c(0,0,0,0,0,0,1,1,1,1,1,1)
 # age
@@ -47,12 +48,7 @@ y<-c(-0.87,-10.74,-3.27,-1.97,7.50,
 
 Exploratory Data Analysis
 ===
-```{r, echo=FALSE}
-par(mfrow=c(1,1))
-plot(y~x2,pch=16,xlab="age",ylab="change in maximal oxygen uptake", 
-     col=c("red","green")[x1+1])
-legend(27,0,legend=c("aerobic","running"),pch=c(16,16),col=c("green","red"))
-```
+![](10-linear-regression_files/figure-beamer/unnamed-chunk-2-1.pdf)<!-- --> 
 
 Data analysis
 ===
@@ -172,31 +168,7 @@ $$E[\bY \mid \bm{x}] = (\beta_1 + \beta_2) + (\beta_3 + \beta_4)\times age \; \t
 
 Least squares regression lines 
 ===
-```{r, echo=FALSE}
-par(mfrow=c(2,2),mar=c(3,3,1,1),mgp=c(1.75,.75,0))
-
-plot(y~x2,pch=16,col=c("red","green")[x1+1],ylab="change in maximal oxygen uptake",xlab="",xaxt="n")
-abline(h=mean(y[x1==0]),col="red") 
-abline(h=mean(y[x1==1]),col="green")
-mtext(side=3,expression(paste(beta[3]==0,"  ",beta[4]==0)) )
-
-plot(y~x2,pch=16,col=c("red","green")[x1+1],xlab="",ylab="",xaxt="n",yaxt="n")
-abline(lm(y~x2),col="red")
-abline(lm((y+.5)~x2),col="green")
-mtext(side=3,expression(paste(beta[2]==0,"  ",beta[4]==0)) )
-
-plot(y~x2,pch=16,col=c("red","green")[x1+1],
-     xlab="age",ylab="change in maximal oxygen uptake" )
-fit<-lm(y~x1+x2)
-abline(a=fit$coef[1],b=fit$coef[3],col="red")
-abline(a=fit$coef[1]+fit$coef[2],b=fit$coef[3],col="green")
-mtext(side=3,expression(beta[4]==0)) 
-
-plot(y~x2,pch=16,col=c("red","green")[x1+1],
-     xlab="age",ylab="",yaxt="n")
-abline(lm(y[x1==0]~x2[x1==0]),col="red")
-abline(lm(y[x1==1]~x2[x1==1]),col="green")
-```
+![](10-linear-regression_files/figure-beamer/unnamed-chunk-3-1.pdf)<!-- --> 
 
 Multivariate Setup 
 ===
@@ -303,7 +275,8 @@ $$\hbeta \sim MVN(\bbeta, \sigma^2  (X^TX)^{-1}).$$
 Recall data set up
 ===
 \footnotesize
-```{r}
+
+```r
 # running is 0, 1 is aerobic
 x1<-c(0,0,0,0,0,0,1,1,1,1,1,1)
 # age
@@ -315,27 +288,79 @@ y<-c(-0.87,-10.74,-3.27,-1.97,7.50,
 Recall data set up
 ===
 \footnotesize
-```{r}
+
+```r
 (x3 <- x2) #age
+```
+
+```
+##  [1] 23 22 22 25 27 20 31 23 27 28 22 24
+```
+
+```r
 (x2 <- x1) #aerobic versus running 
+```
+
+```
+##  [1] 0 0 0 0 0 0 1 1 1 1 1 1
+```
+
+```r
 (x1<- seq(1:length(x2))) #index of person
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12
+```
+
+```r
 (x4 <- x2*x3)
+```
+
+```
+##  [1]  0  0  0  0  0  0 31 23 27 28 22 24
 ```
 
 Recall data set up
 ===
 \footnotesize
-```{r}
+
+```r
 (X <- cbind(x1,x2,x3,x4))
+```
+
+```
+##       x1 x2 x3 x4
+##  [1,]  1  0 23  0
+##  [2,]  2  0 22  0
+##  [3,]  3  0 22  0
+##  [4,]  4  0 25  0
+##  [5,]  5  0 27  0
+##  [6,]  6  0 20  0
+##  [7,]  7  1 31 31
+##  [8,]  8  1 23 23
+##  [9,]  9  1 27 27
+## [10,] 10  1 28 28
+## [11,] 11  1 22 22
+## [12,] 12  1 24 24
 ```
 
 OLS estimation in R
 ===
 \footnotesize
-```{r}
+
+```r
 ## using the lm function
 fit.ols<-lm(y~ X[,2] + X[,3] +X[,4])
 summary(fit.ols)$coef
+```
+
+```
+##                Estimate Std. Error    t value    Pr(>|t|)
+## (Intercept) -51.2939459 12.2522126 -4.1865047 0.003052321
+## X[, 2]       13.1070904 15.7619762  0.8315639 0.429775106
+## X[, 3]        2.0947027  0.5263585  3.9796120 0.004063901
+## X[, 4]       -0.3182438  0.6498086 -0.4897500 0.637457484
 ```
 
 
@@ -387,8 +412,17 @@ Linear Regression Applied to Swimming
 Data set
 ===
 
-```{r}
+
+```r
 read.table("https://www.stat.washington.edu/~pdhoff/Book/Data/hwdata/swim.dat",header=FALSE)
+```
+
+```
+##     V1   V2   V3   V4   V5   V6
+## 1 23.1 23.2 22.9 22.9 22.8 22.7
+## 2 23.2 23.1 23.4 23.5 23.5 23.4
+## 3 22.7 22.6 22.8 22.8 22.9 22.8
+## 4 23.7 23.6 23.7 23.5 23.5 23.4
 ```
 
 Full conditionals (Task 1)
