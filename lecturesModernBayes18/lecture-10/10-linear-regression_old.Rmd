@@ -16,7 +16,7 @@ Agenda
 - Linear regression
 - Multiple Linear Regression
 - Ordinary Least Squares
-- An application to swimmers
+- Back to oxygen uptake example\footnote{Much of this lecture comes from the Hoff book.}
 
 Oxygen uptake experiment
 ===
@@ -339,6 +339,41 @@ summary(fit.ols)$coef
 ```
 
 
+Posterior computation
+===
+Let $a = 1/\sigma^2$ and $b= 1/\tau^2.$
+\begin{align}
+p(\beta \mid y, X) &\propto p(y\mid X, \beta) p(\beta) \\
+& \propto \exp\{ -a/2 (y-X\beta)^T (y-X\beta)\}
+\times \exp\{ -b/2 \beta^T \beta)\}
+\end{align}
+
+Just like in the Multivariate modules, we just simplify. (Check these details on your own). 
+
+$$p(\bbeta \mid \by, X) \propto MVN(\bbeta \mid \by, X, \Lambda^{-1})
+$$
+where
+$\Lambda = a X^TX +bI$
+and $\mu = a \Lambda^{-1} X^T \by.$
+
+Posterior computation (details)
+===
+\begin{align}
+& p(\bbeta \mid \by, X) \\
+& \propto \exp\{ -\frac{a}{2} (\by-X\bbeta)^T (\by-X\bbeta)\}
+\times \exp\{ -\frac{b}{2}\bbeta^T \bbeta)\}\\
+&\propto \exp\{ -\frac{a}{2}[\textcolor{red}{\by^T\by} -2\bbeta^TX^T\by + \bbeta^TX^TX\bbeta] -\frac{b}{2}\bbeta^T \bbeta
+\}\\
+&\propto \exp\{ a\bbeta^TX^T\by  -\frac{a}{2}\bbeta^TX^TX\bbeta -b/2\bbeta^T \bbeta
+\}\\
+&\propto \exp\{ a\bbeta^T[X^T\by] -1/2\bbeta^T(aX^TX + bI)\bbeta
+\}
+\end{align}
+
+Then 
+$\Lambda = a X^TX +bI$
+and $\mu = a \Lambda^{-1} X^T \by.$
+
 Multivariate inference for regression models
 ===
 \begin{align}
@@ -370,11 +405,6 @@ $$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X
 Remark: If $\Sigma_o{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{ols}$
 
 If $\Sigma_o{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
-
-Posterior inference applied to Oxygen uptake
-===
-To continue the rest of the oxygen uptake example, please refer to 9.2 in Hoff
-(commentary and code).
 
 
 Linear Regression Applied to Swimming
