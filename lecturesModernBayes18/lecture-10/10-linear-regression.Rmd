@@ -1,6 +1,6 @@
 
 ---
-title: "Module 11: Linear Regression"
+title: "Module 10: Linear Regression"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:

@@ -1,6 +1,6 @@
 
 ---
-title: "Module 12: Linear Regression, the g-prior, and model selection"
+title: "Module 11: Linear Regression, the g-prior, and model selection"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:

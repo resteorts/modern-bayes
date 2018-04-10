@@ -1,6 +1,6 @@
 
 ---
-title: "Module 11: Probit Regression"
+title: "Module 10: Probit Regression"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:
