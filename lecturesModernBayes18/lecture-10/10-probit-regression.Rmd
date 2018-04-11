@@ -52,7 +52,8 @@ Data
 ===
 \footnotesize
 ```{r}
-dat<-read.table("http://lib.stat.cmu.edu/aoas/107/data.txt",header=TRUE)
+dat<-read.table("http://lib.stat.cmu.edu/aoas/107/data.txt",
+                header=TRUE)
 head(dat)
 ```
 
@@ -167,7 +168,7 @@ Let $a_k = \max\{z_i: y_i=k\}$ and $b_k = \min\{z_i: y_i = k+1\}.$
 Then the full conditional distribution of $g$ is then proportional to $p(g)$ but constrained to the set $\{g: a_k < g_k < b_k\}.$
 
 
-Application to data
+Application to the General Social Survey
 ===
 
 Some researchers suggest that having children reduces opportunities for educational attainment (Moore and Waite, 1977). 
@@ -193,38 +194,93 @@ Z_{n \times 1} &= X_{n \times p} \beta_{p \times 1} + \epsilon\\
 
 $$p(g) \propto \prod_{k=1}^{K-1} (g_k,0,100)$$
 
-Application to Data
+Application to the General Social Survey
 ===
-\footnotesize
 ```{r}
 X<-cbind(ychild,ypdeg,ychild*ypdeg)
-y<-ydegr
-# replacing missing values with the mean
-keep<-(1:length(y))[ !is.na( apply( cbind(X,y),1,mean) ) ]
-X<-X[keep,] ; y<-y[keep]
-ranks<-match(y,sort(unique(y)))
-uranks<-sort(unique(ranks))
-n<-dim(X)[1] ; p<-dim(X)[2]
-iXX<-solve(t(X)%*%X)  ; V<-iXX*(n/(n+1)) ; cholV<-chol(V)
+head(X)
+head(y<-ydegr)
 ```
 
-Application to Data
+Application to the General Social Survey
+===
+```{r}
+# replacing missing values with the mean
+keep<-(1:length(y))[ !is.na( apply( cbind(X,y),1,mean) ) ]
+X<-X[keep,]
+y<-y[keep]
+```
+
+Application to the General Social Survey
+===
+```{r}
+## data without missing values
+head(X)
+## response without missing values
+head(y)
+```
+
+Application to the General Social Survey
+===
+```{r}
+## short calculations
+n<-dim(X)[1] 
+p<-dim(X)[2]
+iXX<-solve(t(X)%*%X)
+V<-iXX*(n/(n+1)) 
+## review the cholesk decomposition
+## if you have forgotten this from linear algebra
+cholV <- chol(V)
+```
+
+Application to the General Social Survey
+===
+```{r}
+# find the unique y
+# then sort them
+# then return the first occurence of 
+# y in sort(unique(y))
+ranks<-match(y,sort(unique(y)))
+head(ranks)
+# sort the ranks
+uranks<-sort(unique(ranks))
+head(uranks)
+```
+
+Application to the General Social Survey
 ===
 ```{r}
 ###starting values
 set.seed(1)
-beta<-rep(0,p) 
+(beta<-rep(0,p))
+```
+
+Initializing z
+===
+
+We know that $Z$ is Gaussian. We can rank the $y$'s (breaking ties at random). Then we can evaluation this with the \texttt{qnorm} function. 
+
+```{r}
 z<-qnorm(rank(y,ties.method="random")/(n+1))
-g<-rep(NA,length(uranks)-1)
+head(z)
+```
+
+Other initializions
+===
+```{r}
+(g<-rep(NA,length(uranks)-1))
 K<-length(uranks)
-BETA<-matrix(NA,1000,p) ; Z<-matrix(NA,1000,n) ; ac<-0
-mu<-rep(0,K-1) ; sigma<-rep(100,K-1)
+BETA<-matrix(NA,1000,p)
+Z<-matrix(NA,1000,n)
+ac<-0
+mu<-rep(0,K-1)
+sigma<-rep(100,K-1)
 S<-25000
 ```
 
 Gibbs sampler
 ===
-\footnotesize
+\tiny
 ```{r}
 for(s in 1:S) {
   #update g 
@@ -246,7 +302,6 @@ for(s in 1:S) {
   b<-c(g,Inf)[y]  
   u<-runif(n, pnorm(a-ez),pnorm(b-ez) )
   z<- ez + qnorm(u)
-
 
   #help mixing
   c<-rnorm(1,0,n^(-1/3))  
