@@ -74,20 +74,37 @@ How do we specify $\bbeta_0$ and $\Sigma_0$?
 
 The g-prior
 ===
-To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on
+To do the \emph{least amount of calculus}, we can put a \emph{g-prior} 
 $\bbeta$
 $$ \bbeta \mid \bX, \bz \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}).$$
 
-$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] 
-= \frac{g}{g+1}(\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}
+The prior also happens to be invariant and is widely studied for regression problems (Zellner, 1986). 
+
+We will find that
+
+1. g shrinks the coefficients and can prevent overfitting to the data
+2. if $g = n$, then as n increases, inference approximates that using $\hat{\beta}_{ols}$
+
+
+The g-prior
+===
+Under the g-prior, it follows that
+\begin{align}
+\bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2]  \\
+&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1} \frac{X^Ty}{\sigma^2} \\
+&= \frac{g}{g+1} (X^TX)^{-1} X^Ty
 = \frac{g}{g+1} \hat{\beta}_{ols}
-$$
+\end{align}
 
-$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = \frac{g}{g+1}(X^TX)^{-1}/\sigma^2)^{-1}
-= \frac{g}{g+1} \Var[\hat{\beta}_{ols}]$$
+\begin{align}
+\Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] \\
+&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1}
+=\frac{g}{g+1} \sigma^2 (X^TX)^{-1} \\
+&= \frac{g}{g+1} \Var[\hat{\beta}_{ols}]
+\end{align}
 
-- g shrinks the coefficients and can prevent overfitting to the data
-- if $g = n$, then as n increases, inference approximates that using $\hat{\beta}_{ols}$
+
+
 
 Variance component $\sigma^2$
 ===
@@ -109,16 +126,16 @@ Variance component $\sigma^2$
 ===
 The joint distribution can be written as 
 
-$$p(\lambda^{-1}, \bbeta \mid y, X) = p(\lambda^{-1} \mid y, X) \times p(\bbeta \mid y,X, \lambda^{-1})$$
+$$p(\lambda, \bbeta \mid y, X) = p(\lambda \mid y, X) \times p(\bbeta \mid y,X, \lambda^{-1})$$
 
-Goal: simulate $(\lambda^{-1}, \beta) \sim p(\lambda^{-1}, \bbeta \mid y, X)$
+Goal: simulate $(\lambda, \beta) \sim p(\lambda, \bbeta \mid y, X)$
 
 Starting value $(\beta_0, \lambda_0)$
 
-1. Simulate $$\lambda^{-1} \sim p(\lambda^{-1} \mid y, X)$$ Gives us  $(\lambda_1^{-1}, \beta_0)$
+1. Simulate $$\lambda^{-1} \sim p(\lambda \mid y, X)$$ Gives us  $(\lambda_1, \beta_0)$
 
-2. Use this updated value of $\lambda_1^{-1}$ to simulate 
-$$\beta \sim p(\bbeta \mid y,X, \lambda^{-1})$$ Gives us $(\lambda_1^{-1}, \beta_1)$
+2. Use this updated value of $\lambda_1$ to simulate 
+$$\beta \sim p(\bbeta \mid y,X, \lambda)$$ Gives us $(\lambda_1, \beta_1)$
 
 Run the sampler for $S$ iterations. 
 
