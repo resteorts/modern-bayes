@@ -112,13 +112,15 @@ What about a prior on $1/\sigma^2 = \lambda$
 
 \begin{align}
 y &\mid X,\beta, \sigma^2 \sim MVN( X\beta, \sigma^2 I) \\
-\lambda &\sim \Ga(\nu_0/2,\nu_0 \lambda^{-1}/2)
+1/\sigma^2 = \lambda &\sim \Ga(\nu_0/2,\nu_0 \sigma_0^2 /2)
 \end{align}
+
+
 
 Then the posterior can be shown to be
 
-$$p(\lambda \mid y, X) 
-\sim \text{Gamma}([\nu_0 + n]/2,[\nu_0 \lambda^{-1} + SSR_g]/2)$$
+$$p(\sigma^2 \mid y, X) 
+\sim \text{InverseGamma}([\nu_0 + n]/2,[\nu_0 \sigma_0^2 + SSR_g]/2)$$
 
 where $SSR_g$ is somewhat complicated (see Hoff for details, p. 158). 
 
@@ -126,25 +128,25 @@ Variance component $\sigma^2$
 ===
 The joint distribution can be written as 
 
-$$p(\lambda, \bbeta \mid y, X) = p(\lambda \mid y, X) \times p(\bbeta \mid y,X, \lambda^{-1})$$
+$$p(\sigma^2, \bbeta \mid y, X) = p(\sigma^2 \mid y, X) \times p(\bbeta \mid y,X, \sigma^2)$$
 
-Goal: simulate $(\lambda, \beta) \sim p(\lambda, \bbeta \mid y, X)$
+Goal: simulate $(\sigma^2, \beta) \sim p(\sigma^2, \bbeta \mid y, X)$
 
-Starting value $(\beta_0, \lambda_0)$
+Starting value $(\beta_0, \sigma^2_0)$
 
-1. Simulate $$\lambda^{-1} \sim p(\lambda \mid y, X)$$ Gives us  $(\lambda_1, \beta_0)$
+1. Simulate $$\sigma^2 \sim p(\sigma^2 \mid y, X)$$ Give us $(\sigma^2_1,\beta_0)$ 
 
-2. Use this updated value of $\lambda_1$ to simulate 
-$$\beta \sim p(\bbeta \mid y,X, \lambda)$$ Gives us $(\lambda_1, \beta_1)$
+2. Use this updated value of $\sigma^2_1$ to simulate 
+$$\beta \sim p(\bbeta \mid y,X, \sigma^2_1)$$ Gives us $(\sigma^2_1, \beta_1)$
 
 Run the sampler for $S$ iterations. 
 
 
 Application to diabetes (Exercise 9.2, part a)
 ===
-As described in Exercise 7.6, suppose we have  data on health-related variables of a population of 532 women.
+Suppose we have  data on health-related variables of a population of 532 women.
 
-In this exercise we will be modeling the conditional distribution of glucose level (glu) as a linear combination of the other variables, excluding the variable diabetes.
+Our goal is to model the conditional distribution of glucose level (glu) as a linear combination of the other variables, excluding the variable diabetes.\footnote{See Exercise 7.6 for the data description.}
 
 Model specification
 ===
@@ -231,10 +233,19 @@ Monte carlo
 S = 1000
 
 # generate posteriors
+# we know that the sigma2 is
+# an updated inverse gamma
 s2 = 1/rgamma(S, (nu0+n)/2, (nu0*s20 + SSRg)/2)
-Vb = g * solve(t(Xs) %*% Xs)/(g+1)
+head(s2)
+```
+
+Monte carlo
+===
+```{r}
+Vb = g*solve(t(Xs) %*% Xs)/(g+1)
 Eb = Vb %*% t(Xs) %*% ys
 E = matrix(rnorm(S*p, 0, sqrt(s2)),S,p)
+# use cholesky factorization 
 beta_s = t( t(E %*% chol(Vb)) + c(Eb)) 
 
 # transform coefficients to the original scale
@@ -291,7 +302,7 @@ This is posterior odds = prior odds $\times$ ``Bayes factor"
 
 \vskip 1em
 
-``Bayes factor": how much the data favor model $z_a$ over model $z_b$
+``Bayes factor": how much do the data favor model $z_a$ over model $z_b$
 
 \vskip 1em
 
@@ -405,7 +416,7 @@ Back to diabetes data (Exercise 9.2, b)
 ===
 Let's perform Bayesian model averaging (as described in Section 9.3)
 
-Obtain $P(\beta_j \neq \mid y)$ as well as posterior confidence intervals for all of the parameters. Compare our results to that in part (a.)
+Obtain $P(\beta_j \neq 0 \mid y)$ as well as posterior confidence intervals for all of the parameters. Compare our results to that in part (a.)
 
 Back to diabetes data (Exercise 9.2, b)
 ===
@@ -413,13 +424,15 @@ The following function `lpy.X` calculates the log of $p(\boldsymbol{y}\mid\bolds
 \footnotesize
 ```{r}
 ## a function to compute the marginal probability
-lpy.X <- function(y, X, g=length(y), nu0=1, s20=try(summary(lm(y~ -1+X))$sigma^2, silent=TRUE)){
+lpy.X <- function(y, X, g=length(y), nu0=1, 
+                  s20=try(summary(lm(y~ -1+X))$sigma^2, silent=TRUE)){
   n = dim(X)[1]
   p = dim(X)[2]
   if (p==0) { Hg = 0; s20 = mean(y^2)}
   if (p>0){ Hg = (g/(g+1)) * X %*% solve(t(X) %*% X) %*% t(X) }
   SSRg = t(y) %*% ( diag(1, nrow=n) - Hg ) %*% y -
-    .5*( n*log(pi) + p*log(1+g) + (nu0+n)*log(nu0*s20 + SSRg) - nu0*log(nu0*s20)) +
+    .5*( n*log(pi) + p*log(1+g) + (nu0+n)*log(nu0*s20 + SSRg) - 
+           nu0*log(nu0*s20)) +
     lgamma( (nu0+n)/2 ) - lgamma(nu0/2)
 }
 ```
@@ -434,20 +447,23 @@ Let $\boldsymbol{z}$ be the random binary vector of variable indicators. Generat
 
 3. Sample $\boldsymbol{\beta} \sim p(\boldsymbol{\beta} \mid \boldsymbol{z}, \sigma^2, \boldsymbol{y}, \boldsymbol{X})$.
 
-Gibbs sampler
+ MCMC setup
 ===
-\footnotesize
 ```{r}
-## MCMC setup
 g = n
 nu0 = 1 # unit information prior
 z = rep(1, p)
+# picking a starting value for the marginal probability
 lpy.c = lpy.X(ys, Xs[,z==1,drop=FALSE])
 S = 10
 Z = matrix(NA, S, p)
-# Sigma2 = numeric(S)
 B = matrix(0, S, p)
+```
 
+Gibbs sampler
+===
+\tiny
+```{r}
 ## Gibbs sampler
 for(s in 1:S){
   # if(s %% 100 ==0) {print(s)}
@@ -469,11 +485,10 @@ for(s in 1:S){
     s20 = mean(y^2)
   }
   if (pm>0){
-    Hg = (g/(g+1)) * Xs[,z==1,drop=F] %*% solve(t(Xs[,z==1,drop=F]) %*% Xs[,z==1,drop=F]) %*% 
-      t(Xs[,z==1,drop=F])
-    
-    s20=summary(lm(ys ~ -1+Xs[,z==1,drop=F]))$sigma^2 # estimated residual variance from OLS
-  }
+    Hg = (g/(g+1)) * Xs[,z==1,drop=F] %*% solve(t(Xs[,z==1,drop=F]) %*% 
+      Xs[,z==1,drop=F]) %*% t(Xs[,z==1,drop=F])
+    # estimated residual variance from OLS
+    s20=summary(lm(ys ~ -1+Xs[,z==1,drop=F]))$sigma^2                                     }
   
   SSRg = t(ys) %*% ( diag(1,nrow=n) - Hg ) %*% ys
   s2 = 1/rgamma(1, (nu0+n)/2, (nu0*s20 + SSRg)/2)
