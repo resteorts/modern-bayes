@@ -153,7 +153,7 @@ Model specification
 \begin{align}
 y &\mid X,\beta, \sigma^2 \sim MVN( X\beta, \lambda^{-1} I) \\
 \beta &\mid \lambda \sim MVN(0, g (X^TX)^{-1})\\
-\lambda^{-1} &\sim \Ga(\nu_0/2,\nu_0 \lambda^{-1}/2)
+\lambda &\sim \Ga(\nu_0/2,\nu_0 \lambda^{-1}/2)
 \end{align}
 
 We will use the g-prior, where
@@ -533,6 +533,44 @@ Beta_CIb = apply(Beta_b, 2, quantile, c(0.025, 0.975))
 
 kable(data.frame(Beta_CIb), col.names = names(azd_data[c(-2,-8)]))
 ```
+
+Preparation for Final Exam
+===
+
+- May 1, 7 - 10 PM, Old Chem 116 PM
+- Similar format to other exams
+- Closed note, closed book
+- No calculators
+- No pseudo-code
+
+Material
+===
+
+- The exam will be cumulative
+- There will be an emphasis on what we covered after 
+Exam II
+- You must take the final exam to pass the course 
+- No make up exams will be given 
+
+Material after Exam II
+===
+
+(Modules 8 -- 11)
+
+- Gibbs sampling
+- Data augmentation (latent variable models)
+- Gaussian mixture models (with latent variables)
+- Multivariate distributions and multivariate modeling
+- Missing data
+- Linear regression 
+- Probit (ordered regression)
+- The g-prior
+- Model selection
+
+You have many practice exercises posted on this material and the cumulative material with solutions.
+
+
+
 
 
 
