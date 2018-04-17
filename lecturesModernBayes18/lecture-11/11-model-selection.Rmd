@@ -242,6 +242,8 @@ head(s2)
 Monte carlo
 ===
 ```{r}
+# updated posterior mean and variance
+# from using the g-prior (see slide 7)
 Vb = g*solve(t(Xs) %*% Xs)/(g+1)
 Eb = Vb %*% t(Xs) %*% ys
 E = matrix(rnorm(S*p, 0, sqrt(s2)),S,p)
