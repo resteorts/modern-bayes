@@ -341,7 +341,7 @@ s_{z_a}^2}{s_{z_b}^2 } \right)^{1/2}\\
 &\times
 \left(\frac{s_{z_b}^2 + SSR_{g}^{{z_b}}
 }
-{s_{z_b}^2 + SSR_{g}^{{z_a}}}
+{s_{z_a}^2 + SSR_{g}^{{z_a}}}
 \right)^{(n+1)/2}
 \end{align}
 
@@ -351,7 +351,7 @@ We have a ratio of the marginal probabilities, giving us a balance between model
 \vskip 1em
 This causes a penalization of model $z_b$
 \vskip 1em
-Note that a large value of $SSR_{g}^{{z_b}}$ compared to $SSR_{g}^{{z_a}}$ will penalize model $z_a$.
+Note that a large value of \textcolor{red}{$SSR_{g}^{{z_a}}$ compared with $SSR_{g}^{{z_b}}$ will penalize model $z_a$}.
 
 Bayesian Model Averaging
 ===
@@ -568,6 +568,9 @@ Material after Exam II
 - Model selection
 
 You have many practice exercises posted on this material and the cumulative material with solutions.
+
+
+
 
 
 
