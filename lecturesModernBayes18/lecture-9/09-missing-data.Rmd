@@ -220,7 +220,7 @@ $$\btheta_{b|a}
 
 and
 
-$$\Sigma_{[b,a]}
+$$\textcolor{red}{\Sigma_{[b\mid a]}}
 = \Sigma_{[b,b]} - \Sigma_{[b,a]}
 (\Sigma_{[a,a]})^{-1}\Sigma_{[a,b]}.$$
 
