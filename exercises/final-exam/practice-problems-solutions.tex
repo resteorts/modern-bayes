@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage{amsthm}
+\usepackage{amsthm,color}
 \usepackage{comment}
 \usepackage{bm}
 \usepackage{amsmath}
@@ -66,8 +66,9 @@ If $\beta+n\bar{x}-1 > 0$, $\theta^{\beta+n\bar{x}-2}e^{-\theta(\alpha+n)}$ is p
 If $\beta+n\bar{x}-1 \leq 0$, then for every $\delta \neq 0$, $\int_{\Theta}{(\theta-\delta)^{2} \theta^{\beta+n\bar{x}-2}e^{-\theta(\alpha+n)} d\theta} = \infty$. Similarly, if $\delta=0$, the posterior risk is proportional to
 
 \begin{align*}
-	\int_{\Theta}{\theta^{2} \theta^{\beta+n\bar{x}-2}e^{-\theta(\alpha+n)} d\theta}	&= \int_{\Theta}{\theta^{\beta+n\bar{x}+1-1}e^{-\theta(\alpha+n)} d\theta} \propto \\
-																																										&\propto \frac{\beta+n\bar{x}+1}{\alpha+n} < \infty
+	\int_{\Theta}{\theta^{2} \theta^{\beta+n\bar{x}-2}e^{-\theta(\alpha+n)} d\theta}	
+	&= \int_{\Theta} \textcolor{red}{\theta \times {\theta^{\beta+n\bar{x}+1-1}e^{-\theta(\alpha+n)} d\theta}} \propto \\
+																										&\propto \textcolor{red}{\frac{\beta+n\bar{x}}{\alpha+n}} < \infty
 \end{align*}
 
 Hence, in this case, the Bayes Estimator is $\hat{\delta} = 0$.
@@ -109,7 +110,7 @@ By the Law of Iterated Variance
 Var[X]	&= Var[E[X|\theta]] + E[Var[X|\theta]] = \\
 				&= Var[n\theta] + E[n\theta(1-\theta)] = \\
 				&= n^{2}Var[\theta] + nE[\theta] - nE[\theta^{2}] = \\
-				&= \frac{n^{2}ab}{(a+b)^{2}(a+b+1)} + \frac{ma}{a+b} - \frac{n(a+1)}{a+b+1} = \\
+				&= \frac{n^{2}ab}{(a+b)^{2}(a+b+1)} + \textcolor{red}{ \frac{na}{a+b}} -\textcolor{red}{ \frac{n(ab +a^3 +a^2b+a^2)}{(a+b+1)(a+b)^2}} = \\
 				&= \frac{n^{2}ab +na(a+b)(a+b+1) - n(a+1)(a+b)^{2}}{(a+b)^{2}(a+b+1)} = \\
 				&= n\frac{nab +(a+b)(a(a+b+1)-(a+1)(a+b))}{(a+b)^{2}(a+b+1)} = \\
 				&= n\frac{nab + ab(a+b)}{(a+b)^{2}(a+b+1)} = n\frac{a}{a+b}\frac{b}{a+b}\frac{a+b+n}{a+b+1}
