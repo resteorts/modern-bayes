@@ -74,10 +74,9 @@ How do we specify $\bbeta_0$ and $\Sigma_0$?
 
 The g-prior
 ===
-To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on $\beta$
+To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on $\beta.$
 
 The g-prior on $\beta$ has the following form: 
-$\bbeta$
 $$ \bbeta \mid \bX, \bz \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
 where $g$ is a constant, such as $g=n.$
 
