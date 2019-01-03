@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  4 APR 2018 22:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  1 MAY 2018 12:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -375,6 +375,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--60
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
@@ -410,16 +415,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 128--129
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 131--133
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
  []
 
-
+[3]
 Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
-[3]
+
 Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
@@ -434,16 +444,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 149.
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 151.
 [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 149.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 151.
  (./syllabus-sta602-spring18.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 149.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 149.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 151.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 151.
 Package rerunfilecheck Info: File `syllabus-sta602-spring18.out' has not change
 d.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 149.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 151.
  ) 
 Here is how much of TeX's memory you used:
  6235 strings out of 492995
@@ -452,7 +467,7 @@ Here is how much of TeX's memory you used:
  9711 multiletter control sequences out of 15000+600000
  11110 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,8n,43p,909b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,8n,43p,909b,376s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb>
@@ -461,10 +476,10 @@ Here is how much of TeX's memory you used:
 sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr
 /local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on syllabus-sta602-spring18.pdf (4 pages, 116534 bytes).
+Output written on syllabus-sta602-spring18.pdf (4 pages, 117083 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
+ 70 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
  6 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
