@@ -1,0 +1,357 @@
+
+---
+title: "Module 8: Part II: Gibbs Sampling with an Application to Missing Data"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+Agenda
+===
+- Gibbs sampling (multi-stage sampler)
+- Missing data application
+
+Multi-stage Gibbs sampler
+===
+Assume three random variables, with joint pmf or pdf: $p(x,y,z).$.
+\vskip 1em
+Set $x$, $y$, and $z$ to some values $(x_o,y_o,z_o)$.
+\vskip 1em
+Sample $x|y,z$, then $y|x,z$, then $z|x,y$, then $x|y,z$, and so on. More precisely,
+\begin{enumerate}
+\item[0.] Set $(x_0,y_0,z_0)$ to some starting value.
+\item[1.] Sample $x_1\sim p(x|y_0,z_0)$. \\
+          Sample $y_1\sim p(y|x_1,z_0)$. \\
+          Sample $z_1\sim p(z|x_1,y_1)$. \\
+\item[2.] Sample $x_2\sim p(x|y_1,z_1)$. \\
+          Sample $y_2\sim p(y|x_2,z_1)$. \\
+          Sample $z_2\sim p(z|x_2,y_2)$. \\
+        $\vdots$
+\end{enumerate}
+
+
+
+
+
+Multi-stage Gibbs sampler
+===
+Assume $d$ random variables, with joint pmf or pdf $p(v^1,\ldots,v^d)$.
+\vskip 1em
+ At each iteration $(1, \ldots, M)$ of the algorithm, we sample from
+\begin{align*}
+v^1&\mid v^2,v^3,\ldots,v^d\\
+v^2&\mid v^1,v^3,\ldots,v^d\\
+&\vdots\\
+v^d&\mid v^1,v^2,\ldots,v^{d-1}
+\end{align*}
+always using the most recent values of all the other variables. 
+\vskip 1em
+The conditional distribution of a variable given all of the others is referred to as the \emph{full conditional} in this context, and for brevity denoted $v^i|\cdots$.
+
+Example: Censored data
+===
+In many real-world data sets, some of the data is either missing altogether or is partially obscured. 
+\vskip 1em
+
+One way in which data can be partially obscured is by \emph{censoring}, which means that we know a data point lies in some particular interval, but we do not observe it. 
+
+Medical data censoring
+===
+Suppose 6 patients participate in a cancer trial, however, patients 1, 2 and 4 leave the trial early.
+
+Then we know when they leave the study, but we don't know information about them as the trial continues.
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{censoring}
+  \end{center}
+  \caption{Example of censoring for medical data.}
+\end{figure}
+
+This is a certain type of missing data.
+
+Heart Disease (Censoring) Example
+===
+\begin{itemize}
+\item Researchers are studying the length of life (lifetime) following a particular medical intervention, such as a new surgical treatment for heart disease.
+\item The study consists of 12 patients.
+\item The number of years before death for each is
+$$3.4, 2.9, 1.2+, 1.4, 3.2, 1.8, 4.6, 1.7+, 2.0+, 1.4+, 2.8, 0.6+$$
+where the $+$ indicates that the patient was alive after $x$ years, but the researchers lost contact with the patient after that point in time. 
+\end{itemize}
+
+Model
+===
+\begin{align}
+  &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
+     & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\
+    & \theta\sim \Ga(a, b)
+\end{align}
+where $a$, $b$, and $r$ are known.
+\begin{itemize}
+\item $c_i$ is the censoring time for patient $i$, which is fixed, but known only if censoring occurs.
+\item $X_i$ is the observation
+\begin{itemize}
+\item if the lifetime is less than $c_i$ then we get to observe it ($X_i = Z_i$), 
+\item otherwise
+        all we know is the lifetime is greater than $c_i$ ($X_i = c_i$).
+        \end{itemize}
+    \item $\theta$ is the parameter of interest---the rate parameter for the lifetime distribution.
+    \item $Z_i$ is the lifetime for patient $i$, however, this is not directly observed.
+    \end{itemize}
+    
+Posterior inference 
+===
+Goal: find $p(\theta,z_{1:n}|x_{1:n})$?
+
+  
+1. Straightforward approaches that are in closed form do not work (think about these on your own). Instead we turn to Gibbs!  
+\vskip 1em
+
+
+2. To sample from $p(\theta,z_{1:n}|x_{1:n})$, we cycle through each of the full conditional distributions,
+\begin{align*}
+\theta &\mid z_{1:n}, x_{1:n}\\
+z_1 &\mid \theta, z_{2:n}, x_{1:n}\\
+z_2 &\mid \theta, z_1,z_{3:n}, x_{1:n}\\
+\vdots\\
+z_n &\mid \theta, z_{1:n-1}, x_{1:n}
+\end{align*}
+sampling from each in turn, always conditioning on the most recent values of the other variables.
+
+Likelihood
+===
+Recall the model is:
+\begin{align}
+  &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
+     & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\
+    & \theta\sim \Ga(a, b)
+\end{align}
+
+The pdf associated with this random variable is rather strange, as it consists of two point masses: one at $Z_i$ and one at $c_i$.  The formula is
+\begin{align*}
+p(x_i|z_i) = \bm{1}(x_i = z_i)\bm{1}(z_i \leq c_i) + \bm{1}(x_i=c_i)\bm{1}(z_i > c_i).
+\end{align*}.
+
+Full conditionals
+===
+The full conditionals are easy to calculate.
+Let's start with $\theta|\cdots$
+\begin{itemize}
+\item Since $\theta \perp x_{1:n}\mid z_{1:n}$ (i.e., $\theta$ is conditionally independent of $x_{1:n}$ given $z_{1:n}$),
+\begin{align}
+p(\theta|\cdots) &= p(\theta|z_{1:n},x_{1:n}) = p(\theta|z_{1:n}) \\ &= \Ga\big(\theta\,\big\vert\, a+nr,\, b+\textstyle\sum_{i=1}^n z_i\big) 
+\end{align}
+using the fact that the prior on $\theta$ is conjugate. 
+\end{itemize}
+
+Full conditionals
+===
+Now we can easily find the full conditionals.  
+
+- Note that $z_i$ is conditionally independent of $z_j$ given $\theta$ for $i \neq j$.  
+- This implies that $x_i$ is conditionally independent of $x_j$ given $z_i$ for $i \neq j$.  
+
+Now we have
+\begin{align*}
+p(z_i|z_{-i},x_{1:n},\theta) &= p(z_i|x_i,\theta) \\
+&\underset{z_i}{\propto} p(z_i,x_i,\theta) \\
+&= p(\theta)p(z_i|\theta)p(x_i|z_i,\theta) \\
+&\underset{z_i}{\propto} p(z_i|\theta)p(x_i|z_i,\theta) \\
+&= p(z_i|\theta)p(x_i|z_i).
+\end{align*}
+
+Full conditionals (continued)
+=== 
+
+There are now two cases to consider.  
+
+
+1. If $x_i \neq c_i$, then $p(z_i|\theta)p(x_i|z_i)$ is only non-zero when $z_i = x_i$.  
+
+- The density devolves to a point mass at $x_i$.  
+
+2. If $x_i = c_i$, then the density becomes $p(x_i|z_i) = \bm{1}(z_i > c_i)$, so 
+\begin{align*}
+p(z_i|\hdots) \propto p(z_i|\theta)\bm{1}(z_i>c_i),
+\end{align*}
+which is a truncated Gamma.
+
+Sampling from the truncated Gamma
+===
+
+We sample from the truncated gamma using a modified version of the inverse CDF method.   
+
+For the censored values of $Z_i$ we know $c_i$.  
+
+If we know $\theta$ (which we will in a Gibbs' sampler), we know the distribution of $Z_i|\theta \sim Gamma(r,\theta)$.  
+
+Let $F$ be the CDF of this distribution.  
+
+Suppose we truncate this distribution to $(c,\infty)$.  The new CDF is
+\begin{align*}
+Y = P(Z_i < z) &= \frac{F(z) - F(c)}{1 - F(c)}.
+\end{align*}
+
+Therefore $Y$ is a sample from the truncated Gamma.
+
+Remark: when we implement the GS, we do not sample the observed values. 
+We impute the censored values using the method just outlined.  
+
+Application to censored data
+===
+```{r}
+knitr::opts_chunk$set(cache=TRUE)
+# Samples from a truncated gamma with
+# truncation (t, infty), shape a, and rate b
+# Input: t,a,b
+# Output: truncated Gamma(a,b)
+sampleTrunGamma <- function(t, a, b){
+  p0 <- pgamma(t, shape = a, rate = b)
+  # Use the modification of the inverse CD method
+  x <- runif(1, min = p0, max = 1)
+  y <- qgamma(x, shape = a, rate = b)
+  return(y)
+}
+```
+
+Application to censored data (continued)
+===
+\footnotesize
+```{r}
+# Gibbs sampler
+# z is the fully observe data
+# c is censored data
+# n.iter is number of iterations
+# init.theta and init.miss are initial values for sampler
+# r,a, and b are fixed parameters
+# burnin is number of iterations to use as burnin
+sampleGibbs <- 
+  function(z, c, n.iter, init.theta, init.miss, r, a, b, burnin = 1){
+  z.sum <- sum(z); m <- length(c); n <- length(z) + m
+  miss.vals <- init.miss 
+  res <- matrix(NA, nrow = n.iter, ncol = 1 + m)
+  for (i in 1:n.iter){
+    var.sum <- z.sum + sum(miss.vals)
+    theta <- rgamma(1, shape = a + n*r, rate = b + var.sum)
+    miss.vals <- sapply(c, function(x) {sampleTrunGamma(x, r, theta)})
+    res[i,] <- c(theta, miss.vals)
+  } 
+  return(res[burnin:n.iter,])
+} 
+```
+
+Set parameter values
+===
+```{r}
+set.seed(5983)
+# set parameter values and enter data
+r <- 10
+a <- 1
+b <- 1
+z <- c(3.4,2.9,1.4,3.2,1.8,4.6,2.8)
+c <- c(1.2,1.7,2.0,1.4,0.6)
+n.iter <- 100
+init.theta <- 1
+init.missing <- 
+  rgamma(length(c), shape = r, rate = init.theta)
+```
+
+Run Gibbs sampler
+===
+\footnotesize
+```{r}
+res <- sampleGibbs(z, c, n.iter, init.theta, init.missing, 
+                   r, a, b) 
+```
+
+Let's first look at some diagnostics --- trace plots and runnning average plots. 
+
+Traceplot of $\theta$
+===
+\footnotesize
+```{r}
+plot(1:n.iter, res[,1], pch = 16, cex = .35,
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Traceplot of ", theta)))
+```
+
+Traceplot of censored observations
+===
+```{r,echo=FALSE}
+par(mfrow=c(3,2))
+missing.index <- c(3,8,9,10,12)
+for (ind in missing.index){
+  x.lab <- bquote(z[.(ind)])
+  plot(1:n.iter, res[,which(missing.index == ind)], pch = 16, cex = .35,
+       xlab = "Iteration", ylab = x.lab,
+       main = bquote(paste("Traceplot of ", .(x.lab))))
+}
+```
+
+Running average plots
+===
+\footnotesize
+```{r, echo=FALSE}
+# get running averages
+run.avg <- apply(res, 2, cumsum)/(1:n.iter)
+plot(1:n.iter, run.avg[,1], type = "l",
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Running Average Plot of ", theta)))
+```
+
+Running average plots
+===
+\footnotesize
+```{r,echo=FALSE}
+par(mfrow=c(3,2))     
+missing.index <- c(3,8,9,10,12)
+for (ind in missing.index){
+  x.lab <- bquote(z[.(ind)])
+  plot(1:n.iter, run.avg[,which(missing.index == ind)], type = "l",
+       xlab = "Iteration", ylab = x.lab,
+       main = bquote(paste("Running Average Plot of ", .(x.lab)))) 
+}      
+```
+
+The estimated density of $\theta$
+===
+```{r, echo=FALSE}
+plot(density(res[,1]), xlab = expression(theta), 
+     main = expression(paste("Density of ", theta)))
+abline(v = mean(res[,1]), col = "red")
+```
+
+The estimated density of $z_9$
+===
+```{r, echo=FALSE}
+plot(density(res[,4]), xlab = expression(z[9]),
+     main = expression(paste("Density of ", z[9])))
+abline(v = mean(res[,4]), col = "red")
+```
+
+Homework 8 
+===
+Using the data and functions given to you (posted to Sakai with Homework 8), investigate the following questions: 
+
+1. Write code to produce traceplots and running average plots for the censored values for 200 iterations. Do these diagnostic plots suggest that you have run the sampler long enough? Explain.  
+
+2. Now run the chain for 10,000 iterations  and update your diagnostic plots (traceplots and running average plots). Report your findings for both traceplots and the running average plots for $\theta$ and the censored values. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
+
+3. Give plots of the estimated density of $\theta \mid \cdots$ and $z_9 \mid \cdots$. Be sure to give brief explanations of your results and findings. (Present plots for 10,000 iterations). 
+
+4. Finally, let's suppose that $r=10,a=1,b=100.$ Does your posterior change? What about when $r=10, a=100,b=1?$ (Use 10,000 iterations for the Gibbs sampler). 
+
+
+
+
+
+
+
+
+
+
+

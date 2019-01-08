@@ -1,0 +1,583 @@
+
+---
+title: "Module 11: Linear Regression, the g-prior, and model selection"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+
+Agenda
+===
+- Review of the Multivariate setup
+- The g-prior
+- Application to diabetes (Hoff, 9.2)
+- Bayesian model selection (g-prior)
+- Bayesian model averaging
+
+
+
+Notation
+===
+- $X_{n\times p}$: regression features or covariates (design matrix)
+- $\bx_{p \times 1}$: $i$th row vector of the regression covariates
+- $\by_{n\times 1}$: response variable (vector)
+- $\bbeta_{p \times 1}$: vector of regression coefficients 
+
+Goal: Estimation of $p(y \mid X_{n \times p}).$
+
+Dimensions: $y_i - \beta^T x_i = (1\times 1) - (1\times p)(p \times 1) = (1\times 1).$
+
+
+Multivariate Setup 
+===
+Let's assume that we have data points $(x_i,y_i)$ available for all  $i=1,\ldots,n.$
+
+- $\by$ is the response variable
+\[  \by= \left( \begin{array}{c}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{array} \right)_{n \times 1} \]
+- $\bx_{i}$ is the $i$th row of the design matrix $X_{n \times p}.$
+
+Consider the regression coefficients
+
+\[  \bbeta = \left( \begin{array}{c}
+\beta_{1}\\
+\beta_{2}\\
+\vdots\\
+\beta_{p}
+\end{array} \right)_{p \times 1} \]
+
+Multivariate Setup 
+===
+$$y \mid X,\beta, \sigma^2 \sim MVN( X\beta, \sigma^2 I)$$
+$$\beta \sim MVN(\beta_0, \Sigma_0) $$
+
+Recall the posterior can be shown to be 
+$$\bbeta \mid \bm{y}, \bX \sim MVN(\bbeta_n, \Sigma_n)$$
+
+where
+
+$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}
+(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2)$$
+
+$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
+
+
+How do we specify $\bbeta_0$ and $\Sigma_0$?
+
+The g-prior
+===
+To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on $\beta.$
+
+The g-prior on $\beta$ has the following form: 
+$$ \bbeta \mid \bX  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
+where $g$ is a constant, such as $g=n.$
+
+The prior also happens to be invariant and is widely studied for regression problems (Zellner, 1986). 
+
+We will find that
+
+1. g shrinks the coefficients and can prevent overfitting to the data
+2. if $g = n$, then as n increases, inference approximates that using $\hat{\beta}_{ols}$
+
+
+The g-prior
+===
+Under the g-prior, it follows that
+\begin{align}
+\bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2]  \\
+&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1} \frac{X^Ty}{\sigma^2} \\
+&= \frac{g}{g+1} (X^TX)^{-1} X^Ty
+= \frac{g}{g+1} \hat{\beta}_{ols}
+\end{align}
+
+\begin{align}
+\Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] \\
+&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1}
+=\frac{g}{g+1} \sigma^2 (X^TX)^{-1} \\
+&= \frac{g}{g+1} \Var[\hat{\beta}_{ols}]
+\end{align}
+
+
+
+
+Variance component $\sigma^2$
+===
+What about a prior on $1/\sigma^2 = \lambda$
+
+\begin{align}
+y &\mid X,\beta, \sigma^2 \sim MVN( X\beta, \sigma^2 I) \\
+1/\sigma^2 = \lambda &\sim \Ga(\nu_0/2,\nu_0 \sigma_0^2 /2)
+\end{align}
+
+
+
+Then the posterior can be shown to be
+
+$$p(\sigma^2 \mid y, X) 
+\sim \text{InverseGamma}([\nu_0 + n]/2,[\nu_0 \sigma_0^2 + SSR_g]/2)$$
+
+where $SSR_g$ is somewhat complicated (see Hoff for details, p. 158). 
+
+Variance component $\sigma^2$
+===
+The joint distribution can be written as 
+
+$$p(\sigma^2, \bbeta \mid y, X) = p(\sigma^2 \mid y, X) \times p(\bbeta \mid y,X, \sigma^2)$$
+
+Goal: simulate $(\sigma^2, \beta) \sim p(\sigma^2, \bbeta \mid y, X)$
+
+Starting value $(\beta_0, \sigma^2_0)$
+
+1. Simulate $$\sigma^2 \sim p(\sigma^2 \mid y, X)$$ Give us $(\sigma^2_1,\beta_0)$ 
+
+2. Use this updated value of $\sigma^2_1$ to simulate 
+$$\beta \sim p(\bbeta \mid y,X, \sigma^2_1)$$ Gives us $(\sigma^2_1, \beta_1)$
+
+Run the sampler for $S$ iterations. 
+
+
+Application to diabetes (Exercise 9.2, part a)
+===
+Suppose we have  data on health-related variables of a population of 532 women.
+
+Our goal is to model the conditional distribution of glucose level (glu) as a linear combination of the other variables, excluding the variable diabetes.\footnote{See Exercise 7.6 for the data description.}
+
+Model specification
+===
+\begin{align}
+y &\mid X,\beta, \sigma^2 \sim MVN( X\beta, \lambda^{-1} I) \\
+\beta &\mid \lambda \sim MVN(0, g (X^TX)^{-1})\\
+\lambda &\sim \Ga(\nu_0/2,\nu_0 \lambda^{-1}/2)
+\end{align}
+
+We will use the g-prior, where
+\begin{enumerate}
+\item $g=n$
+\item $\nu_0 = 1$
+\item $\sigma_0^2 = \lambda^{-1} = \hat{\sigma}_{ols} = 8.54$
+\end{enumerate}
+
+Regression model on the g-prior
+===
+
+Fit a regression model using the g-prior with g = n, $\nu_0 = 2$ and  $\sigma_0^2 = 1.$ Obtain posterior confidence intervals for all of the parameters.
+
+Regression model on the g-prior
+===
+Section 9.2.2 (Hoff) shows that under the $g$ prior, $p(\sigma^{2}\mid\boldsymbol{y},\boldsymbol{X})$ and $p(\boldsymbol{\beta}\mid\boldsymbol{y},\boldsymbol{X},\sigma^{2})$ are inverse gamma and multivariate normal distributions respectively. 
+
+Regression model on the g-prior
+===
+Therefore samples from the joint posterior $p(\sigma^{2},\boldsymbol{\beta}\mid\boldsymbol{y},\boldsymbol{X},\sigma^{2})$ can be made with a Monte Carlo approximation. 
+
+We first center and scale all the variables so that there is no need to include an intercept in the model.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+Regression model on the g-prior
+===
+```{r}
+library(knitr)
+rm(list=ls())
+azd_data = read.table("azdiabetes.dat", header = TRUE)
+head(azd_data)
+```
+
+Regression model on the g-prior
+===
+```{r}
+y = azd_data$glu
+# remove glu and diabetes
+X = as.matrix(azd_data[,c(-2,-8)])
+head(X)
+```
+
+Standardization 
+===
+```{r}
+# standardize data to have mean 0 and variance 1
+ys = scale(y)
+Xs = scale(X)
+n = dim(Xs)[1]
+p = dim(Xs)[2]
+```
+
+Hyper-parameters
+===
+```{r}
+g = n
+nu0 = 2
+s20 = 1
+```
+
+Intermediate Matrices
+===
+```{r}
+# intermediate matrices
+Hg = (g/(g+1)) * Xs %*% solve(t(Xs) %*% Xs) %*% t(Xs)
+SSRg = t(ys) %*% ( diag(1,nrow=n) - Hg ) %*% ys
+```
+
+Monte carlo
+===
+```{r}
+# number of posterior samples
+S = 1000
+
+# generate posteriors
+# we know that the sigma2 is
+# an updated inverse gamma
+s2 = 1/rgamma(S, (nu0+n)/2, (nu0*s20 + SSRg)/2)
+head(s2)
+```
+
+Monte carlo
+===
+```{r}
+# updated posterior mean and variance
+# from using the g-prior (see slide 7)
+Vb = g*solve(t(Xs) %*% Xs)/(g+1)
+Eb = Vb %*% t(Xs) %*% ys
+E = matrix(rnorm(S*p, 0, sqrt(s2)),S,p)
+# use cholesky factorization 
+beta_s = t( t(E %*% chol(Vb)) + c(Eb)) 
+
+# transform coefficients to the original scale
+sd_X = apply(X,2,sd)
+Beta_a = sweep(beta_s,2,sd_X,FUN = "/")
+```
+
+The 95% posterior confidence intervals 
+===
+\footnotesize
+```{r}
+# 95% credible interval
+Beta_CIa = apply(Beta_a, 2, quantile, c(0.025, 0.975))
+kable(data.frame(Beta_CIa))
+```
+
+Model selection
+===
+\begin{itemize}
+\item Often we have a large number of covariates.
+\item Using all of them induces poor statistical performance.
+\item How can we reduce the covariates and have good inference and prediction?
+\item Common method: Backwards and stepwise regression (slow). 
+\end{itemize}
+
+Model selection
+===
+Suppose that we believe some of the regression coefficients are 0. 
+\vskip 1em
+Come up with a prior distribution that reflects the probability of this occuring.
+\vskip 1em
+Consider 
+$$y_i = z_1 b_1 x_{i,1} +\ldots  z_p b_p x_{i,p}, $$
+where $b_p$ is a real number and $z_j$ indicate which regression coefficients are nonzero.
+\vskip 1em
+Note: $\beta_j = b_j \times z_j.$
+
+Bayesian model selection
+===
+Bayesian model selection works by obtaining a posterior distribution for $\bz.$
+\vskip 1em
+Assume a prior $p(\bz)$. 
+\vskip 1em
+Then $$p(\bz \mid \bY, \bX) = \frac{p(\bz) p(\bY\mid \bX, \bz)}{\sum_z p(\bz) p(\bY\mid \bX, \bz)}$$
+
+
+Bayesian model selection
+===
+Suppose we want to compare two models $z_a$  and $z_b$ . 
+Consider $$\text{odds}(z_a,z_b\mid \bY, \bX) = \frac{p(z_a\mid \bY, \bX)}{p(z_b\mid \bY, \bX)}
+= \frac{p(z_a)}{p(z_b)} \times \frac{p(\bY\mid \bX, z_a)}{p(\bY\mid \bX, z_b)}$$
+
+This is posterior odds = prior odds $\times$ ``Bayes factor"
+
+\vskip 1em
+
+``Bayes factor": how much do the data favor model $z_a$ over model $z_b$
+
+\vskip 1em
+
+To obtain a posterior distribution over models, we must compute $p(\bY \mid \bX, \bz)$ for \emph{each} model under consideration.
+
+Bayesian model selection
+===
+We must compute 
+\begin{align}
+p(\bY \mid \bX, \bz) &= \int \int p(\bY, \bbeta, \sigma^2, \mid \bX, \bz) \\
+&\int \int p(\bY \mid \bX, \bz)p(\bbeta \mid \bX, \bz) p(\sigma^2).
+\end{align}
+To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on
+$\bbeta$
+
+$$ \bbeta \mid \bX, \bz \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}).$$
+
+Back to the g-prior
+===
+Given the g-prior $$ \bbeta \mid \bX, \bz \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
+$p(\bY \mid \bX, \bz)$
+can be worked out in closed form (details p. 165). 
+\vskip 1em
+Go through the details on your own. 
+
+
+Back to the g-prior
+===
+This results in being able to compute
+\begin{align}
+\frac{p(\bY \mid \bX, \bz_a) }{p(\bY \mid \bX, \bz_b) }
+& =
+(1 + n)^{(p_{z_b} - p_{z_a})/2}
+\times \left( \frac{
+s_{z_a}^2}{s_{z_b}^2 } \right)^{1/2}\\
+&\times
+\left(\frac{s_{z_b}^2 + SSR_{g}^{{z_b}}
+}
+{s_{z_a}^2 + SSR_{g}^{{z_a}}}
+\right)^{(n+1)/2}
+\end{align}
+
+We have a ratio of the marginal probabilities, giving us a balance between model complexity and model fit. 
+\vskip 1em
+ Suppose $p_{z_b}$ is large compared to $p_{z_a}.$
+\vskip 1em
+This causes a penalization of model $z_b$
+\vskip 1em
+Note that a large value of \textcolor{red}{$SSR_{g}^{{z_a}}$ compared with $SSR_{g}^{{z_b}}$ will penalize model $z_a$}.
+
+Bayesian Model Averaging
+===
+Suppose that we have an estimate of $\bbeta$ from which we can make predictions.
+
+We may also want a list of relatively high probablitiy models. 
+We can use a Markov chain to search through the space of models  for values of $z$ with high posterior probability.
+
+Bayesian model averaging
+===
+Suppose $p$ is large. Then $2^p$ models to consider. 
+\vskip 1em
+Instead let's use a Gibbs sampler to search through the space of models for values where $\bz$ has a high posterior probability. 
+\vskip 1em
+Generate a new value of $\bz$ via $$p(z_j \mid \bY, \bX, \bz_{-j}).$$
+\vskip 1em
+The full conditional that $z_j=1$ can be written as $o_j/(o_j +1).$
+\begin{align}
+o_j &= \frac{ p(z_j = 1 \mid \bY, \bX, \bz_{-j})}
+{p(z_j = 0 \mid \bY, \bX, \bz_{-j})} \\
+&=
+\frac{ p(z_j = 1 ) p(\bY \mid \bX, \bz_{-j}, z_j=1) }
+{p(z_j = 0) p(\bY \mid \bX, \bz_{-j}, z_j=0)}
+\end{align}
+
+Bayesian model averaging
+===
+Note: we may also want to obtain posterior samples of $\bbeta$ and $\sigma^2.$
+\vskip 1em
+Using the conditional distributions from Section 9.2, we can sample from these directly. 
+\vskip 1em
+The Gibbs sampling scheme requires using Section 9.2 and 9.3 (covered in lab).
+
+Bayesian model averaging
+===
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.4\textwidth]{figures/gibbs-alg}
+\caption{Start with $\bz^{(s)}.$ Then in random order update $z_j$ from its full conditional.}
+\label{default}
+\end{center}
+\end{figure}
+
+Bayesian model averaging
+===
+Generate $$\{ \bz^{(s+1)}, \sigma^{2(s+1)}, \bbeta^{(s+1)} \}:$$
+\begin{enumerate}
+\item Set $\bz = \bz^{(s)}$
+\item For $j \in \{1,\ldots, p\}$ in random order, replace $z_j$ with a sample from 
+$$p(z_j \mid \bz_{-j}, \bY, \bX)$$
+\item Set $\bz^{(s+1)} = \bz^{(s)}$
+\item Sample $\sigma^{2(s)} \sim p(\sigma^2 \mid \bz^{(s+1)}, \bY, \bX)$
+\item Sample $\bbeta^{(s+1)} \sim p(\bbeta \mid \bz^{(s+1)}, \sigma^{2(s+1)}, \bY, \bX)$
+\end{enumerate}
+
+
+
+
+
+Back to diabetes data (Exercise 9.2, b)
+===
+Let's perform Bayesian model averaging (as described in Section 9.3)
+
+Obtain $P(\beta_j \neq 0 \mid y)$ as well as posterior confidence intervals for all of the parameters. Compare our results to that in part (a.)
+
+Back to diabetes data (Exercise 9.2, b)
+===
+The following function `lpy.X` calculates the log of $p(\boldsymbol{y}\mid\boldsymbol{X})$, which we will use in implementing the Gibbs sampler for Bayesian model averaging.
+\footnotesize
+```{r}
+## a function to compute the marginal probability
+lpy.X <- function(y, X, g=length(y), nu0=1, 
+                  s20=try(summary(lm(y~ -1+X))$sigma^2, silent=TRUE)){
+  n = dim(X)[1]
+  p = dim(X)[2]
+  if (p==0) { Hg = 0; s20 = mean(y^2)}
+  if (p>0){ Hg = (g/(g+1)) * X %*% solve(t(X) %*% X) %*% t(X) }
+  SSRg = t(y) %*% ( diag(1, nrow=n) - Hg ) %*% y -
+    .5*( n*log(pi) + p*log(1+g) + (nu0+n)*log(nu0*s20 + SSRg) - 
+           nu0*log(nu0*s20)) +
+    lgamma( (nu0+n)/2 ) - lgamma(nu0/2)
+}
+```
+
+Back to diabetes data (Exercise 9.2, b)
+===
+Let $\boldsymbol{z}$ be the random binary vector of variable indicators. Generating samples of $p(\boldsymbol{z},\sigma^{2},\boldsymbol{\beta})$ from the joint posterior distribution is achieved with the following steps:
+
+1. For $j\in\{1,\dots,p\}$ in random order, draw $z_j$ from $p(z_{j}\mid\boldsymbol{z}_{-j},\boldsymbol{y},\boldsymbol{X})$.
+
+2. Sample $\sigma^2 \sim p(\sigma^2 \mid \boldsymbol{z},\boldsymbol{y},\boldsymbol{X})$.
+
+3. Sample $\boldsymbol{\beta} \sim p(\boldsymbol{\beta} \mid \boldsymbol{z}, \sigma^2, \boldsymbol{y}, \boldsymbol{X})$.
+
+ MCMC setup
+===
+```{r}
+g = n
+nu0 = 1 # unit information prior
+z = rep(1, p)
+# picking a starting value for the marginal probability
+lpy.c = lpy.X(ys, Xs[,z==1,drop=FALSE])
+S = 10
+Z = matrix(NA, S, p)
+B = matrix(0, S, p)
+```
+
+Gibbs sampler
+===
+\tiny
+```{r}
+## Gibbs sampler
+for(s in 1:S){
+  # if(s %% 100 ==0) {print(s)}
+  # sample z
+  for (j in sample(1:p)){
+    zp = z
+    zp[j] = 1 - zp[j]
+    lpy.p = lpy.X(ys,Xs[, zp==1, drop=FALSE])
+    r = (lpy.p - lpy.c) * (-1)^(zp[j]==0)
+    zp[j] = rbinom(1, 1, 1/(1+exp(-r)))
+    if(z[j] == zp[j]) {lpy.c = lpy.p}
+  }
+  Z[s,] = z
+  
+  # sample s2
+  pm = sum(z==1) # number of nonzero variables in the model
+  if (pm==0){ 
+    Hg = 0
+    s20 = mean(y^2)
+  }
+  if (pm>0){
+    Hg = (g/(g+1)) * Xs[,z==1,drop=F] %*% solve(t(Xs[,z==1,drop=F]) %*% 
+      Xs[,z==1,drop=F]) %*% t(Xs[,z==1,drop=F])
+    # estimated residual variance from OLS
+    s20=summary(lm(ys ~ -1+Xs[,z==1,drop=F]))$sigma^2                                     }
+  
+  SSRg = t(ys) %*% ( diag(1,nrow=n) - Hg ) %*% ys
+  s2 = 1/rgamma(1, (nu0+n)/2, (nu0*s20 + SSRg)/2)
+  # Sigma2[s] = s2
+  
+  # sample beta 
+  Vb = g * solve(t(Xs[,z==1,drop=F]) %*% Xs[,z==1,drop=F])/(g+1)
+  Eb = Vb %*% t(Xs[,z==1,drop=F]) %*% ys
+  
+  E = rnorm(p, 0, sqrt(s2))
+  beta_z = E %*% chol(Vb) + c(Eb)
+  B[s,z==1] = beta_z
+}
+```
+
+Results
+===
+The posterior probability $\mbox{Pr}(\beta_j \neq 0 \mid \boldsymbol{y})$ is listed below for each predictor. Clearly all predictors are highly relevant to the response.
+
+```{r}
+pprob_Z = apply(Z,2,mean)
+pprob_Z = data.frame(matrix(pprob_Z,nr=1,nc=p))
+names(pprob_Z) = names(azd_data[c(-2,-8)])
+row.names(pprob_Z) = 'posterior including probability'
+
+kable(pprob_Z)
+```
+
+Results
+===
+
+The 95% posterior confidence intervals for all the parameters from Bayesian model averaging are listed below. The results are similar to those in part (a) because all the predictors are included in each iteration of Gibbs sampler all the time.
+
+\footnotesize
+```{r}
+# transform coefficients to the original scale
+#sd_X = apply(X,2,sd)
+Beta_b = sweep(B,2,sd_X,FUN = "/")
+
+# 95% credible interval
+Beta_CIb = apply(Beta_b, 2, quantile, c(0.025, 0.975))
+
+kable(data.frame(Beta_CIb), col.names = names(azd_data[c(-2,-8)]))
+```
+
+Preparation for Final Exam
+===
+
+- May 1, 7 - 10 PM, Old Chem 116 PM
+- Similar format to other exams
+- Closed note, closed book
+- No calculators
+- No pseudo-code
+
+Material
+===
+
+- The exam will be cumulative
+- There will be an emphasis on what we covered after 
+Exam II
+- You must take the final exam to pass the course 
+- No make up exams will be given 
+
+Material after Exam II
+===
+
+(Modules 8 -- 11)
+
+- Gibbs sampling
+- Data augmentation (latent variable models)
+- Gaussian mixture models (with latent variables)
+- Multivariate distributions and multivariate modeling
+- Missing data
+- Linear regression 
+- Probit (ordered regression)
+- The g-prior
+- Model selection
+
+You have many practice exercises posted on this material and the cumulative material with solutions.
+
+
+
+
+
+
+
+
+

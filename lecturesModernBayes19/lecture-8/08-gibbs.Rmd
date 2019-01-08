@@ -1,0 +1,536 @@
+
+---
+title: "Module 8: Introduction to Gibbs Sampling"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+Agenda
+===
+- Gibbs sampling (two-stage sampler)
+- Exponential example
+- Normal example
+- Pareto example
+- Diagnostics
+
+
+Gibbs sampler
+===
+\begin{itemize}
+\item Suppose $p(x,y)$ is a p.d.f.\ or p.m.f.\ that is difficult to sample from directly.  
+\item Suppose, though, that we \textit{can} easily sample from the conditional distributions $p(x|y)$ and $p(y|x)$. 
+\item  The Gibbs sampler proceeds as follows: 
+\begin{enumerate}
+\item set $x$ and $y$ to some initial starting values
+\item then sample $x|y$, then sample $y|x$,\\ then $x|y$, and so on.
+\end{enumerate}
+\end{itemize}
+
+
+Gibbs sampler
+===
+\begin{enumerate}
+\item[0.] Set \textcolor{blue}{$(x_0,y_0)$} to some starting value.
+\item[1.] Sample $x_1\sim p(x|y_0)$, that is, from the conditional distribution $X\mid Y=y_0$. \\
+\textcolor{blue}{Current state: $(x_1, y_0)$}\\
+          Sample $y_1\sim p(y|x_1)$, that is, from the conditional distribution $Y\mid X=x_1$.\\
+    \textcolor{blue}{      Current state: $(x_1, y_1)$}\\
+\item[2.] Sample $x_2\sim p(x|y_1)$, that is, from the conditional distribution $X\mid Y=y_1$. \\
+    \textcolor{blue}{      Current state: $(x_2, y_1)$}\\
+          Sample $y_2\sim p(y|x_2)$, that is, from the conditional distribution $Y\mid X=x_2$. \\
+            \textcolor{blue}{      Current state: $(x_2, y_2)$}\\
+        $\vdots$
+\end{enumerate}
+Repeat iterations 1 and 2, M times. 
+
+Gibbs sampler
+===
+This procedure defines a sequence of pairs of random variables
+$$ (X_0,Y_0), (X_1,Y_1), (X_2,Y_2), (X_3,Y_3), \ldots$$
+
+Markov chain and dependence
+===
+$$ (X_0,Y_0), (X_1,Y_1), (X_2,Y_2), (X_3,Y_3), \ldots$$ satisfies the property of being a Markov chain. 
+
+\vskip 1em
+
+The conditional distribution of $(X_{i+1},Y_{i+1})$ given all of the previous pairs depends only on $(X_{i},Y_{i})$
+
+\vskip 1em
+
+Example: The conditional distribution of 
+$(X_5,Y_5)$ given all of the previous pairs depends only on $(X_4,Y_4)$
+
+\vskip 1em
+
+$(X_0,Y_0), (X_1,Y_1), (X_2,Y_2), (X_3,Y_3), \ldots$ are not iid samples (Think about why). 
+
+Ideal Properties of MCMC
+===
+\begin{itemize}
+\item $(x_0,y_0)$ chosen to be in a region of high probability under $p(x,y)$, but often this
+is not so easy. 
+\item We run the chain for M iterations and discard the first $B$ samples $(X_1,Y_1),\ldots,(X_B,Y_B)$. This is called \emph{burn-in}.
+\item Typically: if you run the chain long enough, the choice of $B$ doesn't matter. 
+\item Roughly speaking, the performance of an MCMC algorithm---that is, how quickly the sample averages $\frac{1}{N}\sum_{i = 1}^N h(X_i,Y_i)$
+converge---is referred to as the \emph{mixing rate}. 
+\item An algorithm with good performance is said to ``have good mixing'', or ``mix well''.
+\end{itemize}
+
+Exponential Example
+===
+Consider the following Exponential model for observation(s) $x=(x_1,\ldots,x_n).$\footnote{Please note that in the attached data there are 40 observations, which can be found in \text{data-exponential.csv}.}:
+$$ p(x|a,b) = a b \exp(- a b x) I(x>0)$$
+and suppose the prior is 
+$$ p(a,b) = \exp(- a - b)I(a,b>0). $$
+You want to sample from the posterior $p(a,b|x)$. 
+
+Conditional distributions
+===
+\begin{align*}
+p(\boldsymbol{x}|a,b) &= \prod_{i=1}^n p(x_i|a,b) \\
+&= \prod_{i=1}^n ab\exp(-abx_i) \\
+&= (ab)^n\exp\left(-ab\sum_{i=1}^nx_i\right).
+\end{align*}
+The function is symmetric for $a$ and $b$, so we only need to derive $p(a|\boldsymbol{x},b)$.  
+
+Conditional distributions
+===
+This conditional distribution satisfies
+\begin{align*}
+p(a|\boldsymbol{x},b) &\propto_a p(a,b,\boldsymbol{x}) \\
+&= p(\boldsymbol{x}|a,b)p(a,b) \\
+&= \textcolor{blue}{\text{fill in full details for lab this week}}
+\end{align*}
+
+Gibbs sampling code
+===
+```{r}
+knitr::opts_chunk$set(cache=TRUE)
+library(MASS)
+data <- read.csv("data-exponential.csv", header = FALSE)
+```
+
+Gibbs sampling code
+===
+```{r}
+#######################################
+# This function is a Gibbs sampler
+# 
+# Args
+#   start.a: initial value for a
+#   start.b: initial value for b
+#   n.sims: number of iterations to run
+#   data:  observed data, should be in a 
+            # data frame with one column
+#
+# Returns:
+#   A two column matrix with samples 
+     #   for a in first column and
+# samples for b in second column
+#######################################
+```
+
+Gibbs sampling code
+===
+```{r}
+sampleGibbs <- function(start.a, start.b, n.sims, data){
+  # get sum, which is sufficient statistic
+  x <- sum(data)
+  # get n
+  n <- nrow(data)
+  # create empty matrix, allocate memory for efficiency
+  res <- matrix(NA, nrow = n.sims, ncol = 2)
+  res[1,] <- c(start.a,start.b)
+  for (i in 2:n.sims){
+    # sample the values
+    res[i,1] <- rgamma(1, shape = n+1, 
+                       rate = res[i-1,2]*x+1)
+    res[i,2] <- rgamma(1, shape = n+1, 
+                       rate = res[i,1]*x+1)
+  }
+  return(res)
+}
+```
+
+Gibbs sampler code
+===
+```{r}
+# run Gibbs sampler
+n.sims <- 10000
+# return the result (res)
+res <- sampleGibbs(.25,.25,n.sims,data)
+head(res)
+```
+
+Exponential Example
+===
+
+You will explore this problem more
+in lab this week and in your homework. 
+
+
+
+
+Toy Example
+===
+$$p(x,y) \propto e^{-x y}\I(x,y\in (0, c))$$
+
+$$p(x|y) \underset{x}{\propto} p(x,y) \underset{x}{\propto} e^{-x y}\I(0<x<c)\underset{x}{\propto} \Exp(x|y)\I(x<c).\footnote{Under $\propto$, we write the random variable ($x$) for clarity.}
+$$\begin{itemize}
+\item $p(x|y)$ is a \emph{truncated} version of the $\Exp(y)$ distribution
+\item It is the same as taking $X\sim\Exp(y)$ and
+ conditioning on it being less than $c$, i.e., $X\mid X<c$.
+\item Let's refer to this as the $\TExp(y,(0,c))$ distribution.
+\end{itemize}
+
+Toy Example
+===
+\begin{itemize}
+\item The Gibbs sampling approach is to alternately sample from $p(x|y)$ and $p(y|x)$.  
+\item Note $p(x,y)$ is
+symmetric with respect to $x$ and $y$.
+\item Hence, only need to derive one of these and then we can get the other one by just swapping $x$ and $y$.
+\item Let's look at $p(x|y).$
+\end{itemize}
+
+Toy Example
+===
+An easy way to generate a sample from $Z\sim\TExp(\theta,(0,c))$, is:
+\begin{enumerate}
+    \item Sample $U\sim \Uniform(0,F(c|\theta))$ where $$F(x|\theta) = 1-e^{-\theta x}$$ is the $\Exp(\theta)$ c.d.f.
+    \item Set $Z = F^{-1}(U|\theta)$ where $$F^{-1}(u|\theta) = -(1/\theta)\log(1 - u)$$ is the inverse c.d.f.\ for $u\in(0,1)$.
+\end{enumerate}
+Hint: To verify the last step: apply the rejection principle (along with the inverse cdf technique). 
+Verify the last step on your own.
+
+
+Toy example
+===
+Let's apply Gibbs sampling, denoting $S=(0,c)$.
+\begin{enumerate}
+    \item[0.] Initialize $x_0,y_0\in S$.
+    \item[1.] Sample $x_1\sim \TExp(y_0,S)$, then sample $y_1\sim \TExp(x_1,S).$
+    \item[2.] Sample $x_2\sim \TExp(y_1,S)$, then sample $y_2\sim \TExp(x_2,S).$\\
+        $\vdots$
+    \item[$N$.] Sample $x_N\sim \TExp(y_{N-1},S)$, sample $y_N\sim \TExp(x_N,S).$
+\end{enumerate}
+Figure \ref{figure:toy} demonstrates the algorithm, with $c = 2$ and initial point $(x_0, y_0) = (1, 1)$.
+
+Toy example
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{examples/toy-numbered.png}
+    \includegraphics[width=0.48\textwidth]{examples/toy-scatter.png}
+  \end{center}
+  \caption{(Left) Schematic representation of the first 5 Gibbs sampling iterations/sweeps/scans. (Right) Scatterplot of samples from $10^4$ Gibbs sampling iterations.}
+  \label{figure:toy}
+\end{figure}
+
+Example: Normal with semi-conjugate prior
+===
+Consider
+$X_1,\ldots,X_n|\mu,\lambda\,\stackrel{iid}{\sim} \N(\mu,\lambda^{-1})$.
+Then independently consider
+\begin{align*}
+& \bm\mu \sim \N(\mu_0,\lambda_0^{-1})\\
+& \bm{\lambda} \sim \Ga(a,b)
+\end{align*}
+
+This is called a semi-conjugate situation, in the sense that the prior on $\mu$ is conjugate for each fixed value of $\lambda$, and the prior on $\lambda$ is conjugate for each fixed value of $\mu$.
+
+\vskip 1em
+
+For ease of notation, denote the observed data points by $x_{1:n}.$
+
+How does one derive $p(\mu, \lambda \mid x_{1:n})$?
+
+Example
+===
+We know that for the Normal--Normal model, we know that for any fixed value of $\lambda$,
+$$\bm\mu|\lambda,x_{1:n}\, \sim \,\N(M_\lambda,L_\lambda^{-1})$$
+ where $$L_\lambda =\lambda_0+ n\lambda \;\;  \text{and} \;\;
+ M_\lambda =\frac{\lambda_0\mu_0+\lambda\sum_{i = 1}^n x_i}{\lambda_0+ n\lambda}.$$
+
+For any fixed value of $\mu$, it is straightforward to derive\footnote{do this on your own} that
+\begin{align}\label{equation:lambda-semi-conjugate}
+\bm\lambda|\mu, x_{1:n}\,\sim\,\Ga(A_\mu, B_\mu)
+\end{align}
+where $A_\mu = a + n/2$ and
+$$ B_\mu = b +\tfrac{1}{2}\textstyle\sum (x_i -\mu)^2 = n\hat\sigma^2 + n (\bar x-\mu)^2$$
+where $\hat\sigma^2 = \frac{1}{n}\sum (x_i -\bar x)^2$. 
+
+Example
+===
+Goal: sample from $p(\mu, \lambda \mid x_{1:n})$
+
+To implement Gibbs sampling in this example, each iteration consists of sampling:
+\begin{align*}
+    & \bm\mu|\lambda,x_{1:n}\, \sim \,\N(M_\lambda,L_\lambda^{-1})\\
+    & \bm\lambda|\mu, x_{1:n}\,\sim\,\Ga(A_\mu, B_\mu).
+\end{align*}
+
+This will give us samples $$(\mu_0,\lambda_0),\ldots(\mu_S, \lambda_S)$$
+
+
+
+
+
+
+
+Pareto example
+===
+
+Distributions of sizes and frequencies often tend to follow a ``power law'' distribution. 
+\begin{itemize}
+    \item wealth of individuals
+    \item size of oil reserves
+    \item size of cities
+    \item word frequency
+    \item returns on stocks
+\end{itemize}
+
+Power law distribution
+===
+The Pareto distribution with shape $\alpha>0$ and scale $c >0$ has p.d.f.\
+$$ \Pareto(x|\alpha,c) = \frac{\alpha c^\alpha}{x^{\alpha+1}}\I(x>c)\propto \frac{1}{x^{\alpha+1}}\I(x>c).$$
+
+- This is referred to as a power law distribution, because the p.d.f.\ is proportional to $x$ raised to a power.
+- $c$ is a lower bound on the observed values.
+- We will use Gibbs sampling to perform inference for $\alpha$ and $c$. 
+- Let $X$ be the population of a city.
+
+
+Pareto example
+===
+\begin{table}
+\small
+\centering
+\begin{tabular}{clr}
+Rank & City & Population \\
+\hline
+1  &  Charlotte   &  731424 \\
+2  &  Raleigh   &  403892 \\
+3  &  Greensboro   &  269666 \\
+4  &  Durham   &  228330 \\
+5  &  Winston-Salem   &  229618 \\
+6  &  Fayetteville   &  200564 \\
+7  &  Cary  &  135234 \\
+8  &  Wilmington   &  106476 \\
+9  &  High Point  &  104371 \\
+10  &  Greenville   &  84554 \\
+11  &  Asheville   &  85712 \\
+12  &  Concord   &  79066 \\
+\vdots  &  \vdots   &  \vdots \\
+44  &  Havelock  &  20735 \\
+45  &  Carrboro  &  19582 \\
+46  &  Shelby   &  20323 \\
+47  &  Clemmons  &  18627 \\
+48  &  Lexington   &  18931 \\
+49  &  Elizabeth City   &  18683 \\
+50  &  Boone   &  17122 \\
+\hline
+\end{tabular}
+\vspace{1em}
+\caption{Populations of the 50 largest cities in the state of North Carolina, USA.}
+\label{table:cities}
+\end{table}
+
+Parameter intepretations
+===
+\begin{itemize}
+\item $\alpha$ tells us the scaling relationship between the size of cities and their probability of occurring. 
+\begin{itemize}
+\item Let $\alpha = 1$. 
+\item Density looks like $1/x^{\alpha +1} = 1/x^2$.
+\item Cities with 10,000--20,000 inhabitants occur roughly $10^{\alpha+1} = 100$
+    times as frequently as cities with 100,000--110,000 inhabitants (or $10^{\alpha+1}/10 = 10$ times as frequently as cities with 100,000-200,000 inhabitants)
+\end{itemize}
+\item $c$ represents the cutoff point---any cities smaller than this were not included in the dataset.
+\end{itemize}
+
+Prior selection
+===
+For simplicity, let's use an **(improper) default prior**:
+$$p(\alpha,c) \propto \I(\alpha,c>0).$$
+
+\vskip 1em
+Recall:
+\begin{itemize}
+\item An \emph{improper/default prior} is a non-negative function of the parameters which integrates to infinity.
+\item  Often (but not always!)\ the resulting ``posterior'' will be proper.
+\item It is important that the ``posterior'' be proper, since otherwise the whole Bayesian framework breaks down.
+\end{itemize}
+
+Pareto example
+===
+Recall
+\textcolor{blue}{
+\begin{align}
+p(x|\alpha,c) &= \frac{\alpha c^\alpha}{x^{\alpha+1}}\I(x>c)\\
+&\I(\alpha,c>0)
+\end{align}
+}
+Let's derive the posterior:
+\begin{align}
+    p(\alpha,c|x_{1:n}) & \overset{\text{def}}{\underset{\alpha,c}{\propto}} p(x_{1:n}|\alpha,c)p(\alpha,c)\notag\\ 
+    &\underset{\alpha,c}{\propto}\I(\alpha,c>0)\prod_{i=1}^n \frac{\alpha c^\alpha}{x_i^{\alpha+1}}\I(x_i>c) \notag\\
+    & = \frac{\alpha^n c^{n\alpha}}{(\prod x_i)^{\alpha+1}} \I(c<x_*)\I(\alpha,c>0)\label{equation:Pareto-posterior}
+                        % & = \alpha^n \Big(\prod_{i=1}^n c/x_i\Big)^\alpha \I(c<x_*)
+\end{align}
+where $x_* = \min\{x_1,\ldots,x_n\}$. 
+
+Pareto example
+===
+As a joint distribution on $(\alpha,c)$, 
+\begin{itemize}
+\item this does not seem to have a recognizable form, 
+\item and it is not clear how we might sample from it directly.
+\end{itemize}
+
+Gibbs sampling
+===
+Let's try Gibbs sampling! 
+To use Gibbs, we need to be able to sample $\alpha|c,x_{1:n}$ and $c|\alpha,x_{1:n}$. 
+\vskip 1em
+By Equation \ref{equation:Pareto-posterior}, we find that
+\begin{align*}
+p(\alpha|c,x_{1:n})&\underset{\alpha}{\propto}p(\alpha,c|x_{1:n})
+\underset{\alpha}{\propto} \frac{\alpha^n c^{n\alpha}}{(\prod x_i)^\alpha}\I(\alpha>0) \\
+&= \alpha^n\exp\big(-\alpha(\textstyle\sum\log x_i - n\log c)\big)\I(\alpha>0) \\
+&\underset{\alpha}{\propto} \Ga\big(\alpha\,\big\vert\, n+1,\,\textstyle\sum\log x_i - n\log c\big),
+\end{align*}
+and
+\begin{align*}
+p(c|\alpha, x_{1:n})\underset{c}{\propto}p(\alpha,c|x_{1:n})
+\underset{c}{\propto} c^{n\alpha}\I(0<c<x_*),
+\end{align*}
+which we will define to be Mono$(\alpha, x_*)$
+
+Mono distribution
+===
+For $a>0$ and $b>0$, define the distribution $\Mono(a,b)$ (for monomial) with p.d.f.
+$$ \Mono(x|a,b)\propto x^{a-1}\I(0<x<b). $$
+Since $\int_0^b x^{a -1}d x = b^a/a$, we have
+$$ \Mono(x|a,b) =\frac{a}{b^a}x^{a-1}\I(0<x<b), $$
+and for $0<x<b$, the c.d.f.\ is
+$$ F(x|a,b) =\int_0^x \Mono(y|a,b)d y = \frac{a}{b^a}\frac{x^a}{a} = \frac{x^a}{b^a}. $$
+
+Pareto example
+===
+To use the inverse c.d.f.\ technique, we solve for the inverse of $F$ on $0<x<b$:
+Let $u = \frac{x^a}{b^a}$ and solve for $x.$
+\begin{align}
+u &= \frac{x^a}{b^a} \\
+b^a u &= x^a \\ 
+b u^{1/a} &= x 
+\end{align}
+Can sample from $\Mono(a,b)$ by drawing $U\sim \Uniform(0,1)$ and setting $X=b U^{1/a}$.\footnote{ It turns out that this is an inverse of the Pareto distribution, in the sense that if $X\sim\Pareto(\alpha,c)$ then $1/X\sim\Mono(\alpha,1/c)$. }
+
+Pareto example
+===
+So, in order to use the Gibbs sampling algorithm to sample from the posterior $p(\alpha,c|x_{1:n})$, we initialize $\alpha$ and $c$, and then alternately update them by sampling:
+\begin{align*}
+\alpha|c,x_{1:n} \,&\sim\, \Ga\big(n+1,\,\textstyle\sum\log x_i - n\log c\big) \\
+c|\alpha,x_{1:n}\,&\sim\, \Mono(n\alpha+1,\,x_*).
+\end{align*}
+
+Traceplots
+===
+ \textbf{Traceplots}. A traceplot simply shows the sequence of samples, for instance $\alpha_1,\ldots,\alpha_N$, or $c_1,\ldots, c_N$. Traceplots are a simple but very useful way to visualize how the sampler is behaving. 
+
+Traceplots
+===
+\begin{figure}[htbp]
+\begin{center}
+ \includegraphics[width=0.65\textwidth]{examples/Pareto-a_trace.png}
+\caption{Traceplot of $\alpha$}
+\label{default}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\begin{center}
+ \includegraphics[width=0.65\textwidth]{examples/Pareto-c_trace.png}
+\caption{Traceplot of c.}
+\label{default}
+\end{center}
+\end{figure}
+
+ 
+Estimated density
+===
+ \textbf{Estimated density}. We are primarily interested in the posterior on $\alpha$, since it tells us the scaling relationship between the size of cities and their probability of occurring. 
+ 
+ By making a histogram of the samples $\alpha_1,\ldots,\alpha_N$, we can estimate the posterior density $p(\alpha|x_{1:n})$. 
+ 
+
+ The two vertical lines indicate the lower $\ell$ and upper $u$ boundaries of an (approximate) 90\% credible interval $[\ell,u]$---that is, an interval that contains 90\% of the posterior probability:
+$$\Pr\big(\bm\alpha\in [\ell, u] \big\vert x_{1:n}\big) = 0.9. $$
+
+Estimated density
+===
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{examples/Pareto-a_density.png}\caption{Estimated density of $\alpha|x_{1:n}$ with $\approx$ 90 percent credible intervals.}
+\label{default}
+\end{center}
+\end{figure}
+
+Running averages
+===
+ \textbf{Running averages}. Panel (d) shows the running average $\frac{1}{k}\sum_{i = 1}^k\alpha_i$ for $k = 1,\ldots,N$.
+    \vskip 1em
+  In addition to traceplots, running averages such as this are a useful heuristic for visually assessing the convergence of the Markov chain. 
+     \vskip 1em
+  The running average shown in this example still seems to be meandering about a bit, suggesting that the sampler needs to be run longer (but this would depend on the level of accuracy desired).
+
+Running averages
+===
+\begin{figure}[htbp]
+\begin{center}
+ \includegraphics[width=0.8\textwidth]{examples/Pareto-a_means.png}
+ \caption{Running average plot}
+ \label{default}
+\end{center}
+\end{figure}
+
+
+Survival functions
+===
+A survival function is defined to be $$S(x) = \Pr(X>x) = 1-\Pr(X\leq x).$$
+
+ Power law distributions are often displayed by plotting their survival function $S(x),$ on a log-log plot. 
+ \vskip 1em
+ Why?
+  $S(x) = (c/x)^\alpha$ for the $\Pareto(\alpha,c)$ distribution and on a log-log plot this appears as a line with slope $-\alpha$.
+ \vskip 1em
+  The posterior survival function (or more precisely, the posterior predictive survival function), is $S(x|x_{1:n}) = \Pr(X_{n+1}>x\mid x_{1:n})$. 
+  
+Survival functions
+===
+ Figure \ref{figure:Pareto}(e) shows an empirical estimate of the survival function (based on the empirical c.d.f., $\hat F(x) = \frac{1}{n}\sum_{i = 1}^n \I(x\geq x_i)$) along with the posterior survival function, approximated by
+\begin{align}
+S(x|x_{1:n}) &= \Pr(X_{n+1}>x\mid x_{1:n}) \\
+&= \int \Pr(X_{n+1}>x\mid \alpha,c) p(\alpha,c|x_{1:n})d\alpha d c\\
+&\approx\frac{1}{N}\sum_{i = 1}^N \Pr(X_{n+1}>x\mid \alpha_i,c_i)
+=\frac{1}{N}\sum_{i = 1}^N (c_i/x)^{\alpha_i}.
+\end{align}
+This is computed for each $x$ in a grid of values.
+
+Survival functions
+===
+\begin{figure}[htbp]
+\begin{center}
+ \includegraphics[width=0.65\textwidth]{examples/Pareto-survival-function.png}
+ \caption{Empirical vs posterior survival function}
+ \label{figure:Pareto}
+\end{center}
+\end{figure}
+
