@@ -127,6 +127,8 @@ The Homeworks
 4. Ask questions early if you have a problem to a TA regarding submission issues. 
 5. Your lowest homework will be dropped. 
 
+Please see the syllabus for all homework guidelines.
+
 The Exams
 === 
 1. All exams will be in class, closed book. 
@@ -134,11 +136,13 @@ The Exams
 3. Make up exams will not be given. 
 4. You must take the final exam to pass the class! 
 
+Please see the syllabus for all exam guidelines. 
+
 Typos
 ===
+
 - If you find a typo on a slide, please
-write it down neatly with the slide number
-and give it to me after class. 
+write it down neatly with the slide number and give it to me after class. 
 
 - I do my best to fix typos within 48 hours after lecture and re-post them. 
 
@@ -176,13 +180,14 @@ Office Hours and Questions
 - Office hours can be found 
 on the course syllabus.
 
-[Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring18.pdf)
+[Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring19.pdf)
 
 - I encourage you to sign up and use the Google group platform for questions as well. If you don't feel comfortable posting, email myself or a TA and we will post the question for you. 
 
-[Google group](https://groups.google.com/forum/#!forum/bayes18)
+[Google group](https://groups.google.com/forum/#!forum/bayes19)
 
 - When emailing, please CC all TA's and myself. 
+- Please also note that one TA is responsible for emails each day, so please see the syllabus for this. 
 
 R versus RStudio
 ===
@@ -223,6 +228,7 @@ x
 
 Installing RStudio and Markdown
 ===
+
 - How do I install \textcolor{blue}{\href{https://courses.edx.org/courses/UTAustinX/UT.7.01x/3T2014/56c5437b88fa43cf828bff5371c6a924/}{Rstudio}}?
 
 - How do I include markdown? 
@@ -258,6 +264,7 @@ Conversion lets you do your original work in markdown, which is very easy to use
 
 More behind R Markdown
 ===
+
 In practice, authors almost always knit and convert their documents at the same time. In this article, I will use the term render to refer to the two step process of knitting and converting an R Markdown file.
 
 You can manually render an R Markdown file with 
@@ -268,6 +275,7 @@ rmarkdown::render().
 
 Takeaways
 ===
+
 1. Make sure that you understand the class policies.
 2. Make sure you can access the Google group. 
 3. Make sure that you can access Sakai, the first homework assignment, and start your assigned readings for the course. 
@@ -284,11 +292,11 @@ Key pages
 
 This is where you can find all the course lectures labs, and syllabus. (For more about github and git, please see a TA or you can learn more about it on my teaching page).
 
-- [Course webpage](http://www2.stat.duke.edu/~rcs46/bayes18.html)
+- [Course webpage](http://www2.stat.duke.edu/~rcs46/bayes19.html)
 
 General structure of the course. 
 
-- [Google group](https://groups.google.com/forum/#!forum/bayes18)
+- [Google group](https://groups.google.com/forum/#!forum/bayes19)
 
 Place to post questions that only the class can see. 
 
