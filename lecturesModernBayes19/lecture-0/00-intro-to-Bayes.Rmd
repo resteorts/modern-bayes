@@ -174,20 +174,7 @@ Reproducible Code
 
 - Similarly, if you write your code in this way for your homeworks, then I and the TAs can also verify the results very quickly.
 
-Office Hours and Questions
-===
 
-- Office hours can be found 
-on the course syllabus.
-
-[Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring19.pdf)
-
-- I encourage you to sign up and use the Google group platform for questions as well. If you don't feel comfortable posting, email myself or a TA and we will post the question for you. 
-
-[Google group](https://groups.google.com/forum/#!forum/bayes19)
-
-- When emailing, please CC all TA's and myself. 
-- Please also note that one TA is responsible for emails each day, so please see the syllabus for this. 
 
 R versus RStudio
 ===
@@ -273,6 +260,21 @@ You can manually render an R Markdown file with
 rmarkdown::render(). 
 ```
 
+Office Hours and Questions
+===
+
+- Office hours can be found 
+on the course syllabus.
+
+[Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring19.pdf)
+
+- I encourage you to sign up and use the Google group platform for questions as well. If you don't feel comfortable posting, email myself or a TA and we will post the question for you. 
+
+[Google group](https://groups.google.com/forum/#!forum/bayes19)
+
+- When emailing, please CC all TA's and myself. 
+- Please also note that one TA is responsible for emails each day, so please see the syllabus for this. 
+
 Takeaways
 ===
 
@@ -292,7 +294,7 @@ Key pages
 
 This is where you can find all the course lectures labs, and syllabus. (For more about github and git, please see a TA or you can learn more about it on my teaching page).
 
-- [Course webpage](http://www2.stat.duke.edu/~rcs46/bayes19.html)
+- [Course webpage](https://resteorts.github.io/teach/bayes19)
 
 General structure of the course. 
 
