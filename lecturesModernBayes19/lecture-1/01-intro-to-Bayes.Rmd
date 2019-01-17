@@ -9,6 +9,14 @@ output:
 font-size: 8px
 ---
 
+Clarifications/Announcements 
+===
+
+1. What is the connection with the Bernoulli and Binomial distributions? 
+
+2. If you're having trouble with plotting on the first homework, please take a look at the lecture notes or the posted lab solutions to aid you in your homework write ups! 
+
+
 Agenda
 ===
 - Motivations
