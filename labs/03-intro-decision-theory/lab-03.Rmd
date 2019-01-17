@@ -1,6 +1,6 @@
 
 ---
-title: "Lab 2: Intro to Decision Theory"
+title: "Lab 3: Intro to Decision Theory"
 author: "Xingyu Yan and Rebecca C. Steorts"
 output: 
      pdf_document:
