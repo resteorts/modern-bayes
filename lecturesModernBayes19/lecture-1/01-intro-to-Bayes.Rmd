@@ -9,14 +9,6 @@ output:
 font-size: 8px
 ---
 
-Announcements
-===
-- I will be out of town on Thursday January 25, 2017. Andee Kaplan will be covering the lecture. 
-- Homework 1 is due today (see Sakai). Please make sure that you upload your submissions as a .zip file. 
-- Late homeworks won't be accepted. - Homework 2 (and lab 2) are both posted. 
-- Exam 2 will proceed as scheduled. We will discuss this more closer to the exam. 
-- The class period before Exam 2 will be a review session. 
-
 Agenda
 ===
 - Motivations
@@ -246,7 +238,7 @@ How Much Do You Sleep
 ===
 
 \begin{itemize}
-\item From USC and UND,  believe it's probably true that most college students getless than eight hours of sleep. 
+\item From USC and UND,  believe it's probably true that most college students get less than eight hours of sleep. 
 \item Want our prior to assign most of the probability to values of $\theta < 0.5. $
 \item From the information given, we decide that our best guess for $\theta$ is 0.3, although we think it is very possible that $\theta$ could be any value in $[0,0.5].$
 \end{itemize}
@@ -399,12 +391,18 @@ Example: Back to the Bernoulli-Beta
 ===
 Suppose $$\; \theta\sim Beta(a,b)$$ and $$X_1,\dotsc,X_n\mid \theta \stackrel{iid}{\sim} Bernoulli(\theta)$$
 
+Example: Back to the Bernoulli-Beta
+===
 Then the marginal likelihood is
 $$
 \begin{aligned}
 &p(x_{1:n}) \\
 &= \int p(x_{1:n}|\theta) p(\theta) \,d\theta\\
 & = \int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}\frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1} d\theta\\
+& = \frac{1}{B(a,b)}\int_0^1\theta^{\sum x_i+a-1}(1-\theta)^{n-\sum x_i+b-1} 
+d\theta\\
+& = \frac{\textcolor{red}{B\big(a +\sum x_i,\, b + n-\sum x_i\big)}}{B(a,b)}\int_0^1 \frac{\theta^{\sum x_i+a-1}(1-\theta)^{n-\sum x_i+b-1}}{\textcolor{red}{B\big(a +\sum x_i,\, b + n-\sum x_i\big)}}
+d\theta\\
 & =\frac{B\big(a +\sum x_i,\, b + n-\sum x_i\big)}{B(a,b)},
 \end{aligned}
 $$
