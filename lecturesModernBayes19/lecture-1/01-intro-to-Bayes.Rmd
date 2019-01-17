@@ -12,6 +12,12 @@ font-size: 8px
 Clarifications/Announcements 
 ===
 
+0. Duke Undergraduate Machine Learning Day and Travel Grants
+
+http://dukeml.org/ml-day.html
+
+https://docs.google.com/forms/d/e/1FAIpQLSe4GYZ74UqvOOb7nXz6SC__NgeZe7A0zAxp4Y2F3Yh3Xut9uw/viewform
+
 1. What is the connection with the Bernoulli and Binomial distributions? 
 
 2. If you're having trouble with plotting on the first homework, please take a look at the lecture notes or the posted lab solutions to aid you in your homework write ups! 
