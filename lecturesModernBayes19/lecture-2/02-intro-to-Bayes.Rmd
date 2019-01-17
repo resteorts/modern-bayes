@@ -68,11 +68,36 @@ What is the optimal decision rule?
 - Goal: Minimize the posterior risk
 - First note that 
 $$\ell(\theta,\hat\theta) =\theta^2 - 2\theta\hat\theta + \hat\theta^2$$
-- It then follows that 
-$$\rho(\hat\theta,x_{1:n})=\E(\ell(\btheta,\hat\theta)|x_{1:n}) =\E(\btheta^2|x_{1:n}) - 2\hat\theta\E(\btheta|x_{1:n}) +\hat\theta^2,$$
+- It then follows that the \textbf{posterior loss} is
+\begin{align*}
+\rho(\hat\theta,x_{1:n})&=\E(\ell(\theta,\hat\theta)|x_{1:n}) =
+\E((\theta-\hat\theta)^2|x_{1:n}) \\
+&= 
+\E(\theta^2 - 2\theta\hat\theta + \hat\theta^2|x_{1:n})\\
+&=\E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2,
+\end{align*}
 which is a convex function of $\hat\theta$. 
 
+What is the optimal decision rule?
+===
+We just showed that
+$$\rho(\hat\theta,x_{1:n}) = \E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2$$
 Setting the derivative with respect to $\hat\theta$ equal to $0$, and solving, we find that the minimum occurs at $\hat\theta = \E(\btheta|x_{1:n})$, \textbf{the posterior mean}. 
+
+Let's walk through this derivation together. 
+
+What is the optimal decision rule?
+===
+\begin{align*}
+\frac{\partial \rho(\hat\theta,x_{1:n})}{\partial \hat{\theta}}
+&= \frac{\partial \{\E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2\}}{\partial \hat{\theta}}
+&= -2 \E(\theta|x_{1:n}) + 2 \hat{\theta}
+\end{align*}
+Now, let 
+$$ -2 \E(\theta|x_{1:n}) + 2 \hat{\theta} = 0, $$
+which implies that $$\hat{\theta} = \E(\theta|x_{1:n}).$$
+
+Why is the solution unique?
 
 Resource allocation for disease prediction
 ===
