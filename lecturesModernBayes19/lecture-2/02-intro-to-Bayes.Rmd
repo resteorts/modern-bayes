@@ -9,6 +9,12 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+1. No late assignments on homeworks will be accepted.
+2. Please make sure you are familar with the syllabus and course policies. 
+
 Agenda
 ===
 - What is decision theory?
@@ -107,10 +113,10 @@ Suppose public health officials in a small city need to decide how much resource
 Resource allocation for disease prediction (continued)
 ===
 
-Suppose they allocate enough resources to accomodate a fraction $c$ of the population.
+Suppose they allocate enough resources to accomodate a fraction $c$ of the population. Recall that $\theta$ is the fraction of the infected individuals in the city. 
 
 - If $c$ is too large, there will be wasted resources, while if it is too small, preventable cases may occur and some individuals may go untreated. 
-- After deliberation, they tentatively adopt the following loss function:
+- After deliberation, they adopt the following loss function:
 $$\ell(\theta,c) =\branch{|\theta-c|}{c\geq\theta}
                        {10|\theta-c|}{c<\theta.}$$
                        
