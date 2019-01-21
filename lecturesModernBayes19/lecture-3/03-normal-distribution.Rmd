@@ -10,13 +10,11 @@ font-size: 8px
 ---
 Announcements
 ===
-- Exam I: Feb 8, in class
+- Exam I: Feb 7, in class (no make up exams)
 - Exam I: closed notes
-- Exam I: will answer questions regarding what is on the exam on Thursday. Review session will be on Tuesday Feb 6. 
-- Homework 2 due today 10 PM, Sakai.
-- Homework 3 posted, due Sunday 10 PM. Based on lab from tomorrow. 
-- Exam I material: everything we have covered in class, hw, lab so far (including today and lab tomorrow). 
-- See Sakai for exam cover page. 
+- Exam I: will answer questions regarding what is on the exam on Thursday. 
+- Review session will be on Tuesday Feb 5. 
+- Exam I: Material: Modules 0 - 3. 
 
 Exercise
 ===
