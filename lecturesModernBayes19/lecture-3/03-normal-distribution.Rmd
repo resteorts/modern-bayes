@@ -50,8 +50,10 @@ Thus, $$\theta \mid x \sim \text{Pareto} (\alpha + 1, \max\{x, \beta \}).$$
 Agenda
 ===
 - The normal distribution
+- The variance versus precision
+- The re-parameterized normal distribution 
 - Common properties
-- The normal uniform
+- The normal-uniform model
 - The normal-normal model
 
 Normal distribution
