@@ -123,7 +123,7 @@ $$\ell(\theta,c) =\branch{|\theta-c|}{c\geq\theta}
 Resource allocation for disease prediction (continued)
 ===                       
                        
-- By considering data from other similar cities, they determine a prior $p(\theta)$. For simplicity, suppose $\btheta\sim\Beta(a,b)$ (i.e., $p(\theta) =\Beta(\theta|a,b)$), with $a=0.05$ and $b=1$.
+- By considering data from other similar cities, they determine a prior $p(\theta)$. For simplicity, suppose $\btheta\sim\Beta(a,b)$ (i.e., $p(\theta) =\Beta(\theta|a,b)$), with $a=0.05$ and $b=1$.\footnote{We could certainly consider other choices of $a,b$ but we consider these choices for simplicity. You'll look at other choices in lab/homework.}
 
 -  They conduct a survey assessing the disease status of $n=30$ individuals, $x_1,\ldots,x_n$. 
 
@@ -295,22 +295,15 @@ for all $\theta$ and $R(\theta,\delta')< R(\theta,\delta)$ for at least one $\th
 7. Bayes procedures are admissible under very general conditions.
 8. Admissibility is nice to have, but it doesn't mean a procedure is necessarily good. Silly procedures can still be admissible---e.g., in this example, the constant procedure $c = 0.1$ is admissible too!
 
-Exercise
+Example: Resource allocation, revisited
 ===
-Consider $X_1,\ldots,X_n\mid \theta \stackrel{iid}{\sim} N(\theta,\sigma^2)$ Suppose that we assume very weak prior information on $\theta.$ That is, suppose that $p(\theta) \propto 1.$ 
 
-- What does the likelihood and prior distribution look like
-(what is your intuition)? Now let's verify this in markdown. 
-- What is the posterior distribution for $\theta?$
+In lab and in your homework, you'll work on reproducing the plots from class today and exploring more about admissibility. 
 
-Exercise (continued)
-===
-\begin{align}
-p(x_{1:n} \mid \theta) &=
-(\frac{1}{\sqrt{2\pi\sigma^2}})^n\exp\Big(-\frac{1}{2\sigma^2}\sum_i(x_i-\theta)^2\Big) \\
-&(\frac{1}{\sqrt{2\pi\sigma^2}})^n\exp\Big(-\frac{1}{2\sigma^2}\sum_i(x_i + \bar{x} - \bar{x} - \theta)^2\Big) \\
-&(\frac{1}{\sqrt{2\pi\sigma^2}})^n\exp\Big(-\frac{n}{2\sigma^2}(\theta - \bar{x})^2\Big)
-\end{align}
+To read more about this formally, please see Lehmann and Casella for a very formal treatment of this approach. 
+
+You may also find the PhD lecture notes helpful on this material, which are avaiable to you on the course webpage. 
+
 
 
 
