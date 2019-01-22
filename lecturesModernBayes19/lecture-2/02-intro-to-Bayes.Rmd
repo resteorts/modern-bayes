@@ -31,7 +31,7 @@ https://arxiv.org/abs/1409.0643
 
 
 
-Solutions
+Solution
 ===
 
 1. You would have to verify these. 
@@ -46,9 +46,11 @@ Agenda
 ===
 - What is decision theory?
 - General setup
-- Bayesian approach
-- Frequentist and Integrated Risk
-- Examples
+- Example of general set up
+- Bayesian risk
+- Frequentist Risk
+- Integrated Risk
+- An Application to Resource Allocation 
 
 General setup
 ===
@@ -68,6 +70,17 @@ $\ell(s,a)$ & loss
 \end{tabular}
 \end{center}
 
+Example 
+===
+
+1. State: $S = \btheta$
+2. Observation: $x = x_{1:n}$
+3. Action: $a = \hat\theta$
+4. Loss: $\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2$ (quadratic loss, a.k.a. square loss)
+
+\textcolor{red}{Question: Why do we consider quadratic loss over other loss functions?}
+
+
 Bayesian approach
 ===
 
@@ -84,16 +97,6 @@ Bayesian approach (continued)
 1. A \term{decision procedure} $\delta$ is a systematic way of choosing actions $a$ based on observations $x$. Typically, this is a deterministic function $a=\delta(x)$ (but sometimes introducing some randomness into $a$ can be useful).
 2. A \term{Bayes procedure} is a decision procedure that chooses an $a$ minimizing the posterior expected loss $\rho(a,x)$, for each $x$.
 3. Note: Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies. 
-
-
-Example 1
-===
-
-1. State: $S = \btheta$
-2. Observation: $x = x_{1:n}$
-3. Action: $a = \hat\theta$
-4. Loss: $\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2$ (quadratic loss, a.k.a. square loss)
-
 
 What is the optimal decision rule?
 ===
@@ -185,6 +188,8 @@ a = 0.05; b = 1
 an = a + sum_x
 bn = b + n - sum_x
 th = seq(0,1,length.out = 100)
+# writing the likelihood as a beta 
+# a trick from module 1
 like = dbeta(th, sum_x+1,n-sum_x+1)
 prior = dbeta(th,a,b)
 post = dbeta(th,sum_x+a,n-sum_x+b)
@@ -210,7 +215,7 @@ loss_function = function(theta, c){
   if (c < theta){
     return(10*abs(theta - c))
   } else{
-    return(l = abs(theta - c))
+    return(abs(theta - c))
   }
 }
 ```
@@ -220,18 +225,17 @@ Posterior risk
 ```{r}
 # compute the posterior risk given c 
 # s is the number of random draws 
-# compute the posterior risk given c 
-# s is the number of random draws 
 posterior_risk = function(c, s = 30000){
-  # randow draws from beta distribution 
+  # randow draws from posterior distribution
+  # which is a beta with params an and bn
   theta = rbeta(s, an, bn)
   
+  # calculating values of the loss times the posterior
   loss <- apply(as.matrix(theta),1,loss_function,c)
-  # average values from the loss function
+  # average values from the loss function (integral)
   risk = mean(loss)
 }
 ```
-
 
 Posterior Risk (continued)
 ===
@@ -268,7 +272,7 @@ Posterior expected loss/posterior risk for disease prevelance
 
 
 
-Frequentist and Integrated Risk
+Frequentist Risk
 ===
 1. Consider a decision problem in which $S = \btheta$.
 2. The \term{risk} (or \term{frequentist risk}) associated with a decision procedure $\delta$ is 
@@ -276,14 +280,22 @@ $$ R(\theta,\delta) = \E\big(\ell(\btheta,\delta(X))\mid\btheta =\theta\big),$$
 where $X$ has distribution $p(x|\btheta)$.  In other words,
 $$ R(\theta,\delta) = \int \ell(\theta,\delta(x))\,p(x|\theta)\,dx$$
 if $X$ is continuous, while the integral is replaced with a sum if $X$ is discrete.
-3. The \term{integrated risk}  associated with $\delta$ is
-$$ r(\delta) = \E(\ell(\btheta,\delta(X)) = \int R(\theta,\delta)\,p(\theta)\,d\theta.$$
+
+The integrated risk
+===
+
+The \term{integrated risk}  associated with $\delta(X)$ is
+\begin{align}
+r(\delta) &= \E(\ell(\btheta,\delta(X)) = \int R(\theta,\delta)\,p(\theta)\,d\theta \\
+&= \int \int \ell(\theta,\delta(x))\,p(x|\theta)p(\theta)\,dx \,d\theta
+\end{align}
+
 
 
 Example: Resource allocation, revisited
 ===
 1. The frequentist risk provides a useful way to compare decision procedures in a prior-free way.
-2. In addition to the Bayes procedure above, consider two other possibilities: choosing $c = \bar x$ (sample mean) or $c=0.1$ (constant).
+2. In addition to the Bayes procedure above, consider two other potential optimal decision rules: choosing $c = \bar x$ (sample mean) or $c=0.1$ (constant).
 
 Example: Resource allocation, revisited
 ===
@@ -330,6 +342,17 @@ In lab and in your homework, you'll work on reproducing the plots from class tod
 To read more about this formally, please see Lehmann and Casella for a very formal treatment of this approach. 
 
 You may also find the PhD lecture notes helpful on this material, which are avaiable to you on the course webpage. 
+
+Takeaways
+===
+
+- In understanding an optimal decision rule, we first must have a parameter of interest ($\theta$) and define an optimal estimator ($\delta(X)$ or $\hat{\theta}$). 
+
+- There are many ways to define a loss function. A few that we talked about were the 0-1, quadratic, and absolute value loss. 
+
+- Next, we define several ways of finding an optimal decision rule. There were three that we considered. We considered minimizing the posterior risk (Bayes rule), the risk (frequentist risk), or the integrated risk. 
+
+- Finally, we defined admissible/inadmissible rules. 
 
 
 
