@@ -8,31 +8,6 @@ output:
           in_header: custom2.tex
 font-size: 8px
 ---
-Announcements
-===
-- Exam I: Feb 7, in class (no make up exams)
-- Exam I: closed notes
-- Exam I: will answer questions regarding what is on the exam on Thursday. 
-- Review session will be on Tuesday Feb 5. 
-- Exam I: Material: TBD. 
-
-Exercise
-===
-Consider $X_1,\ldots,X_n\mid \theta \stackrel{iid}{\sim} N(\theta,\sigma^2)$ Suppose that we assume very weak prior information on $\theta.$ That is, suppose that $p(\theta) \propto 1.$ 
-
-- What does the likelihood and prior distribution look like
-(what is your intuition)? Now let's verify this in markdown. 
-- What is the posterior distribution for $\theta?$
-
-Exercise (continued)
-===
-\begin{align}
-p(x_{1:n} \mid \theta) &=
-(\frac{1}{\sqrt{2\pi\sigma^2}})^n\exp\Big(-\frac{1}{2\sigma^2}\sum_i(x_i-\theta)^2\Big) \\
-&(\frac{1}{\sqrt{2\pi\sigma^2}})^n\exp\Big(-\frac{1}{2\sigma^2}\sum_i(x_i + \bar{x} - \bar{x} - \theta)^2\Big) \\
-&(\frac{1}{\sqrt{2\pi\sigma^2}})^n\exp\Big(-\frac{n}{2\sigma^2}(\theta - \bar{x})^2\Big)
-\end{align}
-
 
 Exercise
 ===
@@ -383,6 +358,14 @@ I( \theta > \max\{\beta, \max \{ x_{1:n} \}\}) \\
 & = \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
 I( \theta > \max\{\beta,  x_{1:n} \}) 
 \end{align}
+
+Announcements
+===
+- Exam I: Feb 7, in class (no make up exams)
+- Exam I: closed notes
+- Exam I: will answer questions regarding what is on the exam on Thursday. 
+- Review session will be on Tuesday Feb 5. 
+- Exam I: Material: TBD. 
 
 Exam I
 ===
