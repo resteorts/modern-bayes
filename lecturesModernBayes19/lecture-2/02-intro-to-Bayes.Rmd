@@ -220,6 +220,9 @@ loss_function = function(theta, c){
 }
 ```
 
+\textcolor{red}{Where can I learn about functions/brush up on usage?}
+https://resteorts.github.io/teach/bayes19
+
 Posterior risk
 ===
 ```{r}
@@ -273,9 +276,9 @@ Posterior expected loss/posterior risk for disease prevelance
 Sensitivity Analysis
 ===
 
-Suppose now that $a = 0.05, 1, 0.05$ and $b = 1, 2, 10.$ 
+\textcolor{red}{Suppose now that $a = 0.05, 1, 0.05$ and $b = 1, 2, 10.$}
 
-If we have different prior, the posterior risk is minimized at different $c$ values. The optimal $c$ depends on not only the data, but also the prior setting.
+\textcolor{red}{If we have different prior, the posterior risk is minimized at different $c$ values. The optimal $c$ depends on not only the data, but also the prior setting.}
 
 Posterior Risk Function (More Advanced)
 ===
@@ -321,7 +324,7 @@ for (i in 1:3){
 post_risk[i,] = apply(as.matrix(c), 1,
                       posterior_risk, a_prior,
                       b_prior, sum_x, n)
-  }
+}
 ```
 
 Plot
@@ -339,8 +342,19 @@ legend("bottomright", lty = c(1,2,3),
        col = c("blue", "red", "black"), 
        legend = c("a = 0.05 b = 1", 
                   "a = 1 b = 1", "a = 0.05 b = 5"))
-
 ```
+
+Optimal resources (a,b vary)
+===
+\textcolor{red}{For $a = 0.05, 1, 0.05$ and $b = 1, 2, 10$ respectively,
+the optimal value for c is:}
+
+```{r}
+(c[which.min(post_risk[1,])])
+(c[which.min(post_risk[2,])])
+(c[which.min(post_risk[3,])])
+```
+
 
 Plot
 ===
@@ -384,7 +398,8 @@ r(\delta) &= \E(\ell(\btheta,\delta(X)) = \int R(\theta,\delta)\,p(\theta)\,d\th
 Example: Resource allocation, revisited
 ===
 1. The frequentist risk provides a useful way to compare decision procedures in a prior-free way.
-2. In addition to the Bayes procedure above, consider two other potential optimal decision rules: choosing $c = \bar x$ (sample mean) or $c=0.1$ (constant).
+2. In addition to the Bayes procedure or Bayes rule that we have considered earlier in the lecture, consider two other potential optimal decision rules: choosing $c = \bar x$ (sample mean) or $c=0.1$ (constant).\footnote{Recall: The Bayes rule minimizes the posterior risk with respect to the parameter of interest.}
+3. \textcolor{red}{Remark: both the frequentist rules are looking an optimal estimator in a prior free way. (There are many other examples, but we'll just look at two simple cases.)}
 
 Example: Resource allocation, revisited
 ===
