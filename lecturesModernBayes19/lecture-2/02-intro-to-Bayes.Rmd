@@ -175,7 +175,7 @@ where $x = x_{1:n}$.
 
 Resource allocation for disease prediction in R
 ===
-```{r}
+```{r, cache=TRUE}
 # set seed 
 set.seed(123)
 
@@ -270,6 +270,95 @@ Posterior expected loss/posterior risk for disease prevelance
  \label{figure:rho}
 \end{figure}
 
+Sensitivity Analysis
+===
+
+Suppose now that $a = 0.05, 1, 0.05$ and $b = 1, 2, 10.$ 
+
+If we have different prior, the posterior risk is minimized at different $c$ values. The optimal $c$ depends on not only the data, but also the prior setting.
+
+Posterior Risk Function (More Advanced)
+===
+```{r, cache=TRUE}
+# compute the posterior risk given c 
+# s is the number of random draws 
+posterior_risk = function(c, a_prior, b_prior, 
+                          sum_x, n, s = 30000){
+  # randow draws from beta distribution 
+  a_post = a_prior + sum_x
+  b_post = b_prior + n - sum_x
+  theta = rbeta(s, a_post, b_post)
+  loss <- apply(as.matrix(theta),1,loss_function,c)
+  # average values from the loss function
+  risk = mean(loss)
+}
+```
+
+Posterior Risk Function (More Advanced)
+===
+```{r, cache=TRUE}
+# a sequence of c in [0, 0.5]
+c = seq(0, 0.5, by = 0.01)
+post_risk <- apply(as.matrix(c),1,
+                   posterior_risk, a, b, sum_x, n)
+head(post_risk)
+```
+
+Sensitivity Analysis
+===
+```{r, cache=TRUE}
+# set prior
+as = c(0.05, 1, 0.05); bs = c(1, 1, 10)
+post_risk = matrix(NA, 3, length(c))
+
+# for each pair of a and b, compute the posterior risks
+for (i in 1:3){
+  a_prior = as[i]
+  b_prior = bs[i]
+
+  # using the more advanced function 
+  # of the posterior risk  
+post_risk[i,] = apply(as.matrix(c), 1,
+                      posterior_risk, a_prior,
+                      b_prior, sum_x, n)
+  }
+```
+
+Plot
+===
+```{r}
+plot(c, post_risk[1,], type = 'l', 
+     col='blue', lty = 1, yaxt = "n", ylab = "p(c, x)")
+par(new = T)
+plot(c, post_risk[2,], type = 'l', 
+     col='red', lty = 2, yaxt = "n", ylab = "")
+par(new = T)
+plot(c, post_risk[3,], type = 'l', 
+     lty = 3, yaxt = "n", ylab = "")
+legend("bottomright", lty = c(1,2,3), 
+       col = c("blue", "red", "black"), 
+       legend = c("a = 0.05 b = 1", 
+                  "a = 1 b = 1", "a = 0.05 b = 5"))
+
+```
+
+Plot
+===
+```{r, echo=FALSE}
+plot(c, post_risk[1,], type = 'l', 
+     col='blue', lty = 1, yaxt = "n", ylab = "p(c, x)")
+par(new = T)
+plot(c, post_risk[2,], type = 'l', 
+     col='red', lty = 2, yaxt = "n", ylab = "")
+par(new = T)
+plot(c, post_risk[3,], type = 'l', 
+     lty = 3, yaxt = "n", ylab = "")
+legend("bottomright", lty = c(1,2,3), 
+       col = c("blue", "red", "black"), 
+       legend = c("a = 0.05 b = 1", 
+                  "a = 1 b = 1", "a = 0.05 b = 5"))
+
+```
 
 
 Frequentist Risk
