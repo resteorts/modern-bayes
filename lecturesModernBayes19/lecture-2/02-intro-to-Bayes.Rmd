@@ -445,7 +445,8 @@ In lab and in your homework, you'll work on reproducing the plots from class tod
 
 To read more about this formally, please see Lehmann and Casella for a very formal treatment of this approach. 
 
-You may also find the PhD lecture notes helpful on this material, which are avaiable to you on the course webpage. 
+\textcolor{red}{You may also find the PhD lecture notes helpful on this material, which are avaiable to you on the course webpage.}
+https://resteorts.github.io/teach/bayes19
 
 Takeaways
 ===
