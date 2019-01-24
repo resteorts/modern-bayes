@@ -1,7 +1,7 @@
 
 ---
 title: "Lab 3: Intro to Decision Theory"
-author: "Xingyu Yan and Rebecca C. Steorts"
+author: "Rebecca C. Steorts and Xingyu Yan"
 output: 
      pdf_document:
       includes: 
@@ -96,5 +96,75 @@ legend("bottomright", lty = c(1,2,3), col = c("blue", "red", "black"),
 
 Note there is a more automated solution but this is the most simple one and is completely correct. 
 
+# Task 3
+The Bayes procedure always picks c to be a little bigger than $\bar{x}$.
 
 
+```{r}
+sum_xs = seq(0, 30)
+min_c = matrix(NA, 3, length(sum_xs))
+
+# find_optimal_C finds the optimal c under Bayes procedure
+# function of sum of x, parameters for prior, number of observations, and number of random draws 
+find_optimal_C = function(sum_x, a_prior, b_prior, n, s = 500){
+  c = seq(0, 1, by = 0.01)
+  post_risk =  apply(as.matrix(c), 1, posterior_risk, a_prior, b_prior, sum_x, n, s)
+  c[which.min(post_risk)]
+}
+
+min_c[1,] = apply(as.matrix(sum_xs), 1, find_optimal_C, a, b, n)
+# find optimal c under sample mean
+min_c[2,] = (sum_xs)/n
+# constant c 
+min_c[3,] = 0.1
+
+# plot
+plot(sum_xs, min_c[1,], col='blue',type = 'o',pch = 16, 
+     ylab = "resources allocated", xlab = 'observed number of diseased cases',
+     ylim = c(0,1))
+par(new = T)
+plot(sum_xs, min_c[2,], type = 'o', col='green', 
+     pch = 16, ylab = "", xlab = '', ylim = c(0,1))
+par(new = T)
+plot(sum_xs, min_c[3,], type = 'o',col = 'red',
+     pch = 16, ylab = "", xlab = '', ylim = c(0,1))
+legend("topleft", lty = c(1,1,1), pch = c(16,16,16),
+       col = c("blue", "green", "red"),
+       legend = c("Bayes", "Sample mean", "constant"))
+```
+
+# Task 4
+
+For all $\theta$, the Bayes procedure has the lower frequentist risk than the sample mean. 
+```{r, cache=TRUE}
+thetas = seq(0, 1, by=0.1)
+
+# frequentist risk for the 3 estimators given a theta
+frequentist_risk = function(theta){
+  sum_xs = rbinom(100, 30, theta)
+  Bayes_optimal = apply(as.matrix(sum_xs), 1, find_optimal_C, a, b, n, s = 100)
+  mean_c = sum_xs / 30
+  
+  loss1 = apply(as.matrix(Bayes_optimal), 1, loss_function, theta = theta)
+  loss2 = apply(as.matrix(mean_c), 1, loss_function, theta = theta )
+  risk1 = mean(loss1)
+  risk2 = mean(loss2)
+  risk3 = loss_function(theta, 0.1)
+  return(c(risk1, risk2, risk3))
+}
+
+# given a sequance a theta, compute frequentist risk for each theta
+R = apply(as.matrix(thetas), 1, frequentist_risk)
+
+# plot
+plot(thetas, R[1,], col='blue', type = "l", 
+     ylab = "frequentist risk", xlab = 'theta',ylim = c(0,1))
+par(new = T)
+plot(thetas, R[2,], type = 'l', col='green', 
+     ylab = "", xlab = '', ylim = c(0,1))
+par(new = T)
+plot(thetas, R[3,], type = 'l',col = 'red',
+     ylab = "", xlab = '', ylim = c(0,1))
+legend("topright", lty = c(1,1,1), col = c("blue", "green", "red"),
+       legend = c("Bayes", "Sample mean", "constant"))
+```

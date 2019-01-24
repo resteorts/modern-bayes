@@ -1,7 +1,7 @@
 ---
 title: "Lab 5: Rejection Sampling"
 author: "Rebecca C. Steorts"
-date: "2019"
+date: "January 2019"
 output: pdf_document
 ---
 
