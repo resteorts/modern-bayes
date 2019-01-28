@@ -171,8 +171,58 @@ legend("topright", lty = c(1,1,1), col = c("blue", "green", "red"),
 
 Please see a few remarks about Task 4 that will help you with interpreting the plot. 
 \begin{enumerate}
-\item In this part of the problem, if we don't run enough samples, we can run into issues on the boundary. 
-\item It's important that we have enough random samples. What is enough. Probably around 30,000. 
-\item What should you observe? You should see that the Bayes estimator has lower risk than the sampler mean uniformly if you are able to draw enough random samples
-\item In the event that you aren't able to draw enough random samples (perhaps you are running short on time or your computer is slow), then for a smaller number of samples, you'll observe that the Bayes estimator has slightly higher risk than the sampler mean. However, this is misleading here to report as you have not run enough samples and you should run more. 
+\item If you zoom into see the plot for Task 4, you will notice that the Bayes risk is not always smaller than the sample mean. Specifically, the issue is occuring around $\theta = 0$ and $\theta = 1.$
+\item One observation that we can make is that when $x$ is very small (say 0), Bayes estimator tends to overestimate $\theta$ and hence sample mean has lower risk. What other observations can you make? 
 \end{enumerate}
+
+I am including some code that Xu Chen has written that is much faster, where the resulting plot is much more clear. 
+
+```{r}
+# code by Xu Chen
+loss <- function(theta, c){
+  if (c >= theta) {
+    return(c - theta)
+  } else {
+    return(10*(theta - c))
+  }
+}
+
+
+delta1 <- function(x){
+  return(rep(0.1,length(x)))
+}
+
+
+delta2 <- function(x){
+  return(x/30)
+}
+
+
+delta3 <- function(x, a = 0.05, b = 1){
+  a.post <- a + x
+  b.post <- b + 30 - x
+  c <- seq(0,1,0.01)
+  theta <- matrix(rbeta(1e4*length(c), a.post, b.post), nrow = 1e4, ncol = length(c))
+  
+  return(c[which.min(sapply(c, function(u) mean(sapply(theta[,as.integer(100*u+1)], loss, c = u))))])
+}
+
+risk <- function(theta, c){
+  return(sum(dbinom(x = 0:30, size = 30, prob = theta) * sapply(c, loss, theta = theta)))
+}
+
+
+theta.grid <- seq(0,1,0.01)
+x <- 0:30
+
+c3 <- sapply(x, delta3)
+plot(theta.grid, sapply(theta.grid, risk, c3), ylim = c(0,1), type = 'l', col = 'red', xlab = expression(theta), ylab = 'risk')
+
+c1 <- delta1(x)
+points(theta.grid, sapply(theta.grid, risk, c1), ylim = c(0,1), type = 'l')
+
+c2 <- delta2(x)
+points(theta.grid, sapply(theta.grid, risk, c2), ylim = c(0,1), type = 'l', col='green')
+
+legend('topright', legend = c('Bayes', 'sample mean', 'constant'), col = c('red', 'green', 'black'), lty = 1)
+```
