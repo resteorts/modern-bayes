@@ -434,7 +434,7 @@ Example: Resource allocation, revisited
 5. The constant procedure is fantastic when $\theta$ is near $0.1$, but gets very bad very quickly for larger $\theta$. The Bayes procedure is better than the sample mean for nearly all $\theta$'s. These curves reflect the usual situation---some procedures will work better for certain $\theta$'s and some will work better for others.
 6. A decision procedure which is  \term{inadmissible} is one that is dominated everywhere.
 That is, $\delta$ is \term{\textcolor{red}{admissible}} if there is no $\delta'$ such that $$R(\theta,\delta')\leq R(\theta,\delta)$$
-for all $\theta$ and $R(\theta,\delta')< R(\theta,\delta)$ for at least one $\theta$. (A decision procedure that is not \term{inadmissible} is said to be \term{admissible}).
+for all $\theta$ and $R(\theta,\delta')< R(\theta,\delta)$ for at least one $\theta$. \textcolor{red}{A decision rule is admissible so long as it is not being dominated everywhere.}  
 7. Bayes procedures are admissible under very general conditions.
 8. Admissibility is nice to have, but it doesn't mean a procedure is necessarily good. Silly procedures can still be admissible---e.g., in this example, the constant procedure $c = 0.1$ is admissible too!
 
