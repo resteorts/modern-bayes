@@ -9,6 +9,15 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+1. There was a typo regarding admissibility in Module 2. 
+2. Homework 3 will be graded leniantly as there are many solutions
+and there was also a typo. (Students will not be penalized for my typo.)
+3. Exam I is Feb. 7 and Feb 5 will be a review day. 
+4. Exam I: Will cover material on Modules 0 -- 3, labs 1 -- 3, and homeworks 1 --3. I'll go into more details once we finish module 3 regarding expectations and coverage. 
+5. Office hours: How many students cannot make a single office hour due to a class conflict? 
+
 Exercise
 ===
 Suppose $a < x < b.$ Consider the notation
@@ -168,7 +177,7 @@ We now consider the **prior** distribution on $\theta.$
 Due to the symmetry of the normal p.d.f.,
 \begin{align}\label{equation:prior}
 \N(\theta\mid\mu_0,\lambda_0^{-1}) =\N(\mu_0\mid\theta,\lambda_0^{-1})
-\underset{\theta}{\propto}\exp\big(\lambda_0\mu_0\theta-\tfrac{1}{2}\lambda_0\theta^2\big),
+\underset{\theta}{\propto}\textcolor{red}{\exp\big(\lambda_0\mu_0\theta-\tfrac{1}{2}\lambda_0\theta^2\big)},
 \end{align}
 where $x=\mu_0$ and $\ell=\lambda_0$.
 
@@ -400,8 +409,10 @@ Topics to Review (continued)
 
 Topics that will not be covered on exam I
 ===
+
 - pseudocode, R code
 - integrated risk
 - admissibility
+
 
 
