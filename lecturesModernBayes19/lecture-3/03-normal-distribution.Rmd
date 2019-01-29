@@ -142,7 +142,7 @@ p(\theta \mid x_{1:n})
 \exp\big(-\tfrac{1}{2}\ell \sum_i( \bar{x} - \theta)^2\big)\notag\\
 &\propto 
 \exp\big(-\tfrac{1}{2}\ell \sum_i( \bar{x} - \theta)^2\big) \\
-&= \exp\big(-\tfrac{n \ell}{2} \sum_i(\theta - \bar{x} )^2\big)
+&= \textcolor{red}{\exp\big(-\tfrac{n \ell}{2} (\theta - \bar{x} )^2\big)}
 \end{align}
 
 This implies that 
