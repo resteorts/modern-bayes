@@ -324,6 +324,15 @@ so we can compute $\Pr(\text{bimodal}\mid \text{data})$ using the normal c.d.f.\
 
 Intuitive interpretation: The posteriors are about 13 or 14 centimeters apart, which is under the $2\sigma = 16$ threshold for bimodality, and they are sufficiently concentrated that the posterior probability of bimodality is essentially zero.
 
+Next time
+===
+
+- In module 4, we'll consider another class of conjugate families
+(the NormalGamma model). 
+- We'll look at the posterior derivation assuming this class of models.
+- Then, we'll turn to a famous study from Rosenthal and Jacobson (1968) that looked at "Do a teacher’s expectations influence student achievement?"
+- We'll consider this study both in class, lab, and in your homework. (This is lab4 and homework 4).\footnote{This material correspond with Module 4 and will be on Exam II.}
+
 
 Exercise
 ===
