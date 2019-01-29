@@ -18,43 +18,7 @@ and there was also a typo. (Students will not be penalized for my typo.)
 4. Exam I: Will cover material on Modules 0 -- 3, labs 1 -- 3, and homeworks 1 --3. I'll go into more details once we finish module 3 regarding expectations and coverage. 
 5. Office hours: How many students cannot make a single office hour due to a class conflict? 
 
-Exercise
-===
-Suppose $a < x < b.$ Consider the notation
-$I_{(a,b)}(x),$ where $I$ denotes the indicator function. We define $I_{(a,b)}(x)$ to be the following:
-$$
-I_{(a,b)}(x)=
-\begin{cases} 
-1 & \text{if $a < x < b$,}
-\\
-0 &\text{otherwise.}
-\end{cases}
-$$
 
-Let 
-\begin{align*}
-X|\theta &\sim \text{Uniform}(0,\theta)\\
-\theta &\sim \text{Pareto}(\alpha,\beta),
-\end{align*}
-where $p(\theta) = \dfrac{\alpha \beta^\alpha}{\theta^{\alpha +1}}I_{(\beta,\infty)}(\theta).$
-Write out the likelihood $p(x\mid \theta).$ Then calculate the posterior distribution of $\theta|x.$  
-
-Solution
-===
-\begin{align}
-P(\theta \mid x)
-&\propto p(x \mid \theta) p(\theta)\\
-& \propto \frac{1}{\theta} I(0 < x < \theta)
-\frac{\alpha \beta^{\alpha}}{\theta^{\alpha+1}}I(\theta > \beta) \\
-& \propto \frac{\alpha \beta^{\alpha}}
-{\theta^{\alpha+2}}I(\theta> x) I(\theta > \beta) \\
-& \propto 
-\frac{\alpha \beta^{\alpha}}
-{\theta^{\alpha+2}}
-I( \theta > \max\{x, \beta \}).
-\end{align}
-
-Thus, $$\theta \mid x \sim \text{Pareto} (\alpha + 1, \max\{x, \beta \}).$$
 
 Agenda
 ===
@@ -126,9 +90,9 @@ Normal-Uniform
 ===
 $$ X_1,\dotsc,X_n \mid \theta \iid\N(\theta,\sigma^2). $$
 
-Assume the prior on $\theta$ is constant over the real line. We can write this as $p(\theta) \propto 1.$
+Assume the prior on $\theta$ is constant over the real line. We can write this as $p(\theta) \propto 1,$ where $-\infty < \theta < \infty.$
 
-Derive the posterior distribution. 
+Derive the posterior distribution.\footnote{Please observe that the posterior is not conjugate to the prior in this situation, so it's very important to make sure that the posterior is a proper distribution.}
 
 Solution
 ===
@@ -333,6 +297,44 @@ Next time
 - Then, we'll turn to a famous study from Rosenthal and Jacobson (1968) that looked at "Do a teacher’s expectations influence student achievement?"
 - We'll consider this study both in class, lab, and in your homework. (This is lab4 and homework 4).\footnote{This material correspond with Module 4 and will be on Exam II.}
 
+Exercise
+===
+Suppose $a < x < b.$ Consider the notation
+$I_{(a,b)}(x),$ where $I$ denotes the indicator function. We define $I_{(a,b)}(x)$ to be the following:
+$$
+I_{(a,b)}(x)=
+\begin{cases} 
+1 & \text{if $a < x < b$,}
+\\
+0 &\text{otherwise.}
+\end{cases}
+$$
+
+Let 
+\begin{align*}
+X|\theta &\sim \text{Uniform}(0,\theta)\\
+\theta &\sim \text{Pareto}(\alpha,\beta),
+\end{align*}
+where $p(\theta) = \dfrac{\alpha \beta^\alpha}{\theta^{\alpha +1}}I_{(\beta,\infty)}(\theta).$
+Write out the likelihood $p(x\mid \theta).$ Then calculate the posterior distribution of $\theta|x.$  
+
+Solution
+===
+\begin{align}
+P(\theta \mid x)
+&\propto p(x \mid \theta) p(\theta)\\
+& \propto \frac{1}{\theta} I(0 < x < \theta)
+\frac{\alpha \beta^{\alpha}}{\theta^{\alpha+1}}I(\theta > \beta) \\
+& \propto \frac{\alpha \beta^{\alpha}}
+{\theta^{\alpha+2}}I(\theta> x) I(\theta > \beta) \\
+& \propto 
+\frac{\alpha \beta^{\alpha}}
+{\theta^{\alpha+2}}
+I( \theta > \max\{x, \beta \}).
+\end{align}
+
+Thus, $$\theta \mid x \sim \text{Pareto} (\alpha + 1, \max\{x, \beta \}).$$
+
 
 Exercise
 ===
@@ -379,19 +381,11 @@ I( \theta > \max\{\beta, \max \{ x_{1:n} \}\}) \\
 I( \theta > \max\{\beta,  x_{1:n} \}) 
 \end{align}
 
-Announcements
-===
-- Exam I: Feb 7, in class (no make up exams)
-- Exam I: closed notes
-- Exam I: will answer questions regarding what is on the exam on Thursday. 
-- Review session will be on Tuesday Feb 5. 
-- Exam I: Material: TBD. 
-
 Exam I
 ===
 - Closed notes, closed book.
 - You will be given cover page with distributions (see Sakai under Annoucements).
-- Please come on time. 
+- Please come early given the class is large. 
 - Material covers lectures (slides and written material in class), labs, and homeworks. 
 - Material covers: Modules 0--3. 
 
@@ -399,7 +393,7 @@ Exam I
 ===
 - To help you study, work through the practice problems
 from class and the ones at the end of homework 3. (Solutions on Sakai). 
-- 5 problems total. 
+- 4/5 problems total. 
 
 Topics to Review
 ===
