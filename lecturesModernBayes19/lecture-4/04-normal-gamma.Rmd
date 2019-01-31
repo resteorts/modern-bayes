@@ -19,7 +19,7 @@ Agenda
 NormalGamma distribution
 ===
 Let
-$X_1,\dotsc,X_n\iid\N(\mu,\lambda^{-1})$ and assume **both**
+$X_1,\dotsc,X_n\mid \mu,\lambda \iid\N(\mu,\lambda^{-1})$ and assume **both**
 
 - the mean $\mu$ and 
 - the precision $\lambda= 1/\sigma^2$ are **unknown**. 
@@ -58,6 +58,8 @@ For interpretation, $B$ can also be written (by rearranging terms) as
 B = b + \frac{1}{2}\sum_{i=1}^n (x_i-\bar x)^2 + \frac{1}{2}\frac{c n}{c + n}(\bar x - m)^2.
 \end{align}
 
+In this module, we will derive the posterior derivation of this hierarchical model, which has three levels (or layers) to it.\footnote{The data is considered the first level, the prior on $\lambda$ is considered the second level, and the prior on $\mu$ is considered the third level of the hierarchical model.}
+
 NormalGamma distribution (continued)
 ===
 \begin{itemize}
@@ -80,7 +82,7 @@ First, consider the NormalGamma density. Dropping constants of proportionality, 
 &= \sqrt{\frac{c\lambda}{2\pi}}\exp\Big(-\tfrac{1}{2} c\lambda(\mu-m)^2\Big)
 \frac{b^a}{\Gamma(a)}\lambda^{a-1}\exp(-b\lambda)\notag\\
 &\underset{\mu,\lambda}{\propto} 
-\lambda^{a-1/2}\exp\Big(-\tfrac{1}{2}\lambda(c\mu^2 - 2 c m\mu + c m^2 + 2 b)\Big).\label{equation:NormalGamma}
+\textcolor{red}{\lambda^{a-1/2}\exp\Big(-\tfrac{1}{2}\lambda(c\mu^2 - 2 c m\mu + c m^2 + 2 b)\Big)}.\label{equation:NormalGamma}
 \end{align}
 
 Posterior derivation (continued)
@@ -88,7 +90,7 @@ Posterior derivation (continued)
 Similarly, for any $x$,
 \begin{align}
 \N(x\mid\mu,\lambda^{-1}) & =\sqrt{\frac{\lambda}{2\pi}}\exp\Big(-\tfrac{1}{2}\lambda(x-\mu)^2\Big)\notag\\
-&\underset{\mu,\lambda}{\propto} \lambda^{1/2}\exp\Big(-\tfrac{1}{2}\lambda(\mu^2 - 2 x \mu + x^2)\Big).
+&\underset{\mu,\lambda}{\propto} \textcolor{red}{\lambda^{1/2}\exp\Big(-\tfrac{1}{2}\lambda(\mu^2 - 2 x \mu + x^2)}\Big).
 \label{equation:individual}
 \end{align}
 
@@ -98,11 +100,11 @@ Posterior derivation (continued)
 \begin{align*}
 &p(\mu,\lambda|x_{1:n})\\ &\underset{\mu,\lambda}{\propto} p(\mu,\lambda) p(x_{1:n}|\mu,\lambda) \\
 &\underset{\mu,\lambda}{\propto}
-\lambda^{a-1/2} \exp\Big(-\tfrac{1}{2}\lambda(c\mu^2 - 2 c m\mu + c m^2 + 2 b)\Big)\\
-  & \qquad\times \lambda^{n/2} \exp\Big(-\tfrac{1}{2}\lambda(n\mu^2 - 2 (\textstyle\sum x_i) \mu + \sum x_i^2)\Big)\\
+\textcolor{red}{\lambda^{a-1/2} \exp\Big(-\tfrac{1}{2}\lambda(c\mu^2 - 2 c m\mu + c m^2 + 2 b)\Big)}\\
+  & \qquad\times \textcolor{red}{\lambda^{n/2} \exp\Big(-\tfrac{1}{2}\lambda(n\mu^2 - 2 (\textstyle\sum x_i) \mu + \sum x_i^2)\Big)}\\
 & = \lambda^{a+n/2-1/2}
-\exp\Big(-\tfrac{1}{2}\lambda\big((c+n)\mu^2 - 2 (c m +\textstyle\sum x_i) \mu + c m^2 + 2 b + \sum x_i^2\big)\Big)\\
-&\overset{\text{(a)}}{=}\lambda^{A-1/2}\exp\Big(-\tfrac{1}{2}\lambda\big(C\mu^2 - 2 C M \mu + C M^2 + 2 B\big)\Big)\\
+\exp\Big(-\tfrac{1}{2}\lambda\big((c+n)\mu^2 - 2 (c m +\textstyle\sum x_i) \mu + \textcolor{blue}{c m^2 + 2 b + \sum x_i^2}\big)\Big)\\
+&\overset{\text{(a)}}{=}\lambda^{A-1/2}\exp\Big(-\tfrac{1}{2}\lambda\big(C\mu^2 - 2 C M \mu + \textcolor{blue}{C M^2 + 2 B}\big)\Big)\\
 &\overset{\text{(b)}}{\propto} \NormalGamma(\mu,\lambda\mid M,C,A,B)
 \end{align*}
 where step (b) is by Equation \ref{equation:NormalGamma},
