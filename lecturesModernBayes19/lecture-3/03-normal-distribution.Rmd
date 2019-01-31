@@ -297,6 +297,44 @@ Next time
 - Then, we'll turn to a famous study from Rosenthal and Jacobson (1968) that looked at "Do a teacher’s expectations influence student achievement?"
 - We'll consider this study both in class, lab, and in your homework. (This is lab4 and homework 4).\footnote{This material correspond with Module 4 and will be on Exam II.}
 
+
+Exam I
+===
+- Closed notes, closed book.
+- You will be given cover page with distributions (see Sakai under Annoucements).
+- As a part of a problem, I could ask you to derive the mean and variance of a distibution like the gamma distribution. 
+- Please come early given the class is large. 
+- Material covers lectures (slides and written material in class), labs, and homeworks. 
+- Material covers: Modules 0--3. 
+
+Exam I
+===
+- To help you study, work through the practice problems
+from class and the ones at the end of homework 3. (Solutions on Sakai). 
+- 4/5 problems total. 
+
+Topics to Review
+===
+- Bayes Theorem (derivation)
+- Derivation of posterior distributions, marginals
+- How do you show the proprietry of the posterior distribution?
+- Conjugate families (i.e Beta-Bernoulli, Beta-Binomial, Galenshore, etc.)
+- For extra problems, please see "Some of Bayesian Methods", Chapter 1--2. All examples are worked in the text. 
+
+Topics to Review (continued)
+===
+- What is a loss function (examples)
+- What is the Bayes procedure? Know how to derive it.
+- Posterior risk, frequentist risk. Derivations, understand plots, know the differences of when to use these.
+- Review lab concepts. Suppose I describe some data to you. What would distribution might characterize it well. What prior would be appropriate? 
+
+Topics that will not be covered on exam I
+===
+
+- pseudocode, R code
+- integrated risk
+- admissibility
+
 Exercise
 ===
 Suppose $a < x < b.$ Consider the notation
@@ -380,42 +418,5 @@ I( \theta > \max\{\beta, \max \{ x_{1:n} \}\}) \\
 & = \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
 I( \theta > \max\{\beta,  x_{1:n} \}) 
 \end{align}
-
-Exam I
-===
-- Closed notes, closed book.
-- You will be given cover page with distributions (see Sakai under Annoucements).
-- Please come early given the class is large. 
-- Material covers lectures (slides and written material in class), labs, and homeworks. 
-- Material covers: Modules 0--3. 
-
-Exam I
-===
-- To help you study, work through the practice problems
-from class and the ones at the end of homework 3. (Solutions on Sakai). 
-- 4/5 problems total. 
-
-Topics to Review
-===
-- Bayes Theorem (derivation)
-- Derivation of posterior distributions, marginals
-- How do you show the proprietry of the posterior distribution?
-- Conjugate families (i.e Beta-Bernoulli, Beta-Binomial, Galenshore, etc.)
-- For extra problems, please see "Some of Bayesian Methods", Chapter 1--2. All examples are worked in the text. 
-
-Topics to Review (continued)
-===
-- What is a loss function (examples)
-- What is the Bayes procedure? Know how to derive it.
-- Posterior risk, frequentist risk. Derivations, understand plots, know the differences of when to use these.
-- Review lab concepts. Suppose I describe some data to you. What would distribution might characterize it well. What prior would be appropriate? 
-
-Topics that will not be covered on exam I
-===
-
-- pseudocode, R code
-- integrated risk
-- admissibility
-
 
 
