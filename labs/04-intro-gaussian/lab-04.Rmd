@@ -124,4 +124,4 @@ ggplot(data = simDF, aes(x = mu, y = lambda, colour = Treatment, shape = Treatme
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-The simulated scatterplot does look similar to Figure one in that the controls groups is more concentrated with a smaller average change in IQ Score and a smaller variance while the spurters group has a larger spread and a higher average change in IQ score. 
+\textcolor{red}{The simulated scatterplot does look similar to Figure 1 in that the control group is more concentrated with a smaller average mean change in IQ score, while the spurters group has a larger average mean change in IQ score.} 
