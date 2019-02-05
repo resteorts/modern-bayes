@@ -356,6 +356,12 @@ X|\theta &\sim \text{Uniform}(0,\theta)\\
 where $p(\theta) = \dfrac{\alpha \beta^\alpha}{\theta^{\alpha +1}}I_{(\beta,\infty)}(\theta).$
 Write out the likelihood $p(x\mid \theta).$ Then calculate the posterior distribution of $\theta|x.$  
 
+Uniform Distribution
+===
+
+Here, 
+the uniform distribution is defined as $$p(x\mid \theta) = \frac{1}{\theta} I_{(0,\theta)}(x).$$
+
 Solution
 ===
 \begin{align}
@@ -368,7 +374,11 @@ P(\theta \mid x)
 & \propto 
 \frac{\alpha \beta^{\alpha}}
 {\theta^{\alpha+2}}
-I( \theta > \max\{x, \beta \}).
+I( \theta > \max\{x, \beta \})\\
+& \propto 
+\textcolor{red}{\frac{1}
+{\theta^{\alpha+2}}
+I( \theta > \max\{x, \beta \})}.
 \end{align}
 
 Thus, $$\theta \mid x \sim \text{Pareto} (\alpha + 1, \max\{x, \beta \}).$$
@@ -396,11 +406,7 @@ where $p(\theta) = \dfrac{\alpha \beta^\alpha}{\theta^{\alpha +1}}I_{(\beta,\inf
 
 Write out the likelihood $p(x\mid \theta).$ Then calculate the posterior distribution of $\theta|x.$ 
 
-Uniform Distribution
-===
 
-Here, 
-the uniform distribution is defined as $$p(x\mid \theta) = \frac{1}{\theta} I_{(0,\theta)}(x).$$
 
 Likelihood
 ===
@@ -422,7 +428,9 @@ p(\theta \mid x_{1:n}) &\propto
 & \propto \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
 I( \theta > \max\{\beta, \max \{ x_{1:n} \}\}) \\
 & \propto \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
-I( \theta > \max\{\beta,  x_{1:n} \}) 
+I( \theta > \max\{\beta,  x_{1:n} \}) \\
+& \propto \textcolor{red}{ \frac{1}{\theta^{n+\alpha+1}}
+I( \theta > \max\{\beta,  x_{1:n} \})} 
 \end{align}
 
 
