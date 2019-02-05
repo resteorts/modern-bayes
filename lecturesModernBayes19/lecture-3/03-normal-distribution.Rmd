@@ -394,7 +394,13 @@ X_1 \ldots, X_n|\theta &\sim \text{Uniform}(0,\theta)\\
 \end{align*}
 where $p(\theta) = \dfrac{\alpha \beta^\alpha}{\theta^{\alpha +1}}I_{(\beta,\infty)}(\theta).$
 
-Write out the likelihood $p(x\mid \theta).$ Then calculate the posterior distribution of $\theta|x.$  
+Write out the likelihood $p(x\mid \theta).$ Then calculate the posterior distribution of $\theta|x.$ 
+
+Uniform Distribution
+===
+
+Here, 
+the uniform distribution is defined as $$p(x\mid \theta) = \frac{1}{\theta} I_{(0,\theta)}(x).$$
 
 Likelihood
 ===
@@ -412,11 +418,12 @@ Posterior
 \begin{align}
 p(\theta \mid x_{1:n}) &\propto
 \frac{1}{\theta^n} I( \theta > \max \{ x_{1:n} \}) \frac{\alpha \beta^{\alpha}}{\theta^{\alpha+1}}I(\theta > \beta)\\
-& = \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}I(\theta > \beta)I( \theta > \max \{ x_{1:n} \})\\
-& = \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
+& \propto \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}I(\theta > \beta)I( \theta > \max \{ x_{1:n} \})\\
+& \propto \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
 I( \theta > \max\{\beta, \max \{ x_{1:n} \}\}) \\
-& = \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
+& \propto \frac{\alpha \beta^{\alpha}}{\theta^{n+\alpha+1}}
 I( \theta > \max\{\beta,  x_{1:n} \}) 
 \end{align}
 
 
+ 
