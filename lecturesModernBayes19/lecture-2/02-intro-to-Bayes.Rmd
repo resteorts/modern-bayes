@@ -86,7 +86,7 @@ Bayesian approach
 
 - $S$ is a random variable, 
 - the distribution of $x$ depends on $S$, 
-- and the optimal decision is to choose an action $a$ that minimizes the \term{posterior expected loss},
+- and the optimal decision is to choose an action $a$ that minimizes the \term{posterior expected loss} or \term{posterior risk},
 $$\rho(a,x) =\E(\ell(S,a)|x).$$
 
 In other words, $\rho(a,x) =\sum_s \ell(s,a) p(s|x)$ if $S$ is a discrete random variable, while if $S$ is continuous then the sum is replaced by an integral.
