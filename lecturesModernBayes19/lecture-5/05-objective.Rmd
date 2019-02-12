@@ -194,7 +194,8 @@ $$p(y|\theta)= {n \choose y} \theta^y (1-\theta)^{n-y}$$, which implies that the
 Partial derivatives
 ===
 
-It then follows that the first and second partial derivates are as follows: 
+Recall that $\log p(y|\theta)=\log{n \choose y}+y\log \theta+(n-y)\log (1-\theta).$
+It follows that the first and second partial derivatives with respect to $\theta.$
 
 \begin{align}
 \frac{\partial\log p(y|\theta)}{\partial\theta}=\frac{y}{\theta}-\frac{n-y}{1-\theta}
@@ -209,7 +210,7 @@ and
 Fisher information
 ===
 
-Given $E(y|\theta)=n\theta$,
+Given $E(y|\theta)=n\theta$ and $\dfrac{\partial^2\log p(y|\theta)}{\partial\theta^2}=\dfrac{y}{-\theta^2}-\dfrac{n-y}{(1-\theta)^2}.$
 
 \begin{align}
 E[\frac{\partial^2\text{log}p(y|\theta)}{\partial\theta^2} | \theta]
