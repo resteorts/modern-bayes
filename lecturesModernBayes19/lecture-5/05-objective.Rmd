@@ -252,4 +252,14 @@ $$I(\theta)_{ij} = - E\left[
 \right].$$
 [For more reading: See PhD notes: Objective Bayes Chapter on reference priors, Gelman, et al. (2013)]
 
+Readings
+===
+
+If you'd like to know more about invariance, please see the the following references.
+
+1. http://www.ctanujit.org/uploads/2/5/3/9/25393293/theory_of_point_estimation.pdf
+2. https://www.springer.com/us/book/9780387400846
+3. Papers on Subjective and Objective Priors, https://projecteuclid.org/euclid.ba/1340371033
+
+
 
