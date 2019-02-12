@@ -13,6 +13,13 @@ font-size: 8px
 Agenda
 ===
 
+- Subjective versus objective priors
+- The uniform prior
+- Transforming the uniform prior
+- Invariance
+- Jeffreys' prior
+- Binomial example for Jeffreys' prior
+
 
 Subjective versus Objective priors
 ===
@@ -98,11 +105,22 @@ Uniform(0,1) prior
 Uniform(0,1) prior (continued)
 ===
 
-What happens if we consider though the transformation to $1/\theta.$ Is our prior still flat (does it place equal weight at every parameter value)?
+What happens if we consider though the transformation to $\phi = 1/\theta.$ 
 
-\vspace*{1em}
+Is our prior still flat (does it place equal weight at every parameter value)?
 
-Do this on your own using change of variables. To help answer the question, plot both the original and transformed priors as well. 
+
+Uniform prior versus the Transformed Prior
+===
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/unif.pdf}
+     \includegraphics[width=0.4\textwidth]{figures/transformationPlot}
+     \caption{Comparison of the Uniform prior and the transformed prior on $\theta.$}
+  \end{center}
+\end{figure}
+
 
 Invariance
 ===
@@ -141,7 +159,7 @@ Instead of reformatting the data, we could just transform the parameter.
 
 Also, we would hope that our prior is not sensitive to a slight change in our parameter (inches, cm). 
 
-Invaraince
+Invariance
 ===
 
 One prior that is nice to work with was discovered by Jeffreys' and is invariant under one-to-one transformations of the parameter.\footnote{This is not true for the Uniform(0,1) prior.}
