@@ -1,0 +1,236 @@
+
+---
+title: "Module 5: Objective Bayes"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+
+Agenda
+===
+
+
+Subjective versus Objective priors
+===
+
+\begin{itemize}
+\item Ideally, we would like a \emph{subjective prior}: a prior reflecting our beliefs about the unknown parameter of interest.
+\item What are some examples in practice when we have subjective information? 
+\item When may we not have subjective information? 
+\end{itemize}
+
+Subjective versus Objective priors
+===
+
+In dealing with real-life problems you may run into problems such as
+\begin{itemize}
+\item not having past historical data,
+\item not having an expert opinion to base your prior knowledge on (perhaps your research is cutting-edge and new), or
+\item as your model becomes more complicated, it becomes hard to know what priors to put on each unknown parameter.
+\item What do we do in such situations?
+\end{itemize}
+
+That rule Bayes
+===
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/bt1}
+  \end{center}
+\end{figure}
+
+What did Bayes say exactly?
+===
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/bayespropositioninpaper}
+  \end{center}
+\end{figure}
+
+Translation
+===
+
+- Billiard ball $W$ rolled on a line of length one, with a uniform
+probability of stopping anywhere.
+
+- $W$ stops at $p$
+
+- Second ball $O$ then rolled $n$ times under the same assumptions. 
+
+- $X$ denotes the number of times the ball $O$ stopped on the left of $W$
+
+
+Derive the posterior distribution of $p$ given $X$, when
+$p \sim U[0, 1]$ and $X\mid p \sim \text{Binomial}(n, p)$
+
+\vspace{1em}
+
+Such priors on $p$ are said to be uniform or flat. 
+
+A ``flat" prior
+===
+
+Let's talk about what people really mean when they use the term ``flat," since it can have different meanings.
+\vskip 1em
+
+Often statisticians will refer to a prior as being flat, when a plot of its density actually looks flat, i.e., uniform. 
+
+$$\theta \sim \text{Unif}(0,1).$$
+
+\vskip 1em
+
+Why do we call it flat? It's assigning equal weight to each parameter value. Does it always do this?
+
+Uniform(0,1) prior
+===
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/unif.pdf}
+  \end{center}
+\end{figure}
+
+Uniform(0,1) prior (continued)
+===
+
+What happens if we consider though the transformation to $1/\theta.$ Is our prior still flat (does it place equal weight at every parameter value)?
+
+\vspace*{1em}
+
+Do this on your own using change of variables. To help answer the question, plot both the original and transformed priors as well. 
+
+Invariance
+===
+
+You will find the the uniform prior is not invariant to transformations. 
+
+\vspace*{1em}
+
+What does invariance mean intuitively? 
+
+Invariance
+===
+
+Let $\theta$ be our parameter of interest. 
+\vskip 1em
+Transform to $g(\theta).$
+\vskip 1em
+
+The transformation is said to be invariant  
+$\theta$ and $g(\theta)$ have the same distributions form (Normal, Beta, etc) up to a normalizing constant $k.$
+
+Why is invariance important?
+===
+
+Suppose $\theta$ is the true population height in inches! 
+
+\vskip 1 em
+
+However, we receive some data the data is now in cm. 
+
+\vskip 1 em
+
+Instead of reformatting the data, we could just transform the parameter. 
+
+\vskip 1 em
+
+Also, we would hope that our prior is not sensitive to a slight change in our parameter (inches, cm). 
+
+Invaraince
+===
+
+One prior that is nice to work with was discovered by Jeffreys' and is invariant under one-to-one transformations of the parameter.\footnote{This is not true for the Uniform(0,1) prior.}
+
+Jeffreys' prior
+===
+
+Define 
+$$I(\theta) = -E\left[
+\frac{\partial^2 \log p(y|\theta)}{\partial \theta^2}
+\right],$$ where $I(\theta)$ is called the Fisher information. Then \emph{Jeffreys' prior} is defined to be
+$$p_J(\theta) = \sqrt{I(\theta)}.$$
+
+
+Jeffreys' and the Binomial Likelihood
+===
+
+Consider $$Y \sim \text{binomial}(n,\theta).$$
+Derive Jeffrey's prior. 
+
+Log-likelihood
+===
+
+The likelihood is 
+
+$$p(y|\theta)= {n \choose y} \theta^y (1-\theta)^{n-y}$$, which implies that the log-likelihood is
+
+\begin{align}
+\log p(y|\theta)=\log{n \choose y}+y\log \theta+(n-y)\log (1-\theta)
+\end{align}
+
+Partial derivatives
+===
+
+It then follows that the first and second partial derivates are as follows: 
+
+\begin{align}
+\frac{\partial\log p(y|\theta)}{\partial\theta}=\frac{y}{\theta}-\frac{n-y}{1-\theta}
+\end{align}
+
+and 
+
+\begin{align}
+\frac{\partial^2\log p(y|\theta)}{\partial\theta^2}=\frac{y}{-\theta^2}-\frac{n-y}{(1-\theta)^2}.
+\end{align}
+
+Fisher information
+===
+
+Given $E(y|\theta)=n\theta$,
+
+\begin{align}
+E[\frac{\partial^2\text{log}p(y|\theta)}{\partial\theta^2} | \theta]
+&=\frac{E(y| \theta)}{-\theta^2}-\frac{n-E(y|\theta)}{(1-\theta)^2} \\
+&= \frac{n\theta}{-\theta^2}-\frac{n-n\theta}{(1-\theta)^2} \\
+&= -\frac{n}{\theta}-\frac{n}{(1-\theta)}
+\end{align}
+
+\begin{align}
+I(\theta) = -E[\frac{\partial^2\text{log}p(y|\theta)}{\partial\theta^2} | \theta]=\frac{n}{\theta}+\frac{n}{(1-\theta)}=\frac{n}{\theta(1-\theta)}.
+\end{align}
+
+Jeffreys' and the Binomial Likelihood
+===
+
+Thus, the Jeffreys' prior for the binomial model is 
+
+$$p_J(\theta) \propto \sqrt{I(\theta)} = \sqrt{n}\theta^{-\frac{1}{2}}(1-\theta)^{-\frac{1}{2}}$$ or 
+$$p_J(\theta) = \text{Beta}(\frac{1}{2},\frac{1}{2})$$ 
+
+Comparison with Jeffreys' prior and the Uniform(0,1) prior
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/Lec7p2fig1.pdf}
+    \caption{Comparison of the prior density $\pi_J(\theta)$ with that for a flat prior, which is equivalent to a Beta(1,1) distribution. 
+}
+  \end{center}
+\end{figure}
+
+Limitations of Jeffreys' prior
+===
+
+Jeffreys' priors work well for single-parameter models, but not for models with \textcolor{blue}{multidimensional parameters}. By analogy with the one-dimensional case, one might construct a naive Jeffreys prior as the joint density:
+$$\pi_J(\theta) = |I(\theta)|^{1/2},$$
+where $|\cdot|$ denotes the determinant and the $(i,j)$th element of the Fisher information matrix is given by
+$$I(\theta)_{ij} = - E\left[
+\frac{\partial^2 \log p(X|\theta)}{\partial \theta_i \partial \theta_j}
+\right].$$
+[For more reading: See PhD notes: Objective Bayes Chapter on reference priors, Gelman, et al. (2013)]
+
+
