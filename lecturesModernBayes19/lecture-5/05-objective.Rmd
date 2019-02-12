@@ -228,8 +228,8 @@ Jeffreys' and the Binomial Likelihood
 
 Thus, the Jeffreys' prior for the binomial model is 
 
-$$p_J(\theta) \propto \sqrt{I(\theta)} = \sqrt{n}\theta^{-\frac{1}{2}}(1-\theta)^{-\frac{1}{2}}$$ or 
-$$p_J(\theta) \propto \text{Beta}(\frac{1}{2},\frac{1}{2})$$ 
+$$p_J(\theta) = \sqrt{I(\theta)} = \sqrt{n}\theta^{-\frac{1}{2}}(1-\theta)^{-\frac{1}{2}} \propto \text{Beta}(\frac{1}{2},\frac{1}{2})$$ 
+
 
 Comparison with Jeffreys' prior and the Uniform(0,1) prior
 ===
