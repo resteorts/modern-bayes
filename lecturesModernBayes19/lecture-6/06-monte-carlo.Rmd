@@ -208,7 +208,7 @@ Simple Example
 Suppose we want to estimate $P(X>5),$ where $X \sim N(0,1).$ 
 
 \vskip 1 em
-\textbf{Naive method}: 
+\textbf{Naive method (Monte carlo)}: 
 \begin{itemize}
 \item Generate $X_1 \ldots X_n \stackrel{iid}{\sim} N(0,1)$
 \item Take the proportion $\hat{p} = \bar{X} > 5$ as your estimate
@@ -242,7 +242,7 @@ Naive Method Solution
 ===
 ```{r}
 1 - pnorm(5)                  # gives 2.866516e-07
-## Naive method
+## Naive method (Monte Carlo)
 set.seed(1)
 mySample <- 100000
 x <- rnorm(n=mySample)
@@ -262,7 +262,7 @@ h <- dnorm(y, mean=0)/dnorm(y, mean=5) * I(y>5)
 mean(h)                       # gives 2.865596e-07
 sd(h)/sqrt(length(h))         # gives 2.157211e-09
 ```
-What is the difference between the naive and the IS solution?
+What is the difference between the naive (monte carlo) and the IS solution?
 
 Question
 ===
