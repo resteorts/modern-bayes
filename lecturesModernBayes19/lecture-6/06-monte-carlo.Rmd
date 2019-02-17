@@ -14,8 +14,7 @@ Agenda
 ===
 - Motivation
 - Numerical Integration
-- Monte Carlo
-- The Naive Method
+- Monte Carlo (The Naive Method)
 - Importance Sampling
 - Rejection Sampling
 
@@ -238,7 +237,7 @@ If
 $X_1, \ldots, X_n \sim N(\theta, 1),$ then an unbiased estimate is 
 $\hat{p} = \frac{1}{n} \sum_i  h(X_i).$
 
-Naive Method Solution
+Naive Method (Monte Carlo) Solution
 ===
 ```{r}
 1 - pnorm(5)                  # gives 2.866516e-07
@@ -280,58 +279,14 @@ h <- dnorm(y, mean=0)/dnorm(y, mean=100) * I(y>100)
 # versus 2.157211e-09 (u>5)
 ```
 
-Harder example
+Importance Sampling Reference
 ===
-Let $f(x)$ be the pdf of a $N(0,1)$. Assume we want to compute $$a = \int_{-1}^{1}{f(x)dx} =  \int_{-1}^{1}{N(0,1)dx}$$ 
 
-\vskip 1em
+For more reading on importance sampling, see the following reference:
+\url{https://www.amazon.com/Monte-Statistical-Methods-Springer-Statistics/dp/1441919392}. 
 
-Let $g(X)$ be an arbitrary pdf, $$a(x) = \int_{-1}^{1}{\frac{f(x)}{g(x)} g(x)\;dx}.$$
-
-\vskip 1em
-
-We want to be able to draw $g(x) \sim Y$ easily. But how should we go about choosing $g(x)?$
-
-Harder example (continued)
-===
-\begin{itemize}
-\item Note that if $g \sim Y,$ then 
-$a = E[I_{[-1,1]}(Y)\frac{f(Y)}{g(Y)}]$.  
-\item The variance of $I_{[-1,1]}(Y)\dfrac{f(Y)}{g(Y)}$ is minimized picking $g \propto I_{[-1,1]}(x)f(x)$. Nevertheless simulating from this $g$ is usually expensive.
-\item Some $g$'s which are easy to simulate from are the pdf's of:
-\begin{itemize}
-\item  the $\text{Uniform}(-1,1)$, 
-\item the Normal$(0,1),$ 
-\item and a Cauchy with location parameter $0$ (Student t with 1 degree of freedom). 
-\end{itemize}
-\item Below, there is code of how to get a sample from $$I_{[-1,1]}(Y)\dfrac{f(Y)}{g(Y)}$$ for the three choices of $g.$ 
-\end{itemize}
-
-Solution to Harder example
-===
-```{r}
-uniformIS <- function(sampleSize=10) {
-  sapply(runif(sampleSize,-1,1), 
-    function(xx) dnorm(xx,0,1)/dunif(xx,-1,1)) }
-
-cauchyIS <- function(sampleSize=10) {
-  sapply(rt(sampleSize,1), 
-    function(xx) 
-    (xx <= 1)*(xx >= -1)*dnorm(xx,0,1)/dt(xx,2)) }
-
-gaussianIS <- function(sampleSize=10) {
-  sapply(rnorm(sampleSize,0,1),
-    function(xx) (xx <= 1)*(xx >= -1)) }
-```
-
-Harder example (continued)
-===
-\begin{figure}
-	\centering
-	\includegraphics{figures/importance_sampling2}
-	\caption{Histograms for samples from $I_{[-1,1]}(Y)\frac{f(Y)}{g(Y)}$ when $g$ is, respectivelly, a uniform, a Cauchy and a Normal pdf.}
-	\label{ex2.IS.gaussian}
-\end{figure}
+This book also covers Monte carlo and Markov chain monte carlo methods extensively, so you may
+find this as a useful reference. 
 
 
 Rejection Sampling
@@ -474,7 +429,7 @@ Entire picture and an example point $X$ and $Y$
   \caption{Entire picture and an example point $X$ and $Y.$}
 \end{figure}
 
-Exercise 
+Exercise (Lab 5)
 ===
 Consider the function
 $$ f(x) \propto \sin^2(\pi x), x \in [0,1]$$
@@ -541,4 +496,14 @@ Task 4 and 5
 ===
 You will finish these for your next homework and see these in 
 lab 5.
+
+Exercise (Lab 6)
+===
+Estimate 
+$$ I = \int_{-\infty}^{\infty} \exp(-x^4) \; dx$$ using classical or naive Monte Carlo. 
+Now consider importance sampling for estimating $I.$ Provide an estimate of the standard error of both of your estimates. 
+
+Solution
+===
+
 
