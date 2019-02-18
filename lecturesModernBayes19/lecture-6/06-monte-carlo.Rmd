@@ -499,11 +499,161 @@ lab 5.
 
 Exercise (Lab 6)
 ===
-Estimate 
-$$ I = \int_{-\infty}^{\infty} \exp(-x^4) \; dx$$ using classical or naive Monte Carlo. 
-Now consider importance sampling for estimating $I.$ Provide an estimate of the standard error of both of your estimates. 
+Consider 
+$$ I = \int_{-\infty}^{\infty} \exp(-x^4) \; dx.$$ 
 
-Solution
+Tasks (Lab 6)
 ===
+
+1. Task 1: Find a closed form solution to $I$ and evaluate this. 
+2. Task 2: Approximate $I$ using Monte carlo. 
+3. Task 3: Approximate $I$ using importance sampling. 
+
+Gamma density
+===
+
+Before proceeding with the tasks, let's recall that one variant of the Gamma(a,b) density can be written as follows: 
+
+$$\Ga(x|a,b=\text{rate}) = \frac{b^a}{\Gamma(a)}x^{a-1}e^{-b x}\,\I(x>0)$$ for $a,b>0,$
+
+Task 1
+===
+For the sake of comparison, we can derive the true value using substitution and the gamma function.  We will use the substitution $u = x^4$ to derive the following result:
+
+\begin{align*}
+\int_{-\infty}^\infty \exp(-x^{-4})\,dx &= 2\int_0^\infty \exp(-x^{-4})\,dx \\
+&= 2\int_0^\infty \frac{\exp(-u)}{4u^{3/4}} \, du \\
+&= 2^{-1/2}\int_0^\infty u^{1/4-1}e^{-u}\,du \\
+&=  \frac{\Gamma(1/4)}{4^{1/4}}\times 2^{-1/2} \textcolor{red}{\int_0^\infty u^{1/4-1}e^{-u} \times \frac{\Gamma(1/4)}{4^{1/4}}\,du} \\
+&= \frac{\Gamma(1/4)}{2} \\
+&= 1.813.
+\end{align*}
+
+Task 2 (Monte Carlo)
+===
+
+In this task, we perform Monte carlo. Let $y=\sqrt{2}x^{2}$.  We will perform $u$-substitution to evaluate the integral with Monte Carlo (verify this calculation on your own)\footnote{The details of this derivation are in lab 6.}
+
+\begin{align*}
+I &= 
+&= 2^{-5/4} \int_0^\infty\sqrt{\frac{2\pi}{y}}2\phi(y)\,dy.
+\end{align*}
+
+The function $2\phi(y)$ is the density of the normal distribution truncated (or folded) at zero.  We can sample from this distribution by taking samples from the standard normal distribution and then taking their absolute value.  Note that if $X \sim N(0,1)$ we see for any $c > 0$
+
+\begin{align*}
+P(|X| < c) &= P(-c < X < c) \\
+&= 2(\Phi(c) - 1/2) \\
+&= 2\Phi(c) - 1,
+\end{align*}
+
+the derivative of which is the pdf we are sampling from. 
+
+
+Task 3 (Importance Sampling)
+===
+
+We can multiply and divide the integral by a density that has a support equal to the area over which we are integrating.  An obvious and easy choice is the standard normal density, $\phi$:
+
+\begin{align*}
+\int_{-\infty}^\infty \exp(-x^4)\,dx &= \int_{-\infty}^\infty \frac{\exp(-x^4)}{\phi(x)}\phi(x)\,dx.
+\end{align*}
+
+We can therefore evaluate the integral by sampling from a standard normal and averaging the values evaluated in $\exp(-x^4)/\phi(x).$ Thus, we will perform re-weighting, and thus, utilizing importance sampling.  
+
+Comparison of Methods
+===
+
+The results of 10,000 simulations using the three methods described above are summarized in Table \ref{ex1table}; the true value is included for comparison.  Of these methods, multiplying and dividing by the standard normal density and then sampling from this density seems to yield the best estimate, which is both closer to the true value and has lower standard error.  The other two methods are comparable in both their estimates and standard errors.  
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & Mean & SE \\ 
+  \hline
+True value & 1.81 &  \\ 
+  Truncated Normal (Monte Carlo) & 1.79 & 0.06 \\ 
+  Full Normal (IS) & 1.81 & 0.01 \\ 
+   \hline
+\end{tabular}
+\caption{\label{ex1table} Comparison of the Monte Carlo estimate for the value of the integral using various methods with 10,000 draws for each method. As we can see under importance sampling, the estimate is closer to the true value and the SE is also lower.}
+\end{table}
+
+Comparison of Methods
+===
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+library(xtable)
+# define target functions for MC estimate
+mc1 <- function(x){
+  # folded normal target
+  return(sqrt(2*pi/abs(x)))
+}
+
+mc2 <- function(x){
+  # normal target
+  exp(-x^4)/dnorm(x)
+}
+
+mc3 <- function(x){
+  # uniform target
+  return(20*exp(-x^4))
+}
+mcSE <- function(values){
+  # this function calculates the standard error
+  # of an MC estimate with target function values
+  # eg values should be vector of f(x_i)
+  return(sqrt(var(values)/length(values)))
+}
+# folded normal
+draws <- rnorm(10000)
+values <- sapply(draws,mc1)
+# normal
+draws2 <- rnorm(10000)
+values2 <- sapply(draws2,mc2)
+# uniform
+draws3 <- runif(10000,min=-10,max=10)
+values3 <- sapply(draws3,mc3)
+# plot histograms
+pdf(file="mc1hist.pdf")
+hist(values*2^(-5/4), xlab = expression(f(X)),
+     main = "Folded Normal")
+dev.off()
+pdf(file="mc2hist.pdf")
+hist(values2, xlab = expression(f(X)),
+     main = "Normal")
+dev.off()
+pdf(file="mc3hist.pdf")
+hist(values3, xlab = expression(f(X)),
+     main = "Uniform")
+dev.off()
+# put results in a data frame and display with xtable
+mc.mean <- mean(values)*2^(-5/4)
+mc.sd<- 2^(-10/4)*sd(values)/sqrt(length(values))
+means <- c(gamma(1/4)/2,mc.mean,mean(values2),mean(values3))
+SEs <- c(NA, mcSE(values),mcSE(values2),mcSE(values3))
+mc.df <- data.frame(Mean = means, SE = SEs, 
+                    row.names = c("True value", "row.names
+                                  Normal", "Full Normal",  
+                                  "Truncated Uniform"))
+xtable(mc.df)
+```
+
+Histograms
+===
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width = .45\textwidth]{mc1hist.pdf}
+\includegraphics[width = .45\textwidth]{mc2hist.pdf}
+\caption{\label{ex1hist} Histograms for the various Monte Carlo simulations.}
+\end{figure}
+An ideal histogram would be highly centered around the true value of 1.81.  For the folded normal, we see that there are some very large observations that skew the distribution.  The normal method also results in a strange histogram, with values concentrated near the edges.
+
+
+
+
+
 
 
