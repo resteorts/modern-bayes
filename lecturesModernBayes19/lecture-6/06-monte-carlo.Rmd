@@ -492,10 +492,49 @@ hist(samples, freq=FALSE) #construct density hist
 print(paste("Acceptance Ratio:", length(samples)/numSim))
 ```
 
-Task 4 and 5
+Task 2 -- 4 (Partial Solution)
 ===
-You will finish these for your next homework and see these in 
-lab 5.
+\footnotesize
+```{r}
+sim_fun <- function(f, envelope = "unif", par1 = 0, 
+                    par2 = 1, n = 10^2, plot = TRUE){
+  
+  r_envelope <- match.fun(paste0("r", envelope))
+  d_envelope <- match.fun(paste0("d", envelope))
+  proposal <- r_envelope(n, par1, par2)
+  density_ratio <- f(proposal) / d_envelope(proposal, par1, par2)
+  samples <- proposal[runif(n) < density_ratio]
+  acceptance_ratio <- length(samples) / n
+  if (plot) {
+    hist(samples, probability = TRUE, 
+         main = paste0("Histogram of ", n, " samples from ", 
+                       envelope, "(", par1, ",", par2, ").\n 
+                       Acceptance ratio: ", 
+                       round(acceptance_ratio,2)), cex.main = 0.75)
+  }
+  list(x = samples, acceptance_ratio = acceptance_ratio)
+}
+```
+
+Task 2 -- 4 (Partial Solution)
+===
+```{r,echo=FALSE}
+par(mfrow = c(2,2), mar = rep(4, 4))
+unif_1 <- sim_fun(f=densFun , envelope = "unif", par1 = 0, par2 = 1, n = 10^2) 
+unif_2 <- sim_fun(f=densFun, envelope = "unif", par1 = 0, par2 = 1, n = 10^5)
+beta_1 <- sim_fun(f=densFun, envelope = "beta", par1 = 2, par2 = 2, n = 10^2)
+beta_2 <- sim_fun(f=densFun, envelope = "beta", par1 = 2, par2 = 2, n = 10^5)
+```
+
+Figure 2: Rejection sampling for 100 versus 100,000 simulations with uniform and beta distributions as envelope functions.
+
+Takeaways
+===
+
+1. What do you notice about the enveloping functions and the acceptance ratio as the number of samples is large? 
+
+2. What does this tell you about the uniform proposal versus the beta proposal in this specific application? 
+
 
 Exercise (Lab 6)
 ===
