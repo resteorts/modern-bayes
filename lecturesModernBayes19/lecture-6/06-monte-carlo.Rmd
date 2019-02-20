@@ -20,7 +20,7 @@ Commonly missed questions (exam I). Problem 2
 ===
 
 - There were many issues with respect to the posterior predictive distribution. 
-- This problem is fully worked out in the PhD lecture notes (see this for the solution). 
+- See Example 2.7, 2.8, 2.10 in the PhD lecture notes. 
 
 Commonly missed questions (exam I). Problem 3
 ===
@@ -32,7 +32,8 @@ Commonly missed questions (exam I). Problem 4
 
 - Most students were able to get part a correctly
 - Student that had trouble with part b, had trouble setting up the marginal distribution
-correctly. Others had trouble realizing the connection with the negative binomial distribution. 
+correctly. 
+- See Example 2.17 of the PhD lecture notes. 
 
 Summary of the Exam
 ===
