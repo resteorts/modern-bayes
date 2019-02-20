@@ -7,11 +7,11 @@
 \maketitle
 
 
-\begin{enumerate}
-\item 3.14, part d in Hoff. (Unit information prior). 
-\item (Normal-Normal)  Derive the posterior predictive density $p(x_{n +1}|x_{1:n})$ for the Normal--Normal model covered in lecture. Hint: There is an easy way to do this and a hard way. To make the problem easier, consider writing $X_{n+1} = \btheta + Z$ given $x_{1:n}$, where $Z\sim\N(0,\lambda^{-1})$.)
-\item Work through section 10.3 in the Hoff book. (Metropolis). 
-\end{enumerate}
+%\begin{enumerate}
+%\item 3.14, part d in Hoff. (Unit information prior). 
+%\item (Normal-Normal)  Derive the posterior predictive density $p(x_{n +1}|x_{1:n})$ for the Normal--Normal model covered in lecture. Hint: There is an easy way to do this and a hard way. To make the problem easier, consider writing $X_{n+1} = \btheta + Z$ given $x_{1:n}$, where $Z\sim\N(0,\lambda^{-1})$.)
+%\item Work through section 10.3 in the Hoff book. (Metropolis). 
+%\end{enumerate}
 
 \section{Solutions}
 
@@ -88,6 +88,34 @@ E(X_{n+1}|X_{1_n}, \lambda^{-1}) &= E(\theta|X_{1_n}, \lambda^{-1}) + E(Z|X_{1_n
 V(X_{n+1}|X_{1_n}, \lambda^{-1}) &=  V(\theta|X_{1_n}, \lambda^{-1}) + V(Z|X_{1_n}, \lambda^{-1}) = L^{-1} + \lambda^{-1} \\
 X_{n+1}|X_{1_n}, \lambda^{-1} &\sim N(M, L^{-1} + \lambda^{-1})
 \end{align*}
+
+\item For labs 4 -- 6, see the solutions. 
+
+\item \subsubsection*{Approach 1 (Simple, but not great)}
+To draw a sample $Z$ from the distribution of $X\mid X<c$,
+\begin{enumerate}
+    \item sample $U\sim \Uniform(0,1)$,
+    \item set $X = F^{-1}(U)$,
+    \item if $X \geq c$ then return to step 1 (reject), otherwise, output $Z = X$ as a sample (accept).
+\end{enumerate}
+Why does it work? By the inverse c.d.f.\ method, we know $$X = F^{-1}(U)\sim\N(0,1).$$ By the rejection principle, if we reject any samples $X$
+such that $$X\geq c,$$ then what remains has the conditional distribution given $$X<c.$$ This approach is not ideal, however, since the rejection rate may be very high, especially when $c\ll 0$.
+
+\subsubsection*{Approach 2 (Better)}
+To draw a sample $Z$ from the distribution of $X\mid X<c$,
+\begin{enumerate}
+    \item sample $U\sim \Uniform(0,1)$,
+    \item set $V = F(c)U$, and 
+    \item set $Z = F^{-1}(V)$.
+\end{enumerate}
+Why does this work? Note that in Approach 1, rejecting when $$X\geq c$$ is identical to rejecting when $$U\geq F(c),$$ and by the rejection
+principle, we know that the distribution of the $U$'s that remain after rejection is $$U\mid U<F(c),$$ in other words, $\Uniform(0,F(c))$.  
+
+But that means that the rejection step can be by-passed completely by just sampling $$V\sim\Uniform(0,F(c))$$ and setting $$Z = F^{-1}(V).$$
+
+Thus, we can directly sample $$V\sim\Uniform(0,F(c)),$$ by drawing $$U\sim\Uniform(0,1)$$ and setting $$V = F(c)U.$$ 
+
+
 
 
 \end{enumerate}
