@@ -9,6 +9,70 @@ output:
 font-size: 8px
 ---
 
+Commonly missed questions (exam I). Problem 1
+===
+
+- Laplace question. 
+- There were issues with writing down the definition of the posterior predictive distribution. 
+- For solutions to this problem, please see the lecture notes. 
+
+Commonly missed questions (exam I). Problem 2
+===
+
+- There were many issues with respect to the posterior predictive distribution. 
+- This problem is fully worked out in the PhD lecture notes (see this for the solution). 
+
+Commonly missed questions (exam I). Problem 3
+===
+
+- This was the most commonly missed question.  
+
+Commonly missed questions (exam I). Problem 4
+===
+
+- Most students were able to get part a correctly
+- Student that had trouble with part b, had trouble setting up the marginal distribution
+correctly. Others had trouble realizing the connection with the negative binomial distribution. 
+
+Summary of the Exam
+===
+```
+ summary(under.exam.one)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.4412  0.5000  0.4957  0.5588  0.8088 
+``` 
+ 
+```
+summary(grad.exam.one)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2059  0.3346  0.4706  0.4750  0.5956  0.7941 
+``` 
+
+
+New exam policy 
+===
+
+There is a new student policy (moving forward exam II and the final exam).\footnote{Please note this is not a retroactive policy!}
+For the full new policy, please refer to the syllabus. 
+
+Due to students that receive extra time on examinations, student athelets, an other accomodations that are required by the university, no student is to talk or communicate in any manner about the examination until exam grades are released to all students via Sakai. Any violation of this (by any student), will be considered a violation of the Duke Honor Code. If you believe a violation has been made, please contact your professor either in person or in writing. 
+
+Why is there a new policy? This is to ensure that all students do not have an unfair advantage over others on any examination. 
+
+Wrapping up Exam I
+===
+
+What if I talked with others after Exam I?
+
+ 
+Wrapping up Exam I
+===
+
+1. I would like to see anyone that received a raw score of below 30 in my OH.
+2. If you scored above this, I'm not worried about your grade at this time in the course. 
+3. If you would like to know your ranking in the course at any time, please feel free to see me at any time during my OH. 
+4. Will I curve grades? 
+
 
 Agenda
 ===
