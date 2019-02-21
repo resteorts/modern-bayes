@@ -57,14 +57,6 @@ will work in any dimension.
 
 We turn to Markov chain Monte Carlo (MCMC).
 
-Intuition
-===
-\begin{figure}
-  \begin{center}
-    \includegraphics[width=0.7\textwidth]{figures/markovChainPoint}
-    \caption{Example of a Markov chain and red starting point}
-    \end{center}
-\end{figure}
 
 Intuition
 ===
@@ -90,6 +82,13 @@ What is Markov Chain Monte Carlo
 \item Markov Chain -- where we go next only depends on our last state (the Markov property).
 \item Monte Carlo -- just simulating data. 
 \end{itemize}
+
+The Markov property
+===
+
+Suppose that we have just visited states $x_1,\ldots,x_{n-1}.$ The Markov property says the following:
+
+$$P(X_n = x_n \mid X_1 = x_1,\ldots,X_{n-1}=x_{n-1}) = P(X_n = x_n \mid X_{n-1}=x_{n-1}).$$
 
 Why MCMC?
 ===
@@ -147,8 +146,7 @@ Called hard discs because the molecules cannot overlap.
 
 Hard Discs in a Box Example
 ===
-Have an $X = (x,y)$ coordinate for each molecule.
-- Remark: For the rest of the lecture, $X$ will denote the two coordinate vectors of the molecule. 
+Have an $X = (u,v)$ coordinate for each molecule.\footnote{For the rest of the lecture, $X$ will denote the two coordinate vectors of the molecule.}
 \vskip 1em
 The total dimension of the space is $\mathbb{R}^{2N}.$
 
@@ -462,6 +460,25 @@ We will then generate 10,000 iterations since 500 will not be sufficient.
 
 Figure~\ref{met_norm} shows a traceplot for this run as well as a histogram for the Metropolis algorithm compared with a draw from the true normal density. 
 
+Traceplot
+===
+
+What is a traceplot? A traceplot is a convergence diagnostic.
+
+It's a plot of the parameter of interest versus the number of MCMC iterations. 
+
+What does it tell us?
+
+1. It can tell us when we have not run our MCMC long enough.
+2. It can tell us when we migth be in a situation of multimodality (we will see this in future lectures).
+3. If the plots looks stable, then it tells us that we do not see anything to warrant issues with a lack of convergence of the chain. 
+
+What does it not tell us? 
+
+It cannot tell us that our MCMC has converged! 
+
+
+
 Code
 ===
 ```{r}
@@ -483,13 +500,11 @@ t2.n<-1/(n/s2+1/t2)
 Code (continued)
 ===
 ```{r}
-####metropolis part####
 ##S = total num of simulations
 theta<-0 ; delta<-1 ; S<-500 ; THETA<-NULL
 set.seed(1)
 
-for(s in 1:S)
-{
+for(s in 1:S){
 ## simulating our proposal
 theta.star<-rnorm(1,theta,sqrt(delta))
 ##taking the log of the ratio r
@@ -500,12 +515,18 @@ dnorm(theta,mu,sqrt(t2),log=TRUE) )
 if(log(runif(1))<log.r) { 
   theta<-theta.star 
 }
+# These are only the accepted THETA values
 THETA<-c(THETA,theta) ##updating THETA
 ## contains theta's that are accepted and rejected
 }
 ```
 
-
+Code (continued)
+===
+```{r}
+length(THETA)
+head(THETA)
+```
 
 Code (continued)
 ===
@@ -611,11 +632,13 @@ and Rejection sampling?
 Exam II
 ===
 - Same format as exam I
-- Material covers Modules 3 -- 7 (Metropolis)
+- Material covers Modules 4 -- 7 
 - You will still need to know material 
 from past modules, i.e, calculating a posterior, marginal
 distribution, etc 
-- Recommend studying the same as exam I
+- These emphasis will be on the material from Modules 4 -- 7. 
+- Please make sure that you have reviewed the updated policy regarding exams
+on the syllabus \url{https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring19.pdf}
 
 Topics to Review
 ===
@@ -631,3 +654,5 @@ Topics to Review
 - Differences between the methods
 - Homework problems and labs
 - Practice exercises
+- There are exercises in the PhD lectures notes that you might
+find helpful as well 
