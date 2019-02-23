@@ -625,10 +625,10 @@ Task 1
 For the sake of comparison, we can derive the true value using substitution and the gamma function.  We will use the substitution $u = x^4$ to derive the following result:
 
 \begin{align*}
-\int_{-\infty}^\infty \exp(-x^{-4})\,dx &= 2\int_0^\infty \exp(-x^{-4})\,dx \\
+\int_{-\infty}^\infty \exp(-x^{4})\,dx &= 2\int_0^\infty \exp(-x^{4})\,dx \\
 &= 2\int_0^\infty \frac{\exp(-u)}{4u^{3/4}} \, du \\
-&= 2^{-1/2}\int_0^\infty u^{1/4-1}e^{-u}\,du \\
-&=  \frac{\Gamma(1/4)}{4^{1/4}}\times 2^{-1/2} \textcolor{red}{\int_0^\infty u^{1/4-1}e^{-u} \times \frac{\Gamma(1/4)}{4^{1/4}}\,du} \\
+&= 2^{-1}\int_0^\infty u^{1/4-1}e^{-u}\,du \\
+&=  \frac{\Gamma(1/4)}{4^{1/4}}\times 2^{-1} \textcolor{red}{\int_0^\infty u^{1/4-1}e^{-u} \times \frac{4^{1/4}}{\Gamma(1/4)}\,du} \\
 &= \frac{\Gamma(1/4)}{2} \\
 &= 1.813.
 \end{align*}
@@ -639,8 +639,7 @@ Task 2 (Monte Carlo)
 In this task, we perform Monte carlo. Let $y=\sqrt{2}x^{2}$.  We will perform $u$-substitution to evaluate the integral with Monte Carlo (verify this calculation on your own)\footnote{The details of this derivation are in lab 6.}
 
 \begin{align*}
-I &= 
-&= 2^{-5/4} \int_0^\infty\sqrt{\frac{2\pi}{y}}2\phi(y)\,dy.
+I &=  2^{-5/4} \int_0^\infty\sqrt{\frac{2\pi}{y}}2\phi(y)\,dy.
 \end{align*}
 
 The function $2\phi(y)$ is the density of the normal distribution truncated (or folded) at zero.  We can sample from this distribution by taking samples from the standard normal distribution and then taking their absolute value.  Note that if $X \sim N(0,1)$ we see for any $c > 0$
