@@ -622,13 +622,13 @@ $$\Ga(x|a,b=\text{rate}) = \frac{b^a}{\Gamma(a)}x^{a-1}e^{-b x}\,\I(x>0)$$ for $
 
 Task 1
 ===
-For the sake of comparison, we can derive the true value using substitution and the gamma function.  We will use the substitution $u = x^4$ to derive the following result:
+For the sake of comparison, we can derive the true value using substitution and the gamma function.  We will use the substitution $u = x^4$ and $\Ga(x|a,b=\text{rate}) = \frac{b^a}{\Gamma(a)}x^{a-1}e^{-b x}\,\I(x>0)$ for $a,b>0,$
 
 \begin{align*}
 \int_{-\infty}^\infty \exp(-x^{4})\,dx &= 2\int_0^\infty \exp(-x^{4})\,dx \\
 &= 2\int_0^\infty \frac{\exp(-u)}{4u^{3/4}} \, du \\
 &= 2^{-1}\int_0^\infty u^{1/4-1}e^{-u}\,du \\
-&=  \frac{\Gamma(1/4)}{4^{1/4}}\times 2^{-1} \textcolor{red}{\int_0^\infty u^{1/4-1}e^{-u} \times \frac{4^{1/4}}{\Gamma(1/4)}\,du} \\
+&=  \frac{\Gamma(1/4)}{1^{1/4}}\times 2^{-1} \textcolor{red}{\int_0^\infty u^{1/4-1}e^{-u} \times \frac{1^{1/4}}{\Gamma(1/4)}\,du} \\
 &= \frac{\Gamma(1/4)}{2} \\
 &= 1.813.
 \end{align*}
