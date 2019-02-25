@@ -645,9 +645,10 @@ Topics to Review
 - Normal-Normal model
 - Normal-Gamma model
 - Objective Bayes (Default Bayes)
+- Uniform Prior
+- Jeffreys' Prior
 - Monte Carlo
 - Numerical integration
-- Classical Monte carlo
 - Importance sampling
 - Rejection sampling
 - Metropolis sampling
@@ -656,3 +657,22 @@ Topics to Review
 - Practice exercises
 - There are exercises in the PhD lectures notes that you might
 find helpful as well 
+
+Expectations for Exam II
+===
+1. I expect that you know all derivations that we have done in class. Examples, Normal-Normal, Normal-Uniform, etc. 
+2. I expect that you would be able to do similar derivations to what we have done in class, homworks, labs, and in the PhD lectures notes. 
+3. I expect you to be able to write down the Normal-Normal posterior or the Normal-Uniform without doing the derivation. 
+4. I expect that you are able to calculate integrals, derivatives, and remember concepts from calculus on the examination. (If you're rusty with calculus).
+5. I expect that you can quickly calculate posteriors, marginals, posterior predictive distributions and know that these are and what these mean. 
+
+Expectations for Exam II
+===
+
+6. I expect that you know why we would turn to sampling algorithms such as Monte Carlo. 
+7. I expect that you know the inverse CDF method. 
+8. I expect that you know rejection and importance sampling. 
+9. I expect that you know the difference between the uniform prior and Jeffreys' prior (and properties of Jeffreys' prior)
+10. I expect that you know the Metropolis algorithm, how it works, and to write down the algorithm if asked. 
+
+Remark: This is not a complete list of what you should know, but I hope it will give you some guidance regarding Exam II and what's expected of you. 
