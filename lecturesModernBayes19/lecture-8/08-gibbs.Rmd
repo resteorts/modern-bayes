@@ -295,6 +295,20 @@ Distributions of sizes and frequencies often tend to follow a ``power law'' dist
     \item returns on stocks
 \end{itemize}
 
+Power low distribution
+===
+
+The power law (also called the scaling law) states that a relative change in one quantity results in a proportional relative change in another. 
+
+Example: One simple example to think of is a square. If we double the length of one side, from 2 to 4 inches, then the area will 
+quadruple (from 4 to 16 inches squared).
+
+
+
+A power law distribution has the form $$Y = k X^{\alpha}$$, where:
+
+$X,Y$ are random variables, $k$ is a constant and $\alpha$ is a fixed exponent.  
+
 Power law distribution
 ===
 The Pareto distribution with shape $\alpha>0$ and scale $c >0$ has p.d.f.\
