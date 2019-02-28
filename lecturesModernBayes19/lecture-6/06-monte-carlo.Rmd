@@ -21,6 +21,8 @@ Commonly missed questions (exam I). Problem 2
 
 - There were many issues with respect to the posterior predictive distribution. 
 - See Example 2.7, 2.8, 2.10 in the PhD lecture notes. 
+- Please also see, https://www.cs.ubc.ca/~murphyk/Papers/bayesGauss.pdf
+page 4 for the posterior predictive distribution derivation. 
 
 Commonly missed questions (exam I). Problem 3
 ===
