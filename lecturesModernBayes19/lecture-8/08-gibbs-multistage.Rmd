@@ -11,8 +11,9 @@ font-size: 8px
 
 Agenda
 ===
+- Gibbs sampling (Three-stage sampler)
 - Gibbs sampling (multi-stage sampler)
-- Missing data application
+- Gibbs sampling with an application to missing data (censoring)
 
 Multi-stage Gibbs sampler
 ===
@@ -125,11 +126,13 @@ sampling from each in turn, always conditioning on the most recent values of the
 Likelihood
 ===
 Recall the model is:
-\begin{align}
+\textcolor{blue}{
+\begin{align*}
   &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
      & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\
     & \theta\sim \Ga(a, b)
-\end{align}
+\end{align*}
+}
 
 The pdf associated with this random variable is rather strange, as it consists of two point masses: one at $Z_i$ and one at $c_i$.  The formula is
 \begin{align*}
@@ -138,7 +141,15 @@ p(x_i|z_i) = \bm{1}(x_i = z_i)\bm{1}(z_i \leq c_i) + \bm{1}(x_i=c_i)\bm{1}(z_i >
 
 Full conditionals
 ===
-The full conditionals are easy to calculate.
+Recall the model is:
+\textcolor{blue}{
+\begin{align*}
+  &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
+     & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\
+    & \theta\sim \Ga(a, b)
+\end{align*}
+}
+
 Let's start with $\theta|\cdots$
 \begin{itemize}
 \item Since $\theta \perp x_{1:n}\mid z_{1:n}$ (i.e., $\theta$ is conditionally independent of $x_{1:n}$ given $z_{1:n}$),
@@ -201,7 +212,28 @@ Therefore $Y$ is a sample from the truncated Gamma.
 Remark: when we implement the GS, we do not sample the observed values. 
 We impute the censored values using the method just outlined.  
 
+Heart Disease (Censoring) Application
+===
+
+Let's recall the motivating application behind our model, which a study on 12 patients that have heart disease. 
+
+Recall that the number of years before death for each is
+$$3.4, 2.9, 1.2+, 1.4, 3.2, 1.8, 4.6, 1.7+, 2.0+, 1.4+, 2.8, 0.6+$$
+where the $+$ indicates that the patient was alive after $x$ years, but the researchers lost contact with the patient after that point in time. 
+
+
+
 Application to censored data
+===
+```{r}
+# input the data
+# z's are the observed values
+z <- c(3.4,2.9,1.4,3.2,1.8,4.6,2.8)
+# c's are the censored values
+c <- c(1.2,1.7,2.0,1.4,0.6)
+```
+
+Application to censored data (continued)
 ===
 ```{r}
 knitr::opts_chunk$set(cache=TRUE)
@@ -244,16 +276,18 @@ sampleGibbs <-
 } 
 ```
 
-Set parameter values
+Initialize Unknown Parameters
 ===
+
 ```{r}
 set.seed(5983)
-# set parameter values and enter data
+# Z follows a Gamma(shape = r, scale= \theta)
+# the scale is slightly more peaked
 r <- 10
+# theta follows a Gamma(1,1)
+# Setting a,b both to one is a default prior on theta
 a <- 1
 b <- 1
-z <- c(3.4,2.9,1.4,3.2,1.8,4.6,2.8)
-c <- c(1.2,1.7,2.0,1.4,0.6)
 n.iter <- 100
 init.theta <- 1
 init.missing <- 
@@ -268,6 +302,23 @@ res <- sampleGibbs(z, c, n.iter, init.theta, init.missing,
                    r, a, b) 
 ```
 
+Output of the Gibbs sampler
+===
+\footnotesize
+```{r}
+dim(res)
+head(res)
+```
+
+Output of the Gibbs sampler
+===
+\footnotesize
+```{r}
+tail(res)
+```
+
+Output of the Gibbs sampler
+===
 Let's first look at some diagnostics --- trace plots and runnning average plots. 
 
 Traceplot of $\theta$
