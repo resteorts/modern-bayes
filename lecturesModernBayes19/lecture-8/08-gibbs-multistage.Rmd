@@ -2,6 +2,7 @@
 ---
 title: "Module 8: Part II: Gibbs Sampling with an Application to Missing Data"
 author: "Rebecca C. Steorts"
+date: Tuesday, March 19, 2019
 output: 
      beamer_presentation:
       includes: 
@@ -167,16 +168,24 @@ Now we can easily find the full conditionals.
 - This implies that $x_i$ is conditionally independent of $x_j$ given $z_i$ for $i \neq j$.  
 
 Now we have
-\begin{align*}
+\begin{align}
 p(z_i|z_{-i},x_{1:n},\theta) &= p(z_i|x_i,\theta) \\
 &\underset{z_i}{\propto} p(z_i,x_i,\theta) \\
 &= p(\theta)p(z_i|\theta)p(x_i|z_i,\theta) \\
 &\underset{z_i}{\propto} p(z_i|\theta)p(x_i|z_i,\theta) \\
-&= p(z_i|\theta)p(x_i|z_i).
-\end{align*}
+&= p(z_i|\theta)p(x_i|z_i),
+\end{align}
+where the last line holds by conditional independence. 
 
 Full conditionals (continued)
 === 
+
+Recall that 
+
+\textcolor{blue}{
+$$
+p(z_i|z_{-i},x_{1:n},\theta) \propto p(z_i|\theta)p(x_i|z_i).
+$$}
 
 There are now two cases to consider.  
 
@@ -255,8 +264,8 @@ Application to censored data (continued)
 \footnotesize
 ```{r}
 # Gibbs sampler
-# z is the fully observe data
-# c is censored data
+# z is the fully observed data
+# c is the censored data
 # n.iter is number of iterations
 # init.theta and init.miss are initial values for sampler
 # r,a, and b are fixed parameters
@@ -288,7 +297,7 @@ r <- 10
 # Setting a,b both to one is a default prior on theta
 a <- 1
 b <- 1
-n.iter <- 100
+n.iter <- 20
 init.theta <- 1
 init.missing <- 
   rgamma(length(c), shape = r, rate = init.theta)
@@ -384,11 +393,12 @@ plot(density(res[,4]), xlab = expression(z[9]),
 abline(v = mean(res[,4]), col = "red")
 ```
 
-Homework 8 
+Homework 6
 ===
-Using the data and functions given to you (posted to Sakai with Homework 8), investigate the following questions: 
 
-1. Write code to produce traceplots and running average plots for the censored values for 200 iterations. Do these diagnostic plots suggest that you have run the sampler long enough? Explain.  
+Using the data and functions given to you (posted to Sakai with Homework 6), investigate the following questions: 
+
+1. Write code to produce traceplots and running average plots for the censored values for 40 iterations. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
 
 2. Now run the chain for 10,000 iterations  and update your diagnostic plots (traceplots and running average plots). Report your findings for both traceplots and the running average plots for $\theta$ and the censored values. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
 
