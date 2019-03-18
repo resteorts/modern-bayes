@@ -146,6 +146,14 @@ sampling.
 
 Full conditionals
 ===
+Recall
+\begin{align*}
+ & X_i\sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
+     & \textcolor{blue}{Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)}\\
+    & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
+    & \textcolor{blue}{\pi \sim \Beta(a,b)}
+\end{align*}
+
 \begin{itemize}
     \item ($\pi|\cdots$) Given $z$, $\pi$ is independent of everything else, so this reduces to a Beta--Bernoulli model, and we have
         $$ p(\pi|\mu,z,x) = p(\pi|z) =\Beta(\pi\mid a + n_1,\, b + n_0) $$
@@ -154,6 +162,14 @@ Full conditionals
         
 Full conditionals
 ===
+Recall 
+\begin{align*}
+ & \textcolor{blue}{X_i\sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.}\\
+     & Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
+    & \textcolor{blue}{\mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})}\\
+    & \pi \sim \Beta(a,b)
+\end{align*}
+
 \begin{itemize}        
     \item ($\mu|\cdots$) Given $z$, we know which component each data point comes from. 
     \vskip 1em
