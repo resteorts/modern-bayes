@@ -107,21 +107,24 @@ where $a$, $b$, and $r$ are known.
     
 Posterior inference 
 ===
-Goal: find $p(\theta,z_{1:n}|x_{1:n})$?
+\textcolor{blue}{Goal: find $p(\theta,z_3, z_8, z_9, z_{10}, z_{12} |x_{1:n})$?}
 
   
 1. Straightforward approaches that are in closed form do not work (think about these on your own). Instead we turn to Gibbs!  
 \vskip 1em
 
 
-2. To sample from $p(\theta,z_{1:n}|x_{1:n})$, we cycle through each of the full conditional distributions,
+2. To sample from $p(\theta,z_3, z_8, z_9, z_{10}, z_{12} |x_{1:n})$, we cycle through each of the full conditional distributions,
+\textcolor{blue}{
 \begin{align*}
 \theta &\mid z_{1:n}, x_{1:n}\\
-z_1 &\mid \theta, z_{2:n}, x_{1:n}\\
-z_2 &\mid \theta, z_1,z_{3:n}, x_{1:n}\\
-\vdots\\
-z_n &\mid \theta, z_{1:n-1}, x_{1:n}
+z_3 &\mid \theta, z_{-3}, x_{1:n}\\
+z_8 &\mid \theta, z_{-8}, x_{1:n}\\
+z_9 &\mid \theta, z_{-9}, x_{1:n}\\
+z_{10} &\mid \theta, z_{-10}, x_{1:n}\\
+z_{12} &\mid \theta, z_{-12}, x_{1:n}
 \end{align*}
+}
 sampling from each in turn, always conditioning on the most recent values of the other variables.
 
 Likelihood
@@ -297,7 +300,7 @@ r <- 10
 # Setting a,b both to one is a default prior on theta
 a <- 1
 b <- 1
-n.iter <- 20
+n.iter <- 10000
 init.theta <- 1
 init.missing <- 
   rgamma(length(c), shape = r, rate = init.theta)
