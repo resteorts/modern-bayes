@@ -80,8 +80,8 @@ We will start by learning about the Dirichlet and Multinomial distributions and 
 
 Dirichlet
 ===
-A Dirichlet distribution is a distribution of the $K$-dimensional probability simplex
-$$\bigtriangleup_K = \{(\pi_1,\ldots, \pi_k): \pi_k \geq 0, \sum_k \pi_k = 1\}$$
+A Dirichlet distribution is a distribution of the $K$-dimensional probability simplex\footnote{In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.}
+$$\bigtriangleup_K = \{(\pi_1,\ldots, \pi_k): \pi_k \geq 0, \sum_k \pi_k = 1\}.$$
 
 We say that $(\pi_1,\ldots, \pi_k)$ is Dirichlet distributed:
 
@@ -89,7 +89,7 @@ $$(\pi_1,\ldots, \pi_k)\sim \text{Dir}(\alpha_1,\ldots,\alpha_k)$$
 if
 $$p(\pi_1,\ldots, \pi_k) = \frac{\Gamma(\sum_k \alpha_k)}
 {\prod_k \Gamma(\alpha_k)} 
-\prod_{k=1}^K \pi_k^{\alpha_{k-1}}$$
+\prod_{k=1}^K \pi_k^{\alpha_{k-1}}.$$
 
 Dirichlet distribution
 ===
@@ -123,15 +123,13 @@ In order to proceed with the lab, we'll need to learn about the Multinomial or C
 Multinomial or Categorical distribution
 ===
 
-\begin{itemize}
-\item $\theta = (\theta_1,\ldots,\theta_m),$
-\item $X_i \in \{1,\ldots, m\},$
-\item $\sum_i \theta_i =1.$
-\end{itemize}
+Assume $X = (x_1, x_2, \ldots x_n)$ where $x_i \in \{1,\ldots, m\}.$
+Assume $\theta = (\theta_1,\ldots,\theta_m),$ where $\sum_i \theta_i =1.$
 
-Assume that $${\bX} \mid {\btheta} \stackrel{ind}{\sim} \text{Multinomial}({\btheta})$$
+
+Assume that $$X \mid \theta \stackrel{ind}{\sim} \text{Multinomial}(\theta)$$
 or 
-$$ \bX \mid \btheta \stackrel{ind}{\sim} \text{Categorical}(\btheta)$$
+$$ X \mid \theta \stackrel{ind}{\sim} \text{Categorical}(\theta)$$
 \vskip 1em
 $$P(X_i = j \mid {\theta}) = \theta_j$$
 
@@ -153,7 +151,7 @@ Consider
 p(\bX \mid \theta) &= \prod_{i=1}^n P(X_i = x_i \mid \theta) \\
 &= \prod_{i=1}^n \theta_{x_i} 
 =\textcolor{red}{\theta_{x_1}\times \theta_{x_2} \times \theta_{x_n}}\\
-&=\prod_{i=1}^n \prod_{j=1}^m \theta_j^{I(x_i =j)}\\
+&=\prod_{i=1}^n \prod_{j=1}^m \theta_j^{I(x_i =j)} = \prod_{j=1}^m \textcolor{red}{\prod_{i=1}^n} \theta_j^{I(x_i =j)}\\
 &= \prod_{j=1}^m \theta_j^{\sum_i I(x_i = j)} \\
 & = \prod_{j=1}^m \theta_j^{c_j}
 \end{align}
@@ -178,7 +176,7 @@ This implies $$\btheta \mid \bX \sim \text{Dirichlet}(\bm{c} + \balpha).$$
 Takeaways
 ===
 \begin{enumerate}
-\item Dirichlet is conjugate for Categorical or Multinomial.\footnote{The word Categorical seems to be used in CS and ML. The word Multinomial seems to be used in Statistics and Mathematics. I have no idea what is used in other sciences.}
+\item Dirichlet is conjugate for Categorical or Multinomial.\footnote{The word Categorical seems to be used in CS and ML. The word Multinomial seems to be used in Statistics and Mathematics.}
 \item Useful formula:
 $$\prod_i \text{Multinomial} (x_i \mid \theta) \times \text{Dir}(\btheta \mid \balpha) \propto \text{Dir}(\btheta \mid \bm{c}+ \balpha).$$
 \end{enumerate}
@@ -311,18 +309,18 @@ Now suppose you re-run the sampler using 3 different starting values, are your r
 
 Sample code
 ===
-Partial code for this problem can be found on Sakai (or Github). 
+Partial code for this problem can be found on github under lab 8. 
 
 Recap of Module 8 (Part I -- Part IV)
 ===
 1. We introduced the two-stage Gibbs sampler.
-2. You should be able to derive conditional distributions
+2. You should be able to derive conditional distributions.
 for two-stage Gibbs samplers. (See Part I, Module 8 for examples).
 3. Be familar with diagnostic plots.  
 3. We then looked at a three-stage sampler and generalized
 to the multi-stage Gibbs sampler. 
 4. We looked at an application to censoring (a type of missing data here).
-5. Why would we use latent variables in a Gibbs sampler? (We looked at these for Gaussian mixture models). Notice that the hierarhical modeling setup was more complicate here, which called for this trick. 
+5. Why would we use latent variables in a Gibbs sampler? (We looked at these for Gaussian mixture models). Notice that the hierarhical modeling setup was more complicated here, which is why we used this trick.  
 6. In short, we saw many ways to use Gibbs sampling in many applications and various tricks that one needs to use in order to derive the full conditionals in closed form. This is always driven by the data and will vary by the model specified. 
 
 Exercise
