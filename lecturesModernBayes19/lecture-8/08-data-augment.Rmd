@@ -10,6 +10,18 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+- At the end of class today, if everyone could fill out the course evaluation, I would be 
+really appreciative. (Check your email for this). 
+- Duke Undergraduate Machine Learning Day is Saturday March 23. You can register at \url{http://dukeml.org/} and 
+see the full schedule of events. 
+- If you're interested in doing an undergraduate thesis, poster presentations will be given by our seniors on Friday,
+March 29 at 3:30 -- 4:30 PM, Brodhead Center Multipurpose Room, 068. 
+- DataFest is April 6 -- 8 and you can register on the main statistical science page. 
+- I will hand back Midterm II next week in class. Overall, the exams were quite good. Well done:) 
+
 Agenda
 ===
 - Two Component Mixture Model
@@ -349,8 +361,9 @@ Example illustrates a big thing that can go wrong with MCMC (although fortunatel
 \item But it doesn't---it gets stuck in one and stays there.
 \end{itemize}
 
-Takeaway from example
+Takeaways from Dutch Application
 ===
+
 - This is a very common problem with mixture models. 
 - Fortunately, however, in the case of mixture models, the results are still valid if we interpret them correctly. 
 - Specifically, our inferences will be valid as long as we only consider quantities that are invariant with respect to permutations of the components (e.g. symmetry about the mean, others).
