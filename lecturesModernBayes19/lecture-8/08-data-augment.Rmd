@@ -27,14 +27,20 @@ resulting conditional distributions, with $Z$ included, are easier to sample fro
 
 Idea: Create Z's and throw them away at the end! 
 ===
-\begin{itemize}
-\item Suppose we want to sample from $p(x,y)$, but $p(x|y)$ and/or $p(y|x)$ are complicated. 
-\item Choose $$p(z|x,y)$$ such
-that $p(x|y,z)$, $p(y|x,z)$, and $p(z|x,y)$ are easy to sample from. 
-\item Then construct a Gibbs sampler to sample all three variables
-$(X,Y,Z)$ from $p(x,y,z)$.
-\item Then we just throw away the $Z$'s and we will have samples $(X,Y)$ from $p(x,y)$.
-\end{itemize}
+Goal: Sample from $p(x,y)$
+
+Problem: We cannot sample from $p(x|y)$ and/or $p(y|x).$
+
+Solution: 
+\begin{enumerate}
+\item Introduce a latent/hidden variable $Z$ such that 
+$$p(x|y,z), p(y|x,z),  p(z|x,y)$$ are easy to sample from. 
+\item Then construct a Gibbs sampler that will approximate samples from
+$p(x,y,z)$ using the full conditionals above. 
+\item The output of the three-stage Gibbs sampler is $(X,Y,Z).$
+\end{enumerate}
+
+But, our main interest is sampling from $p(x,y).$ Thus, we just throw away the $Z$'s and we will have samples $(X,Y)$ from $p(x,y)$.
 
 Dutch Example
 ===
