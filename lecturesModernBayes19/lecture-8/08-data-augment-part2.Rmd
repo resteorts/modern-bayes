@@ -14,7 +14,7 @@ Agenda
 - Review of data augmentation
 - A three component mixture model
 - Dirichlet distribution
-- The Dirichlet-Multinomial(Categorial)
+- The Dirichlet-Multinomial
 - Return to the three component mixture model problem 
 
 
@@ -80,7 +80,7 @@ We will start by learning about the Dirichlet and Multinomial distributions and 
 
 Dirichlet
 ===
-A Dirichlet distribution is a distribution of the $K$-dimensional probability simplex\footnote{In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.}
+A Dirichlet distribution\footnote{This is the multivariate version of the Beta distribution.} is a distribution of the $K$-dimensional probability simplex\footnote{In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.}
 $$\bigtriangleup_K = \{(\pi_1,\ldots, \pi_k): \pi_k \geq 0, \sum_k \pi_k = 1\}.$$
 
 We say that $(\pi_1,\ldots, \pi_k)$ is Dirichlet distributed:
@@ -118,7 +118,8 @@ Dirichlet distribution
 
 Multinomial-Dirichlet
 ===
-In order to proceed with the lab, we'll need to learn about the Multinomial or Categorical distribution. 
+
+In order to proceed with the lab, we'll need to learn about the Multinomial or Categorical distribution.\footnote{This is the multivariate generalization of of the Binomial distribution.}
 
 Multinomial or Categorical distribution
 ===

@@ -92,8 +92,9 @@ Then the usual two-component Normal mixture model is:
 \begin{align}
   & X_1,\ldots, X_n \mid \mu,\pi\ \sim F(\mu,\pi)\\
       & \mu:=(\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
-        & \pi \sim \Beta(a,b)
+        & \pi \sim \Beta(a,b),
 \end{align}
+where $m,\ell$ and $a,b$ are assumed known.
 
 where $F(\mu,\pi)$ is the distribution with p.d.f. 
 $$ f(x|\mu,\pi) = (1-\pi)\N(x\mid \mu_0,\lambda^{-1}) + \pi
@@ -112,13 +113,13 @@ which is a complicated function of $\mu$ and $\pi$, making the posterior difficu
 
 Latent allocation variables to the rescue!
 ===
-Define an equivalent model that includes latent ``allocation'' variables $Z_1,\ldots,Z_n$
+Define an equivalent model that includes latent ``allocation'' variables $Z_1,\ldots,Z_n.$
 \vskip 1em
 
 These indicate which mixture component each data point
 comes from--that is, $Z_i$ indicates whether subject $i$ is female or male.
 \begin{align}
- & X_i\sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
+ & X_i \mid \mu, Z \sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
  & Z_1,\ldots,Z_n \mid \mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
   & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim}\N(m,\ell^{-1})\\
     & \pi \sim \Beta(a,b)
@@ -128,7 +129,7 @@ Latent allocation variables
 ===
 Recall
 \begin{align*}
- & X_i\sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
+ & X_i \mid \mu, Z \sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
      & Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
     & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
     & \pi \sim \Beta(a,b)
@@ -136,8 +137,8 @@ Recall
 This is equivalent to the model above, since
 \begin{align}
     &p(x_i|\mu,\pi) \\
-    &= p(x|Z_i=0,\mu,\pi)\Pr(Z_i=0|\mu,\pi) 
-                    + p(x|Z_i=1,\mu,\pi)\Pr(Z_i=1|\mu,\pi) \\
+    &= p(x_i|Z_i=0,\mu,\pi)\Pr(Z_i=0|\mu,\pi) 
+                    + p(x_i|Z_i=1,\mu,\pi)\Pr(Z_i=1|\mu,\pi) \\
             &= (1-\pi)\N(x_i|\mu_0,\lambda^{-1}) + \pi\N(x_i|\mu_1,\lambda^{-1})\\
             &= f(x_i|\mu,\pi),
 \end{align}
@@ -148,7 +149,7 @@ Full conditionals
 ===
 Recall
 \begin{align*}
- & X_i\sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
+ & X_i \mid \mu, Z\sim \N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
      & \textcolor{blue}{Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)}\\
     & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
     & \textcolor{blue}{\pi \sim \Beta(a,b)}
@@ -218,7 +219,9 @@ My Factory Settings!
 
 My Factory Settings!
 ===
-We initialize the sampler at:
+
+We initialize the sampler at the same settings that we did when we looked at this application before. Let's review them below. 
+
 \begin{itemize}
 \item $\pi = 1/2$ (equal probability for each component)
 \item $z_1,\ldots,z_n$ sampled i.i.d.\ from $\Bernoulli(1/2)$ (initial assignment to components chosen uniformly at random)
@@ -250,9 +253,9 @@ Results from two runs of the mixture model
 ===    
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.55\textwidth]{examples/mix-p_trace-a.png}
-\includegraphics[width=0.55\textwidth]{examples/mix-p_trace-b}
-\caption{Traceplots of the mixture weight, $\pi$.}
+\includegraphics[width=0.9\textwidth]{examples/mix-p_trace-a.png}
+\includegraphics[width=0.9\textwidth]{examples/mix-p_trace-b}
+\caption{Traceplots of the mixture weight, $\pi$. What do you notice about the two different runs?}
 \label{figure:mixb}
 \end{center}  
 \end{figure}
