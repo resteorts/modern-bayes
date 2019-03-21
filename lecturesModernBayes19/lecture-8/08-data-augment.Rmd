@@ -156,15 +156,15 @@ Recall
     & \pi \sim \Beta(a,b)
 \end{align*}
 
-<!-- This is equivalent to the model above, since -->
-<!-- \begin{align} -->
-<!--     &p(x_i|\mu,\pi) \\ -->
-<!--     &= p(x_i|Z_i=0,\mu,\pi)\Pr(Z_i=0|\mu,\pi)  -->
-<!--                     + p(x_i|Z_i=1,\mu,\pi)\Pr(Z_i=1|\mu,\pi) \\ -->
-<!--             &= (1-\pi)\N(x_i|\mu_0,\lambda^{-1}) + \pi\N(x_i|\mu_1,\lambda^{-1})\\ -->
-<!--             &= f(x_i|\mu,\pi), -->
-<!-- \end{align} -->
-<!-- and thus it induces the same distribution on $(x_{1:n},\mu,\pi)$. The latent model is considerably easier to work with, particularly for Gibbs sampling.  -->
+This is equivalent to the model above, since
+\begin{align}
+    &p(x_i|\mu,\pi) \\
+    &= p(x_i|Z_i=0,\mu,\pi)\Pr(Z_i=0|\mu,\pi)
+                    + p(x_i|Z_i=1,\mu,\pi)\Pr(Z_i=1|\mu,\pi) \\
+            &= (1-\pi)\N(x_i|\mu_0,\lambda^{-1}) + \pi\N(x_i|\mu_1,\lambda^{-1})\\
+            &= f(x_i|\mu,\pi),
+\end{align}
+and thus it induces the same distribution on $(x_{1:n},\mu,\pi)$. The latent model is considerably easier to work with, particularly for Gibbs sampling.
 
 Full conditionals
 ===
@@ -181,6 +181,7 @@ Recall
         $$ p(\pi|\mu,z,x) = p(\pi|z) =\Beta(\pi\mid a + n_1,\, b + n_0) $$
         where $n_k = \sum_{i=1}^n \I(z_i=k)$ for $k \in \{0, 1\}$.
         \end{itemize}
+        \textcolor{blue}{That is, $n_o = \sum_{i=1}^n \I(z_i=0); n_1 = \sum_{i=1}^n \I(z_i=1).$}
         
 Full conditionals
 ===
