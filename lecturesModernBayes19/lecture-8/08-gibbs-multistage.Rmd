@@ -300,7 +300,7 @@ r <- 10
 # Setting a,b both to one is a default prior on theta
 a <- 1
 b <- 1
-n.iter <- 10000
+n.iter <- 20
 init.theta <- 1
 init.missing <- 
   rgamma(length(c), shape = r, rate = init.theta)
