@@ -185,7 +185,6 @@ Recall
         
 Full conditionals
 ===
-Recall 
 \begin{align*}
  & \textcolor{blue}{X_i\sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.}\\
      & Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
@@ -195,20 +194,17 @@ Recall
 
 \begin{itemize}        
     \item ($\mu|\cdots$) Given $z$, we know which component each data point comes from. 
-    \vskip 1em
     The model (conditionally on $z$) is just two
         independent Normal--Normal models, as we have seen before:
         \begin{align*}
-            \bm\mu_0|\mu_1,x,z,\pi\, \sim \,\N(M_0,L_0^{-1})\\
-            \bm\mu_1|\mu_0,x,z,\pi\, \sim \,\N(M_1,L_1^{-1})
+            \bm\mu_0|\mu_1,x,z,\pi\, &\sim \,\N(M_0,L_0^{-1})\\
+            \bm\mu_1|\mu_0,x,z,\pi\, &\sim \,\N(M_1,L_1^{-1}), \text{where}
         \end{align*}
-        where for $k\in\{0,1\}$,
-        \begin{align*}
-        n_k &= \sum_{i=1}^n \I(z_i=k)\\
-        L_k &=\ell + n_k\lambda\\
-        M_k &=\frac{\ell m + \lambda\sum_{i:z_i=k} x_i}{\ell + n_k\lambda}.
-        \end{align*}
-        \end{itemize}
+    \end{itemize}    
+         \textcolor{blue}{$$L_0 =\ell + n_0\lambda; L_1 =\ell + n_1\lambda$$
+         $$M_0 =\frac{\ell m + \lambda\sum_{i:z_i=0} x_i}{\ell + n_0\lambda}.$$
+         $$M_1 =\frac{\ell m + \lambda\sum_{i:z_i=1} x_i}{\ell + n_1\lambda}.$$}
+This derivation can be found in Chapter 3.
         
 Full conditionals
 ===
