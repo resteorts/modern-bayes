@@ -2,6 +2,7 @@
 ---
 title: "Module 8: Part III: Gibbs Sampling and Data Augmentation"
 author: "Rebecca C. Steorts"
+date: March 21, 2019
 output: 
      beamer_presentation:
       includes: 
@@ -88,9 +89,9 @@ indicating which mixture component it is drawn from.
 \item This results in a Gibbs sampler that is easy to derive/implement.
 \end{itemize}
 
-Two component mixture model
+Two-component mixture model
 ===
-Let's assume that both mixture components (female and male) have the same precision, say $\lambda$, and that $\lambda$ is fixed and known.  
+Let's assume that both mixture components (female and male) have the same precision, say $\lambda$, and that $\lambda$ is fixed and known. Assume below that $a,b,m, \ell$ are known.
 
 \vskip 1em
 
@@ -100,7 +101,7 @@ Then the usual two-component Normal mixture model is:
       & \mu:=(\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
         & \pi \sim \Beta(a,b),
 \end{align}
-where $m,\ell$ and $a,b$ are assumed known.
+Remark: $\pi$ is the prior probability that a subject comes from component 1.
 
 where $F(\mu,\pi)$ is the distribution with p.d.f. 
 $$ f(x|\mu,\pi) = (1-\pi)\N(x\mid \mu_0,\lambda^{-1}) + \pi
@@ -131,7 +132,9 @@ comes from--that is, $Z_i$ indicates whether subject $i$ is female or male.
     & \pi \sim \Beta(a,b)
 \end{align}
 
-Latent allocation variables
+How can we check that the latent allocation model is equivalent to our original model? 
+
+Equivalence of both models
 ===
 Recall
 \begin{align*}
@@ -140,16 +143,16 @@ Recall
     & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
     & \pi \sim \Beta(a,b)
 \end{align*}
-This is equivalent to the model above, since
-\begin{align}
-    &p(x_i|\mu,\pi) \\
-    &= p(x_i|Z_i=0,\mu,\pi)\Pr(Z_i=0|\mu,\pi) 
-                    + p(x_i|Z_i=1,\mu,\pi)\Pr(Z_i=1|\mu,\pi) \\
-            &= (1-\pi)\N(x_i|\mu_0,\lambda^{-1}) + \pi\N(x_i|\mu_1,\lambda^{-1})\\
-            &= f(x_i|\mu,\pi),
-\end{align}
-and thus it induces the same distribution on $(x_{1:n},\mu,\pi)$. The latent model is considerably easier to work with, particularly for Gibbs
-sampling. 
+
+<!-- This is equivalent to the model above, since -->
+<!-- \begin{align} -->
+<!--     &p(x_i|\mu,\pi) \\ -->
+<!--     &= p(x_i|Z_i=0,\mu,\pi)\Pr(Z_i=0|\mu,\pi)  -->
+<!--                     + p(x_i|Z_i=1,\mu,\pi)\Pr(Z_i=1|\mu,\pi) \\ -->
+<!--             &= (1-\pi)\N(x_i|\mu_0,\lambda^{-1}) + \pi\N(x_i|\mu_1,\lambda^{-1})\\ -->
+<!--             &= f(x_i|\mu,\pi), -->
+<!-- \end{align} -->
+<!-- and thus it induces the same distribution on $(x_{1:n},\mu,\pi)$. The latent model is considerably easier to work with, particularly for Gibbs sampling.  -->
 
 Full conditionals
 ===
@@ -216,6 +219,9 @@ Full conditionals
 
 My Factory Settings!
 ===
+
+We initialize the sampler at the same settings that we did when we looked at this application before. Let's review them below. 
+
 \begin{itemize}
 \item $\lambda = 1/\sigma^2$ where $\sigma = 8$ cm ($\approx 3.1$ inches) ($\sigma$ = standard deviation of the subject heights within each component)
 \item $a = 1$, $b = 1$ (Beta parameters, equivalent to prior ``sample size'' of 1 for each component)
@@ -235,36 +241,101 @@ We initialize the sampler at the same settings that we did when we looked at thi
 \end{itemize}
 
 
-Results
+Traceplots of the component means
 ===
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=0.9\textwidth]{examples/mix-mu_trace-a.png}\caption{Traceplots of the component means, $\mu_0$ and $\mu_1$.}
+\includegraphics[width=\textwidth]{examples/mix-mu_trace-a.png}\caption{Traceplots of the component means, $\mu_0$ and $\mu_1$. The blue component quickly settles to have a mean of around 168–170 cm and the other (red) to a mean of around 182–186 cm.}
 \label{default}
 \end{center}
 \end{figure}
 
+Recall we're not using the true assignments of subjects to components (we don’t know whether they are male or female). 
+Note that this is fairly close to the sample averages: 168.0 cm (5 feet 6.1 inches) for females, and 181.4 cm (5 feet 11.4 inches) for males. 
 
-Results
-===
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=0.9\textwidth]{examples/mix-histograms_at_last_sample-a.png}\caption{Histograms of the heights of subjects assigned to each component, according to $z_1,\ldots,z_n$, in a typical sample.}
-\label{default}
-\end{center}
-\end{figure}
-
-    
-Results from two runs of the mixture model
+Traceplots of the mixture weight, $\pi$
 ===    
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.9\textwidth]{examples/mix-p_trace-a.png}
-\includegraphics[width=0.9\textwidth]{examples/mix-p_trace-b}
-\caption{Traceplots of the mixture weight, $\pi$. What do you notice about the two different runs?}
+\includegraphics[width=\textwidth]{examples/mix-p_trace-a.png}
+\caption{Traceplots of the mixture weight, $\pi$ (prior probability that a subject comes from component 1). }
 \label{figure:mixb}
 \end{center}  
 \end{figure}
+
+The traceplot of $\pi$ indicates that the sampler is exploring values of around 0.2 to 0.4—that is, the proportion of people coming from group 1 is around 0.2 to 0.4.
+
+Looking at the actual labels (female and male), the empirical proportion of males is $562/(695 + 562) \approx 0.45,$ so this is 
+slight off. 
+
+How might we fix this in our model? 
+
+Back to the model
+===
+
+Recall
+\begin{align*}
+ & X_i \mid \mu, Z \sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
+     & Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
+    & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
+    & \pi \sim \Beta(a,b),
+\end{align*}
+
+where $a,b,m,\ell$ are fixed.
+
+Hint: Is it reasonable to think that we should have the same $\lambda$ for the data?
+Consider $$\lambda = (\lambda_0, \lambda_1)$$
+
+How would you proceed next in a Bayesian hierarchical manner? 
+
+
+Histograms
+===
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{examples/mix-histograms_at_last_sample-a.png}\caption{Histograms of the heights of subjects assigned to each component, according to $z_1,\ldots,z_n$, in a typical sample.}
+\label{default}
+\end{center}
+\end{figure}
+
+
+Question
+===
+
+Why are females assigned to component 0 and males assigned to component 1? 
+Why not the other way around? Let's investigate this and see what happens if we look at another choice of starting values. 
+    
+Traceplots of the component means
+===
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{examples/mix-mu_trace-a.png}
+\includegraphics[width=\textwidth]{examples/mix-mu_trace-b.png}\caption{Traceplots of the component means, $\mu_0$ and $\mu_1$.}
+\label{default}
+\end{center}
+\end{figure} 
+
+Traceplots of the mixture weight, $\pi$
+===    
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{examples/mix-p_trace-a.png}
+\includegraphics[width=\textwidth]{examples/mix-p_trace-b.png}
+\caption{Traceplots of the mixture weight, $\pi$ (prior probability that a subject comes from component 1). }
+\label{figure:mixb}
+\end{center}  
+\end{figure}
+
+Histograms
+===
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{examples/mix-histograms_at_last_sample-a.png}
+\includegraphics[width=\textwidth]{examples/mix-histograms_at_last_sample-b.png}\caption{Histograms of the heights of subjects assigned to each component, according to $z_1,\ldots,z_n$, in a typical sample.}
+\label{default}
+\end{center}
+\end{figure}
+
 
 Caution: watch out for modes
 ===
@@ -282,7 +353,8 @@ Takeaway from example
 ===
 - This is a very common problem with mixture models. 
 - Fortunately, however, in the case of mixture models, the results are still valid if we interpret them correctly. 
-- Specifically, our inferences will be valid as long as we only consider quantities that are invariant with respect to permutations of the components (e.g. symmetry about the mean).
+- Specifically, our inferences will be valid as long as we only consider quantities that are invariant with respect to permutations of the components (e.g. symmetry about the mean, others).
+- To learn more about invariance and what quantities remain unchanged, see Theory of Point Estimation, Lehmann and Casella, Chapter 1 for a formal treatment. (For more advanced reading, see Chapter 3.) Feel free to see me in OH if you want to chat about this! 
 
 
 
