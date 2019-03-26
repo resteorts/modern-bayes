@@ -9,6 +9,52 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+- Final exam: April 29, 2019: 9 am -- noon (Old Chem 116)
+- The rest of the semester will finish up the rest of the required material for the course:
+missing data, multivariate models, regression, model selection
+- Your lab this week (lab 8) will correspond with today's lecture, where some details will be worked out in lab
+and the rest you'll complete on your own for homework 7.
+
+Course Materials
+===
+
+Reminder that all course materials can be found here: 
+
+https://resteorts.github.io/teach/bayes19
+
+
+Course evaluation feedback
+===
+
+Thank you so much for filling these out! 
+
+1. Github
+2. Expectations
+3. Course materials
+4. Most students really like the homeworks and are learning from these. 
+5. Students liked the clarity of lecture.
+6. Students are happy with the overall pace of the lecture, so this will continue.
+
+All of this will stay the same and I really appreciate everyone's helpful feedback here. 
+
+Course evaluation feedback
+===
+
+1. Students would like more practice exercises. I will be posting more practice exercises.
+2. Some students preferred midterm 1 and some students preferred midterm 2. This was almost an even split. 
+3. Some TA’s don’t seem prepared for lab and things are not organized. 
+4. Some students students would like harder problems/more problems. 
+5. Course organization scores were lower than expected. Could students let me know how the course could be better organized? 
+
+Suggestions: 
+
+- For this, students can choose to not use the code given to you and write your own code as an example. Also, there will be more practice exercises given to help you prepare for the final exam or just help you practice more. 
+
+
+
 Agenda
 ===
 - Review of data augmentation
@@ -40,7 +86,7 @@ $(X,Y,Z)$ from $p(x,y,z)$.
 \end{itemize}
 
 
-Three component mixture model
+Three component mixture model (Lab 8)
 ===
 - Consider a three component mixture of normal distribution with a common prior on the mixture component means, the error variance and the variance within mixture component means. 
 - The prior on the mixture weights $w$ is a three component Dirichlet distribution. 
@@ -57,7 +103,7 @@ p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2)
 \end{align*}
 for $i=1,\ldots n.$
 
-Three component mixture model
+Three component mixture model (Lab 8)
 ===
 Specifically, 
 \begin{itemize}
@@ -66,7 +112,7 @@ Specifically,
 \item $\varepsilon^2$ is the variance parameter of the error term around the mixture components.
 \end{itemize}
 
-Three component mixture model
+Three component mixture model (Lab 8)
 ===
 In order to be able to work on this problem, we need to:
 
@@ -312,6 +358,7 @@ Sample code
 ===
 Partial code for this problem can be found on github under lab 8. 
 
+ 
 Recap of Module 8 (Part I -- Part IV)
 ===
 1. We introduced the two-stage Gibbs sampler.
