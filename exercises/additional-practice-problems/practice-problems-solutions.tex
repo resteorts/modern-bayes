@@ -1,0 +1,257 @@
+\documentclass[11pt]{article}
+\usepackage{amsthm}
+\usepackage{comment}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{fancyhdr}
+\usepackage[hang,sc]{caption}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topmargin}{-0.5in}
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6in}
+
+\newcommand{\class}[1]{\mathscr{#1}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\tht}{\theta}
+\newcommand{\tho}{\theta_0}
+\newcommand{\thn}{\hat{\theta}_n}
+\newcommand{\ps}{\mathbb{P}}
+
+\begin{document}
+
+\title{STA 360/602}
+\author{Rebecca C. Steorts}
+\maketitle
+\setlength{\parindent}{0cm}
+\thispagestyle{empty}
+\begin{enumerate}
+
+\item Let
+\begin{align*}
+Y|\theta &\sim \text{Exp}(\theta)\\
+\theta &\sim \text{Gamma}(a,b).
+\end{align*}
+Suppose we have a new observation $\tilde{Y}|\theta \sim 
+\text{Exp}(\theta),$ where conditional on $\theta,$ $Y$ and 
+$\tilde{Y}$ are independent. Show that 
+$$p(\tilde{y}|y) = \frac{b(a+1)(by+1)^{a+1}}{(b\tilde{y} + by + 1)^{a+2}},$$ where $a$ is an integer. (Note that this is a valid density function that integrates to 1).
+
+\emph{Solution}: Observe that
+
+\begin{align*}
+	p(\theta|y) \propto	p(\theta)p(y|\theta) \propto \left(\theta^{a-1}e^{-b^{-1}\theta}\right) \left(\theta e^{-\theta y}\right) = \theta^{a}e^{-(b^{-1}+y)\theta}
+\end{align*}
+
+Thus $\theta|y \sim$ Gamma$(a+1,(b^{-1}+y)^{-1})$. Next, recall that
+
+\[ p(\tilde{y}|y)	= \int{p(\tilde{y}|\theta)p(\theta|y)d\theta} = \]
+\[ = \int{\theta e^{-\theta \tilde{y}} \frac{(b^{-1}+y)^{a+1}}{\Gamma(a+1)} \theta^{a} e^{-(b^{-1}+y)\theta} d\theta} = \frac{(b^{-1}+y)^{a+1}}{\Gamma(a+1)} \int{ \theta^{a+1} e^{-(b^{-1}+y+\tilde{y})\theta} d\theta} = \]
+\[ = \frac{(b^{-1}+y)^{a+1}}{\Gamma(a+1)} \frac{\Gamma(a+2)}{(b^{-1}+y+\tilde{y})^{a+2}} = \frac{b(a+1)(1+by)^{a+1}}{(1+by+b\tilde{y})^{a+2}} \]
+
+Observe that
+
+\[ \int_{0}^{\infty}{p(\tilde{y}|y)d\tilde{y}} = \int_{0}^{\infty}{\frac{b(a+1)(1+by)^{a+1}}{(1+by+b\tilde{y})^{a+2}}d\tilde{y}} = \]
+
+\[ = -\frac{(1+by)^{a+1}}{(1+by+b\tilde{y})^{a+1}} \bigg|_{0}^{\infty} = 1 \]
+
+\item Suppose
+\begin{align*}
+X_1,\ldots,X_n|\theta &\stackrel{iid}{\sim} \text{Poisson}(\theta).\\
+\end{align*}
+%Assume $I(\theta) = \dfrac{n}{\theta}.$
+\begin{enumerate}
+\item Find Jeffreys' prior. Is it proper or improper? 
+%Show that it's proper or improper without using any calculus.
+\item Find $p(\theta|x_1,\ldots,x_n)$ under Jeffreys' prior.
+\end{enumerate}
+
+%Solution: (a): $p_J(\theta) \propto \theta^{-1/2}.$ We can write $p_J(\theta) \propto \text{Gamma}(1/2,0),$ which shows that the prior is improper.\\
+%(b) $\theta|x \sim \text{Gamma}(n\bar{x} + 1/2,1/n),$ which is always proper since $\bar{x}\ge0.$
+
+\emph{Solution}:
+
+\begin{enumerate}
+	\item Since $(X_{1},\ldots,X_{n})|\theta$ are iid, $I_{X_{1},\ldots,X_{n}}(\theta) = nI_{X_{1}}(\theta) \propto I_{X_{1}}(\theta)$. Hence, in order to determine Jeffrey's prior, it is sufficient to compute the Fisher Information for a single observation . Since $X_{1}|\theta \sim$ Poisson$(\theta)$,
+	
+	\begin{align*}
+		\log(f(X|\theta)) 																			&= -\theta + X_{1} \log(\theta) - \log(\Gamma(X_{1}+1))
+	\end{align*}	
+	
+	Hence,
+	
+	\begin{align*}
+		I(\theta) = -E\left[\frac{d \log f(X_{1}|\theta)}{d\theta^{2}} \bigg|\theta \right]	= E[X_{1} \theta^{-2}|\theta] = \theta^{-1}
+	\end{align*}
+		
+	Thus, $p(\theta) \propto I(\theta)^{\frac{1}{2}} = \theta^{-\frac{1}{2}}$.
+	
+	\[ \int_{0}^{\infty}{\theta^{-\frac{1}{2}}d\theta} = 2^{-1} \theta^{\frac{1}{2}} \big|_{0}^{\infty} = \infty \]
+	
+	Since $p(\theta)$ is not integrable, the Jeffrey's prior in this case is improper.
+	
+	\item
+	
+	\begin{align*}
+		p(\theta|x_{1},\ldots,x_{n})	&\propto p(\theta) p(x_{1},\ldots,x_{n}|\theta) \propto \\
+																	&\propto \theta^{-\frac{1}{2}} \prod_{i=1}^{n}{\frac{e^{-\theta}\theta^{x_{i}}}{\Gamma(x_{i}+1)}} \propto \\
+																	&\propto \theta^{n\bar{x}-\frac{1}{2}} e^{-n\theta}
+	\end{align*}
+	
+	Conclude that $\theta|x_{1},\ldots,x_{n} \sim$ Gamma$\left(n\bar{x}+ \frac{1}{2},n^{-1}\right)$.
+	
+\end{enumerate}
+
+\item Consider  dose response models. The setup is the following: animals are tested for development of drugs or other chemical compounds. Someone administers various levels of doses to $k$ batches of animals. The response variable is a dichotomous (binary) outcome. So, it might be alive or dead or maybe tumor or no tumor. Let $x_i$ represent the data, $n_i$ represent the number of animals receiving the $i$th dose, and $y_i$ the number of positive outcomes for $n_i$ animals. 
+\begin{enumerate}
+\item Suppose that $y_i \stackrel{ind}{\sim} \text{Binomial}(n_i, \theta_i),$ where
+$\theta_i$ is the probability of death (or tumor) for the $i$th animal that receives dose $x_i$. The typical modeling the prior on $\theta_i$ is a logistic regression. That is, we suppose that 
+$\text{logit}(\theta_i) = \alpha + \beta x_i.$
+Write out the likelihood in a simple form (it will contain a product). 
+\item Find Jeffreys' prior for  $(\alpha, \beta).$ Also, write down the equations you need to solve for finding the posterior modes $\alpha$ and $\beta$ under the uniform prior for $\alpha$ and $\beta.$
+\end{enumerate}
+
+\emph{Solution}:
+
+\begin{enumerate}
+	\item It follows from logit$(\theta_{i}) = \alpha + \beta x_{i}$, that $\theta_{i} = \frac{\exp(\alpha + \beta x_{i})}{1+\exp(\alpha + \beta x_{i})}$. Hence, from the problem description, $y_{i}|(\alpha,\beta) \sim \text{Binomial}\left(n_{i},\frac{\exp(\alpha + \beta x_{i})}{1+\exp(\alpha + \beta x_{i})}\right)$. Conclude that
+	
+	\begin{align*}
+		p(y_{1},\ldots,y_{k}|(\alpha,\beta))	&= \prod_{i=1}^{k}{{n_{i} \choose y_{i}} \left(\frac{\exp(\alpha + \beta x_{i})}{1+\exp(\alpha + \beta x_{i})}\right)^{y_{i}} \left(\frac{1}{1+\exp(\alpha + \beta x_{i})}\right)^{n_{i}-y_{i}}} \\
+																					&= \prod_{i=1}^{k}{{n_{i} \choose y_{i}} \left(\exp(\alpha + \beta x_{i})\right)^{y_{i}} \left(1+\exp(\alpha + \beta x_{i})\right)^{-n_{i}}}
+	\end{align*}
+	
+	\item Using the previous item, observe that:
+	
+	\begin{align*}
+		\log(p(y_{1},\ldots,y_{k}|(\alpha,\beta)))	&= \sum_{i=1}^{k}{\log{n_{i} \choose y_{i}}} + \sum_{i=1}^{k}{y_{i}(\alpha+\beta x_{i})}+ \\
+																								&- \sum_{i=1}^{k}{n_{i}\log(1+\exp(\alpha + \beta x_{i}))}
+	\end{align*}
+	
+	Hence, the gradient of the log-likelihood is:
+	
+	\begin{align*}
+		\frac{d\log(p(y_{1},\ldots,y_{k}|(\alpha,\beta)))}{d\alpha}	&= k\bar{y} - \sum_{i=1}^{k}{\frac{n_{i}\exp(\alpha+\beta x_{i})}{1+\exp(\alpha+\beta x_{i})}} \\
+		\frac{d\log(p(y_{1},\ldots,y_{k}|(\alpha,\beta)))}{d\beta}	&= \sum_{i=1}^{k}{x_{i}y_{i}} - \sum_{i=1}^{k}{\frac{n_{i} x_{i} \exp(\alpha+\beta x_{i})}{1+\exp(\alpha+\beta x_{i})}}
+	\end{align*}
+
+	Taking a uniform prior on $(\alpha,\beta)$, the posterior is proportional to the likelihood. Thus, the modes of the posterior correspond to the MLE. In order to find the MLE, we must solve the system of equations obtained setting the gradient to $0$.
+	
+	The Hessian matrix of the log-likelihood is:
+	
+	\begin{align*}
+		H\log(p(y_{1},\ldots,y_{k}|(\alpha,\beta))) = 
+		\left[ \begin{array}{cc}
+		-\sum_{i=1}^{k}{\frac{n_{i}\exp(\alpha+\beta x_{i})}{(1+\exp(\alpha+\beta x_{i}))^{2}}} & - \sum_{i=1}^{k}{\frac{n_{i} x_{i} \exp(\alpha+\beta x_{i})}{(1+\exp(\alpha+\beta x_{i}))^{2}}} \\
+		- \sum_{i=1}^{k}{\frac{n_{i} x_{i} \exp(\alpha+\beta x_{i})}{(1+\exp(\alpha+\beta x_{i}))^{2}}} & - \sum_{i=1}^{k}{\frac{n_{i} x_{i}^{2} \exp(\alpha+\beta x_{i})}{(1+\exp(\alpha+\beta x_{i}))^{2}}}
+		\end{array} \right]
+	\end{align*}
+	
+	Since the Hessian matrix is constant on $y_{i}$,
+	
+	\begin{align*}
+		I(\alpha,\beta) = -H(\alpha,\beta) = \left[ \begin{array}{cc}
+		\sum_{i=1}^{k}{\frac{n_{i}\exp(\alpha+\beta x_{i})}{(1+\exp(\alpha+\beta x_{i}))^{2}}} & \sum_{i=1}^{k}{\frac{n_{i} x_{i} \exp(\alpha+\beta x_{i})}{(1+\exp(\alpha+\beta x_{i}))^{2}}} \\
+		\sum_{i=1}^{k}{\frac{n_{i} x_{i} \exp(\alpha+\beta x_{i})}{(1+\exp(\alpha+\beta x_{i}))^{2}}} & \sum_{i=1}^{k}{\frac{n_{i} x_{i}^{2} \exp(\alpha+\beta x_{i})}{(1+\exp(\alpha+\beta x_{i}))^{2}}}
+		\end{array} \right]
+	\end{align*}
+	
+	Conclude that the Jeffreys prior is
+	
+	\begin{align*}
+		p(\alpha,\beta) = |I(\alpha,\beta|^\frac{1}{2} = \left(\sum_{i,j}{\frac{n_{i}\exp(\alpha+\beta x_{i})n_{j}\exp(\alpha+\beta x_{j})(x_{j}^{2}-x_{i}x_{j})}{(1+\exp(\alpha+\beta x_{i}))^{2}(1+\exp(\alpha+\beta x_{j}))^{2}}}\right)^{\frac{1}{2}}
+	\end{align*}
+	
+\end{enumerate}
+%
+%\item Consider the Galenshore distribution (it's just a transformed Gamma density). That is, let $Y|\theta \sim \text{Galenshore}(a,\theta)$. Then
+%$$ p(y|\theta) = \frac{2}{\Gamma(a)}\theta^{2a}y^{2a-1}
+%e^{-\theta^2y^2},\; y>0,\; a>0,\; \theta>0.$$
+%
+%\begin{enumerate}
+%\item Consider
+%\begin{align*}
+%Y|\theta &\sim \text{Galenshore}(a,\theta), \text{$a$ known, $\theta$ unknown}\\
+%\theta &\sim \text{Galenshore}(c,d).
+%\end{align*}
+%
+%Find the posterior distribution of $\theta|y.$ 
+%
+%%Show that $$\theta|y\sim \text{Galenshore}(a+c,\sqrt{y^2+d^2}).$$
+%
+%%\item Let $\tilde{Y}|\theta \sim \text{Galenshore}(a,\theta).$ Assume that $\tilde{Y}$ and $Y$ are independent given $\theta.$   Show that $$p(\tilde{y}|y) = \frac{2\Gamma(2a+c)}{\Gamma(a)\Gamma(a+c)}
+%%\frac{\tilde{y}^{2a-1}(y^2+d^2)^{a+c}}{(\tilde{y}^2+y^2+d^2)^{2a+c}}.$$
+%
+%\emph{Solution}:
+%\begin{align*}
+%p(\theta|y) &\propto 
+%\frac{2}{\Gamma(a)}\theta^{2a}y^{2a-1}
+%e^{-\theta^2y^2}
+%\frac{2}{\Gamma(c)}d^{2c}\theta^{2c-1}
+%e^{-d^2\theta^2}\\
+%&\propto \theta^{2a}
+%e^{-\theta^2y^2}
+%\theta^{2c-1}
+%e^{-d^2\theta^2}\\
+%&= \theta^{2(a+c)-1} e^{-\theta^2(y^2+d^2)}.
+%\end{align*}
+%Thus, $\theta|y \sim \text{Galenshore}(a+c,\sqrt{y^2+d^2}).$
+%
+%\end{enumerate}
+
+
+%\item Suppose $X| \mu, \sigma^2$ has the Inverse Gamma pdf
+%$$p(x|\mu,\sigma^2) =
+%(2\pi \sigma^2 x^3)^{-1/2} \exp\{
+%-(x- \mu)^2/(2\mu^{2} \sigma^2 x)\} I_{0,\infty} (x)$$
+%where $\mu>0$ and $\sigma>0$ are both unknown.
+%\begin{enumerate}
+%\item Show that the Fisher information matrix 
+%$I(\mu,\sigma^2) = \text{Diag}(\mu^{-3}\sigma^{-2}, (2\sigma^{4})^{-1}).$
+%\item Show that either when $\mu$ is the parameter of interest and $\sigma^2$ is the nuisance parameter or vice versa, the reference prior is 
+%$\pi_R(\mu,\sigma^2) = \mu^{-3/2} \sigma^{-2}.$
+%
+%\end{enumerate}
+%
+%\emph{Solution}: 
+%
+%\begin{enumerate}
+%	\item Let $K(X)$ be a constant on $(\mu,\sigma^{2})$,
+%	
+%	\begin{align*}
+%		\log(p(X|\mu,\sigma^{2})) &= K(X) - \frac{1}{2}\log(\sigma^{2}) - \frac{(X-\mu)^{2}}{2\mu^{2} \sigma^{2} X} \\
+%															&= K(X) - \frac{1}{2}\log(\sigma^{2}) - \frac{X}{2\mu^{2} \sigma^{2}} + \frac{1}{\mu \sigma^{2}} - \frac{1}{2\sigma^{2}X}
+%	\end{align*}
+%	
+%	\begin{align*}
+%		\frac{d\log(p(X|\mu,\sigma^{2}))}{d\mu}					&=  \frac{X}{\mu^{3} \sigma^{2}} - \frac{1}{\mu^{2}\sigma^{2}} \\
+%		\frac{d\log(p(X|\mu,\sigma^{2}))}{d\sigma^{2}}	&=  -\frac{1}{2\sigma^{2}} + \frac{X}{2\mu^{2}(\sigma^{2})^{2}} - \frac{1}{\mu (\sigma^{2})^{2}} + \frac{1}{2(\sigma^{2})^{2}X}
+%	\end{align*}
+%	
+%	Hence, the Hessian Matrix of the Log-likelihood is:
+%	
+%		\begin{align*}
+%		H\log(p(X|\mu,\sigma^{2})) =
+%		\left[ \begin{array}{cc}
+%			\frac{3X+2\mu}{\mu^{4}\sigma^{2}} 													& \frac{-X}{\mu^{3}\sigma^{4}} + \frac{1}{\mu^{2}\sigma^{4}} \\
+%			\frac{-X}{\mu^{3}\sigma^{4}} + \frac{1}{\mu^{2}\sigma^{4}}	& \frac{1}{2\sigma^{4}} - \frac{X}{\mu^{2}(\sigma^2)^{3}} + \frac{2}{\mu (\sigma^{2})^{3}} - \frac{1}{2X(\sigma^{2})^{3}}
+%		\end{array} \right]
+%	\end{align*}
+%	
+%	\item
+\end{enumerate}
+
+%\end{enumerate}
+
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
