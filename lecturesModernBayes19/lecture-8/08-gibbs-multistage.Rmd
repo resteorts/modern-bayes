@@ -1,7 +1,7 @@
+
 ---
-title: "Module 8: Part III: Gibbs Sampling and Data Augmentation"
+title: "Module 8: Part II: Gibbs Sampling with an Application to Missing Data"
 author: "Rebecca C. Steorts"
-date: March 21, 2019
 output: 
      beamer_presentation:
       includes: 
@@ -9,360 +9,344 @@ output:
 font-size: 8px
 ---
 
-Announcements
-===
-
-- At the end of class today, if everyone could fill out the course evaluation, I would be 
-really appreciative. (Check your email for this). 
-- Duke Undergraduate Machine Learning Day is Saturday March 23. You can register at \url{http://dukeml.org/} and 
-see the full schedule of events. 
-- If you're interested in doing an undergraduate thesis, poster presentations will be given by our seniors on Friday,
-March 29 at 3:30 -- 4:30 PM, Brodhead Center Multipurpose Room, 068. 
-- DataFest is April 6 -- 8 and you can register on the main statistical science page. 
-- I will hand back Midterm II next week in class. Overall, the exams were quite good. Well done:) 
-
 Agenda
 ===
-- Two Component Mixture Model
-- Latent Variable Allocation (Trick for Gibbs Sampling)
-- Application to the Dutch Example
+
+- Three stage Gibbs sampler 
+- Gibbs sampling (multi-stage sampler)
+- Missing data (censoring) application
 
 
-Data augmentation for auxiliary variables
+Multi-stage Gibbs sampler
 ===
-\begin{itemize}
-\item A commonly-used technique for designing MCMC samplers is to use \emph{data augmentation}, also known as \emph{auxiliary variables}.
-\item Introduce variable(s) $Z$ that depends on the distribution of the existing variables in such a way that the
-resulting conditional distributions, with $Z$ included, are easier to sample from and/or result in better mixing.
-\item  $Z$'s are latent/hidden variables that are introduced for the purpose of simplifying/improving the sampler.
-\end{itemize}
-
-Idea: Create Z's and throw them away at the end! 
-===
-Goal: Sample from $p(x,y)$
-
-Problem: We cannot sample from $p(x|y)$ and/or $p(y|x).$
-
-Solution: 
+Assume three random variables, with joint pmf or pdf: $p(x,y,z).$.
+\vskip 1em
+Set $x$, $y$, and $z$ to some values $(x_o,y_o,z_o)$.
+\vskip 1em
+Sample $x|y,z$, then $y|x,z$, then $z|x,y$, then $x|y,z$, and so on. More precisely,
 \begin{enumerate}
-\item Introduce a latent/hidden variable $Z$ such that 
-$$p(x|y,z), p(y|x,z),  p(z|x,y)$$ are easy to sample from. 
-\item Then construct a Gibbs sampler that will approximate samples from
-$p(x,y,z)$ using the full conditionals above. 
-\item The output of the three-stage Gibbs sampler is $(X,Y,Z).$
+\item[0.] Set $(x_0,y_0,z_0)$ to some starting value.
+\item[1.] Sample $x_1\sim p(x|y_0,z_0)$. \\
+          Sample $y_1\sim p(y|x_1,z_0)$. \\
+          Sample $z_1\sim p(z|x_1,y_1)$. \\
+\item[2.] Sample $x_2\sim p(x|y_1,z_1)$. \\
+          Sample $y_2\sim p(y|x_2,z_1)$. \\
+          Sample $z_2\sim p(z|x_2,y_2)$. \\
+        $\vdots$
 \end{enumerate}
 
-But, our main interest is sampling from $p(x,y).$ Thus, we just throw away the $Z$'s and we will have samples $(X,Y)$ from $p(x,y)$.
 
-Dutch Example
+
+
+
+Multi-stage Gibbs sampler
 ===
-Consider a data set on the heights of 695 Dutch women and 562 Dutch men.  
+Assume $d$ random variables, with joint pmf or pdf $p(v^1,\ldots,v^d)$.
+\vskip 1em
+ At each iteration $(1, \ldots, M)$ of the algorithm, we sample from
+\begin{align*}
+v^1&\mid v^2,v^3,\ldots,v^d\\
+v^2&\mid v^1,v^3,\ldots,v^d\\
+&\vdots\\
+v^d&\mid v^1,v^2,\ldots,v^{d-1}
+\end{align*}
+always using the most recent values of all the other variables. 
+\vskip 1em
+The conditional distribution of a variable given all of the others is referred to as the \emph{full conditional} in this context, and for brevity denoted $v^i|\cdots$.
 
+Example: Censored data
+===
+In many real-world data sets, some of the data is either missing altogether or is partially obscured. 
 \vskip 1em
 
-Suppose we have the list of heights, but we don't know which data points
-are from women and which are from men.  
+One way in which data can be partially obscured is by \emph{censoring}, which means that we know a data point lies in some particular interval, but we do not observe it. 
 
-Dutch Example 
+Medical data censoring
 ===
-From Figure \ref{figure:heights-combined} can we still infer the distribution of female heights and male heights?
+Suppose 6 patients participate in a cancer trial, however, patients 1, 2 and 4 leave the trial early.
+
+Then we know when they leave the study, but we don't know information about them as the trial continues.
 
 \begin{figure}
   \begin{center}
-    \includegraphics[width=1\textwidth]{examples/heights-combined}
-    % Source: Original work by J. W. Miller.
+    \includegraphics[width=0.5\textwidth]{censoring}
   \end{center}
-  \caption{Heights of Dutch women and men, combined.}
-  \label{figure:heights-combined}
+  \caption{Example of censoring for medical data.}
 \end{figure}
-Surprisingly, the answer is yes!
 
-Dutch example
+This is a certain type of missing data.
+
+Heart Disease (Censoring) Example
 ===
-What's the magic trick?
-\vskip 1em
-
-The reason is that this is a two-component mixture of Normals,
-and there is an (essentially) unique set of mixture parameters corresponding to any such distribution.
-
-\vskip 1em
-
-We'll get to details soon. Be patient!
-
-Constructing a Gibbs sampler
-===
-To construct a Gibbs sampler for this situation:
-
 \begin{itemize}
-\item Common to introduce an auxiliary variable $Z_i$ for each data point,
-indicating which mixture component it is drawn from.
-\item  In this example, $Z_i$ indicates whether subject $i$ is female or male.
-\item This results in a Gibbs sampler that is easy to derive/implement.
+\item Researchers are studying the length of life (lifetime) following a particular medical intervention, such as a new surgical treatment for heart disease.
+\item The study consists of 12 patients.
+\item The number of years before death for each is
+$$3.4, 2.9, 1.2+, 1.4, 3.2, 1.8, 4.6, 1.7+, 2.0+, 1.4+, 2.8, 0.6+$$
+where the $+$ indicates that the patient was alive after $x$ years, but the researchers lost contact with the patient after that point in time. 
 \end{itemize}
 
-Two-component mixture model
+Model
 ===
-Let's assume that both mixture components (female and male) have the same precision, say $\lambda$, and that $\lambda$ is fixed and known. Assume below that $a,b,m, \ell$ are known.
+\begin{align}
+  &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
+     & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\
+    & \theta\sim \Ga(a, b)
+\end{align}
+where $a$, $b$, and $r$ are known.
+\begin{itemize}
+\item $c_i$ is the censoring time for patient $i$, which is fixed, but known only if censoring occurs.
+\item $X_i$ is the observation
+\begin{itemize}
+\item if the lifetime is less than $c_i$ then we get to observe it ($X_i = Z_i$), 
+\item otherwise
+        all we know is the lifetime is greater than $c_i$ ($X_i = c_i$).
+        \end{itemize}
+    \item $\theta$ is the parameter of interest---the rate parameter for the lifetime distribution.
+    \item $Z_i$ is the lifetime for patient $i$, however, this is not directly observed.
+    \end{itemize}
+    
+Posterior inference 
+===
+Goal: find $p(\theta,z_{1:n}|x_{1:n})$?
 
+  
+1. Straightforward approaches that are in closed form do not work (think about these on your own). Instead we turn to Gibbs!  
 \vskip 1em
 
-Then the usual two-component Normal mixture model is:
-\begin{align}
-  & X_1,\ldots, X_n \mid \mu,\pi\ \sim F(\mu,\pi)\\
-      & \mu:=(\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
-        & \pi \sim \Beta(a,b),
-\end{align}
-Remark: $\pi$ is the prior probability that a subject comes from component 1.
 
-where $F(\mu,\pi)$ is the distribution with p.d.f. 
-$$ f(x|\mu,\pi) = (1-\pi)\N(x\mid \mu_0,\lambda^{-1}) + \pi
-\N(x\mid \mu_1,\lambda^{-1}) $$
-and $\mu=(\mu_0,\mu_1)$.
-
+2. To sample from $p(\theta,z_{1:n}|x_{1:n})$, we cycle through each of the full conditional distributions,
+\begin{align*}
+\theta &\mid z_{1:n}, x_{1:n}\\
+z_1 &\mid \theta, z_{2:n}, x_{1:n}\\
+z_2 &\mid \theta, z_1,z_{3:n}, x_{1:n}\\
+\vdots\\
+z_n &\mid \theta, z_{1:n-1}, x_{1:n}
+\end{align*}
+sampling from each in turn, always conditioning on the most recent values of the other variables.
 
 Likelihood
 ===
-The likelihood is
-\begin{align*}
-    p(x_{1:n}|\mu,\pi) &= \prod_{i=1}^n f(x_i|\mu,\pi) \\
-                       & = \prod_{i=1}^n \Big[ (1-\pi)\N(x_i\mid \mu_0,\lambda^{-1}) + \pi\N(x_i\mid \mu_1,\lambda^{-1}) \Big] 
-\end{align*}
-which is a complicated function of $\mu$ and $\pi$, making the posterior difficult to sample from directly.
-
-Latent allocation variables to the rescue!
-===
-Define an equivalent model that includes latent ``allocation'' variables $Z_1,\ldots,Z_n.$
-\vskip 1em
-These indicate which mixture component each data point
-comes from--that is, $Z_i$ indicates whether subject $i$ is female or male.
+Recall the model is:
 \begin{align}
- & X_i \mid \mu, Z \sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
- & Z_1,\ldots,Z_n \mid \mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
-  & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim}\N(m,\ell^{-1})\\
-    & \pi \sim \Beta(a,b)
+  &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
+     & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\
+    & \theta\sim \Ga(a, b)
 \end{align}
-How can we check that the latent allocation model is equivalent to our original model? 
 
-Equivalence of both models
-===
-Recall
+The pdf associated with this random variable is rather strange, as it consists of two point masses: one at $Z_i$ and one at $c_i$.  The formula is
 \begin{align*}
- & X_i \mid \mu, Z \sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
-     & Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
-    & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
-    & \pi \sim \Beta(a,b)
-\end{align*}
-This is equivalent to the model above, since
+p(x_i|z_i) = \bm{1}(x_i = z_i)\bm{1}(z_i \leq c_i) + \bm{1}(x_i=c_i)\bm{1}(z_i > c_i).
+\end{align*}.
+
+Full conditionals
+===
+The full conditionals are easy to calculate.
+Let's start with $\theta|\cdots$
+\begin{itemize}
+\item Since $\theta \perp x_{1:n}\mid z_{1:n}$ (i.e., $\theta$ is conditionally independent of $x_{1:n}$ given $z_{1:n}$),
 \begin{align}
-    &p(x_i|\mu,\pi) \\
-    &= p(x_i|Z_i=0,\mu,\pi)\Pr(Z_i=0|\mu,\pi)
-                    + p(x_i|Z_i=1,\mu,\pi)\Pr(Z_i=1|\mu,\pi) \\
-            &= (1-\pi)\N(x_i|\mu_0,\lambda^{-1}) + \pi\N(x_i|\mu_1,\lambda^{-1})\\
-            &= f(x_i|\mu,\pi),
+p(\theta|\cdots) &= p(\theta|z_{1:n},x_{1:n}) = p(\theta|z_{1:n}) \\ &= \Ga\big(\theta\,\big\vert\, a+nr,\, b+\textstyle\sum_{i=1}^n z_i\big) 
 \end{align}
-and thus it induces the same distribution on $(x_{1:n},\mu,\pi)$. The latent model is considerably easier to work with, particularly for Gibbs sampling.
+using the fact that the prior on $\theta$ is conjugate. 
+\end{itemize}
 
 Full conditionals
 ===
-Recall
+Now we can easily find the full conditionals.  
+
+- Note that $z_i$ is conditionally independent of $z_j$ given $\theta$ for $i \neq j$.  
+- This implies that $x_i$ is conditionally independent of $x_j$ given $z_i$ for $i \neq j$.  
+
+Now we have
 \begin{align*}
- & X_i \mid \mu, Z\sim \N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
-     & \textcolor{blue}{Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)}\\
-    & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
-    & \textcolor{blue}{\pi \sim \Beta(a,b)}
-\end{align*}
-\begin{itemize}
-    \item ($\pi|\cdots$) Given $z$, $\pi$ is independent of everything else, so this reduces to a Beta--Bernoulli model, and we have
-        $$ p(\pi|\mu,z,x) = p(\pi|z) =\Beta(\pi\mid a + n_1,\, b + n_0) $$
-        where $n_k = \sum_{i=1}^n \I(z_i=k)$ for $k \in \{0, 1\}$.
-        \end{itemize}
-        \textcolor{blue}{That is, $n_o = \sum_{i=1}^n \I(z_i=0); n_1 = \sum_{i=1}^n \I(z_i=1).$}
-        
-Full conditionals
-===
-\begin{align*}
- & \textcolor{blue}{X_i\sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.}\\
-     & Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
-    & \textcolor{blue}{\mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})}\\
-    & \pi \sim \Beta(a,b)
-\end{align*}
- ($\mu|\cdots$) Given $z$, we know which component each data point comes from. 
-    The model (conditionally on $z$) is just two
-        independent Normal--Normal models, as we have seen before (Module 3):
-        \begin{align*}
-            \bm\mu_0|\mu_1,x,z,\pi\, &\sim \,\N(M_0,L_0^{-1})\\
-            \bm\mu_1|\mu_0,x,z,\pi\, &\sim \,\N(M_1,L_1^{-1}), \text{where} \\
-            L_0 &=\ell + n_0\lambda; L_1 =\ell + n_1\lambda \\
-            M_0 &=\frac{\ell m + \lambda\sum_{i:z_i=0} x_i}{\ell + n_0\lambda};
-            M_1 =\frac{\ell m + \lambda\sum_{i:z_i=1} x_i}{\ell + n_1\lambda}.\\
-        \end{align*}
-      
-        
-Full conditionals
-===
-\begin{itemize}
-    \item ($z|\cdots$)
-        \begin{align*}
-            p(z|\mu,\pi,x)&\underset{z}{\propto}p(x,z,\pi,\mu)\underset{z}{\propto} p(x|z,\mu) p(z|\pi)\\
-            & =\prod_{i = 1}^n \N(x_i|\mu_{z_i},\lambda^{-1})\Bernoulli(z_i|\pi)\\
-            & =\prod_{i = 1}^n \Big(\pi\N(x_i|\mu_1,\lambda^{-1})\Big)^{z_i} \Big((1-\pi)\N(x_i|\mu_0,\lambda^{-1})\Big)^{1-z_i}\\
-            & =\prod_{i = 1}^n \alpha_{i,1}^{z_i} \alpha_{i,0}^{1-z_i}\\
-            &\underset{z}{\propto}\prod_{i = 1}^n\Bernoulli(z_i\mid \alpha_{i,1}/(\alpha_{i,0}+\alpha_{i,1}))
-        \end{align*}
-        where
-        \begin{align*}
-            \alpha_{i,0} & =(1-\pi)\N(x_i|\mu_0,\lambda^{-1})\\
-            \alpha_{i,1} & =\pi\N(x_i|\mu_1,\lambda^{-1}).
-        \end{align*}
-\end{itemize}
-My Factory Settings!
-===
-We initialize the sampler at the same settings that we did when we looked at this application before. Let's review them below. 
-\begin{itemize}
-\item $\lambda = 1/\sigma^2$ where $\sigma = 8$ cm ($\approx 3.1$ inches) ($\sigma$ = standard deviation of the subject heights within each component)
-\item $a = 1$, $b = 1$ (Beta parameters, equivalent to prior ``sample size'' of 1 for each component)
-\item $m = 175$ cm ($\approx 68.9$ inches) (mean of the prior on the component means)
-\item $\ell = 1/s^2$ where $s = 15$ cm ($\approx 6$ inches) ($s$ = standard deviation of the prior on the component means)
-\end{itemize}
-
-My Factory Settings!
-===
-
-We initialize the sampler at the same settings that we did when we looked at this application before. Let's review them below. 
-
-\begin{itemize}
-\item $\pi = 1/2$ (equal probability for each component)
-\item $z_1,\ldots,z_n$ sampled i.i.d.\ from $\Bernoulli(1/2)$ (initial assignment to components chosen uniformly at random)
-\item $\mu_0 =\mu_1 = m$ (component means initialized to the mean of their prior)
-\end{itemize}
-
-
-Traceplots of the component means
-===
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=\textwidth]{examples/mix-mu_trace-a.png}\caption{Traceplots of the component means, $\mu_0$ and $\mu_1$. The blue component quickly settles to have a mean of around 168–170 cm and the other (red) to a mean of around 182–186 cm.}
-\label{default}
-\end{center}
-\end{figure}
-
-Recall we're not using the true assignments of subjects to components (we don’t know whether they are male or female). 
-Note that this is fairly close to the sample averages: 168.0 cm (5 feet 6.1 inches) for females, and 181.4 cm (5 feet 11.4 inches) for males. 
-
-Traceplots of the mixture weight, $\pi$
-===    
-\begin{figure}
-\begin{center}
-\includegraphics[width=\textwidth]{examples/mix-p_trace-a.png}
-\caption{Traceplots of the mixture weight, $\pi$ (prior probability that a subject comes from component 1). }
-\label{figure:mixb}
-\end{center}  
-\end{figure}
-
-The traceplot of $\pi$ indicates that the sampler is exploring values of around 0.2 to 0.4—that is, the proportion of people coming from group 1 is around 0.2 to 0.4.
-
-Looking at the actual labels (female and male), the empirical proportion of males is $562/(695 + 562) \approx 0.45,$ so this is 
-slight off. 
-
-How might we fix this in our model? 
-
-Back to the model
-===
-
-Recall
-\begin{align*}
- & X_i \mid \mu, Z \sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
-     & Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
-    & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
-    & \pi \sim \Beta(a,b),
+p(z_i|z_{-i},x_{1:n},\theta) &= p(z_i|x_i,\theta) \\
+&\underset{z_i}{\propto} p(z_i,x_i,\theta) \\
+&= p(\theta)p(z_i|\theta)p(x_i|z_i,\theta) \\
+&\underset{z_i}{\propto} p(z_i|\theta)p(x_i|z_i,\theta) \\
+&= p(z_i|\theta)p(x_i|z_i).
 \end{align*}
 
-where $a,b,m,\ell$ are fixed.
+Full conditionals (continued)
+=== 
 
-Hint: Is it reasonable to think that we should have the same $\lambda$ for the data?
-Consider $$\lambda = (\lambda_0, \lambda_1)$$
-
-How would you proceed next in a Bayesian hierarchical manner? 
+There are now two cases to consider.  
 
 
-Histograms
-===
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=\textwidth]{examples/mix-histograms_at_last_sample-a.png}\caption{Histograms of the heights of subjects assigned to each component, according to $z_1,\ldots,z_n$, in a typical sample.}
-\label{default}
-\end{center}
-\end{figure}
+1. If $x_i \neq c_i$, then $p(z_i|\theta)p(x_i|z_i)$ is only non-zero when $z_i = x_i$.  
 
+- The density devolves to a point mass at $x_i$.  
 
-Question
+2. If $x_i = c_i$, then the density becomes $p(x_i|z_i) = \bm{1}(z_i > c_i)$, so 
+\begin{align*}
+p(z_i|\hdots) \propto p(z_i|\theta)\bm{1}(z_i>c_i),
+\end{align*}
+which is a truncated Gamma.
+
+Sampling from the truncated Gamma
 ===
 
-Why are females assigned to component 0 and males assigned to component 1? 
-Why not the other way around? Let's investigate this and see what happens if we look at another choice of starting values. 
-    
-Traceplots of the component means
+We sample from the truncated gamma using a modified version of the inverse CDF method.   
+
+For the censored values of $Z_i$ we know $c_i$.  
+
+If we know $\theta$ (which we will in a Gibbs' sampler), we know the distribution of $Z_i|\theta \sim Gamma(r,\theta)$.  
+
+Let $F$ be the CDF of this distribution.  
+
+Suppose we truncate this distribution to $(c,\infty)$.  The new CDF is
+\begin{align*}
+Y = P(Z_i < z) &= \frac{F(z) - F(c)}{1 - F(c)}.
+\end{align*}
+
+Therefore $Y$ is a sample from the truncated Gamma.
+
+Remark: when we implement the GS, we do not sample the observed values. 
+We impute the censored values using the method just outlined.  
+
+Application to censored data
 ===
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=\textwidth]{examples/mix-mu_trace-a.png}
-\includegraphics[width=\textwidth]{examples/mix-mu_trace-b.png}\caption{Traceplots of the component means, $\mu_0$ and $\mu_1$.}
-\label{default}
-\end{center}
-\end{figure} 
+```{r}
+knitr::opts_chunk$set(cache=TRUE)
+# Samples from a truncated gamma with
+# truncation (t, infty), shape a, and rate b
+# Input: t,a,b
+# Output: truncated Gamma(a,b)
+sampleTrunGamma <- function(t, a, b){
+  p0 <- pgamma(t, shape = a, rate = b)
+  # Use the modification of the inverse CD method
+  x <- runif(1, min = p0, max = 1)
+  y <- qgamma(x, shape = a, rate = b)
+  return(y)
+}
+```
 
-Traceplots of the mixture weight, $\pi$
-===    
-\begin{figure}
-\begin{center}
-\includegraphics[width=\textwidth]{examples/mix-p_trace-a.png}
-\includegraphics[width=\textwidth]{examples/mix-p_trace-b.png}
-\caption{Traceplots of the mixture weight, $\pi$ (prior probability that a subject comes from component 1). }
-\label{figure:mixb}
-\end{center}  
-\end{figure}
-
-Histograms
+Application to censored data (continued)
 ===
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=\textwidth]{examples/mix-histograms_at_last_sample-a.png}
-\includegraphics[width=\textwidth]{examples/mix-histograms_at_last_sample-b.png}\caption{Histograms of the heights of subjects assigned to each component, according to $z_1,\ldots,z_n$, in a typical sample.}
-\label{default}
-\end{center}
-\end{figure}
+\footnotesize
+```{r}
+# Gibbs sampler
+# z is the fully observe data
+# c is censored data
+# n.iter is number of iterations
+# init.theta and init.miss are initial values for sampler
+# r,a, and b are fixed parameters
+# burnin is number of iterations to use as burnin
+sampleGibbs <- 
+  function(z, c, n.iter, init.theta, init.miss, r, a, b, burnin = 1){
+  z.sum <- sum(z); m <- length(c); n <- length(z) + m
+  miss.vals <- init.miss 
+  res <- matrix(NA, nrow = n.iter, ncol = 1 + m)
+  for (i in 1:n.iter){
+    var.sum <- z.sum + sum(miss.vals)
+    theta <- rgamma(1, shape = a + n*r, rate = b + var.sum)
+    miss.vals <- sapply(c, function(x) {sampleTrunGamma(x, r, theta)})
+    res[i,] <- c(theta, miss.vals)
+  } 
+  return(res[burnin:n.iter,])
+} 
+```
 
-
-Caution: watch out for modes
+Set parameter values
 ===
-Example illustrates a big thing that can go wrong with MCMC (although fortunately, in this case, the results are still valid if interpreted correctly). 
-\begin{itemize}
-\item Why are females assigned to component 0 and males assigned to component 1? Why not the other way around? 
-\item In fact, the model is symmetric with respect to the two components, and thus the posterior is also symmetric. 
-\item If we run the sampler multiple times (starting from the same initial values), sometimes it will settle on females as 0 and males as 1, and sometimes on females as 1 and males as 0 --- see Figure \ref{figure:mixb}. 
-\item Roughly speaking, the posterior has two modes.
-\item  If the sampler were behaving properly, it would move back and forth between these two modes.
-\item But it doesn't---it gets stuck in one and stays there.
-\end{itemize}
+```{r}
+set.seed(5983)
+# set parameter values and enter data
+r <- 10
+a <- 1
+b <- 1
+z <- c(3.4,2.9,1.4,3.2,1.8,4.6,2.8)
+c <- c(1.2,1.7,2.0,1.4,0.6)
+n.iter <- 100
+init.theta <- 1
+init.missing <- 
+  rgamma(length(c), shape = r, rate = init.theta)
+```
 
-Takeaways from Dutch Application
+Run Gibbs sampler
 ===
+\footnotesize
+```{r}
+res <- sampleGibbs(z, c, n.iter, init.theta, init.missing, 
+                   r, a, b) 
+```
 
-- This is a very common problem with mixture models. 
-- Fortunately, however, in the case of mixture models, the results are still valid if we interpret them correctly. 
-- Specifically, our inferences will be valid as long as we only consider quantities that are invariant with respect to permutations of the components (e.g. symmetry about the mean, others).
-- To learn more about invariance and what quantities remain unchanged, see Theory of Point Estimation, Lehmann and Casella, Chapter 1 for a formal treatment. (For more advanced reading, see Chapter 3.) Feel free to see me in OH if you want to chat about this! 
+Let's first look at some diagnostics --- trace plots and runnning average plots. 
 
+Traceplot of $\theta$
+===
+\footnotesize
+```{r}
+plot(1:n.iter, res[,1], pch = 16, cex = .35,
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Traceplot of ", theta)))
+```
 
+Traceplot of censored observations
+===
+```{r,echo=FALSE}
+par(mfrow=c(3,2))
+missing.index <- c(3,8,9,10,12)
+for (ind in missing.index){
+  x.lab <- bquote(z[.(ind)])
+  plot(1:n.iter, res[,which(missing.index == ind)], pch = 16, cex = .35,
+       xlab = "Iteration", ylab = x.lab,
+       main = bquote(paste("Traceplot of ", .(x.lab))))
+}
+```
 
+Running average plots
+===
+\footnotesize
+```{r, echo=FALSE}
+# get running averages
+run.avg <- apply(res, 2, cumsum)/(1:n.iter)
+plot(1:n.iter, run.avg[,1], type = "l",
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Running Average Plot of ", theta)))
+```
 
+Running average plots
+===
+\footnotesize
+```{r,echo=FALSE}
+par(mfrow=c(3,2))     
+missing.index <- c(3,8,9,10,12)
+for (ind in missing.index){
+  x.lab <- bquote(z[.(ind)])
+  plot(1:n.iter, run.avg[,which(missing.index == ind)], type = "l",
+       xlab = "Iteration", ylab = x.lab,
+       main = bquote(paste("Running Average Plot of ", .(x.lab)))) 
+}      
+```
 
+The estimated density of $\theta$
+===
+```{r, echo=FALSE}
+plot(density(res[,1]), xlab = expression(theta), 
+     main = expression(paste("Density of ", theta)))
+abline(v = mean(res[,1]), col = "red")
+```
 
+The estimated density of $z_9$
+===
+```{r, echo=FALSE}
+plot(density(res[,4]), xlab = expression(z[9]),
+     main = expression(paste("Density of ", z[9])))
+abline(v = mean(res[,4]), col = "red")
+```
 
+Homework 8 
+===
+Using the data and functions given to you (posted to Sakai with Homework 8), investigate the following questions: 
 
+1. Write code to produce traceplots and running average plots for the censored values for 200 iterations. Do these diagnostic plots suggest that you have run the sampler long enough? Explain.  
 
+2. Now run the chain for 10,000 iterations  and update your diagnostic plots (traceplots and running average plots). Report your findings for both traceplots and the running average plots for $\theta$ and the censored values. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
 
+3. Give plots of the estimated density of $\theta \mid \cdots$ and $z_9 \mid \cdots$. Be sure to give brief explanations of your results and findings. (Present plots for 10,000 iterations). 
 
+4. Finally, let's suppose that $r=10,a=1,b=100.$ Does your posterior change? What about when $r=10, a=100,b=1?$ (Use 10,000 iterations for the Gibbs sampler). 
 
 
 
