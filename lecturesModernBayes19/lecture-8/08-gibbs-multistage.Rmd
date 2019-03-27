@@ -289,7 +289,7 @@ par(mfrow=c(3,2))
 missing.index <- c(3,8,9,10,12)
 for (ind in missing.index){
   x.lab <- bquote(z[.(ind)])
-  plot(1:n.iter, res[,which(missing.index == ind)], pch = 16, cex = .35,
+  plot(1:n.iter, res[,which(missing.index == ind) + 1], pch = 16, cex = .35,
        xlab = "Iteration", ylab = x.lab,
        main = bquote(paste("Traceplot of ", .(x.lab))))
 }
@@ -314,7 +314,7 @@ par(mfrow=c(3,2))
 missing.index <- c(3,8,9,10,12)
 for (ind in missing.index){
   x.lab <- bquote(z[.(ind)])
-  plot(1:n.iter, run.avg[,which(missing.index == ind)], type = "l",
+  plot(1:n.iter, run.avg[,which(missing.index == ind) + 1], type = "l",
        xlab = "Iteration", ylab = x.lab,
        main = bquote(paste("Running Average Plot of ", .(x.lab)))) 
 }      
