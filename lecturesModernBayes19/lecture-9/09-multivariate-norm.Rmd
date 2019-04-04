@@ -9,6 +9,16 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+1. The last day of classes with be April 16, 2019
+2. There will be a special lecture on April 18, 2019
+by one of my PhD students on mixture models (abstract/title forthcoming). 
+3. OH will be regularly scheduled until the final exam, April 29, 2019. 
+4. Your lab sections will serve as extra OH by your TAs until April 29, 2019. 
+5. The final exam will be April 29, 2019. 
+
 Agenda
 ===
 \begin{itemize}
@@ -113,8 +123,11 @@ Consider $$Z_1,\ldots,Z_n \stackrel{iid}{\sim} MVN(0,I)$$
 
 \begin{align}
 f_z(z) &= \prod_{i=1}^n \frac{1}{2\pi} e^{-z_i^2/2}\\
+& = (2\pi)^{-n} e^{\sum_i-z_i^2/2}\\
 & = (2\pi)^{-n} e^{z^Tz/2}
 \end{align}
+
+Exercise: Why does $\sum_i-z_i^2 = z^Tz$?
 
 - E[Z] = 0
 - Var[Z] = I
