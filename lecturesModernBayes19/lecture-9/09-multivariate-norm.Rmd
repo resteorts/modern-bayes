@@ -56,6 +56,26 @@ x_{i1}\\
 x_{ip}
 \end{array} \right) \]
 
+Useful Tricks
+===
+
+Suppose that A is $n \times n$ matrix and suppose
+that B is a $n \times n$ matrix. 
+
+Lemma 1:  
+
+$$tr(AB) = tr(BA)$$
+
+Proof: Exercise. 
+
+Lemma 2: 
+
+$$tr(x^TAx) = tr(x^TAx) = tr(xx^TA) = tr(Axx^T)$$
+
+Proof: Exercise. 
+
+
+Why are these useful? We'll get to this later in this module. 
 
 
 Distribution of MVN
@@ -189,13 +209,17 @@ p(\bx \mid \btheta, \Sigma) \times p(\btheta) \\
 
 Full conditional
 ===
-Recall that 
-\textcolor{red}{$\pi(\btheta) \sim MVN(\bmu, \Omega)$ implies that $A_o = \Omega^{-1}$ and $b_o = \Omega^{-1} \mu.$}
+From the previous slide, recall that 
+
+$$p(\btheta \mid \bx, \Sigma) \propto
+\exp\{
+\btheta^T( b_o + b_1) -\frac{1}{2}\theta^T(A_o + A_1) \theta
+\}$$
 
 Using the kernel of the multivariate normal, we can now find the posterior mean and the posterior covariance:
 
 Then $$A_n = A_o + A_1 = \Omega^{-1}+n\Sigma^{-1}$$ and $$b_n = b_o + b_1 = \Omega^{-1}\mu + \Sigma^{-1} n\bar{x}$$
-$$\btheta \mid \bx, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n)$$
+$$\btheta \mid \bx, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n).$$
 
 Interpretations
 ===
@@ -257,7 +281,7 @@ Let's first look at
 \end{align}
 where $S_\theta = \sum_i (\bx_i - \btheta) (\bx_i - \btheta)^T.$
 
-Fact: $$\sum_k b_k^TA b_k = tr(B B^T A),$$ where B is the matrix whose $k$th row is $b_k.$
+Note that $$\sum_k b_k^TA b_k = tr(B B^T A),$$ where B is the matrix whose $k$th row is $b_k.$ (Here we are applying Lemma 2.)
 
 
 
