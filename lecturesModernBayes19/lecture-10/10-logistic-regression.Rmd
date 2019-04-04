@@ -1,0 +1,154 @@
+
+---
+title: "Module 10: Logistic Regression"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+
+Agenda
+===
+
+We will explore a variable selecion model for Bayesian logistic regression using the data in **azdiabetes.dat**. This closesly follows the exercise 10.5 of the Hoff book. 
+
+
+Application to diabetes data set
+===
+Suppose we have data on health-related variables of a population of 532 women.
+
+Our goal is to predict whether or not a patient has diabetes given the covariates below.
+
+$x_1$ = number of pregnancies
+
+$x_2$ = blood pressure
+
+$x_3$ = body mass index
+
+$x_4$ = diabetes perdigree
+
+$x_5$ = age
+
+Diabetes Data
+===
+```{r}
+library(knitr)
+rm(list=ls())
+azd_data = read.table("azdiabetes.dat", header = TRUE)
+head(azd_data)
+```
+
+Diabetes Data (Continued)
+===
+```{r}
+diabetes <- azd_data$diabetes
+data <- azd_data[-c(2,4,8)]
+head(data)
+```
+
+Linear regression
+===
+
+Why would linear regression be inappropriate here? 
+
+```{r}
+fit.ols<-lm(diabetes~ data[,1] + data[,2] + data[,3] + data[,4])
+summary(fit.ols)$coef
+```
+
+
+
+Notation 
+===
+- $X_{n\times p}$: regression features or covariates (design matrix)
+- $\bx_i$: $i$th row vector of the regression covariates
+- $\by_{n\times 1}$: response variable (vector)
+- $\bbeta_{p \times 1}$: vector of regression coefficients 
+
+Notation (continued)
+===
+$$\bm{X}_{n \times p} = 
+\left( \begin{array}{cccc}
+x_{11} & x_{12} & \ldots&  x_{1p}\\
+x_{21} & x_{22} & \ldots& x_{2p} \\
+x_{i1} & x_{i2} & \ldots& x_{ip} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} &\ldots& x_{np}
+\end{array} \right).
+$$
+- A column of x represents a particular covariate we might be interested in, such as age of a person. 
+
+- Denote $x_i$ as the ith \textcolor{red}{row vector} of the $X_{n \times p}$ matrix. 
+
+\[  x_{i}= \left( \begin{array}{c}
+x_{i1}\\
+\textcolor{red}{x_{i2}}\\
+\vdots\\
+x_{ip}
+\end{array} \right) \]
+
+Notation (continued)
+===
+\[  \bbeta= \left( \begin{array}{c}
+\beta_1\\
+\beta_2\\
+\vdots\\
+\beta_p
+\end{array} \right) \]
+
+\[  \by= \left( \begin{array}{c}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{array} \right) \]
+
+$$\by_{n \times 1} = 
+X_{n \times p} \bbeta_{p \times 1} + \bm{\epsilon}_{n \times 1}$$
+
+Recall that the model above is a linear model.
+
+Logistic regression
+===
+
+- Logistic regression is a generalized linear model, where the response varialble is a binary value (0 or 1). 
+- That is the outcome $Y_i$ takes either the value 1 or 0 depending on the application with probability $p_i$ and $1-p_i.$
+- This is the probability that we model in relation to the covariates in our data set. 
+
+Logistic regression applied to diabetes data
+===
+
+The logistic regression model relates the probability that a person has diabetes $(p_i)$ to the covariates $(x_{i1},\ldots, x_{ip})$ through a framework much like multiple regression. 
+
+That is, we want to find a \text{transformation} such that 
+
+\begin{align}
+\label{transform}
+\texttt{transformation}(p_i) = X_{n \times p} \bbeta_{p \times 1}.
+\end{align}
+
+- We want to choose \text{transformation} such that this makes both mathematical and practical sense. 
+- For example, we want a transformation that makes the range of possibilities on the left hand side of Equation \ref{transform} equal to the range of possibilities for the right hand side. 
+- If there was no transformation for this equation, the left hand side could only take values between 0 and 1, but the right hand side could take values outside of this range.
+
+Logistic regression applied to diabetes data
+===
+
+One common transformation is the logit transformation:
+\begin{align}
+\text{logit}(p_i) = \log(\frac{p_i}{1-p_i})
+\end{align}
+
+We can then re-write Equation \ref{transform} as
+
+\begin{align}
+\log(\frac{p}{1-p}) = X_{n \times p} \bbeta_{p \times 1}
+\end{align}
+
+In fact, generalized linear models are a wide class of models that are widely used in statistics and involve making a transformation like we just did. Let's see how this ties back into our original application. 
+
+
+
