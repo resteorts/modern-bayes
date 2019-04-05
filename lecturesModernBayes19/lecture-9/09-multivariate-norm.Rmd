@@ -17,7 +17,7 @@ Announcements
 by one of my PhD students on mixture models (abstract/title forthcoming). 
 3. OH will be regularly scheduled until the final exam, April 29, 2019. 
 4. Your lab sections will serve as extra OH by your TAs until April 29, 2019. 
-5. The final exam will be April 29, 2019. 
+5. The final exam will be April 29, 2019, 9 AM -- noon (Old Chem 116). 
 
 Agenda
 ===
@@ -35,19 +35,19 @@ Notation
 ===
 Assume a matrix of covariates
 
-$$\bm{X}_{n \times p} = 
+$$\bm{X}_{p \times n} = 
 \left( \begin{array}{cccc}
-x_{11} & x_{12} & \ldots&  x_{1p}\\
-x_{21} & x_{22} & \ldots& x_{2p} \\
-x_{i1} & x_{i2} & \ldots& x_{ip} \\
+x_{11} & x_{12} & \ldots&  x_{1n}\\
+x_{21} & x_{22} & \ldots& x_{2n} \\
+x_{i1} & x_{i2} & \ldots& x_{in} \\
 \vdots & \vdots & \ddots & \vdots \\
-x_{n1} & x_{n2} &\ldots& x_{np}
+x_{p1} & x_{p2} &\ldots& x_{pn}
 \end{array} \right).
 $$
 
-- A column of x represents a particular covariate we might be interested in, such as age of a person. 
+- A column of $\bm{X}_{p \times n}$ represents a particular covariate we might be interested in, such as age of a person.
 
-- Denote $x_i$ as the ith \textcolor{red}{row vector} of the $X_{n \times p}$ matrix. 
+- Denote $x_i$ as the ith \textcolor{red}{column vector} of the $X_{p \times n}$ matrix. 
 
 \[  x_{i}= \left( \begin{array}{c}
 x_{i1}\\
@@ -55,6 +55,60 @@ x_{i1}\\
 \vdots\\
 x_{ip}
 \end{array} \right) \]
+where it's dimension is $p \times 1.$
+
+
+
+Distribution of MVN
+===
+We assume that the population mean is $\bmu_{p \times 1} = E(x_i)$ 
+
+and $\Sigma_{p \times p} = \var(x_i) = E[(x_i - \bmu_{p \times 1})(x_i - \bmu_{p \times 1})^T],$ 
+where 
+\[  \bmu_{p \times 1}= \left( \begin{array}{c}
+\mu_1\\
+\mu_2\\
+\vdots\\
+\mu_p
+\end{array} \right) \]
+and 
+
+$$\sig_{p \times p} = 
+\left( \begin{array}{cccc}
+\sigma_1^2 & \sigma_{12} & \ldots&  \sigma_{1p}\\
+\sigma_{21} & \sigma_2^2 & \ldots& \sigma_{2p}\\
+\vdots & \vdots & \ddots & \vdots \\
+\sigma_{p1} & \sigma_{p2} &\ldots& \sigma_p^2
+\end{array} \right).
+$$
+
+
+
+
+Example
+===
+```{r}
+x <- c(1,2,3,4,5)
+x.bar <- mean(x)
+(x - x.bar)%*%(x - x.bar)^T
+var(x)
+```
+
+
+
+
+Notation
+===
+Suppose matrix $A$  is invertible. The 
+$$\det(A) = \sum_{i=1}^{j=n} a_{ij} A_{ij}.$$
+\vskip 1em 
+
+I recommend using the det() commend in R. 
+\vskip 1em 
+
+Suppose now we have a square matrix $H_{p \times p}.$
+
+$$\text{trace}(H) = \sum_i h_{ii},$$ where $h_{ii}$ are the diagonal elements of $H.$
 
 Useful Tricks
 ===
@@ -70,47 +124,13 @@ Proof: Exercise.
 
 Lemma 2: 
 
-$$tr(x^TAx) = tr(x^TAx) = tr(xx^TA) = tr(Axx^T)$$
+$$x^TAx = tr(x^TAx) = tr(xx^TA) = tr(Axx^T)$$
 
 Proof: Exercise. 
 
 
 Why are these useful? We'll get to this later in this module. 
 
-
-Distribution of MVN
-===
-We assume that the population mean is $\bmu = E(\bX)$ and $\Sigma = \var(\bX) = E[(\bX - \bmu)(\bX - \bmu)^T],$ 
-where 
-\[  \bmu= \left( \begin{array}{c}
-\mu_1\\
-\mu_2\\
-\vdots\\
-\mu_p
-\end{array} \right) \]
-and 
-
-$$\sig = 
-\left( \begin{array}{cccc}
-\sigma_1^2 & \sigma_{12} & \ldots&  \sigma_{1p}\\
-\sigma_{21} & \sigma_2^2 & \ldots& \sigma_{2p}\\
-\vdots & \vdots & \ddots & \vdots \\
-\sigma_{p1} & \sigma_{p2} &\ldots& \sigma_p^2
-\end{array} \right).
-$$
-
-Notation
-===
-Suppose matrix $A$  is invertible. The 
-$$\det(A) = \sum_{i=1}^{j=n} a_{ij} A_{ij}.$$
-\vskip 1em 
-
-I recommend using the det() commend in R. 
-\vskip 1em 
-
-Suppose now we have a square matrix $H_{p \times p}.$
-
-$$\text{trace}(H) = \sum_i h_{ii},$$ where $h_{ii}$ are the diagonal elements of $H.$
 
 Notation
 ===
