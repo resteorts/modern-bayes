@@ -33,37 +33,45 @@ Agenda
 
 Notation
 ===
-Assume a matrix of covariates
+Assume the response variable is written as follows:
 
-$$\bm{X}_{p \times n} = 
+$$\bm{y}= \left( \begin{array}{c}
+y_{1}\\
+\textcolor{red}{y_{2}}\\
+\vdots\\
+y_{p}
+\end{array} \right).$$
+
+Assume that $\bm{y}_{p \times 1} \sim (\mu_{p \times 1}, \Sigma_{p \times p}),$ where
+
+$$\bmu_{p \times 1}= \left( \begin{array}{c}
+\mu_1\\
+\mu_2\\
+\vdots\\
+\mu_p
+\end{array} \right)
+$$
+$$
+\sig_{p \times p} = 
 \left( \begin{array}{cccc}
-x_{11} & x_{12} & \ldots&  x_{1n}\\
-x_{21} & x_{22} & \ldots& x_{2n} \\
-x_{i1} & x_{i2} & \ldots& x_{in} \\
+\sigma_1^2 & \sigma_{12} & \ldots&  \sigma_{1p}\\
+\sigma_{21} & \sigma_2^2 & \ldots& \sigma_{2p}\\
 \vdots & \vdots & \ddots & \vdots \\
-x_{p1} & x_{p2} &\ldots& x_{pn}
+\sigma_{p1} & \sigma_{p2} &\ldots& \sigma_p^2
 \end{array} \right).
 $$
 
-- A column of $\bm{X}_{p \times n}$ represents a particular covariate we might be interested in, such as age of a person.
-
-- Denote $x_i$ as the ith \textcolor{red}{column vector} of the $X_{p \times n}$ matrix. 
-
-\[  x_{i}= \left( \begin{array}{c}
-x_{i1}\\
-\textcolor{red}{x_{i2}}\\
-\vdots\\
-x_{ip}
-\end{array} \right) \]
-where it's dimension is $p \times 1.$
 
 
 
-Distribution of MVN
+
+
+
+Covaraiance matrix
 ===
-We assume that the population mean is $\bmu_{p \times 1} = E(x_i)$ 
+We assume that the population mean is $\bmu_{p \times 1} = E(y)$ 
 
-and $\Sigma_{p \times p} = \var(x_i) = E[(x_i - \bmu_{p \times 1})(x_i - \bmu_{p \times 1})^T],$ 
+and $\Sigma_{p \times p} = \var(y) = E[(y_{p\times1} - \bmu_{p \times 1})_{p\times1}(y_{p\times1} - \bmu_{p \times 1})^T_{1\times p}],$ 
 where 
 \[  \bmu_{p \times 1}= \left( \begin{array}{c}
 \mu_1\\
@@ -126,7 +134,7 @@ Notation
 ===
 \begin{itemize}
 \item MVN is generalization of univariate normal.
-\item For the MVN, we write $\bX \sim
+\item For the MVN, we write $\bm{y} \sim
 \mathcal{MVN}(\bmu,\Sigma)$. 
 \item The $(i,j)^{\text{th}}$
 component of $\Sigma$ is the covariance between $X_i$ and~$X_j$ (so
