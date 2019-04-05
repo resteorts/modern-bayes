@@ -31,11 +31,66 @@ Agenda
 \item See Chapter 7 (Hoff) for a review of the standard Normal density.
 \end{itemize}
 
+Example: Reading Comprehension
+===
+We will follow an example from Hoff (Section 7.4, p. 112). 
+
+A sample of 22 children are given reading comprehension tests before and after receiving a particular instructional method. 
+
+Each student $i$ will then have two scores, $Y_{i,1}$ and $Y_{i,2}$ denoting the pre- and post-instructional scores respectively. 
+
+Denote each student’s pair of scores $\bm{Y}_i$
+$$
+\bm{Y}_{i} = \left( \begin{array}{c}
+Y_{i,1}\\
+Y_{i,2}\\
+\end{array} \right) 
+= \left( \begin{array}{c}
+\text{score on first test}\\
+\text{score on second test}\\
+\end{array} \right)
+$$
+where $i=1,\ldots,n$ and $p=2.$
+
+Example: Reading Comprehension
+===
+
+
+We may be interested in the population mean $\bm{\theta}.$
+
+$$
+E[\bm{Y}] =: E[\bm{Y}_{i}] = \left( \begin{array}{c}
+Y_{i,1}\\
+Y_{i,2}\\
+\end{array} \right) 
+=  \left( \begin{array}{c}
+\mu_1\\
+\mu_2\\
+\end{array} \right) 
+$$
+
+We also may be interested in the population covariance matrix, $\Sigma.$
+\begin{align}
+\Sigma &= Cov(\bm{Y})
+=
+\left( \begin{array}{cccc}
+E[Y_1^2] - E[Y_1]^2 & E[Y_1Y_2] - E[Y_1]E[Y_2] \\
+E[Y_1Y_2] - E[Y_1]E[Y_2] & E[Y_2^2] - E[Y_2]^2
+\end{array} \right)\\
+&=
+\left( \begin{array}{cccc}
+\sigma_1^2 & \sigma_{1,2} \\
+\sigma_{1,2} & \sigma_2^2
+\end{array} \right)
+\end{align}
+
+Remark: $Cov(Y_1) = Var(Y_1) = \sigma_1^2. \;\; Cov(Y_1, Y_2) = \sigma_{1,2}.$
+
 Notation
 ===
 Assume the response variable is written as follows:
 
-$$\bm{y}= \left( \begin{array}{c}
+$$\bm{y}_{p \times 1}= \left( \begin{array}{c}
 y_{1}\\
 \textcolor{red}{y_{2}}\\
 \vdots\\
