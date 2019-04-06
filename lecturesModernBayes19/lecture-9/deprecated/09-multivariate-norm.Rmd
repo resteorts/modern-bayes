@@ -31,46 +31,23 @@ Agenda
 \item See Chapter 7 (Hoff) for a review of the standard Normal density.
 \end{itemize}
 
-Example: Reading Comprehension
+Notation
 ===
-We will follow an example from Hoff (Section 7.4, p. 112). 
+Assume a matrix of covariates
 
-A sample of 22 children are given reading comprehension tests before and after receiving a particular instructional method. 
-
-Each student $i$ will then have two scores, $Y_{i,1}$ and $Y_{i,2}$ denoting the pre- and post-instructional scores respectively. 
-
-Denote each student’s pair of scores $\bm{Y}_i$
-$$
-\bm{Y}_{i} = \left( \begin{array}{c}
-Y_{i,1}\\
-Y_{i,2}\\
-\end{array} \right) 
-= \left( \begin{array}{c}
-\text{score on first test}\\
-\text{score on second test}\\
-\end{array} \right)
-$$
-where $i=1,\ldots,n$ and $p=2.$
-
-Example: Reading Comprehension
-===
-
-
-We may be interested in the population mean ${\mu}_{\p times 1} = X_{n \times p} \bm{\beta}_{p \times 1}:$
-
-$$\bm{X}_{n \times p} = 
+$$\bm{X}_{p \times n} = 
 \left( \begin{array}{cccc}
-x_{11} & x_{12} & \ldots&  x_{n1}\\
-x_{21} & x_{22} & \ldots& x_{n2} \\
-x_{i1} & x_{i2} & \ldots& x_{ni} \\
+x_{11} & x_{12} & \ldots&  x_{1n}\\
+x_{21} & x_{22} & \ldots& x_{2n} \\
+x_{i1} & x_{i2} & \ldots& x_{in} \\
 \vdots & \vdots & \ddots & \vdots \\
-x_{n1} & x_{n2} &\ldots& x_{np}
+x_{p1} & x_{p2} &\ldots& x_{pn}
 \end{array} \right).
 $$
 
-- A row of $\bm{X}_{n \times p}$ represents a covariate we might be interested in, such as age of a person.
+- A column of $\bm{X}_{p \times n}$ represents a particular covariate we might be interested in, such as age of a person.
 
-- Denote $x_i$ as the ith \textcolor{red}{row vector} of the $X_{n \times p}$ matrix. 
+- Denote $x_i$ as the ith \textcolor{red}{column vector} of the $X_{p \times n}$ matrix. 
 
 \[  x_{i}= \left( \begin{array}{c}
 x_{i1}\\
@@ -80,77 +57,15 @@ x_{ip}
 \end{array} \right) \]
 where it's dimension is $p \times 1.$
 
-$$
-E[\bm{Y}] =: E[\bm{Y}_{i}] = \left( \begin{array}{c}
-Y_{i,1}\\
-Y_{i,2}\\
-\end{array} \right) 
-=  \left( \begin{array}{c}
-\mu_1\\
-\mu_2\\
-\end{array} \right) 
-$$
 
-We also may be interested in the population covariance matrix, $\Sigma.$
-\begin{align}
-\Sigma &= Cov(\bm{Y})
-=
-\left( \begin{array}{cccc}
-E[Y_1^2] - E[Y_1]^2 & E[Y_1Y_2] - E[Y_1]E[Y_2] \\
-E[Y_1Y_2] - E[Y_1]E[Y_2] & E[Y_2^2] - E[Y_2]^2
-\end{array} \right)\\
-&=
-\left( \begin{array}{cccc}
-\sigma_1^2 & \sigma_{1,2} \\
-\sigma_{1,2} & \sigma_2^2
-\end{array} \right)
-\end{align}
 
-Remark: $Cov(Y_1) = Var(Y_1) = \sigma_1^2. \qquad Cov(Y_1, Y_2) = \sigma_{1,2}.$
-
-General Notation
+Distribution of MVN
 ===
-Assume that $\bm{y}_{p \times 1} \sim (\mu_{p \times 1}, \Sigma_{p \times p}).$
+We assume that the population mean is $\bmu_{p \times 1} = E(x_i)$ 
 
-$$\bm{y}_{p \times 1}= \left( \begin{array}{c}
-y_{1}\\
-\textcolor{red}{y_{2}}\\
-\vdots\\
-y_{p}
-\end{array} \right).$$
-
-
-
-$$\bmu_{p \times 1}= \left( \begin{array}{c}
-\mu_1\\
-\mu_2\\
-\vdots\\
-\mu_p
-\end{array} \right)
-$$
-$$
-\sig_{p \times p} = Cov(\bm{y}) =
-\left( \begin{array}{cccc}
-\sigma_1^2 & \sigma_{12} & \ldots&  \sigma_{1p}\\
-\sigma_{21} & \sigma_2^2 & \ldots& \sigma_{2p}\\
-\vdots & \vdots & \ddots & \vdots \\
-\sigma_{p1} & \sigma_{p2} &\ldots& \sigma_p^2
-\end{array} \right).
-$$
-
-
-
-
-
-
-
-Covaraiance matrix
-===
-We assume that the population mean is ${\mu}_{p \times 1} = E(\bm{y})$ 
-
-and $\Sigma_{p \times p} = \var(\bm{y}) = E[(\bm{y}_{p\times1} - \mu_{p \times 1})_{p\times1}(\bm{y}_{p\times1} - \mu_{p \times 1})^T_{1\times p}],$ 
+and $\Sigma_{p \times p} = \var(x_i) = E[(x_i - \bmu_{p \times 1})(x_i - \bmu_{p \times 1})^T],$ 
 where 
-\[  \mu_{p \times 1}= \left( \begin{array}{c}
+\[  \bmu_{p \times 1}= \left( \begin{array}{c}
 \mu_1\\
 \mu_2\\
 \vdots\\
@@ -166,6 +81,11 @@ $$\sig_{p \times p} =
 \sigma_{p1} & \sigma_{p2} &\ldots& \sigma_p^2
 \end{array} \right).
 $$
+
+
+
+
+
 
 Notation
 ===
@@ -206,7 +126,7 @@ Notation
 ===
 \begin{itemize}
 \item MVN is generalization of univariate normal.
-\item For the MVN, we write $\bm{y} \sim
+\item For the MVN, we write $\bX \sim
 \mathcal{MVN}(\bmu,\Sigma)$. 
 \item The $(i,j)^{\text{th}}$
 component of $\Sigma$ is the covariance between $X_i$ and~$X_j$ (so
