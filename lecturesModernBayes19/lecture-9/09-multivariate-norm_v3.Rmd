@@ -112,3 +112,109 @@ E[Y_1Y_2] - E[Y_1]E[Y_2] & E[Y_2^2] - E[Y_2]^2
 
 Remark: $Cov(Y_1) = Var(Y_1) = \sigma_1^2. \qquad Cov(Y_1, Y_2) = \sigma_{1,2}.$
 
+General Notation
+===
+Assume that $\bm{y}_{p \times 1} \sim (\mu_{p \times 1}, \Sigma_{p \times p}).$
+
+$$\bm{y}_{p \times 1}= \left( \begin{array}{c}
+y_{1}\\
+\textcolor{red}{y_{2}}\\
+\vdots\\
+y_{p}
+\end{array} \right).$$
+
+
+
+$$\bmu_{p \times 1}= \left( \begin{array}{c}
+\mu_1\\
+\mu_2\\
+\vdots\\
+\mu_p
+\end{array} \right)
+$$
+$$
+\sig_{p \times p} = Cov(\bm{y}) =
+\left( \begin{array}{cccc}
+\sigma_1^2 & \sigma_{12} & \ldots&  \sigma_{1p}\\
+\sigma_{21} & \sigma_2^2 & \ldots& \sigma_{2p}\\
+\vdots & \vdots & \ddots & \vdots \\
+\sigma_{p1} & \sigma_{p2} &\ldots& \sigma_p^2
+\end{array} \right).
+$$
+
+Linear Algebra Background
+===
+
+Suppose matrix $A$  is invertible. The 
+$$\det(A) = \sum_{i=1}^{j=n} a_{ij} A_{ij}.$$
+\vskip 1em 
+
+I recommend using the det() commend in R. 
+\vskip 1em 
+
+Suppose now we have a square matrix $H_{p \times p}.$
+
+$$\text{trace}(H) = \sum_i h_{ii},$$ where $h_{ii}$ are the diagonal elements of $H.$
+
+Linear Algebra Tricks
+===
+
+Suppose that A is $n \times n$ matrix and suppose
+that B is a $n \times n$ matrix. 
+
+Lemma 1:  
+
+$$tr(AB) = tr(BA)$$
+Proof: Exercise. 
+
+Lemma 2: 
+
+Suppose $\bm{x}$ is a vector. 
+
+$$\bm{x}^TA\bm{x} = tr(\bm{x}^TA\bm{x}) = tr(\bm{x}\bm{x}^TA) = tr(A\bm{x}\bm{x}^T)$$
+
+Proof: Exercise. 
+
+
+Why are these useful? We'll come back to this later in the module.
+
+Notation
+===
+\begin{itemize}
+\item MVN is generalization of univariate normal.
+\item For the MVN, we write $\bm{y} \sim
+\mathcal{MVN}(\bmu,\Sigma)$. 
+\item The $(i,j)^{\text{th}}$
+component of $\Sigma$ is the covariance between $Y_i$ and~$Y_j$ (so
+the diagonal of $\Sigma$ gives the component variances).
+\end{itemize}
+
+Example: $Cov(Y_1, Y_2)$ is just one element of the matrix $\Sigma.$
+
+Multivariate Normal
+===
+Just as the probability density of a scalar normal is
+\begin{equation}
+p(x) = {\left(2\pi\sigma^2\right)}^{-1/2}\exp{\left\{ -\frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}\right\}},
+\end{equation}
+the probability density of the multivariate normal is
+\begin{equation}
+p(\vec{x}) = {\left(2\pi\right)}^{-p/2}(\det{\Sigma})^{-1/2} \exp{\left\{-\frac{1}{2} (\bm{x}-\bmu)^T\Sigma^{-1} (\bm{x} - \bmu)\right\}}.
+\end{equation}
+\textcolor{blue}{Univariate normal is special case of the multivariate normal with a one-dimensional mean ``vector'' and a one-by-one variance ``matrix.''}
+
+Standard Multivariate Normal Distribution
+===
+Consider $$Z_1,\ldots,Z_n \stackrel{iid}{\sim} MVN(0,I)$$
+
+\begin{align}
+f_z(z) &= \prod_{i=1}^n \frac{1}{2\pi} e^{-z_i^2/2}\\
+& = (\sqrt{2\pi})^{-n} e^{\sum_i-z_i^2/2}\\
+& = (2\pi)^{-n/2} e^{-z^Tz/2}
+\end{align}
+
+Exercise: Why does $\sum_i-z_i^2 = -z^Tz$?
+
+- E[Z] = 0
+- Var[Z] = I
+
