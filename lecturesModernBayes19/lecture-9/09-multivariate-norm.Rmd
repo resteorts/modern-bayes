@@ -199,7 +199,7 @@ p(x) = {\left(2\pi\sigma^2\right)}^{-1/2}\exp{\left\{ -\frac{1}{2} \frac{(x-\mu)
 \end{equation}
 the probability density of the multivariate normal is
 \begin{equation}
-p(\vec{x}) = {\left(2\pi\right)}^{-p/2}(\det{\Sigma})^{-1/2} \exp{\left\{-\frac{1}{2} (\bm{x}-\bmu)^T\Sigma^{-1} (\bm{x} - \bmu)\right\}}.
+p(\bm{x}) = {\left(2\pi\right)}^{-p/2}(\det{\Sigma})^{-1/2} \exp{\left\{-\frac{1}{2} (\bm{x}-\bmu)^T\Sigma^{-1} (\bm{x} - \bmu)\right\}}.
 \end{equation}
 \textcolor{blue}{Univariate normal is special case of the multivariate normal with a one-dimensional mean ``vector'' and a one-by-one variance ``matrix.''}
 
@@ -220,10 +220,10 @@ We have just showed that $Z_1,\ldots,Z_n \stackrel{iid}{\sim} MVN(0,I).$
 
 Conjugate to MVN
 ===
-Suppose that $$X_1 \ldots X_n \mid \theta \stackrel{iid}{\sim} MVN(\theta, \Sigma). $$
+Suppose that $$\bm{y} = (y_1 \ldots y_n)^T \mid \theta \stackrel{iid}{\sim} MVN(\theta, \Sigma). $$
 Let $$\pi(\btheta) \sim MVN(\bmu, \Omega). $$
 
-What is the full conditional distribution of $\btheta \mid \bm{x}, \Sigma$?
+What is the full conditional distribution of $\btheta \mid \bm{y}, \Sigma$?
 
 
 Prior
@@ -241,28 +241,28 @@ Likelihood
 ===
 
 \begin{align}
-p(\bm{x} \mid \btheta, \Sigma) &= \prod_{i=1}^n
-{\left(2\pi\right)}^{-p/2}\det{\Sigma}^{-1/2} \exp{\left\{-\frac{1}{2} (x_i-\btheta)^T\Sigma^{-1} (x_i - \btheta)\right\}}\\
+p(\bm{y} \mid \btheta, \Sigma) &= \prod_{i=1}^n
+{\left(2\pi\right)}^{-p/2}\det{\Sigma}^{-1/2} \exp{\left\{-\frac{1}{2} (y_i-\btheta)^T\Sigma^{-1} (y_i - \btheta)\right\}}\\
 \propto 
-& \exp-\frac{1}{2} {\left \{ \sum_i x_i^T \Sigma^{-1} x_i -2 \sum_i \btheta^T \Sigma^{-1} x_i + 
+& \exp-\frac{1}{2} {\left \{ \sum_i y_i^T \Sigma^{-1} y_i -2 \sum_i \btheta^T \Sigma^{-1} y_i + 
 \sum_i \btheta^T\Sigma^{-1} \btheta 
  \right \}}\\
- & \propto \exp-\frac{1}{2} {\left \{  -2 \btheta^T \Sigma^{-1} n\bar{x} + 
+ & \propto \exp-\frac{1}{2} {\left \{  -2 \btheta^T \Sigma^{-1} n\bar{y} + 
 n \btheta^T\Sigma^{-1} \btheta 
  \right \}}\\
   & \propto \exp-\frac{1}{2} {\left \{  -2 \btheta^T b_1+ 
 \btheta^T A_1 \btheta \right \}},
 \end{align}
-where $$b_1= \Sigma^{-1} n\bar{x}, \quad A_1 = n\Sigma^{-1}$$ and 
-$$\bar{x} := (\frac{1}{n}\sum_i x_{i1} ,\ldots, \frac{1}{n} \sum_i x_{ip})^T.$$
+where $$b_1= \Sigma^{-1} n\bar{y}, \quad A_1 = n\Sigma^{-1}$$ and 
+$$\bar{y} := (\frac{1}{n}\sum_i y_{i1} ,\ldots, \frac{1}{n} \sum_i y_{ip})^T.$$
 
 
 Full conditional
 ===
 
 \begin{align}
-p(\btheta \mid \bm{x}, \Sigma) &\propto
-p(\bm{x} \mid \btheta, \Sigma) \times p(\btheta) \\
+p(\btheta \mid \bm{y}, \Sigma) &\propto
+p(\bm{y} \mid \btheta, \Sigma) \times p(\btheta) \\
 &\propto 
 \exp-\frac{1}{2} {\left \{  -2 \btheta^T b_1+ 
 \btheta^T A_1 \btheta \right \}} \\
@@ -281,23 +281,23 @@ Full conditional
 
 From the previous slide, recall that 
 
-$$p(\btheta \mid \bm{x}, \Sigma) \propto
+$$p(\btheta \mid \bm{y}, \Sigma) \propto
 \exp\{
 \btheta^T( b_o + b_1) -\frac{1}{2}\theta^T(A_o + A_1) \theta
 \}$$
 
 Using the kernel of the multivariate normal, we can now find the posterior mean and the posterior covariance:
 
-Then $$A_n = A_o + A_1 = \Omega^{-1}+n\Sigma^{-1}$$ and $$b_n = b_o + b_1 = \Omega^{-1}\mu + \Sigma^{-1} n\bar{x}$$
-$$\btheta \mid \bm{x}, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n).$$
+Then $$A_n = A_o + A_1 = \Omega^{-1}+n\Sigma^{-1}$$ and $$b_n = b_o + b_1 = \Omega^{-1}\mu + \Sigma^{-1} n\bar{y}$$
+$$\btheta \mid \bm{y}, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n).$$
 
 Interpretations
 ===
 
-$$\btheta \mid \bm{x}, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n)$$
+$$\btheta \mid \bm{y}, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n)$$
 \begin{align}
 \mu_n &= A_n^{-1}b_n = [\Omega^{-1}+n\Sigma^{-1}]^{-1}(b_o + b_1)\\
-&=  [\Omega^{-1}+n\Sigma^{-1}]^{-1}(\Omega^{-1}\mu+ \Sigma^{-1} n\bar{x} )
+&=  [\Omega^{-1}+n\Sigma^{-1}]^{-1}(\Omega^{-1}\mu+ \Sigma^{-1} n\bar{y} )
 \end{align}
 \vskip 1em
 \begin{align}
@@ -324,42 +324,42 @@ inverse Wishart distribution
 \begin{itemize}
 \item The inverse Wishart distribution is the multivariate version of the Gamma distribution. 
 \item The full hierarchy we're interested in is 
-$$\bm{x} \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
+$$\bm{y} \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
 $$ \btheta \sim MVN(\mu, \Omega)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 \end{itemize}
 We first consider the conjugacy of the MVN and the inverse Wishart, i.e.
-$$\bm{x} \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
+$$\bm{y} \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
 Continued
 ===
-What about $p(\Sigma \mid \bm{x},  \btheta) \; \textcolor{red}{\propto} \; p(\Sigma) \times p(\bm{x} \mid \btheta, \Sigma).$
+What about $p(\Sigma \mid \bm{y},  \btheta) \; \textcolor{red}{\propto} \; p(\Sigma) \times p(\bm{y} \mid \btheta, \Sigma).$
 Let's first look at 
 \begin{align}
-&p(\bm{x} \mid \btheta, \Sigma) \\
+&p(\bm{y} \mid \btheta, \Sigma) \\
 &\propto
 \det(\Sigma)^{-n/2}\exp\{-
-\sum_i (\bm{x}_i - \btheta)^T\Sigma^{-1} (\bm{x}_i - \btheta)/2
+\sum_i (\bm{y}_i - \btheta)^T\Sigma^{-1} (\bm{y}_i - \btheta)/2
 \}\\
 &\propto
 \det(\Sigma)^{-n/2}\exp\{- tr(
-\sum_i  (\bm{x}_i - \btheta)(\bm{x}_i - \btheta)^T\Sigma^{-1}/2)
+\sum_i  (\bm{y}_i - \btheta)(\bm{y}_i - \btheta)^T\Sigma^{-1}/2)
 \}\\
 &\propto 
 \det(\Sigma)^{-n/2}\exp\{-
 \text{tr}(S_\theta \Sigma^{-1}/2)
 \}
 \end{align}
-where $S_\theta = \sum_i (\bm{x}_i - \btheta) (\bm{x}_i - \btheta)^T.$
+where $S_\theta = \sum_i (\bm{y}_i - \btheta) (\bm{y}_i - \btheta)^T.$
 
 Note that $$\sum_k b_k^TA b_k = tr(B B^T A),$$ where B is the matrix whose $k$th row is $b_k.$ (Here we are applying Lemma 2.)
 
 Continued
 ===
-Now we can calculate $p(\Sigma \mid \bm{x},  \btheta)$
+Now we can calculate $p(\Sigma \mid \bm{y},  \btheta)$
 \begin{align}
-&p(\Sigma \mid \bm{x},  \btheta) \\ & \quad= p(\Sigma) \times p(\bm{x} \mid \btheta, \Sigma) \\
+&p(\Sigma \mid \bm{y},  \btheta) \\ & \quad= p(\Sigma) \times p(\bm{y} \mid \btheta, \Sigma) \\
 & \quad \propto 
 \det(\Sigma)^{-(\nu_o + p +1)/2} \times \exp\{
 -\text{tr}(S_o\Sigma^{-1})/2
@@ -373,14 +373,14 @@ Now we can calculate $p(\Sigma \mid \bm{x},  \btheta)$
 \text{tr}((S_o +S_\theta) \Sigma^{-1})/2\}
 \end{align}
 This implies that 
-$$\Sigma \mid , \bm{x} \btheta \sim \text{inverseWishart}(\nu_o + n, [S_o + S_\theta]^{-1} =: S_n)$$
+$$\Sigma \mid \bm{y}, \btheta \sim \text{inverseWishart}(\nu_o + n, [S_o + S_\theta]^{-1} =: S_n)$$
 
 Continued
 ===
 Suppose that we wish now to take 
 
-$$\btheta \mid \bm{x}, \Sigma \sim MVN(\mu_n, \Sigma_n)$$ (which we finished an example on earlier).
-Now let $$\Sigma \mid \bm{x}, \btheta \sim \text{inverseWishart}(\nu_n, S_n^{-1})$$
+$$\btheta \mid \bm{y}, \Sigma \sim MVN(\mu_n, \Sigma_n)$$ (which we finished an example on earlier).
+Now let $$\Sigma \mid \bm{y}, \btheta \sim \text{inverseWishart}(\nu_n, S_n^{-1})$$
 \vskip 1em 
 There is no closed form expression for this posterior. Solution?
 
@@ -390,12 +390,12 @@ Suppose the Gibbs sampler is at iteration $s.$
 \begin{enumerate}
 \item Sample $\btheta^{(s+1)}$ from it's full conditional:
 \begin{enumerate}
-\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bm{x}$ and $\Sigma^{(s)}$
+\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bm{y}$ and $\Sigma^{(s)}$
 \item[b)] Sample $\btheta^{(s+1)}\sim MVN(\mu_n, \Sigma_n)$
 \end{enumerate}
 \item Sample $\Sigma^{(s+1)}$ from its full conditional:
 \begin{enumerate}
-\item[a)] Compute $S_n$ from $\bm{x}$ and $\theta^{(s+1)}$
+\item[a)] Compute $S_n$ from $\bm{y}$ and $\theta^{(s+1)}$
 \item[b)] Sample $\Sigma^{(s+1)} \sim \text{inverseWishart}(\nu_n, S_n^{-1})$
 \end{enumerate}
 \end{enumerate}
