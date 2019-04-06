@@ -1,0 +1,114 @@
+
+---
+title: "Module 9: The Multivariate Normal Distribution"
+author: "Rebecca C. Steorts"
+date: Hoff, Section 7.4
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+Announcements
+===
+
+1. The last day of classes with be April 16, 2019
+2. There will be a special lecture on April 18, 2019
+by one of my PhD students on mixture models (abstract/title forthcoming). 
+3. OH will be regularly scheduled until the final exam, April 29, 2019. 
+4. Your lab sections will serve as extra OH by your TAs until April 29, 2019. 
+5. The final exam will be April 29, 2019, 9 AM -- noon (Old Chem 116). 
+
+Agenda
+===
+\begin{itemize}
+\item Moving from univariate to multivariate distributions. 
+\item The multivariate normal (MVN) distribution.
+\item Conjugate for the MVN distribution.
+\item The inverse Wishart distribution. 
+\item Conjugate for the MVN distribution (but on the covariance matrix). 
+\item Combining the MVN with inverse Wishart. 
+\item See Chapter 7 (Hoff) for a review of the standard Normal density.
+\end{itemize}
+
+Example: Reading Comprehension
+===
+
+
+A sample of 22 children are given reading comprehension tests before and after receiving a particular instructional method.\footnote{This example follows Hoff (Section 7.4, p. 112).}
+
+Each student $i$ will then have two scores, $Y_{i,1}$ and $Y_{i,2}$ denoting the pre- and post-instructional scores respectively. 
+
+Denote each student’s pair of scores by the vector $\bm{Y}_i$
+$$
+\bm{Y}_{i} = \left( \begin{array}{c}
+Y_{i,1}\\
+Y_{i,2}\\
+\end{array} \right) 
+= \left( \begin{array}{c}
+\text{score on first test}\\
+\text{score on second test}\\
+\end{array} \right)
+$$
+where $i=1,\ldots,n$ and $p=2.$
+
+Example: Reading Comprehension
+===
+
+What does this data look like that is observed? 
+
+$$\bm{X}_{n \times p} = 
+\left( \begin{array}{cccc}
+x_{11} & x_{12} & \ldots&  x_{n1}\\
+x_{21} & x_{22} & \ldots& x_{n2} \\
+x_{i1} & x_{i2} & \ldots& x_{ni} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} &\ldots& x_{np}
+\end{array} \right).
+$$
+
+- A row of $\bm{X}_{n \times p}$ represents a covariate we might be interested in, such as age of a person.
+
+- Denote $x_i$ as the ith \textcolor{red}{row vector} of the $X_{n \times p}$ matrix. 
+
+\[  x_{i}= \left( \begin{array}{c}
+x_{i1}\\
+\textcolor{red}{x_{i2}}\\
+\vdots\\
+x_{ip}
+\end{array} \right) \]
+where its dimension is $p \times 1.$
+
+Example: Reading Comprehension
+===
+
+We may be interested in the population mean $\bmu_{p \times 1}.$
+
+$$
+E[\bm{Y}] =: E[\bm{Y}_{i}] = \left( \begin{array}{c}
+Y_{i,1}\\
+Y_{i,2}\\
+\end{array} \right) 
+=  \left( \begin{array}{c}
+\mu_1\\
+\mu_2\\
+\end{array} \right) 
+$$
+We also may be interested in the population covariance matrix, $\Sigma.$
+\begin{align}
+\Sigma &= Cov(\bm{Y})
+=
+\left( \begin{array}{cccc}
+E[Y_1^2] - E[Y_1]^2 & E[Y_1Y_2] - E[Y_1]E[Y_2] \\
+E[Y_1Y_2] - E[Y_1]E[Y_2] & E[Y_2^2] - E[Y_2]^2
+\end{array} \right)\\
+&=
+\left( \begin{array}{cccc}
+\sigma_1^2 & \sigma_{1,2} \\
+\sigma_{1,2} & \sigma_2^2
+\end{array} \right)
+\end{align}
+
+Remark: $Cov(Y_1) = Var(Y_1) = \sigma_1^2. \qquad Cov(Y_1, Y_2) = \sigma_{1,2}.$
+

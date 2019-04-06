@@ -355,7 +355,7 @@ Y_{i,2}\\
 \begin{frame}{Example: Reading Comprehension}
 
 We may be interested in the population mean
-\(\bm{\mu}_{\p times 1} = X_{n \times p} \bm{\beta}_{p \times 1}:\)
+\({\mu}_{\p times 1} = X_{n \times p} \bm{\beta}_{p \times 1}:\)
 
 \[\bm{X}_{n \times p} = 
 \left( \begin{array}{cccc}
@@ -370,7 +370,7 @@ x_{n1} & x_{n2} &\ldots& x_{np}
 \begin{itemize}
 \item
   A row of \(\bm{X}_{n \times p}\) represents a covariate we might be
-  interested in, such as the age of a person.
+  interested in, such as age of a person.
 \item
   Denote \(x_i\) as the ith \textcolor{red}{row vector} of the
   \(X_{n \times p}\) matrix.
@@ -448,16 +448,7 @@ y_{p}
 
 \begin{frame}{Covaraiance matrix}
 
-We assume that the population mean is \(\bmu_{p \times 1} = E(\bm{y})\)
-
-and
-\(\Sigma_{p \times p} = \var(\bm{y}) = E[(\bm{y}_{p\times1} - \bmu_{p \times 1})_{p\times1}(\bm{y}_{p\times1} - \bmu_{p \times 1})^T_{1\times p}],\)
-where \[  \bmu_{p \times 1}= \left( \begin{array}{c}
-\mu_1\\
-\mu_2\\
-\vdots\\
-\mu_p
-\end{array} \right) \] and
+We assume that the population mean is \({\mu}_{p \times 1} = E(\bm{y})\)
 
 \[\sig_{p \times p} = 
 \left( \begin{array}{cccc}
@@ -807,8 +798,8 @@ Simulate a single multivariate normal random vector using the
 \end{Shaded}
 
 \begin{verbatim}
-##             [,1]       [,2]
-## [1,] -0.03626876 -0.4489762
+##           [,1]      [,2]
+## [1,] -1.053853 0.8429264
 \end{verbatim}
 
 \end{frame}
@@ -848,10 +839,10 @@ Evaluate the multivariate normal density at a single value using the
 \end{Shaded}
 
 \begin{verbatim}
-##            [,1]       [,2]
-## [1,]  0.3253715 -1.8365598
-## [2,] -1.5432065  0.2602101
-## [3,]  0.3216648  0.7230242
+##            [,1]        [,2]
+## [1,] -2.1459248  0.18959052
+## [2,] -1.5640297  0.04904477
+## [3,]  0.8922307 -0.85207713
 \end{verbatim}
 
 \end{frame}
@@ -878,9 +869,9 @@ Evaluate the multivariate normal density at a single value using the
 \end{Shaded}
 
 \begin{verbatim}
-##          [,1]      [,2]
-## [1,] 2.691043 1.3632632
-## [2,] 1.363263 0.7480381
+##           [,1]      [,2]
+## [1,]  4.285416 -3.125407
+## [2,] -3.125407  2.406063
 \end{verbatim}
 
 \end{frame}
