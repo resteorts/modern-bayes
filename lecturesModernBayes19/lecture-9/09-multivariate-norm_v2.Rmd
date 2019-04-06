@@ -56,7 +56,29 @@ Example: Reading Comprehension
 ===
 
 
-We may be interested in the population mean $\bm{\theta}.$
+We may be interested in the population mean $\bm{\mu}_{\p times 1} = X_{n \times p} \bm{\beta}_{p \times 1}:$
+
+$$\bm{X}_{n \times p} = 
+\left( \begin{array}{cccc}
+x_{11} & x_{12} & \ldots&  x_{n1}\\
+x_{21} & x_{22} & \ldots& x_{n2} \\
+x_{i1} & x_{i2} & \ldots& x_{ni} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} &\ldots& x_{np}
+\end{array} \right).
+$$
+
+- A row of $\bm{X}_{n \times p}$ represents a covariate we might be interested in, such as the age of a person.
+
+- Denote $x_i$ as the ith \textcolor{red}{row vector} of the $X_{n \times p}$ matrix. 
+
+\[  x_{i}= \left( \begin{array}{c}
+x_{i1}\\
+\textcolor{red}{x_{i2}}\\
+\vdots\\
+x_{ip}
+\end{array} \right) \]
+where it's dimension is $p \times 1.$
 
 $$
 E[\bm{Y}] =: E[\bm{Y}_{i}] = \left( \begin{array}{c}
@@ -84,11 +106,11 @@ E[Y_1Y_2] - E[Y_1]E[Y_2] & E[Y_2^2] - E[Y_2]^2
 \end{array} \right)
 \end{align}
 
-Remark: $Cov(Y_1) = Var(Y_1) = \sigma_1^2. \;\; Cov(Y_1, Y_2) = \sigma_{1,2}.$
+Remark: $Cov(Y_1) = Var(Y_1) = \sigma_1^2. \qquad Cov(Y_1, Y_2) = \sigma_{1,2}.$
 
-Notation
+General Notation
 ===
-Assume the response variable is written as follows:
+Assume that $\bm{y}_{p \times 1} \sim (\mu_{p \times 1}, \Sigma_{p \times p}).$
 
 $$\bm{y}_{p \times 1}= \left( \begin{array}{c}
 y_{1}\\
@@ -97,7 +119,7 @@ y_{1}\\
 y_{p}
 \end{array} \right).$$
 
-Assume that $\bm{y}_{p \times 1} \sim (\mu_{p \times 1}, \Sigma_{p \times p}),$ where
+
 
 $$\bmu_{p \times 1}= \left( \begin{array}{c}
 \mu_1\\
@@ -107,7 +129,7 @@ $$\bmu_{p \times 1}= \left( \begin{array}{c}
 \end{array} \right)
 $$
 $$
-\sig_{p \times p} = 
+\sig_{p \times p} = Cov(\bm{y}) =
 \left( \begin{array}{cccc}
 \sigma_1^2 & \sigma_{12} & \ldots&  \sigma_{1p}\\
 \sigma_{21} & \sigma_2^2 & \ldots& \sigma_{2p}\\
@@ -124,9 +146,9 @@ $$
 
 Covaraiance matrix
 ===
-We assume that the population mean is $\bmu_{p \times 1} = E(y)$ 
+We assume that the population mean is $\bmu_{p \times 1} = E(\bm{y})$ 
 
-and $\Sigma_{p \times p} = \var(y) = E[(y_{p\times1} - \bmu_{p \times 1})_{p\times1}(y_{p\times1} - \bmu_{p \times 1})^T_{1\times p}],$ 
+and $\Sigma_{p \times p} = \var(\bm{y}) = E[(\bm{y}_{p\times1} - \bmu_{p \times 1})_{p\times1}(\bm{y}_{p\times1} - \bmu_{p \times 1})^T_{1\times p}],$ 
 where 
 \[  \bmu_{p \times 1}= \left( \begin{array}{c}
 \mu_1\\
@@ -144,11 +166,6 @@ $$\sig_{p \times p} =
 \sigma_{p1} & \sigma_{p2} &\ldots& \sigma_p^2
 \end{array} \right).
 $$
-
-
-
-
-
 
 Notation
 ===
