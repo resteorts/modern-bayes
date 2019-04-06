@@ -390,7 +390,7 @@ Suppose the Gibbs sampler is at iteration $s.$
 \begin{enumerate}
 \item Sample $\btheta^{(s+1)}$ from it's full conditional:
 \begin{enumerate}
-\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bX$ and $\Sigma^{(s)}$
+\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bm{x}$ and $\Sigma^{(s)}$
 \item[b)] Sample $\btheta^{(s+1)}\sim MVN(\mu_n, \Sigma_n)$
 \end{enumerate}
 \item Sample $\Sigma^{(s+1)}$ from its full conditional:
@@ -399,3 +399,294 @@ Suppose the Gibbs sampler is at iteration $s.$
 \item[b)] Sample $\Sigma^{(s+1)} \sim \text{inverseWishart}(\nu_n, S_n^{-1})$
 \end{enumerate}
 \end{enumerate}
+
+Working with Multivariate Normal Distribution
+===
+The `R` package, `mvtnorm`, contains functions for evaluating and simulating from a multivariate normal density.
+
+```{r}
+library(mvtnorm)
+```
+
+Simulating Data
+===
+Simulate a single multivariate normal random vector using the `rmvnorm` function.
+
+```{r}
+# Each row corresponds to a sample
+# Here we have one sample (one row)
+rmvnorm(n = 1, mean = rep(0, 2), sigma = diag(2))
+```
+
+
+Evaluation
+===
+Evaluate the multivariate normal density at a single value using the `dmvnorm` function.
+
+```{r}
+dmvnorm(rep(0, 2), mean = rep(0, 2), sigma = diag(2))
+```
+
+Working with the Multivariate Normal
+===
+- Now let's simulate many multivariate normals. 
+- Each row is a different sample from this multivariate normal distribution.
+```{r}
+rmvnorm(n = 3, mean = rep(0, 2), sigma = diag(2))
+```
+
+
+Work with the Wishart density
+===
+- The `R` package, `stats`, contains functions for evaluating and simulating from a Wishart density.
+
+- We can simulate a single Wishart distributed matrix using the `rWishart` function.
+
+- Each row is a different sample from the Wishart distribution. 
+
+```{r}
+nu0 <- 2
+Sigma0 <- diag(2)
+rWishart(1, df = nu0, Sigma = Sigma0)[, , 1]
+```
+
+An Application to Reading Comprehension
+===
+We will follow an example from Hoff (Section 7.4, p. 112). 
+
+A sample of 22 children are given reading comprehension tests before and after receiving a particular instructional method. 
+
+Each student $i$ will then have two scores, $Y_{i,1}$ and $Y_{i,2}$ denoting the pre- and post-instructional scores respectively. 
+
+Denote each student’s pair of scores $\bm{Y}_i$
+$$
+\bm{Y}_{i} = \left( \begin{array}{c}
+Y_{i,1}\\
+Y_{i,2}\\
+\end{array} \right) 
+= \left( \begin{array}{c}
+\text{score on first test}\\
+\text{score on second test}\\
+\end{array} \right)
+$$
+
+Model set up
+===
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
+$$ \btheta_j \sim MVN(\bm{\mu_0}, \Lambda_0)$$
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
+
+Let $\btheta = (\theta_1, \theta_2).$
+
+$i=1,\ldots,n$ and $j=1,2$
+
+Prior settings
+===
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
+$$ \btheta_j \sim MVN(\bm{\mu}_0, \Lambda_0)$$
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
+
+The exam was designed to give average scores of around 50 out of 100, 
+so $\bm{\mu}_0 = (50,50)^T$ would be a good choice for our prior mean.
+
+Prior settings
+===
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
+$$ \btheta_j \sim MVN(\bm{\mu}_0, \Lambda_0)$$
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
+
+Since the true mean cannot be below 0 or above 100, we will use a prior variance that puts little probability outside of this range.
+
+We’ll take the prior variances on $\theta_1$ and $\theta_2$ 
+to be $$\lambda_{0,1}^2 = \lambda_{0,2}^2 = (50/2)^2 = 625$$ so that the prior probability that $P(\theta_j \neq [0,100]) =0.05.$
+
+The two exams are measuring similar things, so we will take the prior correlation of 0.5 or rather $\lambda_{1,2} = 625/2 = 312.5$
+
+Prior settings (continued)
+===
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
+$$ \btheta_j \sim MVN(\bm{\mu}_0, \Lambda_0)$$
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
+
+What about the prior settings for $\Sigma?$
+
+We take $S_o$ to be about the same as $\Lambda_o.$
+
+We will center $\Sigma$ around $S_o$ by setting 
+$\nu_0 = p + 2 = 4.$
+
+Load in data
+===
+```{r}
+# read in data
+Y <- structure(c(59, 43, 34, 32, 42, 38, 55, 67, 64, 
+                 45, 49, 72, 34, 70, 34, 50, 41, 52, 
+                 60, 34, 28, 35, 77, 39, 46, 26, 38, 
+                 43, 68, 86, 77, 60, 50, 59, 38, 48, 
+                 55, 58, 54, 60, 75, 47, 48, 33), 
+               .Dim = c(22L, 2L), .Dimnames = list(NULL, 
+                c("pretest", "posttest")))
+# number of observations
+```
+
+Quick calculations
+```{r}
+(n <- dim(Y)[1])
+(ybar <- apply(Y,2,mean))
+(Sigma <- cov(Y))
+```
+
+Application to reading comprehension
+===
+```{r}
+# set hyper-parameters
+mu0 <- c(50,50)
+L0 <- matrix(c(625,312.5,312.5,625),nrow=2)
+nu0 <- 4
+S0 <- L0
+```
+
+Gibbs sampler
+===
+```{r,echo=FALSE}
+library (mvtnorm)
+library(MCMCpack)
+```
+
+Gibbs sampler (review)
+===
+Suppose the Gibbs sampler is at iteration $s.$
+\begin{enumerate}
+\item Sample $\btheta^{(s+1)}$ from it's full conditional:
+\begin{enumerate}
+\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bX$ and $\Sigma^{(s)}$
+\item[b)] Sample $\btheta^{(s+1)}\sim MVN(\mu_n, \Sigma_n)$
+\end{enumerate}
+\item Sample $\Sigma^{(s+1)}$ from its full conditional:
+\begin{enumerate}
+\item[a)] Compute $S_n$ from $\bX$ and $\theta^{(s+1)}$
+\item[b)] Sample $\Sigma^{(s+1)} \sim \text{inverseWishart}(\nu_n, S_n^{-1})$
+\end{enumerate}
+\end{enumerate}
+
+Gibbs sampler
+===
+```{r}
+THETA <- SIGMA <- NULL
+set.seed(1)
+for (s in 1:5000) {
+  ## update theta
+  Ln <- solve(solve(L0) + n*solve(Sigma))
+  mun <- Ln %*% (solve(L0) %*% mu0 + 
+                   n*solve(Sigma) %*% ybar)
+  theta <- rmvnorm(1, mun, Ln)
+  
+  ## update Sigma
+  Sn <- S0 + (t(Y) - c(theta)) %*% t(t(Y)-c(theta))
+  
+  Sigma <- solve(rwish(nu0 + n, solve(Sn)))
+  ## save results
+  THETA <- rbind(THETA, theta)
+  SIGMA <- rbind(SIGMA, c(Sigma))
+}
+```
+
+Posterior inference
+===
+
+Using the samples from the Gibbs sampler, we have generated 5,000 samples $$(\bm{\theta}^{(1)}, \Sigma^{(1)}, \ldots,\bm{\theta}^{(5000)}, \Sigma^{(5000)}) $$ that approxmiates $p(\bm{\theta}, \Sigma \mid y_1, \ldots, y_n).$
+
+Glance at Gibbs sampler
+===
+```{r}
+head(THETA)
+head(SIGMA)
+```
+
+Traceplot of $\theta_1$
+===
+```{r, echo=FALSE}
+n.iter<-5000
+plot(1:n.iter, THETA[,1], pch = 16, cex = .35,
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Traceplot of ", theta)))
+```
+
+Traceplot of $\theta_2$
+===
+```{r, echo=FALSE}
+plot(1:n.iter, THETA[,2], pch = 16, cex = .35,
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Traceplot of ", theta)))
+```
+
+Running average plot of $\theta_1$
+===
+```{r,echo=FALSE}
+run.avg <- apply(THETA, 2, cumsum)/(1:n.iter)
+plot(1:n.iter, run.avg[,1], type = "l",
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Running Average Plot of ", theta)))
+```
+
+Running average plot of $\theta_2$
+===
+```{r,echo=FALSE}
+plot(1:n.iter, run.avg[,2], type = "l",
+     xlab = "Iteration", ylab = expression(theta),
+     main = expression(paste("Running Average Plot of ", theta)))
+```
+
+Estimated density of $\theta_1$
+===
+```{r, echo=FALSE}
+plot(density(THETA[,1]), xlab = expression(theta), 
+     main = expression(paste("Density of ", theta)))
+abline(v = mean(THETA[,1]), col = "red")
+```
+
+Estimated density of $\theta_2$
+===
+```{r, echo=FALSE}
+plot(density(THETA[,2]), xlab = expression(theta), 
+     main = expression(paste("Density of ", theta)))
+abline(v = mean(THETA[,2]), col = "red")
+```
+
+Traceplots and running average plots
+===
+
+The traceplots don't tell us much of anything, so this is why we examine the running average plots. Specifically, the traceplots indicate that the chain has not failed to converged. 
+
+The running average plots indicate that the sampler appears to be mixing well by 5,000 iterations and that the chain has not failed to converged. 
+
+
+
+Traceplots and running average plots of $\sigma$
+===
+Examine the trace plots and running average plots of $\Sigma$ on your own.
+
+Return to posterior inference
+===
+Given our samples from our Gibbs sampler, we can approximate posterior probabilities and confidence regions. 
+
+Confidence regions
+===
+```{r}
+quantile(THETA[,2] - THETA[,1], prob=c(0.025,0.5,0.975))
+```
+
+Posterior inference
+===
+Suppose we were to give the exams/instruction to a large population, then would the average score on the second exam be higher than the first second? 
+
+We can quanify this by calculating
+$$Pr(\theta_2 > \theta_1 \mid y_1,\ldots y_n) = 0.99 
+$$
+
+```{r}
+mean(THETA[,2] > THETA[,1])
+```
+
+
+
