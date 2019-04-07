@@ -20,9 +20,11 @@ Agenda
 
 Model set up
 ===
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$ 
-$$ \btheta_i \sim MVN(\bm{\mu_0}, \Lambda_0)$$
-$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
+$$ \btheta \sim MVN(\bm{\mu_0}, \Lambda_0)$$
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}),$$
+
+where $i=1,\ldots,n$ and $\bm{\mu_0}, \Lambda_0, \nu_o, S_o$ are assumed to be known. 
 
 Pima Indian heritage data
 ===
@@ -92,9 +94,6 @@ for(j2 in 1:p) {
 ```
 
 Univariate histograms and bivariate scatterplots for four variables taken from the dataset. 
-
-
-
 
 Simple Approaches
 ===
@@ -224,18 +223,26 @@ $$\textcolor{red}{\Sigma_{[b\mid a]}}
 = \Sigma_{[b,b]} - \Sigma_{[b,a]}
 (\Sigma_{[a,a]})^{-1}\Sigma_{[a,b]}.$$
 
-Exercise: Application to Pima Indian data set
+Multivariate fact
 ===
-1. Write down a generative model for the Pima Indian data set.
-Derive the full conditional distributions. 
-2. Code up the corresponding Gibbs sampler.
-3. Specify hyper-parameters for your model and back up any assumptions that you give.
-4. Provide diagnostic plots for all parameters in your model and provide commentary. (Note: do note use the word convegence in your commentary!)
-5. Based on the number of $S$ iterations of the Gibbs sampler you run, provide
-\begin{enumerate}
-\item A posterior approximation of $E[\theta \mid y]$ and 95 posterior credible intervals.
-\item A posterior approximation of $E[\Sigma \mid y]$ and 95 posterior credible intervals.
-\end{enumerate}
+Let $\bm{y}_{[b]}$ and $\bm{y}_{[a]}$ correspond to the elements of $y$ corresponding to the indices of $a$ and $b$. Let $\Sigma_{[a,b]}$ be a matrix with rows $a$ and columns $b.$
+
+Knowing infomation about partitioned matrices, one can show that 
+
+$$\bm{y}_{[b]} \mid \bm{y}_{[a]}, \btheta,\Sigma
+\sim MVN( \btheta_{b|a}, \Sigma_{b|a}),$$
+
+where 
+
+$$\btheta_{b|a} 
+= \btheta_{[b]} + \Sigma_{[b,a]}(\Sigma_{[a,a]})^{-1}
+(\bm{y}_{[a]} - \btheta_{[a]})$$
+
+and
+
+$$\textcolor{red}{\Sigma_{[b\mid a]}}
+= \Sigma_{[b,b]} - \Sigma_{[b,a]}
+(\Sigma_{[a,a]})^{-1}\Sigma_{[a,b]}.$$
 
 Pima data set
 ===
@@ -243,8 +250,8 @@ We first talk about hyper-parameter selection and then implement the Gibbs sampl
 
 The full model can be written as the following:
 
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_i, \Sigma).$$ 
-$$ \btheta_i \sim MVN(\bm{\mu_0}, \Lambda_0)$$
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
+$$ \btheta \sim MVN(\bm{\mu_0}, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
 Hyper-parameter selection
@@ -329,8 +336,6 @@ for(s in 1:n.iter) {
 }
 ```
 
-
-
 Posterior appx of $E[\theta \mid y]$
 ===
 ```{r}
@@ -343,7 +348,8 @@ Posterior appx of $E[\theta \mid y]$
 library(knitr)
 interval.theta <-  
   apply(THETA, 2, quantile, c(0.025, 0.975))
-kable(data.frame(interval.theta))
+(interval.theta)
+#kable(data.frame(interval.theta))
 ```
 
 Exercise: Application to Pima Indian data set
