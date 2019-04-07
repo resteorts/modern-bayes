@@ -145,14 +145,16 @@ $$
 Linear Algebra Background
 ===
 
-Suppose matrix $A$  is invertible. The 
-$$\det(A) = \sum_{i=1}^{j=n} a_{ij} A_{ij}.$$
+Assume a matrix $A_{n \times n}$  is invertible. The 
+$$\det(A) = a_{i1}A_{i1} + a_{i2}A_{i2} + \cdots + a_{in}A_{in},$$
+where $A{ij}$ are the co-factors and are computed from $$A_{ij} = (-1)^{i+j}det(M_{ij}).$$ 
+$M_{ij}$ is known as the minor matrix and is the matrix you get if you eliminate row i and column j from matrix $A.$ You must apply this technique recursively.
 \vskip 1em 
 
 I recommend using the det() commend in R. 
 \vskip 1em 
 
-Suppose now we have a square matrix $H_{p \times p}.$
+Assume a matrix $H_{p \times p}.$
 
 $$\text{trace}(H) = \sum_i h_{ii},$$ where $h_{ii}$ are the diagonal elements of $H.$
 
@@ -206,7 +208,7 @@ p(\bm{x}) = {\left(2\pi\right)}^{-p/2}(\det{\Sigma})^{-1/2} \exp{\left\{-\frac{1
 Standard Multivariate Normal Distribution
 ===
 Consider $$Z_1, \ldots, Z_n \stackrel{iid}{\sim} N(0,1).$$
-Show that $$Z_1,\ldots,Z_n \stackrel{iid}{\sim} MVN(0,I).$$
+Show that $$Z_1,\ldots,Z_n \sim MVN(0,I).$$
 
 \begin{align}
 f_z(z) &= \prod_{i=1}^n (2\pi)^{-1/2} e^{-z_i^2/2}\\
@@ -216,11 +218,11 @@ f_z(z) &= \prod_{i=1}^n (2\pi)^{-1/2} e^{-z_i^2/2}\\
 
 Exercise: Why does $\sum_i-z_i^2 = -z^Tz$?
 
-We have just showed that $Z_1,\ldots,Z_n \stackrel{iid}{\sim} MVN(0,I).$
+We have just showed that $Z_1,\ldots,Z_n \sim MVN(0,I).$
 
 Conjugate to MVN
 ===
-Suppose that $$\bm{y} = (y_1 \ldots y_n)^T \mid \theta \stackrel{iid}{\sim} MVN(\theta, \Sigma). $$
+Suppose that $$\bm{y} = (y_1 \ldots y_n)^T \mid \theta \sim MVN(\theta, \Sigma). $$
 Let $$\pi(\btheta) \sim MVN(\bmu, \Omega). $$
 
 What is the full conditional distribution of $\btheta \mid \bm{y}, \Sigma$?
@@ -304,20 +306,24 @@ $$\btheta \mid \bm{y}, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigm
 \Sigma_n &= A_n^{-1} = [\Omega^{-1}+n\Sigma^{-1}]^{-1}
 \end{align}
 
-inverse Wishart  distribution
+inverse Wishart distribution 
 ===
+Let us now consider a prior distribution on $\Sigma_{p \times p}$, which must be a positive definite matrix, meaning that $\bm{x}^T \Sigma \bm{x} > 0$ for all $\bm{x}.$
 
-Suppose $\Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1})$
-where $\nu_o$ is a scalar and $S_o^{-1}$ is a matrix.
-\vskip 1em
+Suppose $\Sigma_{p \times p} \sim \text{inverseWishart}(\nu_o, S_o^{-1})$
+where $\nu_o$ is a scalar and $S_o^{-1}$ is a matrix, where $\nu_o > p-1$ and $S_o$ must be positive definite.
+
+It can be shown that 
+$$E[\Sigma] = \frac{1}{\nu_0 - p -1}S_o.$$ (See Hoff, p. 110.)
 
 Then $$p(\Sigma) \propto
 \det(\Sigma)^{-(\nu_o + p +1)/2} \times \exp\{
 -\text{tr}(S_o\Sigma^{-1})/2
-\}$$
-
-\vskip 1em
+\},$$
 For the full distribution, see Hoff, Chapter 7 (p. 110).
+
+
+
 
 inverse Wishart distribution
 ===
@@ -456,7 +462,7 @@ We will follow an example from Hoff (Section 7.4, p. 112).
 
 A sample of 22 children are given reading comprehension tests before and after receiving a particular instructional method. 
 
-Each student $i$ will then have two scores, $Y_{i,1}$ and $Y_{i,2}$ denoting the pre- and post-instructional scores respectively. 
+Each student $i$ will then have two scores, $Y_{i,1}$ and $Y_{i,2}$ denoting the pre- and post-instructional scores respectively, where $i=1,ldots n.$
 
 Denote each student’s pair of scores $\bm{Y}_i$
 $$
@@ -472,18 +478,18 @@ $$
 
 Model set up
 ===
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
-$$ \btheta_j \sim MVN(\bm{\mu_0}, \Lambda_0)$$
+$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\bm{\theta}, \Sigma).$$ 
+$$ \bm{\theta} \sim MVN(\bm{\mu_0}, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
 Let $\btheta = (\theta_1, \theta_2).$
 
-$i=1,\ldots,n$ and $j=1,2$
+$i=1,\ldots,n.$
 
 Prior settings
 ===
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
-$$ \btheta_j \sim MVN(\bm{\mu}_0, \Lambda_0)$$
+$$\bm{Y}_i \mid \bm{\theta}, \Sigma \sim MVN(\bm{\theta}, \Sigma).$$ 
+$$ \bm{\theta} \sim MVN(\bm{\mu}_0, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
 The exam was designed to give average scores of around 50 out of 100, 
@@ -491,8 +497,8 @@ so $\bm{\mu}_0 = (50,50)^T$ would be a good choice for our prior mean.
 
 Prior settings
 ===
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
-$$ \btheta_j \sim MVN(\bm{\mu}_0, \Lambda_0)$$
+$$\bm{Y}_i \mid \bm{\theta}, \Sigma \sim MVN(\bm{\theta}, \Sigma).$$ 
+$$ \bm{\theta} \sim MVN(\bm{\mu}_0, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
 Since the true mean cannot be below 0 or above 100, we will use a prior variance that puts little probability outside of this range.
@@ -504,8 +510,8 @@ The two exams are measuring similar things, so we will take the prior correlatio
 
 Prior settings (continued)
 ===
-$$\bm{Y}_i \mid \btheta, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
-$$ \btheta_j \sim MVN(\bm{\mu}_0, \Lambda_0)$$
+$$\bm{Y}_i \mid \bm{\theta}, \Sigma \sim MVN(\btheta_j, \Sigma).$$ 
+$$ \bm{\theta} \sim MVN(\bm{\mu}_0, \Lambda_0)$$
 $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 
 What about the prior settings for $\Sigma?$
@@ -513,7 +519,7 @@ What about the prior settings for $\Sigma?$
 We take $S_o$ to be about the same as $\Lambda_o.$
 
 We will center $\Sigma$ around $S_o$ by setting 
-$\nu_0 = p + 2 = 4.$
+$\nu_0 = p + 2 = 4,$ which is the mean of the inverse Wishart distribution (Hoff, p. 100).
 
 Load in data
 ===
