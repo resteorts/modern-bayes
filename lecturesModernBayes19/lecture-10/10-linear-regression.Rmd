@@ -57,13 +57,13 @@ legend(27,0,legend=c("aerobic","running"),pch=c(16,16),col=c("green","red"))
 Data analysis
 ===
 
-$\by$ = change in oxygen uptake
+$y$ = change in oxygen uptake (scalar)
 
 $x_1$ = exercise indicator (0 for running, 1 for aerobic)
 
 $x_2$ = age
 
-How can we estimate $p(\by \mid x_1, x_2)?$
+How can we estimate $p(y \mid x_1, x_2)?$
 
 Linear regression
 ===
@@ -71,13 +71,13 @@ Assume that smoothness is a function of age.
 
 For each group,
 
-$$\by = \beta_o + \beta_1 x_2 + \bm{\epsilon}$$
+$$y = \beta_o + \beta_1 x_2 + \epsilon$$
 
 Linearity means linear in the parameters ($\beta$'s). 
 
 We could also try the model
 
-$$\by = \beta_o + \beta_1 x_2 +  \beta_2 x_2^2 + \beta_3 x_2^3 + \bm{\epsilon}$$
+$$y = \beta_o + \beta_1 x_2 +  \beta_2 x_2^2 + \beta_3 x_2^3 + \epsilon$$
 
 which is also a linear regression model. 
 
@@ -88,9 +88,6 @@ Notation
 - $\by_{n\times 1}$: response variable (vector)
 - $\bbeta_{p \times 1}$: vector of regression coefficients 
 
-Goal: Estimation of $p(\by \mid X).$
-
-Dimensions: $\by_i - \bbeta^T x_i = (1\times 1) - (1\times p)(p \times 1) = (1\times 1).$
 
 Notation (continued)
 ===
@@ -140,10 +137,10 @@ X_{n \times p} \bbeta_{p \times 1} + \bm{\epsilon}_{n \times 1}$$
 
 Regression models
 ===
-How does an outcome $\bY$ vary as a function of the covariates which we represent as $X_{n\times p}$ matrix?
+How does an outcome $\bm{y}$ vary as a function of the covariates which we represent as $X_{n\times p}$ matrix?
 
 
-- Can we predict $\bY$ as a function of each row in the matrix $X_{n\times p}$ denoted by $\bx_i.$
+- Can we predict $\bm{y}$ as a function of each row in the matrix $X_{n\times p}$ denoted by $\bx_i.$
 - Which $\bx_i$'s have an effect?
 
 Such a question can be assessed via a linear regression model $p(\by \mid X).$
