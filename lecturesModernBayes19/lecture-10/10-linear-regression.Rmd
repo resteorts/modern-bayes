@@ -150,8 +150,8 @@ Multiple linear regression
 ===
 Consider the following: 
 
-$$\bY_i = \beta_1 \bx_{i1} + \beta_2 \bx_{i2} + \beta_3 \bx_{i3} + 
-\beta_4 \bx_{i4} + \bm{\epsilon}_i$$
+$$y_i = \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + 
+\beta_4 x_{i4} + \epsilon_i$$
 
 where
 \begin{align}
@@ -162,8 +162,8 @@ x_{i4} &= x_{i2} \times x_{i3}
 \end{align}
 
 Under this model,
-$$E[\bY \mid \bm{x}] = \beta_1 + \beta_3 \times age \; \text{if} \; x_2=0$$
-$$E[\bY \mid \bm{x}] = (\beta_1 + \beta_2) + (\beta_3 + \beta_4)\times age \; \text{if} \; x_2=1 $$
+$$E[\bm{y} \mid \bm{x}] = \beta_1 + \beta_3 \times age \; \text{if} \; x_2=0$$
+$$E[\bm{y} \mid \bm{x}] = (\beta_1 + \beta_2) + (\beta_3 + \beta_4)\times age \; \text{if} \; x_2=1 $$
 
 
 
@@ -197,7 +197,7 @@ abline(lm(y[x1==1]~x2[x1==1]),col="green")
 
 Multivariate Setup 
 ===
-Let's assume that we have data points $(\bx_i,\by_i)$ available for all  $i=1,\ldots,n.$
+Let's assume that we have data points $(x_i, y_i)$ available for all  $i=1,\ldots,n.$
 
 - $y$ is the response variable
 \[  \by= \left( \begin{array}{c}
@@ -250,16 +250,16 @@ This specifies the density of the data:
 
 Ordinary Least Squares
 ===
-We estimate the coefficients $\hbeta \in \R^p$ by least squares:
-$$\hbeta = \argmin_{\bbeta \in \R^p} \|\by-X\hbeta\|_2^2$$
+We estimate the coefficients $\hat{\bm{\beta}} \in \R^p$ by least squares:
+$$\hat{\bm{\beta}} = \argmin_{\bbeta \in \R^p} \|\by-X\bbeta\|_2^2$$
 This gives
-$$\hbeta = (X^T X)^{-1} X^T \by$$
+$$\hat{\bm{\beta}} = (X^T X)^{-1} X^T \by$$
 (Check: does this match the expressions for univariate regression,
 without and with an intercept?)
 
 \bigskip
 The fitted values are
-$$\hy = X\hbeta = X(X^T X)^{-1} X^T \by$$
+$$\hat{\bm{\beta}} = X\hat{\bm{\beta}} = X(X^T X)^{-1} X^T \by$$
 This is a linear function of $\by$, $\hy = H\by$, where
 $H=X(X^T X)^{-1} X^T$ is sometimes called the hat matrix
 
