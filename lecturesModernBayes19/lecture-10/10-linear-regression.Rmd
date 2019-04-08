@@ -390,7 +390,7 @@ read.table("https://www.stat.washington.edu/~pdhoff/Book/Data/hwdata/swim.dat",h
 
 Full conditionals (Task 1)
 ===
-We will fit a separate linear regression model for each swimmer, with swimming time as the response and week as the explanatory variable. Let $Y_{i}\in \mathbbm{R}^{6}$ be the 6 recorded times for swimmer $i.$ Let
+We will fit a separate linear regression model for each swimmer, with swimming time as the response and week as the explanatory variable. Let $y_{i}\in \mathbbm{R}^{6}$ be the 6 recorded times for swimmer $i.$ Let
 \[X_i =
 \begin{bmatrix}
     1 & 1  \\
@@ -401,7 +401,7 @@ We will fit a separate linear regression model for each swimmer, with swimming t
 \end{bmatrix}
 \] be the design matrix for swimmer $i.$ Then we use the following linear regression model: 
 \begin{align*}
-    Y_i &\sim \mathcal{N}_6\left(X\beta_i, \tau_i^{-1}\mathcal{I}_6\right) \\
+    Y_i &\sim \mathcal{N}_6\left(X_i\beta_i, \tau_i^{-1}\mathcal{I}_6\right) \\
     \beta_i &\sim \mathcal{N}_2\left(\beta_0, \Sigma_0\right) \\
     \tau_i &\sim \text{Gamma}(a,b).
 \end{align*}
@@ -411,7 +411,7 @@ Solution (Task 1)
 ===
 The conditional posterior for $\beta_i$ is multivariate normal with 
 \begin{align*}
-    \mathbbm{V}[\beta_i \, | \, Y_i, X_i, \textcolor{red}{\tau_i} ] &= (\Sigma_0^{-1} + \tau X_i^{T}X_i)^{-1}\\ 
+    \mathbbm{V}[\beta_i \, | \, Y_i, X_i, \textcolor{red}{\tau_i} ] &= (\Sigma_0^{-1} + \textcolor{red}{\tau_i} X_i^{T}X_i)^{-1}\\ 
     \mathbbm{E}[\beta_i \, | \, Y_i, X_i, \textcolor{red}{\tau_i} ] &= 
     (\Sigma_0^{-1} + \textcolor{red}{\tau_i} X_i^{T}X_i)^{-1} (\Sigma_0^{-1}\beta_0 + \textcolor{red}{\tau_i} X_i^{T}Y_i).
 \end{align*} while
