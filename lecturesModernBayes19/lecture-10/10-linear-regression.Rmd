@@ -266,16 +266,16 @@ $H=X(X^T X)^{-1} X^T$ is sometimes called the hat matrix
 Ordinary Least squares estimation
 ===
 Let SSR denote sum of squared residuals. 
-$$ \min_\beta SSR(\hbeta) = \min_\beta  \|\by-X\hbeta\|_2^2$$
+$$ \min_{\bbeta} SSR(\hbeta) = \min_{\bbeta} \|\by-X\hat{\bm{\beta}}\|_2^2$$
 Then 
 \begin{align}
- \frac{\partial SSR(\hbeta)}{\partial d\hbeta} &= 
-\frac{\partial (\by-X\hbeta)^T(\by-X\hbeta)}{\partial d\hbeta} \\
-&= \frac{\partial \by^T\by - 2\hbeta^TX^T\by + \hbeta^T(X^TX)\hbeta}{\partial d\hbeta}\\
-& = -  2X^T\by + 2X^TX\hbeta
+ \frac{\partial SSR(\bbeta)}{\partial d\bbeta} &= 
+\frac{\partial (\by-X\bbeta)^T(\by-X\bbeta)}{\partial d\bbeta} \\
+&= \frac{\partial \by^T\by - 2\bbeta^TX^T\by + \hbeta^T(X^TX)\bbeta}{\partial d\bbeta}\\
+& = -  2X^T\by + 2X^TX\bbeta
 \end{align}
 
-This implies $-X^T\by + X^TX\hbeta= 0 \implies \hbeta  = (X^TX)^{-1}X^T\by.$
+This implies $-X^T\by + X^TX\bbeta= 0 \implies \hat{\bm{\beta}}  = (X^TX)^{-1}X^T\by.$
 \vskip 1em
 Called the ordinary least squares estimator. When is it unique?
 
@@ -283,19 +283,19 @@ Ordinary Least squares estimation
 ===
 $$\hbeta  = (X^TX)^{-1}X^T\bY. $$
 \vskip 1em
-$$E(\hbeta ) = E[(X^TX)^{-1}X^T\bY]= 
+$$E(\hat{\bm{\beta}} ) = E[(X^TX)^{-1}X^T\bY]= 
 (X^TX)^{-1}X^T E[\bY] = (X^TX)^{-1}X^TX
 \bbeta.$$
 
 \vskip 1em
 \begin{align}
-\Var(\hbeta) &= \Var\{ (X^TX)^{-1}X^T\bY\}\\
+\Var(\hat{\bm{\beta}}) &= \Var\{ (X^TX)^{-1}X^T\bY\}\\
  &=
 (X^TX)^{-1}X^T \sigma^2 I_n X (X^TX)^{-1}\\
 & = \sigma^2  (X^TX)^{-1}
 \end{align}
 
-$$\hbeta \sim MVN(\bbeta, \sigma^2  (X^TX)^{-1}).$$
+$$\hat{\bm{\beta}} \sim MVN(\bbeta, \sigma^2  (X^TX)^{-1}).$$
 
 Recall data set up
 ===
