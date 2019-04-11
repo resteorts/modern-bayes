@@ -2,6 +2,7 @@
 ---
 title: "Module 9: The Multivariate Normal Distribution and Missing Data"
 author: "Rebecca C. Steorts"
+date: Hoff, Chapter 7
 output: 
      beamer_presentation:
       includes: 
@@ -202,26 +203,7 @@ p(\bm{y}_{i,miss} \mid \bm{y}_{i,obs} \mid \theta, \Sigma )
 
 We can compute the above quantity using a fact from multivariate methods. 
 
-Multivariate fact
-===
-Let $\bm{y}_{[b]}$ and $\bm{y}_{[a]}$ correspond to the elements of $y$ corresponding to the indices of $a$ and $b$. Let $\Sigma_{[a,b]}$ be a matrix with rows $a$ and columns $b.$
 
-Knowing infomation about partitioned matrices, one can show that 
-
-$$\bm{y}_{[b]} \mid \bm{y}_{[a]}, \btheta,\Sigma
-\sim MVN( \btheta_{b|a}, \Sigma_{b|a}),$$
-
-where 
-
-$$\btheta_{b|a} 
-= \btheta_{[b]} + \Sigma_{[b,a]}(\Sigma_{[a,a]})^{-1}
-(\bm{y}_{[a]} - \btheta_{[a]})$$
-
-and
-
-$$\textcolor{red}{\Sigma_{[b\mid a]}}
-= \Sigma_{[b,b]} - \Sigma_{[b,a]}
-(\Sigma_{[a,a]})^{-1}\Sigma_{[a,b]}.$$
 
 Multivariate fact
 ===
@@ -365,4 +347,4 @@ Derive the full conditional distributions.
 \item A posterior approximation of $E[\Sigma \mid y]$ and 95 posterior credible intervals.
 \end{enumerate}
 
-Finish this as an extra exercise for the final exam. (Solutions are provided in the Hoff book). 
+Finish this as an extra exercise for the final exam. (Solutions are provided in the Hoff book in Section 7.5). 
