@@ -260,7 +260,7 @@ without and with an intercept?)
 
 \bigskip
 The fitted values are
-$$\hat{\bm{\beta}} = X\hat{\bm{\beta}} = X(X^T X)^{-1} X^T \by$$
+$$\textcolor{red}{\hat{\bm{y}}} = X\hat{\bm{\beta}} = X(X^T X)^{-1} X^T \by$$
 This is a linear function of $\by$, $\hy = H\by$, where
 $H=X(X^T X)^{-1} X^T$ is sometimes called the hat matrix
 
