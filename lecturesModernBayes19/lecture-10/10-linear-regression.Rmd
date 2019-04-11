@@ -2,6 +2,7 @@
 ---
 title: "Module 10: Linear Regression"
 author: "Rebecca C. Steorts"
+date: Hoff, Chapter 9
 output: 
      beamer_presentation:
       includes: 
@@ -374,7 +375,7 @@ To continue the rest of the oxygen uptake example, please refer to 9.2 in Hoff
 (commentary and code). Pages 157 -- 159 in Hoff.
 
 
-Linear Regression Applied to Swimming
+Linear Regression Applied to Swimming (Lab 10)
 ===
 - We will consider Exercise 9.1 in Hoff very closely to illustrate linear regression. 
 - The data set we consider contains times (in seconds) of four high school swimmers swimming 50 yards. 
