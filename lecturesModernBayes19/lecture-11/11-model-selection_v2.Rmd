@@ -71,7 +71,7 @@ The g-prior
 To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on $\beta.$
 
 The g-prior on $\beta$ has the following form: 
-$$ \bbeta \mid \bX  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
+$$ \bbeta \mid \bX, \sigma^2  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
 where $g$ is a constant, such as $g=n.$
 
 The prior also happens to be invariant and is widely studied for regression problems (Zellner, 1986). 
