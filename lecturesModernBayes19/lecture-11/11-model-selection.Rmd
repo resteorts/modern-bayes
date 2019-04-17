@@ -52,11 +52,11 @@ Consider the regression coefficients
 
 Multivariate Setup 
 ===
-$$y \mid X,\beta, \sigma^2 \sim MVN( X\beta, \sigma^2 I)$$
-$$\beta \sim MVN(\beta_0, \Sigma_0) $$
+$$\by \mid X,\bbeta, \sigma^2 \sim MVN( X\bbeta, \sigma^2 I)$$
+$$\bbeta \sim MVN(\beta_0, \Sigma_o) $$
 
 Recall the posterior can be shown to be 
-$$\bbeta \mid \bm{y}, \bX \sim MVN(\bbeta_n, \Sigma_n)$$
+$$\bbeta \mid \bm{y}, X, \sigma^2 \sim MVN(\bbeta_n, \Sigma_n)$$
 
 where
 
@@ -64,14 +64,14 @@ $$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1
 (\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2)$$
 
 $$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
-How do we specify $\bbeta_0$ and $\Sigma_0$?
+How do we specify $\bbeta_0$ and $\Sigma_o$?
 
 The g-prior
 ===
 To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on $\beta.$
 
 The g-prior on $\beta$ has the following form: 
-$$ \bbeta \mid \bX  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
+$$ \bbeta \mid \bX, \sigma^2  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
 where $g$ is a constant, such as $g=n.$
 
 The prior also happens to be invariant and is widely studied for regression problems (Zellner, 1986). 
@@ -122,14 +122,14 @@ The joint distribution can be written as
 
 $$p(\sigma^2, \bbeta \mid y, X) = p(\sigma^2 \mid y, X) \times p(\bbeta \mid y,X, \sigma^2)$$
 
-Goal: simulate $(\sigma^2, \beta) \sim p(\sigma^2, \bbeta \mid y, X)$
+Goal: simulate $(\sigma^2, \bbeta) \sim p(\sigma^2, \bbeta \mid y, X)$
 
-Starting value $(\beta_0, \sigma^2_0)$
+Starting value $(\bbeta_0, \sigma^2_0)$
 
-1. Simulate $$\sigma^2 \sim p(\sigma^2 \mid y, X)$$ Give us $(\sigma^2_1,\beta_0)$ 
+1. Simulate $$\sigma^2 \sim p(\sigma^2 \mid y, X)$$ Give us $(\sigma^2_1,\bbeta_0)$ 
 
 2. Use this updated value of $\sigma^2_1$ to simulate 
-$$\beta \sim p(\bbeta \mid y,X, \sigma^2_1)$$ Gives us $(\sigma^2_1, \beta_1)$
+$$\bbeta \sim p(\bbeta \mid y,X, \sigma^2_1)$$ Gives us $(\sigma^2_1, \bbeta_1)$\footnote{Here, $\bbeta_1$ should not be confused as the first component of the vector of $\bbeta$ as here we are taking a draw from the Gibbs sampler.}
 
 Run the sampler for $S$ iterations. 
 
@@ -143,16 +143,10 @@ Model specification
 ===
 \begin{align}
 y &\mid X,\beta, \sigma^2 \sim MVN( X\beta, \lambda^{-1} I) \\
-\beta &\mid \lambda \sim MVN(0, g (X^TX)^{-1})\\
-\lambda &\sim \Ga(\nu_0/2,\nu_0 \lambda^{-1}/2)
+\bbeta &\mid \lambda \sim MVN(0, g \textcolor{red}{\lambda^{-1}} (X^TX)^{-1})\\
+\lambda &\sim \Ga(\nu_0/2,\nu_0 \textcolor{red}{\sigma_o^2}/2)
 \end{align}
 
-We will use the g-prior, where
-\begin{enumerate}
-\item $g=n$
-\item $\nu_0 = 1$
-\item $\sigma_0^2 = \lambda^{-1} = \hat{\sigma}_{ols} = 8.54$
-\end{enumerate}
 
 Regression model on the g-prior
 ===
@@ -306,18 +300,18 @@ Bayesian model selection
 ===
 We must compute 
 \begin{align}
-p(\bY \mid \bX, \bz) &= \int \int p(\bY, \bbeta, \sigma^2, \mid \bX, \bz) \\
-&\int \int p(\bY \mid \bX, \bz)p(\bbeta \mid \bX, \bz) p(\sigma^2).
+p(y \mid X, \bz) &= \int \int p(y, \bbeta, \sigma^2, \mid X, \bz) \; d\bbeta\; d\sigma^2 \\
+&\int \int p(y \mid X, \bz)p(\bbeta \mid X, \bz) p(\sigma^2) \; d\bbeta\; d\sigma^2.
 \end{align}
 To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on
 $\bbeta$
 
-$$ \bbeta \mid \bX, \bz \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}).$$
+$$ \bbeta \mid X, \bz \sim MVN(0, g\; \sigma^2 (X_z^TX_z)^{-1}).$$
 
 Back to the g-prior
 ===
-Given the g-prior $$ \bbeta \mid \bX, \bz \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
-$p(\bY \mid \bX, \bz)$
+Given the g-prior $$ \bbeta \mid X, \bz \sim MVN(0, g\; \sigma^2 (X_z^TX_z)^{-1}),$$
+$p(y \mid X, \bz)$
 can be worked out in closed form (details p. 165). 
 \vskip 1em
 Go through the details on your own. 
@@ -327,7 +321,7 @@ Back to the g-prior
 ===
 This results in being able to compute
 \begin{align}
-\frac{p(\bY \mid \bX, \bz_a) }{p(\bY \mid \bX, \bz_b) }
+\frac{p(y \mid X, \bz_a) }{p(y \mid X, \bz_b) }
 & =
 (1 + n)^{(p_{z_b} - p_{z_a})/2}
 \times \left( \frac{
@@ -494,72 +488,7 @@ for(s in 1:S){
 }
 ```
 
-Back to diabetes data (Exercise 9.2, b)
-===
-Let $\boldsymbol{z}$ be the random binary vector of variable indicators. Generating samples of $p(\boldsymbol{z},\sigma^{2},\boldsymbol{\beta})$ from the joint posterior distribution is achieved with the following steps:
 
-1. For $j\in\{1,\dots,p\}$ in random order, draw $z_j$ from $p(z_{j}\mid\boldsymbol{z}_{-j},\boldsymbol{y},\boldsymbol{X})$.
-
-2. Sample $\sigma^2 \sim p(\sigma^2 \mid \boldsymbol{z},\boldsymbol{y},\boldsymbol{X})$.
-
-3. Sample $\boldsymbol{\beta} \sim p(\boldsymbol{\beta} \mid \boldsymbol{z}, \sigma^2, \boldsymbol{y}, \boldsymbol{X})$.
-
- MCMC setup
-===
-```{r}
-g = n
-nu0 = 1 # unit information prior
-z = rep(1, p)
-# picking a starting value for the marginal probability
-lpy.c = lpy.X(ys, Xs[,z==1,drop=FALSE])
-S = 10
-Z = matrix(NA, S, p)
-B = matrix(0, S, p)
-```
-
-Gibbs sampler
-===
-\tiny
-```{r}
-## Gibbs sampler
-for(s in 1:S){
-  # if(s %% 100 ==0) {print(s)}
-  # sample z
-  for (j in sample(1:p)){
-    zp = z
-    zp[j] = 1 - zp[j]
-    lpy.p = lpy.X(ys,Xs[, zp==1, drop=FALSE])
-    r = (lpy.p - lpy.c) * (-1)^(zp[j]==0)
-    zp[j] = rbinom(1, 1, 1/(1+exp(-r)))
-    if(z[j] == zp[j]) {lpy.c = lpy.p}
-  }
-  Z[s,] = z
-  
-  # sample s2
-  pm = sum(z==1) # number of nonzero variables in the model
-  if (pm==0){ 
-    Hg = 0
-    s20 = mean(y^2)
-  }
-  if (pm>0){
-    Hg = (g/(g+1)) * Xs[,z==1,drop=F] %*% solve(t(Xs[,z==1,drop=F]) %*% 
-      Xs[,z==1,drop=F]) %*% t(Xs[,z==1,drop=F])
-    # estimated residual variance from OLS
-    s20=summary(lm(ys ~ -1+Xs[,z==1,drop=F]))$sigma^2                                     }
-  
-  SSRg = t(ys) %*% ( diag(1,nrow=n) - Hg ) %*% ys
-  s2 = 1/rgamma(1, (nu0+n)/2, (nu0*s20 + SSRg)/2)
-  # Sigma2[s] = s2
-  
-  # sample beta 
-  Vb = g * solve(t(Xs[,z==1,drop=F]) %*% Xs[,z==1,drop=F])/(g+1)
-  Eb = Vb %*% t(Xs[,z==1,drop=F]) %*% ys
-  
-  E = rnorm(p, 0, sqrt(s2))
-  beta_z = E %*% chol(Vb) + c(Eb)
-  B[s,z==1] = beta_z
-}
-```
 
 Results
 ===
