@@ -143,16 +143,10 @@ Model specification
 ===
 \begin{align}
 y &\mid X,\beta, \sigma^2 \sim MVN( X\beta, \lambda^{-1} I) \\
-\beta &\mid \lambda \sim MVN(0, g (X^TX)^{-1})\\
-\lambda &\sim \Ga(\nu_0/2,\nu_0 \lambda^{-1}/2)
+\bbeta &\mid \lambda \sim MVN(0, g \textcolor{red}{\lambda^{-1}} (X^TX)^{-1})\\
+\lambda &\sim \Ga(\nu_0/2,\nu_0 \textcolor{red}{\sigma_o^2}/2)
 \end{align}
 
-We will use the g-prior, where
-\begin{enumerate}
-\item $g=n$
-\item $\nu_0 = 1$
-\item $\sigma_0^2 = \lambda^{-1} = \hat{\sigma}_{ols} = 8.54$
-\end{enumerate}
 
 Regression model on the g-prior
 ===
