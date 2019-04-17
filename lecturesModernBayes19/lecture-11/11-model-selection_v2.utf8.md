@@ -169,32 +169,53 @@ Therefore samples from the joint posterior $p(\sigma^{2},\boldsymbol{\beta}\mid\
 
 We first center and scale all the variables so that there is no need to include an intercept in the model.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
-```
+
 
 
 Regression model on the g-prior
 ===
-```{r}
+
+```r
 #library(knitr)
 #rm(list=ls())
 azd_data = read.table("azdiabetes.dat", header = TRUE)
 head(azd_data)
 ```
 
+```
+##   npreg glu bp skin  bmi   ped age diabetes
+## 1     5  86 68   28 30.2 0.364  24       No
+## 2     7 195 70   33 25.1 0.163  55      Yes
+## 3     5  77 82   41 35.8 0.156  35       No
+## 4     0 165 76   43 47.9 0.259  26       No
+## 5     0 107 60   25 26.4 0.133  23       No
+## 6     5  97 76   27 35.6 0.378  52      Yes
+```
+
 Regression model on the g-prior
 ===
-```{r}
+
+```r
 y = azd_data$glu
 # remove glu and diabetes
 X = as.matrix(azd_data[,c(-2,-8)])
 head(X)
 ```
 
+```
+##      npreg bp skin  bmi   ped age
+## [1,]     5 68   28 30.2 0.364  24
+## [2,]     7 70   33 25.1 0.163  55
+## [3,]     5 82   41 35.8 0.156  35
+## [4,]     0 76   43 47.9 0.259  26
+## [5,]     0 60   25 26.4 0.133  23
+## [6,]     5 76   27 35.6 0.378  52
+```
+
 Standardization 
 ===
-```{r}
+
+```r
 # standardize data to have mean 0 and variance 1
 ys = scale(y)
 Xs = scale(X)
@@ -204,7 +225,8 @@ p = dim(Xs)[2]
 
 Hyper-parameters
 ===
-```{r}
+
+```r
 g = n
 nu0 = 2
 s20 = 1
@@ -212,7 +234,8 @@ s20 = 1
 
 Intermediate Matrices
 ===
-```{r}
+
+```r
 # intermediate matrices
 Hg = (g/(g+1)) * Xs %*% solve(t(Xs) %*% Xs) %*% t(Xs)
 SSRg = t(ys) %*% ( diag(1,nrow=n) - Hg ) %*% ys
@@ -220,7 +243,8 @@ SSRg = t(ys) %*% ( diag(1,nrow=n) - Hg ) %*% ys
 
 Monte carlo
 ===
-```{r}
+
+```r
 # number of posterior samples
 S = 1000
 
@@ -231,9 +255,14 @@ s2 = 1/rgamma(S, (nu0+n)/2, (nu0*s20 + SSRg)/2)
 head(s2)
 ```
 
+```
+## [1] 0.8271082 0.8251630 0.8244125 0.8577543 0.8380575 0.8266677
+```
+
 Monte carlo
 ===
-```{r}
+
+```r
 # updated posterior mean and variance
 # from using the g-prior (see slide 7)
 Vb = g*solve(t(Xs) %*% Xs)/(g+1)
@@ -250,9 +279,22 @@ Beta_a = sweep(beta_s,2,sd_X,FUN = "/")
 The 95% posterior confidence intervals 
 ===
 \footnotesize
-```{r}
+
+```r
 # 95% credible interval
 (Beta_CIa = apply(Beta_a, 2, quantile, c(0.025, 0.975)))
+```
+
+```
+##             npreg            bp         skin         bmi       ped
+## 2.5%  -0.04922776 -0.0005149314 -0.003178227 0.005743669 0.1180804
+## 97.5%  0.01021903  0.0137996489  0.016447947 0.036421591 0.5766982
+##              age
+## 2.5%  0.01479272
+## 97.5% 0.03457924
+```
+
+```r
 #kable(data.frame(Beta_CIa))
 ```
 
@@ -412,7 +454,8 @@ Back to diabetes data (Exercise 9.2, b)
 ===
 The following function `lpy.X` calculates the log of $p(\boldsymbol{y}\mid\boldsymbol{X})$, which we will use in implementing the Gibbs sampler for Bayesian model averaging.
 \footnotesize
-```{r}
+
+```r
 ## a function to compute the marginal probability
 lpy.X <- function(y, X, g=length(y), nu0=1, 
                   s20=try(summary(lm(y~ -1+X))$sigma^2, silent=TRUE)){
@@ -439,7 +482,8 @@ Let $\boldsymbol{z}$ be the random binary vector of variable indicators. Generat
 
  MCMC setup
 ===
-```{r}
+
+```r
 g = n
 nu0 = 1 # unit information prior
 z = rep(1, p)
@@ -453,7 +497,8 @@ B = matrix(0, S, p)
 Gibbs sampler
 ===
 \tiny
-```{r}
+
+```r
 ## Gibbs sampler
 for(s in 1:S){
   # if(s %% 100 ==0) {print(s)}
@@ -506,7 +551,8 @@ Let $\boldsymbol{z}$ be the random binary vector of variable indicators. Generat
 
  MCMC setup
 ===
-```{r}
+
+```r
 g = n
 nu0 = 1 # unit information prior
 z = rep(1, p)
@@ -520,7 +566,8 @@ B = matrix(0, S, p)
 Gibbs sampler
 ===
 \tiny
-```{r}
+
+```r
 ## Gibbs sampler
 for(s in 1:S){
   # if(s %% 100 ==0) {print(s)}
@@ -566,14 +613,22 @@ Results
 The posterior probability $\mbox{Pr}(\beta_j \neq 0 \mid \boldsymbol{y})$ is listed below for each predictor. Clearly all predictors are highly relevant to the response.
 
 \tiny
-```{r}
+
+```r
 pprob_Z = apply(Z,2,mean)
 pprob_Z = data.frame(matrix(pprob_Z,nr=1,nc=p))
 names(pprob_Z) = names(azd_data[c(-2,-8)])
 row.names(pprob_Z) = 'posterior including probability'
 
 pprob_Z
+```
 
+```
+##                                 npreg bp skin bmi ped age
+## posterior including probability     1  1    1   1   1   1
+```
+
+```r
 #kable(pprob_Z)
 ```
 
@@ -583,15 +638,23 @@ Results
 The 95% posterior confidence intervals for all the parameters from Bayesian model averaging are listed below. The results are similar to those in part (a) because all the predictors are included in each iteration of Gibbs sampler all the time.
 
 \footnotesize
-```{r}
+
+```r
 # transform coefficients to the original scale
 #sd_X = apply(X,2,sd)
 Beta_b = sweep(B,2,sd_X,FUN = "/")
 
 # 95% credible interval
 (Beta_CIb = apply(Beta_b, 2, quantile, c(0.025, 0.975)))
+```
 
-
+```
+##               [,1]         [,2]        [,3]        [,4]      [,5]
+## 2.5%  -0.035663138 0.0004238452 -0.00181251 0.009148177 0.1328997
+## 97.5% -0.001831344 0.0109098588  0.01337683 0.029798705 0.5659844
+##             [,6]
+## 2.5%  0.01874986
+## 97.5% 0.03060374
 ```
 
 Preparation for Final Exam
