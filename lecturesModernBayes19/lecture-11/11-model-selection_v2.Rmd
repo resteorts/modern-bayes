@@ -300,18 +300,18 @@ Bayesian model selection
 ===
 We must compute 
 \begin{align}
-p(\bY \mid \bX, \bz) &= \int \int p(\bY, \bbeta, \sigma^2, \mid \bX, \bz) \\
-&\int \int p(\bY \mid \bX, \bz)p(\bbeta \mid \bX, \bz) p(\sigma^2).
+p(y \mid X, \bz) &= \int \int p(y, \bbeta, \sigma^2, \mid X, \bz) \; d\bbeta\; d\sigma^2 \\
+&\int \int p(y \mid X, \bz)p(\bbeta \mid X, \bz) p(\sigma^2) \; d\bbeta\; d\sigma^2.
 \end{align}
 To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on
 $\bbeta$
 
-$$ \bbeta \mid \bX, \bz \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}).$$
+$$ \bbeta \mid X, \bz \sim MVN(0, g\; \sigma^2 (X^TX)^{-1}).$$
 
 Back to the g-prior
 ===
-Given the g-prior $$ \bbeta \mid \bX, \bz \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
-$p(\bY \mid \bX, \bz)$
+Given the g-prior $$ \bbeta \mid X, \bz \sim MVN(0, g\; \sigma^2 (X^TX)^{-1}),$$
+$p(y \mid X, \bz)$
 can be worked out in closed form (details p. 165). 
 \vskip 1em
 Go through the details on your own. 
@@ -321,7 +321,7 @@ Back to the g-prior
 ===
 This results in being able to compute
 \begin{align}
-\frac{p(\bY \mid \bX, \bz_a) }{p(\bY \mid \bX, \bz_b) }
+\frac{p(y \mid X, \bz_a) }{p(y \mid X, \bz_b) }
 & =
 (1 + n)^{(p_{z_b} - p_{z_a})/2}
 \times \left( \frac{
