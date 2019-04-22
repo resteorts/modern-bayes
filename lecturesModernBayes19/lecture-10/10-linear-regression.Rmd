@@ -348,7 +348,7 @@ $$\bbeta \mid \bm{y}, X \sim MVN(\bbeta_n, \Sigma_n)$$
 
 where
 
-$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}
+$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
 (\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2)$$
 
 $$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
@@ -360,7 +360,7 @@ $$\bbeta \mid \bm{y}, X \sim MVN(\bbeta_n, \Sigma_n)$$
 
 where
 
-$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}
+$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
 (\Sigma_o^{-1}\bbeta_0 + X^T\bm{y}/\sigma^2)$$
 
 $$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
