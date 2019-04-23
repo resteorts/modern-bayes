@@ -301,7 +301,7 @@ Bayesian model selection
 We must compute 
 \begin{align}
 p(y \mid X, \bz) &= \int \int p(y, \bbeta, \sigma^2, \mid X, \bz) \; d\bbeta\; d\sigma^2 \\
-&\int \int p(y \mid X, \bz)p(\bbeta \mid X, \bz) p(\sigma^2) \; d\bbeta\; d\sigma^2.
+&\propto\int \int p(y \mid X, \bz)p(\bbeta \mid X, \bz) p(\sigma^2) \; d\bbeta\; d\sigma^2.
 \end{align}
 To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on
 $\bbeta$
