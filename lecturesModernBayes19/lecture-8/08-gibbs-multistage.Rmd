@@ -349,7 +349,10 @@ Using the data and functions given to you (posted to Sakai with Homework 8), inv
 4. Finally, let's suppose that $r=10,a=1,b=100.$ Does your posterior change? What about when $r=10, a=100,b=1?$ (Use 10,000 iterations for the Gibbs sampler). 
 
 
-
+Resources
+===
+See https://www.johndcook.com/CompendiumOfConjugatePriors.pdf
+for derviations of conjugate families of distributions.
 
 
 
