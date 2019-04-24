@@ -212,7 +212,7 @@ Full conditionals
     \item ($z|\cdots$)
         \begin{align*}
             p(z|\mu,\pi,x)&\underset{z}{\propto}p(x,z,\pi,\mu)\underset{z}{\propto} p(x|z,\mu) p(z|\pi)\\
-            & =\prod_{i = 1}^n \N(x_i|\mu_{z_i},\lambda^{-1})\Bernoulli(z_i|\pi)\\
+            & =\prod_{i = 1}^n \N(x_i|\mu_{z_i},\lambda^{-1})\Bernoulli(z_i|\pi)\footnote{Not multiplication here due to dependence of $z_i$}\\
             & =\prod_{i = 1}^n \Big(\pi\N(x_i|\mu_1,\lambda^{-1})\Big)^{z_i} \Big((1-\pi)\N(x_i|\mu_0,\lambda^{-1})\Big)^{1-z_i}\\
             & =\prod_{i = 1}^n \alpha_{i,1}^{z_i} \alpha_{i,0}^{1-z_i}\\
             &\underset{z}{\propto}\prod_{i = 1}^n\Bernoulli(z_i\mid \alpha_{i,1}/(\alpha_{i,0}+\alpha_{i,1}))
