@@ -198,7 +198,7 @@ p(\bm{Y}_{miss} \bm{Y}_{obs} \mid \btheta, \Sigma) \\
 p(\bm{y}_{i,miss},\bm{y}_{i,obs} \mid \theta, \Sigma ) \\
 &\propto 
 \prod_{i=1}^n 
-p(\bm{y}_{i,miss} \mid \bm{y}_{i,obs} \mid \theta, \Sigma ) 
+p(\bm{y}_{i,miss} \mid \bm{y}_{i,obs} , \theta, \Sigma ) 
 \end{align}
 
 We can compute the above quantity using a fact from multivariate methods. 
