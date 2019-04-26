@@ -315,7 +315,7 @@ Solution: introduce an additional set of random variables ${\{Z_i\}}_{i=1}^N$ th
 
 If we condition on $Z_i$ we can then write the likelihood of $Y_i$ as
 \begin{align*} 
-p(Y_i|Z_i,\mu_1,\mu_2,\mu_3,\varepsilon^2) = \sum_{j=1}^{\textcolor{red}{3}} N(\mu_j,\varepsilon^2)\delta_{j}(Z_i) &= N(\mu_{Z_i},\varepsilon^2) \\
+p(Y_i|Z_i,\mu_1,\mu_2,\mu_3,\varepsilon^2) = \sum_{j=1}^{\textcolor{red}{3}} N(\mu_j,\varepsilon^2)\delta_{j}(Z_i) &= \sum_{j=1}^3 N(\mu_{Z_i},\varepsilon^2) \\
 P(Z_i = j ) &= w_j.
 \end{align*}
 
@@ -331,7 +331,7 @@ The updated model
 ===
 The model is now
 \begin{align*}
-Y_i \mid Z_i, \mu_1, \mu_2, \mu_3, \epsilon^2 &\sim N(\mu_{Z_i}, \epsilon^2) \\
+Y_i \mid Z_i, \mu_1, \mu_2, \mu_3, \epsilon^2 &\sim \sum_{i=1}^3 N(\mu_{Z_i}, \epsilon^2) \\
 \mu_j \mid \mu_0, \sigma_0^2 &\sim N(\mu_0, \sigma_0^2) \\
 Z_i \mid w_1,w_2,w_3 &\sim \text{Cat}(3, \boldsymbol{w})\\
 \boldsymbol{w}= (w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1) \\
