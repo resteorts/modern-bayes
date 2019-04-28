@@ -1,0 +1,26 @@
+\frametitle{The 95\% posterior confidence intervals}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 95% credible interval}
+\NormalTok{(}\DataTypeTok{Beta_CIa =} \KeywordTok{apply}\NormalTok{(Beta_a, }\DecValTok{2}\NormalTok{, quantile, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             npreg            bp         skin         bmi       ped
+## 2.5%  -0.05269071 -0.0002984302 -0.002941644 0.004704214 0.1080635
+## 97.5%  0.01234342  0.0144919397  0.016274524 0.036106047 0.5562314
+##              age
+## 2.5%  0.01467044
+## 97.5% 0.03460817
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#kable(data.frame(Beta_CIa))}
+\end{Highlighting}
+\end{Shaded}
+

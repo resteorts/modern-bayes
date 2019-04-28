@@ -351,7 +351,7 @@ where
 $$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
 (\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2)$$
 
-$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
+$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}$$
 
 Multivariate inference for regression models
 ===
@@ -363,7 +363,7 @@ where
 $$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
 (\Sigma_o^{-1}\bbeta_0 + X^T\bm{y}/\sigma^2)$$
 
-$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)^{-1}/\sigma^2)^{-1}$$
+$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}$$
 
 Remark: If $\Sigma_o^{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{ols}$
 
