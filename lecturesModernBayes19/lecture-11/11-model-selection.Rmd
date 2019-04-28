@@ -68,10 +68,10 @@ How do we specify \textcolor{red}{a prior on} $\bbeta_0$ and $\Sigma_o$?
 
 The g-prior
 ===
-To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on $\bbeta_0.$
+To do the \emph{least amount of calculus}, we can put a \emph{g-prior} on $\bbeta.$
 
-The g-prior on $\bbeta_0$ has the following form: 
-$$ \bbeta_0 \mid \bX, \sigma^2  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
+The g-prior on $\bbeta$ has the following form: 
+$$ \bbeta \mid \bX, \sigma^2  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
 where $g$ is a constant, such as $g=n.$
 
 The prior also happens to be invariant and is widely studied for regression problems (Zellner, 1986). 

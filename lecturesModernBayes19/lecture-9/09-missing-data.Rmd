@@ -226,6 +226,8 @@ $$\textcolor{red}{\Sigma_{[b\mid a]}}
 = \Sigma_{[b,b]} - \Sigma_{[b,a]}
 (\Sigma_{[a,a]})^{-1}\Sigma_{[a,b]}.$$
 
+
+
 Pima data set
 ===
 We first talk about hyper-parameter selection and then implement the Gibbs sampler. 
