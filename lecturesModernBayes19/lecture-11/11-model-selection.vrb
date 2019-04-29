@@ -1,26 +1,29 @@
-\frametitle{The 95\% posterior confidence intervals}
+\frametitle{Results}
+
+The 95\% posterior confidence intervals for all the parameters from
+Bayesian model averaging are listed below. The results are similar to
+those in part (a) because all the predictors are included in each
+iteration of Gibbs sampler all the time.
 
 \footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# transform coefficients to the original scale}
+\CommentTok{#sd_X = apply(X,2,sd)}
+\NormalTok{Beta_b =}\StringTok{ }\KeywordTok{sweep}\NormalTok{(B,}\DecValTok{2}\NormalTok{,sd_X,}\DataTypeTok{FUN =} \StringTok{"/"}\NormalTok{)}
+
 \CommentTok{# 95% credible interval}
-\NormalTok{(}\DataTypeTok{Beta_CIa =} \KeywordTok{apply}\NormalTok{(Beta_a, }\DecValTok{2}\NormalTok{, quantile, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{)))}
+\NormalTok{(}\DataTypeTok{Beta_CIb =} \KeywordTok{apply}\NormalTok{(Beta_b, }\DecValTok{2}\NormalTok{, quantile, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##             npreg            bp         skin         bmi       ped
-## 2.5%  -0.05269071 -0.0002984302 -0.002941644 0.004704214 0.1080635
-## 97.5%  0.01234342  0.0144919397  0.016274524 0.036106047 0.5562314
-##              age
-## 2.5%  0.01467044
-## 97.5% 0.03460817
+##               [,1]        [,2]        [,3]        [,4]      [,5]
+## 2.5%  -0.046783559 0.003124393 0.001945646 0.008172701 0.2445281
+## 97.5%  0.008861632 0.012332815 0.012511617 0.027131571 0.4482633
+##             [,6]
+## 2.5%  0.01229628
+## 97.5% 0.03405374
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#kable(data.frame(Beta_CIa))}
-\end{Highlighting}
-\end{Shaded}
 
