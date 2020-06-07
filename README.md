@@ -1,4 +1,4 @@
-Welcome to STA 360! 
+Welcome to STA 360, Fall 2020! 
 
 The readings for the class can be found below. These are subject to change and will be updated as the course progresses. 
 
