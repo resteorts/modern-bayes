@@ -8,10 +8,17 @@ Preparation for the Course:
 
 Before starting the course for the fall semester, I would highly recommend the following:
 + Review pre-req material for the course on the syllabus. https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf 
-+ Review R: Module 0: Introduction to R.
-https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes19/lecture-0/00-intro-to-Bayes.Rmd
-This will be a review for most students. If you would like a reference text, I recommend http://shop.oreilly.com/product/9780596809164.do (The R Cookbook, not to be confused with the one for graphics). 
-+ Learn github as this is where the course resources will be located.  (https://lab.github.com/)
++ Review R: 
+
+- Part I: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partI.pdf
+- Part II: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partII.pdf
+- Part III: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIII.pdf
+- Part IV: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIV.pdf
+- Part V: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partV.pdf
+- Videos: https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/background-intro-to-R/videos
+
+Reference Text: http://shop.oreilly.com/product/9780596809164.do (The R Cookbook, not to be confused with the one for graphics). 
++ Learn github as this is where the course resources will be located. https://lab.github.com/)
 
 ## Tenative Course Schedule 
 
