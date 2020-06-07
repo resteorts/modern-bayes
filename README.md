@@ -10,12 +10,12 @@ Before starting the course for the fall semester, I would highly recommend the f
 + Review pre-req material for the course on the syllabus. https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf 
 + Review R: 
 
-- [Part I](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partI.pdf)
-- Part II: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partII.pdf
-- Part III: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIII.pdf
-- Part IV: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIV.pdf
-- Part V: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partV.pdf
-- Videos: https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/background-intro-to-R/videos
+- [Intro to R, Part I](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partI.pdf)
+- [Intro to R, Part II](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partII.pdf)
+- [Intro to R, Part III](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIII.pdf)
+- [Intro to R, Part IV](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIV.pdf)
+- [Intro to R, Part V](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partV.pdf)
+- [Intro to R, Videos](https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/background-intro-to-R/videos)
 
 Reference Text: http://shop.oreilly.com/product/9780596809164.do (The R Cookbook, not to be confused with the one for graphics). 
 + Learn github as this is where the course resources will be located. https://lab.github.com/)
