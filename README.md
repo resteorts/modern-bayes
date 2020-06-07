@@ -10,7 +10,7 @@ Before starting the course for the fall semester, I would highly recommend the f
 + Review pre-req material for the course on the syllabus. https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf 
 + Review R: 
 
-- Part I: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partI.pdf
+- [Part I](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partI.pdf)
 - Part II: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partII.pdf
 - Part III: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIII.pdf
 - Part IV: https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIV.pdf
