@@ -7,7 +7,7 @@ The readings are from Hoff and also in notes that I have written myself. You'll 
 Preparation for the Course:
 
 Before starting the course for the fall semester, I would highly recommend the following:
-+ Review pre-req material for the course on the syllabus. 
++ Review pre-req material for the course on the syllabus. https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf 
 + Review R: Module 0: Introduction to R.
 https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes19/lecture-0/00-intro-to-Bayes.Rmd
 This will be a review for most students. If you would like a reference text, I recommend http://shop.oreilly.com/product/9780596809164.do (The R Cookbook, not to be confused with the one for graphics). 
