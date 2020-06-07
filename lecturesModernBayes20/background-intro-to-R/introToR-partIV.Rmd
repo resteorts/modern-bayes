@@ -1,0 +1,157 @@
+---
+title: 'Introduction to R, Part IV'
+author: "Rebecca C. Steorts, STA 360"
+output: pdf_document
+---
+
+Agenda
+=======
+- Matrices
+- Matrix Operations
+- Examples 
+
+
+Simple example: resource allocation ("mathematical programming")
+====
+Factory makes cars and trucks, using labor and steel
+
+- a car takes 40 hours of labor and 1 ton of steel
+- a truck takes 60 hours and 3 tons of steel
+- resources: 1600 hours of labor and 70 tons of steel each week
+
+Matrices
+===
+In R, a matrix is a specialization of a 2D array
+
+```{r}
+factory <- matrix(c(40,1,60,3),nrow=2)
+is.array(factory)
+is.matrix(factory)
+```
+could also specify `ncol`, and/or `byrow=TRUE` to fill by rows.
+
+Element-wise operations proceed as usual (e.g., `factory/5`)
+
+Matrix multiplication
+===
+Gets a special operator
+
+```{r}
+six.sevens <- matrix(rep(7,6),ncol=3)
+six.sevens
+factory %*% six.sevens # [2x2] * [2x3]
+```
+
+Exercise: What if you try `six.sevens %*% factory`?
+
+Multiplying matrices and vectors
+===
+Numeric vectors can act like proper vectors:
+```{r}
+output <- c(10,20)
+factory %*% output
+output %*% factory
+```
+<small>R silently casts the vector as either a row or a column matrix</small>
+
+Matrix operators
+===
+
+Transpose:
+```{r}
+t(factory)
+```
+
+Determinant:
+```{r}
+det(factory)
+```
+
+The diagonal
+===
+The `diag()` function can extract the diagonal entries of a matrix:
+```{r}
+diag(factory)
+```
+
+Creating a diagonal or identity matrix
+===
+```{r}
+diag(c(3,4))
+diag(2)
+diag(10)
+```
+
+Inverting a matrix
+===
+```{r}
+solve(factory)
+factory %*% solve(factory)
+```
+
+Why's it called "solve"" anyway?
+===
+Solving the linear system $\mathbf{A}\vec{x} = \vec{b}$ for $\vec{x}$:
+
+```{r}
+# this is acting like b in our linear system
+# factory is behaving like A
+# goal is to solve for x
+available <- c(1600,70)
+solve(factory,available)
+factory %*% solve(factory,available)
+```
+
+Names in matrices
+===
+We can name either rows or columns or both, with `rownames()` and `colnames()`
+
+These are character vectors
+
+We use the same function to get and to set their respective values
+
+Names are useful since they help us keep track of what
+we are working with
+
+Example
+===
+```{r}
+rownames(factory) <- c("labor","steel")
+colnames(factory) <- c("cars","trucks")
+factory
+available <- c(1600,70)
+names(available) <- c("labor","steel")
+```
+
+Example (Continued)
+===
+```{r}
+output <- c(20,10)
+names(output) <- c("cars","trucks")
+factory %*% output
+factory %*% output[colnames(factory)]
+all(factory %*% output[colnames(factory)] <= available[rownames(factory)])
+```
+
+Summaries
+===
+Take the mean: `rowMeans()`, `colMeans()`: input is matrix,
+output is vector.  Also `rowSums()`, etc.
+
+`summary()`: vector-style summary of column
+
+```{r}
+colMeans(factory)
+summary(factory)
+```
+
+Apply function
+===
+`apply()`, takes 3 arguments: the array or matrix, then 1 for rows and 2 for columns, then name of the function to apply to each
+
+```{r}
+rowMeans(factory)
+apply(factory,1,mean)
+```
+
+<small>What would `apply(factory,1,sd)` do?</small>

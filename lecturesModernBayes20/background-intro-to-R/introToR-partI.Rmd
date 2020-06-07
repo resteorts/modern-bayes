@@ -1,0 +1,134 @@
+---
+title: 'Introduction to R, Part I'
+author: "Rebecca C. Steorts, STA 360"
+output: pdf_document
+---
+
+Agenda
+=======
+- Reproducible Research 
+- Using R, RStudio, Markdown
+- Simple Illustrations
+- Assignment Operator
+- Functions
+
+Reproducible Research
+========
+Reproducible research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them.
+
+-Johns Hopkins, Coursera
+
+The R Console
+========
+Basic interaction with R is by typing in the **console**, a.k.a. **terminal** or **command-line**
+
+You type in commands, R gives back answers (or errors)
+
+Menus and other graphical interfaces are extras built on top of the console
+
+
+RStudio
+===
+- RStudio is very easy and simple to use. It can be downloaded from [R Studio Download](https://www.rstudio.com).
+- RStudio is not R.
+- RStudio mediates your interaction with R.
+
+What is Markdown?
+===
+- Markdown is a lightweight markup language for creating HTML, PDF, or other documents.
+- Markup languages are designed to produce documents from human readable text.
+- This promotes research/materials that are reproducible.
+- Also, RStudio integrates with LaTeX.
+
+Why Markdown?
+===
+- It's easy to learn.
+- It really pushes at reproducible code
+ and documentation.
+- Once this basics are down, you can do things that are more fancy.
+
+
+Getting started with RStudio + Markdown
+===
+
+- A cheatsheet is given for simple markdown commands ([R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf))
+- Tysetting equations can be slightly different than LaTeX. There are some resources here! ([LaTeX Typesetting](http://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html))
+
+
+Simple Illustration in RStudio
+===
+```{r}
+1+6
+x <- 4
+(x + 2)
+set.seed(738)
+```
+
+Data in R
+===
+Most variables are created with the **assignment operator**, `<-` or `=`
+```{r}
+average.rent.dollar <- 800
+average.rent.dollar
+dollar.to.euro = 0.93
+average.rent.dollar*dollar.to.euro
+```
+
+
+The assignment operator also changes values:
+```{r}
+average.rent.euro <- average.rent.dollar*dollar.to.euro
+average.rent.euro
+average.rent.euro <- 744
+average.rent.euro
+```
+
+
+
+The workspace
+===
+What names have you defined values for?
+```{r}
+ls()
+```
+
+Getting rid of variables:
+```{r}
+rm("average.rent.euro")
+ls()
+```
+
+What functions are available to you in the workspace:
+===
+
+The command **search** lists all packages that are currently loaded in your workspace
+```{r}
+search()
+```
+
+The command **help** will give the same result, but allow this in an interactive form in your side window. 
+
+```{r}
+help(package = utils)
+```
+
+The command **?** allows you to delve into the help package regarding a specific function.
+
+```{r}
+?hist()
+```
+
+Commonly used functions that you should review
+===
+1.  ?length(), ?dim(), ?names(), ?ls(), ?class()
+2.  ?mean(), ?median(), ?var(), ?sd()
+3.  ?rnorm() (and other similar calls)
+4.  ?read.table, ?read.csv(), ?write.table(), ?write.csv()
+5.  ?hist(), ?plot(), ?density()
+6.  ?par(mfrow)
+7.  ?apply()
+8.  ?dplyr() (need to load the dplyr library)
+9.  ?matrix(), ?data.frame(), ?as.numeric()
+10. rm(list = ls()) (This clears the R workspace)
+
+

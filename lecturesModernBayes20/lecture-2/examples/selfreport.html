@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>R: Self-reported and measured BMI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body>
+
+<table width="100%" summary="page for selfreport {mice}"><tr><td>selfreport {mice}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>Self-reported and measured BMI</h2>
+
+<h3>Description</h3>
+
+<p>Dataset containing height and weight data (measured, self-reported) from two studies.</p>
+
+
+<h3>Usage</h3>
+
+<pre>data(selfreport)</pre>
+
+
+<h3>Format</h3>
+
+
+<p>A data frame with 2060 rows and 15 variables:
+</p>
+
+<dl>
+<dt><code>src</code></dt><dd><p>Study, either <code>krul</code> or <code>mgg</code> (factor)</p>
+</dd>
+<dt><code>id</code></dt><dd><p>Person identification number</p>
+</dd>
+<dt><code>pop</code></dt><dd><p>Population, all <code>NL</code> (factor)</p>
+</dd>
+<dt><code>age</code></dt><dd><p>Age of respondent in years</p>
+</dd>
+<dt><code>sex</code></dt><dd><p>Sex of respondent (factor)</p>
+</dd>
+<dt><code>hm</code></dt><dd><p>Height measured (cm)</p>
+</dd>
+<dt><code>wm</code></dt><dd><p>Weight measured (kg)</p>
+</dd>
+<dt><code>hr</code></dt><dd><p>Height reported (cm)</p>
+</dd>
+<dt><code>wr</code></dt><dd><p>Weight reported (kg)</p>
+</dd>
+<dt><code>prg</code></dt><dd><p>Pregnancy (factor), all <code>Not pregnant</code></p>
+</dd>
+<dt><code>edu</code></dt><dd><p>Educational level (factor)</p>
+</dd>
+<dt><code>etn</code></dt><dd><p>Ethnicity (factor)</p>
+</dd>
+<dt><code>web</code></dt><dd><p>Obtained through web survey (factor)</p>
+</dd>
+<dt><code>bm</code></dt><dd><p>BMI measured (kg/m2)</p>
+</dd>
+<dt><code>br</code></dt><dd><p>BMI reported (kg/m2)</p>
+</dd>
+</dl>
+
+
+
+<h3>Details</h3>
+
+
+<p>This dataset combines two datasets: <code>krul</code> data (Krul, 2010) (1257 persons) and the <code>mgg</code> data (Van Keulen 2011; Van der Klauw 2011) (803 persons). The <code>krul</code> dataset contains height and weight (both measures and self-reported) from 1257 Dutch adults, whereas the <code>mgg</code> dataset contains self-reported height and weight for 803 Dutch adults. Section 7.3 in Van Buuren (2012) shows how the missing measured data can be imputed in the <code>mgg</code> data, so corrected prevalence estimates can be calculated. 
+</p>
+
+
+<h3>Source</h3>
+
+
+<p>Krul, A., Daanen, H. A. M., Choi, H. (2010). Self-reported and measured weight, height and body mass index (BMI) in Italy, The Netherlands and North America. <EM>European Journal of Public Health</EM>, <EM>21</EM>(4), 414-419. 
+</p>
+<p>Van Keulen, H.M.,, Chorus, A.M.J., Verheijden, M.W. (2011). 
+<EM>Monitor Convenant Gezond Gewicht Nulmeting (determinanten van) beweeg- en eetgedrag van kinderen (4-11 jaar), jongeren (12-17 jaar) en volwassenen (18+ jaar)</EM>. TNO/LS 2011.016. Leiden: TNO.
+<a href="http://www.gezondeschool.info/object_binary/o11783_2011-016-monitor-convenant-gezond-gewicht-def.pdf">http://www.gezondeschool.info/object_binary/o11783_2011-016-monitor-convenant-gezond-gewicht-def.pdf</a>
+</p>
+<p>Van der Klauw, M., Van Keulen, H.M., Verheijden, M.W. (2011). 
+<EM>Monitor Convenant Gezond Gewicht Beweeg- en eetgedrag van kinderen (4-11 jaar),
+jongeren (12-17 jaar) en volwassenen (18+ jaar) in 2010 en 2011.</EM>
+TNO/LS 2011.055. Leiden: TNO. (in Dutch)
+<a href="http://www.convenantgezondgewicht.nl/download/131/2011_055_monitor_convenant_gezond_gewicht.pdf">http://www.convenantgezondgewicht.nl/download/131/2011_055_monitor_convenant_gezond_gewicht.pdf</a>
+</p>
+<p>van Buuren, S. (2012). <EM>Flexible Imputation of Missing Data.</EM> Boca Raton, FL: Chapman &amp; Hall/CRC Press. 
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+md.pattern(selfreport[,c("age","sex","hm","hr","wm","wr")])
+
+### FIMD Section 7.3.5 Application
+
+bmi &lt;- function(h,w){return(w/(h/100)^2)}
+init &lt;- mice(selfreport,maxit=0)
+meth &lt;- init$meth
+meth["bm"] &lt;- "~bmi(hm,wm)"
+pred &lt;- init$pred
+pred[,c("src","id","web","bm","br")] &lt;- 0
+imp &lt;- mice(selfreport, pred=pred, meth=meth, seed=66573, maxit=2, m=1)
+## imp &lt;- mice(selfreport, pred=pred, meth=meth, seed=66573, maxit=20, m=10)
+
+### Like FIMD Figure 7.6 
+
+cd &lt;- complete(imp, 1)
+xy &lt;- xy.coords(cd$bm, cd$br-cd$bm)
+plot(xy,col=mdc(2),xlab="Measured BMI",ylab="Reported - Measured BMI",
+     xlim=c(17,45),ylim=c(-5,5), type="n",lwd=0.7)
+polygon(x=c(30,20,30),y=c(0,10,10),col="grey95",border=NA) 
+polygon(x=c(30,40,30),y=c(0,-10,-10),col="grey95",border=NA)
+abline(0,0,lty=2,lwd=0.7)
+
+idx &lt;- cd$src=="krul"
+xyc &lt;- xy; xyc$x &lt;- xy$x[idx]; xyc$y &lt;- xy$y[idx]
+xys &lt;- xy; xys$x &lt;- xy$x[!idx]; xys$y &lt;- xy$y[!idx]
+points(xyc,col=mdc(1), cex=0.7)
+points(xys,col=mdc(2), cex=0.7)
+lines(lowess(xyc),col=mdc(4),lwd=2)
+lines(lowess(xys),col=mdc(5),lwd=2)
+text(1:4,x=c(40,28,20,32),y=c(4,4,-4,-4),cex=3)
+box(lwd=1)
+
+</pre>
+
+<hr><div align="center">[Package <em>mice</em> version 2.13 <a href="00Index.html">Index</a>]</div>
+</body></html>

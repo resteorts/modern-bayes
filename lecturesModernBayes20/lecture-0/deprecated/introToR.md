@@ -1,0 +1,1112 @@
+<style>
+  .reveal pre {font-size: 12px;}
+</style>
+
+Introduction to R programming
+================================================
+author: Rebecca C. Steorts
+date: 17 January 2017
+
+
+Agenda
+============================================
+- Using R, RStudio, Markdown
+- Functional programming
+- Vectors
+- Example on housing prices
+- Matrices
+- Lists
+- Dataframes
+
+
+Reproducible Research
+============================================
+Reproducible research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them.
+
+-Johns Hopkins, Coursera
+
+The R Console
+====
+Basic interaction with R is by typing in the **console**, a.k.a. **terminal** or **command-line**
+
+You type in commands, R gives back answers (or errors)
+
+Menus and other graphical interfaces are extras built on top of the console
+
+
+RStudio
+============================================
+- RStudio is very easy and simple to use. It can be downloaded from [R Studio Download](https://www.rstudio.com).
+- RStudio is not R.
+- RStudio mediates your interaction with R.
+
+What is Markdown?
+============================================
+- Markdown is a lightweight markup language for creating HTML, PDF, or other documents.
+- Markup languages are designed to produce documents from human readable text.
+- This promotes research/materials that are reproducible.
+- Also, RStudio integrates with LaTeX.
+
+Why Markdown?
+============================================
+- It's easy to learn.
+- It really pushes at reproducible code
+ and documentation.
+- Once this basics are down, you can do things that are more fancy.
+
+
+Getting started with RStudio + Markdown
+============================================
+
+- A cheatsheet is given for simple markdown commands [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+- Tysetting equations can be slightly different than LaTeX. There are some resources here! [LaTeX Typesetting](http://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html)
+
+Simple Illustration in RStudio
+============================================
+
+```r
+1+6
+```
+
+```
+[1] 7
+```
+
+```r
+x <- 4
+(x + 2)
+```
+
+```
+[1] 6
+```
+
+```r
+set.seed(738)
+```
+
+Data in R
+===
+Most variables are created with the **assignment operator**, `<-` or `=`
+
+```r
+average.rent.dollar <- 800
+average.rent.dollar
+```
+
+```
+[1] 800
+```
+
+```r
+dollar.to.euro = 0.93
+average.rent.dollar*dollar.to.euro
+```
+
+```
+[1] 744
+```
+
+===
+The assignment operator also changes values:
+
+```r
+average.rent.euro <- average.rent.dollar*dollar.to.euro
+average.rent.euro
+```
+
+```
+[1] 744
+```
+
+```r
+average.rent.euro <- 744
+average.rent.euro
+```
+
+```
+[1] 744
+```
+
+
+
+The workspace
+===
+What names have you defined values for?
+
+```r
+ls()
+```
+
+```
+[1] "average.rent.dollar" "average.rent.euro"   "dollar.to.euro"     
+[4] "x"                  
+```
+
+Getting rid of variables:
+
+```r
+rm("average.rent.euro")
+ls()
+```
+
+```
+[1] "average.rent.dollar" "dollar.to.euro"      "x"                  
+```
+
+
+Review of vectors
+===
+
+Group related data values into one object, a **data structure**
+
+A **vector** is a sequence of values, all of the same type
+
+```r
+x <- c(7, 8, 10, 45)
+```
+
+`c()` function returns a vector containing all its arguments in order
+
+`x[1]` is the first element, `x[3]` is the 3rd element
+`x[-3]` is a vector containing all but the 3rd element
+
+Question: What does x[-c(2:3)] return?
+
+===
+`vector(length=6)` returns an empty vector of length 6; helpful for filling things up later
+
+```r
+weekly.hours <- vector(length=5)
+weekly.hours[5] <- 8
+weekly.hours
+```
+
+```
+[1] 0 0 0 0 8
+```
+
+
+===
+Operators apply to vectors "pairwise" or "elementwise":
+
+```r
+y <- c(-7, -8, -10, -45)
+x+y
+```
+
+```
+[1] 0 0 0 0
+```
+
+```r
+x*y
+```
+
+```
+[1]   -49   -64  -100 -2025
+```
+
+===
+Can also do pairwise comparisons:
+
+```r
+x > 9
+```
+
+```
+[1] FALSE FALSE  TRUE  TRUE
+```
+Note: returns Boolean vector
+
+
+
+
+Boolean operators work elementwise:
+
+```r
+(x > 9) & (x < 20)
+```
+
+```
+[1] FALSE FALSE  TRUE FALSE
+```
+
+Functions on vectors
+===
+Many functions take vectors as arguments:
+- `mean()`, `median()`, `sd()`, `var()`, `max()`, `min()`, `length()`, `sum()`: return single numbers
+- `sort()` returns a new vector
+- `hist()` takes a vector of numbers and produces a histogram, a highly structured object, with the side-effect of making a plot
+- Similarly `ecdf()` produces a cumulative-density-function object
+- `summary()` gives a five-number summary of numerical vectors
+- `any()` and `all()` are useful on Boolean vectors
+
+Addressing vectors
+===
+
+Vector of indices:
+
+```r
+x[c(2,4)]
+```
+
+```
+[1]  8 45
+```
+
+Vector of negative indices
+
+```r
+x[c(-1,-3)]
+```
+
+```
+[1]  8 45
+```
+<small>(why that, and not  `7 10`?)</small>
+
+===
+Boolean vector:
+
+```r
+x[x>9]
+```
+
+```
+[1] 10 45
+```
+
+```r
+y[x>9]
+```
+
+```
+[1] -10 -45
+```
+
+
+===
+`which()` turns a Boolean vector in vector of TRUE indices:
+
+```r
+x
+```
+
+```
+[1]  7  8 10 45
+```
+
+```r
+places <- which(x > 9)
+places
+```
+
+```
+[1] 3 4
+```
+
+```r
+y
+```
+
+```
+[1]  -7  -8 -10 -45
+```
+
+```r
+y[places]
+```
+
+```
+[1] -10 -45
+```
+
+Named components
+===
+
+You can give names to elements or components of vectors
+
+```r
+names(x) <- c("v1","v2","v3","fred")
+names(x)
+```
+
+```
+[1] "v1"   "v2"   "v3"   "fred"
+```
+
+```r
+x[c("fred","v1")]
+```
+
+```
+fred   v1 
+  45    7 
+```
+note the labels in what R prints; not actually part of the value
+
+===
+`names(x)` is just another vector (of characters):
+
+```r
+names(y) <- names(x)
+sort(names(x))
+```
+
+```
+[1] "fred" "v1"   "v2"   "v3"  
+```
+
+```r
+which(names(x)=="fred")
+```
+
+```
+[1] 4
+```
+
+Example: Price of houses in PA
+===
+Census data for California and Pennsylvania on housing prices,
+by Census "tract"
+
+```r
+calif_penn <-read.csv("http://www2.stat.duke.edu/~rcs46/modern_bayes17/data/calif_penn_2011.csv")
+penn <- calif_penn[calif_penn[,"STATEFP"]==42,]
+coefficients(lm(Median_house_value ~ Median_household_income, data=penn))
+```
+
+```
+            (Intercept) Median_household_income 
+          -26206.564325                3.651256 
+```
+Fit a simple linear model, predicting median house price from median household income
+
+===
+Census tracts 24--425 are Allegheny county
+
+Tract 24 has a median income of \$14,719; actual median house value is \$34,100 --- is that above or below the observed median?
+
+```r
+34100 < -26206.564 + 3.651*14719
+```
+
+```
+[1] FALSE
+```
+
+Tract 25 has income \$48,102 and house price \$155,900
+
+```r
+155900 < -26206.564 + 3.651*48102
+```
+
+```
+[1] FALSE
+```
+
+What about tract 26?
+
+===
+
+We _could_ just keep plugging in numbers like this, but that's
+- boring and repetitive
+- error-prone
+- confusing (what _are_ these numbers?)
+
+Using variables and names
+===
+
+```r
+penn.coefs <- coefficients(lm(Median_house_value ~ Median_household_income, data=penn))
+penn.coefs
+```
+
+```
+            (Intercept) Median_household_income 
+          -26206.564325                3.651256 
+```
+
+
+```r
+allegheny.rows <- 24:425
+allegheny.medinc <- penn[allegheny.rows,"Median_household_income"]
+allegheny.values <- penn[allegheny.rows,"Median_house_value"]
+allegheny.fitted <- penn.coefs["(Intercept)"]+penn.coefs["Median_household_income"]*allegheny.medinc
+```
+
+===
+
+```r
+plot(x=allegheny.fitted, y=allegheny.values,
+     xlab="Model-predicted median house values",
+     ylab="Actual median house values",
+     xlim=c(0,5e5),ylim=c(0,5e5))
+abline(a=0,b=1,col="grey")
+```
+
+![plot of chunk unnamed-chunk-22](introToR-figure/unnamed-chunk-22-1.png)
+
+
+Simple example: resource allocation ("mathematical programming")
+====
+Factory makes cars and trucks, using labor and steel
+
+- a car takes 40 hours of labor and 1 ton of steel
+- a truck takes 60 hours and 3 tons of steel
+- resources: 1600 hours of labor and 70 tons of steel each week
+
+Matrices
+===
+In R, a matrix is a specialization of a 2D array
+
+
+```r
+factory <- matrix(c(40,1,60,3),nrow=2)
+is.array(factory)
+```
+
+```
+[1] TRUE
+```
+
+```r
+is.matrix(factory)
+```
+
+```
+[1] TRUE
+```
+could also specify `ncol`, and/or `byrow=TRUE` to fill by rows.
+
+Element-wise operations proceed as usual (e.g., `factory/5`)
+
+Matrix multiplication
+===
+Gets a special operator
+
+
+```r
+six.sevens <- matrix(rep(7,6),ncol=3)
+six.sevens
+```
+
+```
+     [,1] [,2] [,3]
+[1,]    7    7    7
+[2,]    7    7    7
+```
+
+```r
+factory %*% six.sevens # [2x2] * [2x3]
+```
+
+```
+     [,1] [,2] [,3]
+[1,]  700  700  700
+[2,]   28   28   28
+```
+
+Exercise: What if you try `six.sevens %*% factory`?
+
+Multiplying matrices and vectors
+===
+Numeric vectors can act like proper vectors:
+
+```r
+output <- c(10,20)
+factory %*% output
+```
+
+```
+     [,1]
+[1,] 1600
+[2,]   70
+```
+
+```r
+output %*% factory
+```
+
+```
+     [,1] [,2]
+[1,]  420  660
+```
+<small>R silently casts the vector as either a row or a column matrix</small>
+
+Matrix operators
+===
+
+Transpose:
+
+```r
+t(factory)
+```
+
+```
+     [,1] [,2]
+[1,]   40    1
+[2,]   60    3
+```
+
+Determinant:
+
+```r
+det(factory)
+```
+
+```
+[1] 60
+```
+
+The diagonal
+===
+The `diag()` function can extract the diagonal entries of a matrix:
+
+```r
+diag(factory)
+```
+
+```
+[1] 40  3
+```
+
+Creating a diagonal or identity matrix
+===
+
+```r
+diag(c(3,4))
+```
+
+```
+     [,1] [,2]
+[1,]    3    0
+[2,]    0    4
+```
+
+```r
+diag(2)
+```
+
+```
+     [,1] [,2]
+[1,]    1    0
+[2,]    0    1
+```
+
+Inverting a matrix
+===
+
+```r
+solve(factory)
+```
+
+```
+            [,1]       [,2]
+[1,]  0.05000000 -1.0000000
+[2,] -0.01666667  0.6666667
+```
+
+```r
+factory %*% solve(factory)
+```
+
+```
+     [,1] [,2]
+[1,]    1    0
+[2,]    0    1
+```
+
+Why's it called "solve"" anyway?
+===
+Solving the linear system $\mathbf{A}\vec{x} = \vec{b}$ for $\vec{x}$:
+
+
+```r
+available <- c(1600,70)
+solve(factory,available)
+```
+
+```
+[1] 10 20
+```
+
+```r
+factory %*% solve(factory,available)
+```
+
+```
+     [,1]
+[1,] 1600
+[2,]   70
+```
+
+Names in matrices
+===
+We can name either rows or columns or both, with `rownames()` and `colnames()`
+
+These are character vectors
+
+We use the same function to get and to set their respective values
+
+Names are useful since they help us keep track of what
+we are working with
+
+===
+
+```r
+rownames(factory) <- c("labor","steel")
+colnames(factory) <- c("cars","trucks")
+factory
+```
+
+```
+      cars trucks
+labor   40     60
+steel    1      3
+```
+
+```r
+available <- c(1600,70)
+names(available) <- c("labor","steel")
+```
+
+===
+
+```r
+output <- c(20,10)
+names(output) <- c("cars","trucks")
+factory %*% output
+```
+
+```
+      [,1]
+labor 1400
+steel   50
+```
+
+```r
+factory %*% output[colnames(factory)]
+```
+
+```
+      [,1]
+labor 1400
+steel   50
+```
+
+```r
+all(factory %*% output[colnames(factory)] <= available[rownames(factory)])
+```
+
+```
+[1] TRUE
+```
+
+Summaries
+===
+Take the mean: `rowMeans()`, `colMeans()`: input is matrix,
+output is vector.  Also `rowSums()`, etc.
+
+`summary()`: vector-style summary of column
+
+
+```r
+colMeans(factory)
+```
+
+```
+  cars trucks 
+  20.5   31.5 
+```
+
+```r
+summary(factory)
+```
+
+```
+      cars           trucks     
+ Min.   : 1.00   Min.   : 3.00  
+ 1st Qu.:10.75   1st Qu.:17.25  
+ Median :20.50   Median :31.50  
+ Mean   :20.50   Mean   :31.50  
+ 3rd Qu.:30.25   3rd Qu.:45.75  
+ Max.   :40.00   Max.   :60.00  
+```
+
+===
+`apply()`, takes 3 arguments: the array or matrix, then 1 for rows and 2 for columns, then name of the function to apply to each
+
+
+```r
+rowMeans(factory)
+```
+
+```
+labor steel 
+   50     2 
+```
+
+```r
+apply(factory,1,mean)
+```
+
+```
+labor steel 
+   50     2 
+```
+
+<small>What would `apply(factory,1,sd)` do?</small>
+
+Lists
+====
+Sequence of values, _not_ necessarily all of the same type
+
+
+```r
+my.distribution <- list("exponential",7,FALSE)
+my.distribution
+```
+
+```
+[[1]]
+[1] "exponential"
+
+[[2]]
+[1] 7
+
+[[3]]
+[1] FALSE
+```
+
+Most of what you can do with vectors you can also do with lists
+
+Accessing pieces of lists
+===
+Can use `[ ]` as with vectors
+or use `[[ ]]`, but only with a single index
+`[[ ]]` drops names and structures, `[ ]` does not
+
+```r
+is.character(my.distribution)
+```
+
+```
+[1] FALSE
+```
+
+```r
+is.character(my.distribution[[1]])
+```
+
+```
+[1] TRUE
+```
+
+```r
+my.distribution[[2]]^2
+```
+
+```
+[1] 49
+```
+<small>What happens if you try `my.distribution[2]^2`?</small>
+<small>What happens if you try `[[ ]]` on a vector?</small>
+
+Expanding and contracting lists
+===
+Add to lists with `c()` (also works with vectors):
+
+```r
+my.distribution <- c(my.distribution,7)
+my.distribution
+```
+
+```
+[[1]]
+[1] "exponential"
+
+[[2]]
+[1] 7
+
+[[3]]
+[1] FALSE
+
+[[4]]
+[1] 7
+```
+
+===
+Chop off the end of a list by setting the length to something smaller (also works with vectors):
+
+```r
+length(my.distribution)
+```
+
+```
+[1] 4
+```
+
+```r
+length(my.distribution) <- 3
+my.distribution
+```
+
+```
+[[1]]
+[1] "exponential"
+
+[[2]]
+[1] 7
+
+[[3]]
+[1] FALSE
+```
+
+Naming list elements
+===
+We can name some or all of the elements of a list
+
+```r
+names(my.distribution) <- c("family","mean","is.symmetric")
+my.distribution
+```
+
+```
+$family
+[1] "exponential"
+
+$mean
+[1] 7
+
+$is.symmetric
+[1] FALSE
+```
+
+```r
+my.distribution[["family"]]
+```
+
+```
+[1] "exponential"
+```
+
+```r
+my.distribution["family"]
+```
+
+```
+$family
+[1] "exponential"
+```
+
+
+===
+
+Lists have a special short-cut way of using names, `$` (which removes names and structures):
+
+```r
+my.distribution[["family"]]
+```
+
+```
+[1] "exponential"
+```
+
+```r
+my.distribution$family
+```
+
+```
+[1] "exponential"
+```
+
+Names in lists (cont'd.)
+===
+Creating a list with names:
+
+```r
+another.distribution <- list(family="gaussian",mean=7,sd=1,is.symmetric=TRUE)
+```
+
+Adding named elements:
+
+```r
+my.distribution$was.estimated <- FALSE
+my.distribution[["last.updated"]] <- "2011-08-30"
+```
+
+Removing a named list element, by assigning it the value `NULL`:
+
+```r
+my.distribution$was.estimated <- NULL
+```
+
+Key-Value pairs
+===
+Lists give us a way to store and look up data by _name_, rather than by _position_
+
+A really useful programming concept with many names: **key-value pairs**, **dictionaries**, **associative arrays**, **hashes**
+
+If all our distributions have components named `family`, we can look that up by name, without caring where it is in the list
+
+Dataframes
+===
+Dataframe = the classic data table, $n$ rows for cases, $p$ columns for variables
+
+Lots of the really-statistical parts of R presume data frames
+<small>`penn` from last time was really a dataframe</small>
+
+Not just a matrix because *columns can have different types*
+
+Many matrix functions also work for dataframes (`rowSums()`, `summary()`, `apply()`)
+
+<small>but no matrix multiplying dataframes, even if all columns are numeric</small>
+
+===
+
+```r
+a.matrix <- matrix(c(35,8,10,4),nrow=2)
+colnames(a.matrix) <- c("v1","v2")
+a.matrix
+```
+
+```
+     v1 v2
+[1,] 35 10
+[2,]  8  4
+```
+
+```r
+a.matrix[,"v1"]  # Try a.matrix$v1 and see what happens
+```
+
+```
+[1] 35  8
+```
+
+===
+
+```r
+a.data.frame <- data.frame(a.matrix,logicals=c(TRUE,FALSE))
+a.data.frame
+```
+
+```
+  v1 v2 logicals
+1 35 10     TRUE
+2  8  4    FALSE
+```
+
+```r
+a.data.frame$v1
+```
+
+```
+[1] 35  8
+```
+
+```r
+a.data.frame[,"v1"]
+```
+
+```
+[1] 35  8
+```
+
+```r
+a.data.frame[1,]
+```
+
+```
+  v1 v2 logicals
+1 35 10     TRUE
+```
+
+```r
+colMeans(a.data.frame)
+```
+
+```
+      v1       v2 logicals 
+    21.5      7.0      0.5 
+```
+
+Adding rows and columns
+===
+We can add rows or columns to an array or data-frame with `rbind()` and `cbind()`, but be careful about forced type conversions
+
+```r
+rbind(a.data.frame,list(v1=-3,v2=-5,logicals=TRUE))
+```
+
+```
+  v1 v2 logicals
+1 35 10     TRUE
+2  8  4    FALSE
+3 -3 -5     TRUE
+```
+
+```r
+rbind(a.data.frame,c(3,4,6))
+```
+
+```
+  v1 v2 logicals
+1 35 10        1
+2  8  4        0
+3  3  4        6
+```
+
+Structures of Structures
+===
+So far, every list element has been a single data value
+
+List elements can be other data structures, e.g., vectors and matrices:
+
+```r
+plan <- list(factory=factory, available=available, output=output)
+plan$output
+```
+
+```
+  cars trucks 
+    20     10 
+```
+
+Internally, a dataframe is basically a list of vectors
+
+Structures of Structures (cont'd.)
+===
+List elements can even be other lists
+which may contain other data structures
+including other lists
+which may contain other data structures...
+
+This **recursion** lets us build arbitrarily complicated data structures from the basic ones
+
+Most complicated objects are (usually) lists of data structures
+
+
+
+Take-Aways
+===
+- Write programs by composing functions to manipulate data
+- The basic data types let us represent Booleans, numbers, and characters
+- Data structures let us group related values together
+- Vectors let us group values of the same type
+- Use variable assignment and name components of structures to make data more meaningful
+- Matrices act like you'd hope they would
+- Lists let us combine different types of data
+- Dataframes are hybrids of matrices and lists, for classic tabular data
+
+
+
+
+
+
+
+
+
+

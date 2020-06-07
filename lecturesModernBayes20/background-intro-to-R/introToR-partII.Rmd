@@ -1,0 +1,125 @@
+---
+title: 'Introduction to R, Part II'
+author: "Rebecca C. Steorts, STA 360"
+output: pdf_document
+---
+
+Agenda
+=======
+- Data Structures
+- Vectors
+
+Data Structure
+===
+
+A **data structure** is group related data values that are stored in one object. 
+
+An example of a **data structure** is a **vector**, which is a sequence of values (all of the same type). 
+
+Vectors
+===
+
+```{r}
+x <- c(7, 8, 10, 45)
+```
+
+`c()` function returns a vector containing all its arguments in order
+
+`x[1]` is the first element, `x[3]` is the 3rd element
+`x[-3]` is a vector containing all but the 3rd element
+
+Exercise: What does x[-c(2:3)] return?
+
+`vector(length=6)` returns an empty vector of length 6; helpful for filling things up later
+
+
+Exercise on Vectors
+===
+```{r}
+weekly.hours <- vector(length=5)
+weekly.hours[5] <- 8
+weekly.hours
+```
+
+
+Operators apply to vectors "pairwise" or "elementwise":
+```{r}
+y <- c(-7, -8, -10, -45)
+x+y
+x*y
+```
+
+
+Can also do pairwise comparisons:
+```{r}
+x > 9
+```
+Note: returns Boolean vector
+
+
+
+
+Boolean operators work elementwise:
+```{r}
+(x > 9) & (x < 20)
+```
+
+Functions on vectors
+===
+Many functions take vectors as arguments:
+
+- `mean()`, `median()`, `sd()`, `var()`, `max()`, `min()`, `length()`, `sum()`: return single numbers
+- `sort()` returns a new vector
+- `hist()` takes a vector of numbers and produces a histogram, a highly structured object, with the side-effect of making a plot
+- Similarly `ecdf()` produces a cumulative-density-function object
+- `summary()` gives a five-number summary of numerical vectors
+- `any()` and `all()` are useful on Boolean vectors
+
+Addressing vectors
+===
+
+Vector of indices:
+```{r}
+x[c(2,4)]
+```
+
+Vector of negative indices
+```{r}
+x[c(-1,-3)]
+```
+<small>(why that, and not  `7 10`?)</small>
+
+
+Boolean vector:
+```{r}
+x[x>9]
+y[x>9]
+```
+
+
+`which()` turns a Boolean vector in vector of TRUE indices:
+```{r}
+x
+y
+places <- which(x > 9)
+places
+y[places]
+```
+
+Named components
+===
+
+You can give names to elements or components of vectors
+```{r}
+names(x) <- c("v1","v2","v3","fred")
+names(x)
+x[c("fred","v1")]
+```
+note the labels is what R prints; not actually part of the value
+
+`names(x)` is just another vector (of characters):
+```{r}
+names(y) <- names(x)
+sort(names(x))
+which(names(x)=="fred")
+```

@@ -1,0 +1,89 @@
+---
+title: 'Introduction to R, Part III'
+author: "Rebecca C. Steorts, STA 360"
+output: pdf_document
+---
+
+Agenda
+=======
+- Example of housing in PA
+- Review of linear models
+- Using variables and names versus hard coding
+
+
+Example: Price of houses in PA
+===
+Census data for California and Pennsylvania on housing prices,
+by Census "tract"
+
+```{r}
+# read in data
+calif_penn <-
+  read.csv("http://www2.stat.duke.edu/~rcs46/modern_bayes17/data/calif_penn_2011.csv")
+# inspect the variables associated with this dataset
+names(calif_penn)
+# STATEFP is the FIPS code, where there is one for each state. 42 belongs to PA.
+# 6 corresponds to CA. 
+# https://en.wikipedia.org/wiki/Federal_Information_Processing_Standard_state_code#FIPS_state_codes
+penn <- calif_penn[calif_penn[,"STATEFP"]==42,]
+# fitting a simple linear model 
+coefficients(lm(Median_house_value ~ Median_household_income, data=penn))
+summary(lm(Median_house_value ~ Median_household_income, data=penn))
+```
+
+
+Goal: fit a simple linear model, and predict the median house price (y) from median household income (x). Before doing this, 
+let's investigate the census tracts that correspond to Allegheny county (24---425).
+
+Tract 24 has a median income of \$14,719; actual median house value is \$34,100 --- is that above or below the observed median?
+```{r}
+34100 < -26206.564 + 3.651*14719
+```
+
+Tract 25 has income \$48,102 and house price \$155,900
+```{r}
+155900 < -26206.564 + 3.651*48102
+```
+
+What about tract 26?
+
+We _could_ just keep plugging in numbers like this, but that's
+
+- boring and repetitive
+- error-prone
+- confusing (what _are_ these numbers?)
+
+Using variables and names
+===
+```{r}
+penn.coefs <- coefficients(lm(Median_house_value ~ Median_household_income, data=penn))
+penn.coefs
+```
+
+```{r}
+allegheny.rows <- 24:425
+allegheny.medinc <- penn[allegheny.rows,"Median_household_income"]
+allegheny.values <- penn[allegheny.rows,"Median_house_value"]
+allegheny.fitted <- penn.coefs["(Intercept)"]+
+  penn.coefs["Median_household_income"]*allegheny.medinc
+```
+
+Actual median house values versus Predicted Median House Values 
+===
+```{r}
+plot(x=allegheny.fitted, y=allegheny.values,
+     xlab="Model-predicted median house values",
+     ylab="Actual median house values",
+     xlim=c(0,5e5),ylim=c(0,5e5))
+abline(a=0,b=1,col="grey")
+```
+
+Summary
+===
+
+- We have reviewed simple linear models. 
+- We used variable and naming schemes.
+- We reviewed how to plot. 
+- We have looked at a real application from the Census in the state of PA, where we avoided
+hard coding for easy automation. 
+

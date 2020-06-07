@@ -1,0 +1,203 @@
+% Custom definitions
+% To use this customization file, insert the line "\input{custom}" in the header of the tex file.
+
+% Formatting
+
+\pagenumbering{arabic} 
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[page number]
+
+\usepackage{bbm}
+% Packages
+\usepackage{amssymb,amsfonts,amsmath,latexsym,amsthm}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[]{graphicx}
+%\usepackage[space]{grffile}
+\usepackage{mathrsfs} 
+ \usepackage{amssymb,latexsym}
+\usepackage{amssymb,amsfonts,amsmath,latexsym,amsthm, bm}
+%\usepackage[usenames,dvipsnames]{color}
+%\usepackage[]{graphicx}
+%\usepackage[space]{grffile}
+\usepackage{mathrsfs}   % fancy math font
+% \usepackage[font=small,skip=0pt]{caption}
+%\usepackage[skip=0pt]{caption}
+%\usepackage{subcaption}
+%\usepackage{verbatim}
+%\usepackage{url}
+%\usepackage{bm}
+\usepackage{dsfont}
+\usepackage{multirow}
+\newcommand{\lam}{\lambda}
+%\newcommand{\bmu}{\bm{\mu}}
+
+
+
+
+% Document-specific shortcuts
+\newcommand{\btheta}{{\bm\theta}}
+\newcommand{\bbtheta}{{\pmb{\bm\theta}}}
+
+\newcommand{\commentary}[1]{\ifx\showcommentary\undefined\else \emph{#1}\fi}
+
+\newcommand{\term}[1]{\textit{\textbf{#1}}}
+
+% Math shortcuts
+
+% Probability distributions
+\DeclareMathOperator*{\Exp}{Exp}
+\DeclareMathOperator*{\TExp}{TExp}
+\DeclareMathOperator*{\Bernoulli}{Bernoulli}
+\DeclareMathOperator*{\Beta}{Beta}
+\DeclareMathOperator*{\Ga}{Gamma}
+\DeclareMathOperator*{\TGamma}{TGamma}
+\DeclareMathOperator*{\Poisson}{Poisson}
+\DeclareMathOperator*{\Binomial}{Binomial}
+\DeclareMathOperator*{\NormalGamma}{NormalGamma}
+\DeclareMathOperator*{\InvGamma}{InvGamma}
+\DeclareMathOperator*{\Cauchy}{Cauchy}
+\DeclareMathOperator*{\Uniform}{Uniform}
+\DeclareMathOperator*{\Gumbel}{Gumbel}
+\DeclareMathOperator*{\Pareto}{Pareto}
+\DeclareMathOperator*{\Mono}{Mono}
+\DeclareMathOperator*{\Geometric}{Geometric}
+\DeclareMathOperator*{\Wishart}{Wishart}
+
+% Math operators
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\Cov}{Cov}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\median}{median}
+\DeclareMathOperator*{\Vol}{Vol}
+
+% Math characters
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\Pr}{\mathbb{P}}
+\newcommand{\I}{\mathds{1}}
+\newcommand{\V}{\mathbb{V}}
+
+\newcommand{\A}{\mathcal{A}}
+%\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Zcal}{\mathcal{Z}}
+\renewcommand{\P}{\mathcal{P}}
+
+\newcommand{\T}{\mathtt{T}}
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\bmu}{\bm{\mu}}
+\newcommand{\bX}   {\bm{X}}
+\newcommand{\bx}   {\bm{x}}
+\newcommand{\sig}   {\Sigma}
+%\newcommand{\bx}{\ensuremath{\mathbf{X}}}
+%\newcommand{\X}{\ensuremath{\mathbf{x}}}
+%\newcommand{\w}{\ensuremath{\mathbf{w}}}
+%\newcommand{\h}{\ensuremath{\mathbf{h}}}
+%\newcommand{\V}{\ensuremath{\mathbf{v}}}
+%\newcommand{\cov}{\text{Cov}}
+\newcommand{\var}{\text{Var}}
+
+
+% Miscellaneous commands
+\newcommand{\iid}{\stackrel{\mathrm{iid}}{\sim}}
+\newcommand{\matrixsmall}[1]{\bigl(\begin{smallmatrix}#1\end{smallmatrix} \bigr)}
+
+\newcommand{\items}[1]{\begin{itemize} #1 \end{itemize}}
+
+\newcommand{\todo}[1]{\emph{\textcolor{red}{(#1)}}}
+
+\newcommand{\branch}[4]{
+\left\{
+	\begin{array}{ll}
+		#1  & \mbox{if } #2 \\
+		#3 & \mbox{if } #4
+	\end{array}
+\right.
+}
+
+% approximately proportional to
+\def\app#1#2{%
+  \mathrel{%
+    \setbox0=\hbox{$#1\sim$}%
+    \setbox2=\hbox{%
+      \rlap{\hbox{$#1\propto$}}%
+      \lower1.3\ht0\box0%
+    }%
+    \raise0.25\ht2\box2%
+  }%
+}
+\def\approxprop{\mathpalette\app\relax}
+
+
+\definecolor{dbrown}{rgb}{0.59, 0.29, 0.0}
+\definecolor{bbrown}{rgb}{0.54, 0.2, 0.14}
+
+% \newcommand{\approptoinn}[2]{\mathrel{\vcenter{
+  % \offinterlineskip\halign{\hfil$##$\cr
+    % #1\propto\cr\noalign{\kern2pt}#1\sim\cr\noalign{\kern-2pt}}}}}
+
+% \newcommand{\approxpropto}{\mathpalette\approptoinn\relax}
+
+\newcommand{\tth}   {\mbox{$\theta$}}
+\newcommand{\thh}   {\mbox{$\theta$}}
+\newcommand{\su}   {\mbox{$\sigma^2$}}
+\newcommand{\so}   {\mbox{$\sigma_0^2$}}
+\newcommand{\ko}   {\mbox{$\kappa_0$}}
+\newcommand{\no}   {\mbox{$\nu_0$}}
+\newcommand{\mo}   {\mbox{$\mu_0$}}
+\newcommand{\ti}   {\mbox{$\tilde{x}$}}
+\newcommand{\la}   {\mbox{$\lambda$}}
+\newcommand{\bZ}   {\mbox{$\bm{Z}$}}
+\newcommand{\bY}   {\mbox{$\bm{Y}$}}
+\newcommand{\bA}   {\mbox{$\bm{A}$}}
+\newcommand{\ba}   {\mbox{$\bm{a}$}}
+\newcommand{\bb}   {\mbox{$\bm{b}$}}
+\newcommand{\bt}   {\mbox{$\bm{t}$}}
+\newcommand{\bz}   {\mbox{$\bm{z}$}}
+\newcommand{\bw}   {\mbox{$\bm{w}$}}
+\newcommand{\bbeta}   {\mbox{$\bm{\beta}$}}
+
+\newcommand{\be}   {\mbox{$\bm{e}$}}
+\newcommand{\bu}   {\mbox{$\bm{u}$}}
+\newcommand{\bv}   {\mbox{$\bm{v}$}}
+\newcommand{\sigx}   {\mbox{$\Sigma_{XX}$}}
+\newcommand{\sigxy}   {\mbox{$\Sigma_{XY}$}}
+\newcommand{\tr}   {\mbox{$\text{tr}$}}
+\newcommand{\ddet}   {\mbox{$\text{det}$}}
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\newcommand{\bya} {\bm{Y_1}}
+\newcommand{\byk} {\bm{Y_K}}
+\newcommand{\bxa} {\bm{X_1}}
+\newcommand{\bxp} {\bm{X_p}}
+
+\newcommand{\bxi} {\bm{x_i}}
+%\newcommand{\bX} {\bm{X}}
+\newcommand{\bmk} {\bm{\mu_k}}
+\newcommand{\bmka} {\bm{\mu_{k_1}}}
+\newcommand{\bmkb} {\bm{\mu_{k_2}}}
+%\newcommand{\ba} {\bm{a}}
+\newcommand{\baa} {\bm{a_1}}
+\newcommand{\bak} {\bm{a_k}}
+\newcommand{\bab} {\bm{a_2}}
+\newcommand{\bxpp} {\bm{x^{''}}}
+\newcommand{\bxap} {\bm{x_1^{'}}}
+\newcommand{\bxbp} {\bm{x_2^{'}}}
+\newcommand{\bxapp} {\bm{x_1^{''}}}
+\newcommand{\bxbpp} {\bm{x_2^{''}}}
+\newcommand{\bxkpp} {\bm{x_k^{''}}}
+\newcommand{\bmkh} {\bm{\hat{\mu_k}}}
+\def\hbeta{\hat{\beta}}
+
+
+
+
+
+
+

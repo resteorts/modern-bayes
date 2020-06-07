@@ -1,0 +1,183 @@
+---
+title: 'Introduction to R, Part V'
+author: "Rebecca C. Steorts, STA 360"
+output: pdf_document
+---
+
+Agenda
+=======
+- Lists
+- Dataframes
+
+
+Lists
+====
+Sequence of values, _not_ necessarily all of the same type
+
+```{r}
+my.distribution <- list("exponential",7,FALSE)
+my.distribution
+```
+
+Most of what you can do with vectors you can also do with lists
+
+Accessing pieces of lists
+===
+Can use `[ ]` as with vectors
+or use `[[ ]]`, but only with a single index
+`[[ ]]` drops names and structures, `[ ]` does not
+```{r}
+is.character(my.distribution)
+is.character(my.distribution[[1]])
+my.distribution[[2]]^2
+```
+<small>What happens if you try `my.distribution[2]^2`?</small>
+<small>What happens if you try `[[ ]]` on a vector?</small>
+
+Expanding and contracting lists
+===
+Add to lists with `c()` (also works with vectors):
+```{r}
+my.distribution <- c(my.distribution,7)
+my.distribution
+```
+
+
+Chop off the end of a list by setting the length to something smaller (also works with vectors):
+```{r}
+length(my.distribution)
+length(my.distribution) <- 3
+my.distribution
+```
+
+Naming list elements
+===
+We can name some or all of the elements of a list
+```{r}
+names(my.distribution) <- c("family","mean","is.symmetric")
+my.distribution
+my.distribution[["family"]]
+my.distribution["family"]
+```
+
+
+Lists have a special short-cut way of using names, `$` (which removes names and structures):
+```{r}
+my.distribution[["family"]]
+my.distribution$family
+```
+
+Names in lists (cont'd.)
+===
+Creating a list with names:
+```{r}
+another.distribution <- list(family="gaussian",mean=7,sd=1,is.symmetric=TRUE)
+```
+
+Adding named elements:
+```{r}
+my.distribution$was.estimated <- FALSE
+my.distribution[["last.updated"]] <- "2011-08-30"
+```
+
+Removing a named list element, by assigning it the value `NULL`:
+```{r}
+my.distribution$was.estimated <- NULL
+```
+
+Key-Value pairs
+===
+Lists give us a way to store and look up data by _name_, rather than by _position_
+
+A really useful programming concept with many names: **key-value pairs**, **dictionaries**, **associative arrays**, **hashes**
+
+If all our distributions have components named `family`, we can look that up by name, without caring where it is in the list
+
+Dataframes
+===
+Dataframe = the classic data table, $n$ rows for cases, $p$ columns for variables
+
+Lots of the really-statistical parts of R presume data frames
+<small>`penn` from last time was really a dataframe</small>
+
+Not just a matrix because *columns can have different types*
+
+Many matrix functions also work for dataframes (`rowSums()`, `summary()`, `apply()`)
+
+<small>but no matrix multiplying dataframes, even if all columns are numeric</small>
+
+
+```{r}
+a.matrix <- matrix(c(35,8,10,4),nrow=2)
+colnames(a.matrix) <- c("v1","v2")
+a.matrix
+a.matrix[,"v1"]  # Try a.matrix$v1 and see what happens
+```
+
+
+```{r}
+a.data.frame <- data.frame(a.matrix,logicals=c(TRUE,FALSE))
+a.data.frame
+a.data.frame$v1
+a.data.frame[,"v1"]
+a.data.frame[1,]
+colMeans(a.data.frame)
+```
+
+Adding rows and columns
+===
+We can add rows or columns to an array or data-frame with `rbind()` and `cbind()`, but be careful about forced type conversions
+```{r}
+rbind(a.data.frame,list(v1=-3,v2=-5,logicals=TRUE))
+# Take care here as the command below is changing the dataframe! 
+rbind(a.data.frame,c(3,4,6))
+```
+
+Back to the Factory Example 
+===
+Recall from the last module, we had an example with a factory, where
+a factory makes cars and trucks, using labor and steel
+
+- a car takes 40 hours of labor and 1 ton of steel
+- a truck takes 60 hours and 3 tons of steel
+- resources: 1600 hours of labor and 70 tons of steel each week
+
+```{r}
+factory <- matrix(c(40,1,60,3),nrow=2)
+output <- c(10,20)
+available <- c(1600,70)
+```
+
+Structures of Structures
+===
+So far, every list element has been a single data value
+
+List elements can be other data structures, e.g., vectors and matrices:
+```{r}
+plan <- list(factory=factory, available=available, output=output)
+plan$output
+```
+
+Structures of Structures (cont'd.)
+===
+List elements can even be other lists
+which may contain other data structures
+including other lists
+which may contain other data structures...
+
+This **recursion** lets us build arbitrarily complicated data structures from the basic ones
+
+Most complicated objects are (usually) lists of data structures
+
+
+
+Take-Aways
+===
+- Write programs by composing functions to manipulate data
+- The basic data types let us represent Booleans, numbers, and characters
+- Data structures let us group related values together
+- Vectors let us group values of the same type
+- Use variable assignment and name components of structures to make data more meaningful
+- Matrices act like you'd hope they would
+- Lists let us combine different types of data
+- Dataframes are hybrids of matrices and lists, for classic tabular data

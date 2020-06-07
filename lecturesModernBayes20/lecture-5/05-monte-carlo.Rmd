@@ -1,0 +1,697 @@
+
+---
+title: "Module 5: Introduction to Monte Carlo"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+
+Agenda
+===
+- Motivation
+- Numerical Integration
+- Monte Carlo (The Naive Method)
+- Importance Sampling
+- Rejection Sampling
+
+Intractable Integrals
+===
+Goal: approximate
+$$\textcolor{red}{\int_X h(x) f(x)\; dx}$$ that is intractable, where $f(x)$ is a probability density. 
+
+
+- What's the problem? Typically $h(x)$ is messy! 
+- Why not use numerical integration techniques? 
+- In dimension $d=3$ or higher, Monte carlo really improves upon numerical integration. 
+
+Numerical Integration
+===
+\begin{itemize}
+\item The most serious problem is the so-called ``curse of dimensionality.''  
+
+\item Suppose we have a $d$-dimensional integral.  
+\item Numerical integration typically entails evaluating the integrand over some grid of points.  
+\item However, if $d$ is even moderately large, then any reasonably fine grid will contain an impractically large number of points.  
+\end{itemize}
+
+Numerical integration
+===
+\begin{itemize}
+\item Let $d=6$. Then a grid with just ten points in each dimension will consist of $10^6$ points.  
+\item If $d=50$, then even an absurdly coarse grid with just \emph{two} points in each dimension will consist of $2^{50}$ points (note that $2^{50}>10^{15}$).
+\end{itemize}
+
+What's happening here?
+
+Numerical integration error rates (big Ohh concepts)
+===
+
+- If $d=1$ and we assume crude numerical integration based on a grid size $n$, then we typically get an error of order $n^{-1}.$
+
+- For most dimensions $d,$ estimates based on numerical integrations required $m^d$ evaluations to achieve an error of $m^{-1}.$
+
+
+- Said differently, with $n$ evaluations, you get an error of order $n^{-1/d}.$
+
+- But, the Monte Carlo estimate retains an error rate of $n^{-1/2}.$
+(The constant in this error rate may be quite large).
+
+Classical Monte Carlo Integration
+===
+The generic problem here is to evaluate 
+$$\textcolor{red}{E_f[h(x)] = \int_X h(x) f(x) \; dx.}$$
+\vskip 1em
+The classical way to solve this is generate a sample $(X_1,\ldots,X_n)$ from $f.$ 
+\vskip 1 em
+Now propose as an approximation the empirical average:
+$$\bar{h}_n = \frac{1}{n}\sum_{j=n}^n h(x_j).$$ 
+\vskip 1 em
+Why?  $\bar{h}_n$ converges a.s.\ (i.e.\ for almost every generated sequence) to $E_f[h(X)]$ by the Strong Law of Large Numbers.
+
+Monte Carlo (continued)
+===
+Also, under certain assumptions\footnote{see Casella and Robert, page 65, for details}, the asymptotic variance can be approximated and then can be estimated from the sample $(X_1,\ldots,X_n)$ by 
+$$v_n = \textcolor{red}{1/n^2} \sum_{j=1}^n [h(x_j) - \bar{h}_n]^2.$$ Finally, by the CLT (for large $n$), 
+$$\frac{\bar{h}_n - E_f[h(X)]}{\sqrt v_n} \;\stackrel{\text{approx.}}{\sim}\; N(0,1).$$
+
+(Technically, it converges in distribution). 
+
+Root Mean Squared Error (RMSE)
+===
+\textcolor{red}{Assume that $X_i$ are iid observations.}
+
+Due to unbiasedness, the root-mean-squared-error (RMSE) equals the standard deviation (square root of the variance) of $\tfrac{1}{N}\sum X_i$,
+\begin{align}
+\text{RMSE} &= \Big[\E\big(|\tfrac{1}{N}\textstyle\sum X_i - \E X|^2\big)\Big]^{1/2}\notag\\
+& = \Big[\V\big(\tfrac{1}{N}\textstyle\sum X_i\big)\Big]^{1/2}\notag\\
+&= \frac{1}{\sqrt N}\V(X)^{1/2}= \sigma(X)/{\sqrt N}.\label{equation:RMSE}
+\end{align}
+
+The RMSE tells us how far the approximation will be from the true value, on average. 
+
+As a practical matter, we need to be able to draw the samples $X_i$ in a computationally-efficient way. 
+
+Return of IQ Scores
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[trim=0 0.75cm 0 0, clip, width=1\textwidth]{code/pygmalion-MC.png}
+    % Source: Original work by J. W. Miller.
+  \end{center}
+  \caption{Monte Carlo approximations for an increasing number of samples, $N$. The red, blue, and green lines indicate three repetitions of the procedure, using different sequences of samples.  The dotted lines indicate the true value $\pm$ the RMSE of the Monte Carlo estimator.}
+  \label{figure:pygmalion-MC}
+\end{figure}
+
+Return of IQ Scores
+===
+In Module 4, we saw an example involving the mean change in IQ score $\mu_S$ and $\mu_C$ of two groups of students (spurters and controls). 
+To compute the posterior probability that the spurters had a larger mean change in IQ score, we drew $N=10^6$ samples from each posterior:
+\begin{align*}
+&(\bm\mu_S^{(1)},\bm\lambda_S^{(1)}),\dotsc,(\bm\mu_S^{(N)},\bm\lambda_S^{(N)})\sim \NormalGamma(24.0,8,4,855.0)\\
+&(\bm\mu_C^{(1)},\bm\lambda_C^{(1)}),\dotsc,(\bm\mu_C^{(N)},\bm\lambda_C^{(N)})\sim\NormalGamma(11.8,49,24.5,6344.0)
+\end{align*}
+and used the Monte Carlo approximation
+\begin{align*}
+\Pr(\bm\mu_S > \bm\mu_C \mid \text{data}) 
+\approx \frac{1}{N} \sum_{i = 1}^N \I\big(\bm\mu_S^{(i)}>\bm\mu_C^{(i)}\big).
+\end{align*}
+
+Return of IQ Scores
+===
+- To visualize this, consider the sequence of approximations $\frac{1}{N} \sum_{i = 1}^N \I\big(\bm\mu_S^{(i)}>\bm\mu_C^{(i)}\big)$ for $N=1,2,\dotsc$. 
+
+- Figure \ref{figure:pygmalion-MC} shows this sequence of approximations for three different sets of random samples from the posterior.  
+
+- We can see that as the number of samples used in the approximation grows, it appears to be converging to around \textcolor{red}{0.97}.
+
+
+To visualize the theoretical rate of convergence, the figure also shows bands indicating the true value $\alpha = \Pr(\bm\mu_S > \bm\mu_C \mid \text{data})=??$ plus or minus the RMSE of the Monte Carlo estimator, that is, from Equation \ref{equation:RMSE}:
+\begin{align*}
+\alpha \pm \sigma(X)/\sqrt{N} &= ??
+\end{align*}
+Simpify this as much as possible for an ungraded exercise (exam II).
+
+Solution to the ungraded exercise
+===
+\textcolor{red}{
+\begin{align*}
+\alpha \pm \sigma(X)/\sqrt{N} &= \alpha \pm \sqrt{\alpha(1-\alpha)/N}\\
+&= 0.97 \pm \sqrt{0.97(1-0.97)/N}
+\end{align*}
+where $X$ has the posterior distribution of $\I(\bm\mu_S>\bm\mu_C)$ given the data, in other words, $X$ is a $\Bernoulli(\alpha)$ random variable. 
+Recall that the variance of a $\Bernoulli(\alpha)$ random variable is $\alpha(1-\alpha)$.
+}
+
+Return of IQ Scores
+===
+Using the same approach, we could easily approximate any number of other posterior quantities as well, for example,
+\begin{align*}
+\Pr\big(\bm\lambda_S>\bm\lambda_C \,\big\vert\, \text{data}\big) 
+&\approx \frac{1}{N}\sum_{i = 1}^N \I\big(\bm\lambda_S^{(i)}>\bm\lambda_C^{(i)}\big)\\
+\E\big(|\bm\mu_S-\bm\mu_C| \,\big\vert\, \text{data}\big) 
+&\approx \frac{1}{N}\sum_{i = 1}^N |\bm\mu_S^{(i)}-\bm\mu_C^{(i)}|\\
+\E\big(\bm\mu_S/\bm\mu_C \,\big\vert\, \text{data}\big) 
+&\approx \frac{1}{N}\sum_{i = 1}^N \bm\mu_S^{(i)}/\bm\mu_C^{(i)}.
+\end{align*}
+
+
+Importance Sampling
+===
+Recall that we have a difficult, problem child of a function $h(x)!$
+
+\begin{itemize}
+\item Generate samples from a distribution $g(x).$
+\item We then "re-weight" the output.
+\end{itemize}
+
+\vskip 1em
+Note: $g$ is chosen to give greater mass to regions where $h$ is large (the important part of the space).
+\vskip 1em
+This is called \emph{importance sampling.}
+
+Importance Sampling
+===
+Let $g$ be an arbitrary density function and then we can write 
+\begin{align}
+\label{is}
+I = E_f[h(x)] = \int_X h(x) \frac{f(x)}{g(x)} {g(x)}\; dx = 
+E_g\left[\frac{h(x)f(x)}{g(x)}\right].
+\end{align}
+
+This is estimated by
+\begin{align}
+\label{is2}
+\hat{I} = 
+\frac{1}{n} \sum_{j=1}^n \frac{f(X_j)}{g(X_j)}
+h(X_j) \longrightarrow  
+E_f[h(X)]
+\end{align}
+based on a sample generated from $g$ (not $f$). Since (\ref{is}) can be written as an expectation under $g$, (\ref{is2}) converges to (\ref{is}) for the same reason the Monte carlo estimator $\bar{h}_n$ converges.
+
+The Variance
+===
+
+\begin{align}
+Var(\hat{I}) &= \dfrac{1}{n^2}\sum_i Var\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right)\\
+&=\dfrac{1}{n}Var\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right)  \implies \\
+\widehat{Var}(\hat{I}) &= 
+\dfrac{1}{n}\widehat{Var}\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right).
+\end{align}
+
+Simple Example
+===
+Suppose we want to estimate $P(X>5),$ where $X \sim N(0,1).$ 
+
+\vskip 1 em
+\textbf{Naive method (Monte carlo)}: 
+\begin{itemize}
+\item Generate $X_1 \ldots X_n \stackrel{iid}{\sim} N(0,1)$
+\item Take the proportion $\hat{p} = \bar{X} > 5$ as your estimate
+\end{itemize}
+
+\textbf{Importance sampling method}:
+\begin{itemize} 
+\item Sample from a distribution that gives high probability to the ``important region" (the set $(5, \infty)$).
+\item Do re-weighting.
+\end{itemize}
+
+Importance Sampling Solution
+===
+ Let $f = \phi_o$ and $g = \phi_{\theta}$ be the densities of the $N(0,1)$ and $N(\theta,1)$ distributions ($\theta$ taken around 5 will work). Then
+\begin{align} p &= \int I(u > 5) \phi_o(u)\; du \\
+ &= 
+\int \left[ I(u > 5) \frac{\phi_o(u)}{\phi_{\theta}(u)}
+\right]
+\phi_{\theta}(u)
+\; du.
+\end{align}
+In other words, if 
+$$ h(u) = I(u>5)\frac{\phi_o(u)}{\phi_{\theta}(u)}$$
+then $p = E_{\phi_{\theta}}[h(X)].$
+\vskip 1em
+If
+$X_1, \ldots, X_n \sim N(\theta, 1),$ then an unbiased estimate is 
+$\hat{p} = \frac{1}{n} \sum_i  h(X_i).$
+
+Naive Method (Monte Carlo) Solution
+===
+```{r}
+1 - pnorm(5)                  # gives 2.866516e-07
+## Naive method (Monte Carlo)
+set.seed(1)
+mySample <- 100000
+x <- rnorm(n=mySample)
+# pHat is a bernoulli proportion
+pHat <- sum(x>5)/length(x)
+# to calculate the variance, 
+# use p(1-p)/number of trials
+sdPHat <- sqrt(pHat*(1-pHat)/length(x)) # gives 0
+```
+
+IS Solution
+===
+```{r}
+set.seed(1)
+y <- rnorm(n=mySample, mean=5)
+h <- dnorm(y, mean=0)/dnorm(y, mean=5) * I(y>5)
+mean(h)                       # gives 2.865596e-07
+sd(h)/sqrt(length(h))         # gives 2.157211e-09
+```
+What is the difference between the naive (monte carlo) and the IS solution?
+
+Question
+===
+Is there some special choice regarding our importance region? 
+
+What happens when we look at the region $u>100$?
+
+```{r}
+set.seed(1)
+y <- rnorm(n=mySample, mean=100)
+h <- dnorm(y, mean=0)/dnorm(y, mean=100) * I(y>100)
+(mean(h))                       
+# versus 2.865596e-07 (u>5)
+(sd(h)/sqrt(length(h)))        
+# versus 2.157211e-09 (u>5)
+```
+
+Importance Sampling Reference
+===
+
+For more reading on importance sampling, see the following reference:
+\url{https://www.amazon.com/Monte-Statistical-Methods-Springer-Statistics/dp/1441919392}. 
+
+This book also covers Monte carlo and Markov chain monte carlo methods extensively, so you may
+find this as a useful reference. 
+
+
+Rejection Sampling
+===
+Rejection sampling is a method for drawing random samples from a distribution whose p.d.f.  can be evaluated up to a constant of proportionality. 
+
+\vskip 1 em
+Compared with the inverse c.d.f.  method, rejection sampling has the advantage of working on complicated multivariate distributions. (see homework)
+
+\vskip 1 em
+
+Difficulties? You must design a good proposal distribution (which can be difficult, especially in high-dimensional settings).
+
+Uniform Sampler
+===
+Goal: Generate samples from Uniform(A), where A is complicated. 
+
+- $X \sim  Uniform(Mandelbrot).$
+- Consider $I_{X(A)}.$
+
+The Mandelbrot
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.45\textwidth]{figures/madel}
+%    \hspace{0.05\textwidth}
+%    \includegraphics[width=0.45\textwidth]{code/reject-w-samples.png}
+%    % Source: Original work by Jeffrey W. Miller
+%    % Date: 2/1/2014
+  \end{center}
+  \caption{A complicated function $A,$ called the Mandelbrot!}
+%  \label{figure:reject}
+\end{figure}
+
+
+
+Exercise
+===
+\begin{itemize}
+\item Suppose $A \subset B.$ 
+\item Let $Y_1,Y_2,\ldots \sim$ Uniform(B) iid and
+\item  $X = Y_k$
+where $k= \min \{k: Y_k \in A\},$ 
+\end{itemize}
+Then it follows that
+$$X \sim \text{Uniform}(A).$$
+
+Proof: Exercise. Hint: Try the discrete case first and use a geometric series. 
+
+Drawing Uniform Samples
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.45\textwidth]{code/reject-wo-samples.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{code/reject-w-samples.png}
+    % Source: Original work by Jeffrey W. Miller
+    % Date: 2/1/2014
+  \end{center}
+  \caption{(Left) How to draw uniform samples from region $A$? (Right) Draw uniform samples from $B$ and keep only those that are in $A$.}
+  \label{figure:reject}
+\end{figure}
+
+General Rejection Sampling Algorithm
+===
+Goal: Sample from a \textcolor{red}{complicated pdf $f(x).$}
+\vskip 1 em
+Suppose that $$\textcolor{red}{f(x)} = \tilde{f}(x)/\alpha, \alpha>0$$.
+
+Assumption: $f$ is difficult to evaluate, $\tilde{f}$ is easy! 
+
+Suppose the density $g$ is such that for some known constant $M,$ 
+$$Mg(x) \geq \ell(x)$$ for all $x.$
+
+Procedure:
+\begin{enumerate}
+\item Choose a \textcolor{blue}{proposal distribution $q$} such that $c>0$ with 
+$$c \textcolor{blue}{q(x)} \geq \tilde{f}(x).$$
+\item Sample $X \sim \textcolor{blue}{q}$, sample $Y \sim \text{Unif}(0, c\; \textcolor{blue}{q(X)})$ (given X)
+\item If $Y \leq \tilde{f}(X), Z=X,$ \textcolor{blue}{otherwise we reject and return to step (2)}. 
+%Generate $X \sim g,$ and calculate $r(X) = \dfrac{\ell(X)}{M\; g(X)}.$
+%\item Flip a coin with probability of success $r(X).$ If we have a success,
+%retain X. Else return to (1).
+\end{enumerate}
+Output: $Z \sim f$
+Proof: Exercise.
+
+Visualizing just f
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/f}
+  \end{center}
+  \caption{Visualizing just f.}
+\end{figure}
+
+Visualizing just f and $\tilde{f}$
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/bothf}
+  \end{center}
+  \caption{Visualizing just f and $\tilde{f}.$}
+\end{figure}
+
+Enveloping $q$ over $f$
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/q}
+  \end{center}
+  \caption{Visualizing f and $\tilde{f}.$ Now we look at enveloping $q$ over $f.$}
+\end{figure}
+
+Enveloping $cq$ over $\tilde{f}$
+===
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/cq}
+  \end{center}
+  \caption{Visualizing f and $\tilde{f}.$ Now we look at enveloping $cq$ over $\tilde{f}.$}
+\end{figure}
+
+Recalling the sampling method and accept/reject step
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/rejectionAccept}
+  \end{center}
+  \caption{Recalling the sampling method and accept/reject step.}
+\end{figure}
+
+Entire picture and an example point $X$ and $Y$
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/rejectionAccept2}
+  \end{center}
+  \caption{Entire picture and an example point $X$ and $Y.$}
+\end{figure}
+
+Exercise (Lab 5)
+===
+Consider the function
+$$ f(x) \propto \sin^2(\pi x), x \in [0,1]$$
+
+\begin{enumerate}
+\item Plot the densities of $f(x)$ and the Unif(0,1) on the same plot. 
+\item According to the rejection sampling approach sample from $f(x)$ using the Unif(0,1) pdf as an enveloping function.
+\item Plot a histogram of the points that fall in the acceptance region. Do this for a simulation size of $10^2$ and $10^5$ and report your acceptance ratio. Compare the ratios and histograms.
+\item Repeat Tasks 1 - 3 for  Beta(2,2) as an enveloping function. Compare your results with results in Task 3.
+\item Using importance sampling calculate the $\mathbb{E}(x)$, where $x \sim f(x)$ from previous task and the proposal distribution is transformed Beta(2,2). (This will be covered in more detail in lab.)
+\end{enumerate}
+
+
+Task 1
+===
+```{r}
+# density function for f(x)
+densFun <- function(x) { 
+  return(sin(pi*x)^2)
+}
+x <- seq(0, 1, 10^-2)
+```
+
+Task 1
+===
+```{r, echo=FALSE}
+plot(x, densFun(x), 
+     xlab = "x", ylab = "pdf(x)",
+     type = "l", lty = 1, lwd = 2, col = "blue",
+     main = "Densities comparison")
+lines(x, dunif(x, 0, 1), lwd = 2, col="red")
+legend('bottom',
+       c(expression(sin(pi*x)^2), "uniform(0,1)"), 
+       lty = 1, lwd = 2, col = c("blue", "red"))
+```  
+
+
+Task 2 
+===
+```{r}
+numSim=10^2
+samples = NULL
+for (i in 1:numSim) {
+  # get a uniform proposal
+  proposal <- runif(1) 
+  # calculate the ratio
+  densRat <- densFun(proposal)/dunif(proposal)  
+  #accept the sample with p=densRat
+  if ( runif(1) < densRat ){ 
+    #fill our vector with accepted samples
+    samples <- c(samples, proposal) 
+  }
+}
+```
+
+Task 3 (Partial solution)
+===
+```{r, echo=FALSE}
+hist(samples, freq=FALSE) #construct density hist
+print(paste("Acceptance Ratio:", length(samples)/numSim))
+```
+
+Task 2 -- 4 (Partial Solution)
+===
+\footnotesize
+```{r}
+sim_fun <- function(f, envelope = "unif", par1 = 0, 
+                    par2 = 1, n = 10^2, plot = TRUE){
+  
+  r_envelope <- match.fun(paste0("r", envelope))
+  d_envelope <- match.fun(paste0("d", envelope))
+  proposal <- r_envelope(n, par1, par2)
+  density_ratio <- f(proposal) / d_envelope(proposal, par1, par2)
+  samples <- proposal[runif(n) < density_ratio]
+  acceptance_ratio <- length(samples) / n
+  if (plot) {
+    hist(samples, probability = TRUE, 
+         main = paste0("Histogram of ", n, " samples from ", 
+                       envelope, "(", par1, ",", par2, ").\n 
+                       Acceptance ratio: ", 
+                       round(acceptance_ratio,2)), cex.main = 0.75)
+  }
+  list(x = samples, acceptance_ratio = acceptance_ratio)
+}
+```
+
+Task 2 -- 4 (Partial Solution)
+===
+```{r,echo=FALSE}
+par(mfrow = c(2,2), mar = rep(4, 4))
+unif_1 <- sim_fun(f=densFun , envelope = "unif", par1 = 0, par2 = 1, n = 10^2) 
+unif_2 <- sim_fun(f=densFun, envelope = "unif", par1 = 0, par2 = 1, n = 10^5)
+beta_1 <- sim_fun(f=densFun, envelope = "beta", par1 = 2, par2 = 2, n = 10^2)
+beta_2 <- sim_fun(f=densFun, envelope = "beta", par1 = 2, par2 = 2, n = 10^5)
+```
+
+Figure 2: Rejection sampling for 100 versus 100,000 simulations with uniform and beta distributions as envelope functions.
+
+Takeaways
+===
+
+1. What do you notice about the enveloping functions and the acceptance ratio as the number of samples is large? 
+
+2. What does this tell you about the uniform proposal versus the beta proposal in this specific application? 
+
+
+Exercise (Lab 6)
+===
+Consider 
+$$ I = \int_{-\infty}^{\infty} \exp(-x^4) \; dx.$$ 
+
+Tasks (Lab 6)
+===
+
+1. Task 1: Find a closed form solution to $I$ and evaluate this. 
+2. Task 2: Approximate $I$ using Monte carlo. 
+3. Task 3: Approximate $I$ using importance sampling. 
+
+Gamma density
+===
+
+Before proceeding with the tasks, let's recall that one variant of the Gamma(a,b) density can be written as follows: 
+
+$$\Ga(x|a,b=\text{rate}) = \frac{b^a}{\Gamma(a)}x^{a-1}e^{-b x}\,\I(x>0)$$ for $a,b>0,$
+
+Task 1
+===
+For the sake of comparison, we can derive the true value using substitution and the gamma function.  We will use the substitution $u = x^4$ and $\Ga(x|a,b=\text{rate}) = \frac{b^a}{\Gamma(a)}x^{a-1}e^{-b x}\,\I(x>0)$ for $a,b>0,$
+
+\begin{align*}
+\int_{-\infty}^\infty \exp(-x^{4})\,dx &= 2\int_0^\infty \exp(-x^{4})\,dx \\
+&= 2\int_0^\infty \frac{\exp(-u)}{4u^{3/4}} \, du \\
+&= 2^{-1}\int_0^\infty u^{1/4-1}e^{-u}\,du \\
+&=  \frac{\Gamma(1/4)}{1^{1/4}}\times 2^{-1} \textcolor{red}{\int_0^\infty u^{1/4-1}e^{-u} \times \frac{1^{1/4}}{\Gamma(1/4)}\,du} \\
+&= \frac{\Gamma(1/4)}{2} \\
+&= 1.813.
+\end{align*}
+
+Task 2 (Monte Carlo)
+===
+
+In this task, we perform Monte carlo. Let $y=\sqrt{2}x^{2}$.  We will perform $u$-substitution to evaluate the integral with Monte Carlo (verify this calculation on your own)\footnote{The details of this derivation are in lab 6.}
+
+\begin{align*}
+I &=  2^{-5/4} \int_0^\infty\sqrt{\frac{2\pi}{y}}2\phi(y)\,dy.
+\end{align*}
+
+The function $2\phi(y)$ is the density of the normal distribution truncated (or folded) at zero.  We can sample from this distribution by taking samples from the standard normal distribution and then taking their absolute value.  Note that if $X \sim N(0,1)$ we see for any $c > 0$
+
+\begin{align*}
+P(|X| < c) &= P(-c < X < c) \\
+&= 2(\Phi(c) - 1/2) \\
+&= 2\Phi(c) - 1,
+\end{align*}
+
+the derivative of which is the pdf we are sampling from. 
+
+
+Task 3 (Importance Sampling)
+===
+
+We can multiply and divide the integral by a density that has a support equal to the area over which we are integrating.  An obvious and easy choice is the standard normal density, $\phi$:
+
+\begin{align*}
+\int_{-\infty}^\infty \exp(-x^4)\,dx &= \int_{-\infty}^\infty \frac{\exp(-x^4)}{\phi(x)}\phi(x)\,dx.
+\end{align*}
+
+We can therefore evaluate the integral by sampling from a standard normal and averaging the values evaluated in $\exp(-x^4)/\phi(x).$ Thus, we will perform re-weighting, and thus, utilizing importance sampling.  
+
+Comparison of Methods
+===
+
+The results of 10,000 simulations using the three methods described above are summarized in Table \ref{ex1table}; the true value is included for comparison.  Of these methods, multiplying and dividing by the standard normal density and then sampling from this density seems to yield the best estimate, which is both closer to the true value and has lower standard error.  The other two methods are comparable in both their estimates and standard errors.  
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & Mean & SE \\ 
+  \hline
+True value & 1.81 &  \\ 
+  Truncated Normal (Monte Carlo) & 1.79 & 0.06 \\ 
+  Full Normal (IS) & 1.81 & 0.01 \\ 
+   \hline
+\end{tabular}
+\caption{\label{ex1table} Comparison of the Monte Carlo estimate for the value of the integral using various methods with 10,000 draws for each method. As we can see under importance sampling, the estimate is closer to the true value and the SE is also lower.}
+\end{table}
+
+Comparison of Methods
+===
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+library(xtable)
+# define target functions for MC estimate
+mc1 <- function(x){
+  # folded normal target
+  return(sqrt(2*pi/abs(x)))
+}
+
+mc2 <- function(x){
+  # normal target
+  exp(-x^4)/dnorm(x)
+}
+
+mc3 <- function(x){
+  # uniform target
+  return(20*exp(-x^4))
+}
+mcSE <- function(values){
+  # this function calculates the standard error
+  # of an MC estimate with target function values
+  # eg values should be vector of f(x_i)
+  return(sqrt(var(values)/length(values)))
+}
+# folded normal
+draws <- rnorm(10000)
+values <- sapply(draws,mc1)
+# normal
+draws2 <- rnorm(10000)
+values2 <- sapply(draws2,mc2)
+# uniform
+draws3 <- runif(10000,min=-10,max=10)
+values3 <- sapply(draws3,mc3)
+# plot histograms
+pdf(file="mc1hist.pdf")
+hist(values*2^(-5/4), xlab = expression(f(X)),
+     main = "Folded Normal")
+dev.off()
+pdf(file="mc2hist.pdf")
+hist(values2, xlab = expression(f(X)),
+     main = "Normal")
+dev.off()
+pdf(file="mc3hist.pdf")
+hist(values3, xlab = expression(f(X)),
+     main = "Uniform")
+dev.off()
+# put results in a data frame and display with xtable
+mc.mean <- mean(values)*2^(-5/4)
+mc.sd<- 2^(-10/4)*sd(values)/sqrt(length(values))
+means <- c(gamma(1/4)/2,mc.mean,mean(values2),mean(values3))
+SEs <- c(NA, mcSE(values),mcSE(values2),mcSE(values3))
+mc.df <- data.frame(Mean = means, SE = SEs, 
+                    row.names = c("True value", "row.names
+                                  Normal", "Full Normal",  
+                                  "Truncated Uniform"))
+xtable(mc.df)
+```
+
+Histograms
+===
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width = .45\textwidth]{mc1hist.pdf}
+\includegraphics[width = .45\textwidth]{mc2hist.pdf}
+\caption{\label{ex1hist} Histograms for the various Monte Carlo simulations.}
+\end{figure}
+An ideal histogram would be highly centered around the true value of 1.81.  For the folded normal, we see that there are some very large observations that skew the distribution.  The normal method also results in a strange histogram, with values concentrated near the edges.
+
+
+
+
+
+
+

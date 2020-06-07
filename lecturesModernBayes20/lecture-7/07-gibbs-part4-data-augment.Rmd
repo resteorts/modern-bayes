@@ -1,0 +1,414 @@
+
+---
+title: "Module 7: Part IV: Gibbs Sampling, Data Augmentation, Mixture Models"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+Announcements
+===
+
+- Final exam: April 29, 2019: 9 am -- noon (Old Chem 116)
+- The rest of the semester will finish up the rest of the required material for the course:
+missing data, multivariate models, regression, model selection
+- Your lab this week (lab 8) will correspond with today's lecture, where some details will be worked out in lab
+and the rest you'll complete on your own for homework 7.
+- Additional practice exercises for the course have been posted.
+
+Course Materials
+===
+
+Reminder that all course materials can be found here: 
+
+https://resteorts.github.io/teach/bayes19
+
+
+Course evaluation feedback
+===
+
+Thank you so much for filling these out! 
+
+1. Github
+2. Expectations
+3. Course materials
+4. Most students really like the homeworks and are learning from these. 
+5. Students liked the clarity of lecture.
+6. Students are happy with the overall pace of the lecture, so this will continue.
+7. Students liked the coding that is mixed with the methods.
+
+
+
+All of this will stay the same and I really appreciate everyone's helpful feedback here. 
+
+Course evaluation feedback
+===
+
+1. Students would like more practice exercises. Some students students would like harder problems/more problems. 
+These have been posted to github! 
+Suggestion: For this, students can choose to not use the code given to you and write your own code as an example. Also, there will be more practice exercises given to help you prepare for the final exam or just help you practice more. 
+2. Some students would like to see more real data applications and connections with my research. I will give a lecture on latent variable models
+and how this ties into real research. 
+3. Some students preferred midterm 1 and some students preferred midterm 2. This was almost an even split.
+4. Some TA’s don’t seem prepared for lab and things are not organized. 
+5. Course organization scores were lower than expected. Could students let me know how the course could be better organized? 
+
+
+
+
+
+
+
+Agenda
+===
+- Review of data augmentation
+- A three component mixture model
+- Dirichlet distribution
+- The Dirichlet-Multinomial
+- Return to the three component mixture model problem 
+
+
+
+Data augmentation for auxiliary variables
+===
+\begin{itemize}
+\item A commonly-used technique for designing MCMC samplers is to use \emph{data augmentation}, also known as \emph{auxiliary variables}.
+\item Introduce variable(s) $Z$ that depends on the distribution of the existing variables in such a way that the
+resulting conditional distributions, with $Z$ included, are easier to sample from and/or result in better mixing.
+\item  $Z$'s are latent/hidden variables that are introduced for the purpose of simplifying/improving the sampler.
+\end{itemize}
+
+Idea: Create Z's and throw them away at the end! 
+===
+\begin{itemize}
+\item Suppose we want to sample from $p(x,y)$, but $p(x|y)$ and/or $p(y|x)$ are complicated. 
+\item Choose $$p(z|x,y)$$ such
+that $p(x|y,z)$, $p(y|x,z)$, and $p(z|x,y)$ are easy to sample from. 
+\item Then construct a Gibbs sampler to sample all three variables
+$(X,Y,Z)$ from $p(x,y,z)$.
+\item Then we just throw away the $Z$'s and we will have samples $(X,Y)$ from $p(x,y)$.
+\end{itemize}
+
+
+Three component mixture model (Lab 8)
+===
+- Consider a three component mixture of normal distribution with a common prior on the mixture component means, the error variance and the variance within mixture component means. 
+- The prior on the mixture weights $w$ is a three component Dirichlet distribution. 
+
+\begin{align*}
+p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2) 
+&= \sum_{j=1}^3 w_j N(\mu_j, \varepsilon^2)\\
+\mu_j|\mu_0,\sigma_0^2 &\sim N(\mu_0,\sigma_0^2)\\
+\mu_0 &\sim N(0,3)\\
+\sigma_0^2 &\sim \text{InverseGamma}(2,2)\\
+(w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1)\\
+\varepsilon^2 
+&\sim \text{InverseGamma}(2,2),
+\end{align*}
+for $i=1,\ldots n.$
+
+Three component mixture model (Lab 8)
+===
+Specifically, 
+\begin{itemize}
+\item $w_1,w_2$ and $w_3$ are the mixture weight of mixture components 1,2 and 3 respectively
+\item $\mu_1,\mu_2$ and $\mu_3$ are the means of the mixture components 
+\item $\varepsilon^2$ is the variance parameter of the error term around the mixture components.
+\end{itemize}
+
+Three component mixture model (Lab 8)
+===
+In order to be able to work on this problem, we need to:
+
+1. We need to realize that the full conditionals as written cannot be easily sampled from. 
+(Lab 8).
+2. Next, we want to re-write the model using latent allocation variables to make it easier to work with. 
+3. Finally, in order to work with this model, we need to know about two distributions --- the Dirichlet and the Multinomial. It's also essential to note that the Dirichlet is the conjugate prior for the Multinomial. 
+
+We will start by learning about the Dirichlet and Multinomial distributions and then come back to the three component mixture model problem. 
+
+
+Dirichlet
+===
+A Dirichlet distribution\footnote{This is the multivariate version of the Beta distribution.} is a distribution of the $K$-dimensional probability simplex\footnote{In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.}
+$$\bigtriangleup_K = \{(\pi_1,\ldots, \pi_k): \pi_k \geq 0, \sum_k \pi_k = 1\}.$$
+
+We say that $(\pi_1,\ldots, \pi_k)$ is Dirichlet distributed:
+
+$$(\pi_1,\ldots, \pi_k)\sim \text{Dir}(\alpha_1,\ldots,\alpha_k)$$
+if
+$$p(\pi_1,\ldots, \pi_k) = \frac{\Gamma(\sum_k \alpha_k)}
+{\prod_k \Gamma(\alpha_k)} 
+\prod_{k=1}^K \pi_k^{\alpha_{k-1}}.$$
+
+Dirichlet distribution
+===
+Let
+$$\theta \sim \text{Dirichlet}(\alpha_1,\ldots,\alpha_k)$$
+where the probability density function is
+
+$$p(\theta \mid \alpha) \propto \prod_{k=1}^m \theta_k^{\alpha_k -1},$$ where
+$\sum_k \theta_k =1, \theta_i \geq 0$ for all i
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{figures/simplex}
+\end{center}
+\end{figure}
+
+Dirichlet distribution
+===
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/dir}
+\caption{Far left: We get a uniform prior on the simplex. Moving to the right we get things unimodal. On the bottom, we get distributions that are multimodal at the corners.}
+\label{default}
+\end{center}
+\end{figure}
+
+Multinomial-Dirichlet
+===
+
+In order to proceed with the lab, we'll need to learn about the Multinomial or Categorical distribution.\footnote{This is the multivariate generalization of of the Binomial distribution.}
+
+Multinomial or Categorical distribution
+===
+
+Assume $X = (x_1, x_2, \ldots x_n)$ where $x_i \in \{1,\ldots, m\}.$
+Assume $\theta = (\theta_1,\ldots,\theta_m),$ where $\sum_i \theta_i =1.$
+
+
+Assume that $$X \mid \theta \stackrel{ind}{\sim} \text{Multinomial}(\theta)$$
+or 
+$$ X \mid \theta \stackrel{ind}{\sim} \text{Categorical}(\theta)$$
+\vskip 1em
+$$P(X_i = j \mid {\theta}) = \theta_j$$
+
+Conjugate prior (Dirichlet)
+===
+$$\btheta \sim \text{Dirichlet}(\balpha)$$
+Recall the density of the Dirichlet is the following:
+\vskip 1em
+
+$$p(\btheta \mid \balpha) \propto \prod_{j=1}^m \theta_j^{\alpha_j -1},$$ where
+$\sum_j \theta_j =1, \theta_i \geq 0$ for all i
+
+Likelihood
+===
+
+Define the data as $\bX = (x_1,\ldots, x_n),$ $x_i \in \{1,\ldots m\}.$
+Consider
+\begin{align}
+p(\bX \mid \theta) &= \prod_{i=1}^n P(X_i = x_i \mid \theta) \\
+&= \prod_{i=1}^n \theta_{x_i} 
+=\textcolor{red}{\theta_{x_1}\times \theta_{x_2} \times \theta_{x_n}}\\
+&=\prod_{i=1}^n \prod_{j=1}^m \theta_j^{I(x_i =j)} = \prod_{j=1}^m \textcolor{red}{\prod_{i=1}^n} \theta_j^{I(x_i =j)}\\
+&= \prod_{j=1}^m \theta_j^{\sum_i I(x_i = j)} \\
+& = \prod_{j=1}^m \theta_j^{c_j}
+\end{align}
+where $c=(c_1,\ldots c_m)$, 
+$c_j = \# \{i: x_i =j \}.$
+
+Likelihood, Prior, and Posterior
+===
+$$p(\bX \mid \btheta) = \prod_{j=1}^m \theta_j^{c_j}$$
+
+\vskip 1em
+
+$$P(\btheta) \propto \prod_{j=1}^m \theta_j^{\alpha_j-1} I(\sum_j \theta_j =1, \theta_i \geq 0 \forall i)$$
+
+Then 
+\begin{align}
+P(\btheta \mid \bX) &\propto \prod_{j=1}^m \theta_j^{c_j} \times \prod_{j=1}^m \theta_j^{\alpha_j-1}  I(\sum_j \theta_j =1, \theta_i \geq 0 \forall i) \\
+&\propto \prod_{j=1}^m \theta_j^{c_j + \alpha_j -1}  I(\sum_j \theta_j =1, \theta_i \geq 0 \forall i) 
+\end{align}
+This implies $$\btheta \mid \bX \sim \text{Dirichlet}(\bm{c} + \balpha).$$
+
+Takeaways
+===
+\begin{enumerate}
+\item Dirichlet is conjugate for Categorical or Multinomial.\footnote{The word Categorical seems to be used in CS and ML. The word Multinomial seems to be used in Statistics and Mathematics.}
+\item Useful formula:
+$$\prod_i \text{Multinomial} (x_i \mid \theta) \times \text{Dir}(\btheta \mid \balpha) \propto \text{Dir}(\btheta \mid \bm{c}+ \balpha).$$
+\end{enumerate}
+
+
+Three component mixture model
+===
+- Recall the three component mixture of normal distribution with a common prior on the mixture component means, the error variance and the variance within mixture component means. 
+- The prior on the mixture weights $w$ is a three component Dirichlet distribution. 
+
+\begin{align*}
+p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2) 
+&= \sum_{j=1}^3 w_i N(\mu_j, \varepsilon^2)\\
+\mu_j|\mu_0,\sigma_0^2 &\sim N(\mu_0,\sigma_0^2)\\
+\mu_0 &\sim N(0,3)\\
+\sigma_0^2 &\sim \text{InverseGamma}(2,2)\\
+(w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1)\\
+\varepsilon^2 
+&\sim \text{InverseGamma}(2,2),
+\end{align*}
+for $i=1,\ldots n.$
+
+
+Three component mixture model (Task 1 and 2)
+===
+Derive the full conditionals for all the parameters up to a normalizing constant
+and see that three of the conditional distributions are very difficult to sample from. 
+
+
+Task 1 and 2
+===
+Specifically, you should derive the following conditional distributions below:
+
+\begin{itemize}
+\item $p(w_1,w_2,w_3|\mu_1,\mu_2,\mu_3,\varepsilon^2,Y_1,...,Y_N) \propto$
+\item $p(\mu_1|\mu_2,\mu_3,w_1,w_2,w_3,Y_1,...,Y_N,\varepsilon^2,\mu_0,\sigma_0^2) \propto$
+\item $p(\mu_2|\mu_1,\mu_3,w_1,w_2,w_3,Y_1,...,Y_N,\varepsilon^2,\mu_0,\sigma_0^2) \propto$
+\item $p(\mu_3|\mu_1,\mu_2,w_1,w_2,w_3,Y_1,...,Y_N,\varepsilon^2,\mu_0,\sigma_0^2) \propto$
+\item $p(\varepsilon^2|\mu_1,\mu_2,\mu_3,Y_1,...,Y_N) \propto$
+\item $p(\mu_0|\mu_1,\mu_2,\mu_3,\sigma_0^2) \propto$
+\item $p(\sigma_0^2|\mu_0,\mu_1,\mu_2,\mu_3) \propto$
+\end{itemize}
+
+Task 1 (Solution)
+===
+We start by deriving the full conditional kernels. 
+\begin{align}
+p(\mu_0|\mu_1,\mu_2,\mu_3,\varepsilon^2,\sigma_0^2) & \propto \text{Normal-Normal mean update}\\
+p(\sigma_0^2|\mu_1,\mu_2,\mu_3,\mu_0) & \propto \text{Normal-InverseGamma variance update}
+\end{align}
+
+Task 1 (Solution)
+===
+\begin{align}
+&p(\mu_k|Y_1,...,Y_N,\sigma_0^2,\varepsilon^2,w_1,w_2,w_3) \\
+& \propto  \frac{1}{\sqrt{2 \pi \sigma_0^2}}e^{-\frac{1}{\sigma_0^2}(\mu_k -\mu_0)^2}\prod_{i=1}^N \Big(\sum_{j=1}^3 w_j\frac{1}{\sqrt{2\pi \varepsilon^2}}e^{-\frac{1}{2\varepsilon^2}(Y_i - \mu_j)^2}\Big)\\
+&\propto ? 
+\end{align}
+
+Task 1 (Solution)
+===
+\begin{align}
+& p(\varepsilon^2|Y_1,...,Y_N,\mu_1,\mu_2,\mu_3,w_1,w_2,w_3)\\ & \propto(\varepsilon^2)^{-3}e^{-\frac{2}{\varepsilon^2}} \prod_{i=1}^N \Big(\sum_{j=1}^3 w_j\frac{1}{\sqrt{2\pi \varepsilon^2}}e^{-\frac{1}{2\varepsilon^2}(Y_i - \mu_j)^2}\Big)\\
+&\propto ? 
+\end{align}
+
+Task 1 (Solution)
+===
+\begin{align}
+&p(w_1,w_2,w_3|Y_1,...,Y_N,\mu_1,\mu_2,\mu_3,\varepsilon^2) \\
+&\propto \prod_{i=1}^N \Big(\sum_{j=1}^3 w_j\frac{1}{\sqrt{2\pi \varepsilon^2}}e^{-\frac{1}{2\varepsilon^2}(Y_i - \mu_j)^2}\Big)\\
+&\propto ? 
+\end{align}
+
+Note that everything that involves the likelihood includes the products of sums, and becomes exceedingly painful. Thus, let us look at the full conditionals under data augmentation.
+
+Data augumentation scheme 
+===
+- Neither the joint posterior nor any of the full conditionals involving the likelihood are of a form that's easy to sample from. 
+
+Solution: introduce an additional set of random variables ${\{Z_i\}}_{i=1}^N$ that assign each observation to one of the mixture components with the proabilitiy of assignment being the respective mixture weight. 
+
+If we condition on $Z_i$ we can then write the likelihood of $Y_i$ as
+\begin{align*} 
+p(Y_i|Z_i,\mu_1,\mu_2,\mu_3,\varepsilon^2) = \sum_{j=1}^{\textcolor{red}{3}} N(\mu_j,\varepsilon^2)\delta_{j}(Z_i) &= \sum_{j=1}^3 N(\mu_{Z_i},\varepsilon^2) \\
+P(Z_i = j ) &= w_j.
+\end{align*}
+
+Data augmentation (continued)
+===
+- Conditional on $Z_i$ we no longer have a sum of Normal pdfs in our likelihood, resulting in a significant simplification.
+
+- Conditional on the $\{Z_i\}$ updates will be straightforward, only depending on the mixture component that any given $Y_i$ is currently assigned to. 
+
+- The drawback is that we also have to update ${\{Z_i\}}_{i=1}^N$ as well, introducing extra steps into our sampler. 
+
+The updated model
+===
+The model is now
+\begin{align*}
+Y_i \mid Z_i, \mu_1, \mu_2, \mu_3, \epsilon^2 &\sim \sum_{i=1}^3 N(\mu_{Z_i}, \epsilon^2) \\
+\mu_j \mid \mu_0, \sigma_0^2 &\sim N(\mu_0, \sigma_0^2) \\
+Z_i \mid w_1,w_2,w_3 &\sim \text{Cat}(3, \boldsymbol{w})\\
+\boldsymbol{w}= (w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1) \\
+\mu_0 &\sim N(0,3) \\
+\sigma_0^2 &\sim IG(2,2) \\
+\epsilon^2 &\sim IG(2,2) 
+\end{align*}
+$i=1,\ldots,n$
+$j=1,\ldots,3$
+
+Task 3
+===
+Where necessary, (re)derive the full conditionals under the data augmentation scheme.
+
+(See the lab solutions).
+
+
+Task 4
+===
+In task 3 you derived all the full conditionals, and due to data augmentation scheme they are all in a form that is easy to sample. Use these full conditionals to implement Gibbs sampling using the data from ``Lab8Mixture.csv''.
+
+Task 5
+===
+\begin{itemize}
+\item Show traceplots for all estimated parameters
+\item Show means and 95\% credible intervals for the marginal posterior distributions of all the parameters
+\end{itemize}
+Now suppose you re-run the sampler using 3 different starting values, are your results in a,b the same? Justify your reasoning with visualizations.
+
+Sample code
+===
+Partial code for this problem can be found on github under lab 8. 
+
+ 
+Recap of Module 8 (Part I -- Part IV)
+===
+1. We introduced the two-stage Gibbs sampler.
+2. You should be able to derive conditional distributions.
+for two-stage Gibbs samplers. (See Part I, Module 8 for examples).
+3. Be familar with diagnostic plots.  
+3. We then looked at a three-stage sampler and generalized
+to the multi-stage Gibbs sampler. 
+4. We looked at an application to censoring (a type of missing data here).
+5. Why would we use latent variables in a Gibbs sampler? (We looked at these for Gaussian mixture models). Notice that the hierarhical modeling setup was more complicated here, which is why we used this trick.  
+6. In short, we saw many ways to use Gibbs sampling in many applications and various tricks that one needs to use in order to derive the full conditionals in closed form. This is always driven by the data and will vary by the model specified. 
+
+Exercise
+===
+Consider the following Exponential model for an observation $x$:
+$$ p(x|a,b) = a b \exp(- a b x) \I(x>0)$$
+and suppose the prior is 
+$$ p(a,b) = \exp(- a - b)\I(a,b>0). $$
+You want to sample from the posterior $p(a,b|x)$.  Find the conditional distributions needed for implementing a Gibbs sampler.
+
+Note: you did a generalization of this problem in lab. 
+
+Solution
+===
+The Gibbs sampler consists of alternately sampling from $a|b,x$ and $b|a,x$. 
+
+First note that the joint p.d.f.\ is
+$$ p(x,a,b) = a b \exp(-a b x - a - b) \I(a,b,x>0). $$
+
+Thus,
+\begin{align*}
+    p(a|b,x) &\underset{a}{\propto} p(x,a,b) \underset{a}{\propto} a \exp(-a b x - a)\I(a>0) \\ &= a \exp(-(b x + 1)a)\I(a>0)
+    \underset{a}{\propto} \Ga(a\mid 2,\, b x + 1).
+\end{align*}
+Therefore, $p(a|b,x) = \Ga(a\mid 2,\,b x+1)$ and by symmetry, $p(b|a,x) = \Ga(b\mid 2,\,a x+1)$.
+
+
+
+
+
+
+
+
+
+
+
