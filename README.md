@@ -1,24 +1,6 @@
 Welcome to STA 360, Fall 2020! 
 
-The readings for the class can be found below. These are subject to change and will be updated as the course progresses. 
-
-The readings are from Hoff and also in notes that I have written myself. You'll notice that some of the material covered in class are from these notes. I expect you to have read before you come to class and have reviewed the notes from the previous lectures. I highly recommend that you read _all of Hoff. It's a great book to read. 
-
-Preparation for the Course:
-
-Before starting the course for the fall semester, I would highly recommend the following:
-+ Review pre-req material for the course on the syllabus. https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf 
-+ Review R: 
-
-- [Intro to R, Part I](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partI.pdf)
-- [Intro to R, Part II](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partII.pdf)
-- [Intro to R, Part III](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIII.pdf)
-- [Intro to R, Part IV](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIV.pdf)
-- [Intro to R, Part V](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partV.pdf)
-- [Intro to R, Videos](https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/background-intro-to-R/videos)
-
-Reference Text: http://shop.oreilly.com/product/9780596809164.do (The R Cookbook, not to be confused with the one for graphics). 
-+ Learn github as this is where the course resources will be located. https://lab.github.com/)
+The readings/preparations for the class can be found at the very bottom of this file for reference. These are subject to change and will be updated as the course progresses. 
 
 ## Tenative Course Schedule 
 
@@ -167,7 +149,33 @@ Hoff: Chapter 9.1--9.2
 - Lecture 22 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-10/10-model-selection.pdf
 
 
-Other readings :
+# Suggested Readings
+
+## Hoff
+
+I suggest that you read all of Hoff and you will be expected to have read the readings that correspond with the notes before 
+coming to class. There are also notes that I have written under readings/ that you may find helping as additional resources. 
+
+## Required Material
+
+Before starting the course for the fall semester, I would highly recommend review the pre-req material for the course on the [syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf).
+
+## Introduction/Review to R
+
+- [Intro to R, Part I](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partI.pdf)
+- [Intro to R, Part II](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partII.pdf)
+- [Intro to R, Part III](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIII.pdf)
+- [Intro to R, Part IV](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partIV.pdf)
+- [Intro to R, Part V](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/background-intro-to-R/introToR-partV.pdf)
+- [Intro to R, Videos](https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/background-intro-to-R/videos)
+- Reference Text: http://shop.oreilly.com/product/9780596809164.do (The R Cookbook, not to be confused with the one for graphics). 
+
+## github
+
+Please learn github if you're not already familiar as this is where the course resources are located. https://lab.github.com/). Homework releases and submissions will be done on Sakai. 
+
+
+## Other readings :
 
 - Credible Intervals): Cred intervals are covered on pages 52 and 267 of Hoff. 
 - Read Ch 4.1--4.1 (Cred intervals) (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
