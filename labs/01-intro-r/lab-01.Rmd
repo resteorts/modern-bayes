@@ -1,19 +1,26 @@
 ---
 title: 'Review of \texttt{R}'
-author: "STA 325: Lab 1, Fall 2017"
+author: "STA 360: Lab 1, Fall 2020"
 output: pdf_document
 ---
 
 Today's agenda: A review of \texttt{R}, getting used to R markdown, vectors, matrices, scatterplots, and functions. 
 
-Programming partner's:
-You should have a programming partner for each lab, and you should switch off who is programming, and use each other for help. We will spend about 30--50 minutes per week on lab exercises and you will be expected to bring you laptops to class to work on these exercises in class. Myself and the TA's will be in class to help you.
-
 ***Lab Tasks***
 
 
 1. Store three vectors using \textsf{rnorm()} of length $n = 100$ as \textsf{Var1}, \textsf{Var2}, and \textsf{Var3}.
+
+
 2. List all the items currently in the environment.
+
+
 3. Store \textsf{Var1} in a $10 \times 10$ matrix. Call this \textsf{myMatrix}.
+
+
 4. Create a scatterplot of \textsf{Var1} vs. \textsf{Var2}. On the same plotting window include histograms of \textsf{Var1} and \textsf{Var2}.
+
+
 5. Write a function that takes as its inputs, $p = 2$, $n$-dimensional vectors and a vector of length $p$ containing the names of these vectors. Your function combine these two vectors into a \textsf{data.frame()}, get the row-wise maximum and store this in a new vector. Finally produce a box-plot of this vector, store it as a separate .pdf, and return the mean value of this vector.
+
+

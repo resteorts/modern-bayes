@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{graphicx}
+\input{custom2}
+
+\begin{document}
+
+\title{Lab 5: Introduction to Rejection Sampling in \textsf{R} - STA 360/602}
+\author{Rebecca C. Steorts}
+\date{}
+\maketitle
+
+%\section{Agenda}
+%\begin{enumerate}
+%%\item{Common errors from Lab 6}
+%\item{Importance of writing well and documenting code well}
+%\item{Using \textsf{dbeta}}
+%\item{Using \textsf{rbeta}}
+%\item{Generating a sequence using \textsf{seq}}
+%\item{Plotting multiple items in the same window using \textsf{plot}}
+%\end{enumerate}
+
+\section{Agenda}
+
+We can often end up with posterior distributions that we only know up to a normalizing constant. For example, in practice, we may derive $$p(\theta \mid x) \propto p(x\mid \theta) p(\theta)$$ and find that the normalizing constant $p(x)$ is very difficult to evaluate. Such examples occur when we start building non-conjugate models in Bayesian statistics. 
+
+Given such a posterior, how can we appropriate it's density? One way it's using importance sampling. As an example, let's suppose our resulting posterior distribution is 
+$$f(x) \propto sin^2(\pi x), x \in [0,1].$$
+
+In order to understand how to approximate the density (normalized) of $f$, we will investigate the following tasks:
+
+\begin{enumerate}
+\item Plot the densities of $f(x)$ and the Unif(0,1) on the same plot. 
+\item According to the rejection sampling approach sample from $f(x)$ using the Unif(0,1) pdf as an enveloping function.
+\item Plot a histogram of the points that fall in the acceptance region. Do this for a simulation size of $10^2$ and $10^5$ and report your acceptance ratio. Compare the ratios and histograms.
+\item Repeat Tasks 1 - 3 for  Beta(2,2) as an enveloping function. 
+\item Compare your results with the results in Task 3.
+%\item Using importance sampling calculate the $\mathbb{E}(x)$, where $x \sim f(x)$ from previous task and the proposal distribution is transformed Beta(2,2). (This will be covered in more detail in lab.)
+\end{enumerate}
+
+
+
+
+%\section{Directions}
+%
+%In general for Labs, at the top of any file you are asked to submit, please list the following:
+%
+%\begin{enumerate}
+%\item{First Name Last Name}
+%\item{Lab Date}
+%\item{Team Member(s)}
+%\end{enumerate}
+%
+%\noindent
+%With respect to any item for which you are asked to generate any output, please provide the actual \textsf{R} output as a part of your solution and any explanation needed as well. For any functions/ computations that you will write, please list the following as comments before the step in \textsf{R}:
+%
+%\begin{enumerate}
+%\item{Task number and descriptions.}
+%\item{Input(s) with descriptions.}
+%\item{Outputs(s) with descriptions.}
+%\item{Function/ output summary (along with intermediate step comments).}
+%\end{enumerate} 
+%
+%\noindent
+%For Lab 7, please provide the following deliverable items:
+%
+%\begin{enumerate}
+%\item{Please provide your solutions using Markdown as a .pdf with the following naming convention: LastName\textunderscore FirstName\textunderscore Solutions\textunderscore Lab7.pdf.}
+%\item{Provide your .Rmd file (this \textbf{MUST} compile) for the lab using the following naming convention: LastName\textunderscore FirstName\textunderscore Solutions\textunderscore Lab7.Rmd}
+%\end{enumerate}
+
+
+\end{document}

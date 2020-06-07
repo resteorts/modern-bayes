@@ -55,12 +55,16 @@ You have a rough sketch of what you should do for this part of the assignment. T
 
 ```{r, echo = TRUE}
 ### Bernoulli LH Function ###
-# Input - the data, theta grid #
-# Produces likelihood values #
+# Input: obs.data, theta
+# Output: bernoulli likelihood
 
 
 ### Plot LH for a grid of theta values ###
 # Create the grid #
+# Store the LH values
+# Create the Plot
 ```
+
+
 
 

@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{STA 360/601 Lab 7}
+\author{Michael Jauch}
+\date{March 2016}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{bbm}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+
+Suppose we have a collection of random variables $\left\{X_n\right\}_{n=1}^{N},$ each representing an observation of some process at stage $n\in\{1, \, ...\,, N\}.$ In our case, $N$ will be the number of days in July and $X_n$ will be the high temperature on the $n^\text{th}$ day of July.
+
+The expected high temperature and variation in high temperature doesn't change much in the month of July, so we might assume these quantities are the same for each day.
+We could model the temperatures as $X_n \stackrel{\text{iid}}{\sim} \text{N}(\mu, \sigma^2)$ -- or in multivariate normal notation, $X  \sim \text{N}(\mu\mathbf{1}_N, \sigma^2\mathcal{I}_N),$ where $X = (X_1, ..., X_N)^{\text{T}},$ $\mathbf{1}_N$ is an $N\times1$ vector of ones, and $\mathcal{I}_N$ is the $N \times N$ identity matrix. 
+
+However, we know that temperatures on subsequent days tend to be similar, so the independence assumption is not reasonable. Also, if we make the independence assumption, we can't use our model to predict temperatures in the near future, which we might like to do. 
+
+A simple model that allows for correlation between observations is the autoregressive process of order 1, also know as an AR(1) process. In this case, $X  \sim \text{N}(\mu\mathbf{1}_N, \sigma^2\Phi_N),$ where $\Phi_N$ is a correlation matrix defined as 
+
+\[
+\Phi_N = 
+\begin{bmatrix}
+    1 & \phi & \phi^2 & \dots  & \phi^{N-1} \\
+    \phi & 1 & \phi & \dots  & \phi^{N-2} \\ 
+     \phi^2 & \phi & 1 & \dots  & \phi^{N-3} \\ 
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    \phi^{N-1} & \phi^{N-2} & \phi^{N-3} & \dots  & 1
+\end{bmatrix}.
+\]
+
+The parameters $\sigma^2$ and $\phi\in[-1,1]$ control the marginal variance of each $X_n$ and the correlation between the observations, respectively. We will assume that $\phi \in [0,1],$ so that there is positive correlation between high temperatures on subsequent days rather than negative correlation. 
+
+\section*{Task 1}
+
+Plot the sequence of high temperatures in the file \verb|temp_data.csv|. This file, downloaded from the Weather Underground website, contains high temperatures recorded at Raleigh-Durham airport in July of 2015. (In what follows, we will ignore the fact that the data only take integer values).
+
+Simulate from a multivariate normal $X  \sim \text{N}(\mu\mathbf{1}_N, \sigma^2\mathcal{I}_N)$ with $\mu=89$ and $\sigma^2=12$ using the \verb|mvrnorm| function in the \verb|MASS| library. Plot $X$ similarly to how you plotted the real data. 
+
+Compare the appearance of the plot of the true data and the plot of the simulated data. 
+
+\section*{Task 2} 
+
+Fix $\mu=87$ and $\sigma^2=12$ and sample/plot $X  \sim \text{N}(\mu\mathbf{1}_N, \sigma^2\Phi_N)$ for various values of $\phi\in[0,1].$ How do the samples change? What choice of $\phi$ results in samples that look the most like the real data?
+
+To do this, you may use the following function, which, given $N$ and $\phi,$ constructs the correlation matrix $\Phi_N$: 
+
+\begin{verbatim}
+AR1cor <- function(phi, N){
+  phi_mat <- mat.or.vec(N,N)
+  for(i in 2:N){
+    for(j in 1:(i-1))
+      phi_mat[i,j] <- phi^(i-j)
+  }
+  phi_mat <- phi_mat + t(phi_mat) + diag(N)
+  return(phi_mat)
+}
+\end{verbatim}
+
+\section*{Task 3}
+
+We want to do inference for the parameters $\mu,\sigma^2$ and $\phi,$ so we use the following prior distributions:
+\begin{align*}
+\mu &\sim \text{N}(\theta, \tau) \\ 
+\sigma^2 &\sim \text{IG}(a,b) \\ 
+\phi &\sim \text{Unif(0,1)}
+\end{align*} where $\theta, \tau, a,$ and $b$ are fixed values. Derive full conditionals for $\mu,\sigma^2$ and describe (mathematically) how you would update $\phi$ using a Metropolis step with a uniform proposal distribution. 
+
+\section*{Task 4}
+
+Code a sampler. Run it for 10000 iterations. You might try $\theta=85, \, \tau=100, \, a=11, \, b=100,$ and $\epsilon=.15.$ Make trace plots to assess convergence. Give 95\% credible intervals for $\mu, \, \sigma^2,$ and $\phi.$ 
+
+\section*{Just for ``fun" task 5 (will not be graded)}
+
+Think about you would predict high temperatures in the last week of July if you had only observed the high temperatures in the first 24 days. Try it out. 
+
+\end{document}
