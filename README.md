@@ -52,10 +52,10 @@ Reading:  Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://
 
 <pre><b> Week 6: Tuesday, September 22 - Thursday, September 24 </pre>
 - Lecture 9: Tuesday September 22: Module 4:  Advanced Conjucacy (Normal-Gamma) (Continued
-- - [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
+- [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
 - Lab 4: Introduction to Normal Gamma Conjugate Models 
 - Lecture 10: Thursday September 24: Module 5: Introduction to Monte Carlo 
-- [Intro to Monte Carlo] (https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
+- [Intro to Monte Carlo](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
 
  
 
