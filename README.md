@@ -8,7 +8,7 @@ The readings/preparations for the class can be found at the very bottom of this 
 
 <pre><b> Week 1: Tuesday, August 18 - Thursday, August 20 </pre>
 - Lecture 1: Tuesday, August 18: Module 0: Introduction to Course and Expectations and Introduction to Bayesian Statistics
-- Introduction to Bayesian Statistics and Course Expectations (https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-0/00-intro-to-Bayes.pdf)
+- [Introduction to Bayesian Statistics and Course Expectations](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-0/00-intro-to-Bayes.pdf)
 - [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
 - Lab 1: Review of R  
 - Lecture 2: Thursday, August 20: Introduction to Bayesian Statistics (Continued) 
