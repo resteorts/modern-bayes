@@ -7,11 +7,14 @@ The readings/preparations for the class can be found at the very bottom of this 
 (Please note that this is subject to change given that we still do not have a class time, location for Fall 2020 yet, but I will update this often leading up to the first day of class to try and make this a smooth semester for all. I appreciate everyone's patience as we all go through this together. Importantly, know that I care very much your learning and appreciate your feedback! I look forward to having you in class very much, and hope that we're all in person like we were before as soon as possible! 
 
 <pre><b> Week 1: Tuesday, August 18 - Thursday, August 20 </pre>
-- Lecture 1: Tuesday, August 18: Module 0: Introduction to Course and Expectations
+- Lecture 1: Tuesday, August 18: Module 0: Introduction to Course and Expectations, Introduction to Bayesian Statistics
 - Lecture 1 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-0/00-intro-to-Bayes.pdf
-- Lab 1: Introduction to R 
-- Lecture 2: Thursday, August 20, Module 1: History of Bayes and Introduction to Bayesian Statistics
-- Lecture 2 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-history-of-Bayes.pdf
+- Lecture 1: Slides: Introduction to Bayesian Statistics Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf
+- Lab 1: Review of R  
+- Lecture 2: Thursday, August 20: Introduction to Bayesian Statistics (Continued) 
+Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf 
+
+Reading: [History of Bayes and Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-history-of-Bayes.pdf)
 
 <pre><b> Week 2: Tuesday, August 25 - Thursday, August 27 </pre>
 - Lecture 3: Tuesday, August 25: Module 1: History of Bayes and Introduction to Bayesian Statistics
