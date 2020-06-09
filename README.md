@@ -58,32 +58,32 @@ Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manus
 - Lecture 10: Thursday September 24: Module 5: Introduction to Monte Carlo 
 - [Intro to Monte Carlo](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
 
-START HERE. 
+<pre><b> Exam I: To be announced, Material: Modules 1 -- 3. </pre>
 
-
- 
+- Information about Exam I: To be placed here. 
 
 <pre><b> Week 7: Tuesday, September 29 - Thursday, October 1 </pre>
-- Lecture 10: Tuesday September 29: Module 4:  Advanced Conjucacy (Normal-Gamma)
-- Lecture 10 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf
-- Lab 5: Introduction to Normal-Gamma Conjugate Models 
-- Lecture 11: Thursday October 1: Module 4: Advanced Conjucacy (Normal-Gamma) (Continued)
-- Lecture 11 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf
-
-Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
- 
- <pre><b>  Week 8: Tuesday, October 6 - Thursday, October 8 </pre>
- - Lecture 12: Tuesday October 6: Module 5:  Introduction to Monte Carlo
- - Lecture 12 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf
- - Lab 5: Introduction to Importance and Rejection Sampling 
- - Lecture 13: Thursday October 8: Module 5:  Introduction to Monte Carlo (Continued)
- - Lecture 13 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf
+- Lecture 11: Tuesday September 29: Module 5:  Introduction to Monte Carlo  (Continued)
+- [Intro to Monte Carlo](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
+- Lab 5: Introduction to Importance and Rejection Sampling 
+- Lecture 12: Thursday October 1: Module 6:  The Metropolis Algorithm 
+- [Intro to Metropolis](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-6/06-metropolis.pdf)
 
 Reading: 
 Module 5 (Introduction to Monte Carlo):
 Read Hoff, Chapter 4. 
 Read PhD notes, Chapter 5.1, 5.3
 Remark: The slides will cover examples not always in Hoff or the notes. 
+
+Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
+ 
+ <pre><b>  Week 8: Tuesday, October 6 - Thursday, October 8 </pre>
+ - Lecture 13: Tuesday October 6: Module 6:  The Metropolis Algorithm (Continued)
+- [Intro to Metropolis](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-6/06-metropolis.pdf)
+ - Lab 6: The Metropolis Algorithm
+ - Lecture 14: Thursday October 8: Module 7:  Introduction to Gibbs Sampling 
+ - [Intro to Gibbs](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part1.pdf)
+
 
 Modules 6--7 (One Stage Gibbs Sampling and the Metropolis Algorithm)
 Read Hoff, Ch 6
