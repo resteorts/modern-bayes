@@ -9,39 +9,6 @@ output:
 font-size: 8px
 ---
 
-Announcements
-===
-
-1. No late assignments on homeworks will be accepted.
-2. Please make sure you are familar with the syllabus and course policies. 
-3. If you do think that there was an error in grading your homework, please do submit a re-grade according to the policy on the syllabus. 
-4. If you have any questions at all, please see me in OH. 
-5. We will go over material leading up to exam I soon! 
-
-Exercise
-===
-
-Suppose that I come across a paper on Bayesian analysis and it's the following paper: 
-
-https://arxiv.org/abs/1409.0643
-
-1. How would you verify the mathematical results are correct?
-2. How would you verify that the figures/analysis is correct? 
-3. What would easily convince you that the figures/analysis is correct? 
-
-
-
-Solution
-===
-
-1. You would have to verify these. 
-2. You could code up everything on your own. 
-3. If all the results were reproducible through say a package in R, this would give me great confidence that the results in the paper are correct. 
-
-https://cran.r-project.org/web/packages/blink/index.html
-
-Takeaway: This is why reproducibility is a big part of this course and also a large part of your homework grade. 
-
 Agenda
 ===
 - What is decision theory?
@@ -219,9 +186,6 @@ loss_function = function(theta, c){
   }
 }
 ```
-
-\textcolor{red}{Where can I learn about functions/brush up on usage?}
-https://resteorts.github.io/teach/bayes19
 
 Posterior risk
 ===
@@ -438,15 +402,6 @@ for all $\theta$ and $R(\theta,\delta')< R(\theta,\delta)$ for at least one $\th
 7. Bayes procedures are admissible under very general conditions.
 8. Admissibility is nice to have, but it doesn't mean a procedure is necessarily good. Silly procedures can still be admissible---e.g., in this example, the constant procedure $c = 0.1$ is admissible too!
 
-Example: Resource allocation, revisited
-===
-
-In lab and in your homework, you'll work on reproducing the plots from class today and exploring more about admissibility. 
-
-To read more about this formally, please see Lehmann and Casella for a very formal treatment of this approach. 
-
-\textcolor{red}{You may also find the PhD lecture notes helpful on this material, which are avaiable to you on the course webpage.}
-https://resteorts.github.io/teach/bayes19
 
 Takeaways
 ===
