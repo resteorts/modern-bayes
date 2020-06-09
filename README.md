@@ -27,7 +27,7 @@ Reading:
 - Lecture 3: Tuesday September 1: Module 1:  Introduction to Bayesian Statistics (Continued) 
 - [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
 - Lab 2: Introduction to Bayes  
-Thursday September 3: Module 2:  Introduction to Decision Theory 
+- Thursday September 3: Module 2:  Introduction to Decision Theory 
 - [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
 
 Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
