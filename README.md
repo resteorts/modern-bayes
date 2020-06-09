@@ -58,6 +58,9 @@ Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manus
 - Lecture 10: Thursday September 24: Module 5: Introduction to Monte Carlo 
 - [Intro to Monte Carlo](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
 
+START HERE. 
+
+
  
 
 <pre><b> Week 7: Tuesday, September 29 - Thursday, October 1 </pre>
