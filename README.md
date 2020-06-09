@@ -49,6 +49,7 @@ This is not covered in Hoff.
 - [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
 
 Reading:  Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model.
+Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugate model. 
 
 <pre><b> Week 6: Tuesday, September 22 - Thursday, September 24 </pre>
 - Lecture 9: Tuesday September 22: Module 4:  Advanced Conjucacy (Normal-Gamma) (Continued
