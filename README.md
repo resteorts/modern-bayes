@@ -174,9 +174,16 @@ Before starting the course for the fall semester, I would highly recommend revie
 Please learn github if you're not already familiar as this is where the course resources are located. https://lab.github.com/). Homework releases and submissions will be done on Sakai. 
 
 
+## Other
+
+If Sakai is problematic for you due to your location, please let me know in advance, so I can think of alternative options, such as uploads via github. If you are having internet issues, please let me know as well. 
+
+
 ## Other readings :
 
 - Credible Intervals): Cred intervals are covered on pages 52 and 267 of Hoff. 
 - Read Ch 4.1--4.1 (Cred intervals) (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
 - Here is a brief intro from PSU on Multinomial sampling for a review: 
 https://onlinecourses.science.psu.edu/stat504/node/59
+
+
