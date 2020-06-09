@@ -14,22 +14,16 @@ The readings/preparations for the class can be found at the very bottom of this 
 - Lecture 2: Thursday, August 20: Introduction to Bayesian Statistics (Continued) 
 - [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
 
-Reading: [History of Bayes and Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-history-of-Bayes.pdf)
+Reading: 
 
-<pre><b> Week 2: Tuesday, August 25 - Thursday, August 27 </pre>
-- Lecture 3: Tuesday, August 25: Module 1: History of Bayes and Introduction to Bayesian Statistics
-- Lecture 3 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-history-of-Bayes.pdf
-- Lab 2: Introduction to Bayes 
-- Lecture 4: Thursday, August 27: Module 1: Introduction to Bayesian Statistics (Continued) 
-- Lecture 4 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf
+- [History of Bayes and Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-history-of-Bayes.pdf)
+- Read Ch 1, Ch 2.1 -- 2.6. (Hoff), Read Ch 1.1 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
 
-Reading: Read Ch 1, Ch 2.1 -- 2.6. (Hoff), Read Ch 1.1 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
-
-<pre><b> Week 3: Tuesday, September 1 - Thursday, September 3 </pre>
-- Lecture 5: Tuesday September 1: Module 1:  Introduction to Bayesian Statistics (Continued) 
-- Lecture 5 Slides: - Lecture 5 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf
-- Lab 2: Introduction to Bayes (Continued) 
-- Lecture 6: Thursday September 3: Module 1: Introduction to Bayesian Statistics (Continued) 
+<pre><b> Week 2: Tuesday, September 1 - Thursday, September 3 </pre>
+- Lecture 3: Tuesday September 1: Module 1:  Introduction to Bayesian Statistics (Continued) 
+- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
+- Lab 2: Introduction to Bayes  
+- Lecture 4: Thursday September 3: Module 1: Introduction to Bayesian Statistics (Continued) 
 - Lecture 6 Slides: - Lecture 6 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf
 
 Reading:
@@ -41,10 +35,11 @@ Read Ch 2.9 (Posterior predictive inference) (http://www2.stat.duke.edu/~rcs46/b
 
 <pre><b> Week 4: Tuesday, September 8 - Thursday, September 10 </pre>
 - Lecture 7: Tuesday September 8: Module 2:  Introduction to Decision Theory 
-- Lecture 7 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf
+[Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
 - Lab 3: Introduction to Decision Theory
-- Lecture 8: Thursday September 10: Module 2: Introduction to Decision Theory (Continued)
-- Lecture 8 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf
+- Lecture 8: Thursday September 10: Module 2:  Introduction to Decision Theory 
+[Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
+
 
 Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
 This is not covered in Hoff. 
