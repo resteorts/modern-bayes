@@ -51,18 +51,18 @@ This is not covered in Hoff.
 Reading:  Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model.
 
 <pre><b> Week 6: Tuesday, September 22 - Thursday, September 24 </pre>
-- Lecture 9: Tuesday September 22: Module 3:  Advanced Conjucacy (Normal-Normal)
-- Lecture 9 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf
-- Lab 4: Introduction to Gaussian Conjugate Models 
-- Lecture 10: Thursday September 24: Module 3: Advanced Conjucacy (Normal-Normal) (Continued)
-- Lecture 10 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf
+- Lecture 9: Tuesday September 22: Module 4:  Advanced Conjucacy (Normal-Gamma) (Continued
+- - [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
+- Lab 4: Introduction to Normal Gamma Conjugate Models 
+- Lecture 10: Thursday September 24: Module 5: Introduction to Monte Carlo 
+- [Intro to Monte Carlo] (https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
 
  
 
 <pre><b> Week 7: Tuesday, September 29 - Thursday, October 1 </pre>
 - Lecture 10: Tuesday September 29: Module 4:  Advanced Conjucacy (Normal-Gamma)
 - Lecture 10 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf
-- Lab 4: Introduction to Normal-Gamma Conjugate Models 
+- Lab 5: Introduction to Normal-Gamma Conjugate Models 
 - Lecture 11: Thursday October 1: Module 4: Advanced Conjucacy (Normal-Gamma) (Continued)
 - Lecture 11 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf
 
