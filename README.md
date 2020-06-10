@@ -160,5 +160,5 @@ https://onlinecourses.science.psu.edu/stat504/node/59
 
 # Homeworks
 
-[Homework 1](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-1/hw-01.pdf)
-[Homework 2](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-1/hw-02.pdf)
+- [Homework 1](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-1/hw-01.pdf)
+- [Homework 2](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-1/hw-02.pdf)
