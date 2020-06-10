@@ -74,11 +74,20 @@ Labs:
 - [Lab 3 Solutions](https://github.com/resteorts/modern-bayes/blob/master/labs/03-intro-decision-theory/lab-03.pdf)
 
 <pre><b> Week 4: Tuesday, September 15 - Thursday, September 17, Advanced Conjuacy </pre>
-- Lecture 7: Tuesday September 15: Module 3:  Advanced Conjucacy (Normal-Normal)
+
+Module 3:  Advanced Conjucacy (Normal-Normal) (Continued) 
+
+Module 4: Advanced Conjucacy (Normal-Gamma) 
+
+- Lecture 7: Tuesday September 15: Advanced Conjucacy (Normal-Normal)
 - [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
-- Lecture 8: Thursday September 17: Module 4: Advanced Conjucacy (Normal-Gamma) 
+- Lecture 8: Thursday September 17: Advanced Conjucacy (Normal-Gamma) 
 - [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
-- Lab 4: Introduction to Gaussian Conjugate Models 
+
+Labs:
+
+- Lab 4: [Introduction to Gaussian Conjugate Models](https://github.com/resteorts/modern-bayes/blob/master/labs/04-intro-gaussian/lab4IntroductiontoBayes.pdf)
+- [Lab 4 Partial Solutions](https://github.com/resteorts/modern-bayes/blob/master/labs/04-intro-gaussian/lab-04.pdf)
 
 Reading:  Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model.
 Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugate model. 
