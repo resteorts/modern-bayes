@@ -158,4 +158,9 @@ https://onlinecourses.science.psu.edu/stat504/node/59
 
 [Practice Problems for Exams](https://github.com/resteorts/modern-bayes/tree/master/exercises)
 
+# Homeworks
 
+Homeworks will be updated on github during the course of the semester. Due dates are posted on the assignment. Students should upload their solutions to each homework assignment on Sakai. Please plan to submit your homework early and often to make sure it's uploaded before the deadline. 
+
+- [Homework 1](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-1/hw-01.pdf)
+- [Homework 2](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-2/hw-02.pdf)
