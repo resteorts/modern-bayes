@@ -4,6 +4,8 @@ The readings/preparations for the class can be found at the very bottom of this 
 
 ## Tenative Course Schedule 
 
+TODO: check dates and make these consistent with duke's new schedule. 
+
 (Please note that this is subject to change given that we still do not have a class time, location for Fall 2020 yet, but I will update this often leading up to the first day of class to try and make this a smooth semester for all. I appreciate everyone's patience as we all go through this together. Importantly, know that I care very much your learning and appreciate your feedback! I look forward to having you in class very much, and hope that we're all in person like we were before as soon as possible! 
 
 <pre><b> Week 1: Tuesday, August 18 - Thursday, August 20, Intro to Bayes </pre>
