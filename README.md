@@ -36,14 +36,14 @@ Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manus
 This is not covered in Hoff. 
 
 
-<pre><b> Week 4: Tuesday, September 8 - Thursday, September 10, Intro to Decision Theory and Advanced Conjugacy </pre>
+<pre><b> Week 3: Tuesday, September 8 - Thursday, September 10, Intro to Decision Theory and Advanced Conjugacy </pre>
 - Lecture 5: Tuesday September 8: Module 2:  Introduction to Decision Theory (Continued)
 - [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
 - Lab 3: Introduction to Decision Theory
 - Lecture 6: Thursday September 10: Module 3: Advanced Conjucacy (Normal-Normal)
 - [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
 
-<pre><b> Week 5: Tuesday, September 15 - Thursday, September 17, Advanced Conjuacy </pre>
+<pre><b> Week 4: Tuesday, September 15 - Thursday, September 17, Advanced Conjuacy </pre>
 - Lecture 7: Tuesday September 15: Module 3:  Advanced Conjucacy (Normal-Normal)
 - [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
 - Lab 4: Introduction to Gaussian Conjugate Models 
@@ -64,7 +64,7 @@ Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manus
 
 - Information about Exam I: To be placed here. 
 
-<pre><b> Week 7: Tuesday, September 29 - Thursday, October 1, Intro to Monte Carlo and Metropolis </pre>
+<pre><b> Week 5: Tuesday, September 29 - Thursday, October 1, Intro to Monte Carlo and Metropolis </pre>
 - Lecture 11: Tuesday September 29: Module 5:  Introduction to Monte Carlo  (Continued)
 - [Intro to Monte Carlo](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
 - Lab 5: Introduction to Importance and Rejection Sampling 
@@ -79,7 +79,7 @@ Remark: The slides will cover examples not always in Hoff or the notes.
 
 Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
  
- <pre><b>  Week 8: Tuesday, October 6 - Thursday, October 8, Intro to Metropolis and Gibbs </pre>
+ <pre><b>  Week 6: Tuesday, October 6 - Thursday, October 8, Intro to Metropolis and Gibbs </pre>
  - Lecture 13: Tuesday October 6: Module 6:  The Metropolis Algorithm (Continued)
 - [Intro to Metropolis](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-6/06-metropolis.pdf)
  - Lab 6: The Metropolis Algorithm
@@ -93,7 +93,7 @@ Remark: The slides will cover examples not always in Hoff or the notes.
 For Metropolis Algorithm, read Hoff 10.2 
 
 
- <pre><b> Week 9: Tuesday, October 20 - Thursday, October 22 </pre>
+ <pre><b> Week 7: Tuesday, October 20 - Thursday, October 22 </pre>
 - Lecture 15: Tuesday October 20: Module 7:  Intro to Gibbs (Continued)
 - Lecture 16 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part1.pdf
 - Lab 7: XXX
