@@ -1,0 +1,78 @@
+---
+title: 'Data Wrangling in \texttt{R}'
+author: "STA 360: Assignment 1, Fall 2020"
+date: "Due Friday August 21, 10 PM Standard Eastern Time"
+output: pdf_document
+---
+
+Today's agenda: Manipulating data objects; using the built-in functions, doing numerical calculations, and basic plots; reinforcing core probabilistic ideas.
+
+***General instructions for homeworks***: Please follow the uploading file instructions according to the syllabus. You will give the commands to answer each question in its own code block, which will also produce plots that will be automatically embedded in the output file. Each answer must be supported by written statements as well as any code used. Your code must be completely reproducible and must compile. 
+
+***Advice***: Start early on the homeworks and it is advised that you not wait until the day of. While the professor and the TA's check emails, they will be answered in the order they are received and last minute help will not be given unless we happen to be free.  
+
+***Commenting code***
+Code should be commented. See the Google style guide for questions regarding commenting or how to write 
+code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's will be accepted.
+
+***R Markdown Test***
+
+0. Open a new R Markdown file; set the output to HTML mode and "Knit". This should produce a web page with the knitting procedure executing your code blocks. You can edit this new file to produce your homework submission.
+
+***Working with data***
+
+1.  (22 points total, equally weighted) The data set **rnf6080.dat** records hourly rainfall at a certain location in Canada, every day from 1960 to 1980.
+
+a. Load the data set into R and make it a data frame called \texttt{rain.df}.  What command did you use?
+
+b. How many rows and columns does \texttt{rain.df} have?  How do you know?  (If there are not 5070 rows and 27 columns, you did something wrong in the first part of the problem.)
+
+c. What command would you use to get the names of the columns of \texttt{rain.df}? What are those names?
+
+d. What command would you use to get the value at row 2, column 4? What is the value?
+e. What command would you use to display the whole second row?  What is the content of that row?
+f.  What does the following command do?
+```
+names(rain.df) <- c("year","month","day",seq(0,23))
+```
+g.  Create a new column called \texttt{daily}, which is the sum of the 24 hourly columns.
+h. Give the command you would use to create a histogram of the daily rainfall amounts.  Please make sure to attach your figures in your .pdf report. 
+i. Explain why that histogram above cannot possibly be right.
+j. Give the command you would use to fix the data frame.
+k. Create a corrected histogram and again include it as part of your submitted report. Explain why it is
+more reasonable than the previous histogram.
+
+***Data types***
+
+2. (9 points, equally weighted) Make sure your answers to different parts of this problem are compatible with each other.
+
+a. For each of the following commands, either explain why they should be errors, or explain the non-erroneous result.
+```
+x <- c("5","12","7")
+max(x)
+sort(x)
+sum(x)
+```
+b. For the next two commands, either explain their results, or why they
+should produce errors.
+```
+y <- c("5",7,12)
+y[2] + y[3]
+```
+c. For the next two commands, either explain their results, or why they should
+produce errors.
+```
+z <- data.frame(z1="5",z2=7,z3=12)
+z[1,2] + z[1,3]
+```
+
+3. (3 pts, equally weighted). 
+
+a.) What is the point of reproducible code? 
+
+b.) Given an example of why making your code reproducible is important for you to know in this class and moving forward. 
+
+c.) On a scale of 1 (easy) -- 10 (hard), how hard was this assignment. If this assignment was hard ($>5$), please state in one sentence what you struggled with. 
+
+
+
