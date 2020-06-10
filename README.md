@@ -84,29 +84,28 @@ Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manus
  - Lecture 14: Thursday October 8: Module 7:  Introduction to Gibbs Sampling 
  - [Intro to Gibbs](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part1.pdf)
 
-
-Modules 6--7 (One Stage Gibbs Sampling and the Metropolis Algorithm)
+Reading:  Modules 6--7 (One Stage Gibbs Sampling and the Metropolis Algorithm)
 Read Hoff, Ch 6
 Read Phd notes, Chapter 5.2
 Remark: The slides will cover examples not always in Hoff or the notes.  
 For Metropolis Algorithm, read Hoff 10.2 
 
  <pre><b> Week 9: Tuesday, October 13 - Thursday, October 15 </pre>
-- Lecture 14: Tuesday October 13: Module 6:  The Metropolis Algorithm 
-- Lecture 14 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-6/06-metropolis.pdf
-- Lab 6: The Metropolis Algorithm
-- Lecture 15: Thursday October 15: Module 6: The Metropolis Algorithm (Continued)
-- Lecture 15 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-6/06-metropolis.pdf
+- Lecture 15: Tuesday October 13: Module 6:  Gibbs Sampling, Data Augmentation, and Mixture Models
+[Multi-stage Gibbs Sampling](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part4-data-augment.pdf)
+- Lab 7: One Stage Gibbs Sampling 
+- Lecture 16: Thursday October 15: Module 6: Gibbs sampling and Data Augmentation 
+- [Gibbs sampling and Data Augmentation](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part2-multi-stage.pdf)
 
 <pre><b> Week 10: Tuesday, October 13 - Thursday, October 15 </pre>
 - Lecture 14: Tuesday October 13: Module 6:  One Stage Gibbs Sampling and the Metropolis Algorithm (Continued)
-- Lab 7: One Stage Gibbs Sampling 
+- Lab 8: Multi-stage Gibbs sampling
 - Lecture 15: Thursday October 15: Module 6: One Stage Gibbs Sampling and the Metropolis Algorithm
 
  <pre><b> Week 11: Tuesday, October 20 - Thursday, October 22 </pre>
 - Lecture 16: Tuesday October 20: Module 7:  Intro to Gibbs 
 - Lecture 16 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part1.pdf
-- Lab 8: Multi-stage Gibbs sampling
+- Lab 9: XXX
 - Lecture 17: Thursday October 22: Module 7:  Multi-stage Gibbs sampling and Missing Data
 - Lecture 17 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part2-multi-stage.pdf
 
