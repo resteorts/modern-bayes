@@ -6,9 +6,15 @@ The readings/preparations for the class can be found at the very bottom of this 
 
 This is a tenative course schedule given that Duke is undergoing re-registration and we currently do not have a class time or lab time. I am outlining the first few weeks of the semester and providing links regarding resources to help you prepare for the class in advance with many resources to help you be prepared for the start of the semester! I look forward to having everyone in class very much and getting to know all of you! 
 
+The syllabus is a comprehensive place regarding expectations for STA 360. 
+
 [Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf)
 
+The Google group is a place where starting on the first day of class, you can post a question regarding lecture, lab, or a homework assignment so that everyone can see it. 
+
 [Google group](https://groups.google.com/forum/#!forum/bayes20)
+
+Sakai will be used so you can see your grades throughout the semester. Homework submissions will be uploaded here on Sakai as well. 
 
 [Sakai](https://sakai.duke.edu/portal/site/da825873-0b0f-419f-b6e9-ddcc6f0106f0/tool/e52fb460-c770-4f77-9a55-a86822a8e645)
 
