@@ -9,11 +9,13 @@ TODO: check dates and make these consistent with duke's new schedule.
 (Please note that this is subject to change given that we still do not have a class time, location for Fall 2020 yet, but I will update this often leading up to the first day of class to try and make this a smooth semester for all. I appreciate everyone's patience as we all go through this together. Importantly, know that I care very much your learning and appreciate your feedback! I look forward to having you in class very much, and hope that we're all in person like we were before as soon as possible! 
 
 <pre><b> Week 1: Tuesday, August 18 - Thursday, August 20, Intro to Bayes </pre>
+Lectures: 
 - Lecture 1: Tuesday, August 18: Module 0: Introduction to Course and Expectations and Introduction to Bayesian Statistics
 - [Introduction to Bayesian Statistics and Course Expectations](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-0/00-intro-to-Bayes.pdf)
 - [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf) 
 - Lecture 2: Thursday, August 20: Introduction to Bayesian Statistics (Continued) 
 - [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
+Labs: 
 - Lab 1: [Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/lab-01.pdf)
 - [Video Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/video-lab-01.mp4)
 - [Lab 1 Solution](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/lab-01-solution.pdf)
