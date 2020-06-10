@@ -95,7 +95,7 @@ For Metropolis Algorithm, read Hoff 10.2
 
  <pre><b> Week 7: Tuesday, October 20 - Thursday, October 22 </pre>
 - Lecture 15: Tuesday October 20: Module 7:  Intro to Gibbs (Continued)
-- Lecture 16 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part1.pdf
+- [Intro to Gibbs](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part1.pdf)
 - Lab 7: XXX
 - Lecture 16: Thursday October 22: Module 7:  Multi-stage Gibbs sampling and Missing Data
 - [Multistage Gibbs](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part2-multi-stage.pdf)
