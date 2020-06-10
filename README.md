@@ -100,7 +100,7 @@ For Metropolis Algorithm, read Hoff 10.2
 - Lecture 16: Thursday October 22: Module 7:  Multi-stage Gibbs sampling and Missing Data
 - [Multistage Gibbs](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part2-multi-stage.pdf)
 
- <pre><b> Week 10: Tuesday, October 27 - Thursday, October 29 </pre>
+ <pre><b> Week 8: Tuesday, October 27 - Thursday, October 29 </pre>
 - Lecture 17: Tuesday October 27: Module 7:  Data Augmentation 
 - [Data Augmentataion](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part3-data-augment.pdf)
 - Lab 8: XXXX
@@ -117,7 +117,7 @@ Metropolis Hastings: 10.4 and 10.5, Latent variable allocation: Chapter 12
 
 - Information about Exam II: To be placed here. 
 
-<pre><b> Week 11: Tuesday, November 3 - 5 Thursday, November 12 </pre>
+<pre><b> Week 9: Tuesday, November 3 - 5 Thursday, November 12 </pre>
 - Lecture 19: Tuesday November 10: Module 8:  Multivariate Normal Distribution
 - [Multivariate Normal](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-8/08-multivariate-norm.pdf)
 - Lab 9: Multivariate Normal
@@ -127,7 +127,7 @@ Metropolis Hastings: 10.4 and 10.5, Latent variable allocation: Chapter 12
 Readings: Module 9 (Multivariate Normal Distribution)
 Hoff: Chapter 7.1--7.4
 
-<pre><b> Week 12: Tuesday, November 10 - Thursday, November 12 </pre>
+<pre><b> Week 10: Tuesday, November 10 - Thursday, November 12 </pre>
 - Lecture 21: Tuesday November 10: Module 9:  Linear Regression 
 - [Linear Regression](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-linear-regression.pdf)
 - Lab 9: Model Selection 
@@ -138,7 +138,7 @@ Readings: Module 11 (Linear Regression)
 Hoff: Chapter 9.1--9.2
 [Probit Regression](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-probit-regression.pdf)
 
-<pre><b> Week 13: Tuesday, November 16 - Thursday, November 18 </pre>
+<pre><b> Week 11: Tuesday, November 16 - Thursday, November 18 </pre>
 - Review and Final Exam 
 
 
