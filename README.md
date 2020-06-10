@@ -141,4 +141,8 @@ If Sakai is problematic for you due to your location, please let me know in adva
 - Here is a brief intro from PSU on Multinomial sampling for a review: 
 https://onlinecourses.science.psu.edu/stat504/node/59
 
+## Practice Problems for Exams 
+
+[Practice Problems for Exams](https://github.com/resteorts/modern-bayes/tree/master/exercises)
+
 
