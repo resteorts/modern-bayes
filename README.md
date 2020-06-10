@@ -122,8 +122,9 @@ The material in class is not in the PhD notes for the most part.
 but I do recommend reading them).  Gibbs reading: You should have already read Ch 6, so review as need be. 
 Metropolis Hastings: 10.4 and 10.5, Latent variable allocation: Chapter 12
 
-<pre><b> Week 13: Tuesday, November 3 - Thursday, November 5 </pre>
-- Exam II: Details to be released. 
+<pre><b> Exam II: To be announced, Material: Modules 4 -- 7. </pre>
+
+- Information about Exam II: To be placed here. 
 
 <pre><b> Week 14: Tuesday, November 10 - Thursday, November 12 </pre>
 - Lecture 19: Tuesday November 10: Module 8:  Multivariate Normal Distribution
