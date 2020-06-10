@@ -127,34 +127,28 @@ Metropolis Hastings: 10.4 and 10.5, Latent variable allocation: Chapter 12
 - Information about Exam II: To be placed here. 
 
 <pre><b> Week 13: Tuesday, November 3 - 5 Thursday, November 12 </pre>
-- Lecture 3: Tuesday November 10: Module 8:  Multivariate Normal Distribution
+- Lecture 19: Tuesday November 10: Module 8:  Multivariate Normal Distribution
 - [Multivariate Normal](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-8/08-multivariate-norm.pdf)
 - Lab 9: Multivariate Normal
-- Lecture 5: Thursday November 12: Module 8: Data Augmentation and Mixture Models 
+- Lecture 20: Thursday November 12: Module 8: Data Augmentation and Mixture Models 
 - [Multivariate Normal and Missing Data](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-8/08-missing-data.pdf)
 
 Readings: Module 9 (Multivariate Normal Distribution)
 Hoff: Chapter 7.1--7.4
 
 <pre><b> Week 15: Tuesday, November 10 - Thursday, November 12 </pre>
-- Lecture 21: Tuesday November 17: Module 9:  Linear Regression 
+- Lecture 21: Tuesday November 10: Module 9:  Linear Regression 
 -  Linear Regression(https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-linear-regression.pdf)
-- Lab 9: Linear Regression
-- Lecture 22: XX
-
-Reading: [Probit Regression](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-probit-regression.pdf)
-
-https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-9/9-probit-regression.pdf
+- Lab 9: Model Selection 
+- Lecture 22: Module 10: Model Selection
+- [Model Selection](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-10/10-model-selection.pdf)
 
 Readings: Module 11 (Linear Regression)
 Hoff: Chapter 9.1--9.2
+[Probit Regression](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-probit-regression.pdf)
 
-<pre><b> Week 16: Tuesday, November 24 - Thursday, November 26 </pre>
-- Lecture 21: Tuesday November 24: Module 10:  Model Selection 
-- Lecture 21 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-10/10-model-selection.pdf
-- Lab 9: Linear Regression 
-- Lecture 22: Thursday November 26: Module 10: Model Selection (Continued) 
-- Lecture 22 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-10/10-model-selection.pdf
+<pre><b> Week 16: Tuesday, November 16 - Thursday, November 18 </pre>
+- Review and Final Exam 
 
 
 # Suggested Readings
