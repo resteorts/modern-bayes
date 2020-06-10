@@ -7,7 +7,10 @@ The readings/preparations for the class can be found at the very bottom of this 
 This is a tenative course schedule given that Duke is undergoing re-registration and we currently do not have a class time or lab time. I am outlining the first few weeks of the semester and providing links regarding resources to help you prepare for the class in advance with videos. 
 
 [Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf)
+
 [Google group](https://groups.google.com/forum/#!forum/bayes20)
+
+[Sakai](https://sakai.duke.edu/portal/site/da825873-0b0f-419f-b6e9-ddcc6f0106f0/tool/e52fb460-c770-4f77-9a55-a86822a8e645)
 
 <pre><b> Week 1: Tuesday, August 18 - Thursday, August 20, Intro to Course </pre>
  
