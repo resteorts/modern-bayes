@@ -138,10 +138,11 @@ Hoff: Chapter 7.1--7.4
 
 <pre><b> Week 15: Tuesday, November 10 - Thursday, November 12 </pre>
 - Lecture 21: Tuesday November 17: Module 9:  Linear Regression 
-- Lecture 21 Slides: Linear Regression(https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-9/9-linear-regression.pdf)
+-  Linear Regression(https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-linear-regression.pdf)
 - Lab 9: Linear Regression
+- Lecture 22: XX
 
-Reading: [Probit Regression](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-9/9-probit-regression.pdf)
+Reading: [Probit Regression](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-probit-regression.pdf)
 
 https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-9/9-probit-regression.pdf
 
