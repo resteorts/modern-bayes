@@ -11,10 +11,12 @@ TODO: check dates and make these consistent with duke's new schedule.
 <pre><b> Week 1: Tuesday, August 18 - Thursday, August 20, Intro to Bayes </pre>
 - Lecture 1: Tuesday, August 18: Module 0: Introduction to Course and Expectations and Introduction to Bayesian Statistics
 - [Introduction to Bayesian Statistics and Course Expectations](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-0/00-intro-to-Bayes.pdf)
-- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
-- Lab 1: Review of R  
+- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf) 
 - Lecture 2: Thursday, August 20: Introduction to Bayesian Statistics (Continued) 
 - [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
+- Lab 1: [Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/lab-01.pdf)
+- [Video Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/video-lab-01.mp4)
+- [Lab 1 Solution](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/lab-01-solution.pdf)
 
 Reading: 
 
@@ -27,10 +29,10 @@ Reading:
 
 <pre><b> Week 2: Tuesday, September 1 - Thursday, September 3, Intro to Bayes and Decision Theory </pre>
 - Lecture 3: Tuesday September 1: Module 1:  Introduction to Bayesian Statistics (Continued) 
-- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
-- Lab 2: Introduction to Bayes  
+- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf) 
 - Lecture 4: Thursday September 3: Module 2:  Introduction to Decision Theory 
 - [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
+- Lab 2: [Introduction to Bayes](
 
 Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
 This is not covered in Hoff. 
@@ -39,16 +41,16 @@ This is not covered in Hoff.
 <pre><b> Week 3: Tuesday, September 8 - Thursday, September 10, Intro to Decision Theory and Advanced Conjugacy </pre>
 - Lecture 5: Tuesday September 8: Module 2:  Introduction to Decision Theory (Continued)
 - [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
-- Lab 3: Introduction to Decision Theory
 - Lecture 6: Thursday September 10: Module 3: Advanced Conjucacy (Normal-Normal)
 - [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
+- Lab 3: Introduction to Decision Theory
 
 <pre><b> Week 4: Tuesday, September 15 - Thursday, September 17, Advanced Conjuacy </pre>
 - Lecture 7: Tuesday September 15: Module 3:  Advanced Conjucacy (Normal-Normal)
 - [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
-- Lab 4: Introduction to Gaussian Conjugate Models 
 - Lecture 8: Thursday September 17: Module 4: Advanced Conjucacy (Normal-Gamma) 
 - [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
+- Lab 4: Introduction to Gaussian Conjugate Models 
 
 Reading:  Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model.
 Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugate model. 
@@ -56,9 +58,9 @@ Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manus
 <pre><b> Week 5: Tuesday, September 22 - Thursday, September 24, Advanced Conjuacy and Intro to Monte Carlo </pre>
 - Lecture 9: Tuesday September 22: Module 4:  Advanced Conjucacy (Normal-Gamma) (Continued
 - [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
-- Lab 5: Introduction to Normal Gamma Conjugate Models 
 - Lecture 10: Thursday September 24: Module 5: Introduction to Monte Carlo 
 - [Intro to Monte Carlo](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
+- Lab 4: Introduction to Gaussian Conjugate Models 
 
 <pre><b> Exam I: To be announced, Material: Modules 1 -- 3. </pre>
 
@@ -67,9 +69,9 @@ Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manus
 <pre><b> Week 6: Tuesday, September 29 - Thursday, October 1, Intro to Monte Carlo and Metropolis </pre>
 - Lecture 11: Tuesday September 29: Module 5:  Introduction to Monte Carlo  (Continued)
 - [Intro to Monte Carlo](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
-- Lab 6: Introduction to Importance and Rejection Sampling 
 - Lecture 12: Thursday October 1: Module 6:  The Metropolis Algorithm 
 - [Intro to Metropolis](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-6/06-metropolis.pdf)
+- Lab 5: Introduction to Gaussian Conjugate Models 
 
 Reading: 
 Module 5 (Introduction to Monte Carlo):
