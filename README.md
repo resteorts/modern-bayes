@@ -138,7 +138,7 @@ Hoff: Chapter 7.1--7.4
 
 <pre><b> Week 15: Tuesday, November 10 - Thursday, November 12 </pre>
 - Lecture 21: Tuesday November 10: Module 9:  Linear Regression 
--  Linear Regression(https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-linear-regression.pdf)
+- [Linear Regression](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-linear-regression.pdf)
 - Lab 9: Model Selection 
 - Lecture 22: Module 10: Model Selection
 - [Model Selection](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-10/10-model-selection.pdf)
