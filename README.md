@@ -36,14 +36,22 @@ Reading (complete before August 18, 2020):
 - Read Ch 2.9 (Posterior predictive inference) (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). 
 
 <pre><b> Week 2: Tuesday, September 1 - Thursday, September 3, Intro to Bayes and Decision Theory </pre>
-- Lecture 3: Tuesday September 1: Module 1:  Introduction to Bayesian Statistics (Continued) 
-- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf) 
-- Lecture 4: Thursday September 3: Module 2:  Introduction to Decision Theory 
-- [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
-- Lab 2: [Introduction to Bayes](
 
-Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
-This is not covered in Hoff. 
+Module 1: Intro to Bayesian Statistics (Continued)
+
+Module 2:  Introduction to Decision Theory 
+
+Lecture 3: Tuesday September 1: Introduction to Bayesian Statistics (Continued) 
+- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf) 
+
+Lecture 4: Thursday September 3: Introduction to Decision Theory 
+- [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
+
+Labs: 
+- Lab 2: [Introduction to Bayes](https://github.com/resteorts/modern-bayes/blob/master/labs/02-intro-to-bayes/lab-02.pdf)
+
+Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) 
+This is not covered in Hoff. (Complete before Tuesday Sept 1). 
 
 
 <pre><b> Week 3: Tuesday, September 8 - Thursday, September 10, Intro to Decision Theory and Advanced Conjugacy </pre>
