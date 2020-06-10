@@ -126,21 +126,21 @@ Metropolis Hastings: 10.4 and 10.5, Latent variable allocation: Chapter 12
 
 - Information about Exam II: To be placed here. 
 
-<pre><b> Week 14: Tuesday, November 10 - Thursday, November 12 </pre>
-- Lecture 19: Tuesday November 10: Module 8:  Multivariate Normal Distribution
+<pre><b> Week 13: Tuesday, November 3 - 5 Thursday, November 12 </pre>
+- Lecture 3: Tuesday November 10: Module 8:  Multivariate Normal Distribution
 - [Multivariate Normal](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-8/08-multivariate-norm.pdf)
 - Lab 9: Multivariate Normal
-- Lecture 20: Thursday November 12: Module 8: Data Augmentation and Mixture Models 
+- Lecture 5: Thursday November 12: Module 8: Data Augmentation and Mixture Models 
 - [Multivariate Normal and Missing Data](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-8/08-missing-data.pdf)
 
 Readings: Module 9 (Multivariate Normal Distribution)
 Hoff: Chapter 7.1--7.4
 
-<pre><b> Week 15: Tuesday, November 17 - Thursday, November 19 </pre>
+<pre><b> Week 15: Tuesday, November 10 - Thursday, November 12 </pre>
 - Lecture 21: Tuesday November 17: Module 9:  Linear Regression 
 - Lecture 21 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-9/9-linear-regression.pdf
 - Lab 9: Linear Regression 
-- Lecture 22: Thursday November 19: Module 9: Probit Regression 
+- Lecture 22: Thursday November 12: Module 9: Probit Regression 
 - Lecture 22 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-9/9-probit-regression.pdf
 
 Readings: Module 11 (Linear Regression)
