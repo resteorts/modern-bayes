@@ -58,13 +58,20 @@ Labs:
 Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) 
 This is not covered in Hoff. (Complete before Tuesday Sept 1). 
 
-
 <pre><b> Week 3: Tuesday, September 8 - Thursday, September 10, Intro to Decision Theory and Advanced Conjugacy </pre>
-- Lecture 5: Tuesday September 8: Module 2:  Introduction to Decision Theory (Continued)
+
+ Module 2:  Introduction to Decision Theory (Continued)
+ 
+ Module 3: Advanced Conjucacy (Normal-Normal)
+
+- Lecture 5: Tuesday September 8:  Introduction to Decision Theory (Continued)
 - [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
-- Lecture 6: Thursday September 10: Module 3: Advanced Conjucacy (Normal-Normal)
+- Lecture 6: Thursday September 10: Advanced Conjucacy (Normal-Normal)
 - [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
-- Lab 3: Introduction to Decision Theory
+
+Labs: 
+- Lab 3: [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/labs/03-intro-decision-theory/lab3IntrotoDecisionTheory.pdf)
+- [Lab 3 Solutions](https://github.com/resteorts/modern-bayes/blob/master/labs/03-intro-decision-theory/lab-03.pdf)
 
 <pre><b> Week 4: Tuesday, September 15 - Thursday, September 17, Advanced Conjuacy </pre>
 - Lecture 7: Tuesday September 15: Module 3:  Advanced Conjucacy (Normal-Normal)
