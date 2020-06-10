@@ -151,7 +151,7 @@ coming to class. There are also notes that I have written under readings/ that y
 
 ## Required Material
 
-Before starting the course for the fall semester, I would highly recommend review the pre-req material for the course on the [syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf).
+Before starting the course for the fall semester, I would highly recommend review the pre-req material for the course on the [syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf). Given the shortened semester, please make sure that you are 100 percent comfortable with the pre-req material before taking STA 360. If you have any questions regarding this, please reach out to me as soon as possible. 
 
 ## Introduction/Review to R
 
