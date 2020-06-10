@@ -26,7 +26,7 @@ Labs:
 - [Video Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/video-lab-01.mp4)
 - [Lab 1 Solution](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/lab-01-solution.pdf)
 
-Reading: 
+Reading (complete before August 18, 2020): 
 
 - [History of Bayes and Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-history-of-Bayes.pdf)
 - Read Ch 1, Ch 2.1 -- 2.6. (Hoff), Read Ch 1.1 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
