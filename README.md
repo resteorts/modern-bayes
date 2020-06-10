@@ -49,6 +49,7 @@ Lecture 4: Thursday September 3: Introduction to Decision Theory
 
 Labs: 
 - Lab 2: [Introduction to Bayes](https://github.com/resteorts/modern-bayes/blob/master/labs/02-intro-to-bayes/lab-02.pdf)
+- [Labs 2 Videos](https://github.com/resteorts/modern-bayes/tree/master/labs/02-intro-to-bayes/videos)
 
 Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) 
 This is not covered in Hoff. (Complete before Tuesday Sept 1). 
