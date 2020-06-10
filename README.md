@@ -4,7 +4,7 @@ The readings/preparations for the class can be found at the very bottom of this 
 
 ## Tenative Course Schedule 
 
-This is a tenative course schedule given that Duke is undergoing re-registration and we currently do not have a class time or lab time. I am outlining the first few weeks of the semester and providing links regarding resources to help you prepare for the class in advance with videos. 
+This is a tenative course schedule given that Duke is undergoing re-registration and we currently do not have a class time or lab time. I am outlining the first few weeks of the semester and providing links regarding resources to help you prepare for the class in advance with many resources to help you be prepared for the start of the semester! I look forward to having everyone in class very much and getting to know all of you! 
 
 [Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf)
 
