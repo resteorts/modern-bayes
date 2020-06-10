@@ -148,7 +148,7 @@ https://onlinecourses.science.psu.edu/stat504/node/59
 -[Data wrangling](https://www2.stat.duke.edu/courses/Spring19/sta199.001/slides/lec-slides/02c-data-wrangle.html#1)
 -[Regression](https://www2.stat.duke.edu/courses/Spring19/sta199.001/slides/lec-slides/06b-formalizing-linear-models.html#1)
 
-### Practice Problems for Exams 
+# Practice Problems for Exams 
 
 [Practice Problems for Exams](https://github.com/resteorts/modern-bayes/tree/master/exercises)
 
