@@ -164,3 +164,4 @@ Homeworks will be updated on github during the course of the semester. Due dates
 
 - [Homework 1](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-1/hw-01.pdf)
 - [Homework 2](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-2/hw-02.pdf)
+- [Homework 3](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-3/hw-03.pdf)
