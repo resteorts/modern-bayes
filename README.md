@@ -6,7 +6,7 @@ The readings/preparations for the class can be found at the very bottom of this 
 
 (Please note that this is subject to change given that we still do not have a class time, location for Fall 2020 yet, but I will update this often leading up to the first day of class to try and make this a smooth semester for all. I appreciate everyone's patience as we all go through this together. Importantly, know that I care very much your learning and appreciate your feedback! I look forward to having you in class very much, and hope that we're all in person like we were before as soon as possible! 
 
-<pre><b> Week 1: Tuesday, August 18 - Thursday, August 20 </pre>
+<pre><b> Week 1: Tuesday, August 18 - Thursday, August 20, Intro to Bayes </pre>
 - Lecture 1: Tuesday, August 18: Module 0: Introduction to Course and Expectations and Introduction to Bayesian Statistics
 - [Introduction to Bayesian Statistics and Course Expectations](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-0/00-intro-to-Bayes.pdf)
 - [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
@@ -23,7 +23,7 @@ Reading:
 - Read Ch 4 for predictive inference (Hoff). 
 - Read Ch 2.9 (Posterior predictive inference) (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). 
 
-<pre><b> Week 2: Tuesday, September 1 - Thursday, September 3 </pre>
+<pre><b> Week 2: Tuesday, September 1 - Thursday, September 3, Intro to Bayes and Decision Theory </pre>
 - Lecture 3: Tuesday September 1: Module 1:  Introduction to Bayesian Statistics (Continued) 
 - [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
 - Lab 2: Introduction to Bayes  
@@ -34,14 +34,14 @@ Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manus
 This is not covered in Hoff. 
 
 
-<pre><b> Week 4: Tuesday, September 8 - Thursday, September 10 </pre>
+<pre><b> Week 4: Tuesday, September 8 - Thursday, September 10, Intro to Decision Theory and Advanced Conjugacy </pre>
 - Lecture 5: Tuesday September 8: Module 2:  Introduction to Decision Theory (Continued)
 - [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
 - Lab 3: Introduction to Decision Theory
 - Lecture 6: Thursday September 10: Module 3: Advanced Conjucacy (Normal-Normal)
 - [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
 
-<pre><b> Week 5: Tuesday, September 15 - Thursday, September 17 </pre>
+<pre><b> Week 5: Tuesday, September 15 - Thursday, September 17, Advanced Conjuacy </pre>
 - Lecture 7: Tuesday September 15: Module 3:  Advanced Conjucacy (Normal-Normal)
 - [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
 - Lab 4: Introduction to Gaussian Conjugate Models 
@@ -51,7 +51,7 @@ This is not covered in Hoff.
 Reading:  Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model.
 Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugate model. 
 
-<pre><b> Week 6: Tuesday, September 22 - Thursday, September 24 </pre>
+<pre><b> Week 6: Tuesday, September 22 - Thursday, September 24, Advanced Conjuacy and Intro to Monte Carlo </pre>
 - Lecture 9: Tuesday September 22: Module 4:  Advanced Conjucacy (Normal-Gamma) (Continued
 - [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
 - Lab 4: Introduction to Normal Gamma Conjugate Models 
@@ -62,7 +62,7 @@ Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manus
 
 - Information about Exam I: To be placed here. 
 
-<pre><b> Week 7: Tuesday, September 29 - Thursday, October 1 </pre>
+<pre><b> Week 7: Tuesday, September 29 - Thursday, October 1, Intro to Monte Carlo and Metropolis </pre>
 - Lecture 11: Tuesday September 29: Module 5:  Introduction to Monte Carlo  (Continued)
 - [Intro to Monte Carlo](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
 - Lab 5: Introduction to Importance and Rejection Sampling 
@@ -77,7 +77,7 @@ Remark: The slides will cover examples not always in Hoff or the notes.
 
 Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
  
- <pre><b>  Week 8: Tuesday, October 6 - Thursday, October 8 </pre>
+ <pre><b>  Week 8: Tuesday, October 6 - Thursday, October 8, Intro to Metropolis and Gibbs </pre>
  - Lecture 13: Tuesday October 6: Module 6:  The Metropolis Algorithm (Continued)
 - [Intro to Metropolis](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-6/06-metropolis.pdf)
  - Lab 6: The Metropolis Algorithm
@@ -90,31 +90,20 @@ Read Phd notes, Chapter 5.2
 Remark: The slides will cover examples not always in Hoff or the notes.  
 For Metropolis Algorithm, read Hoff 10.2 
 
- <pre><b> Week 9: Tuesday, October 13 - Thursday, October 15 </pre>
-- Lecture 15: Tuesday October 13: Module 6:  Gibbs Sampling, Data Augmentation, and Mixture Models
-[Multi-stage Gibbs Sampling](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part4-data-augment.pdf)
-- Lab 7: One Stage Gibbs Sampling 
-- Lecture 16: Thursday October 15: Module 6: Gibbs sampling and Data Augmentation 
-- [Gibbs sampling and Data Augmentation](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part2-multi-stage.pdf)
 
-<pre><b> Week 10: Tuesday, October 13 - Thursday, October 15 </pre>
-- Lecture 14: Tuesday October 13: Module 6:  One Stage Gibbs Sampling and the Metropolis Algorithm (Continued)
-- Lab 8: Multi-stage Gibbs sampling
-- Lecture 15: Thursday October 15: Module 6: One Stage Gibbs Sampling and the Metropolis Algorithm
-
- <pre><b> Week 11: Tuesday, October 20 - Thursday, October 22 </pre>
-- Lecture 16: Tuesday October 20: Module 7:  Intro to Gibbs 
+ <pre><b> Week 9: Tuesday, October 20 - Thursday, October 22 </pre>
+- Lecture 15: Tuesday October 20: Module 7:  Intro to Gibbs (Continued)
 - Lecture 16 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part1.pdf
-- Lab 9: XXX
-- Lecture 17: Thursday October 22: Module 7:  Multi-stage Gibbs sampling and Missing Data
-- Lecture 17 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part2-multi-stage.pdf
+- Lab 7: XXX
+- Lecture 16: Thursday October 22: Module 7:  Multi-stage Gibbs sampling and Missing Data
+- [Multistage Gibbs](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part2-multi-stage.pdf)
 
- <pre><b> Week 12: Tuesday, October 27 - Thursday, October 29 </pre>
+ <pre><b> Week 10: Tuesday, October 27 - Thursday, October 29 </pre>
 - Lecture 17: Tuesday October 27: Module 7:  Data Augmentation 
-- Lecture 17 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part3-data-augment.pdf
-- Lab 9: XXXX
+- [Data Augmentataion](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part3-data-augment.pdf)
+- Lab 8: XXXX
 - Lecture 18: Thursday October 29: Module 7: Data Augmentation and Mixture Models 
-- Lecture 18 Slides: https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part4-data-augment.pdf
+- [Data Augmentation and Mixture Models](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-7/07-gibbs-part4-data-augment.pdf)
 
 Reading: Module 7  (Multistage Gibbs and Latent Variable Allocation)
 The material in class is not in the PhD notes for the most part. 
@@ -126,7 +115,7 @@ Metropolis Hastings: 10.4 and 10.5, Latent variable allocation: Chapter 12
 
 - Information about Exam II: To be placed here. 
 
-<pre><b> Week 13: Tuesday, November 3 - 5 Thursday, November 12 </pre>
+<pre><b> Week 11: Tuesday, November 3 - 5 Thursday, November 12 </pre>
 - Lecture 19: Tuesday November 10: Module 8:  Multivariate Normal Distribution
 - [Multivariate Normal](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-8/08-multivariate-norm.pdf)
 - Lab 9: Multivariate Normal
@@ -136,7 +125,7 @@ Metropolis Hastings: 10.4 and 10.5, Latent variable allocation: Chapter 12
 Readings: Module 9 (Multivariate Normal Distribution)
 Hoff: Chapter 7.1--7.4
 
-<pre><b> Week 15: Tuesday, November 10 - Thursday, November 12 </pre>
+<pre><b> Week 12: Tuesday, November 10 - Thursday, November 12 </pre>
 - Lecture 21: Tuesday November 10: Module 9:  Linear Regression 
 - [Linear Regression](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-linear-regression.pdf)
 - Lab 9: Model Selection 
@@ -147,7 +136,7 @@ Readings: Module 11 (Linear Regression)
 Hoff: Chapter 9.1--9.2
 [Probit Regression](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-probit-regression.pdf)
 
-<pre><b> Week 16: Tuesday, November 16 - Thursday, November 18 </pre>
+<pre><b> Week 13: Tuesday, November 16 - Thursday, November 18 </pre>
 - Review and Final Exam 
 
 
