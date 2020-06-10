@@ -10,7 +10,9 @@ TODO: check dates and make these consistent with duke's new schedule.
 
 <pre><b> Week 1: Tuesday, August 18 - Thursday, August 20, Intro to Course </pre>
  
-Module 0: Introduction to Course Expectations, and Bayesian Statistics 
+Module 0: Introduction to Course Expectations and Overview of Bayesian Statistics
+
+Module 1: Intro to Bayesian Statistics 
 
 Lecture 1: Tuesday, August 18: Intro to Course, Expectations, and Bayesian Statistics
 - [Introduction to Bayesian Statistics and Course Expectations](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-0/00-intro-to-Bayes.pdf)
