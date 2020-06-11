@@ -23,7 +23,7 @@ Assume three random variables, with joint pmf or pdf: $p(x,y,z).$.
 \vskip 1em
 Set $x$, $y$, and $z$ to some values $(x_o,y_o,z_o)$.
 \vskip 1em
-Sample $x|y,z$, then $y|x,z$, then $z|x,y$, then $x|y,z$, and so on. More precisely,
+Sample $x|y,z$, then $y|x,z$, then $z|x,y$, and so on. More precisely,
 \begin{enumerate}
 \item[0.] Set $(x_0,y_0,z_0)$ to some starting value.
 \item[1.] Sample $x_1\sim p(x|y_0,z_0)$. \\
