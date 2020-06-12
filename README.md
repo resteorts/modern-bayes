@@ -158,6 +158,7 @@ https://onlinecourses.science.psu.edu/stat504/node/59
 
 - [Statistical Inference](https://mybiostats.files.wordpress.com/2015/03/casella-berger.pdf), Review Ch 1 - 5. 
 - [Statistical Inference Solutions](http://www.ams.sunysb.edu/~zhu/ams570/Solutions-Casella-Berger.pdf)
+- [Review Notes](https://github.com/resteorts/modern-bayes/blob/master/reading/babybayes-master.pdf)
 
 # Practice Problems for Exams 
 
