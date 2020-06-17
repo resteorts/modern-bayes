@@ -2,25 +2,12 @@
 ---
 title: "Module 7: Part III: Gibbs Sampling and Data Augmentation"
 author: "Rebecca C. Steorts"
-date: March 21, 2019
 output: 
      beamer_presentation:
       includes: 
           in_header: custom2.tex
 font-size: 8px
 ---
-
-Announcements
-===
-
-- At the end of class today, if everyone could fill out the course evaluation, I would be 
-really appreciative. (Check your email for this). 
-- Duke Undergraduate Machine Learning Day is Saturday March 23. You can register at \url{http://dukeml.org/} and 
-see the full schedule of events. 
-- If you're interested in doing an undergraduate thesis, poster presentations will be given by our seniors on Friday,
-March 29 at 3:30 -- 4:30 PM, Brodhead Center Multipurpose Room, 068. 
-- DataFest is April 6 -- 8 and you can register on the main statistical science page. 
-- I will hand back Midterm II next week in class. Overall, the exams were quite good. Well done:) 
 
 Agenda
 ===
@@ -103,22 +90,23 @@ indicating which mixture component it is drawn from.
 
 Two-component mixture model
 ===
-Let's assume that both mixture components (female and male) have the same precision, say $\lambda$, and that $\lambda$ is fixed and known. Assume below that $a,b,m, \ell$ are known.
+Assume that both mixture components (female and male) have the same precision,  $\lambda$, which is fixed and known. Assume below that $a,b,m, \ell$ are known.
+Let $\pi$ be the prior probability that a subject comes from component 1.
 
 \vskip 1em
 
-Then the usual two-component Normal mixture model is:
+Then the two-component Normal mixture model is:
 \begin{align}
   & X_1,\ldots, X_n \mid \mu,\pi\ \sim F(\mu,\pi)\\
       & \mu:=(\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
         & \pi \sim \Beta(a,b),
 \end{align}
-Remark: $\pi$ is the prior probability that a subject comes from component 1.
-
 where $F(\mu,\pi)$ is the distribution with p.d.f. 
 $$ f(x|\mu,\pi) = (1-\pi)\N(x\mid \mu_0,\lambda^{-1}) + \pi
 \N(x\mid \mu_1,\lambda^{-1}) $$
-and $\mu=(\mu_0,\mu_1)$.
+
+
+
 
 
 Likelihood

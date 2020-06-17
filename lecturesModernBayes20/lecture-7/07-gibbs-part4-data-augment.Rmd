@@ -9,58 +9,6 @@ output:
 font-size: 8px
 ---
 
-Announcements
-===
-
-- Final exam: April 29, 2019: 9 am -- noon (Old Chem 116)
-- The rest of the semester will finish up the rest of the required material for the course:
-missing data, multivariate models, regression, model selection
-- Your lab this week (lab 8) will correspond with today's lecture, where some details will be worked out in lab
-and the rest you'll complete on your own for homework 7.
-- Additional practice exercises for the course have been posted.
-
-Course Materials
-===
-
-Reminder that all course materials can be found here: 
-
-https://resteorts.github.io/teach/bayes19
-
-
-Course evaluation feedback
-===
-
-Thank you so much for filling these out! 
-
-1. Github
-2. Expectations
-3. Course materials
-4. Most students really like the homeworks and are learning from these. 
-5. Students liked the clarity of lecture.
-6. Students are happy with the overall pace of the lecture, so this will continue.
-7. Students liked the coding that is mixed with the methods.
-
-
-
-All of this will stay the same and I really appreciate everyone's helpful feedback here. 
-
-Course evaluation feedback
-===
-
-1. Students would like more practice exercises. Some students students would like harder problems/more problems. 
-These have been posted to github! 
-Suggestion: For this, students can choose to not use the code given to you and write your own code as an example. Also, there will be more practice exercises given to help you prepare for the final exam or just help you practice more. 
-2. Some students would like to see more real data applications and connections with my research. I will give a lecture on latent variable models
-and how this ties into real research. 
-3. Some students preferred midterm 1 and some students preferred midterm 2. This was almost an even split.
-4. Some TA’s don’t seem prepared for lab and things are not organized. 
-5. Course organization scores were lower than expected. Could students let me know how the course could be better organized? 
-
-
-
-
-
-
 
 Agenda
 ===
