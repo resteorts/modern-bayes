@@ -154,6 +154,12 @@ https://onlinecourses.science.psu.edu/stat504/node/59
 - [Data wrangling](https://www2.stat.duke.edu/courses/Spring19/sta199.001/slides/lec-slides/02c-data-wrangle.html#1)
 - [Regression](https://www2.stat.duke.edu/courses/Spring19/sta199.001/slides/lec-slides/06b-formalizing-linear-models.html#1)
 
+## 230 Resources 
+
+- [Statistical Inference](https://mybiostats.files.wordpress.com/2015/03/casella-berger.pdf), Review Ch 1 - 5. 
+- [Statistical Inference Solutions](http://www.ams.sunysb.edu/~zhu/ams570/Solutions-Casella-Berger.pdf)
+- [Review Notes](https://github.com/resteorts/modern-bayes/blob/master/reading/babybayes-master.pdf)
+
 # Practice Problems for Exams 
 
 [Practice Problems for Exams](https://github.com/resteorts/modern-bayes/tree/master/exercises)
