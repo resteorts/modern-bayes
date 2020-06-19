@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to Bayesian Statistics (STA 360)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Professor Rebecca Steorts" />
+    <link rel="stylesheet" href="sta199-slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction to Bayesian Statistics (STA 360)
+### Professor Rebecca Steorts
+
+---
+
+
+
+
+
+
+class: center, middle
+
+# Welcome!
+
+---
+
+## What is Bayesian Statistics?
+
+*"Bayesian statistics is a theory in the field of statistics based on the Bayesian interpretation of probability where probability expresses a degree of belief in an event. The degree of belief may be based on prior knowledge about the event, such as the results of previous experiments, or on personal beliefs about the event. This differs from a number of other interpretations of probability, such as the frequentist interpretation that views probability as the limit of the relative frequency of an event after many trials. &lt;/font&gt;."*
+
+.pull-right[
+[-Wikipedia](https://en.wikipedia.org/wiki/Bayesian_statistics)
+]
+
+---
+
+class: regular
+
+## Instructor
+
+[Prof. Rebecca Steorts](resteorts.github.io)
+
+&lt;i class="material-icons"&gt;mail_outline&lt;/i&gt; &amp;nbsp;[beka@stat.duke.edu](mailto:beka@stat.duke.edu)&lt;br&gt;
+&lt;i class="material-icons"&gt;work_outline&lt;/i&gt; &amp;nbsp;Old Chem 216&lt;br&gt;
+&lt;i class="material-icons"&gt;calendar_today&lt;/i&gt;&amp;nbsp; TBD
+
+--
+
+.pull-left[
+&lt;img src="figures/dunn.png" width="120%" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src="figures/dedup.png" width="69%" style="display: block; margin: auto;" /&gt;
+]
+---
+
+## Teaching Assistants
+&lt;small&gt;
+.pull-left[
+[Max Bartlett](https://www.linkedin.com/in/maxbartlett/)
+
+&lt;i class="material-icons"&gt;mail_outline&lt;/i&gt; &amp;nbsp;[maxwell.bartlett@duke.edu](mailto:maxwell.bartlett@duke.edu)&lt;br&gt;
+&lt;i class="material-icons"&gt;work_outline&lt;/i&gt; &amp;nbsp;Old Chem 203B&lt;br&gt;
+&lt;i class="material-icons"&gt;calendar_today&lt;/i&gt;&amp;nbsp; Mon 6p - 8p
+
+&lt;br&gt;&lt;br&gt;
+
+[Meredith Brown](https://www.linkedin.com/in/meredith-brown-807964172/)
+
+&lt;i class="material-icons"&gt;mail_outline&lt;/i&gt; &amp;nbsp;[meredith.brown@duke.edu](mailto:meredith.brown@duke.edu)&lt;br&gt;
+&lt;i class="material-icons"&gt;work_outline&lt;/i&gt; &amp;nbsp;Old Chem 203B&lt;br&gt;
+&lt;i class="material-icons"&gt;calendar_today&lt;/i&gt;&amp;nbsp; Mon 12:30p - 2:30p
+]
+
+.pull-right[
+[Steven Herrera](https://www.linkedin.com/in/rosvidstevenherrera/)
+
+&lt;i class="material-icons"&gt;mail_outline&lt;/i&gt; &amp;nbsp; &lt;small&gt;[rosvid.herrera.tenorio@duke.edu](mailto:rosvid.herrera.tenorio@duke.edu)&lt;/small&gt;&lt;br&gt;
+&lt;i class="material-icons"&gt;work_outline&lt;/i&gt; &amp;nbsp;Old Chem 203B&lt;br&gt;
+&lt;i class="material-icons"&gt;calendar_today&lt;/i&gt;&amp;nbsp; Thu 5:30p - 7:30p
+
+&lt;br&gt;
+
+[Jessie Ou](https://www.linkedin.com/in/jessie-yc-ou/)
+
+&lt;i class="material-icons"&gt;mail_outline&lt;/i&gt; &amp;nbsp;[yanchen.ou@duke.edu](mailto:yanchen.ou@duke.edu)&lt;br&gt;
+&lt;i class="material-icons"&gt;work_outline&lt;/i&gt; &amp;nbsp;Old Chem 203B&lt;br&gt;
+&lt;i class="material-icons"&gt;calendar_today&lt;/i&gt;&amp;nbsp; Sun 12p - 2p
+
+
+]
+
+
+
+---
+
+## Where to find information
+
+- Course website (all major course information here): [https://github.com/resteorts/modern-bayes](https://github.com/resteorts/modern-bayes)
+
+- Google group (course forum): [https://groups.google.com/forum/#!forum/bayes20](https://groups.google.com/forum/#!forum/bayes20)
+
+- Sakai (upload homeworks): [https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1](https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1)
+
+Remark: Videos on Github are too large to view, so you will need to download these if you wish to watch them. The fastest way, is to clone the repository and they will all download. They are stored this way in case your internet connection is slow. 
+
+
+---
+
+## Other course information
+
+- Course syllabus [https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf)
+
+
+---
+
+## Prior Knowledge 
+
+- STA 210 [https://www2.stat.duke.edu/courses/Spring19/sta210.001/](https://www2.stat.duke.edu/courses/Spring19/sta210.001/)
+- STA 230 [https://www2.stat.duke.edu/courses/Fall18/sta230/](https://www2.stat.duke.edu/courses/Fall18/sta230/)
+- Linear algebra [http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/lecture_12](http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/lecture_12)
+- R programming (STA 199) [https://www2.stat.duke.edu/courses/Spring18/Sta199/](https://www2.stat.duke.edu/courses/Spring18/Sta199/)
+- github (STA 199) [https://www2.stat.duke.edu/courses/Spring18/Sta199/](https://www2.stat.duke.edu/courses/Spring18/Sta199/)
+
+---
+
+## Course Objectives
+
+- Provide a foundation to Bayesian statical methods
+
+- Explore, visualize, and analze data in a reproducible and shareable manner using Bayesian methods from the course
+
+-  Gain experience in data wrangling and munging, building Bayesian models, visualizing them, and interpreting them 
+
+- Work on problems and case studies inspired by and based on real-world questions and data
+
+- Learn to effectively communicate results through written assignments and exams 
+
+---
+
+class: middle, center
+
+## Examples of Bayesian Statistics 
+
+---
+
+## Social Networks
+
+&lt;img src="figures/multi_view.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Precision Medicine 
+
+&lt;img src="figures/suchi.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+----
+
+## Estimating Rent Prices in Small Domains
+
+&lt;img src="figures/BenchandSmooth.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+class: middle, center
+
+## Your Turn!
+
+---
+
+## Create a GitHub account
+
+&lt;small&gt;
+
+.instructions[
+Go to https://github.com/, and create an account (unless you already have one). After you create your account, click [here](https://forms.gle/xKD3bPtN6YA9MmZbA) and enter your GitHub username.
+]
+
+Tips for creating a username from [Happy Git with R](http://happygitwithr.com/github-acct.html#username-advice).
+
+- Incorporate your actual name!
+- Reuse your username from other contexts if you can, e.g., Twitter or Slack.
+- Pick a username you will be comfortable revealing to your future boss.
+- Shorter is better than longer.
+- Be as unique as possible in as few characters as possible.
+- Make it timeless. Don’t highlight your current university, employer, or place of residence.
+- Avoid words laden with special meaning in programming, like `NA`.
+
+&lt;/small&gt;
+
+
+---
+
+## Login to github with your username (handle)
+
+- Go to [https://github.com/](https://github.com/), and login with your github credentials. 
+
+---
+
+## Clone the class repository 
+
+- Clone the class repository **modern-bayes**
+
+&lt;img src="figures/clone-repo.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+.instructions[
+Raise your hand if you have any questions. 
+]
+
+---
+
+## Clone the class repository 
+
+[Demo of cloning the class repository]
+
+---
+
+## Discussion 
+
+Discuss the following with a partner.
+
+1. Start by introducing yourself! Name, year, major/ academic interest, favorite hobby.
+
+2. Make sure that you can clone the repository and that your partner could as well. 
+
+3. Check to see that you're able to navigate the course webpage via the wepbage and via you're own computer (in case that you loose access to the internal). 
+
+Tip: Make sure to pull from the repository quite often as the class webpage and materials will be frequently updated. 
+
+---
+
+class: middle, center
+
+## Course Policies
+
+---
+
+## Class Meetings 
+
+--
+
+&lt;font class="vocab"&gt;Lecture&lt;/font&gt; 
+- Learn Bayesian statistical methods
+- Lectures will consist of learning methodology and applied coding techniques
+- Bring fully-charged laptop to every lecture
+    - Please let me know as soon as possible if you do not have access to a laptop
+
+--
+
+&lt;font class="vocab"&gt;Lab&lt;/font&gt;
+- Labs will reinforce concepts learned in class using R 
+- Apply concepts from lecture to real or synthetic data 
+- Many labs will be finished as part of your homework  
+- Bring fully-charged laptop to every lab
+
+---
+
+## Required Textbooks
+
+- [A First Course in Bayesian Statistical Methods, Peter Hoff]
+    - Free PDF available online through the library. Hard copy available for purchase.
+    - Assigned readings on github. 
+  
+- [Some of Bayesian Statistics: The Essential Parts](https://github.com/resteorts/modern-bayes/blob/master/reading/essential_bayes.pdf)
+    - Assigned readings. 
+    
+    
+
+---
+
+## Supplemental Textbooks
+
+- [Baby Bayes using R](https://github.com/resteorts/modern-bayes/blob/master/reading/babybayes-master.pdf)
+
+- [Bayesian Data Analysis](https://www.secondsale.com/i/bayesian-data-analysis/9781439840955?gclid=EAIaIQobChMIsoe9reyJ6gIV4R-tBh3Gvwr2EAQYASABEgLjlPD_BwE)
+
+
+- [The R Cookbook](http://www.cookbook-r.com/)
+
+- [Github Setup Video](https://www.youtube.com/watch?v=SWYqp7iY_Tc)
+
+- [Github Tutorial](https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners)
+---
+
+## Activities &amp; Assessments
+
+- &lt;font class="vocab"&gt;Homework&lt;/font&gt;: Individual assignments combining conceptual and computational skills along with lab exercises. *Lowest score dropped.*
+
+--
+
+- &lt;font class="vocab"&gt;Labs&lt;/font&gt;: **Attending lab is optional**, however, there will be a lab problem on each homework each week. 
+
+--
+
+- &lt;font class="vocab"&gt;Exams&lt;/font&gt;: Two exams. 
+
+--
+
+- &lt;font class="vocab"&gt;Final Exam&lt;/font&gt;: There will be a final exam, and you must take the final exam to pass the course. 
+
+---
+
+## Grade Calculation
+
+&lt;small&gt;
+
+| Component | Weight |
+|---------------|--------|
+| Homework | 30%|
+| Exam 1 | 20% |
+| Exam 2 | 20% |
+| Final Project | 30% |
+
+--
+
+- If you have a cumulative numerical average of 90 - 100, you are guaranteed at least an A-, 80 - 89 at least a B-, and 70 - 79 at least a C-. The exact ranges for letter grades will be determined after the final exam.
+
+- You are expected to attend lectures and labs in order to keep up with the course material. There will be no attendance grade or participation grade. 
+
+
+&lt;/small&gt;
+
+---
+
+## Excused Absences
+
+- Students who miss a class due to a scheduled varsity trip, religious holiday, or short-term illness should fill out the respective form.
+     - These excused absences do not excuse you from assigned work. 
+--
+- If you have a personal or family emergency or chronic health condition that affects your ability to participate in class, please contact your academic dean’s office.
+--
+
+- Exam dates cannot be changed and no make-up exams will be given. 
+
+---
+
+## Late Work &amp;amp; Regrade Requests
+
+- No late homeworks will be accepted, so please do not ask.  
+    
+- No make up exams will be given.  
+
+- Regrade requests must be submitted within one week of when the assignment was returned. 
+
+---
+
+## Academic Honesty
+
+All work for this class should be done in accordance with the Duke Community Standard. 
+
+&gt; To uphold the Duke Community Standard:
+&gt; - I will not lie, cheat, or steal in my academic endeavors;
+&gt; - I will conduct myself honorably in all my endeavors; and
+&gt; - I will act if the Standard is compromised.
+Any violations will automatically result in a grade of 0 on the assignment and will be reported to [Office of Student Conduct](https://studentaffairs.duke.edu/conduct) for further action.
+
+---
+
+## Reusing Code
+
+- Unless explicitly stated otherwise, you may make use of online resources (e.g. StackOverflow) for coding examples on assignments. If you directly use code from an outside source (or use it as inspiration), you must or explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
+
+- On individual assignments, you may discuss the assignment with one another; however, you may not directly share code or write up with other students. 
+
+- On team assignments, you may not directly share code or write up with another team. Unauthorized sharing of the code or write up will be considered a violation for all students involved. 
+
+---
+
+## Where to find help
+
+- **If you have a question during lecture or lab, feel free to ask it!** There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.
+
+--
+
+- **Office Hours**: A lot of questions are most effectively answered in-person, so office hours are a valuable resource. Please use them!
+
+--
+
+- **Google group**: Outside of class and office hours, any general questions about course content or assignments should be posted on Google since there are likely other students with the same questions.
+
+---
+
+## Academic Resource Center
+
+Sometimes you may need help with the class that is beyond what can be provided by the teaching team. In that instance, I encourage you to visit the Academic Resource Center.  
+&lt;br&gt;&lt;br&gt;
+
+.small[
+The [Academic Resource Center (ARC)](https://arc.duke.edu) offers free services to all students during their undergraduate careers at Duke.  Services include Learning Consultations, Peer Tutoring and Study Groups, ADHD/LD Coaching, Outreach Workshops, and more. Because learning is a process unique to every individual, they work with each student to discover and develop their own academic strategy for success at Duke. Contact the ARC to schedule an appointment. Undergraduates in any year, studying any discipline can benefit! Contact &lt;a href="mailto:arc@duke.edu" title="email"&gt;ARC@duke.edu&lt;/a&gt;, 919-684-5917, 211 Academic Advising Center Building, East Campus – behind Marketplace.
+]
+
+---
+
+## Technology 
+
+- You should bring a laptop to every lecture and lab session.  Outlets are limited, so make sure it is fully-charged.
+
+- Ensure the volume on all devices is set to mute.
+
+- Refrain from engaging in activities not related to the class discussion. Browsing the web and social media, excessive messaging, playing games, etc. is not only a distraction for you but is also a distraction for everyone around you.
+
+---
+
+## Accessibility 
+
+Please contact the [Student Disability Access Office (SDAO)](https://access.duke.edu) if there is an element of the course that is not accessible to you. There you can engage in a confidential conversation about the process for requesting reasonable accommodations. 
+&lt;br&gt;&lt;br&gt;
+
+Please note that accommodations are not provided retroactively, so please contact them as soon as possible.  More information can be found online at [access.duke.edu](https://access.duke.edu). 
+
+---
+
+### Inclusion 
+
+In this course, we will strive to create a learning environment that is welcoming to all students and that is in alignment with [Duke’s Commitment to Diversity and Inclusion](https://provost.duke.edu/initiatives/commitment-to-diversity-and-inclusion). If there is any aspect of the class that is not welcoming or accessible to you, please let me know immediately. 
+&lt;br&gt;&lt;br&gt; 
+
+Additionally, if you are experiencing something outside of class that is affecting your performance in the course, please feel free to talk with me and/or your academic dean. 
+
+---
+
+class: center, middle
+
+## Questions? 
+
+---
+
+## Announcements
+
+Anything else here....
+
+--
+
+- **Please see me if you are on the waiting list**
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
