@@ -4,6 +4,8 @@ The readings/preparations for the class can be found at the very bottom of this 
 
 This is a tenative course schedule (for the first few weeks) given that Duke is undergoing re-registration and we currently do not have a class time or lab time. I am outlining the first few weeks of the semester and providing links regarding resources to help you prepare for the class in advance with many resources to help you be prepared for the start of the semester! I look forward to having everyone in class very much and getting to know all of you!
 
+Please note that I will not receive the new roster for the course until 5 days before the class starts or the TA's for the class, so patience would be greatly appreciated. 
+
 ## Tenative Course Schedule 
 
 The syllabus is a comprehensive place regarding expectations for STA 360. 
@@ -36,9 +38,10 @@ Labs:
 - [Video Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/video-lab-01.mp4)
 - [Lab 1 Solution](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/lab-01-solution.pdf)
 
-Reading (complete before August 18, 2020): 
+Reading and Video Lectures (complete before August 18, 2020): 
 
 - [History of Bayes and Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-history-of-Bayes.pdf)
+- [History of Bayes and Introduction to Bayesian Statistics, Video](https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-1/videos)
 - Read Ch 1, Ch 2.1 -- 2.6. (Hoff), Read Ch 1.1 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
 - Read Ch 3 (Hoff) 
 - Read Ch 2.5--2.7 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
@@ -61,8 +64,9 @@ Labs:
 - Lab 2: [Introduction to Bayes](https://github.com/resteorts/modern-bayes/blob/master/labs/02-intro-to-bayes/lab-02.pdf)
 - [Labs 2 Videos](https://github.com/resteorts/modern-bayes/tree/master/labs/02-intro-to-bayes/videos)
 
-Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) 
-This is not covered in Hoff. (Complete before Tuesday Sept 1). 
+Reading and Video Lectures (complete before September 1, 2020): 
+
+- Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)  
 
 <pre><b> Week 3: Tuesday, September 8 - Thursday, September 10, Intro to Decision Theory and Advanced Conjugacy </pre>
 
@@ -79,7 +83,9 @@ Labs:
 - Lab 3: [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/labs/03-intro-decision-theory/lab3IntrotoDecisionTheory.pdf)
 - [Lab 3 Solutions](https://github.com/resteorts/modern-bayes/blob/master/labs/03-intro-decision-theory/lab-03.pdf)
 
-Readings: Reading:  Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model. Complete before Tuesday, Sept 8. 
+Reading and Video Lectures (complete before September 8, 2020): 
+
+- Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model. 
 
 <pre><b> Week 4: Tuesday, September 15 - Thursday, September 17, Advanced Conjuacy </pre>
 
@@ -97,8 +103,9 @@ Labs:
 - Lab 4: [Introduction to Gaussian Conjugate Models](https://github.com/resteorts/modern-bayes/blob/master/labs/04-intro-gaussian/lab4IntroductiontoBayes.pdf)
 - [Lab 4 Partial Solutions](https://github.com/resteorts/modern-bayes/blob/master/labs/04-intro-gaussian/lab-04.pdf)
 
+Reading and Video Lectures (complete before September 15, 2020):
 
-Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugate model. Complete before Tuesday Sept 15. 
+- Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugate 
 
 <pre><b> Week 5: Tuesday, September 22 - Thursday, September 24, Advanced Conjuacy and Intro to Monte Carlo </pre>
 - Lecture 9: Tuesday September 22: Module 4:  Advanced Conjucacy (Normal-Gamma) (Continued
