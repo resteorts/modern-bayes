@@ -74,26 +74,14 @@ class: regular
 
 --
 
-.pull-left[
-```{r, echo=FALSE,out.width = '120%'} 
-knitr::include_graphics("figures/dunn.png")
-```
-]
-
---
-
-.pull-right[
-```{r, echo=FALSE,out.width = '69%'}
-knitr::include_graphics("figures/dedup.png")
-
-```
-]
 ---
 
 ## Teaching Assistants
 <small>
+Remark: Teaching Assistants for the Course will not be announced until early August given the re-registration that must occur. I appreciate your patience very much given that these have not been announced at this time. 
+
 .pull-left[
-[Max Bartlett](https://www.linkedin.com/in/maxbartlett/)
+[First Last](Webpage)
 
 <i class="material-icons">mail_outline</i> &nbsp;[maxwell.bartlett@duke.edu](mailto:maxwell.bartlett@duke.edu)<br>
 <i class="material-icons">work_outline</i> &nbsp;Old Chem 203B<br>
@@ -101,7 +89,7 @@ knitr::include_graphics("figures/dedup.png")
 
 <br><br>
 
-[Meredith Brown](https://www.linkedin.com/in/meredith-brown-807964172/)
+[First Last](Webpage)
 
 <i class="material-icons">mail_outline</i> &nbsp;[meredith.brown@duke.edu](mailto:meredith.brown@duke.edu)<br>
 <i class="material-icons">work_outline</i> &nbsp;Old Chem 203B<br>
@@ -545,3 +533,4 @@ Anything else here....
 --
 
 - **Please see me if you are on the waiting list**
+- **Please see me after class if you have a question**
