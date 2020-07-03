@@ -65,6 +65,14 @@ Lecture 3: Tuesday September 1: Introduction to Bayesian Statistics (Continued)
 Lecture 4: Thursday September 3: Introduction to Decision Theory 
 - [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
 
+Videos: Introduction to Decision Theory
+
+- [Video: Intro to Bayesian Stat, Part I](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/videos/intro-to-decision-theory-partI.mp4)
+- [Video: Intro to Bayesian Stat, Part II](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/videos/intro-to-decision-theory-partII.mp4)
+- [Video: Intro to Bayesian Stat, Part III](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/videos/intro-to-decision-theory-partIII.mp4)
+
+
+
 Labs: 
 - Lab 2: [Introduction to Bayes](https://github.com/resteorts/modern-bayes/blob/master/labs/02-intro-to-bayes/lab-02.pdf)
 - [Labs 2 Videos](https://github.com/resteorts/modern-bayes/tree/master/labs/02-intro-to-bayes/videos)
