@@ -33,6 +33,11 @@ Lecture 1: Tuesday, August 18: Intro to Course, Expectations, and Bayesian Stati
 Lecture 2: Thursday, August 20: Introduction to Bayesian Statistics (Continued) 
 - [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
 
+Videos: Introduction to Bayesian Statistics
+
+- https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/videos/introduction-to-bayes-partI.MP4
+- https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/videos/introduction-to-bayes-partII.mp4
+
 Labs: 
 - Lab 1: [Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/lab-01.pdf)
 - [Video Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/video-lab-01.mp4)
