@@ -62,8 +62,9 @@ Labs:
 - Lab 2: [Introduction to Bayes](https://github.com/resteorts/modern-bayes/blob/master/labs/02-intro-to-bayes/lab-02.pdf)
 - [Labs 2 Videos](https://github.com/resteorts/modern-bayes/tree/master/labs/02-intro-to-bayes/videos)
 
-Reading:  Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) 
-This is not covered in Hoff. (Complete before Tuesday Sept 1). 
+Reading and Video Lectures (complete before September 1, 2020): 
+
+- Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)  
 
 <pre><b> Week 3: Tuesday, September 8 - Thursday, September 10, Intro to Decision Theory and Advanced Conjugacy </pre>
 
@@ -80,7 +81,9 @@ Labs:
 - Lab 3: [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/labs/03-intro-decision-theory/lab3IntrotoDecisionTheory.pdf)
 - [Lab 3 Solutions](https://github.com/resteorts/modern-bayes/blob/master/labs/03-intro-decision-theory/lab-03.pdf)
 
-Readings: Reading:  Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model. Complete before Tuesday, Sept 8. 
+Reading and Video Lectures (complete before September 8, 2020): 
+
+- Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model. 
 
 <pre><b> Week 4: Tuesday, September 15 - Thursday, September 17, Advanced Conjuacy </pre>
 
@@ -98,8 +101,9 @@ Labs:
 - Lab 4: [Introduction to Gaussian Conjugate Models](https://github.com/resteorts/modern-bayes/blob/master/labs/04-intro-gaussian/lab4IntroductiontoBayes.pdf)
 - [Lab 4 Partial Solutions](https://github.com/resteorts/modern-bayes/blob/master/labs/04-intro-gaussian/lab-04.pdf)
 
+Reading and Video Lectures (complete before September 15, 2020):
 
-Reading: Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugate model. Complete before Tuesday Sept 15. 
+- Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugate 
 
 <pre><b> Week 5: Tuesday, September 22 - Thursday, September 24, Advanced Conjuacy and Intro to Monte Carlo </pre>
 - Lecture 9: Tuesday September 22: Module 4:  Advanced Conjucacy (Normal-Gamma) (Continued
