@@ -1,0 +1,17 @@
+# Reading, Module 1
+
+1. History of Bayes and Introduction to Bayesian Statistics
+2. History of Bayes and Introduction to Bayesian Statistics, Video
+3. Read Ch 1, Ch 2.1 -- 2.6. (Hoff), Read Ch 1.1 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
+4. Read Ch 3 (Hoff)
+5. Read Ch 2.5--2.7 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
+6. Read Ch 4 for predictive inference (Hoff).
+7. Read Ch 2.9 (Posterior predictive inference) (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf).
+
+Other topics:
+8. Credible Intervals): Cred intervals are covered on pages 52 and 267 of Hoff. 
+9. Read Ch 4.1--4.1 (Cred intervals) (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
+
+10. In general, I would recommend reading all of Hoff as it will greatly enhance your understanding of the entire course. 
+
+

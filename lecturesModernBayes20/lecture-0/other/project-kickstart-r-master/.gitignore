@@ -1,0 +1,8 @@
+public/
+.idea/
+themes/
+resources/
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata

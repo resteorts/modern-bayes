@@ -1,0 +1,6 @@
+# Reading, Module 3
+
+1. Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model.
+
+
+

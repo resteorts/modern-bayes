@@ -1,0 +1,5 @@
+# Reading, Module 4
+
+1. Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugacy.
+
+

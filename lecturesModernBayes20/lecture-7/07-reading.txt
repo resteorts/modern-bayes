@@ -1,0 +1,11 @@
+# Reading, Modules 6 and 7
+
+Read Hoff, Ch 6
+Read Phd notes, Chapter 5.2 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) 
+For Metropolis Algorithm, read Hoff 10.2, 10.4, and 10.5
+Latent variable allocation: Hoff Chapter 12.
+
+
+
+
+

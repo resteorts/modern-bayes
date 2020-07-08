@@ -1,0 +1,4 @@
+# Reading, Module 2
+
+1. Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
+
