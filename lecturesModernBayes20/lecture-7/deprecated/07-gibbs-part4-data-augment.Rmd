@@ -14,6 +14,7 @@ Agenda
 ===
 - Review of data augmentation
 - A three component mixture model
+- Dirichlet distribution
 - The Dirichlet-Multinomial
 - Return to the three component mixture model problem 
 
