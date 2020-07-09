@@ -1,0 +1,122 @@
+
+---
+title: "Module 7: Exercise Multinomial Dirichlet Conjugacy"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+
+Agenda
+===
+- Dirichlet distribution
+- The Dirichlet-Multinomial
+
+
+Dirichlet
+===
+A Dirichlet distribution\footnote{This is the multivariate version of the Beta distribution.} is a distribution of the $K$-dimensional probability simplex\footnote{In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.}
+$$\bigtriangleup_K = \{(\pi_1,\ldots, \pi_k): \pi_k \geq 0, \sum_k \pi_k = 1\}.$$
+
+We say that $(\pi_1,\ldots, \pi_k)$ is Dirichlet distributed:
+
+$$(\pi_1,\ldots, \pi_k)\sim \text{Dir}(\alpha_1,\ldots,\alpha_k)$$
+if
+$$p(\pi_1,\ldots, \pi_k) = \frac{\Gamma(\sum_k \alpha_k)}
+{\prod_k \Gamma(\alpha_k)} 
+\prod_{k=1}^K \pi_k^{\alpha_{k-1}}.$$
+
+Dirichlet distribution
+===
+Let
+$$\theta \sim \text{Dirichlet}(\alpha_1,\ldots,\alpha_k)$$
+where the probability density function is
+
+$$p(\theta \mid \alpha) \propto \prod_{k=1}^m \theta_k^{\alpha_k -1},$$ where
+$\sum_k \theta_k =1, \theta_i \geq 0$ for all i
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{figures/simplex}
+\end{center}
+\end{figure}
+
+Dirichlet distribution
+===
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/dir}
+\caption{Far left: We get a uniform prior on the simplex. Moving to the right we get things unimodal. On the bottom, we get distributions that are multimodal at the corners.}
+\label{default}
+\end{center}
+\end{figure}
+
+Multinomial-Dirichlet
+===
+
+In order to proceed with the lab, we'll need to learn about the Multinomial or Categorical distribution.\footnote{This is the multivariate generalization of of the Binomial distribution.}
+
+Multinomial or Categorical distribution
+===
+
+Assume $X = (x_1, x_2, \ldots x_n)$ where $x_i \in \{1,\ldots, m\}.$
+Assume $\theta = (\theta_1,\ldots,\theta_m),$ where $\sum_i \theta_i =1.$
+
+
+Assume that $$X \mid \theta \stackrel{ind}{\sim} \text{Multinomial}(\theta)$$
+or 
+$$ X \mid \theta \stackrel{ind}{\sim} \text{Categorical}(\theta)$$
+\vskip 1em
+$$P(X_i = j \mid {\theta}) = \theta_j$$
+
+Conjugate prior (Dirichlet)
+===
+$$\btheta \sim \text{Dirichlet}(\balpha)$$
+Recall the density of the Dirichlet is the following:
+\vskip 1em
+
+$$p(\btheta \mid \balpha) \propto \prod_{j=1}^m \theta_j^{\alpha_j -1},$$ where
+$\sum_j \theta_j =1, \theta_i \geq 0$ for all i
+
+Likelihood
+===
+
+Define the data as $\bX = (x_1,\ldots, x_n),$ $x_i \in \{1,\ldots m\}.$
+Consider
+\begin{align}
+p(\bX \mid \theta) &= \prod_{i=1}^n P(X_i = x_i \mid \theta) \\
+&= \prod_{i=1}^n \theta_{x_i} 
+=\textcolor{red}{\theta_{x_1}\times \theta_{x_2} \times \theta_{x_n}}\\
+&=\prod_{i=1}^n \prod_{j=1}^m \theta_j^{I(x_i =j)} = \prod_{j=1}^m \textcolor{red}{\prod_{i=1}^n} \theta_j^{I(x_i =j)}\\
+&= \prod_{j=1}^m \theta_j^{\sum_i I(x_i = j)} \\
+& = \prod_{j=1}^m \theta_j^{c_j}
+\end{align}
+where $c=(c_1,\ldots c_m)$, 
+$c_j = \# \{i: x_i =j \}.$
+
+Likelihood, Prior, and Posterior
+===
+$$p(\bX \mid \btheta) = \prod_{j=1}^m \theta_j^{c_j}$$
+
+\vskip 1em
+
+$$P(\btheta) \propto \prod_{j=1}^m \theta_j^{\alpha_j-1} I(\sum_j \theta_j =1, \theta_i \geq 0 \forall i)$$
+
+Then 
+\begin{align}
+P(\btheta \mid \bX) &\propto \prod_{j=1}^m \theta_j^{c_j} \times \prod_{j=1}^m \theta_j^{\alpha_j-1}  I(\sum_j \theta_j =1, \theta_i \geq 0 \forall i) \\
+&\propto \prod_{j=1}^m \theta_j^{c_j + \alpha_j -1}  I(\sum_j \theta_j =1, \theta_i \geq 0 \forall i) 
+\end{align}
+This implies $$\btheta \mid \bX \sim \text{Dirichlet}(\bm{c} + \balpha).$$
+
+Takeaways
+===
+\begin{enumerate}
+\item Dirichlet is conjugate for Categorical or Multinomial.\footnote{The word Categorical seems to be used in CS and ML. The word Multinomial seems to be used in Statistics and Mathematics.}
+\item Useful formula:
+$$\prod_i \text{Multinomial} (x_i \mid \theta) \times \text{Dir}(\btheta \mid \balpha) \propto \text{Dir}(\btheta \mid \bm{c}+ \balpha).$$
+\end{enumerate}
+

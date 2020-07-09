@@ -1,0 +1,92 @@
+
+---
+title: "Multinomial Dirichlet Conjugacy"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+
+Agenda
+===
+- Dirichlet distribution
+- The Dirichlet-Multinomial
+
+
+Dirichlet
+===
+A Dirichlet distribution\footnote{This is the multivariate version of the Beta distribution.} is a distribution of the $K$-dimensional probability simplex\footnote{In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.}
+$$\bigtriangleup_K = \{(\pi_1,\ldots, \pi_k): \pi_k \geq 0, \sum_k \pi_k = 1\}.$$
+
+We say that $(\pi_1,\ldots, \pi_k)$ is Dirichlet distributed:
+
+\vspace*{10em}
+
+Dirichlet distribution
+===
+Let
+
+\vspace*{4em}
+
+<!-- $$\theta \sim \text{Dirichlet}(\alpha_1,\ldots,\alpha_k)$$ -->
+
+where the probability density function is
+
+$$p(\theta \mid \alpha) \propto \prod_{k=1}^m \theta_k^{\alpha_k -1},$$ where
+$\sum_k \theta_k =1, \theta_i \geq 0$ for all i
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.3\textwidth]{figures/simplex}
+\end{center}
+\end{figure}
+
+Dirichlet distribution
+===
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/dir}
+\caption{Far left: We get a uniform prior on the simplex. Moving to the right we get things unimodal. On the bottom, we get distributions that are multimodal at the corners.}
+\label{default}
+\end{center}
+\end{figure}
+
+Multinomial-Dirichlet
+===
+
+In this exercise, we'll learn about the Multinomial or Categorical distribution.\footnote{This is the multivariate generalization of of the Binomial distribution.}
+
+Multinomial or Categorical distribution
+===
+
+
+
+Conjugate prior (Dirichlet)
+===
+$$\btheta \sim \text{Dirichlet}(\balpha)$$
+Recall the density of the Dirichlet is the following:
+\vskip 1em
+
+$$p(\btheta \mid \balpha) \propto \prod_{j=1}^m \theta_j^{\alpha_j -1},$$ where
+$\sum_j \theta_j =1, \theta_i \geq 0$ for all i
+
+Likelihood
+===
+
+
+
+Likelihood, Prior, and Posterior
+===
+
+
+Takeaways
+===
+\begin{enumerate}
+\item Dirichlet is conjugate for Categorical or Multinomial.\footnote{The word Categorical seems to be used in CS and ML. The word Multinomial seems to be used in Statistics and Mathematics.}
+\item Useful formula:
+$$\prod_i \text{Multinomial} (x_i \mid \theta) \times \text{Dir}(\btheta \mid \balpha) \propto \text{Dir}(\btheta \mid \bm{c}+ \balpha).$$
+\end{enumerate}
+
