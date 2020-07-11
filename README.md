@@ -1,12 +1,14 @@
 Welcome to STA 360, Fall 2020! 
 
-The readings/preparations for the class can be found at the very bottom of this file for reference. These are subject to change and will be updated as the course progresses. 
+The readings/preparations for the class can be found at the very bottom of this file for reference. These are subject to change and will be updated as the course progresses. Please see the course webpage for the first few weeks of the course, videos, homeworks, and assignments. 
 
-This is a tenative course schedule (for the first few weeks) given that Duke is undergoing re-registration and we currently do not have a class time or lab time. I am outlining the first few weeks of the semester and providing links regarding resources to help you prepare for the class in advance with many resources to help you be prepared for the start of the semester! I look forward to having everyone in class very much and getting to know all of you!
-
-Please note that I will not receive the new roster for the course until 5 days before the class starts or the TA's for the class, so patience would be greatly appreciated. 
+Please note that I will not receive the new roster for the course until 5 days before the class starts or the TA's for the class, so patience would be greatly appreciated. I look forward to having everyone in class very much and getting to know you:) 
 
 ## Tenative Course Schedule 
+
+[Course Webpage](https://resteorts.github.io/teach/bayes20.html)
+
+The course webpage is meant to be a place such that you don't have to interact with github unless you choose to. The goal is that nearly all course materials should be accessible from this one place. 
 
 The syllabus is a comprehensive place regarding expectations for STA 360. 
 
@@ -19,115 +21,6 @@ The Google group is a place where starting on the first day of class, you can po
 Sakai will be used so you can see your grades throughout the semester. Homework submissions will be uploaded here on Sakai as well. 
 
 [Sakai](https://sakai.duke.edu/portal/site/da825873-0b0f-419f-b6e9-ddcc6f0106f0/tool/e52fb460-c770-4f77-9a55-a86822a8e645)
-
-<pre><b> Week 1: Tuesday, August 18 - Thursday, August 20, Intro to Course </pre>
- 
-Module 0: Introduction to Course Expectations and Overview of Bayesian Statistics
-
-Module 1: Intro to Bayesian Statistics 
-
-Lecture 1: Tuesday, August 18: Intro to Course, Expectations, and Bayesian Statistics
-- [Introduction to Bayesian Statistics and Course Expectations](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-0/00-intro-to-Bayes.pdf)
-- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf) 
-
-Lecture 2: Thursday, August 20: Introduction to Bayesian Statistics (Continued) 
-- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf)
-
-Videos: Introduction to Bayesian Statistics
-
-- [Video: Intro to Bayesian Stat, Part I](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/videos/introduction-to-bayes-partI.MP4)
-- [Video: Intro to Bayesian Stat, Part II](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/videos/introduction-to-bayes-partII.mp4)
-
-Labs: 
-- Lab 1: [Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/lab-01.pdf)
-- [Video Review of R](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/video-lab-01.mp4)
-- [Lab 1 Solution](https://github.com/resteorts/modern-bayes/blob/master/labs/01-intro-r/lab-01-solution.pdf)
-
-Reading and Video Lectures (complete before August 18, 2020): 
-
-- [History of Bayes and Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes-virtual/blob/master/lecturesModernBayes20/lecture-1/01-history-of-Bayes.pdf)
-- [History of Bayes and Introduction to Bayesian Statistics, Video](https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-1/videos)
-- Read Ch 1, Ch 2.1 -- 2.6. (Hoff), Read Ch 1.1 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
-- Read Ch 3 (Hoff) 
-- Read Ch 2.5--2.7 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)
-- Read Ch 4 for predictive inference (Hoff). 
-- Read Ch 2.9 (Posterior predictive inference) (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). 
-
-<pre><b> Week 2: Tuesday, September 1 - Thursday, September 3, Intro to Bayes and Decision Theory </pre>
-
-Module 1: Intro to Bayesian Statistics (Continued)
-
-Module 2:  Introduction to Decision Theory 
-
-Lecture 3: Tuesday September 1: Introduction to Bayesian Statistics (Continued) 
-- [Introduction to Bayesian Statistics](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/01-intro-to-Bayes.pdf) 
-
-Lecture 4: Thursday September 3: Introduction to Decision Theory 
-- [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
-
-Videos: Introduction to Decision Theory
-
-- [Video: Intro to Bayesian Stat, Part I](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/videos/intro-to-decision-theory-partI.mp4)
-- [Video: Intro to Bayesian Stat, Part II](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/videos/intro-to-decision-theory-partII.mp4)
-- [Video: Intro to Bayesian Stat, Part III](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/videos/intro-to-decision-theory-partIII.mp4)
-
-
-
-Labs: 
-- Lab 2: [Introduction to Bayes](https://github.com/resteorts/modern-bayes/blob/master/labs/02-intro-to-bayes/lab-02.pdf)
-- [Labs 2 Videos](https://github.com/resteorts/modern-bayes/tree/master/labs/02-intro-to-bayes/videos)
-
-Reading and Video Lectures (complete before September 1, 2020): 
-
-- Read Ch 2.1 -- 2.4 (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf)  
-
-<pre><b> Week 3: Tuesday, September 8 - Thursday, September 10, Intro to Decision Theory and Advanced Conjugacy </pre>
-
- Module 2:  Introduction to Decision Theory (Continued)
- 
- Module 3: Advanced Conjucacy (Normal-Normal)
-
-- Lecture 5: Tuesday September 8:  Introduction to Decision Theory (Continued)
-- [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-2/02-intro-to-Bayes.pdf)
-- Lecture 6: Thursday September 10: Advanced Conjucacy (Normal-Normal)
-- [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
-
-Labs: 
-- Lab 3: [Introduction to Decision Theory](https://github.com/resteorts/modern-bayes/blob/master/labs/03-intro-decision-theory/lab3IntrotoDecisionTheory.pdf)
-- [Lab 3 Solutions](https://github.com/resteorts/modern-bayes/blob/master/labs/03-intro-decision-theory/lab-03.pdf)
-
-Reading and Video Lectures (complete before September 8, 2020): 
-
-- Ch 2, Example 2.7 and 2.8 (in terms of variance derivations), (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf). This covers the Normal-normal conjugate model. 
-
-<pre><b> Week 4: Tuesday, September 15 - Thursday, September 17, Advanced Conjuacy </pre>
-
-Module 3:  Advanced Conjucacy (Normal-Normal) (Continued) 
-
-Module 4: Advanced Conjucacy (Normal-Gamma) 
-
-- Lecture 7: Tuesday September 15: Advanced Conjucacy (Normal-Normal)
-- [Introduction to Normal Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-3/03-normal-distribution.pdf) 
-- Lecture 8: Thursday September 17: Advanced Conjucacy (Normal-Gamma) 
-- [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
-
-Labs:
-
-- Lab 4: [Introduction to Gaussian Conjugate Models](https://github.com/resteorts/modern-bayes/blob/master/labs/04-intro-gaussian/lab4IntroductiontoBayes.pdf)
-- [Lab 4 Partial Solutions](https://github.com/resteorts/modern-bayes/blob/master/labs/04-intro-gaussian/lab-04.pdf)
-
-Reading and Video Lectures (complete before September 15, 2020):
-
-- Ch 2, Example 2.13, (http://www2.stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf) This covers the Normal-Gamma conjugate 
-
-<pre><b> Week 5: Tuesday, September 22 - Thursday, September 24, Advanced Conjuacy and Intro to Monte Carlo </pre>
-- Lecture 9: Tuesday September 22: Module 4:  Advanced Conjucacy (Normal-Gamma) (Continued
-- [Introduction to Normal-Gamma Conjugacy](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf)
-- Lecture 10: Thursday September 24: Module 5: Introduction to Monte Carlo 
-- [Intro to Monte Carlo](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf)
-- Lab 4: Introduction to Gaussian Conjugate Models 
-
-Weeks 6 and onward: TBD. 
 
 # Suggested Readings
 
@@ -186,8 +79,9 @@ https://onlinecourses.science.psu.edu/stat504/node/59
 
 # Homeworks
 
-Homeworks will be updated on github during the course of the semester. Due dates are posted on the assignment. Students should upload their solutions to each homework assignment on Sakai. Please plan to submit your homework early and often to make sure it's uploaded before the deadline. 
+Homeworks will be updated on github during the course of the semester. Due dates are posted on the assignment. Students should upload their solutions to each homework assignment on Sakai. Please plan to submit your homework early and often to make sure it's uploaded before the deadline. Please note that homeworks are on the course webpage now with due dates in case you wish to start working on these or taking a look at the upcoming semester. 
 
 - [Homework 1](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-1/hw-01.pdf) (Due Date: TBD via Sakai)
 - [Homework 2](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-2/hw-02.pdf) (Due Date: TBD via Sakai)
 - [Homework 3](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-3/hw-03.pdf) (Due Date: TBD via Sakai)
+- [Homework 4](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-4/hw-04.pdf) (Due Date: TBD via Sakai)
