@@ -52,7 +52,7 @@ Data
 ===
 \footnotesize
 ```{r}
-dat<-read.table("http://lib.stat.cmu.edu/aoas/107/data.txt",
+dat<-read.table("data/social-survey.dat",
                 header=TRUE)
 head(dat)
 ```
