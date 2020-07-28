@@ -173,7 +173,7 @@ Regression model on the g-prior
 ```{r}
 #library(knitr)
 #rm(list=ls())
-azd_data = read.table("azdiabetes.dat", header = TRUE)
+azd_data = read.table("data/azdiabetes.dat", header = TRUE)
 head(azd_data)
 ```
 
@@ -519,62 +519,5 @@ Beta_b = sweep(B,2,sd_X,FUN = "/")
 
 # 95% credible interval
 (Beta_CIb = apply(Beta_b, 2, quantile, c(0.025, 0.975)))
-
-
 ```
-
-Preparation for Final Exam
-===
-
-- April 29, 9 am -- noon, Old Chem 116 PM
-- Closed note, closed book
-- No calculators
-
-Material
-===
-
-- The exam will be cumulative
-- There will be an emphasis on what we covered after 
-Exam II
-- You must take the final exam to pass the course 
-- No make up exams will be given 
-
-Material after Exam II
-===
-
-(Modules 8 -- 11)
-
-- Gibbs sampling 
-- Data augmentation (latent variable models)
-- Data augmentation with an application to censored values
-- Gaussian mixture models (with latent variables)
-- Entity resolution lecture (more latent variable modeling)
-- Multivariate distributions and multivariate modeling
-- Missing data
-- Linear regression 
-- The g-prior
-- Model selection
-
-You have many practice exercises posted on this material and the cumulative material with solutions.
-
-Schedule Before Final Exam
-===
-
-- Thursday, April 16th: Special lecture by Neil Marchant on how latent variables models are used for entity resolution.
-- Tuesday, April 23: Prof. Steorts will hold class at the usual time in case there are questions that students wish to go over with me relating to the final exam material.
-- Wednesday, April 24: Labs will be an extra OH.
-- All regular OH by TAs and Professor Steorts will be held through Sunday April 28th. 
-- If you're looking for an old exam, please see Prof. Steorts after class this Thursday or next week in OH. 
-- Prof Steorts will be happy to give anyone their current class ranking after homeworks are calculated next week in OH or near the end of class. 
-
-Resources for the Final Exam
-===
-
-- There are many practice problems I recommend that are lab exercises.
-https://github.com/resteorts/modern-bayes/tree/master/labs
-- There are many practice exercises that I have posted here to help prepare you for the final exam. https://github.com/resteorts/modern-bayes/tree/master/exercises
-
-
-
-
 
