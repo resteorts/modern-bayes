@@ -386,7 +386,7 @@ Data set
 ===
 
 ```{r}
-read.table("https://www.stat.washington.edu/~pdhoff/Book/Data/hwdata/swim.dat",header=FALSE)
+read.table("data/swim.dat",header=FALSE)
 ```
 
 Full conditionals (Task 1)
