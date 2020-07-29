@@ -14,8 +14,11 @@ $$ I = \int_{-\infty}^{\infty} \exp(-x^4) \; dx$$
 
 \textbf{Actual Value (Task 1)}
 
-For the sake of comparison, we can derive the true value using substitution and the gamma function.  We will use the substitution $u = x^4$ to derive the following result:
+For the sake of comparison, we can derive the true value using substitution and the gamma function.  We will use the substitution $u = x^4$ to derive the result below. 
 
+This means that $x = u^{-1/4}.$ It follows that $$u = x^4 \implies du = 4 x^3 dx \implies du = 4 u^{-3/4}.$$
+
+It then can be shown that
 \begin{align*}
 \int_{-\infty}^\infty \exp(-x^{-4})\,dx &= 2\int_0^\infty \exp(-x^{-4})\,dx \\
 &= 2\int_0^\infty \frac{\exp(-u)}{4u^{3/4}} \, du \\
@@ -27,7 +30,20 @@ For the sake of comparison, we can derive the true value using substitution and 
 
 \textbf{Monte Carlo (Task 2)}
 
-In this task, we perform Monte carlo. Let $y=\sqrt{2}x^{2}$.  We will perform $u$-substitution to evaluate the integral with Monte Carlo:
+In this task, we perform Monte carlo. Let $y=\sqrt{2}x^{2}$.  We will perform $u$-substitution to evaluate the integral with Monte Carlo.
+
+Note that 
+
+$$y=\sqrt{2}x^{2} \implies  x = y^{-1/2} 2^{-1/4}$$
+and $$y=\sqrt{2}x^{2} \implies  x^2 = y^2/2.$$
+
+In addition, 
+
+$$y=\sqrt{2}x^{2} \implies 
+dy = \sqrt{2} \times 2x dx \implies 
+dy = \sqrt{2} \times 2 y^{-1/2} \times 2^{-1/4} dx.$$
+
+This implies that
 
 \begin{align*}
 I &= \int_{-\infty}^{\infty}\exp(-x^{4})\,dx \\
