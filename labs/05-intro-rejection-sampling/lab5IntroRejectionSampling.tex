@@ -23,7 +23,7 @@
 
 We can often end up with posterior distributions that we only know up to a normalizing constant. For example, in practice, we may derive $$p(\theta \mid x) \propto p(x\mid \theta) p(\theta)$$ and find that the normalizing constant $p(x)$ is very difficult to evaluate. Such examples occur when we start building non-conjugate models in Bayesian statistics. 
 
-Given such a posterior, how can we appropriate it's density? One way it's using importance sampling. As an example, let's suppose our resulting posterior distribution is 
+Given such a posterior, how can we appropriate it's density? One way is using rejection sampling. As an example, let's suppose our resulting posterior distribution is 
 $$f(x) \propto sin^2(\pi x), x \in [0,1].$$
 
 In order to understand how to approximate the density (normalized) of $f$, we will investigate the following tasks:
