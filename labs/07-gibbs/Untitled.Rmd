@@ -1,0 +1,53 @@
+We now give the Gibbs sampling code
+We're going to walk through coding up the conditional distributions
+from task 1 of Lab 7. 
+
+```{r}
+# allow my computer to cache (save) results 
+knitr::opts_chunk$set(cache=TRUE)
+# load libs
+library(MASS)
+# load in the data
+data <- read.csv("data-exponential.csv", header = FALSE)
+#######################################
+# This function is a Gibbs sampler
+# 
+# Args
+#   start.a: initial value for a
+#   start.b: initial value for b
+#   n.sims: number of iterations to run
+#   data:  observed data, should be in a 
+            # data frame with one column
+#
+# Returns:
+#   A two column matrix with samples 
+     #   for a in first column and
+# samples for b in second column
+#######################################
+```
+
+```{r}
+sampleGibbs <- function(start.a, start.b, n.sims, data) {
+# find the sum of the data, sum(x) = n*x(bar)
+x_sum <- sum(data)
+n <- nrow(data)
+# create empty matrix, allocate memory for efficiency
+res <- matrix(NA, nrow = n.sims, ncol=2)
+res[1,] <- c(start.a, start.b)
+    for (i in 2:n.sims) {
+    # update each row of my Gibbs sampler
+    res[i,1] <- rgamma(1, shape = n+1, rate= res[i-1,2]*x_sum + 1)
+    res[i,2] <- rgamma(1, shape = n+1, rate= res[i,1]*x_sum + 1)
+    }
+return(res)
+}
+
+test.gibbs <- sampleGibbs(start.a = 0.25, start.b = 0.25, n.sims = 10000, data = data)
+head(test.gibbs)
+```
+
+
+
+
+
+
