@@ -10,6 +10,8 @@ Please note that I will not receive the new roster for the course until 5 days b
 
 The course webpage is meant to be a place such that you don't have to interact with github unless you choose to. The goal is that nearly all course materials should be accessible from this one place. 
 
+An introductory video of the course webpage can be found here: https://github.com/resteorts/modern-bayes/blob/master/intro-to-webpage/intro-to-webpage.mp4?raw=true
+
 The syllabus is a comprehensive place regarding expectations for STA 360. 
 
 [Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf)
