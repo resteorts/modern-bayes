@@ -69,8 +69,8 @@ class: regular
 [Prof. Rebecca Steorts](resteorts.github.io)
 
 <i class="material-icons">mail_outline</i> &nbsp;[beka@stat.duke.edu](mailto:beka@stat.duke.edu)<br>
-<i class="material-icons">work_outline</i> &nbsp;Old Chem 216<br>
-<i class="material-icons">calendar_today</i>&nbsp; TBD
+<i class="material-icons">calendar_today</i>&nbsp; Lecture: Tues/Thurs 1:45-3:00 PM EST <br>
+<i class="material-icons">calendar_today</i>&nbsp; OH: Tues/Thurs 3:00-4:00 PM EST
 
 --
 
@@ -78,49 +78,74 @@ class: regular
 
 ## Teaching Assistants
 <small>
-Remark: Teaching Assistants for the Course will not be announced until early August given the re-registration that must occur. I appreciate your patience very much given that these have not been announced at this time. 
 
 .pull-left[
-[First Last](Webpage)
+[Olivier Binette, Head TA](https://olivierbinette.ca/)
 
-<i class="material-icons">mail_outline</i> &nbsp;[maxwell.bartlett@duke.edu](mailto:maxwell.bartlett@duke.edu)<br>
-<i class="material-icons">work_outline</i> &nbsp;Old Chem 203B<br>
-<i class="material-icons">calendar_today</i>&nbsp; Mon 6p - 8p
+<i class="material-icons">mail_outline</i> &nbsp;[olivier.binette@duke.edu](mailto:olivier.binette@duke.edu)<br>
+<i class="material-icons">calendar_today</i>&nbsp; Lab1: Friday 12:00 - 1:15 PM EST
+<i class="material-icons">calendar_today</i>&nbsp; OH: Wed 9:00 - 10:00 EST
 
 <br><br>
 
-[First Last](Webpage)
+[Michael Christensen](Webpage)
 
-<i class="material-icons">mail_outline</i> &nbsp;[meredith.brown@duke.edu](mailto:meredith.brown@duke.edu)<br>
-<i class="material-icons">work_outline</i> &nbsp;Old Chem 203B<br>
-<i class="material-icons">calendar_today</i>&nbsp; Mon 12:30p - 2:30p
+<i class="material-icons">mail_outline</i> &nbsp;[michael.f.christensen@duke.edu](mailto:michael.f.christensen@duke.edu)<br>
+<i class="material-icons">calendar_today</i>&nbsp; Lab2: Friday 1:45 - 3:00 PM EST
+<i class="material-icons">calendar_today</i>&nbsp; OH: Mon 9:00 - 10:00 EST
 ]
 
-.pull-right[
-[Steven Herrera](https://www.linkedin.com/in/rosvidstevenherrera/)
+--
 
-<i class="material-icons">mail_outline</i> &nbsp; <small>[rosvid.herrera.tenorio@duke.edu](mailto:rosvid.herrera.tenorio@duke.edu)</small><br>
-<i class="material-icons">work_outline</i> &nbsp;Old Chem 203B<br>
-<i class="material-icons">calendar_today</i>&nbsp; Thu 5:30p - 7:30p
+---
+
+## Teaching Assistants
+<small>
+
+.pull-left[
+[Ziang Wang](Webpage)
+
+<i class="material-icons">mail_outline</i> &nbsp; <small>[ziang.wiang@duke.edu](mailto:ziang.wang@duke.edu)</small><br>
+
+
 
 <br>
 
-[Jessie Ou](https://www.linkedin.com/in/jessie-yc-ou/)
+[Lavonne Hoang](Webpage)
 
-<i class="material-icons">mail_outline</i> &nbsp;[yanchen.ou@duke.edu](mailto:yanchen.ou@duke.edu)<br>
-<i class="material-icons">work_outline</i> &nbsp;Old Chem 203B<br>
-<i class="material-icons">calendar_today</i>&nbsp; Sun 12p - 2p
+<i class="material-icons">mail_outline</i> &nbsp;[lavonne.hoang@duke.edu](mailto:lavonne.hoang@duke.edu)<br>
+
+
+[Ashley Murray](Webpage)
+
+<i class="material-icons">mail_outline</i> &nbsp;[ashley.j.murray@duke.edu](mailto:ashley.j.murray@duke.edu)<br>
+
 
 
 ]
 
+---
+
+## Google Group Schedule 
+
+There is a schedule, where each TA is responsible for answering emails/questions on the Google group. To avoid repeated questions, we would ask that these be posted on the Google group. If you don't feel comfortable posting a question, send an email to a TA, and they will post your question for you. 
+
+1. Monday: Lavonne (Backup: Ashley)
+2. Tuesday: Michael (Backup: Olivier)
+3. Wednesday: Olivier (Backup: Michael)
+4. Thursday: Michael (Backup: Olivier)
+5. Friday: Lavonne (Backup: Ashley)
+6. Saturday: Ashley (Backup: Lavonne)
+7. Sunday: Ashley (Backup: Lavonne)
+
+Remark: Please keep in mind that TAs are taking classes as well and will not be responding to questions in real time, so please post questions early. 
 
 
 ---
 
 ## Where to find information
 
-- Course website (all major course information here): [https://github.com/resteorts/modern-bayes](https://github.com/resteorts/modern-bayes)
+- Course website (all major course information here): [https://resteorts.github.io/teach/bayes20.html](https://resteorts.github.io/teach/bayes20.html)
 
 - Google group (course forum): [https://groups.google.com/forum/#!forum/bayes20](https://groups.google.com/forum/#!forum/bayes20)
 
@@ -266,67 +291,29 @@ class: middle, center
 
 ---
 
-## Create a GitHub account
+## Through the Course Webpage
 
-<small>
-
-.instructions[
-Go to https://github.com/, and create an account (unless you already have one). After you create your account, click [here](https://forms.gle/xKD3bPtN6YA9MmZbA) and enter your GitHub username.
-]
-
-Tips for creating a username from [Happy Git with R](http://happygitwithr.com/github-acct.html#username-advice).
-
-- Incorporate your actual name!
-- Reuse your username from other contexts if you can, e.g., Twitter or Slack.
-- Pick a username you will be comfortable revealing to your future boss.
-- Shorter is better than longer.
-- Be as unique as possible in as few characters as possible.
-- Make it timeless. Don’t highlight your current university, employer, or place of residence.
-- Avoid words laden with special meaning in programming, like `NA`.
-
-</small>
-
+https://resteorts.github.io/teach/bayes20.html
 
 ---
 
-## Login to github with your username (handle)
+## What if you want access to all the course materials? 
 
-- Go to [https://github.com/](https://github.com/), and login with your github credentials. 
+You can fork my repository and get everything here. Make sure that you're up to date on github!
 
----
-
-## Clone the class repository 
-
-- Clone the class repository **modern-bayes**
-
-```{r, echo=FALSE,out.width = '100%'}
-knitr::include_graphics("figures/clone-repo.png")
-```
-
-
-.instructions[
-Raise your hand if you have any questions. 
-]
+https://github.com/resteorts/modern-bayes/
 
 ---
 
-## Clone the class repository 
+## Homework 1 (Extra Credit)
 
-[Demo of cloning the class repository]
+Homework 1 is already posted and due on Friday. 
 
----
+By next week, I'd like everyone to make a short video of themself with the following information for extra credit: 
 
-## Discussion 
+Your name, your major and year, where your originally from, some interesting facts about about yourself, and what you did over the summer. I'd like for us to all get to know each other over the course of the semster. You video should be no more than 1 minute. If you submit a video, you'll get extra credit on homework 1 (5 points). 
 
-Discuss the following with a partner.
-
-1. Start by introducing yourself! Name, year, major/ academic interest, favorite hobby.
-
-2. Make sure that you can clone the repository and that your partner could as well. 
-
-3. Check to see that you're able to navigate the course webpage via the wepbage and via you're own computer (in case that you loose access to the internal). 
-
-Tip: Make sure to pull from the repository quite often as the class webpage and materials will be frequently updated. 
+Submit your video with homework 1 on Sakai in .MP4 format. Please also give permission that you're okay with me posting these videos on github so we can call see them. If anyone is uncomfortable, please state this and I can put them on Sakai. 
 
 ---
 
@@ -441,7 +428,7 @@ class: middle, center
     
 - No make up exams will be given.  
 
-- Regrade requests must be submitted within one week of when the assignment was returned. 
+- Regrade requests must be submitted within one week of when the assignment was returned (and must be done in writing). 
 
 ---
 
