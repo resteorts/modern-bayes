@@ -1,6 +1,6 @@
 ---
 title: 'Review of \texttt{R}'
-author: "STA 360: Lab 1, Fall 2020"
+author: "STA 360: Lab 1, Fall 2020 (This will not be graded or turned in)"
 output: pdf_document
 ---
 
