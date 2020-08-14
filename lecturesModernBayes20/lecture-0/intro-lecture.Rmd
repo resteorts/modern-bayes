@@ -100,7 +100,7 @@ class: regular
 <i class="material-icons">mail_outline</i> &nbsp;[mfc22@duke.edu](mailto: mfc22@duke.edu@duke.edu)<br>
 <i class="material-icons">work_outline</i> &nbsp;912 3642 9338 (Lab ID) <br>
 <i class="material-icons">work_outline</i> &nbsp; 949 7135 3069 (OH ID) <br>
-<i class="material-icons">calendar_today</i>&nbsp; Lab-01: Fri, 12:00 - 1:15 PM EST <br>
+<i class="material-icons">calendar_today</i>&nbsp; Lab-02: Fri, 1:45 - 3:00 PM EST <br>
 <i class="material-icons">calendar_today</i>&nbsp; OH: Wed, 9:00 - 10:00 AM EST <br>
 ]
 
