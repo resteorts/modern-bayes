@@ -215,7 +215,7 @@ knitr::include_graphics("figures/suchi.png")
 
 Go to [https://github.com/resteorts/modern-bayes/](https://github.com/resteorts/modern-bayes/) and fork the repository. 
 
-- The videos are compressed, and this was done on purpose for those in the class that migth have slow internet. I would suggest that everyone forks the repository to avoid any issues. 
+- The videos are compressed, and this was done on purpose for those in the class that might have slow internet. I would suggest that everyone forks the repository to avoid any issues. 
 
 - Verify that you can play them (otherwise install something on your machine). 
 
@@ -287,7 +287,7 @@ Discuss the following with a partner (in a breakout room).
 
 2. Make sure that you can clone the repository and that your partner could as well. 
 
-3. Check to see that you're able to navigate the course webpage via the wepbage and via your own computer (in case that you loose access to the internal). 
+3. Check to see that you're able to navigate the course webpage (in case that you loose access to the internet). 
 
 Tip: Make sure to pull from the repository quite often as the class webpage and materials will be frequently updated. 
 
