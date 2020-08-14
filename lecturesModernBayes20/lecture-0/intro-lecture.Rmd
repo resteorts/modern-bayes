@@ -101,7 +101,7 @@ class: regular
 <i class="material-icons">work_outline</i> &nbsp;912 3642 9338 (Lab ID) <br>
 <i class="material-icons">work_outline</i> &nbsp; 949 7135 3069 (OH ID) <br>
 <i class="material-icons">calendar_today</i>&nbsp; Lab-02: Fri, 1:45 - 3:00 PM EST <br>
-<i class="material-icons">calendar_today</i>&nbsp; OH: Wed, 9:00 - 10:00 AM EST <br>
+<i class="material-icons">calendar_today</i>&nbsp; OH: Mon, 9:00 - 10:00 AM EST <br>
 ]
 
 ---
