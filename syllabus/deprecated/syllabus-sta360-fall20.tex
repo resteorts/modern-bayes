@@ -11,7 +11,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{setspace,hyperref}
-\usepackage{cite}
+\usepackage{cite, color}
 \usepackage{bm}
 
 \usepackage{fancyhdr}
@@ -26,13 +26,62 @@
 {\Large\bf Duke University, Fall 2020} \\
 \end{center}
 
+\textbf{Please note that the syllabus may change if needed and with the agreement of the majority of the students. We will adapt to online learning in a way which is most suited for the entire course, which will be measured by surveys to the course, such as the ones your received in mid-June to help with preparations for the fall semester.} \\
+
+\paragraph{Course}
 \emph{Instructor}: Rebecca C. Steorts,  Assistant Professor, Dept of Statistical Science, beka@stat.duke.edu\\
-\emph{Course Time}: T/Th: 11:45 am -- 1:00 pm\\
-\emph{Steorts Office Hours, 216 Old Chemistry}: Tu: 1:00-3:00 PM (025 Old Chemistry if my office is full) \\
-\emph{Course webpage:} \url{https://resteorts.github.io/teach/bayes20} \\
+\emph{Course Time}: Tuesday/Thursday: 1:45 -- 3:00 PM EST \\
+\textbf{988 1669 9435 (Class and OH ID)}\\
+\emph{Course webpage:} \url{https://resteorts.github.io/teach/bayes20.html} \\
+\emph{Revised academic calendar:} https://registrar.duke.edu/fall-2020-academic-calendar
+
+%(All students are required to re-register as required by the university due to COVID-19). \\
+
+\paragraph{Labs}
+\emph{Lab-01 with Olivier Binette, PhD Student, olivier.binette@duke.edu}: \\Friday: 12:00 -- 1:15 PM EST (9:30 PM India, Midnight China)\\
+\textbf{Meeting ID: 951 0070 7304}\\
+\emph{Lab--02 with Michael Christensen, PhD Student, michael.f.christensen@duke.edu}: \\Friday: 1:45 PM -- 3:00 PM EST (11:15 PM India, 1:45 AM China)\\
+\textbf{Meeting ID: 912 3642 9338}
+%T/Th: 11:45 am -- 1:00 pm\\
+%Tu: 1:00-3:00 PM (025 Old Chemistry if my office is full) \\
+
 \vspace*{1em}
 
-\emph{Course Teaching Assistants: To be announced.}\\
+Bayesian methods are an increasingly important tools
+in both industry and academia. We will start by understanding the basics of Bayesian methods and inference, what this is and how why it's important. This course is an introduction to Bayesian theory and methods, emphasizing both conceptual foundations and implementation. We will introduce the essential distinctions between classical and Bayesian methods and discuss the origins of Bayesian inference. After exploring the convenience of conjugate families of distributions, we will cover problems when the posterior is intractable. Topics include hierarchical and empirical Bayesian models, the foundations of subjective and objective priors, Bayesian credible intervals and hypothesis testing. Furthermore, we 
+will  concentrate on more advanced concepts such as how to evaluate Bayesian procedures, evaluating integrals that cannot be computed in closed form (Monte Carlo and MCMC). We will be following the flow of the required text throughout the course (see below). \\
+
+As part of the course we will learn tools that will aide us in Bayesian modeling and applied Bayesian methods such reproducible research through Markdown, RStudio. \textbf{Download the latest version of RStudio onto your desktop.} You will be responsible for learning these. You will be responsible for turning in reports that are well explained and well written (in additional to having code that is easily read and well documented). \textbf{Failure to produce clear reports will result in deduction of points from all assignments.} 
+\\
+
+\newpage
+\paragraph{Teaching Assistants}
+
+\begin{enumerate}
+\item Olivier Binette, (Head TA), PhD Student, olivier.binette@duke.edu
+\item Michael Christensen, PhD Student, michael.f.christensen@duke.edu
+\item Ziang Wang, MS Student, ziang.wang@duke.edu
+\item Lavonne Hoang, Undergraduate Student, lavonne.hoang@duke.edu
+\item Ashley Murray, Undergraduate Student, ashley.j.murray@duke.edu
+\end{enumerate}
+
+
+
+\paragraph{Office Hours}
+\begin{enumerate}
+\item Professor Steorts, Tuesday/Thursday: 3:00 -- 4:00 PM EST (12:30 AM India, 3:00 AM China) \\
+\textbf{Meeting ID: 988 1669 9435}
+\item Michael Christensen, PhD Student, Monday, 9:00 -- 10:00 AM EST \\(6:30 PM India, 8:00 PM Vietnam, 9:00 PM China) (Backup: Olivier)\\
+\textbf{Meeting ID: 949 7135 3069}\\
+\item Olivier Binette, PhD Student, Wednesday, 9:00 -- 10:00 AM EST \\(6:30 PM India, 8:00 PM Vietnam, 9:00 PM China) (Backup: Michael)\\
+\textbf{Meeting ID: 949 7135 3069}\\
+\item There are no Friday OH given that there are two labs that students will be expected to attend (or watch pre-recorded videos) if they have questions. 
+%\item TBD, Monday/Wednesday, 9:00 -- 10:00 AM EST (6:30 PM India, 9:00 PM China) \\
+\end{enumerate}
+
+
+
+
 
 %\emph{Course TA}: Sayan Patra (PhD Student), sayanpatra28@gmail.com (sayan.patra@duke.edu) \\
 %\emph{Lab Time}: Wednesday, 1:25 -- 2:40 PM (Old Chemistry 123) \\
@@ -58,40 +107,54 @@
 %\emph{Lab Time}: Wednesday, 3:05 PM -- 4:20 PM (Sociology Psychology 130)\\
 %\emph{Office hours}: Wednesday, 4:20 PM -- 6:20 PM (203B Old Chemistry)\\
 
-Bayesian methods are an increasingly important tools
-in both industry and academia. We will start by understanding the basics of Bayesian methods and inference, what this is and how why it's important. This course is an introduction to Bayesian theory and methods, emphasizing both conceptual foundations and implementation. We will introduce the essential distinctions between classical and Bayesian methods and discuss the origins of Bayesian inference. After exploring the convenience of conjugate families of distributions, we will cover problems when the posterior is intractable. Topics include hierarchical and empirical Bayesian models, the foundations of subjective and objective priors, Bayesian credible intervals and hypothesis testing. Furthermore, we 
-will  concentrate on more advanced concepts such as how to evaluate Bayesian procedures, evaluating integrals that cannot be computed in closed form (Monte Carlo and MCMC). We will be following the flow of the required text throughout the course (see below). \\
-
-As part of the course we will learn tools that will aide us in Bayesian modeling and applied Bayesian methods such reproducible research through Markdown, RStudio. \textbf{Download the latest version of RStudio onto your desktop.} You will be responsible for learning these. You will be responsible for turning in reports that are well explained and well written (in additional to having code that is easily read and well documented). \textbf{Failure to produce clear reports will result in deduction of points from all assignments.} 
-\\
-\newpage
-\emph{Expectations:} 
+\paragraph{Prior Knowledge}
+Students are expected to have a solid background in regression analysis (STA210), elementary probability (STA 230 or STA 240), and elementary linear algebra (MATH 202/216/218/221). These will be building blocks for course topics, and very little review will be provided in this course.  If you are unsure what prior knowledge is expected, please refer to the following past syllabi \& resources, and review any gaps in knowledge before the start of the semester. 
 \begin{enumerate}
+\item STA 210: \url{https://www2.stat.duke.edu/courses/Spring19/sta210.001/}
+\item STA 230: \url{https://www2.stat.duke.edu/courses/Fall18/sta230/}
+\item Linear algebra: \url{http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/lecture_12}
+\item R programming. Students are expected to have a solid foundation of R programming prior to the first day of lecture. For a review of R programming, please see the following \textbf{review lectures and videos} on R at \url{https://github.com/resteorts/modern-bayes-virtual/tree/master/lecturesModernBayes20/background-intro-to-R}.
+\item github: I expect that you have a solid foundation of using github prior to the first day of class as this will be important for accessing all class resources.  
+\end{enumerate}
+\emph{Remark}: This course will be very difficult without a strong foundation in the topics above, so please do review these in advance. If you're wanting to get ahead over break, I suggest reading through the Hoff book on your own. \\
+
+
+\paragraph{Expectations}
+\begin{enumerate}
+\item Students are expected to learn github and how to use this before the first day of class as this is where all the course materials will be located. 
 \item Students are expected to be very familiar with R and are expected to know how to use R markdown. 
 \item All homeworks, reports, and take home exams (if applicable) should be submitted in Markdown .Rmd and .pdf format. 
 \item Please name your reports using the naming convention in the following example. As an example, please using the following naming convention \textbf{steorts-rebecca-homework1.Rmd} 
 \item All homework submissions must be made through Sakai. When submitting to Sakai, only one file must be uploaded. Please zip together all materials for your homework assignment and upload the zipped file. As an example, please upload \textbf{steorts-rebecca-homework1.zip}, which should be a folder that contains \textbf{steorts-rebecca-homework1.Rmd}  and \textbf{steorts-rebecca-homework1.pdf}.\footnote{If you are working with data in a homework assignment, please make sure to also attach the data and also make sure that when you call the data in your markdown file, there are no hard coded commands. For example, make sure you do not set your working directory because we won't be able to reproduce your file.}
 \item Your reports are expected to be reproducible and compile for full credit. 
 \item Students are expected to keep up with the reading in the course and have read before they come to class. Finally, if students find typos on the slides, please write them down with the slide and typo and give them to Professor Steorts for a timely correction to the course webpage.  
-\item It's highly recommended (but not required) that students attend class and lab as your homeworks and exams will contain material from both class and lab. 
+\item \textbf{Attendance, either in real time or by watching recorded sessions promptly, is expected of all students given that homework and exam material will come from both class and lab.}
+%It's highly recommended (but not required) that students attend class and lab as your homeworks and exams will contain material from both class and lab. 
+\item There will be between 6 -- 8 homeworks during the course of the semester.  Your lowest homework grade will be dropped. 
 \end{enumerate}
 
-\emph{Re-grades}: If you believe that you lost points unfairly on a homework, please write an email to the instructor and all TA's explaining why you think you lost points in the assignment, and your re-grade request will be considered. \textbf{Re-grades must be considered in writing and within one week after receiving back your grade on the assignment. In addition, if you submit a re-grade request, you may loose additional points that were not caught by the TA and agree to potentially loosing additional points.} \\
+\emph{Re-grades}: If you believe that you lost points unfairly on a homework, please write an email to the instructor and all TA's explaining why you think you lost points in the assignment, and your re-grade request will be considered. \textbf{Re-grades must be considered in writing and within one week after receiving back your grade on the assignment.} \\
 
-\emph{Labs}: Labs are held weekly and will be integrated into your weekly homework and you will be expected to understand lab concepts during exams. It is your responsibility to attend lab in person and make sure that you keep up with the lab material. Labs are generally not recorded and live broadcasting, such as Google hangouts or Skype is not supported during lab sessions. \\
+%In addition, if you submit a re-grade request, you may loose additional points that were not caught by the TA and agree to potentially loosing additional points.} \\
 
-\newpage
+\emph{Labs}: Labs are held weekly and will be integrated into your weekly homework and you will be expected to understand lab concepts during exams. It is highly encouraged to attend lab and make sure that you keep up with the lab material. 
 
-\emph{Prerequisites} You are expected to have all pre-reqs to be in the course. Students are expected to be very familiar with \texttt{R} and are \textbf{encouraged} to have learned \texttt{LaTex} by the end of the course. 
+%Labs are generally not recorded and live broadcasting, such as Google hangouts or Skype is not supported during lab sessions. \\
+
+\paragraph{Prerequisites}
+
+You are expected to have all pre-reqs to be in the course (see Prior Knowledge section above). Students are expected to be very familiar with \texttt{R} and are \textbf{encouraged} to have learned \texttt{LaTex} by the end of the course. 
 
 \begin{itemize}
-\item[] Course Sakai website: \url{https://sakai.duke.edu}
-\item[] Required Textbook: \textit{A First Course in Bayesian Statistical Methods}, Peter D.\ Hoff, 2009, New York: Springer. \textit{(Note: We will only loosely follow the book.)}
-\item[] Optional supplementary text:  \textit{Some of Bayesian Statistics: The Essential Parts}. Rebecca C. Steorts, Copyright, 2015. \url{https://stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf}
+\item[] Required Textbook: \textit{A First Course in Bayesian Statistical Methods}, Peter D.\ Hoff, 2009, New York: Springer. Please make sure you have a copy of the book as there will be required reading throughout the course. I will refer to this as ``Hoff" throughout the course. 
+\item[] Optional supplementary text:  \textit{Some of Bayesian Statistics: The Essential Parts}. Rebecca C. Steorts, Copyright, 2015. \url{https://stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf} I will refer to this as ``PhD notes in the course."
 \item[] Optional supplementary text:  \textit{Baby Bayes using \texttt{R}}. Rebecca C. Steorts, Copyright, 2016. 
-\url{https://stat.duke.edu/~rcs46/books/babybayes-master.pdf}
+\url{https://stat.duke.edu/~rcs46/books/babybayes-master.pdf} I will refer to this as ``undergrad notes" in the course. 
 \item[] Optional supplementary text:  \textit{Bayesian Data Analysis}. Gelman, A., Carlin, J.B., Stern, H.S., Dunson, D.B., Vehtari, A., \& Rubin, D.B. (2013). CRC press.
 \item[] \emph{The R Cookbook}, \url{http://www.cookbook-r.com/}.
+\item[] Github Setup and Commands: \url{https://www.youtube.com/watch?v=SWYqp7iY_Tc}.
+\item[] Github Tutorial: \url{https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners}.
+
 \end{itemize}
 
 \emph{Grading Policy:} 
@@ -101,7 +164,7 @@ As part of the course we will learn tools that will aide us in Bayesian modeling
 \begin{center}
 \begin{tabular}{cc}
 Homework &30\%\\
-Exam I (TBD) &20\%\\
+Exam I (Thurs, Sept 17) &20\%\\
 Exam  II (TBD) & 20\%\\
 Final Exam  (TBD) & 30\%\\
 \end{tabular}
@@ -124,9 +187,10 @@ or, for those taking the course on a Satisfactory/Unsatisfactory basis:
 S if $70\leq s\leq 100$ \\
 U if $0\leq s < 70$.
 \end{quote}
-For graduate students, it appears that there is no ``D'' grade (only A, B, C, or F)---consequently, in this case anything between $0$ and $60$ is an F. \\
 
-You may come to the instructor during office hours to ask for you class ranking or current grade in the course. \\
+%For graduate students, it appears that there is no ``D'' grade (only A, B, C, or F)---consequently, in this case anything between $0$ and $60$ is an F. \\
+
+%You may come to the instructor during office hours to ask for you class ranking or current grade in the course. \\
 
 \emph{Course Policies:} 
 Homework assignments will be announced on Sakai (along with the due date). Late homeworks will not be accepted. Your lowest homework grade will be dropped to take in to consideration things that arise during the semester. \\
@@ -137,18 +201,19 @@ Homework assignments will be announced on Sakai (along with the due date). Late 
 
 
 \emph{Discussion board}:
-There is a Google course discussion page. Please direct questions about homeworks and other matters to that page. Otherwise, you can email the instructors (TAs and professor). Note that we are more likely to respond to the Google questions than to the email, and your classmates may respond too, so that is a good place to start. You can ask for permission to add to the group at \url{https://groups.google.com/forum/#!forum/bayes19}. Please make sure to do not later than the start of the first class.\\
+There is a Google course discussion page. Please direct questions about homeworks and other matters to that page. Otherwise, you can email the instructors (TAs and professor). Note that we are more likely to respond to the Google questions than to the email, and your classmates may respond too, so that is a good place to start. You can ask for permission to add to the group at \url{https://groups.google.com/forum/#!forum/bayes20}. Please make sure to do not later than the start of the first class.\\
+
 
 Please find the following schedule regarding who is responsible for answering the Google discussion pages or email on a particular day:
 
 \begin{enumerate}
-\item Monday: Xu
-\item Tuesday: Andrew
-\item Wednesday: McCourt 
-\item Thursday: Andrew 
-\item Friday: Xu
-\item Saturday: Sayan
-\item Sunday: Xu
+\item Monday: Lavonne (Backup: Ashley)
+\item Tuesday: Michael (Backup: Olivier)
+\item Wednesday: Olivier (Backup: Michael)
+\item Thursday: Michael (Backup: Olivier)
+\item Friday: Lavonne (Backup: Ashley)
+\item Saturday: Ashley (Backup: Lavonne)
+\item Sunday: Ashley (Backup: Lavonne)
 \end{enumerate}
 
 If you send an email to myself, please make sure to CC all TA's onto all e-mails for the fastest response.\\
@@ -161,11 +226,11 @@ If you send an email to myself, please make sure to CC all TA's onto all e-mails
 %Makeup exams must be approved before the time of the exam and will be given only in case
 %of medical or family emergencies (which must be appropriately documented -- see above). All work turned in for a grade must be entirely your own. This particularly relates to homework. You are encouraged to talk to each other regarding homework problems or to the instructor/TA, however the write up, solution, and code \emph{must} be entirely your own solution and work. \\
 
-\emph{Cell phones and laptops:} Cell phones should be turned off (or set on silent). Also, please try and be courteous of other students if you bring a laptop or food to class. \\
+%\emph{Cell phones and laptops:} Cell phones should be turned off (or set on silent). Also, please try and be courteous of other students if you bring a laptop or food to class. \\
 
 
 \emph{Missing class/exams/work:}
-You are responsible for everything from lecture, mentioned in class, and in the Hoff book. You will be expected to follow along the Hoff book as we go along in lecture. Suggested readings in Hoff will be posted throughout the semester on the Google groups page \url{https://groups.google.com/forum/#!forum/bayes19}.  \\
+You are responsible for everything from lecture, mentioned in class, and in the Hoff book. You will be expected to follow along the Hoff book as we go along in lecture. Suggested readings in Hoff will be posted throughout the semester on the Google groups page \url{https://groups.google.com/forum/#!forum/bayes20}.  \\
 
 Students who miss graded work due to a scheduled varsity trip, religious holiday or short-term illness should fill out an online NOVAP, religious observance notification or short-term illness notification form respectively. If you are faced with a personal or family emergency or a long-range or chronic health condition that interferes with your ability to attend or complete classes, you should contact your academic dean's office. See more information on policies surrounding these conditions at \url{http://trinity.duke.edu/undergraduate/academic-policies}. Also, your academic dean can provide more information as well.\\
 
@@ -173,13 +238,31 @@ Students who miss graded work due to a scheduled varsity trip, religious holiday
 
 All work turned in for a grade must be entirely your own. This particularly relates to homework. You are encouraged to talk to each other regarding homework problems or to the instructor/TA, however the write up, solution, and code \emph{must} be entirely your own solution and work. \\
 
+\paragraph{Technology Issues}
 
-\emph{Academic Honesty:} Duke University is a community dedicated to scholarship, leadership, and service and to the principles of honesty, fairness, respect, and accountability. Citizens of this community commit to reflect upon and uphold these principles in all academic and non-academic endeavors, and to protect and promote a culture of integrity. Cheating on exams and quizzes, plagiarism on homework assignments, projects, and code, lying about an illness or absence and other forms of academic dishonesty are a breach of trust with classmates and faculty, violate the Duke Community Standard, and will not be tolerated. Such incidences will result in a 0 grade for all parties involved as well as being reported to the University Judicial Board. Additionally, there may be penalties to your final class grade. Please review Duke's Standards of Conduct.
-For more information on the Duke honor code (known as Duke Community Standard), please go to \url{http://integrity.duke.edu/faq/faq1.html.}\\
+Students who may have limited access to computers and stable internet may request assistance in the form of loaner laptops and WIFI hotspots.  For new Fall 2020 technology assistance requests, please go \url{https://duke.qualtrics.com/jfe/form/SV_bBdL1UL3N3iZNDD}.  For returning students who wish to request an extension of a laptop or hotspot loan for Fall 2020 semester, please go \url{https://duke.qualtrics.com/jfe/form/SV_4SkFkWNrmvxhaBL}. For updates, please visit https://keeplearning.duke.edu/undergraduate-students/.\\
+
+\paragraph{Accommodations for Remote Students}
+If students cannot participate in synchronous or in-person course components (due to permanent time zone differences or temporary quarantine, for example), students should contact the instructor and academic dean to request an accommodation that will allow them to participate remotely. Please note that the experience may not be identical to that of local students.\\
+
+\paragraph{Inclement Weather, Attendance, and Civic Engagement Policies}
+Responsibility for class attendance rests with individual students. Since regular and punctual class attendance is expected, students must accept the consequences of failure to attend.  However, in recognition of possible extra personal and academic stress this semester, I will grant excused absence, provided you discuss the absence with me and agree to make up missed work. Details regarding Trinity policies can be found here \url{https://trinity.duke.edu/undergraduate/academic-policies/class-attendance-and-missed-work}. \\
+
+In the event of inclement weather or other connectivity-related events that prohibit class attendance, either in the location of the instructor or in the location of the student, I will notify you how we will make up missed course content and work.  Asynchronous catch-up methods will likely apply.\\
+
+\textbf{If you have a situation regarding connectivity or any issue that prevents you from completing an assignment, please contact the instructor immediately. This will be dealt with on a case-by-base basis}. \\
+
+ \paragraph{Mental Health Day}
+Due to the absence of official breaks in the academic calendar this semester, I offer the option for students to take a “mental health day” this term.  You may schedule this day in advance or elect to take it at a time when it will afford the most relief. You cannot opt to take a mental health day during an exam period unless you have a medical excuse or permission from myself or your dean. \\
+
+\paragraph{Technical and Zoom Support}
+
+For technical help with Sakai or Zoom, contact the Duke OIT Service Desk at https://oit.duke.edu/help. You can also access the self-service help documentation for Zoom here and for Sakai here.  The ARC (Academic Resource Center) has a student-friendly learning online guide and Zoom instructions here. Look on the sidebar on the left.\\ 
+
+\paragraph{Academic Honesty:} Duke University is a community dedicated to scholarship, leadership, and service and to the principles of honesty, fairness, respect, and accountability. Citizens of this community commit to reflect upon and uphold these principles in all academic and non-academic endeavors, and to protect and promote a culture of integrity. Cheating on exams and quizzes, plagiarism on homework assignments, projects, and code, lying about an illness or absence and other forms of academic dishonesty are a breach of trust with classmates and faculty, violate the Duke Community Standard, and will not be tolerated. Such incidences will result in a 0 grade for all parties involved as well as being reported to the University Judicial Board. Additionally, there may be penalties to your final class grade. Please review Duke's Standards of Conduct. For more information on the Duke honor code (known as Duke Community Standard), please go to \url{http://integrity.duke.edu/faq/faq1.html.}\\
 
 \textbf{Students are not to discuss any contents of any examination until after the exam grades are released back to them either in class or via Sakai. More specifically, students should not speak to anyone except the course instructor until exam grades are released to the entire class. This includes but is not limited to talking to other students, text, chat forums, and other means of communications where exam information could be shared to another student. Any student that does not follow this policy will be in violation of the Duke honor code.}\\
 
-\newpage
 
 \emph{Students with Disabilities:} Students who require special accommodations in class or during exams should follow the procedures outlined by the Disability Management Program \\ http://access.duke.edu/students. Students with disabilities who believe they may need accommodations in this class are encouraged to contact the Student Disability Access Office at (919) 668-1267 as soon as possible to better ensure that such accommodations can be made. \\
 
@@ -191,6 +274,27 @@ Location: Academic Advising Center Building, East Campus,  behind Marketplace. \
 Webpage: \url{arc.duke.edu}\\
 email: theARC@duke.edu \\
 phone: 919-684-5917\\
+
+ \emph{Mental Health and Wellness Resources}
+
+If your mental health concerns and/or stressful events negatively affect your daily emotional state, academic performance, or ability to participate in your daily activities, many resources are available to you, including ones listed below. Duke encourages all students to access these resources, particularly as we navigate the transition and emotions associated with this time. Duke Student Government has worked with DukeReach and student advocates to create the Fall 2020 ``Two-Click Support" Form, and Duke Reach has expanded its drop in hours as well. 
+
+\begin{enumerate}
+\item DukeReach. Provides comprehensive outreach services to identify and support students in managing all aspects of wellbeing. If you have concerns about a student's behavior or health visit the website for resources and assistance. \url{http://studentaffairs.duke.edu/dukereach}
+\item Counseling and Psychological Services (CAPS). CAPS services include individual, group, and couples counseling services, health coaching, psychiatric services, and workshops and discussions.  (919) 660-1000
+\item Blue Devils Care. A convenient and cost-effective way for Duke students to receive 24/7 mental health support through TalkNow. \url{bluedevilscare.duke.edu}
+\end{enumerate}
+
+Managing daily stress and self-care are also important to well-being. Duke offers several resources for students to both seek assistance on coursework and improve overall wellness, some of which are listed below.  Please visit  \url{https://studentaffairs.duke.edu/duwell/holistic-wellness} to learn more about the following resources: 
+
+\begin{enumerate}
+\item The Academic Resource Center: (919) 684-5917, theARC@duke.edu, or arc.duke.edu
+\item DuWell: (919) 681-8421, duwell@studentaffairs.duke.edu, or \url{https://studentaffairs.duke.edu/duwell}
+\item WellTrack: \url{https://app.welltrack.com/}
+\end{enumerate} 
+
+
+
 
 \emph{Graduate Student Resources} There are many resources available to graduate students at Duke University, which can be found here \url{https://gradschool.duke.edu/student-life/student-resources}.\\
 
