@@ -142,7 +142,11 @@ class: regular
 
 - Sakai (upload homeworks): [https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1](https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1)
 
+- Duke Gradescope (upload homeworks):
+[https://gradescope.com/auth/saml/duke](https://gradescope.com/auth/saml/duke)
+
 - Course syllabus [https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall20.pdf)
+
 
 Remark: Videos on Github are too large to view, so you will need to download these if you wish to watch them. The fastest way, is to clone the repository and they will all download. They are stored this way in case your internet connection is slow. 
 
