@@ -21,6 +21,10 @@ code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's wi
 
 ***Working with data***
 
+Total points on assignment: 10 (reproducibility) + 22 (Q1) + 9 (Q2) + 3 (Q3) = 44 points 
+
+Reproducibility component: 10 points. 
+
 1.  (22 points total, equally weighted) The data set **rnf6080.dat** records hourly rainfall at a certain location in Canada, every day from 1960 to 1980.
 
 a. Load the data set into R and make it a data frame called \texttt{rain.df}.  What command did you use?
