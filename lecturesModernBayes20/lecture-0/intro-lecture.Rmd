@@ -390,7 +390,7 @@ class: middle, center
 
 --
 
-- <font class="vocab">Final Exam</font>: There will be a final exam, and you must take the final exam to pass the course. 
+- <font class="vocab">Final Exam</font>: You must take the final exam to pass the course. 
 
 ---
 
