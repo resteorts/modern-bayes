@@ -249,7 +249,7 @@ Our Model
 ===
 
 Our model can be summarized by
-the Binonmial-Beta
+the Binomial-Beta
 
 \begin{align}
 X|\theta &\sim \text{Binomial} (n, \theta) \\
