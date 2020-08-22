@@ -150,6 +150,20 @@ class: regular
 
 Remark: Videos on Github are too large to view, so you will need to download these if you wish to watch them. The fastest way, is to clone the repository and they will all download. They are stored this way in case your internet connection is slow. 
 
+---
+
+## Other resources
+
+- Review of probability material: [https://github.com/resteorts/modern-bayes/blob/master/reading/statistical-inference.pdf](https://github.com/resteorts/modern-bayes/blob/master/reading/statistical-inference.pdf)
+
+- Simon Mak's Quick Guide to Prob. Distributions [https://github.com/resteorts/modern-bayes/blob/master/reading/distribution-quick-reference.pdf](https://github.com/resteorts/modern-bayes/blob/master/reading/distribution-quick-reference.pdf)
+
+- A One Pager on Prob Distributions  
+[https://github.com/resteorts/modern-bayes/blob/master/reading/common-distributions-one-pager.pdf](https://github.com/resteorts/modern-bayes/blob/master/reading/common-distributions-one-pager.pdf)
+
+
+
+
 
 ---
 
