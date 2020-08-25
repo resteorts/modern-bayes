@@ -1,7 +1,7 @@
 ---
 title: "Lab 4: Do a teacher’s expectations influence student achievement?"
 author: "Lei Qian and Rebecca C. Steorts"
-date: "July 28, 2020"
+date: "August 24, 2020"
 output: 
      pdf_document:
       includes: 
