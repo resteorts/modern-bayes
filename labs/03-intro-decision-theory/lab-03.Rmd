@@ -282,6 +282,19 @@ legend('topright', legend = c('Bayes', 'sample mean', 'constant'),
 
 Based on your plot of the frequentist risk, consider the three estimators— the constant, the mean, and the Bayes estimators. Which estimators are admissible? Be sure to explain why or why they are not admissible.
 
+When $\theta$ is close to 0.1, the constant estimator has the smallest frequentist risk among all three estimators. However, the frequentist risk of the constant estimator increases very quickly and sharply when $\theta$ increases beyond 0.1. 
+
+The Bayes estimator has lower frequentist risk than the sample mean estimator for almost all $\theta$ values except when $\theta$ is close to 0 or 1. 
+
+When $\theta$ is close to 0 or 1, sample mean estimator has lower frequentist risk than Bayes estimator. In general, the Bayes estimator is the best estimator for most of $\theta$ values whereas the constant estimator is the best estimator for $\theta$ values close to 0.1. 
+
+
+Takeaway: one estimator might work better for some $\theta$ values whereas another estimator might work better for other $\theta$ valuea. Thus, all three estimators are admissible (no estimator is every strictly better than another estimator). 
+
+
+
  
+
+
 
 
