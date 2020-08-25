@@ -5,7 +5,7 @@ date: "January 2018"
 output: pdf_document
 ---
 
-In class, you saw the Binomial-Beta model. We will now use this to solve a very real problem! Suppose I wish to determine whether the probability that a worker will fake an illness is truly 1\%. Your task is to assist me! Tasks 1--2 will be completed in lab and tasks 3--5 should be completed in your weekly homework assignment. 
+In class, you saw the Binomial-Beta model. We will now use this to solve a very real problem! Suppose I wish to determine whether the probability that a worker will fake an illness is truly 1\%. Your task is to assist me! Tasks 1--3 will be completed in lab and tasks 3--5 should be completed in your weekly homework assignment. You should still upload task 3 even though this will be worked through in lab! 
 
 # Task 1
 
@@ -67,4 +67,12 @@ You have a rough sketch of what you should do for this part of the assignment. T
 
 
 
+# Task 4 (To be completed for homework)
 
+Write a function that takes as its inputs  prior parameters \textsf{a} and \textsf{b} for the Beta-Bernoulli model and the observed data, and produces the posterior parameters you need for the model. \textbf{Generate and print} the posterior parameters for a non-informative prior i.e. \textsf{(a,b) = (1,1)} and for an informative case \textsf{(a,b) = (3,1)}}.
+
+
+
+# Task 5 (To be completed for homework)
+
+Create two plots, one for the informative and one for the non-informative case to show the posterior distribution and superimpose the prior distributions on each along with the likelihood. What do you see? Remember to turn the y-axis ticks off since superimposing may make the scale non-sense.
