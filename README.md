@@ -87,4 +87,15 @@ Homeworks will be updated on github during the course of the semester. Due dates
 - [Homework 2](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-2/hw-02.pdf) (Due Friday August 28, 5 PM EDT)
 - [Homework 3](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-3/hw-03.pdf) (Due Friday September 4, 5 PM EDT)
 - [Homework 4](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-4/hw-04.pdf) (Due Friday September 11, 5 PM EDT)
-- Exam 1: Thursday, September 17th. Lab03 (or with prior approval)International Students: 8:00 AM - 9:15 AM EDT, Lab01 and Lab02: 1:45 - 3:00 PM EDT. 
+
+- Exam 1: Thursday, September 17th. 
+- Lab03 (or with prior approval)International Students: 8:00 AM - 9:15 AM EDT, 
+- Lab01 and Lab02: 1:45 - 3:00 PM EDT. 
+
+[Homework 5](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-5/hw-05.pdf)(TBD)
+[Homework 6](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-6/hw-06.pdf)(TBD)
+[Homework 7](https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-7/hw-07.pdf)(TBD)
+
+- Exam 2: TBD
+
+- Final Exam: November 22, 2:00 - 5:00 PM EDT. 
