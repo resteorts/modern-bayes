@@ -149,6 +149,10 @@ Suppose they allocate enough resources to accomodate a fraction $c$ of the popul
 $$\ell(\theta,c) =\branch{|\theta-c|}{c\geq\theta}
                        {10|\theta-c|}{c<\theta.}$$
                        
+\vspace*{1em}
+
+**This applied example corresponds to lab 3 and homework 4.**
+                       
 Resource allocation for disease prediction (continued)
 ===                       
                        
