@@ -43,14 +43,9 @@ Example
 1. State: $S = \btheta$
 2. Observation: $x = x_{1:n}$
 3. Action: $a = \hat\theta$
-4. Loss: $\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2$ (quadratic loss, a.k.a. squared error loss)
+4. Loss: $\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2$ (quadratic loss, a.k.a. square loss)
 
-
-
-Question
-===
-
-Why do we consider the squared error loss function over other loss functions, such as the absolute error loss function? 
+\textcolor{red}{Question: Why do we consider quadratic loss over other loss functions?}
 
 
 Bayesian approach
@@ -67,24 +62,16 @@ Bayesian approach (continued)
 ===
 
 1. A \term{decision procedure} $\delta$ is a systematic way of choosing actions $a$ based on observations $x$. Typically, this is a deterministic function $a=\delta(x)$ (but sometimes introducing some randomness into $a$ can be useful).
-2. A \term{Bayes procedure or rule} is a decision procedure $\delta$ that chooses an action $a$ that minimizes the posterior expected loss $\rho(a,x)$, for each $x$.\footnote{Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies.}
+2. A \term{Bayes procedure} is a decision procedure that chooses an $a$ minimizing the posterior expected loss $\rho(a,x)$, for each $x$.
+3. Note: Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies. 
 
-What is the Bayes rule assuming squared error loss?
+What is the optimal decision rule?
 ===
 
-Goal: Find the Bayes rule. 
-
-1.  Assume that $\hat{\theta}$ is an estimator of $\theta.$ 
-2.  Assume data $x_{1:n}.$ 
-3.  Assume squared error loss $$\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2.$$
-
-Finding the Bayes rule
-===
-
-By definition, we want to **minimize the posterior risk** (or posterior expected loss).
-
-The **posterior risk** can be written as
-
+- Goal: Minimize the posterior risk
+- First note that 
+$$\ell(\theta,\hat\theta) =\theta^2 - 2\theta\hat\theta + \hat\theta^2$$
+- It then follows that the \textbf{posterior loss} is
 \begin{align*}
 \rho(\hat\theta,x_{1:n})&=\E(\ell(\theta,\hat\theta)|x_{1:n}) =
 \E((\theta-\hat\theta)^2|x_{1:n}) \\
@@ -94,23 +81,16 @@ The **posterior risk** can be written as
 \end{align*}
 which is a convex function of $\hat\theta$. 
 
-
-
-
-Finding the Bayes rule
+What is the optimal decision rule?
 ===
-
 We just showed that
 $$\rho(\hat\theta,x_{1:n}) = \E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2$$
 Setting the derivative with respect to $\hat\theta$ equal to $0$, and solving, we find that the minimum occurs at $\hat\theta = \E(\btheta|x_{1:n})$, \textbf{the posterior mean}. 
 
 Let's walk through this derivation together. 
 
-What is the Bayes rule?
+What is the optimal decision rule?
 ===
-
-Let's now **minimize the posterior risk.** 
-
 \begin{align*}
 \frac{\partial \rho(\hat\theta,x_{1:n})}{\partial \hat{\theta}}
 &= \frac{\partial \{\E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2\}}{\partial \hat{\theta}}
@@ -121,18 +101,6 @@ $$ -2 \E(\theta|x_{1:n}) + 2 \hat{\theta} = 0, $$
 which implies that $$\hat{\theta} = \E(\theta|x_{1:n}).$$
 
 Why is the solution unique?
-
-What is the Bayes rule (under squared error loss)?
-===
-
-To summarize, we just showed that the Bayes rule under squared error loss is 
-
-$$\hat{\theta} = \E(\theta|x_{1:n}).$$
-\vspace*{1em}
-
-That is, the **Bayes rule is the posterior mean**! 
-
-
 
 Resource allocation for disease prediction
 ===
