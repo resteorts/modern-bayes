@@ -171,6 +171,8 @@ Remark: Videos on Github are too large to view, so you will need to download the
 
 Course website (all major course information here): [https://resteorts.github.io/teach/bayes20.html](https://resteorts.github.io/teach/bayes20.html)
 
+Course cheat sheet (a summary of course information)[https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf)
+
 ---
 
 ## Prior Knowledge 
