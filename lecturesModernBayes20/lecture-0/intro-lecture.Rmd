@@ -70,8 +70,8 @@ class: regular
 
 <i class="material-icons">mail_outline</i> &nbsp;[beka@stat.duke.edu](mailto:beka@stat.duke.edu)<br>
 <i class="material-icons">work_outline</i> &nbsp; 988 1669 9435 <br>
-<i class="material-icons">calendar_today</i>&nbsp; Class: Tues/Th, 1:45 - 3:00 PM EST <br>
-<i class="material-icons">calendar_today</i>&nbsp; OH: Tues/Th, 3:00 - 4:00 PM EST
+<i class="material-icons">calendar_today</i>&nbsp; Class: Tues/Th, 1:45 - 3:00 PM ESD <br>
+<i class="material-icons">calendar_today</i>&nbsp; OH: Tues/Th, 3:00 - 4:00 PM ESD
 
 
 
@@ -85,8 +85,8 @@ class: regular
 <i class="material-icons">mail_outline</i> &nbsp;[olivier.binette@duke.edu](mailto:olivier.binette@duke.edu)<br>
 <i class="material-icons">work_outline</i> &nbsp; 951 0070 7304 (Lab ID) <br>
 <i class="material-icons">work_outline</i> &nbsp; 949 7135 3069 (OH ID) <br>
-<i class="material-icons">calendar_today</i>&nbsp; Lab-01: Fri, 12:00 - 1:15 PM EST <br>
-<i class="material-icons">calendar_today</i>&nbsp; OH: Wed, 9:00 - 10:00 AM EST <br>
+<i class="material-icons">calendar_today</i>&nbsp; Lab-01: Fri, 12:00 - 1:15 PM ESD <br>
+<i class="material-icons">calendar_today</i>&nbsp; OH: Wed, 9:00 - 10:00 AM ESD <br>
 ]
 ---
 
@@ -100,8 +100,8 @@ class: regular
 <i class="material-icons">mail_outline</i> &nbsp;[mfc22@duke.edu](mailto: mfc22@duke.edu@duke.edu)<br>
 <i class="material-icons">work_outline</i> &nbsp;912 3642 9338 (Lab ID) <br>
 <i class="material-icons">work_outline</i> &nbsp; 949 7135 3069 (OH ID) <br>
-<i class="material-icons">calendar_today</i>&nbsp; Lab-02: Fri, 1:45 - 3:00 PM EST <br>
-<i class="material-icons">calendar_today</i>&nbsp; OH: Mon, 9:00 - 10:00 AM EST <br>
+<i class="material-icons">calendar_today</i>&nbsp; Lab-02: Fri, 1:45 - 3:00 PM ESD <br>
+<i class="material-icons">calendar_today</i>&nbsp; OH: Mon, 9:00 - 10:00 AM ESD <br>
 ]
 
 ---
@@ -121,6 +121,8 @@ class: regular
 [Lavonne Hoang](Webpage)
 
 <i class="material-icons">mail_outline</i> &nbsp;[lavonne.hoang@duke.edu](mailto:lavonne.hoang@duke.edu)<br>
+<i class="material-icons">work_outline</i> &nbsp; 988 1669 9435 (OH ID) <br>
+<i class="material-icons">calendar_today</i>&nbsp; OH: Wed, 3:30 - 4:30 PM ESD <br>
 
 <br><br>
 
@@ -169,9 +171,10 @@ Remark: Videos on Github are too large to view, so you will need to download the
 
 ## Where can you find all the course information
 
-Course website (all major course information here): [https://resteorts.github.io/teach/bayes20.html](https://resteorts.github.io/teach/bayes20.html)
+Course website (all major course information here):  [https://resteorts.github.io/teach/bayes20.html](https://resteorts.github.io/teach/bayes20.html)
 
-Course cheat sheet (a summary of course information)[https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf)
+Course cheat sheet (a summary of course information):
+[https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf)
 
 ---
 
