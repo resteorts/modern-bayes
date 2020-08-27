@@ -1,0 +1,300 @@
+\documentclass[11pt]{article}
+\usepackage[dvips]{color}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topmargin}{-0.75in}
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6in}
+\usepackage{fullpage} %%set margins
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{setspace,hyperref}
+\usepackage{cite}
+\usepackage{bm}
+
+\usepackage{fancyhdr}
+
+\date{}
+\setlength{\parindent}{0in}
+\begin{document}
+
+\begin{center}
+{\Large\bf STA 360\\ Course Cheatsheet} \\
+
+{\Large\bf Duke University, Fall 2020} \\
+\end{center}
+
+%\textbf{Please note that the syllabus may change if needed and with the agreement of the majority of the students. We will adapt to online learning in a way which is most suited for the entire course, which will be measured by surveys to the course, such as the ones your received in mid-June to help with preparations for the fall semester.} \\
+
+\section{Course Schedule}
+\emph{Instructor}: Rebecca C. Steorts,  Assistant Professor,  Department of Statistical Science\\
+\emph{Email}: beka@stat.duke.edu\\
+\emph{Course Time}: Tuesday/Thursday: 1:45 -- 3:00 PM EDT \\
+\emph{Office Hour}: Tuesday/Thursday: 3:00 -- 4:00 PM EDT \\
+\textbf{988 1669 9435 (Class and OH ID)}\\
+\emph{Course webpage:} \url{https://resteorts.github.io/teach/bayes20.html} \\
+\emph{Revised academic calendar:} https://registrar.duke.edu/fall-2020-academic-calendar
+
+
+\paragraph{Lab Schedule}
+\emph{Lab-01 with Olivier Binette, PhD Student, olivier.binette@duke.edu}: \\Friday: 12:00 -- 1:15 PM EDT (9:30 PM India, Midnight China)\\
+\textbf{Meeting ID: 914 4695 4763}\\
+\emph{Lab--02 with Michael Christensen, PhD Student, michael.f.christensen@duke.edu}: \\Friday: 1:45 PM -- 3:00 PM EDT (11:15 PM India, 1:45 AM China)\\
+\textbf{Meeting ID: 934 6814 0647}
+
+%\section{Course Learning Objectives}
+%In this course, the following learning objectives will be met by the end of the semester:
+%\begin{enumerate}
+%\item Provide a foundation to Bayesian statistical methods
+%\item Explore, visualize, and analyze data in a reproducible and shareable manner using Bayesian methods from the course
+%\item Gain experience in data wrangling and munging, building Bayesian models, visualizing them, and interpreting them 
+%\item Work on problems and case studies inspired by and based on real-world questions and data
+%\item Learn to effectively communicate results through written assignments and exams 
+%\end{enumerate}
+%
+%\section{Course Community}
+%
+%
+%
+%\paragraph{Duke Community Standard} 
+%As a student in this course, you have agreed to uphold the Duke Community Standard, which can be found at \url{https://studentaffairs.duke.edu/conduct/about-us/duke-community-standard}. You also have agreed to the practices specific to this course.  A video regarding the Duke Community Standard can be found here at \url{https://youtu.be/_KN97j30ST4}. 
+%
+%
+%\paragraph{Inclusive Community}
+%
+%It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit. It is my intent to present materials and activities that are respectful of diversity and in alignment with Duke’s Commitment to Diversity and Inclusion. Your suggestions are encouraged and appreciated. Please let me know ways to improve the effectiveness of the course for you personally, or for other students or student groups. \\
+%
+%Furthermore, I would like to create a learning environment for my students that supports a diversity of thoughts, perspectives and experiences, and honors your identities. To help accomplish this:
+%
+%\begin{enumerate}
+%\item If you feel like your performance in the class is being impacted by your experiences outside of class, please don’t hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your academic dean is an excellent resource.
+%\item   I (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it.
+%\end{enumerate}
+%
+%\paragraph{Accessibility}
+%
+%If there is any portion of the course that is not accessible to you due to challenges with technology or the course format, please let me know so we can make accommodations.\\
+%
+%In addition to accessibility issues experienced during the typical academic year, I recognize that remote learning may present additional challenges. Students may be experiencing unreliable wi-fi, lack of access to quiet study spaces, varied time-zones, or additional responsibilities while studying at home. If you are experiencing these or other difficulties, please contact me at the earliest opportunity to discuss possible accommodations. \\
+%
+%The Student Disability Access Office (SDAO) is available to ensure that students are able to engage with their courses and related assignments. Students should be in touch with the Student Disability Access Office to request or update accommodations under these circumstances. 
+%
+%\paragraph{Academic honesty}
+%
+%\textbf{Don’t cheat!}
+%
+%Please abide by the following as you work on assignments in this course:
+%
+%\begin{enumerate}
+%\item You may not discuss or otherwise work with others on the exams. Unauthorized collaboration or using unauthorized materials will be considered a violation for all students involved. More details will be given closer to the exam date.
+%\item Reusing code: Unless explicitly stated otherwise, you may make use of online resources (e.g. StackOverflow) for coding examples on assignments. If you directly use code from an outside source (or use it as inspiration), you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
+%\item On individual assignments, you may not directly share code or write up with other students. On team assignments, you may not directly share code or write up with another team. Unauthorized sharing of the code or write up will be considered a violation for all students involved.
+%\end{enumerate}
+%
+%Any violations in academic honesty standards as outlined in the Duke Community Standard and those specific to this course will automatically result in a 0 for the assignment and may result in a failing grade for the course. Violations will be reported to the Office of Student Conduct for further action.
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%\section{Course Activities}
+%
+%\paragraph{Communication} 
+%All lecture notes, assignment instructions, up-to-date schedule, and other course materials may be found on the course website: \url{https://resteorts.github.io/teach/bayes20.html}. The course webpage (including the course github page) will be updated regularly, so please make sure to check for updates often. \\
+%
+%I will also email announcements through Sakai to ensure everyone has current information. Please check your email regularly. I will send out surveys periodically to gauge how the class is going, so please respond to these as I greatly appreciate your feedback to improve the course! 
+%
+%\paragraph{Teaching Team}
+%There is an excellent team of teaching assistants in place. They are here to help and assist you throughout the course! 
+%
+%\begin{enumerate}
+%\item Olivier Binette, (Head TA), PhD Student, olivier.binette@duke.edu
+%\item Michael Christensen, PhD Student, michael.f.christensen@duke.edu
+%\item Ziang Wang, MS Student, ziang.wang@duke.edu
+%\item Lavonne Hoang, Undergraduate Student, lavonne.hoang@duke.edu
+%\item Ashley Murray, Undergraduate Student, ashley.j.murray@duke.edu
+%\end{enumerate}
+
+
+\paragraph{Office Hours}
+%We will make adjustments to OH based upon student needs/feedback. 
+\begin{enumerate}
+\item Professor Steorts, Tuesday/Thursday: 3:00 -- 4:00 PM EDT (12:30 AM India, 3:00 AM China) \\
+\textbf{Meeting ID: 988 1669 9435}
+\item Michael Christensen, PhD Student, Monday, 9:00 -- 10:00 AM EDT \\(6:30 PM India, 8:00 PM Vietnam, 9:00 PM China) (Backup: Olivier)
+\textbf{Meeting ID: 949 7135 3069}
+\item Olivier Binette, PhD Student, Wednesday, 9:00 -- 10:00 AM EDT \\(6:30 PM India, 8:00 PM Vietnam, 9:00 PM China) (Backup: Michael)
+\textbf{Meeting ID: 949 7135 3069}
+%\item There are no Friday OH given that there are two labs that students will be expected to attend (or watch pre-recorded videos) if they have questions. 
+\end{enumerate}
+
+
+\textbf{Schedule for Answering Questions Via Email/Google Group}
+\begin{enumerate}
+\item Monday: Lavonne (Backup: Ashley)
+\item Tuesday: Michael (Backup: Olivier)
+\item Wednesday: Olivier (Backup: Michael)
+\item Thursday: Michael (Backup: Olivier)
+\item Friday: Lavonne (Backup: Ashley)
+\item Saturday: Ashley (Backup: Lavonne)
+\item Sunday: Ashley (Backup: Lavonne)
+\end{enumerate}
+
+
+\paragraph{Exams Dates} 
+The following exam dates are below and break downs for Labs 01 and 02. (If you're in Lab 03, you have been emailed instructions regarding the Exam I time period). 
+
+\begin{table}[h!]
+\caption{Grading Policy:}
+\begin{center}
+\begin{tabular}{cc}
+Homework &30\%\\
+Exam I:  Thursday, Sept 17 (in class), 2020 &20\%\\
+Exam  II: (TBD) & 20\%\\
+Final Exam:  November 22: 2:00 -- 5:00 PM EDT & 30\%\\
+\end{tabular}
+\end{center}
+\label{default}
+\end{table}%
+
+\paragraph{Homework Deadlines}
+Homeworks deadlines are summarized below:
+
+\begin{enumerate}
+\item Homework 1 (Due Friday August 21, 5 PM EDT)
+\item Homework 2 (Due Friday August 28, 5 PM EDT)
+\item Homework 3 (Due Friday September 4, 5 PM EDT)
+\item Homework 4 (Due Friday September 11, 5 PM EDT)
+\item Homework 5 (TBD)
+\item Homework 6 (TBD)
+\item Homework 7 (TBD)
+\end{enumerate} 
+
+%Homeworks will be given on a weekly basis. They will be based on both lecture and lab. \textbf{To accommodate unexpected events, the lowest homework grade will be dropped at the end of the semester}.\\
+%
+%Individual homework extensions will only be given for extenuating circumstances. Please contact Professor Steorts if you have an extenuating circumstance that prohibits you from completing the homework by the stated due date.\\
+%
+%There will be two exams during the semester and one final exam. The purpose of the exams are an opportunity to assess the knowledge and skills you’ve learned. They will include both the conceptual and mathematical and conceptual aspects of Bayesian statistics. Content will come from the slides and lab material, which you already have access to. Exams will be timed and must be completed during the time period specified. \\
+%
+%An overall score of $s$ will result in a grade of:
+%\begin{quote}
+%A if $90\leq s\leq 100$ \\
+%B if $80\leq s < 90$ \\
+%C if $70\leq s < 80$ \\
+%D if $60\leq s < 70$ \\
+%F if $0\leq s < 60$
+%\end{quote}
+%or, for those taking the course on a Satisfactory/Unsatisfactory basis:
+%\begin{quote}
+%S if $70\leq s\leq 100$ \\
+%U if $0\leq s < 70$.
+%\end{quote}
+%
+%
+%Exam dates cannot be changed and no make-up exams will be given. If extenuating circumstances prohibit you from taking an exam, please let Professor Steorts know before the start of the exam.\\
+%
+%If you have an excused absence from an exam, the weight of the missed exam will be moved to the final exam. Please remember that you must take the final exam to pass the course. If extenuating circumstances prohibit you from taking the final exam, email Professor Steorts before the start of the exam. \\
+%
+%\textbf{Students are not to discuss any contents of any examination until after the exam grades are released back to them either in class or via Sakai. More specifically, students should not speak to anyone except the course instructor until exam grades are released to the entire class. This includes but is not limited to talking to other students, text, chat forums, and other means of communications where exam information could be shared to another student. Any student that does not follow this policy will be in violation of the Duke honor code.}\\
+%
+%\paragraph{Regrade Requests}
+%%Regrade requests should be submitted via email to the instructor. Requests for a regrade must be made within a week of when the assignment is returned; requests submitted later will not be considered. You should only submit a regrade request if there is an error in the grade calculation or a correct answer was mistakenly marked as incorrect. You should not submit a regrade to dispute the number of points deducted for an incorrect response. Please note that by submitting a regrade request, your entire assignment may be regraded and you may potentially lose points.\\
+%
+%Regrade requests should be submitted through the regrade request form on Gradescope at \url{https://gradescope.com/auth/saml/duke}. Requests for a regrade must be made within a week of when the assignment is returned; requests submitted later will not be considered. You should only submit a regrade request if there is an error in the grade calculation or a correct answer was mistakenly marked as incorrect. You should not submit a regrade to dispute the number of points deducted for an incorrect response. Please note that by submitting a regrade request, your entire assignment may be regraded and you may potentially lose points.\\
+%
+%Due to the time consuming nature of responding to regrade requests, you should attend office hours and ask a member of the teaching team about the feedback before submitting the request. When you submit a request, please indicate which member of the teaching team you spoke with. \\
+%
+%Note: Grades can only be changed by Professor Steorts. Teaching Assistants cannot change grades on returned assignments.\\
+%
+%
+%\paragraph{Late Work} 
+%
+%If there are extenuating circumstances that prevent you from completing an assignment by the \textbf{stated due date}, please let Professor Steorts know before the assignment is due. No late assignments will be accepted after solutions are posted or released to the rest of the class. 
+
+%\paragraph{Important dates}
+%\begin{enumerate}
+%\item August 17: Classes Begin
+%\item August 28: Drop/Add Ends
+%\item October 20: Last Day to withdraw with a W
+%\item November 16: Classes End
+%\item November 22: 2:00 -- 5:00 PM EDT is the date for the final exam period assigned by the registrar's office. 
+%\end{enumerate}
+
+
+
+%\clearpage
+%\newpage
+%\appendix
+%
+%\section{Additional Resources}
+%There are many additional resources that are available and are included as an appendix. \\
+%
+%\textbf{R, github, and other course resources}
+%
+%Reviews and refreshers of both R and github can be found here: \url{https://github.com/resteorts/modern-bayes}. In addition, there are many other resources that are posted here that will help you with the course. \\
+%
+%
+%\textbf{Academic Resource Center} There are times students may need help with the class that is beyond what can be provided by the teaching team. In those instances, I encourage you to visit the \textbf{Academic Resource Center.} The Academic Resource Center (ARC) offers free services to all students during their undergraduate careers at Duke. Services include Learning Consultations, Peer Tutoring and Study Groups, ADHD/LD Coaching, Outreach Workshops, and more. Because learning is a process unique to every individual, they work with each student to discover and develop their own academic strategy for success at Duke. Contact the ARC to schedule an appointment. Undergraduates in any year, studying any discipline can benefit! Contact ARC@duke.edu, 919-684-5917.\\
+%
+%\textbf{CAPS}
+%\textbf{Duke Counseling \& Pyschological Services} (CAPS) helps Duke Students enhance strengths and develop abilities to successfully live, grow and learn in their personal and academic lives. CAPS recognizes that we are living in unprecedented times and that the changes, challenges and stressors brought on by the COVID-19 pandemic have impacted everyone, often in ways that tax our well-being. CAPS offers many services to Duke undergraduate students, including brief individual and group counseling, couples counseling and more. CAPS staff also provides outreach to student groups, particularly programs supportive of at-risk populations, on a wide range of issues impacting them in various aspects of campus life. CAPS provides services to students via Telehealth. To initiate services, you can contact their front desk at 919-660-1000.\\
+%
+%\paragraph{Technology Issues}
+%
+%Students who may have limited access to computers and stable internet may request assistance in the form of loaner laptops and WIFI hotspots.  For new Fall 2020 technology assistance requests, please go \url{https://duke.qualtrics.com/jfe/form/SV_bBdL1UL3N3iZNDD}.  For returning students who wish to request an extension of a laptop or hotspot loan for Fall 2020 semester, please go \url{https://duke.qualtrics.com/jfe/form/SV_4SkFkWNrmvxhaBL}. For updates, please visit https://keeplearning.duke.edu/undergraduate-students/.\\
+%
+%\paragraph{Accommodations for Remote Students}
+%If students cannot participate in synchronous or in-person course components (due to permanent time zone differences or temporary quarantine, for example), students should contact the instructor and academic dean to request an accommodation that will allow them to participate remotely. Please note that the experience may not be identical to that of local students.\\
+%
+%\paragraph{Inclement Weather, Attendance, and Civic Engagement Policies}
+%Responsibility for class attendance rests with individual students. Since regular and punctual class attendance is expected, students must accept the consequences of failure to attend.  However, in recognition of possible extra personal and academic stress this semester, I will grant excused absence, provided you discuss the absence with me and agree to make up missed work. Details regarding Trinity policies can be found here \url{https://trinity.duke.edu/undergraduate/academic-policies/class-attendance-and-missed-work}. \\
+%
+%In the event of inclement weather or other connectivity-related events that prohibit class attendance, either in the location of the instructor or in the location of the student, I will notify you how we will make up missed course content and work.  Asynchronous catch-up methods will likely apply.\\
+%
+%\textbf{If you have a situation regarding connectivity or any issue that prevents you from completing an assignment, please contact the instructor immediately. This will be dealt with on a case-by-base basis}. \\
+%
+%
+%
+%\paragraph{Technical and Zoom Support}
+%For technical help with Sakai or Zoom, contact the Duke OIT Service Desk at https://oit.duke.edu/help. You can also access the self-service help documentation for Zoom here and for Sakai here.  The ARC (Academic Resource Center) has a student-friendly learning online guide and Zoom instructions here. Look on the sidebar on the left.\\
+%
+%\paragraph{Mental Health and Wellness Resources}
+%
+%If your mental health concerns and/or stressful events negatively affect your daily emotional state, academic performance, or ability to participate in your daily activities, many resources are available to you, including ones listed below. Duke encourages all students to access these resources, particularly as we navigate the transition and emotions associated with this time. Duke Student Government has worked with DukeReach and student advocates to create the Fall 2020 ``Two-Click Support" Form, and Duke Reach has expanded its drop in hours as well. 
+%
+%\begin{enumerate}
+%\item DukeReach. Provides comprehensive outreach services to identify and support students in managing all aspects of wellbeing. If you have concerns about a student's behavior or health visit the website for resources and assistance. \url{http://studentaffairs.duke.edu/dukereach}
+%\item Counseling and Psychological Services (CAPS). CAPS services include individual, group, and couples counseling services, health coaching, psychiatric services, and workshops and discussions.  (919) 660-1000
+%\item Blue Devils Care. A convenient and cost-effective way for Duke students to receive 24/7 mental health support through TalkNow. \url{bluedevilscare.duke.edu}
+%\end{enumerate}
+%
+%Managing daily stress and self-care are also important to well-being. Duke offers several resources for students to both seek assistance on coursework and improve overall wellness, some of which are listed below.  Please visit  \url{https://studentaffairs.duke.edu/duwell/holistic-wellness} to learn more about the following resources: 
+%
+%
+%\begin{enumerate}
+%\item The Academic Resource Center: (919) 684-5917, theARC@duke.edu, or arc.duke.edu
+%\item DuWell: (919) 681-8421, duwell@studentaffairs.duke.edu, or \url{https://studentaffairs.duke.edu/duwell}
+%\item WellTrack: \url{https://app.welltrack.com/}
+%\end{enumerate} 
+%
+
+
+
+
+
+
+
+\end{document}
