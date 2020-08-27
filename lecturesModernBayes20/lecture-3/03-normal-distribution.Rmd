@@ -278,3 +278,11 @@ so we can compute $\Pr(\text{bimodal}\mid \text{data})$ using the normal c.d.f.\
 
 Intuitive interpretation: The posteriors are about 13 or 14 centimeters apart, which is under the $2\sigma = 16$ threshold for bimodality, and they are sufficiently concentrated that the posterior probability of bimodality is essentially zero.
 
+Takeaways
+===
+
+- We reviewed the univariate normal distribution and properties of it (such as symmetry about the mean). 
+- We discussed types of data that empirically have a normal distribution to motivate its usage. 
+- We dervied the Normal-Uniform model, where the uniform distribution is the first improper prior we have seen in this course. 
+- We derived the Normal-Normal model. 
+- We considered an application of human heights from Schlling et al. (2002), where we showed that the posterior probability of bimodality was zero (regarding a plot of combined heights). 
