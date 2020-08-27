@@ -440,18 +440,30 @@ The posterior predictive can be derived to be
 $$
 \begin{aligned}
 \Pr(X_{n+1} = 1\mid x_{1:n}) & = \int \Pr(X_{n+1} = 1\mid \theta) p(\theta|x_{1:n}) d\theta\\
-& =\int \theta\,\Beta(\theta|a_n,b_n) =\frac{a_n}{a_n + b_n},
+& =\int \theta\,\Beta(\theta|a_n,b_n) =\frac{a_n}{a_n + b_n}.
 \end{aligned}
 $$
 
 Similarly, 
 $$
 \begin{aligned}
-\Pr(X_{n+1} = 0 \mid x_{1:n}) & = 1- \Pr(X_{n+1} = 1 \mid x_{1:n}) = \frac{b_n}{a_n + b_n}
+\Pr(X_{n+1} = 0 \mid x_{1:n}) & = 1- \Pr(X_{n+1} = 1 \mid x_{1:n}) = \frac{b_n}{a_n + b_n}.
 \end{aligned}
 $$
 
-hence, the posterior predictive p.m.f. is
+
+Posterior predictive distribution (continued)
+===
+This implies that 
+
+$$p(x_{n+1}|x_{1:n}) =
+\begin{cases} 
+ \frac{a_n}{a_n + b_n} & \mbox{if } x_{n+1} = 1  \\
+\frac{b_n}{a_n + b_n} & \mbox{if } x_{n+1} = 0
+\end{cases}
+$$
+
+Hence, the posterior predictive p.m.f. is
 
 $$
 \begin{aligned}
