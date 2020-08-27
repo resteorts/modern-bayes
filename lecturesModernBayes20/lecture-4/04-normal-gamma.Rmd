@@ -12,13 +12,18 @@ font-size: 8px
 
 Agenda
 ===
-- NormalGamma distribution
-- posterior derivation
-- application to IQ scores
+- Continue with more conjugate distributions
+- Define the precision 
+- Introduce the Normal-Gamma model
+- Consider our first hiearchical model with more than two levels
+- Deriving the posterior for the Normal likelihood and Normal-Gamma prior
+- Application to IQ scores (spurters versus controls)
+
 
 NormalGamma distribution
 ===
 Let
+
 $X_1,\dotsc,X_n\mid \mu,\lambda \iid\N(\mu,\lambda^{-1})$ and assume **both**
 
 - the mean $\mu$ and 
@@ -125,6 +130,8 @@ Do a teacher's expectations influence student achievement?
 Do a teacher's expectations influence student achievement?
 In a famous study, Rosenthal and Jacobson (1968) performed an experiment in a California elementary school to try to answer this question. At the beginning of the year, all students were given an IQ test.  For each class, the researchers randomly selected around 20\% of the students, and told the teacher that these students were ``spurters'' that could be expected to perform particularly well that year. (This was not based on the test---the spurters were randomly chosen.) At the end of the year, all students were given another IQ test. 
 The change in IQ score for the first-grade students was:\footnote{The original data is not available. This data is from the \texttt{ex1321} dataset of the \texttt{R} package \texttt{Sleuth3}, which was constructed to match the summary statistics and conclusions of the original study.}
+
+**This applied example corresponds to lab 4 and homework 5.**
 
 Do a teacher's expectations influence student achievement?
 ===
@@ -319,4 +326,16 @@ and obtain the approximation
 \approx \frac{1}{N} \sum_{i = 1}^N I\big(\mu_S^{(i)}>\mu_C^{(i)}\big) = ??.
 \end{align*}
 
-In lab this week, you will explore this data set more and analyze this in your homework assignment. 
+**You will explore this more in lab 4 and homework 5.**
+
+Takeaways
+===
+
+- We introduced the Normal-Gamma distribution.
+- We defined the precision (inverse of the variance). 
+- We defined a hiearchical model with three levels. 
+- We derived the posterior for the Normal likelihood and the Normal-Gamma prior. What did this involve? 
+- We utilized our modeling techniques this week on an application to IQ scores. How realistic was this model in practice? 
+- If you made changes to the model, what changes would you make and what complications might you run into? 
+
+
