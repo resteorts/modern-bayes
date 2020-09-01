@@ -40,6 +40,8 @@ Student Requests
 
 - ipad notes have been pre-recorded, so these are already there:) 
 
+- I've posted all my (live) written ipad notes in each github module in case you want to look back over these for your exam preparation. You also have the typed notes. If you want to see a different derivation, you can look in my typed lecture notes or in Hoff. 
+
 
 
 
@@ -64,7 +66,7 @@ Other Requests
 
 Since most students didn't ask for a change, I'm going to keep these dates the same. If you have a special circumstance that falls under the flexibility teaching policy that I offer, please email me by today to talk about options. 
 
-Things I've done
+Other Requests 
 ===
 
 - The labs now just have one file (Rmd and pdf). Please check that you can render these as you need LaTeX installed. 
