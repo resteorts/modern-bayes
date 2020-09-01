@@ -9,6 +9,73 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+Thank you for your feedback on the course so far! If you have not yet filled out the survey, I would greatly appreciate your feedback. Response rate: 24/40. 
+
+What you appreciated/liked
+===
+
+1. The pace of the lecture. 
+2. The interactive lectures and use of the ipad. 
+3. The pre-recorded videos. 
+4. Most students like the homework and length.
+5. Most students like the organization and structure of the course. If you did not, there is a video explaining how to naviagate the course webpage that I went over on the first day of class. 
+6. Students appreciated how available myself + the TA Team for answering questions. (If you're not reaching out; please reach out). We are here to help you! 
+7. Students appreciated the focus on learning over grading. 
+8. Students said the course was on par or much better than their virtual lectures. 
+9. Students appreciated that there is a wealth of information available to them. 
+
+Student Requests
+===
+
+- Students asked for a cheat sheet regarding the course. Done! 
+
+- Extra OH. Done! 
+
+- Students would like to see expectations regarding the graded homeworks. Done! 
+
+- We're moving to Piazza. (See updates to course webpage, Sakai, syllabus).
+
+- ipad notes have been pre-recorded, so these are already there:) 
+
+
+
+
+
+Student Requests
+===
+
+
+
+- ``I'm overwhelmed by the reading, video recordings, and amount of material."
+
+If you're getting overwhelmed, please talk with me 1-1, so I can talk with you regarding making a plan and strategy that works best with you. 
+
+
+- A few students would prefer videos on Panopto. I unfortuantely will not have time to move all videos to Panopto and make this extremely organized this semester. I really appreciate the feedback though. 
+
+Other Requests
+===
+
+- Two students would like different due dates of assignments. 
+- Two students did not like the course webpage. (More feedback would be helpful on what you don't like about it). 
+
+Since most students didn't ask for a change, I'm going to keep these dates the same. If you have a special circumstance that falls under the flexibility teaching policy that I offer, please email me by today to talk about options. 
+
+Things I've done
+===
+
+- The labs now just have one file (Rmd and pdf). Please check that you can render these as you need LaTeX installed. 
+- When class connects to a lab, I've noted in the online lectures. 
+- Pop me an email if you have any clarification, and I'm always happy to modify the lecture notes to improve the clarity. 
+- If there is a major change moving forward, I will post an announcement on Piazza. 
+
+
+
+
+
 
 Agenda
 ===
