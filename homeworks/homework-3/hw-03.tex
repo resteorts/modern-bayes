@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage{hyperref}
+\usepackage{hyperref, color}
 \input{custom2}
 \begin{document}
 \title{Homework 3}
@@ -63,7 +63,7 @@ Write out the likelihood $p(x\mid \theta).$ Then calculate the posterior distrib
 \item (15)  points total) {\em The Bayes estimator or Bayes procedure}
 \begin{enumerate}
 \item (5 pts) Find the Bayes estimator (or Bayes procedure) when the loss function is  $L(\theta, \delta(x))~=~c~(\theta-\delta(x))^2,$ where $c$ is a constant. 
-\item (10 pts) Derive the Bayes estimator (or Bayes procedure) when $L(\theta, \delta(x)) = w(\theta) (g(\theta)-\delta(x))^2.$ Do so without writing any integrals. Note that you can write $\rho(\pi,\delta(x)) =  E[L(\theta,\delta(x))|X].$  You may assume that $w(\theta) > 0.$
+\item (10 pts) Derive the Bayes estimator (or Bayes procedure) when $L(\theta, \delta(x)) = w(\theta) (g(\theta)-\delta(x))^2.$ Do so without writing any integrals. Note that you can write $\rho(\pi,\delta(x)) =  E[L(\theta,\delta(x))|X].$  \textcolor{red}{You may assume that $w(\theta) > 0.$} \textcolor{red}{Don't forget to prove or state why the Bayes rules are unique.}
 \end{enumerate}
 
 \item  (10 points total) {\em Basic decision theory}
@@ -77,6 +77,6 @@ L(\theta_2, a_5) = 1.$$
 Consider the prior $\pi$ under which $\pi(\theta_1) = 4/5$ and $\pi(\theta_2) = 1/5.$ Find the Bayes action(s) or rule(s) under this prior. 
 
 
-    \end{enumerate}
+\end{enumerate}
 
 \end{document}
