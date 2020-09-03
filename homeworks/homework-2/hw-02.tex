@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage{hyperref}
+\usepackage{hyperref, color}
 \input{custom2}
 \begin{document}
 \title{Homework 2}
@@ -53,7 +53,7 @@ $$E[Y] = \frac{\Gamma(a +1/2)}{\theta \Gamma(a)}$$ and
 $$E[Y^2] = \frac{a}{\theta^2}.$$
 
 \begin{enumerate}
-\item (10) Identify a class of conjugate prior densities for $\theta$. Plot a few members of this class of densities. 
+\item (10) Identify a class of conjugate prior densities for $\theta$. \textcolor{red}{Assume the prior parameters are $c$ and $d.$} Plot a few members of this class of densities.
 \item (5) Let $Y_1, \ldots, Y_n \stackrel{iid}{\sim}$ Galenshore($a, \theta$). Find the posterior distribution of $\theta \mid y_{1:n}$ using a prior from your conjugate class. 
 \item (10) Write down $$\frac{p(\theta_a \mid y_{1:n})}{p(\theta_b \mid y_{1:n})}$$ and simplify. Identify a sufficient statistic. 
 \item (5) Determine $E[\theta \mid y_{1:n}]$.
