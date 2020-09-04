@@ -392,4 +392,4 @@ $$L^{-1} =\frac{1}{\lambda_0+ n\lambda}$$
 
 As $n \rightarrow \infty,$
 
-$$L = \frac{1}{\lambda_0+ n\lambda} = \frac{1/n}{\lambda_0/n+ \lambda} \approx \frac{1}{n \lambda} \rightarrow 0 $$ 
+$$L^{-1} = \frac{1}{\lambda_0+ n\lambda} = \frac{1/n}{\lambda_0/n+ \lambda} \approx \frac{1}{n \lambda} \rightarrow 0 $$ 
