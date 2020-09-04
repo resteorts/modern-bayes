@@ -354,4 +354,42 @@ Takeaways
 - We discussed types of data that empirically have a normal distribution to motivate its usage. 
 - We dervied the Normal-Uniform model, where the uniform distribution is the first improper prior we have seen in this course. 
 - We derived the Normal-Normal model. 
-- We considered an application of human heights from Schlling et al. (2002), where we showed that the posterior probability of bimodality was zero (regarding a plot of combined heights). 
+- We considered an application of human heights from Schilling et al. (2002), where we showed that the posterior probability of bimodality was zero (regarding a plot of combined heights). 
+
+
+Exercise
+===
+
+Recall that Recall $$L =\lambda_0+ n\lambda \quad \text{and} \quad
+M =\frac{\lambda_0\mu_0+\lambda\sum_{i = 1}^n x_i}{\lambda_0+ n\lambda}.$$
+
+What happens to the posterior mean and the precision as $n \rightarrow \infty.$
+
+
+
+Exercise
+====
+
+Let's consider the posterior mean. 
+$$
+\begin{aligned}
+M &=\frac{\lambda_0\mu_0+\lambda\sum_{i = 1}^n x_i}{\lambda_0+ n\lambda} \\
+&=\frac{\lambda_0\mu_0+\lambda n \bar{x}}{\lambda_0+ n\lambda} \\
+&=\frac{\lambda_0\mu_0/n+\lambda  \bar{x}}{\lambda_0/n+ \lambda} \\
+\end{aligned}
+$$
+
+As $n \rightarrow \infty,$
+
+$$M \rightarrow \lambda  \bar{x}/\lambda = \bar{x}.$$
+
+Exercise
+===
+
+Let's consider the posterior variance. 
+
+$$L^{-1} =\frac{1}{\lambda_0+ n\lambda}$$ 
+
+As $n \rightarrow \infty,$
+
+$$L = \frac{1}{\lambda_0+ n\lambda} = \frac{1/n}{\lambda_0/n+ \lambda} \approx \frac{1}{n \lambda} \rightarrow 0 $$ 
