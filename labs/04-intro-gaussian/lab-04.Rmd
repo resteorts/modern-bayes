@@ -312,4 +312,35 @@ The simulated scatterplot does look similar to Figure 1 in that the control grou
 
 # Task 4 (Finish for Homework)
 
+Now, we can answer our original question: ``What is the posterior probability that $\mu_S>\mu_C$?'' 
+
+The easiest way to do this is to take a bunch of samples from each of the posteriors, and see what fraction of times we have $\mu_S>\mu_C$. This is an example of a Monte Carlo approximation (much more to come on this in the future). 
+
+To do this, we draw $N=10^6$ samples from each posterior:
+\begin{align*}
+&(\mu_S^{(1)},\lambda_S^{(1)}),\dotsc,(\mu_S^{(N)},\lambda_S^{(N)})\sim \NormalGamma(24.0,8,4,855.0)\\
+&(\mu_C^{(1)},\lambda_C^{(1)}),\dotsc,(\mu_C^{(N)},\lambda_C^{(N)})\sim\NormalGamma(11.8,49,24.5,6344.0)
+\end{align*}
+and obtain the approximation
+\begin{align*}
+\Pr(\bm\mu_S > \bm\mu_C \mid x_{1:n_S},y_{1:n_C}) 
+\approx \frac{1}{N} \sum_{i = 1}^N \I\big(\mu_S^{(i)}>\mu_C^{(i)}\big) =  \;\;??
+\end{align*}
+
+Interpret the posterior probability that you compute above. 
+
 # Task 5 (Finish for Homework)
+
+Let's return back to the prior assumptions. There are a few ways that you can check that the prior conforms with our prior beliefs. Let's go back and checks these. Draw some samples from the prior and look at them---this is probably the best general strategy. See Figure \ref{figure:pygmalion-prior}. It's also a good idea to look at sample hypothetical datasets $X_{1:n}$ drawn using these sampled parameter values. 
+
+Please replicate a plot similar to Figure \ref{figure:pygmalion-prior} and report your findings. 
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=1\textwidth]{examples/pygmalion-prior.png}
+    % Source: Original work by J. W. Miller.
+  \end{center}
+  \caption{Samples of $(\mu,\sigma)$ from the prior.}
+  \label{figure:pygmalion-prior}
+\end{figure}
+
