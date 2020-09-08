@@ -131,6 +131,7 @@ library(reshape)
 ```
  
 ```{r}
+set.seed(123)
 # input data
 # spurters
 x = c(18, 40, 15, 17, 20, 44, 38)
