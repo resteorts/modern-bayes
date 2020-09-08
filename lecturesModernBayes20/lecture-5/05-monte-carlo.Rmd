@@ -68,7 +68,7 @@ $$\textcolor{red}{E_f[h(x)] = \int_X h(x) f(x) \; dx.}$$
 The classical way to solve this is generate a sample $(X_1,\ldots,X_n)$ from $f.$ 
 \vskip 1 em
 Now propose as an approximation the empirical average:
-$$\bar{h}_n = \frac{1}{n}\sum_{j=n}^n h(x_j).$$ 
+$$\bar{h}_n = \frac{1}{n}\sum_{j=1}^n h(x_j).$$ 
 \vskip 1 em
 Why?  $\bar{h}_n$ converges a.s.\ (i.e.\ for almost every generated sequence) to $E_f[h(X)]$ by the Strong Law of Large Numbers.
 
