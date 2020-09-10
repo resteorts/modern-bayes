@@ -353,15 +353,15 @@ Drawing Uniform Samples
 General Rejection Sampling Algorithm
 ===
 Goal: Sample from a \textcolor{red}{complicated pdf $f(x).$}
-\vskip 1 em
+\vskip 0.5 em
 Suppose that $$\textcolor{red}{f(x)} = \tilde{f}(x)/\alpha, \alpha>0$$.
 
 Assumption: $f$ is difficult to evaluate, $\tilde{f}$ is easy! 
 
 Suppose the density $g$ is such that for some known constant $M,$ 
-$$Mg(x) \geq \ell(x)$$ for all $x.$
+$$Mg(x) \geq \ell(x)$$ for all $x.$ Procedure:
 
-Procedure:
+
 \begin{enumerate}
 \item Choose a \textcolor{blue}{proposal distribution $q$} such that $c>0$ with 
 $$c \textcolor{blue}{q(x)} \geq \tilde{f}(x).$$
