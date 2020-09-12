@@ -273,7 +273,8 @@ At a glance, while the heights of women and men separately do appear to be rough
 Our Assumptions
 ===
 - Assume female heights and male heights are each normally distributed. 
-- Let's assume they have the same standard deviation, and also that there is an equal proportion of women and men in the population. 
+- \textcolor{red}{Assume both female heights and male heights have different means but the same standard deviation.}
+- \textcolor{red}{Assume that there is an equal proportion of women and men in the population.} 
 - Then, it is known that the combined distribution is bimodal if and only if the difference between the means is greater than twice the standard deviation (Helguerro, 1904).
 
 Model
