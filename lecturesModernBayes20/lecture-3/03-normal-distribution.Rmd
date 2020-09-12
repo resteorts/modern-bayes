@@ -226,11 +226,12 @@ Recall $$L =\lambda_0+ n\lambda \quad \text{and} \quad
 M =\frac{\lambda_0\mu_0+\lambda\sum_{i = 1}^n x_i}{\lambda_0+ n\lambda}.$$
 
 It turns out that the posterior is
-$$
-\begin{aligned}\label{equation:posterior}
-\btheta|x_{1:n}\, \sim \,\N(M,L^{-1})
-\end{aligned}
-$$
+
+\begin{equation}
+\label{equation:posterior}
+\textcolor{red}{\btheta|x_{1:n}\, \sim \,\N(M,L^{-1})}
+\end{equation}
+
 
 i.e., $p(\theta|x_{1:n}) =\N(\theta\mid M,L^{-1})$.
 
@@ -324,7 +325,7 @@ Results
 
 Results (continued)
 ===
-We can compute the posteriors for $\theta_f$ and $\theta_m$ using Equation \ref{equation:posterior} for each of them, independently.  Figure \ref{figure:heights-prior-posterior} shows the priors and posteriors. 
+We can compute the posteriors for $\theta_f$ and $\theta_m$ using \textcolor{red}{Equation \ref{equation:posterior}} for each of them, independently.  Figure \ref{figure:heights-prior-posterior} shows the priors and posteriors. 
 \begin{itemize}
 \item Sample means: $\bar x = 168.0$ cm (5 feet 6.1 inches) for females, and $\bar y = 181.4$ cm (5 feet 11.4 inches) for males.
 \item Posterior means: $M_f = 168.0$ cm for females, and $M_m = 181.4$ cm for males. (Essentially identical to the sample means, due to the relatively large sample size and relatively weak prior.)
@@ -394,3 +395,16 @@ $$L^{-1} =\frac{1}{\lambda_0+ n\lambda}$$
 As $n \rightarrow \infty,$
 
 $$L^{-1} = \frac{1}{\lambda_0+ n\lambda} = \frac{1/n}{\lambda_0/n+ \lambda} \approx \frac{1}{n \lambda} \rightarrow 0 $$ 
+
+Interpretation
+===
+
+What can we learn from this example? 
+
+If our sample size is large enough (for any application or real world example), then 
+
+\begin{enumerate}
+\item the posterior mean will tend to the the sample mean.
+\item the posterior variance will tend to 0. 
+\end{enumerate}
+
