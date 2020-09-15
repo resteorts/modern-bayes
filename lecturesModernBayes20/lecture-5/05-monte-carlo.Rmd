@@ -692,6 +692,67 @@ An ideal histogram would be highly centered around the true value of 1.81.  For 
 
 
 
+Exam I
+===
+
+- Closed notes, closed book. 
+- You will be given cover page with distributions. 
+- Please make sure that you arrive early and not late. 
+- Please only ask questions privately through the chat and do not broadcast these to everyone. 
+- Material covers: Modules 1--4. 
+- Material covers lectures (slides and written material in class), labs, and homeworks. 
+
+Exam I
+===
+
+- Under the syllabus, you are not allowed to speak to anyone regarding the exam except the instructor until the results (grades) are released back to you. 
+
+Module I (Recap)
+===
+- Bayes Theorem 
+- Cast of characters
+- Conjugacy 
+- Marginal and posterior predictive distributions
+- Here, we looked at very simple applied examples regarding polling and sleep to motivate the use of conjugacy. 
+
+Module II (Recap)
+===
+
+- Decision Theory
+- Loss functions
+- Bayes Risk
+- Frequentist Risk
+- Integrated Risk 
+- Here, we looked at a resource allocation problem with a non-trivial loss function. 
+
+Module III (Recap)
+===
+
+- Univariate Normal distribution 
+- Properties of the normal distribution
+- Normal-Uniform 
+- The uniform is an example of an imporoper prior
+- Normal-Normal conjugacy 
+- The precision
+- What happens to the Normal-Normal posterior as the sample size gets large? 
+- The applied example here was about Dutch heights of women and men and looking at bi-modality. 
+
+
+Module IV (Recap)
+===
+
+- The Normal-Gamma conjugacy
+- This module was the first time we saw a three-layer hierarhical model 
+- This was a very long derivation
+- The applied example that went with this model was IQ scores since we had two different populations with different means and precisions. 
+
+Review Materials 
+===
+
+- Two quizzes (ungraded). 
+- Practice exercises: https://github.com/resteorts/modern-bayes/tree/master/exercises
+- Review homework exercises
+- Next Tuesday, there there will be a timed question at the start of the review session that is meant to help prepare you for the exam. We will go over it in class. 
 
 
 
