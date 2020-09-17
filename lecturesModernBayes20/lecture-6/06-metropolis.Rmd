@@ -515,9 +515,9 @@ dnorm(theta,mu,sqrt(t2),log=TRUE) )
 if(log(runif(1))<log.r) { 
   theta<-theta.star 
 }
-# These are only the accepted THETA values
+
 THETA<-c(THETA,theta) ##updating THETA
-## contains theta's that are accepted and rejected
+
 }
 ```
 
