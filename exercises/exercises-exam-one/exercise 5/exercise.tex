@@ -1,0 +1,56 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+\newcommand{\class}[1]{\mathscr{#1}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\tht}{\theta}
+\newcommand{\tho}{\theta_0}
+\newcommand{\thn}{\hat{\theta}_n}
+\newcommand{\ps}{\mathbb{P}}
+
+
+\title{Practice Exercise 5}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+
+
+\subsection*{Exercise}
+
+
+
+Let 
+\begin{align*}
+p(y|\theta) &= \tht^{-1}e^{-y/\tht},\; y>0,\; \tht>0.\\
+p(\tht) &= \tht^{-a}e^{-b/\tht},\; \tht>0,\;a>2,\;b>0.
+\end{align*}
+
+\begin{enumerate}
+\item Find the posterior distribution of $\tht|y.$ 
+\item Calculate the posterior mean and posterior variance. 
+\item Notice the prior is still proper when $1<a\leq2.$ How would such a change affect the posterior mean and posterior variance?\\
+\end{enumerate}
+
+\newpage
+
+\emph{Solution:}
+\begin{enumerate}
+\item $\theta|y \sim \text{InverseGamma}(a,y+b).$
+\item $E(\theta|y) = \dfrac{y+b}{a-1}.$
+$V(\theta|y) = \dfrac{(y+b)^2}{(a-1)^2(a-2)}.$
+\item Suppose $1<a\leq2.$ Then the posterior mean still exists, but the posterior variance doesn't (since we need $a>2$).
+
+
+\end{enumerate}
+
+
+\end{document}
+
+
+
