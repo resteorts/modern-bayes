@@ -21,8 +21,8 @@ In order to understand how to approximate the density (normalized) of $f$, we wi
  According to the rejection sampling approach sample from $f(x)$ using the Unif(0,1) pdf as an enveloping function.
 2.  Plot a histogram of the points that fall in the acceptance region. Do this for a simulation size of $10^2$ and $10^5$ and report your acceptance ratio. Compare the ratios and histograms.
 3.  Repeat Tasks 1 - 3 for  Beta(2,2) as an enveloping function. 
-4.  Compare your results with the results in Task 3.
-5. Using importance sampling calculate the $\mathbb{E}(x)$, where $x \sim f(x)$ from previous task and the proposal distribution is transformed Beta(2,2). (This will be covered in more detail in lab.)
+4.  Provide the four histograms from Tasks 2 and 3 using the Uniform(0,1) and the Beta(2,2) enveloping proposals. Provide the acceptance ratios. Provide commentary. 
+5.  Do you recommend the Uniform or the Beta(2,2) as a better enveloping function (or are they about the same)? If you were to try and find an enveloping function that had a high acceptance ratio, which one would you try and why? 
 
 
 ```{r setup, include=FALSE}
@@ -55,8 +55,7 @@ Figure 1: Comparision of the target function and the Unif(0,1) and the Beta(2,2)
 
 # Tasks 2 -- 4
 
-According to the rejection sampling approach sample from f(x) using the Unif(0,1) pdf as an enveloping function.
-In order to do this, we write a general rejection sampling function that also allows us to plot the historams for any simulation size. Finally, our function also allows us to look at task 4 quite easily. 
+According to the rejection sampling approach sample from f(x) using the Unif(0,1) pdf as an enveloping function. In order to do this, we write a general rejection sampling function that also allows us to plot the historams for any simulation size. Finally, our function also allows us to look at task 4 quite easily. 
 
 ```{r}
 sim_fun <- function(f, envelope = "unif", par1 = 0, par2 = 1, n = 10^2, plot = TRUE){
