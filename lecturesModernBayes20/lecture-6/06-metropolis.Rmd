@@ -502,7 +502,6 @@ Code (continued)
 ```{r}
 ##S = total num of simulations
 theta<-0 ; delta<-1 ; S<-500 ; THETA<-NULL
-set.seed(1)
 
 for(s in 1:S){
 ## simulating our proposal

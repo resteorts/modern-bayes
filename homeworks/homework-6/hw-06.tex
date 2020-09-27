@@ -7,7 +7,7 @@
 \date{Due at 5:00 PM EDT on TBD}
 \maketitle
 
-Total points: 10 (reproducibility) + 20 (Q1) + 30 (Q2)\\
+Total points: 10 (reproducibility) + 0 (Q1) + 20 (Q2)\\
 
 \textbf{General instructions for homeworks}: Please follow the uploading file instructions according to the syllabus. You will give the commands to answer each question in its own code block, which will also produce plots that will be automatically embedded in the output file. Each answer must be supported by written statements as well as any code used. Your code must be completely reproducible and must compile. Syllabus: (https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring19.pdf)
 
@@ -21,10 +21,12 @@ code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's wi
 
 
 \begin{enumerate}
-\item \emph{Censored Gibbs sampling} (20 points) Please complete the censored Gibbs sampling problem from Module 8 (Part II). You may assume that $a=1,b=1, r=10.$ You may use any code that was given to you in class or you may choose to write your own code. If you use the code from class, please cite and reference this.
+\item \emph{Lab component}. Refer to lab 6 (\textbf{Gibbs sampling, Module 7, Part I}) and complete tasks 4-5. \textbf{This will not be graded, but you will be expected to know this for the exam.}
+
+\item \emph{Censored Gibbs sampling} (20 points) Please complete the censored \textbf{Gibbs sampling problem from Module 7, Part II}. You may assume that $a=1,b=1, r=10.$ You may use any code that was given to you in class or you may choose to write your own code. If you use the code from class, please cite and reference this.
 
 \begin{enumerate}
-\item (5 points) Write code to produce traceplots and running average plots for the censored values for 40 iterations. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
+\item (5 points) Write code to produce trace plots and running average plots for the censored values for 40 iterations. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
 
 \item (5 points) Now run the chain for 10,000 iterations  and update your diagnostic plots (traceplots and running average plots). Report your findings for both traceplots and the running average plots for $\theta$ and the censored values. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
 
@@ -33,20 +35,22 @@ code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's wi
 \item (5 points) Finally, let's suppose that $r=10,a=1,b=100.$ Do the posterior densities in part (c) change for $\theta \mid \cdots$ and $z_9 \mid \cdots?$
  Do the associated posterior densities change when $r=10, a=100,b=1?$ Please provide plots and an explanation to back up your answer.  (Use 10,000 iterations for the Gibbs sampler). 
 \end{enumerate}
-\item \emph{Gibbs sampling} (30 pts) Consider the following Exponential model for observation(s) $\bf{x}=(x_1,\ldots,x_n).$\footnote{Please note that in the attached data there are 40 observations, which can be found in \text{data-exponential.csv}.}:
-$$ p(x|a,b) = a b \exp(- a b x) I(x>0),$$ where the $x_i$ are assumed to be iid for $i=1,\ldots n.$
-and suppose the prior is 
-$$ p(a,b) = \exp(- a - b)I(a,b>0). $$
-You want to sample from the posterior $p(a,b|x_{1:n})$.  You may assume that $a=0.25, b=0.25.$  \textbf{This problem will not be graded and is left as an exercise.}
-\begin{enumerate}
-\item (5 pts) Find the conditional distributions needed for implementing a Gibbs sampler. 
-%(Hint: these were derived in lab). 
-\item (5 pts) Code up your own Gibbs sampler using part (a). 
-%((Hint: this was given to you in lab). 
-\item (10 pts) Plot a histogram or a density estimate of the estimated posterior using (b). 
-\item (10 pts) How do you know that your estimated posterior in (c) is reliable? Provide at least two convergence diagnostic plots and commentary. 
-\item (Extra credit: 5 points) Plot 95 percent credible intervals on your histogram in part (b) and give commentary. 
-\end{enumerate}
+%\item \emph{Gibbs sampling} (30 pts) Consider the following Exponential model for observation(s) $\bf{x}=(x_1,\ldots,x_n).$\footnote{Please note that in the attached data there are 40 observations, which can be found in \text{data-exponential.csv}.}:
+%$$ p(x|a,b) = a b \exp(- a b x) I(x>0),$$ where the $x_i$ are assumed to be iid for $i=1,\ldots n.$
+%and suppose the prior is 
+%$$ p(a,b) = \exp(- a - b)I(a,b>0). $$
+%You want to sample from the posterior $p(a,b|x_{1:n})$.  You may assume that $a=0.25, b=0.25.$  \textbf{This problem will not be graded and is left as an exercise.}
+%\begin{enumerate}
+%\item (5 pts) Find the conditional distributions needed for implementing a Gibbs sampler. 
+%%(Hint: these were derived in lab). 
+%\item (5 pts) Code up your own Gibbs sampler using part (a). 
+%%((Hint: this was given to you in lab). 
+%\item (10 pts) Plot a histogram or a density estimate of the estimated posterior using (b). 
+%\item (10 pts) How do you know that your estimated posterior in (c) is reliable? Provide at least two convergence diagnostic plots and commentary. 
+%\item (Extra credit: 5 points) Plot 95 percent credible intervals on your histogram in part (b) and give commentary. 
+%\end{enumerate}
+
+
 
 
 
