@@ -105,3 +105,37 @@ $$E[\hat{\theta}] = E[\bar{x}] = \frac{1}{n}\sum_iE[x_i] = \frac{1}{n} \sum_i \t
 
 Thus, we have showed that the MLE is an unbiased estimator for $\theta.$
 
+
+
+
+
+Normal-Normal model
+===
+
+Suppose that  $$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Normal}(\theta, 1),$$
+where we now consider $$\theta \stackrel{ind}{\sim} \text{Normal}(\mu, \tau^2).$$
+
+
+Let $\lambda = 1$ and $\lambda_o = 1/\tau^2.$
+
+Recall that from module 3, $$\theta \mid x_{1:n} \sim N(M,L^{-1}),$$ where
+$$L = n\lambda + \lambda_o$$
+and $$M = \frac{n \lambda \bar{x} + \lambda_o\mu}{n\lambda + \lambda_o}.$$
+
+
+Normal-Normal model
+===
+
+Observe that 
+
+$$
+M = \frac{n \lambda \bar{x} + \lambda_o\mu}{n\lambda + \lambda_o}
+= \frac{n \lambda \hat{\theta} + \lambda_o\mu}{n\lambda + \lambda_o}
+= \frac{n\lambda}{n\lambda + \lambda_o} \hat{\theta} + \frac{\lambda_o}{n\lambda + \lambda_o}\mu.
+$$
+
+Thus, we can write the posterior mean as a function of the MLE and the prior mean $\mu.$
+
+
+
+
