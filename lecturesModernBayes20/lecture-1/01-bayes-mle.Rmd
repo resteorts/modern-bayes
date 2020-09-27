@@ -1,0 +1,107 @@
+
+---
+title: "Maximum Likelihood Estimation and Bayesian Statistics"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+
+
+Agenda
+===
+- Maximum Likelihood Esimation
+- Unbiased Estimators
+
+
+Traditional inference
+===
+You are given **data** $X$ and there is an **unknown parameter** you wish to estimate **$\theta$**
+
+How would you estimate $\theta$?
+
+- Find an unbiased estimator of $\theta$. 
+- Find the maximum likelihood estimate (MLE) of $\theta$ by looking at the likelihood of the data. 
+- Suppose that $\hat{\theta}$ estimates $\theta.$ Note: $\hat{\theta}$ may depend on the data $x_{1:n} = x_1, \ldots x_n.$
+
+Unbiased Estimator
+===
+Recall that $\hat{\theta}$ is an unbiased estimator of $\theta$ if 
+
+\begin{equation}
+E[\hat{\theta}] = \theta.
+\end{equation}.
+
+Maximum  Likelihood Estimation
+===
+
+For each sample point $x_{1:n},$ let $\hat{\theta}$ be a parameter value at which $p(x_{1:n} \mid \theta)$ attains it's maximum as a function of $\theta,$ with $x_{1:n}$ held fixed. A \emph{maximum likelihood esimator (MLE)} of the parameter $\theta$ based on a sample $x_{1:n}$ is $\hat{\theta}.$
+
+Find the MLE
+===
+
+The solution to the MLE are the possible candidates ($\theta$) that solve 
+
+\begin{equation}
+\frac{\partial p(x_{1:n} \mid \theta)}{\partial \theta} = 0.
+\end{equation}
+
+Solution to the above equation are only possible candidates for the MLE since the first derivative being 0 is a necessary condition for a maximum (but not a sufficient one). 
+
+Our job is to find a global maximum. Thus, we need to ensure that we haven't found a local one.  
+
+MLE of Normal distribution
+===
+
+Consider $$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Normal}(\theta, 1).$$
+
+Show that the MLE is $\hat{\theta} =\bar{x}.$
+
+MLE of Normal distribution
+===
+
+\begin{equation}
+p(x_{1:n} \mid \theta) = (2 \pi)^{-n/2} \times \exp \{\frac{-1}{2} \sum_i (x_i - \theta )^2  \}
+\end{equation}
+
+Consider 
+
+\begin{equation}
+\log p(x_{1:n}) = -n/2 \log (2\pi) - \frac{1}{2} \sum_i (x_i - \theta )^2 
+\end{equation}
+
+MLE of Normal distribution
+===
+
+\begin{equation}
+\frac{\partial p(x_{1:n} \mid \theta)}{\partial \theta} = \sum_i(x_i - \theta)
+\end{equation}
+
+This implies that 
+
+$$\sum_i(x_i - \theta) = 0 \implies \hat{\theta} = \bar{x}.$$
+
+MLE of Normal distribution
+===
+
+Consider 
+
+$$\frac{\partial^2 p(x_{1:n} \mid \theta)}{\partial \theta^2} = -n < 0.$$
+Thus, our solution is unique. 
+
+Exercise
+===
+
+Show that 
+
+$$\hat{\theta} = \bar{x}$$ is an unbiased estimator for $\theta.$
+
+Proof. 
+
+$$E[\hat{\theta}] = E[\bar{x}] = \frac{1}{n}\sum_iE[x_i] = \frac{1}{n} \sum_i \theta = \theta.$$
+
+Thus, we have showed that the MLE is an unbiased estimator for $\theta.$
+
