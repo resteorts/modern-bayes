@@ -123,7 +123,7 @@ $$L = n\lambda + \lambda_o$$
 and $$M = \frac{n \lambda \bar{x} + \lambda_o\mu}{n\lambda + \lambda_o}.$$
 
 
-Normal-Normal model
+Normal MLE
 ===
 
 Observe that 
@@ -135,6 +135,80 @@ M = \frac{n \lambda \bar{x} + \lambda_o\mu}{n\lambda + \lambda_o}
 $$
 
 Thus, we can write the posterior mean as a function of the MLE and the prior mean $\mu.$
+
+Bernoulli-Bayes Estimation
+===
+
+$$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Bernoulli}(\theta).$$
+This implies that $Y = \sum_i X_i \sim Binomial(n, \theta).$
+
+It can be shown that the MLE for $\theta$ is $\bar{x} = y/n.$
+
+Consider $\theta \sim \text{Beta}(a,b).$
+
+Recall that $$\theta \mid y \sim Beta(y + a, n - y + b).$$
+
+Bernoulli-Bayes Estimation
+===
+
+Consider the posterior mean
+
+$$
+\begin{aligned}
+E[\theta \mid y] &= \frac{y + a}{y + a +  n - y + b}  = \frac{y + a}{a +  n  + b} \\
+&= \frac{y}{a + b + n} + \frac{a}{a + b + n} \\
+&= 
+\frac{y}{n} \times \frac{n}{a + b + n} + \frac{a}{a+b} \times \frac{a+b}{a + b + n} \\
+&= 
+MLE \times \frac{n}{a + b + n} + priorMean \times \frac{a+b}{a + b + n}
+\end{aligned}
+$$
+Thus, we have written the posterior mean as a linear comboination of the MLE and prior mean with weights being determined by a,b, and n.
+
+Evaluation of Estimators
+===
+
+How do we evaluate estimators? We often use the mean sauared error. 
+
+$$\text{MSE}(\hat{\theta}) = E_\theta [(\hat{\theta} - \theta)^2].$$
+
+Observe that 
+
+$$\text{MSE}(\hat{\theta}) = Var_\theta(\hat{\theta}) + E_\theta[(\hat{\theta} - \theta)^2] = Var_\theta(\hat{\theta}) + \text{Bias}_\theta (\hat{\theta}),$$
+
+where the $$\text{Bias}_\theta (\hat{\theta}) = E_\theta(\hat{\theta}) - \theta.$$
+
+For a more in depth treatment of MSE and bias, see Section 7.3.1, Casella and Berger, p. 330 - 334.
+Binomial MLE
+===
+Let $$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Bernoulli}(\theta).$$
+
+Show that the MLE is $\hat{\theta} =\bar{x}.$
+
+Proof: Casella and Berger, Example 7.2.7, page 317-318.
+
+Normal-Normal model
+===
+Suppose that  $$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Normal}(\theta, \sigma^2),$$
+where $\theta, \sigma^2$ are both unknown. 
+
+Show that $(\bar{x}, n^{-1} \sum_i (x_i - \bar{x})^2))$ are the MLE's for $(\theta, \sigma^2).$
+
+Proof: Casella and Berger, Example 7.2.7, page 317-318.
+
+Invariance property of MLE's
+===
+
+If $\hat{\theta}$ is the MLE of $\theta$, then for any function $g(\theta)$, the MLE of $g(\theta)$ 
+is the MLE of $g(\hat{\theta}).$
+
+Proof: Theorem 7.2.10, Casella and Berger, page 318.
+
+
+
+
+
+
 
 
 
