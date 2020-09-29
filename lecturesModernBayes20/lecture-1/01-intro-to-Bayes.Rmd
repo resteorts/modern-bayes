@@ -471,7 +471,7 @@ p(x_{n+1}|x_{1:n}) & = \frac{a_n^{x_{n+1}} b_n^{1-x_{n+1}}}{a_n + b_n}\I(x_{n+1}
 \end{aligned}
 $$
 
-Summary
+Overall Summary
 ===
 
 - We covered the "cast of characters" needed to work with Bayesian models
@@ -479,6 +479,38 @@ Summary
 - We derived Bayes' Theorem
 - Bernoulli-Beta
 - Conjugacy
+
+Background Knowledge
+===
+
+- Familiar with Discrete and Continuous Distributions
+- Can calculate expectations and variances 
+- Change of variables
+- Mean squared error 
+- Sufficiency 
+- Confident calculating the likelihood and log-likelihood
+- Confident in working with partial derivatives
+- Familiar maximizing or minimizing functions (and proving they are global max/min)
+ 
+
+Detailed Summary for Exam 
+===
+
+- Bayes Theorem
+- Likelihood
+- Prior
+- Posterior derivation
+- Marginal likelihood
+- Posterior predictive distribution
+- Conjugacy 
+- Proportionality 
+- Understanding when models are appropriate for data given to you (Ex: Approval ratings for Obama)
+- What is an informative prior
+- What is a non-informative prior
+- Proper posterior
+- How do you incorporate a pilot study into your posterior analysis (Ex: See sleep study)
+
+
 
 Exercise
 ===
