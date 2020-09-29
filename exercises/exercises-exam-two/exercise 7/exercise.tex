@@ -1,0 +1,66 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+
+\title{Exercise}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+%\subsection*{Instructions}
+%\begin{itemize}
+%\item \textbf{Don't look at the solution yet!} This is for your benefit.
+%\item This exercise must be submitted within 48 hours of the lecture in which it was given. 
+%\item As long as you do the exercise on time, you get full credit---your performance does not matter.
+%\item Without looking at the solution, take 5 minutes to try to solve the exercise.
+%\item Pre-assessment: Write down how correct you think your answer is, from 0 to 100\%.
+%\item Post-assessment: Now, study the solution and give yourself a ``grade'' from 0 to 100\%.
+%\item Submit your work on the course website, including the pre- and post- assessments.
+%\end{itemize}
+
+\subsection*{Exercise}
+Suppose $X_1,X_2,\dotsc\iid p(x|\theta)$ given $\theta$.  Suppose the posterior predictive $p(x_{n+1}|x_{1:n})$ is too complicated to compute analytically, however, you can easily sample from the posterior $p(\theta|x_{1:n})$, and you can also easily compute the c.d.f.\
+$$F(c|\theta) = \Pr(X_i\leq c\mid \theta).$$
+How would you construct a Monte Carlo approximation of
+$$\Pr(X_{n+1}\leq c\mid x_{1:n})$$
+for some given value of $c$?
+
+
+\newpage
+\vfill
+\rotatebox{180}{
+\begin{minipage}[t][\textheight][t]{\textwidth}
+\subsection*{Solution}\scriptsize
+\subsubsection*{Approach 1 (Better)}
+\begin{align*}
+\Pr(X_{n+1}\leq c\mid x_{1:n}) & =\int \Pr(X_{n+1}\leq c\mid \theta,x_{1:n})p(\theta|x_{1:n})d\theta\\
+& =\int \Pr(X_{n+1}\leq c\mid \theta)p(\theta|x_{1:n})d\theta\\
+& \approx\frac{1}{N}\sum_{i = 1}^N \Pr(X_{n+1}\leq c\mid \btheta_i)\\
+& =\frac{1}{N}\sum_{i = 1}^N F(c\mid \btheta_i)
+\end{align*}
+where $\btheta_1,\ldots,\btheta_N\iid p(\theta|x_{1:n})$.
+If you didn't understand the first line, note that by the law of iterated expectations, for any random variables $X$ and $Y$,
+\begin{align*}
+\Pr(X\leq c) = \E\Big(\I(X\leq c)\Big) =\E\Big(\E\big(\I(X\leq c)\mid Y\big)\Big)
+= \E\Big(\Pr(X\leq c\mid Y)\Big).
+\end{align*}
+This can also be derived by writing out the integrals or sums for each of these expectations (and you should definitely do this if you didn't fully understand).
+\subsubsection*{Approach 2}
+Another approach is to sample $(\btheta_i,X_{n+1}^{(i)}) \sim  p(\theta,x_{n+1}|x_{1:n})$ i.i.d.\ for $i=1,\ldots,N$, and use the approximation
+$$\Pr(X_{n+1}\leq c\mid x_{1:n})\approx\frac{1}{N}\sum_{i = 1}^N \I(X_{n+1}\leq c). $$
+These samples can be obtained by drawing $\btheta_i\sim p(\theta|x_{1:n})$ and $X_{n+1}^{(i)} \sim p(x|\theta)$ independently for $i = 1,\ldots,N$.
+However, this is probably not as good of an approximation as Approach 1, especially when $\Pr(X_{n+1}\leq c\mid x_{1:n})$ is very close to 0 or 1. The general principle is that if there is any part of the computation that can be done analytically, doing so will improve the approximation. (This is usually true, but not always.)
+\end{minipage}}
+
+\end{document}
+
+
+
+
+
+

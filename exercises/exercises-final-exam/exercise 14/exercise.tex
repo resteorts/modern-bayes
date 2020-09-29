@@ -1,0 +1,74 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+\renewcommand{\H}{\mathrm{H}}
+
+\title{Exercise}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+%\subsection*{Instructions}
+%\begin{itemize}
+%\item \textbf{Don't look at the solution yet!} This is for your benefit.
+%\item This exercise must be submitted within 48 hours of the lecture in which it was given. 
+%\item As long as you do the exercise on time, you get full credit---your performance does not matter.
+%\item Without looking at the solution, take 5 minutes to try to solve the exercise.
+%\item Pre-assessment: Write down how correct you think your answer is, from 0 to 100\%.
+%\item Post-assessment: Now, study the solution and give yourself a ``grade'' from 0 to 100\%.
+%\item Submit your work on the course website, including the pre- and post- assessments.
+%\end{itemize}
+
+\subsection*{Exercise}
+Suppose $X_1,\ldots,X_n$ are i.i.d.\ outcomes (heads or tails) from flipping a coin $n$ times.
+You want to know whether the coin is fair (i.e., probability of heads is $1/2$) or not.
+How would you approach this from a Bayesian hypothesis testing perspective?
+Give an explicit formula for the posterior on hypotheses.
+
+
+\newpage
+\vfill
+\rotatebox{180}{
+\begin{minipage}[t][\textheight][t]{\textwidth}
+\subsection*{Solution}\scriptsize
+This is a hypothesis testing problem with:
+\begin{align*}
+    &\H_0: \theta = 1/2 \\
+    &\H_1: \theta \neq 1/2.
+\end{align*}
+The Bayesian hypothesis testing approach is to put a prior on the two hypotheses, say,
+$p(\H_0) = \pi_0$ and $p(\H_1) = \pi_1 = 1-\pi_0$, and 
+\begin{itemize}
+    \item given $\H_0$, ~ $X_1,\ldots,X_n\iid \Bernoulli(1/2)$,
+    \item given $\H_1$,
+    \begin{align*}
+        &\theta\sim\Beta(a,b)\\
+        &X_1,\ldots,X_n|\theta \iid \Bernoulli(\theta).
+    \end{align*}
+\end{itemize}
+The posterior on hypotheses is then
+$$ p(\H_0|x) = \frac{p(x|\H_0)p(\H_0)}{p(x|\H_0)p(\H_0) + p(x|\H_1)p(\H_1)} $$
+and $p(\H_1|x) = 1 - p(\H_0|x)$, where 
+$$ p(x|\H_0) = \prod_{i=1}^n \Bernoulli(x_i|1/2) = (1/2)^n $$
+and 
+\begin{align*}
+    p(x|\H_1) &= \int p(x|\theta,\H_1)p(\theta|\H_1) d\theta\\
+              &= \int \Big(\prod_{i=1}^n \Bernoulli(x_i|\theta)\Big) \Beta(\theta|a,b) d\theta \\
+              &= \frac{B(a + \sum x_i, \, b + n-\sum x_i)}{B(a,b)}.
+\end{align*}
+Hence,
+$$ p(\H_0|x) = \frac{(1/2)^n \pi_0}{(1/2)^n \pi_0 + \pi_1 B(a + \sum x_i, \, b + n-\sum x_i)/B(a,b)}. $$
+\end{minipage}}
+
+\end{document}
+
+
+
+
+
+

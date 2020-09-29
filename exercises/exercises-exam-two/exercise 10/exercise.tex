@@ -1,0 +1,55 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+
+\title{Exercise}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+%\subsection*{Instructions}
+%\begin{itemize}
+%\item \textbf{Don't look at the solution yet!} This is for your benefit.
+%\item This exercise must be submitted within 48 hours of the lecture in which it was given. 
+%\item As long as you do the exercise on time, you get full credit---your performance does not matter.
+%\item Without looking at the solution, take 5 minutes to try to solve the exercise.
+%\item Pre-assessment: Write down how correct you think your answer is, from 0 to 100\%.
+%\item Post-assessment: Now, study the solution and give yourself a ``grade'' from 0 to 100\%.
+%\item Submit your work on the course website, including the pre- and post- assessments.
+%\end{itemize}
+
+\subsection*{Exercise}
+Consider the following Exponential model for an observation $x$:
+$$ p(x|a,b) = a b \exp(- a b x) \I(x>0)$$
+and suppose the prior is 
+$$ p(a,b) = \exp(- a - b)\I(a,b>0). $$
+You want to sample from the posterior $p(a,b|x)$.  Find the conditional distributions needed for implementing a Gibbs sampler.
+
+
+\newpage
+\vfill
+\rotatebox{180}{
+\begin{minipage}[t][\textheight][t]{\textwidth}
+\subsection*{Solution}\scriptsize
+The Gibbs sampler consists of alternately sampling from $a|b,x$ and $b|a,x$. First note that the joint p.d.f.\ is
+$$ p(x,a,b) = a b \exp(-a b x - a - b) \I(a,b,x>0). $$
+Thus,
+\begin{align*}
+    p(a|b,x) &\underset{a}{\propto} p(x,a,b) \underset{a}{\propto} a \exp(-a b x - a)\I(a>0) = a \exp(-(b x + 1)a)\I(a>0)
+    \underset{a}{\propto} \Ga(a\mid 2,\, b x + 1).
+\end{align*}
+Therefore, $p(a|b,x) = \Ga(a\mid 2,\,b x+1)$ and by symmetry, $p(b|a,x) = \Ga(b\mid 2,\,a x+1)$.
+\end{minipage}}
+
+\end{document}
+
+
+
+
+
+

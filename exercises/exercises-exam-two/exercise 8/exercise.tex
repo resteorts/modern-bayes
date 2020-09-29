@@ -1,0 +1,69 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+
+\title{Exercise}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+%\subsection*{Instructions}
+%\begin{itemize}
+%\item \textbf{Don't look at the solution yet!} This is for your benefit.
+%\item This exercise must be submitted within 48 hours of the lecture in which it was given. 
+%\item As long as you do the exercise on time, you get full credit---your performance does not matter.
+%\item Without looking at the solution, take 5 minutes to try to solve the exercise.
+%\item Pre-assessment: Write down how correct you think your answer is, from 0 to 100\%.
+%\item Post-assessment: Now, study the solution and give yourself a ``grade'' from 0 to 100\%.
+%\item Submit your work on the course website, including the pre- and post- assessments.
+%\end{itemize}
+
+\subsection*{Exercise}
+You need to sample from the conditional distribution of $X\mid X<c$, where $X\sim\N(0,1)$ and $c\in \R$. Assume:
+\begin{itemize}
+    \item you can generate $\Uniform(0,1)$ random variables, and 
+    \item you can evaluate both the c.d.f.\ $F(x)$ and the inverse c.d.f.\ $F^{-1}(u)$ of the $\N(0,1)$ distribution.
+\end{itemize}
+How would you draw samples from $X\mid X<c$?
+
+
+\newpage
+\vfill
+\rotatebox{180}{
+\begin{minipage}[t][\textheight][t]{\textwidth}
+\subsection*{Solution}\scriptsize
+\subsubsection*{Approach 1 (Simple, but not great)}
+To draw a sample $Z$ from the distribution of $X\mid X<c$,
+\begin{enumerate}
+    \item sample $U\sim \Uniform(0,1)$,
+    \item set $X = F^{-1}(U)$,
+    \item if $X \geq c$ then return to step 1 (reject), otherwise, output $Z = X$ as a sample (accept).
+\end{enumerate}
+Why does it work? By the inverse c.d.f.\ method, we know $X = F^{-1}(U)\sim\N(0,1)$. By the rejection principle, if we reject any samples $X$
+such that $X\geq c$, then what remains has the conditional distribution given $X<c$.
+This approach is not ideal, however, since the rejection rate may be very high, especially when $c\ll 0$.
+\subsubsection*{Approach 2 (Better)}
+To draw a sample $Z$ from the distribution of $X\mid X<c$,
+\begin{enumerate}
+    \item sample $U\sim \Uniform(0,1)$,
+    \item set $V = F(c)U$, and 
+    \item set $Z = F^{-1}(V)$.
+\end{enumerate}
+Why does this work? Note that in Approach 1, rejecting when $X\geq c$ is identical to rejecting when $U\geq F(c)$, and by the rejection
+principle, we know that the distribution of the $U$'s that remain after rejection is $U\mid U<F(c)$, in other words, $\Uniform(0,F(c))$.  
+But that means that the rejection step can be bypassed completely by just sampling $V\sim\Uniform(0,F(c))$ and setting $Z = F^{-1}(V)$!
+And we can directly sample $V\sim\Uniform(0,F(c))$, by drawing $U\sim\Uniform(0,1)$ and setting $V = F(c)U$.
+\end{minipage}}
+
+\end{document}
+
+
+
+
+
+

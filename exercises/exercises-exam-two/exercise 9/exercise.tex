@@ -1,0 +1,68 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+
+\title{Exercise}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+%\subsection*{Instructions}
+%\begin{itemize}
+%\item \textbf{Don't look at the solution yet!} This is for your benefit.
+%\item This exercise must be submitted within 48 hours of the lecture in which it was given. 
+%\item As long as you do the exercise on time, you get full credit---your performance does not matter.
+%\item Without looking at the solution, take 5 minutes to try to solve the exercise.
+%\item Pre-assessment: Write down how correct you think your answer is, from 0 to 100\%.
+%\item Post-assessment: Now, study the solution and give yourself a ``grade'' from 0 to 100\%.
+%\item Submit your work on the course website, including the pre- and post- assessments.
+%\end{itemize}
+
+\subsection*{Exercise}
+You need to sample from the distribution with p.d.f.\ 
+$$p(x) \propto x^{a-1}\,\I(0<x<b)$$
+where $a,b>0$.
+Assume you can generate $\Uniform(0,1)$ random variables. 
+How would you draw samples from $p(x)$?
+
+
+\newpage
+\vfill
+\rotatebox{180}{
+\begin{minipage}[t][\textheight][t]{\textwidth}
+\subsection*{Solution}\scriptsize
+If we can get the c.d.f.\ and invert it, we can use the inverse c.d.f.\ method.
+First, let's find the normalizing constant of the p.d.f. For any $c>0$, 
+\begin{align}\label{eqn}
+    \int_0^c x^{a-1} d x = \frac{x^a}{a} \Big\vert_0^c = \frac{c^a}{a}.
+\end{align}
+since $a>0$.  In particular, $\int_0^b x^{a-1} d x = b^a/a$, so
+$$ p(x) = \frac{a}{b^a} x^{a-1}\,\I(0<x<b). $$
+Thus, for $c\in(0,b)$, the c.d.f.\ is
+\begin{align*}
+    F(c) &= \int_0^c p(x) d x \\
+         &= \int_0^c \frac{a}{b^a} x^{a-1}\,\I(0<x<b) d x \\
+         &= \frac{a}{b^a} \int_0^c x^{a-1} d x \\
+         &= \frac{a}{b^a} \frac{c^a}{a} = (c/b)^a
+\end{align*}
+using Equation \ref{eqn} again.  To solve for $F^{-1}$, we set $u = F(x)$ for $u\in(0,1)$ and solve for $x$:
+\begin{align*}
+    & u = (x/b)^a \\
+    & u^{1/a} = x/b \\
+    & b u^{1/a} = x
+\end{align*}
+Thus, if $U\sim\Uniform(0,1)$ then $b U^{1/a} \sim p(x)$.
+\end{minipage}}
+
+\end{document}
+
+
+
+
+
+

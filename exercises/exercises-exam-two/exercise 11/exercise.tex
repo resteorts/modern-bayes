@@ -1,0 +1,61 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+
+\title{Exercise}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+%\subsection*{Instructions}
+%\begin{itemize}
+%\item \textbf{Don't look at the solution yet!} This is for your benefit.
+%\item This exercise must be submitted within 48 hours of the lecture in which it was given. 
+%\item As long as you do the exercise on time, you get full credit---your performance does not matter.
+%\item Without looking at the solution, take 5 minutes to try to solve the exercise.
+%\item Pre-assessment: Write down how correct you think your answer is, from 0 to 100\%.
+%\item Post-assessment: Now, study the solution and give yourself a ``grade'' from 0 to 100\%.
+%\item Submit your work on the course website, including the pre- and post- assessments.
+%\end{itemize}
+
+\subsection*{Exercise}
+\begin{enumerate}
+    \item What is the multivariate normal density $\N(x|\mu,C)$?
+    \item Suppose $X,Y$ are two real-valued random variables.
+    \begin{enumerate}
+        \item What is the formula for the covariance $\mathrm{Cov}(X,Y)$?
+        \item What is the formula for the correlation $\rho(X,Y)$?
+    \end{enumerate}
+    \item Suppose you can generate $\N(0,1)$ random variables. Give an explicit formula for generating a sample from $\N(\mu,C)$ where $C=A A^\T$.
+\end{enumerate}
+
+
+\newpage
+\vfill
+\rotatebox{180}{
+\begin{minipage}[t][\textheight][t]{\textwidth}
+\subsection*{Solution}\scriptsize
+\begin{enumerate}
+\item 
+    $$\frac{1}{(2\pi)^{d/2}|C|^{1/2}}\exp\big(-\tfrac{1}{2}(x-\mu)^\T C^{-1} (x-\mu)\big)$$
+\item
+\begin{enumerate}
+    \item $\mathrm{Cov}(X,Y) = \E(XY) - \E(X)\E(Y) = \E\big((X-\E X)(Y-\E Y)\big)$
+    \item $\rho(X,Y) = \mathrm{Cov}(X,Y)/(\sigma(X)\sigma(Y))$
+\end{enumerate}
+\item If $Z_1,\ldots,Z_d\iid\N(0,1)$ and $Z = (Z_1,\ldots,Z_d)^\T$, then $A Z + \mu \sim \N(\mu,A A^\T)$.
+\end{enumerate}
+\end{minipage}}
+
+\end{document}
+
+
+
+
+
+
