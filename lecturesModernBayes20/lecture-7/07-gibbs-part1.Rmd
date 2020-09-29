@@ -11,11 +11,24 @@ font-size: 8px
 
 Agenda
 ===
+- Background knowledge (inverse CDF method)
 - Gibbs sampling (two-stage sampler)
 - Exponential example
 - Normal example
 - Pareto example
 - Diagnostics
+
+Background knowledge
+===
+
+The inverse CDF technique for generating a random sample uses the fact that a continuous CDF, $F$, is a one-to-one mapping of the domain of the CDF into the interval $(0,1).$ 
+
+\begin{lemma}
+If $U$ is a uniform random variable on $(0,1),$ then $X = F^{-1}(U)$ has the distribution $F.$
+\end{lemma}
+
+Formal Proof: \url{https://www.youtube.com/watch?v=irheiVXJRm8} 
+
 
 
 Gibbs sampler
@@ -197,6 +210,8 @@ symmetric with respect to $x$ and $y$.
 \item Hence, only need to derive one of these and then we can get the other one by just swapping $x$ and $y$.
 \item Let's look at $p(x|y).$
 \end{itemize}
+
+
 
 Toy Example
 ===
