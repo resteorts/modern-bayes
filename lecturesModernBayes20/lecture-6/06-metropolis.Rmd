@@ -268,6 +268,7 @@ Big idea and why it works: we apply the ergodic theorem.
 
 ``If we take samples $X = (X_0,X_1,\ldots,)$ then by the ergodic theorem, they will eventually reach $\pi$, which is known as the stationary distribution (the true pmf)."
 
+
 Metropolis Algorithm
 ===
 The approach is to apply the ergodic theorem. 
@@ -313,7 +314,16 @@ Output: $x_o,x_1,\ldots,x_n$
 
 Comment: $r$ is the rule for uniformly drawing a point in the box (slide 18).
 
-You do not need to know the general proof of this.
+You do not need to know the proof of the Metropolis Algorithm for this class. 
+
+Metropolis Algorithm
+===
+
+Video that explains the Metropolis Algorithm:
+\url{https://www.youtube.com/watch?v=gxHe9wAWuGQ&list=ULSc5hOS5HqdY&index=18}
+
+Video that explains the correctness of the Metropolis Algorithm:
+\url{https://www.youtube.com/watch?v=0j-Pq1OU4LY&list=ULSc5hOS5HqdY&index=21}
 
 Metropolis within a Bayesian setting
 ===
