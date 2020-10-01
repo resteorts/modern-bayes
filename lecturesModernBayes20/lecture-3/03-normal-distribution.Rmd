@@ -181,7 +181,7 @@ i.e., $p(\theta) = \N(\theta\mid \mu_0,\lambda_0^{-1})$. This is sometimes refer
 
 Posterior derivation
 ===
-We begin with the **likelihood** of the normal distribution. 
+We begin with the **likelihood** of the normal distribution. \textcolor{blue}{We work with proportionality with respect to $\theta$ as we will combine the **likelihood** and **prior** to find the posterior, where the parameter of interest is $\theta.$}
 
 \textcolor{red}{For any $x$ and $\ell$},
 \begin{align}\label{equation:prop}
