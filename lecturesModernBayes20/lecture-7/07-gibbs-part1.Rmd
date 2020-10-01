@@ -14,9 +14,11 @@ Announcements
 
 - Exam II will be Thursday October 29th (it will be open note, open book)
 - No required class on November 3rd (Election day). I will post an ansyn. lecture for you to watch at your convenience so we don't get behind on material. 
-- There are more practice problems (and more coming)
+- There are more practice problems posted (and more coming).
 - Thank you for all the feedback from the survey. 
-- I'm working as hard as possible to incorporate all of this feedback. 
+- If you are a student that needs an extra OH, please email me by tomorrow at 5 PM so I can organize this with three preferred times. 
+- Detailed takeways have been posted for each module (1-6) to help you prepare for exams. 
+
 
 
 Agenda
@@ -603,10 +605,8 @@ Detailed Takeways
 - Truncated Exponential
 - Normal-Normal-Gamma
 - Pareto Case Study
-- Traceplots
+- Trace plots
 - Estimated Densities
 - Running Aveage Plots
 - Survival Funtions
-
-- 
 
