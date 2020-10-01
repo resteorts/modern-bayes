@@ -638,6 +638,23 @@ and Rejection sampling?
 \item Are we guaranteed convergence of the Markov chain?
 \end{itemize}
 
+Detailed Takeways
+===
 
+- Monte Carlo is not sufficient for high dimensions
+- Intuitive of MCMC
+- What is Monte Carlo
+- What is a Markov Chain
+- What is the memoryless property
+- Why do we use MCMC
+- Advantages versus Disdavantages of MCMC
+- Metropolis et al. (1953) original paper and understanding this case study
+- Ergodic Theorem 
+- Metropolis Algorithm (from the 1953 paper)
+- Metropolis Algorithm in a Bayesian setting
+- Normal-Normal Example using Metropolis
+- Traceplots: What they tells us and what they don't tells us
+- How long should you run an MCMC chain
+- How you would walk through a case study of metropolis but on the normal-uniform model (very similar to the in class study)
 
 
