@@ -429,6 +429,27 @@ Entire picture and an example point $X$ and $Y$
   \caption{Entire picture and an example point $X$ and $Y.$}
 \end{figure}
 
+Takeaways
+===
+
+- What is Monte Carlo (The naive method)
+- Why do we use Monte Carlo over numerical integration?
+- Importance sampling
+- Rejection sampling
+
+Detailed Takeaways
+===
+
+- Why do we use Monte Carlo? 
+- Why do we use importance sampling?
+- Why do we use rejection sampling?
+- When would we use a particular method above over another for a case study? This would be problem specific. So, if you know someting about the important region at hand, you would typically use importance sampling. Rejection sampling and importance sampling will typically out perform naive Monte Carlo in terms of providing a lower variance estimate. 
+- In the next modules, we will learn about Markov chain Monte Carlo algorithms (MCMC), which are used for working in high dimensional spaces. 
+- Monte Carlo, importance sampling, and rejection sampling do not work well in high dimensions and thus we turn to MCMC. The trade-off is that 1) MCMC is a bit trickier to learn, 2) it will be slower to implement in practice, and 3) we can NEVER be assured that our sampler will reach the true target. 
+
+
+
+
 Exercise (Lab 5)
 ===
 Consider the function
