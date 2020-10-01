@@ -9,6 +9,16 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+- Exam II will be Thursday October 29th (it will be open note, open book)
+- No required class on November 3rd (Election day). I will post an ansyn. lecture for you to watch at your convenience so we don't get behind on material. 
+- There are more practice problems (and more coming)
+- Thank you for all the feedback from the survey. 
+- I'm working as hard as possible to incorporate all of this feedback. 
+
+
 Agenda
 ===
 - Background knowledge (inverse CDF method)

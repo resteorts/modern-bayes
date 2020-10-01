@@ -336,13 +336,13 @@ plot(density(res[,4]), xlab = expression(z[9]),
 abline(v = mean(res[,4]), col = "red")
 ```
 
-Homework 8 
+Homework 6
 ===
-Using the data and functions given to you (posted to Sakai with Homework 8), investigate the following questions: 
+Using the data and functions given to you in this module, investigate the following questions. The homework question is summarized for you below and more fully on homework 6. 
 
-1. Write code to produce traceplots and running average plots for the censored values for 200 iterations. Do these diagnostic plots suggest that you have run the sampler long enough? Explain.  
+1. Write code to produce trace plots and running average plots for the censored values for 200 iterations. Do these diagnostic plots suggest that you have run the sampler long enough? Explain.  
 
-2. Now run the chain for 10,000 iterations  and update your diagnostic plots (traceplots and running average plots). Report your findings for both traceplots and the running average plots for $\theta$ and the censored values. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
+2. Now run the chain for 10,000 iterations  and update your diagnostic plots (trace plots and running average plots). Report your findings for both trace plots and the running average plots for $\theta$ and the censored values. Do these diagnostic plots suggest that you have run the sampler long enough? Explain. 
 
 3. Give plots of the estimated density of $\theta \mid \cdots$ and $z_9 \mid \cdots$. Be sure to give brief explanations of your results and findings. (Present plots for 10,000 iterations). 
 
