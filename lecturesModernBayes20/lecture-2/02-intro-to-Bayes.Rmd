@@ -450,3 +450,29 @@ Takeaways
 
 - Finally, we defined admissible/inadmissible rules. 
 
+Detailed Takeways for Exam
+===
+
+- $\hat{\theta}$ is an estimator of $\theta$
+- Loss function $L(\theta, \hat{\theta})$
+- Examples of loss functions
+- The difference between an action and an estimator
+- Posterior risk
+- Decision procedure
+- Bayes rule (or Bayes estimator)
+- How to derive the Bayes estimator
+- What is the Bayes estimator under squared error loss? 
+- What is the Bayes estimator under weighted squared error loss? 
+- When you find the Bayes estimator, what condition do you always need to check? 
+
+Detailed Takeways for Exam (Continued)
+===
+- How to approach decision theory problems such as the resource allocation problem,
+where you're given the set up and then you must given the model and the loss function and back up 
+the rational here.
+- How to solve for the Bayes estimator for an applied problem such as the resource allocation problem,
+where the Bayes estimator is NOT in a closed form solution.
+- How to conduct a sensitivity analysis for a posterior analysis and report your findings.
+- The frequentist risk and why it's used. 
+- The integrated risk  and why it's used. 
+- Admissibility and how to determine if an estimator is admissible or inadmissible. 
