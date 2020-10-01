@@ -358,6 +358,32 @@ Takeaways
 - We derived the Normal-Normal model. 
 - We considered an application of human heights from Schilling et al. (2002), where we showed that the posterior probability of bimodality was zero (regarding a plot of combined heights). 
 
+Detailed Takeaways for Exam
+===
+
+- Working with the univariate normal distribution
+- Knowing the precision and variance relationship
+- Knowing the shape of the normal distribution
+- Knowing the CLT
+- Knowing what type of data is approximately normal and what data is not
+- Knowing properties of the normal that we will often work with such as symmetry about the mean 
+- Being able to derive the posterior of the normal-uniform model
+- Understanding that a non-informative prior is highly informative and why. 
+- Being able to derive the normal-normal posterior distribution
+- Knowing how to write out the posterior mean and variance intuitively
+
+Detailed Takeaways for Exam (Continued)
+===
+
+- You should be able to work with a two-component mixture model (as in the case study)
+- Suppose I provide you with a case study such as the one on human heights. You should be able to explain why it makes sense to model the data as normal and what paramaters would be reasonable given the description. 
+- Given as case study, you should be able to incorporate a pilot (or prior study) into your prior distribution and back up how you incorporate it. 
+- You should be able to update the posterior accordingly. 
+- You be able to state benefits of your model specification and weaknesses. 
+- You should be able to state a better model that would be more realistic once we have covered the normal-normal-gamma model (module 4). 
+- You should be able to discuss sensitity of the posterior analysis for any hyper-parameters. 
+
+
 
 Exercise
 ===
