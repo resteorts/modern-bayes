@@ -158,7 +158,7 @@ Solution
 \begin{align}
 p(\theta \mid x_{1:n}) 
 &\propto
-\N(\theta,\sigma^2) \times 1 \\
+\N(x_{1:n} \mid \theta,\sigma^2) \times 1 \\
 & \propto (\frac{\ell}{2\pi})^{n/2}\exp\big(-\tfrac{1}{2}\ell \sum_i(x_i-\theta)^2\big)\notag\\
 & \propto \exp\big(-\tfrac{1}{2}\ell \sum_i(x_i -\bar{x} + \bar{x} - \theta)^2\big)\notag\\
 & \propto \exp\big(-\tfrac{1}{2}\ell \sum_i(x_i -\bar{x})^2)
