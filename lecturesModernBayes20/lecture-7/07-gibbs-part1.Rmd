@@ -221,8 +221,6 @@ symmetric with respect to $x$ and $y$.
 \item Let's look at $p(x|y).$
 \end{itemize}
 
-
-
 Toy Example
 ===
 An easy way to generate a sample from $Z\sim\TExp(\theta,(0,c))$, is:
@@ -230,8 +228,29 @@ An easy way to generate a sample from $Z\sim\TExp(\theta,(0,c))$, is:
     \item Sample $U\sim \Uniform(0,F(c|\theta))$ where $$F(x|\theta) = 1-e^{-\theta x}$$ is the $\Exp(\theta)$ c.d.f.
     \item Set $Z = F^{-1}(U|\theta)$ where $$F^{-1}(u|\theta) = -(1/\theta)\log(1 - u)$$ is the inverse c.d.f.\ for $u\in(0,1)$.
 \end{enumerate}
-Hint: To verify the last step: apply the rejection principle (along with the inverse cdf technique). 
-Verify the last step on your own.
+
+There is an exercise on the next slide to prove step 2. 
+
+Toy Example
+===
+Practice Exercise: Verify that 
+
+$$F^{-1}(u|\theta) = -(1/\theta)\log(1 - u).$$
+Solution: 
+
+To solve for $F^{-1},$ set $u= F(x)$ for $u \in (0,1)$ and solve for $x.$
+$$
+\begin{aligned}
+u &= 1-e^{-\theta x} \implies \\
+e^{-\theta x} & = 1-u \implies \\
+-\theta x & = \log(1-u)\implies \\
+ x & = -\frac{1}{\theta}\log(1-u).
+\end{aligned}
+$$
+This proves that $F^{-1}(u|\theta) = -(1/\theta)\log(1 - u).$
+
+
+
 
 
 Toy example
@@ -572,4 +591,22 @@ Survival functions
  \label{figure:Pareto}
 \end{center}
 \end{figure}
+
+Detailed Takeways
+===
+
+- inverse CDF method 
+- Two-stage Gibbs sampler
+- Markov Chain
+- properties of Markov chains 
+- Exponential Example
+- Truncated Exponential
+- Normal-Normal-Gamma
+- Pareto Case Study
+- Traceplots
+- Estimated Densities
+- Running Aveage Plots
+- Survival Funtions
+
+- 
 
