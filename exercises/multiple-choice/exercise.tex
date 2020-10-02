@@ -1,0 +1,106 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+\renewcommand{\H}{\mathrm{H}}
+
+\title{Conceptual and Multiple Choice Exercises}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+%\subsection*{Instructions}
+%\begin{itemize}
+%\item \textbf{Don't look at the solution yet!} This is for your benefit.
+%\item This exercise must be submitted within 48 hours of the lecture in which it was given. 
+%\item As long as you do the exercise on time, you get full credit---your performance does not matter.
+%\item Without looking at the solution, take 5 minutes to try to solve the exercise.
+%\item Pre-assessment: Write down how correct you think your answer is, from 0 to 100\%.
+%\item Post-assessment: Now, study the solution and give yourself a ``grade'' from 0 to 100\%.
+%\item Submit your work on the course website, including the pre- and post- assessments.
+%\end{itemize}
+
+\textbf{Select the correct answer(s). There could be one answer or multiple correct answers for a problem.}
+
+\begin{enumerate}
+\item What is the minimal condition that must be satisfied in order to use an improper prior in Bayesian inference?
+\begin{enumerate}
+\item The posterior distribution must be continuous
+\item  The prior distribution must be symmetric
+\item  The prior distribution must have finite mean and variance
+\item The posterior distribution must be proper
+\end{enumerate}
+\item Which of the following is not a meaningful prior elicitation approach?
+\begin{enumerate}
+\item Expert opinion
+\item Prior centered weakly at the MLE
+\item Point mass at the MLE
+\item Flat uninformative prior
+\end{enumerate}
+\item Which of the following is a model diagnostics tool?
+\begin{enumerate}
+\item posterior predictive checks 
+\item trace plots
+\item the ergodic theorem
+\item hypothesis testing
+\end{enumerate}
+\item The effective sample size in an MCMC procedure can be interpreted as the number of dependent Monte Carlo samples necessary to give the same precision as the samples from MCMC.
+\begin{enumerate}
+\item True
+\item False 
+\end{enumerate}
+\item If a conjugate prior is available for a sampling distribution (model), we should always adopt the conjugate prior for easy computation.
+\begin{enumerate}
+\item True
+\item False 
+\end{enumerate}
+\item Suppose $\theta^*$ is a new data point and $\theta^{s}$ is the current state of your Metropolis sampler. Which are symmetric proposal (jumping) distributions?
+\begin{enumerate}
+\item $J(\theta^*\mid \theta^{s}) = Normal(0, \delta^2).$
+\item $J(\theta^*\mid \theta^{s}) = Uniform(\theta^{s} - \delta, \theta^{s} + \delta)$
+\item $J(\theta^*\mid \theta^{s})  = Normal(\theta^{s}, \delta^2).$
+\item None of the above are symmetric.
+\end{enumerate}
+\item The burn-in period in MCMC is theoretically justified.
+\begin{enumerate}
+\item True
+\item False
+\end{enumerate}
+\item We frequently report the posterior mean as our Bayes estimator because it
+\begin{enumerate}
+\item minimizes the posterior expected linear loss
+\item minimizes the posterior expected quadratic loss
+\item maximizes the posterior expected linear loss
+\item maximizes the posterior expected quadratic loss
+\end{enumerate}
+\item Let $y_1,\ldots, y_n$ be a random iid sample from an exponential distribution, where $$p(y_i \mid \theta) = \theta e^{-\theta y_i}.$$ Suppose the prior is 
+$$p(\theta) \propto \theta^{\alpha-1} \exp{-\beta \theta}. $$
+Write the posterior mean as a weighted average of the prior mean and $\hat{\theta}$, which is an estimate of the parameter of $\theta$ that is only based upon the data. That is, write 
+$$E(\theta \mid y_1,\ldots, y_n) = a \times \text{prior mean} + b \times \hat{\theta}.$$
+What are $a$ and $b$?
+\begin{enumerate}
+\item $a=\frac{\beta}{\beta + \sum_i y_i}$  \quad $b=\frac{ \sum_i y_i}{\beta + \sum_i y_i}$ 
+\item $a=\frac{\alpha}{\alpha+ \sum_i y_i}$  \quad $b=\frac{ \sum_i y_i}{\alpha + \sum_i y_i}$ 
+\item  $a=\frac{\alpha}{\beta+ \sum_i y_i}$  \quad $b=\frac{ \sum_i y_i + \alpha}{\beta + \sum_i y_i}$ 
+\item $a=\frac{\beta}{\beta + \alpha +  \sum_i y_i}$  \quad $b=\frac{ \sum_i y_i}{\beta + \alpha + \sum_i y_i}$ 
+\end{enumerate}
+\item Rejection sampling is fairly efficient as the dimension of the problem gets larger.
+\begin{enumerate}
+\item True
+\item False
+\end{enumerate}
+\end{enumerate}
+
+
+
+\end{document}
+
+
+
+
+
+

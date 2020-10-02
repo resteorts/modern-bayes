@@ -1,0 +1,69 @@
+\documentclass[12pt]{article} 
+\input{../custom}
+\graphicspath{{figures/}}
+\def\showcommentary{1}
+
+\renewcommand{\H}{\mathrm{H}}
+
+\title{In-class exercise}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+%\subsection*{Instructions}
+%\begin{itemize}
+%\item \textbf{Don't look at the solution yet!} This is for your benefit.
+%\item This exercise must be submitted within 48 hours of the lecture in which it was given. 
+%\item As long as you do the exercise on time, you get full credit---your performance does not matter.
+%\item Without looking at the solution, take 5 minutes to try to solve the exercise.
+%\item Pre-assessment: Write down how correct you think your answer is, from 0 to 100\%.
+%\item Post-assessment: Now, study the solution and give yourself a ``grade'' from 0 to 100\%.
+%\item Submit your work on the course website, including the pre- and post- assessments.
+%\end{itemize}
+\begin{enumerate}
+\item Consider
+$X_1,\ldots,X_n|\mu,\lambda\,\stackrel{iid}{\sim} \N(\mu,\lambda^{-1})$.
+Then independently consider
+\begin{align*}
+& \bm\mu \sim \N(\mu_0,\lambda_0^{-1})\\
+& \bm{\lambda} \sim \Ga(a,b).
+\end{align*}
+\begin{enumerate}
+\item Derive the conditional distribution of $\mu \mid \lambda, x_{1:n}.$
+\item Derive the conditional distribution of $\lambda \mid  x_{1:n}.$
+\item Explain how you can use both conditional distributions to approximate the distribution $p(\mu, \lambda \mid x_{1:n}).$
+\item Explain how you could calculate $P(\mu \leq 5 \mid x_1, \ldots, x_n)?$
+\end{enumerate}
+\end{enumerate}
+
+Solution: 
+
+\begin{enumerate}
+\item[(a)] We know that for the Normal--Normal model, we know that for any fixed value of $\lambda$,
+$$\bm\mu|\lambda,x_{1:n}\, \sim \,\N(M_\lambda,L_\lambda^{-1})$$
+ where $$L_\lambda =\lambda_0+ n\lambda \;\;  \text{and} \;\;
+ M_\lambda =\frac{\lambda_0\mu_0+\lambda\sum_{i = 1}^n x_i}{\lambda_0+ n\lambda}.$$
+\item[(b)] For any fixed value of $\mu$, it is straightforward to derive\footnote{do this on your own} that
+\begin{align}\label{equation:lambda-semi-conjugate}
+\bm\lambda|\mu, x_{1:n}\,\sim\,\Ga(A_\mu, B_\mu)
+\end{align}
+where $A_\mu = a + n/2$ and
+$$ B_\mu = b +\tfrac{1}{2}\textstyle\sum (x_i -\mu)^2 = n\hat\sigma^2 + n (\bar x-\mu)^2$$
+where $\hat\sigma^2 = \frac{1}{n}\sum (x_i -\bar x)^2$. 
+\item[(c)] Initialize $(\mu, \lambda) = (\mu_o, \lambda_o).$ To update $\mu,$ we draw from its conditional distribution. That is, we find $\mu_1$ by sampling $$\mu \sim p(\mu \mid \lambda=\lambda_o, x_{1:n}).$$ This gives an intermediate output of $(\mu_1, \lambda_o).$ Next, we update $\lambda$ from its conditional distribution. That is, we find $\lambda_1$ by sampling $$\lambda \sim p(\lambda \mid x_{1:n}).$$ This gives an update of $(\mu_1, \lambda_1).$ We repeat this M times until we have the following samples: $$(\mu_0, \lambda_0), (\mu_1, \lambda_1), \ldots, (\mu_M, \lambda_M).$$
+\item[(d)] Given the answer in part c, we approximate $$P(\mu \leq 5 \mid x_1, \ldots, x_n) \approx \frac{1}{M}\sum_{i=1}^{M} I(\mu_i \leq 5).$$
+
+\end{enumerate}
+
+
+
+\end{document}
+
+
+
+
+
+
