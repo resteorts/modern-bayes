@@ -208,23 +208,35 @@ which is a truncated Gamma.
 Sampling from the truncated Gamma
 ===
 
-We sample from the truncated gamma using a modified version of the inverse CDF method.   
+Sample from the truncated gamma using a modified version of the inverse CDF method.  
+
+Sampling from the truncated Gamma
+===
 
 For the censored values of $Z_i$ we know $c_i$.  
 
-If we know $\theta$ (which we will in a Gibbs' sampler), we know the distribution of $Z_i|\theta \sim Gamma(r,\theta)$.  
+Given $\theta$, $Z_i|\theta \sim \text{Gamma}(r,\theta)$.  
 
-Let $F$ be the CDF of this distribution.  
+Let $F$ be the CDF of $\text{Gamma}(Z_i \mid r,\theta)$ and truncate to 
+$(c,\infty)$.  
 
-Suppose we truncate this distribution to $(c,\infty)$.  The new CDF is
+The updated CDF is
 \begin{align*}
 Y = P(Z_i < z) &= \frac{F(z) - F(c)}{1 - F(c)}.
 \end{align*}
 
-Therefore $Y$ is a sample from the truncated Gamma.
+Thus, $Y$ is a sample from the truncated Gamma.
 
 Remark: when we implement the GS, we do not sample the observed values. 
 We impute the censored values using the method just outlined.  
+
+Application to censored data
+===
+
+As a part of homework 6, you will work on understanding how to put these details together. There is template file to help you with homework 6 that can be found at 
+
+\url{https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-6/template-hw6.Rmd} and 
+\url{https://github.com/resteorts/modern-bayes/blob/master/homeworks/homework-6/template-hw6.pdf}.
 
 Application to censored data
 ===
