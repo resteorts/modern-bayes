@@ -16,13 +16,13 @@ Agenda
 - Application to the Dutch Example
 
 
-Data augmentation for auxiliary variables
+Data augmentation for latent/auxiliary variables
 ===
 \begin{itemize}
-\item A commonly-used technique for designing MCMC samplers is to use \emph{data augmentation}, also known as \emph{auxiliary variables}.
+\item A commonly-used technique for designing MCMC samplers is to use \emph{data augmentation}, also known as \emph{latent/auxiliary variables}.
 \item Introduce variable(s) $Z$ that depends on the distribution of the existing variables in such a way that the
 resulting conditional distributions, with $Z$ included, are easier to sample from and/or result in better mixing.
-\item  $Z$'s are latent/hidden variables that are introduced for the purpose of simplifying/improving the sampler.
+\item  $Z$'s are latent/auxiliary/hidden variables that are introduced for the purpose of simplifying/improving the sampler.
 \end{itemize}
 
 Idea: Create Z's and throw them away at the end! 
@@ -99,11 +99,13 @@ Then the two-component Normal mixture model is:
 \begin{align}
   & X_1,\ldots, X_n \mid \mu,\pi\ \sim F(\mu,\pi)\\
       & \mu:=(\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
-        & \pi \sim \Beta(a,b),
+        & \textcolor{blue}{\pi} \sim \Beta(a,b),
 \end{align}
 where $F(\mu,\pi)$ is the distribution with p.d.f. 
-$$ f(x|\mu,\pi) = (1-\pi)\N(x\mid \mu_0,\lambda^{-1}) + \pi
-\N(x\mid \mu_1,\lambda^{-1}) $$
+$$ f(x|\mu,\textcolor{blue}{\pi}) = (1-\textcolor{blue}{\pi})\N(x\mid \mu_0,\lambda^{-1}) + \textcolor{blue}{\pi}
+\N(x\mid \mu_1,\lambda^{-1}).$$
+
+
 
 
 
