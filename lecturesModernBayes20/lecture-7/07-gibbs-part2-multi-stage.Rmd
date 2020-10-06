@@ -9,6 +9,19 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+- Homework 6 is now due Monday, October 12 at 5 PM EDT
+- Lab on Friday will be used as time to help with this homework assignment or used to ask questions about practice problems that have been posted for the exam. 
+- Lab 8 will be postposted until next week until I have introduced the material in class. 
+- Please see the udpated webpage given that I have slowed down the pace of class based upon student feedback. 
+- Exam II will be on October 29th. No class on Election Day. 
+- I posted many practice questions for Exam II over the weekend. 
+- We will go over the exam format together soon as a class and I will answer questions. 
+
+
+
 Agenda
 ===
 
@@ -365,7 +378,18 @@ for derviations of conjugate families of distributions.
 
 
 
+Detailed Takeways
+===
 
+- Three stage Gibbs sampler
+- Multistage Gibbs sampler
+- Case study for censored data (heart disease)
+- Background: Latent variable
+- Utilizing a latent variable model
+- Conditional distributions 
+- Truncated Gamma 
+- Interactive Application in Class (Homework 6)
+- Follow up after Homework 6 -- What did you learn?
 
 
 
