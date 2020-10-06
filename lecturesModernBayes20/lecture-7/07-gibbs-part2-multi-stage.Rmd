@@ -102,14 +102,54 @@ where the $+$ indicates that the patient was alive after $x$ years, but the rese
 Background
 ===
 
-A **latent variable** is one that is unknown (random) and not directly observed. 
+A **latent variable** is the true version of the state of a random variable that is unknown and not directly observed. 
 
 \vspace*{1em}
 
-This will be essential to this module and our case study on heart disease. 
+Example: We do not know observed state of every patient (in years), so we can model this unsing a latent variable. 
+
+Latent Variable
+===
+
+Let $Z_i$ denote a latent variable for each individual $i$ in the study. 
+
+If $X_i$ is observed (without missingness) and assuming no noise, then 
+$$Z_i = X_i.$$
+
+If $X_i$ is a censored value, then $X_i = c_i.$ This means that 
+$$Z_i \geq c_i = Z_i > c_i,$$ if $Z_i$ is continuous.
+
+Example Likelihood
+===
+
+Suppose that we have two patients, one fully observed at $X_1=6$ years and one censored that leaves the study early at $X_2 = 3+$ years. 
+
+\begin{enumerate}
+\item Since the first patient $X_1 = 6$ is fully observed, $Z_1 = X_1 = 6.$
+\item Since the second patient $X_2$ is censored, we know that $X_2 = 3+.$ This means that $Z_2 > 6.$
+\end{enumerate}
+
+Likelihood
+===
+
+We can summarize the likelihood into the following:
+
+\begin{align}
+  &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i},
+\end{align}
+
+where
+
+\begin{enumerate}
+\item $X_i$ is observed (without missingness) and no noise so
+$Z_i = X_i.$
+\item If $X_i$ is a censored value, then $X_i = c_i.$ Thus, 
+$Z_i \geq c_i = Z_i > c_i,$ if $Z_i$ is continuous.
+\end{enumerate}
 
 Model
 ===
+We can write a generative model to include the likelihood as
 \begin{align}
   &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
      & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\
@@ -117,16 +157,12 @@ Model
 \end{align}
 where $a$, $b$, and $r$ are known.
 \begin{itemize}
-\item $c_i$ is the censoring time for patient $i$, which is fixed, but known only if censoring occurs.
-\item $X_i$ is the observation
-\begin{itemize}
-\item if the lifetime is less than $c_i$ then we get to observe it ($X_i = Z_i$), 
-\item otherwise
-        all we know is the lifetime is greater than $c_i$ ($X_i = c_i$).
-        \end{itemize}
-    \item $\theta$ is the rate parameter for the lifetime distribution.
-    \item $Z_i$ is the lifetime for patient $i$, which is latent (unknown).
-    \end{itemize}
+\item $c_i$ is the censoring time for patient $i.$ 
+\item $\theta$ is the rate parameter for the lifetime distribution.
+\item $Z_i$ is the lifetime for patient $i$, which is latent (unknown).
+\end{itemize}
+    
+    
     
 Posterior inference 
 ===
@@ -160,6 +196,29 @@ The pdf associated with this random variable is rather strange, as it consists o
 \begin{align*}
 p(x_i|z_i) = \bm{1}(x_i = z_i)\bm{1}(z_i \leq c_i) + \bm{1}(x_i=c_i)\bm{1}(z_i > c_i).
 \end{align*}.
+
+<!-- \textcolor{blue}{Alternative Likelihood} -->
+<!-- === -->
+<!-- Recall the model is: -->
+<!-- \begin{align} -->
+<!--   &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{\textcolor{blue}{otherwise}}\\ -->
+<!--      & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\ -->
+<!--     & \theta\sim \Ga(a, b) -->
+<!-- \end{align} -->
+
+<!-- \textcolor{blue}{**otherwise** here means that $Z_i > c_i$} -->
+
+<!-- The pdf associated with this random variable is rather strange, as it consists of two point masses: one at $Z_i$ and one at $c_i$.  The formula is -->
+<!-- \begin{align*} -->
+<!-- p(x_i|z_i) = \bm{1}(x_i = z_i)\bm{1}(z_i \leq c_i) + \bm{1}(x_i=c_i)\bm{1}(z_i > c_i). -->
+<!-- \end{align*}. -->
+
+
+
+
+
+
+
 
 Full conditionals
 ===
