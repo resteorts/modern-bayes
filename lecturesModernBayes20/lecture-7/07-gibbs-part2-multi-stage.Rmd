@@ -86,6 +86,15 @@ $$3.4, 2.9, 1.2+, 1.4, 3.2, 1.8, 4.6, 1.7+, 2.0+, 1.4+, 2.8, 0.6+$$
 where the $+$ indicates that the patient was alive after $x$ years, but the researchers lost contact with the patient after that point in time. 
 \end{itemize}
 
+Background
+===
+
+A **latent variable** is one that is unknown (random) and not directly observed. 
+
+\vspace*{1em}
+
+This will be essential to this module and our case study on heart disease. 
+
 Model
 ===
 \begin{align}
@@ -102,8 +111,8 @@ where $a$, $b$, and $r$ are known.
 \item otherwise
         all we know is the lifetime is greater than $c_i$ ($X_i = c_i$).
         \end{itemize}
-    \item $\theta$ is the parameter of interest---the rate parameter for the lifetime distribution.
-    \item $Z_i$ is the lifetime for patient $i$, however, this is not directly observed.
+    \item $\theta$ is the rate parameter for the lifetime distribution.
+    \item $Z_i$ is the lifetime for patient $i$, which is latent (unknown).
     \end{itemize}
     
 Posterior inference 
