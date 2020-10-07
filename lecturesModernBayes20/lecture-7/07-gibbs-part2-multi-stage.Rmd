@@ -126,7 +126,7 @@ Suppose that we have two patients, one fully observed at $X_1=6$ years and one c
 
 \begin{enumerate}
 \item Since the first patient $X_1 = 6$ is fully observed, $Z_1 = X_1 = 6.$
-\item Since the second patient $X_2$ is censored, we know that $X_2 = 3+.$ This means that $Z_2 > 6.$
+\item Since the second patient $X_2$ is censored, we know that $X_2 = 3+.$ This means that $Z_2 > 3.$
 \end{enumerate}
 
 Likelihood
@@ -146,6 +146,8 @@ $Z_i = X_i.$
 \item If $X_i$ is a censored value, then $X_i = c_i.$ Thus, 
 $Z_i \geq c_i = Z_i > c_i,$ if $Z_i$ is continuous.
 \end{enumerate}
+
+\textcolor{blue}{Takeaway: The top line of the likelihood is when the observation was completely observed. The bottom line is when it was partially observed (censored), so we need to impute it.}
 
 Model
 ===
