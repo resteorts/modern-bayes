@@ -113,11 +113,14 @@ Latent Variable
 
 Let $Z_i$ denote a latent variable for each individual $i$ in the study. 
 
-If $X_i$ is observed (without missingness) and assuming no noise, then 
-$$Z_i = X_i.$$
-
-If $X_i$ is a censored value, then $X_i = c_i.$ This means that 
+\textcolor{blue}{Case 1}: If $X_i$ is a censored value, then $X_i = c_i.$ This means that 
 $$Z_i \geq c_i = Z_i > c_i,$$ if $Z_i$ is continuous.
+
+\textcolor{blue}{Case 2}: If $X_i$ is observed (without missingness) and assuming no noise, then $$Z_i = X_i.$$ 
+
+Here, $Z_i \leq c_i.$ Why? We considered the other case already above. 
+
+
 
 Example Likelihood
 ===
@@ -128,6 +131,8 @@ Suppose that we have two patients, one fully observed at $X_1=6$ years and one c
 \item Since the first patient $X_1 = 6$ is fully observed, $Z_1 = X_1 = 6.$
 \item Since the second patient $X_2$ is censored, we know that $X_2 = 3+.$ This means that $Z_2 > 3.$
 \end{enumerate}
+
+\textcolor{blue}{Thinking ahead, we only need to impute censored values. (We won't ever impute fully observed data because we already know it!)}
 
 Likelihood
 ===
