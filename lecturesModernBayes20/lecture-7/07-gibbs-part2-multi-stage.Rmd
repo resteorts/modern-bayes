@@ -18,7 +18,7 @@ Announcements
 - Please see the udpated webpage given that I have slowed down the pace of class based upon student feedback. 
 - Exam II will be on October 29th. No class on Election Day. 
 - I posted many practice questions for Exam II over the weekend. 
-- We will go over the exam format together soon as a class and I will answer questions. 
+- We will go over the exam format together soon as a class and I will answer questions.
 
 
 
@@ -67,6 +67,8 @@ always using the most recent values of all the other variables.
 \vskip 1em
 The conditional distribution of a variable given all of the others is referred to as the \emph{full conditional} in this context, and for brevity denoted $v^i|\cdots$.
 
+
+
 Example: Censored data
 ===
 In many real-world data sets, some of the data is either missing altogether or is partially obscured. 
@@ -89,6 +91,8 @@ Then we know when they leave the study, but we don't know information about them
 
 This is a certain type of missing data.
 
+
+
 Heart Disease (Censoring) Example
 ===
 \begin{itemize}
@@ -98,6 +102,23 @@ Heart Disease (Censoring) Example
 $$3.4, 2.9, 1.2+, 1.4, 3.2, 1.8, 4.6, 1.7+, 2.0+, 1.4+, 2.8, 0.6+$$
 where the $+$ indicates that the patient was alive after $x$ years, but the researchers lost contact with the patient after that point in time. 
 \end{itemize}
+
+Goal
+===
+
+The goal of this module is to introduce **censoring**, where we need to impute observations from the data. 
+
+We will do this through a new concept known a **latent variable**.
+
+Then we will utilize concepts that we have learned throughout the semester which include:
+
+- hierarchical modeling
+- semi-conjugacy 
+- Gibbs sampling
+- inverse CDF method
+- MCMC diagnostics
+- approximating posterior distributions and explaning our results
+- performing sensitivity analyses
 
 Background
 ===
