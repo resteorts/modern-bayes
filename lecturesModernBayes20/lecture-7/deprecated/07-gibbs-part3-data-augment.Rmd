@@ -181,7 +181,27 @@ comes from--that is, $Z_i$ indicates whether subject $i$ is female or male.
     & \pi \sim \Beta(a,b)
 \end{align}
 
-How can we check that the latent allocation model is equivalent to our original model? This is left as a practice exercise for Exam II. (Solution is at the end of the module.)
+How can we check that the latent allocation model is equivalent to our original model? 
+
+Equivalence of both models
+===
+Recall
+\begin{align*}
+ & X_i \mid \mu, Z \sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
+     & Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
+    & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
+    & \pi \sim \Beta(a,b)
+\end{align*}
+
+This is equivalent to the model above, since
+\begin{align}
+    &p(x_i|\mu,\pi) \\
+    &= p(x_i|Z_i=0,\mu,\pi)\Pr(Z_i=0|\mu,\pi)
+                    + p(x_i|Z_i=1,\mu,\pi)\Pr(Z_i=1|\mu,\pi) \\
+            &= (1-\pi)\N(x_i|\mu_0,\lambda^{-1}) + \pi\N(x_i|\mu_1,\lambda^{-1})\\
+            &= f(x_i|\mu,\pi),
+\end{align}
+and thus it induces the same distribution on $(x_{1:n},\mu,\pi)$. The latent model is considerably easier to work with, particularly for Gibbs sampling.
 
 Full conditionals
 ===
@@ -296,7 +316,7 @@ slight off.
 
 How might we fix this in our model? 
 
-Comceptual Question
+Back to the model
 ===
 
 Recall
@@ -375,18 +395,6 @@ Example illustrates a big thing that can go wrong with MCMC (although fortunatel
 \item But it doesn't---it gets stuck in one and stays there.
 \end{itemize}
 
-# Detailed Takeaways
-
-- Latent variable
-- Mixture models
-- Model for Dutch case study
-- Why we need to use a latent variable 
-- Deriving conditional distributions
-- Understanding the Gibbs sampler updates
-- Understanding conceptual questions that relate to the case study 
-- What are the main take aways?
-- What are benefits of this model? How could you improve the model? 
-
 Takeaways from Dutch Application
 ===
 
@@ -396,25 +404,7 @@ Takeaways from Dutch Application
 - To learn more about invariance and what quantities remain unchanged, see Theory of Point Estimation, Lehmann and Casella, Chapter 1 for a formal treatment. (For more advanced reading, see Chapter 3.) Feel free to see me in OH if you want to chat about this! 
 
 
-Equivalence of both models (Practice Exercise for Exam II)
-===
-Recall
-\begin{align*}
- & X_i \mid \mu, Z \sim\N(\mu_{Z_i},\lambda^{-1}) \text{ independently for } i=1,\ldots,n.\\
-     & Z_1,\ldots,Z_n|\mu,\pi\,\stackrel{iid}{\sim}\,\Bernoulli(\pi)\\
-    & \mu= (\mu_0,\mu_1) \stackrel{iid}{\sim} \N(m,\ell^{-1})\\
-    & \pi \sim \Beta(a,b)
-\end{align*}
 
-This is equivalent to the model above, since
-\begin{align}
-    &p(x_i|\mu,\pi) \\
-    &= p(x_i|Z_i=0,\mu,\pi)\Pr(Z_i=0|\mu,\pi)
-                    + p(x_i|Z_i=1,\mu,\pi)\Pr(Z_i=1|\mu,\pi) \\
-            &= (1-\pi)\N(x_i|\mu_0,\lambda^{-1}) + \pi\N(x_i|\mu_1,\lambda^{-1})\\
-            &= f(x_i|\mu,\pi),
-\end{align}
-and thus it induces the same distribution on $(x_{1:n},\mu,\pi)$. The latent model is considerably easier to work with, particularly for Gibbs sampling.
 
 
 
