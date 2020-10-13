@@ -2,7 +2,7 @@
 ---
 title: "Module 7: Part IV: Gibbs Sampling, Data Augmentation, Mixture Models"
 author: "Rebecca C. Steorts"
-institute: This goes with Lab 8, which has been prepared by Olivier Binette
+institute: This goes with Lab 8 (\url{https://github.com/resteorts/modern-bayes/blob/master/labs/08-gibbs-augmentation/lab-8-partial-solutions.pdf}), which has been prepared by Olivier Binette and Rebecca C. Steorts
 output: 
      beamer_presentation:
       includes: 
