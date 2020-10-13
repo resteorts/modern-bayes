@@ -33,7 +33,24 @@ This easily extends to any type of mixture model.
 Background
 ===
 
-In order to work with this module, we will need to know to work with the Multinomial and Dirichlet distributions. 
+In order to work with this module, we will need to know to work with the Multinomial and Dirichlet distributions.
+
+Background on the Mulinomial-Dirichlet
+===
+
+Before going through the lecture, we will first go over background material 
+on the 
+
+- Multinomial distribution
+- Dirichlet distribution
+
+which can be found here \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/exercise-multinomial-dirichlet-with-blanks.pdf}
+
+The document contains blank pages, so you'll need to fill this in through the lecture today.
+
+
+
+
 
 Big picture
 ===
