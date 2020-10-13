@@ -2,6 +2,7 @@
 ---
 title: "Module 7: Part IV: Gibbs Sampling, Data Augmentation, Mixture Models"
 author: "Rebecca C. Steorts"
+institute: This goes with Lab 8, which has been prepared by Olivier Binette
 output: 
      beamer_presentation:
       includes: 
@@ -14,57 +15,108 @@ Agenda
 ===
 - Review of data augmentation
 - A three component mixture model
+- Model specification 
 - The Dirichlet-Multinomial
 - Return to the three component mixture model problem 
+- This corresponds to Lab 8
+- Homework this week is to go through the details of this lab on your own and bring detailed questions to your lab either with Olivier/Michael on Friday. 
 
+You can find Olivier's outline for Lab 8 here: \url{https://github.com/OlivierBinette/Labs-STA-360}
 
-
-Data augmentation for auxiliary variables
+Goal
 ===
-\begin{itemize}
-\item A commonly-used technique for designing MCMC samplers is to use \emph{data augmentation}, also known as \emph{auxiliary variables}.
-\item Introduce variable(s) $Z$ that depends on the distribution of the existing variables in such a way that the
-resulting conditional distributions, with $Z$ included, are easier to sample from and/or result in better mixing.
-\item  $Z$'s are latent/hidden variables that are introduced for the purpose of simplifying/improving the sampler.
-\end{itemize}
 
-Idea: Create Z's and throw them away at the end! 
+The goal of this lecture, which corresponds with lab 8, is to introduce you to the **three component mixture model**.
+
+This easily extends to any type of mixture model. 
+
+Background
 ===
-\begin{itemize}
-\item Suppose we want to sample from $p(x,y)$, but $p(x|y)$ and/or $p(y|x)$ are complicated. 
-\item Choose $$p(z|x,y)$$ such
-that $p(x|y,z)$, $p(y|x,z)$, and $p(z|x,y)$ are easy to sample from. 
-\item Then construct a Gibbs sampler to sample all three variables
-$(X,Y,Z)$ from $p(x,y,z)$.
-\item Then we just throw away the $Z$'s and we will have samples $(X,Y)$ from $p(x,y)$.
-\end{itemize}
 
+In order to work with this module, we will need to know to work with the Multinomial and Dirichlet distributions. 
 
-Three component mixture model (Lab 8)
+Big picture
 ===
-- Consider a three component mixture of normal distribution with a common prior on the mixture component means, the error variance and the variance within mixture component means. 
-- The prior on the mixture weights $w$ is a three component Dirichlet distribution. 
 
+- We will build a model specification based upon a **three component mixture model**
+- What does this model look like?
+- The posterior will be intractable? Why? 
+- What should we do in order to help us solve the problem? 
+- This will be your homework for this coming week, and it will be solved and work in lab 8 with your TA's. 
+- You should have read through the lecture notes for class and attempted to work through the problems on your own before attending Lab 8. 
+
+Likelihood (three component mixture model)
+===
+For $i=1,\ldots,n$
 \begin{align*}
-p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2) 
+& p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2) \\
 &= \sum_{j=1}^3 w_j N(\mu_j, \varepsilon^2)\\
-\mu_j|\mu_0,\sigma_0^2 &\sim N(\mu_0,\sigma_0^2)\\
-\mu_0 &\sim N(0,3)\\
-\sigma_0^2 &\sim \text{InverseGamma}(2,2)\\
-(w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1)\\
-\varepsilon^2 
-&\sim \text{InverseGamma}(2,2),
+&= w_1\;N(\mu_1, \varepsilon^2) +  w_2\;N(\mu_2, \varepsilon^2) + w_3\;N(\mu_3, \varepsilon^2)
 \end{align*}
-for $i=1,\ldots n.$
 
-Three component mixture model (Lab 8)
-===
-Specifically, 
 \begin{itemize}
 \item $w_1,w_2$ and $w_3$ are the mixture weight of mixture components 1,2 and 3 respectively
 \item $\mu_1,\mu_2$ and $\mu_3$ are the means of the mixture components 
 \item $\varepsilon^2$ is the variance parameter of the error term around the mixture components.
 \end{itemize}
+
+
+Prior specification on likelihood terms
+===
+
+Let's specify the priors on 
+
+\begin{itemize}
+\item $w_1,w_2$ and $w_3$ are the mixture weight of mixture components 1,2 and 3 respectively
+\item $\mu_1,\mu_2$ and $\mu_3$ are the means of the mixture components 
+\item $\varepsilon^2$ is the variance parameter of the error term around the mixture components.
+\end{itemize}
+
+Prior specification on likelihood terms
+===
+
+For $i=1,\ldots,n$
+
+$$p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2)= \sum_{j=1}^3 w_j N(\mu_j, \varepsilon^2)$$
+
+\begin{align}
+\
+\mu_j|\mu_0,\sigma_0^2 &\sim N(\mu_0,\sigma_0)\\
+\varepsilon^2 &\sim \text{InverseGamma}(2,2)\\
+(w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1)
+\end{align}
+
+What is the $\text{Dirichlet}(1,1,1)?$ This is the multivariate distribution of the Beta distribution. 
+
+Complete the model specification
+===
+
+Let's specify the priors on 
+
+\begin{itemize}
+\item $\mu_0$
+\item $\sigma_0^2$
+\end{itemize}
+
+Finalizing model specification
+===
+
+For $i=1,\ldots,n$
+
+$$p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2)= \sum_{j=1}^3 w_j N(\mu_j, \varepsilon^2)$$
+
+\begin{align}
+\mu_j|\mu_0,\sigma_0^2 &\sim N(\mu_0,\sigma_0)\\
+\varepsilon^2 &\sim \text{InverseGamma}(2,2)\\
+(w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1)
+\end{align}
+
+\begin{align}
+\mu_0 &\sim N(0,3)\\
+\sigma_0^2 &\sim \text{InverseGamma}(2,2)
+\end{align}
+
+
 
 Three component mixture model (Lab 8)
 ===
@@ -94,15 +146,41 @@ p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2)
 for $i=1,\ldots n.$
 
 
-Three component mixture model (Task 1 and 2)
+Task 1 and Task 2
 ===
-Derive the full conditionals for all the parameters up to a normalizing constant
-and see that three of the conditional distributions are very difficult to sample from. 
+Derive the joint posterior up to a normalizing constant. What do you observe?
+
+Specifically, derive $$p(w_1, w_2, w_3, \mu_1, \mu_2, \mu_3, \epsilon^2, \mu_o, \sigma_o^2 \mid y_{1:n})$$
+up to a normalizing constant, where it may be helpful to let 
+$\tau = \frac{1}{\epsilon^2},$ $\phi_o = \frac{1}{\sigma_o^2}.$
+
+Task 1
+===
+Show that the full joint distribution can be written as follows: 
+
+$$
+\left(\prod_{i=1}^n p(Y_i \mid \mu_{1:3}, w_{1:3}, \tau) \right) \left(\prod_{j=1}^3 p(\mu_j \mid \mu_0, \phi_0) \right) p(\mu_0)p(\phi_0)p(\tau); 
+$$
+$$
+  p(Y_i \mid \mu_{1:3}, w_{1:3}, \tau) = \sum_{j=1}^3 w_j N(Y_i; \mu_j, \tau),\pause
+$$
+$$
+p(\mu_j \mid \mu_0, \phi_0) = N(\mu_j; \mu_0, \phi_0^{-1}),\pause
+$$
+$$
+  p(\mu_0) = N(\mu_0; 0,3),\pause
+$$
+$$
+  p(\phi_0) = \text{Gamma}(\phi_0; 2,2),\pause
+$$
+$$
+  p(\tau) = \text{Gamma}(\tau; 2,2).
+$$
 
 
-Task 1 and 2
+Task 2
 ===
-Specifically, you should derive the following conditional distributions below:
+Using Task 1, what are the following conditional distributions below
 
 \begin{itemize}
 \item $p(w_1,w_2,w_3|\mu_1,\mu_2,\mu_3,\varepsilon^2,Y_1,...,Y_N) \propto$
@@ -114,44 +192,23 @@ Specifically, you should derive the following conditional distributions below:
 \item $p(\sigma_0^2|\mu_0,\mu_1,\mu_2,\mu_3) \propto$
 \end{itemize}
 
-Task 1 (Solution)
+Task 2
 ===
-We start by deriving the full conditional kernels. 
-\begin{align}
-p(\mu_0|\mu_1,\mu_2,\mu_3,\varepsilon^2,\sigma_0^2) & \propto \text{Normal-Normal mean update}\\
-p(\sigma_0^2|\mu_1,\mu_2,\mu_3,\mu_0) & \propto \text{Normal-InverseGamma variance update}
-\end{align}
 
-Task 1 (Solution)
+Hint: most of the full conditionals are available from Task 1. 
+
+Observe that the likelihood is difficutl to work with, and thus we will utilize latent variables in order to help us
+proceed as we did in the last module.
+
+Using latent variables
 ===
-\begin{align}
-&p(\mu_k|Y_1,...,Y_N,\sigma_0^2,\varepsilon^2,w_1,w_2,w_3) \\
-& \propto  \frac{1}{\sqrt{2 \pi \sigma_0^2}}e^{-\frac{1}{\sigma_0^2}(\mu_k -\mu_0)^2}\prod_{i=1}^N \Big(\sum_{j=1}^3 w_j\frac{1}{\sqrt{2\pi \varepsilon^2}}e^{-\frac{1}{2\varepsilon^2}(Y_i - \mu_j)^2}\Big)\\
-&\propto ? 
-\end{align}
 
-Task 1 (Solution)
+Neither the joint posterior nor any of the full conditionals involving the likelihood are of a form that is easy to sample from. 
+
+Using latent variables
 ===
-\begin{align}
-& p(\varepsilon^2|Y_1,...,Y_N,\mu_1,\mu_2,\mu_3,w_1,w_2,w_3)\\ & \propto(\varepsilon^2)^{-3}e^{-\frac{2}{\varepsilon^2}} \prod_{i=1}^N \Big(\sum_{j=1}^3 w_j\frac{1}{\sqrt{2\pi \varepsilon^2}}e^{-\frac{1}{2\varepsilon^2}(Y_i - \mu_j)^2}\Big)\\
-&\propto ? 
-\end{align}
 
-Task 1 (Solution)
-===
-\begin{align}
-&p(w_1,w_2,w_3|Y_1,...,Y_N,\mu_1,\mu_2,\mu_3,\varepsilon^2) \\
-&\propto \prod_{i=1}^N \Big(\sum_{j=1}^3 w_j\frac{1}{\sqrt{2\pi \varepsilon^2}}e^{-\frac{1}{2\varepsilon^2}(Y_i - \mu_j)^2}\Big)\\
-&\propto ? 
-\end{align}
-
-Note that everything that involves the likelihood includes the products of sums, and becomes exceedingly painful. Thus, let us look at the full conditionals under data augmentation.
-
-Data augumentation scheme 
-===
-- Neither the joint posterior nor any of the full conditionals involving the likelihood are of a form that's easy to sample from. 
-
-Solution: introduce an additional set of random variables ${\{Z_i\}}_{i=1}^N$ that assign each observation to one of the mixture components with the proabilitiy of assignment being the respective mixture weight. 
+We will introduce an additional set of random variables ${\{Z_i\}}_{i=1}^N$ that assign each observation to one of the mixture components with the proability of assignment being the respective mixture weight. 
 
 If we condition on $Z_i$ we can then write the likelihood of $Y_i$ as
 \begin{align*} 
@@ -159,8 +216,9 @@ p(Y_i|Z_i,\mu_1,\mu_2,\mu_3,\varepsilon^2) = \sum_{j=1}^{\textcolor{red}{3}} N(\
 P(Z_i = j ) &= w_j.
 \end{align*}
 
-Data augmentation (continued)
+Latent variables
 ===
+
 - Conditional on $Z_i$ we no longer have a sum of Normal pdfs in our likelihood, resulting in a significant simplification.
 
 - Conditional on the $\{Z_i\}$ updates will be straightforward, only depending on the mixture component that any given $Y_i$ is currently assigned to. 
