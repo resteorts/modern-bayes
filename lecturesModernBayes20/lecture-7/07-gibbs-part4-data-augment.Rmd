@@ -292,17 +292,24 @@ $j=1,\ldots,3$
 
 Task 3
 ===
-Now that we have introduced a latent variable, when necessary,(re)derive the full conditionals.
 
+\textbf{Using the latent variable mode, when re-derive the full conditional when necessary.} 
+
+\vline
+
+
+What do you observe?  
+
+\vline
+
+Hint: You should be able to sample from all your full conditional distributions!
 
 
 Task 4
 ===
-In task 3 you derived full conditional distributions when necessary. 
+\textbf{In task 3, you should have found full conditionals that you can easily sample from.}
 
-Due to the latent variable approach, you should find that the full conditionals are easy to sample from. 
-
-Use these full conditionals to implement Gibbs sampling using the data from ``Lab8Mixture.csv''.
+\textbf{Use the full conditionals from task 3 to implement Gibbs sampling using the data from ``Lab8Mixture.csv''.}
 
 Task 5
 ===
@@ -317,22 +324,25 @@ Sample code
 
 Partial code for this problem can be found at https://github.com/resteorts/modern-bayes/tree/master/labs/08-gibbs-augmentation
 
-Work through lab 8 on your own (or in groups) before lab on Friday. On Thursday, I will give you time to work on groups on the assignment and ask questions. 
+\textbf{Before the next class, work through lab 8 on your own (or in groups).}
 
-On Friday, your TA will go through the lab and answer questions that you have. Please post to Piazza if you have specific questions that you'd like teach TA to go through in more detail. 
+\textbf{On Friday, your TA will go through the lab and answer questions that you have. Please post to Piazza if you have specific questions that you'd like each TA to go through in more detail.}
 
 
-Recap of Module 8 (Part I -- Part IV)
+Detailed Summary
 ===
-1. We introduced the two-stage Gibbs sampler.
-2. You should be able to derive conditional distributions.
-for two-stage Gibbs samplers. (See Part I, Module 8 for examples).
-3. Be familar with diagnostic plots.  
-3. We then looked at a three-stage sampler and generalized
-to the multi-stage Gibbs sampler. 
-4. We looked at an application to censoring (a type of missing data here).
-5. Why would we use latent variables in a Gibbs sampler? (We looked at these for Gaussian mixture models). Notice that the hierarhical modeling setup was more complicated here, which is why we used this trick.  
-6. In short, we saw many ways to use Gibbs sampling in many applications and various tricks that one needs to use in order to derive the full conditionals in closed form. This is always driven by the data and will vary by the model specified. 
+- Relationship between aamma and inverse gamma distributions
+- Multinomial/Categorical distribution
+- Dirichlet distribution
+- Multinomial-Dirichelt conjugacy
+- Three component mixture model
+- Model specification (meaning prior specification)
+- Full conditional derivations
+- Using a latent variable model
+- Re-deriving conditional derivations
+- Coding a Gibbs sampler
+- Diagnostics
+- Analyzing the output (posterior densities and credible intervals)
 
 
 
