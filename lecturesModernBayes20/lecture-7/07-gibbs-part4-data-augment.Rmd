@@ -13,13 +13,17 @@ font-size: 8px
 
 Agenda
 ===
-- Review of data augmentation
+- Goals
+- Background of Multinomial-Dirichlet conjugacy 
+- This corresponds with Lab 8 (and your ungraded homework this week)
 - A three component mixture model
-- Model specification 
-- The Dirichlet-Multinomial
-- Return to the three component mixture model problem 
-- This corresponds to Lab 8
-- Homework this week is to go through the details of this lab on your own and bring detailed questions to your lab either with Olivier/Michael on Friday. 
+- Likelihood for the three component mixture model
+- Building the model specification 
+- Moving to a latent variable approach 
+- Re-deriving the conditional distributions
+- Coding up the Gibbs sampler
+- Understanding the output and diagnostics
+ 
 
 You can find Olivier's outline for Lab 8 here: \url{https://github.com/OlivierBinette/Labs-STA-360}
 
@@ -29,6 +33,16 @@ Goal
 The goal of this lecture, which corresponds with lab 8, is to introduce you to the **three component mixture model**.
 
 This easily extends to any type of mixture model. 
+
+
+Background
+===
+
+Suppose that $$X \sim \text{InverseGamma}(a,b).$$
+
+Then $$Y=1/X \sim \text{Gamma}(a,b).$$
+
+Proof: Similar proof here \url{http://www.math.wm.edu/~leemis/chart/UDR/PDFs/GammaInvertedgamma.pdf}.
 
 Background
 ===
@@ -134,6 +148,23 @@ $$p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2)= \sum_{j=1}^3 w_j N(\mu_
 \end{align}
 
 
+Transformed model
+===
+Let 
+$\tau = \dfrac{1}{\epsilon^2}$ and $\phi_o = \dfrac{1}{\sigma_o^2}.$
+
+
+\begin{align}
+p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2) &= \sum_{j=1}^3 w_j N(\mu_j, \varepsilon^2)\\
+\mu_j|\mu_0,\sigma_0^2 &\sim N(\mu_0,\sigma_0)\\
+\textcolor{blue}{\tau = (1/\varepsilon^2)} &\sim \text{Gamma}(2,2)\\
+(w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1)\\
+\mu_0 &\sim N(0,3)\\
+\textcolor{blue}{\phi_o = (1/\sigma_0^2)} &\sim \text{Gamma}(2,2)
+\end{align}
+
+
+
 
 Three component mixture model (Lab 8)
 ===
@@ -155,17 +186,18 @@ p(Y_i | \mu_1,\mu_2,\mu_3,w_1,w_2,w_3, \varepsilon^2)
 &= \sum_{j=1}^3 w_i N(\mu_j, \varepsilon^2)\\
 \mu_j|\mu_0,\sigma_0^2 &\sim N(\mu_0,\sigma_0^2)\\
 \mu_0 &\sim N(0,3)\\
-\sigma_0^2 &\sim \text{InverseGamma}(2,2)\\
+\textcolor{blue}{\tau = (1/\varepsilon^2)} &\sim \text{Gamma}(2,2)\\
 (w_1,w_2,w_3) &\sim \text{Dirichlet}(1,1,1)\\
-\varepsilon^2 
-&\sim \text{InverseGamma}(2,2),
+\mu_0 &\sim N(0,3)\\
+\textcolor{blue}{\phi_o = (1/\sigma_0^2)} &\sim \text{Gamma}(2,2)
 \end{align*}
 for $i=1,\ldots n.$
 
 
-Task 1 and Task 2
+Task 1
 ===
-Derive the joint posterior up to a normalizing constant. What do you observe?
+
+\textbf{Derive the joint posterior up to a normalizing constant. What do you observe?}
 
 Specifically, derive $$p(w_1, w_2, w_3, \mu_1, \mu_2, \mu_3, \epsilon^2, \mu_o, \sigma_o^2 \mid y_{1:n})$$
 up to a normalizing constant, where it may be helpful to let 
@@ -197,7 +229,7 @@ $$
 
 Task 2
 ===
-Using Task 1, what are the following conditional distributions below
+\textbf{Using Task 1, derive the full conditionals below up to a normalizing constant. What do you observe?} 
 
 \begin{itemize}
 \item $p(w_1,w_2,w_3|\mu_1,\mu_2,\mu_3,\varepsilon^2,Y_1,...,Y_N) \propto$
@@ -212,10 +244,11 @@ Using Task 1, what are the following conditional distributions below
 Task 2
 ===
 
-Hint: most of the full conditionals are available from Task 1. 
+Observe that the likelihood is difficult to work with. In order to more clearly see this, we will derive the full conditionals under our current specification so that we can see this more clearly. 
 
-Observe that the likelihood is difficutl to work with, and thus we will utilize latent variables in order to help us
-proceed as we did in the last module.
+In addition, for those that asked earlier in the course about more realistic models, this is an example of these. 
+
+Think on your own now about the tradeoffs regarding fully conjugate models versus these more realistic models that we are now working with. 
 
 Using latent variables
 ===
@@ -259,14 +292,17 @@ $j=1,\ldots,3$
 
 Task 3
 ===
-Where necessary, (re)derive the full conditionals under the data augmentation scheme.
+Now that we have introduced a latent variable, when necessary,(re)derive the full conditionals.
 
-(See the lab solutions).
 
 
 Task 4
 ===
-In task 3 you derived all the full conditionals, and due to data augmentation scheme they are all in a form that is easy to sample. Use these full conditionals to implement Gibbs sampling using the data from ``Lab8Mixture.csv''.
+In task 3 you derived full conditional distributions when necessary. 
+
+Due to the latent variable approach, you should find that the full conditionals are easy to sample from. 
+
+Use these full conditionals to implement Gibbs sampling using the data from ``Lab8Mixture.csv''.
 
 Task 5
 ===
@@ -278,9 +314,14 @@ Now suppose you re-run the sampler using 3 different starting values, are your r
 
 Sample code
 ===
+
 Partial code for this problem can be found at https://github.com/resteorts/modern-bayes/tree/master/labs/08-gibbs-augmentation
 
- 
+Work through lab 8 on your own (or in groups) before lab on Friday. On Thursday, I will give you time to work on groups on the assignment and ask questions. 
+
+On Friday, your TA will go through the lab and answer questions that you have. Please post to Piazza if you have specific questions that you'd like teach TA to go through in more detail. 
+
+
 Recap of Module 8 (Part I -- Part IV)
 ===
 1. We introduced the two-stage Gibbs sampler.
