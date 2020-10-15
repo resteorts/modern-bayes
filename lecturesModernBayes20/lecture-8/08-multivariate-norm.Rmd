@@ -187,6 +187,11 @@ Assume a matrix $H_{p \times p}.$
 
 $$\text{trace}(H) = \sum_i h_{ii},$$ where $h_{ii}$ are the diagonal elements of $H.$
 
+Interactive Exercise
+===
+
+We're going to move into working in groups, so you can work on the following exercises. 
+
 
 The trace of a matrix 
 ===
@@ -198,7 +203,7 @@ H =
 0 & 1 \\
 \end{array} \right).
 $$
-What is $\text{tr}({H})?$
+What is $\text{tr}({H})?$ (Take 1 minute to complete this.)
 
 Linear Algebra Tricks
 ===
