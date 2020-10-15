@@ -222,7 +222,11 @@ H =
 0 & 1 \\
 \end{array} \right).
 $$
-What is $\text{tr}({H})?$ (Take 1 minute to complete this.)
+What is $\text{tr}({H})?$ 
+
+\vline
+
+(Take 1 minute to complete this.)
 
 Linear Algebra Tricks
 ===
@@ -233,7 +237,9 @@ that B is a $n \times n$ matrix.
 Lemma 1:  
 
 $$tr(AB) = tr(BA)$$
-Proof: Exercise. (Take 5-7 minutes to complete this.)
+Proof: Exercise. 
+
+(Take 5-7 minutes to complete this.)
 
 
 
@@ -297,18 +303,24 @@ p(\bm{x}) = {\left(2\pi\right)}^{-p/2}(\det{\Sigma})^{-1/2} \exp{\left\{-\frac{1
 
 Standard Multivariate Normal Distribution
 ===
+
+Lemma 3. 
+
 Consider $$Z_1, \ldots, Z_n \stackrel{iid}{\sim} N(0,1).$$
-Show that $$Z_1,\ldots,Z_n \sim MVN(0,I).$$
+Show that $$Z_1,\ldots,Z_n \sim MVN(\textbf{0},I_{n \times n}).$$
+
+Proof of Lemma 3
+===
+Proof:
 
 \begin{align}
 f_z(z) &= \prod_{i=1}^n (2\pi)^{-1/2} e^{-z_i^2/2}\\
 & = (2\pi)^{-n/2} e^{\sum_i-z_i^2/2}\\
 & = (2\pi)^{-n/2} e^{-z^Tz/2}.
 \end{align}
+The last line is follows since  $\sum_i-z_i^2 = -z^Tz.$
 
-Exercise: Why does $\sum_i-z_i^2 = -z^Tz$?
-
-We have just showed that $Z_1,\ldots,Z_n \sim MVN(0,I).$
+Thus, $Z_1,\ldots,Z_n \sim \text{MVN}(\textbf{0},I).$
 
 Conjugate to MVN
 ===
