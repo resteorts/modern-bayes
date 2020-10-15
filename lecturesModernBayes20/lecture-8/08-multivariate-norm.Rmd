@@ -50,17 +50,17 @@ What does this data look like that is observed?
 
 $$\bm{X}_{n \times p} = 
 \left( \begin{array}{cccc}
-x_{11} & x_{12} & \ldots&  x_{n1}\\
-x_{21} & x_{22} & \ldots& x_{n2} \\
-x_{i1} & x_{i2} & \ldots& x_{ni} \\
+x_{11} & \textcolor{red}{x_{12}} & \ldots&  x_{n1}\\
+x_{21} & \textcolor{red}{x_{22}} & \ldots& x_{n2} \\
+x_{i1} & \textcolor{red}{x_{i2}} & \ldots& x_{ni} \\
 \vdots & \vdots & \ddots & \vdots \\
-x_{n1} & x_{n2} &\ldots& x_{np}
+x_{n1} & \textcolor{red}{x_{n2}} &\ldots& x_{np}
 \end{array} \right).
 $$
 
 - A row of $\bm{X}_{n \times p}$ represents a covariate we might be interested in, such as age of a person.
 
-- Denote $x_i$ as the ith \textcolor{red}{row vector} of the $X_{n \times p}$ matrix. 
+- Denote $x_{i}$ $(p \times 1)$ as the $i$th \textcolor{red}{row vector} of the $X_{n \times p}$ matrix.
 
 \[  x_{i}= \left( \begin{array}{c}
 x_{i1}\\
@@ -68,7 +68,6 @@ x_{i1}\\
 \vdots\\
 x_{ip}
 \end{array} \right) \]
-where its dimension is $p \times 1.$
 
 Example: Reading Comprehension
 ===
@@ -84,11 +83,17 @@ Y_{i,2}\\
 \mu_1\\
 \mu_2\\
 \end{array} \right) 
+= 
+\bmu
 $$
+
+Example: Reading Comprehension
+===
 We also may be interested in the population covariance matrix, $\Sigma.$
 \begin{align}
-\Sigma &= Cov(\bm{Y})
-=
+\Sigma  
+&= Cov(\bm{Y})\\
+&=
 \left( \begin{array}{cccc}
 E[Y_1^2] - E[Y_1]^2 & E[Y_1Y_2] - E[Y_1]E[Y_2] \\
 E[Y_1Y_2] - E[Y_1]E[Y_2] & E[Y_2^2] - E[Y_2]^2
