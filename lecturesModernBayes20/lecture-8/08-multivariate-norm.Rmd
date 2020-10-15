@@ -89,7 +89,9 @@ $$
 
 Example: Reading Comprehension
 ===
-We also may be interested in the population covariance matrix, $\Sigma.$
+We also may be interested in the population covariance matrix, $\Sigma_{p \times p}.$
+
+By definition: 
 \begin{align}
 \Sigma  
 &= Cov(\bm{Y})\\
@@ -107,13 +109,20 @@ E[Y_1Y_2] - E[Y_1]E[Y_2] & E[Y_2^2] - E[Y_2]^2
 
 Remark: $Cov(Y_1) = Var(Y_1) = \sigma_1^2. \qquad Cov(Y_1, Y_2) = \sigma_{1,2}.$
 
+How do we expand this beyond our reading comprehension example
+===
+
+We introduced our notation based upon a specific example to reading comprehension. 
+
+How can we make this more general and applicable to general case studies and problems?
+
 General Notation
 ===
 Assume that $\bm{y}_{p \times 1} \sim (\mu_{p \times 1}, \Sigma_{p \times p}).$
 
 $$\bm{y}_{p \times 1}= \left( \begin{array}{c}
 y_{1}\\
-\textcolor{red}{y_{2}}\\
+{y_{2}}\\
 \vdots\\
 y_{p}
 \end{array} \right).$$
@@ -137,7 +146,16 @@ $$
 \end{array} \right).
 $$
 
-Linear Algebra Background
+
+Background
+===
+
+Before proceeding, we need to review some basic concepts from linear algebra:
+
+1. Basic properties of matrices
+2. Useful lemmas for working with matrices. 
+
+The determinant of a matrix 
 ===
 
 Assume a matrix $A_{n \times n}$  is invertible. The 
@@ -146,12 +164,41 @@ where $A{ij}$ are the co-factors and are computed from $$A_{ij} = (-1)^{i+j}det(
 $M_{ij}$ is known as the minor matrix and is the matrix you get if you eliminate row i and column j from matrix $A.$ You must apply this technique recursively.
 \vskip 1em 
 
-I recommend using the det() commend in R. 
+\textbf{We only use this technique when doing such calculations by hand or in proof-based approaches.}
+
+The determinant of a matrix 
+===
+
+- How on earth do I use the complicated formula on the pervious slide. 
+
+\textbf{Easy: Use the \texttt{det} command in \texttt{R} when faced with an application.}
+
 \vskip 1em 
+
+- You will also see a determinant in the definition of the multivariate normal distribution. 
+
+\textbf{Important point: It's just a function and we typically do not need to evalute it in this course!}
+
+
+The trace of a matrix 
+===
 
 Assume a matrix $H_{p \times p}.$
 
 $$\text{trace}(H) = \sum_i h_{ii},$$ where $h_{ii}$ are the diagonal elements of $H.$
+
+
+The trace of a matrix 
+===
+
+$$
+H =
+\left( \begin{array}{cc}
+1 & 0 \\
+0 & 1 \\
+\end{array} \right).
+$$
+What is $\text{tr}({H})?$
 
 Linear Algebra Tricks
 ===
@@ -164,16 +211,17 @@ Lemma 1:
 $$tr(AB) = tr(BA)$$
 Proof: Exercise. 
 
+Linear Algebra Tricks
+===
+
 Lemma 2: 
 
-Suppose $\bm{x}$ is a vector. 
+Suppose $\bm{x}$ is a vector. $\bm{x}^TA\bm{x}$ is called a **quadratic form**. 
 
 $$\bm{x}^TA\bm{x} = tr(\bm{x}^TA\bm{x}) = tr(\bm{x}\bm{x}^TA) = tr(A\bm{x}\bm{x}^T)$$
 
 Proof: Exercise. 
 
-
-Why are these useful? We'll come back to this later in the module.
 
 Notation
 ===
