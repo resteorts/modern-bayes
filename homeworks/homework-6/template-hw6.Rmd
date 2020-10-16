@@ -83,7 +83,7 @@ You will find code below (that is also taken from class ) that will help you wit
 
 
 ```{r}
-knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache=FALSE)
 library(xtable)
 
 # Samples from a truncated gamma with
