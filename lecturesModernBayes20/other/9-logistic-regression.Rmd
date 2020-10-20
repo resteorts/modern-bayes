@@ -30,7 +30,7 @@ Motivation
 What is an ``o-ring"
 ===
 
-``An O-ring, also known as a packing or a toric joint, is a mechanical gasket in the shape of a torus. It is a loop of elastomer with a round cross-section, designed to be seated in a groove and compressed during assembly between two or more parts, creating a seal at the interface."
+``An o-ring, also known as a packing or a toric joint, is a mechanical gasket in the shape of a torus. It is a loop of elastomer with a round cross-section, designed to be seated in a groove and compressed during assembly between two or more parts, creating a seal at the interface."
 
 -Wikipedia
 
@@ -41,6 +41,64 @@ What is an ``o-ring"
 - O-rings are on component of a space shuttle, and we now know that they can fail at low temperatures. 
 
 - We did not know this in 1986 during the Challenger launch.
+
+O-ring Data
+===
+```{r}
+library(faraway)
+data("orings")
+orings[1,] <- c(53,1)
+head(orings)
+```
+
+O-ring Data
+===
+
+The 1986 crash of the space shuttle Challenger was linked to failure of o-ring seals in the rocket engines. 
+
+Data was collected on the 23 previous shuttle missions, where the following variables were collected:
+
+- temperate for each mission
+- damage to the number of o-rings (out of a total of six)
+
+Plot
+===
+```{r}
+plot(damage~temp, data=orings, xlab="temperature (F)",
+     ylab="damage (out of 6)",
+     pch=16, col="red", ylim=c(0,6))
+```
+
+
+
+Plot
+===
+```{r}
+library(ggplot2)
+geom_boxplot(outlier.colour="black", outlier.shape=14,
+             outlier.size=2, notch=FALSE)
+damage <- as.factor(orings$damage)
+temp <- orings$temp
+head(damage)
+```
+
+Boxplot of temperature versus o-ring failure 
+===
+```{r, warning=FALSE ,echo=FALSE}
+p <- ggplot(orings, aes(x=as.factor(orings$damage), y=temp)) + 
+  geom_boxplot()
+p + ggtitle("") +
+  xlab("Damage") + ylab("Temp (F)")
+```
+
+Response and covariate
+===
+
+- The response is the damage to the o-ring (in each shuttle launch). 
+
+- The covariate is the temperature (F) in each shuttle launch. 
+
+The question of interest is the probability of an o-ring failure. 
 
 Notation and Setup
 ===
@@ -64,7 +122,7 @@ The response
 \begin{align}
 Y_i \mid p_i &\sim \text{Bernoulli}(p_i)
 \end{align}
-for $i=1,ldots,n.$
+for $i=1,\ldots,n.$
 
 The logistic regression model writes that the logit of the probability  $p_i$
 is a linear function of the predictor variable(s) $x_i$: 
@@ -81,7 +139,7 @@ and not $p_i.$
 
 - For example, the intercept $\beta_0$ is the $log(\frac{p_i}{1-p_i})$ for observation $i$ when the predictor takes a value of 0.
 
-- The slope $\beta_1$ refers to the change in the expected log odds of labor participation of a married woman who has an additional $1000 family income exclusive of her own income
+- The slope $\beta_1$ refers to the change in the expected log odds of failure of an o-ring for a decrease in temperature. 
 
 Exercise
 ===
