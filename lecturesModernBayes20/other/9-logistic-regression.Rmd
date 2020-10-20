@@ -18,31 +18,32 @@ Agenda
 - Background
 - Logistic regression
 
-Motivation
+The Challenger Case Study
+===
+
+On 28 January 1986, the Space Shuttle Challenger broke apart, 73 seconds into
+flight. All seven crew members died. The cause of the disaster was the failure of
+an o-ring on the right solid rocket booster.
+
+O-rings
+===
+
+- O-rings help seal the joints of different segments of the solid rocket boosters. 
+
+- We learned after this fatal mission that o-rings can fail at extremely low temperature. 
+
+
+
+Motivations and goals
 ===
 
 - In 1986, the Challenger space shuttle exploded as it took off.
 - The question of interest was what happened and could it have been prevented?
-- To understand this, we need to learn about to concepts:
-
-- ``o-rings" and Bayesian logistic regression 
-
-What is an ``o-ring"
-===
-
-``An o-ring, also known as a packing or a toric joint, is a mechanical gasket in the shape of a torus. It is a loop of elastomer with a round cross-section, designed to be seated in a groove and compressed during assembly between two or more parts, creating a seal at the interface."
-
--Wikipedia
+- We will revisit not just the challenger data, but other missions to understand the relationship between o-ring failure and temperature. 
+- To understand this, we need to learn about logistic regression. 
 
 
-What is an ``o-ring"
-===
-
-- O-rings are on component of a space shuttle, and we now know that they can fail at low temperatures. 
-
-- We did not know this in 1986 during the Challenger launch.
-
-O-ring Data
+Loading the Faraway Package
 ===
 ```{r}
 library(faraway)
@@ -51,7 +52,7 @@ orings[1,] <- c(53,1)
 head(orings)
 ```
 
-O-ring Data
+Space Shuttle Missions
 ===
 
 The 1986 crash of the space shuttle Challenger was linked to failure of o-ring seals in the rocket engines. 
@@ -79,7 +80,7 @@ geom_boxplot(outlier.colour="black", outlier.shape=14,
              outlier.size=2, notch=FALSE)
 damage <- as.factor(orings$damage)
 temp <- orings$temp
-head(damage)
+head(damage) 
 ```
 
 Boxplot of temperature versus o-ring failure 
@@ -97,8 +98,6 @@ Response and covariate
 - The response is the damage to the o-ring (in each shuttle launch). 
 
 - The covariate is the temperature (F) in each shuttle launch. 
-
-The question of interest is the probability of an o-ring failure. 
 
 Notation and Setup
 ===
@@ -165,5 +164,80 @@ for $i=1,\ldots,n.$
 \end{align}
 
 \textbf{How can we build minimal Bayesian prior knowledge?}
+
+
+Priors on $\beta_0$ and $\beta_1$
+===
+
+Conjugate priors do not exists on $\beta_0$ and $\beta_1.$
+
+We will consider the following weakly informative priors:
+
+\begin{align}
+\beta_0 &\sim \text{Normal}(0,1000) \\
+\beta_1 &\sim \text{Normal}(0,1000) \\
+\end{align}
+
+Posterior sampling
+===
+
+Since we cannot find the posterior in closed form, we will resort to MCMC to approximate inference regarding 
+$\beta_0, \beta_1.$
+
+We can do this easily using the \texttt{logitMCMC} function in the \texttt{MCMCpack} R package. 
+
+This package implements a random walk Metroplis algorithm. 
+
+Posterior sampling
+===
+```{r}
+library(MCMCpack)
+failure <- orings$damage
+temperature <- orings$temp
+output <- MCMClogit(failure~temperature, 
+                    mcmc=1000, b0=0, B0=0.001)
+```
+
+Traceplots
+===
+\footnotesize
+```{r}
+plot(output)
+```
+
+Summary
+===
+\footnotesize
+```{r}
+summary(output)
+```
+
+Simulating Posterior Prediction
+===
+
+Given a certain temperature, we can simulate the results of future space shuttle launches using the posterior predictive distribution. 
+
+Suppose that on launch day, it's 80 degrees (F). 
+
+How would we simulate a predictive probability that a o-ring would fail? 
+
+
+Simulating Posterior Prediction
+===
+
+```{r}
+library(boot)
+temp <- 80
+fail.prob <- inv.logit(output[,1]+ temp*output[,2])
+y.pred <- rbinom(2100, size=1, prob=fail.prob)
+```
+
+
+Simulating Posterior Prediction
+===
+
+```{r}
+barplot(table(y.pred))
+```
 
 
