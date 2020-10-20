@@ -10,6 +10,25 @@ output:
 font-size: 8px
 ---
 
+Exam II
+===
+
+- Coverage will be modules 5 -- 7
+- The exam will be during in class on Thursday, October 29th
+- The exa(m will be open note/open book (open resources)
+- You may not talk to anyone during the exam except for myself or a TA
+- All questions must be sent via private chat. 
+- Look over the ENTIRE exam during the first 15 minutes to see if you have clarifying questions to avoid a triage of questions at the end of the exam. (
+- You are to not talk/post/communicate with anyone about the exam until after the exam itself (or this is an honor code violation), so DO NOT post to Piazza! 
+
+Exam II
+===
+
+- There will be four questions
+- Q1: Free response
+- Q2: True/False
+- Q3/Q4: derivations and conceptual
+
 Agenda
 ===
 - Motivational reading comprehension case study 
@@ -321,6 +340,13 @@ f_z(z) &= \prod_{i=1}^n (2\pi)^{-1/2} e^{-z_i^2/2}\\
 The last line is follows since  $\sum_i-z_i^2 = -z^Tz.$
 
 Thus, $Z_1,\ldots,Z_n \sim \text{MVN}(\textbf{0},I).$
+
+Goals
+===
+
+1. We will derive the MVN-MVN.
+2. We will derive the MVN-inverse Wishart
+3. We will then consider a hierarchical model and use 1-2 in order to derive our full conditional distributions and construct a Gibbs sampler. (This will help you on Homework 7). 
 
 Conjugate to MVN
 ===
