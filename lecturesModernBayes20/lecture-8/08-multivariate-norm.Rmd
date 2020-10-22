@@ -15,11 +15,11 @@ Exam II
 
 - Coverage will be modules 5 -- 7
 - The exam will be during in class on Thursday, October 29th
-- The exa(m will be open note/open book (open resources)
+- The exam will be open note/open book (open resources)
 - You may not talk to anyone during the exam except for myself or a TA
 - All questions must be sent via private chat. 
-- Look over the ENTIRE exam during the first 15 minutes to see if you have clarifying questions to avoid a triage of questions at the end of the exam. (
-- You are to not talk/post/communicate with anyone about the exam until after the exam itself (or this is an honor code violation), so DO NOT post to Piazza! 
+- Look over the ENTIRE exam during the first 15 minutes to see if you have clarifying questions to avoid a triage of questions at the end of the exam. 
+- You are to not talk/post/communicate with anyone about the exam until after grades are released (or this is an honor code violation), so DO NOT post anywhere (including piazza).  
 
 Exam II
 ===
@@ -28,6 +28,52 @@ Exam II
 - Q1: Free response
 - Q2: True/False
 - Q3/Q4: derivations and conceptual
+
+Exam II General Topics
+===
+
+- Module 5: Monte Carlo (naive, importance sampling, rejection sampling)
+- Module 6: MCMC (MCMC, why MCMC, Markov property, advantages/disadvantages, ergodic theorem)
+- Module 6: Example of MCMC: Metropolis Algorithm (original paper)
+- Module 6: Metroplis Algorithm from a Bayesian perspective 
+- Module 6: Traceplots, Posterior Densities 
+
+Exam II General Topics
+===
+
+- Module 7: Gibbs sampling (two stage and multi-stage Gibbs sampler)
+- Module 7: Latent variable models and data augmentation (censoring and guassian mixture models)
+- Module 7: Diagnostics: Traceplots, Running average plots, burn-in
+- Module 7: Other topics: the label switching problem
+
+Exam II
+===
+
+- Given the amount of material, I will not be able to test you on everything above. It's just not possible. 
+- So, use your time wisely, and make sure you have a firm knowledge of everything that we have covered. 
+
+What are the main topics for Exam II
+===
+
+1. Monte carlo (naive, importance sampling, rejection sampling)
+2. General properties of MCMC (MCMC, why MCMC, Markov property, advantages/disadvantages, ergodic theorem)
+3. Intro to the Metropolis algorithm (original 1959 paper)
+4. The Metroplis Algorithm from a Bayesian perspective 
+5. Diagnostics (traceplots, running average plots, posterior densities, posterior credible intervals, burn-in)
+6. Gibbs sampling (just the set up, deriving conditionals, and writing pseudo-code for the Gibbs sampler)
+7. Censoring using latent variables
+8. Gaussian mixture models using latent variables (data augmentation)
+
+On Tuesday, the TA's (Lavonne, Michael, Ziang, and myself) will cover four of these topics as voted on by you as a class. 
+
+Upcoming OH
+===
+
+- OH will also be prioritized by the voted upon topics before moving onto other questions. 
+- Lab this week will focus on these prioritized topics that you as a class vote on.
+- \textbf{There will lab next Friday, where you will work on homework 7. There will be no class on election day.}
+
+
 
 Agenda
 ===
