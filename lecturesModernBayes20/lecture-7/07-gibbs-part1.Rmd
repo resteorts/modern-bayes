@@ -281,14 +281,17 @@ Toy example
 Example: Normal with semi-conjugate prior
 ===
 Consider
-$X_1,\ldots,X_n|\mu,\lambda\,\stackrel{iid}{\sim} \N(\mu,\lambda^{-1})$.
+$$X_1,\ldots,X_n|\mu,\lambda\,\stackrel{iid}{\sim} \N(\mu,\lambda^{-1}).$$
 Then independently consider
 \begin{align*}
 & \bm\mu \sim \N(\mu_0,\lambda_0^{-1})\\
 & \bm{\lambda} \sim \Ga(a,b)
 \end{align*}
 
-This is called a semi-conjugate situation, in the sense that the prior on $\mu$ is conjugate for each fixed value of $\lambda$, and the prior on $\lambda$ is conjugate for each fixed value of $\mu$.
+We refer to this as a **semi-conjugate situation** for the following reasons:
+
+1. The prior on $\mu$ is **conjugate** for each fixed value of $\lambda$ since we get an updated Normal distribution. 
+2. The prior on $\lambda$ is **conjugate** for each fixed value of $\mu$ since we get an updated Gamma distribution. 
 
 \vskip 1em
 

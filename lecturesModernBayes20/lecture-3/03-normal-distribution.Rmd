@@ -145,6 +145,13 @@ a X + b Y\sim\N(a\mu + b m,\,a^2\sigma^2+ b^2 s^2).
 \item Careful: \texttt{rnorm}, \texttt{dnorm}, \texttt{pnorm}, and \texttt{qnorm} in \texttt{R} take the mean and \textcolor{red}{standard deviation} $\sigma$ as arguments (not mean and variance $\sigma^2$). For example, \texttt{rnorm(n,m,s)} generates $n$ normal random variables from $\N(m,s^2)$.
 \end{itemize}
 
+Symmetry of the Normal Distribution
+===
+
+The normal distribution is symmetric. Why? 
+
+
+
 Normal-Uniform
 ===
 $$ X_1,\dotsc,X_n \mid \theta \iid\N(\theta,\sigma^2). $$
