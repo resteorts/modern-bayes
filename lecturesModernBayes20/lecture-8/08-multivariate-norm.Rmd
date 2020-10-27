@@ -923,67 +923,67 @@ Exam II Preparation
 3. Write pseudo code to illustrate how one would utilize a Gibbs sampler to approximate the posterior distribution. 
 
 
-<!-- Solution -->
-<!-- === -->
+Solution
+===
 
-<!-- 1. The posterior distribution can be written as -->
+1. The posterior distribution can be written as
 
-<!-- \begin{align} -->
-<!-- p(a,b \mid x)  -->
-<!-- & = a b \exp(- a b x)  \times \exp(- a - b)\I(a,b,x>0) -->
-<!-- \end{align} -->
+\begin{align}
+p(a,b \mid x)
+& = a b \exp(- a b x)  \times \exp(- a - b)\I(a,b,x>0)
+\end{align}
 
-<!-- This distribution is not something that appears to be a known distribution or looks like it might be something easy to sample from, thus, Gibbs sampling is a natural choice. (Metropolis could be used as well.)  -->
+This distribution is not something that appears to be a known distribution or looks like it might be something easy to sample from, thus, Gibbs sampling is a natural choice. (Metropolis could be used as well.)
 
-<!-- Solution -->
-<!-- === -->
+Solution
+===
 
-<!-- 2. We must derive the full conditionals $a \mid b,x$ and  -->
-<!-- $b \mid a,x.$ Consider  -->
-
-
-<!-- \begin{align} -->
-<!--     p(a \mid b,x)  -->
-<!--     &\underset{a}{\propto} p(x,a,b) \\  -->
-<!--     &\underset{a}{\propto} a \exp(-a b x - a)\I(a>0)  \\ -->
-<!--     &= a \exp(-(b x + 1)a)\I(a>0)\\ -->
-<!--     &\underset{a}{\propto} \Ga(a\mid 2,\, b x + 1). -->
-<!-- \end{align} -->
+2. We must derive the full conditionals $a \mid b,x$ and
+$b \mid a,x.$ Consider
 
 
-<!-- Solution -->
-<!-- === -->
+\begin{align}
+    p(a \mid b,x)
+    &\underset{a}{\propto} p(x,a,b) \\
+    &\underset{a}{\propto} a \exp(-a b x - a)\I(a>0)  \\
+    &= a \exp(-(b x + 1)a)\I(a>0)\\
+    &\underset{a}{\propto} \Ga(a\mid 2,\, b x + 1).
+\end{align}
 
-<!-- It follows that  -->
 
-<!-- $$p(b \mid a,x) {\propto} \Ga(b\mid 2,\, a x + 1).$$ -->
+Solution
+===
 
-<!-- Solution -->
-<!-- === -->
+It follows that
 
-<!-- Initialize $(a,b)$ to $(a_0, b_0).$ -->
+$$p(b \mid a,x) {\propto} \Ga(b\mid 2,\, a x + 1).$$
 
-<!-- 1. For the first iteration of the Gibbs sampler,  -->
+Solution
+===
 
-<!-- Draw $a$ from $a \mid b=b_0,x$ -->
+Initialize $(a,b)$ to $(a_0, b_0).$
 
-<!-- Draw $b$ from $a \mid a=a_1,x$ -->
+1. For the first iteration of the Gibbs sampler,
 
-<!-- in order to get $(a_1,b_1).$ -->
+Draw $a$ from $a \mid b=b_0,x$
 
-<!-- 2. For the second iteration of the Gibbs sampler, -->
+Draw $b$ from $a \mid a=a_1,x$
 
-<!-- Draw $a$ from $a \mid b=b_1,x$ -->
+in order to get $(a_1,b_1).$
 
-<!-- Draw $b$ from $a \mid a=a_2,x$ -->
+2. For the second iteration of the Gibbs sampler,
 
-<!-- in order to get $(a_2,b_2).$ -->
+Draw $a$ from $a \mid b=b_1,x$
 
-<!-- M. For the $M$th iteration of the Gibbs sampler, -->
+Draw $b$ from $a \mid a=a_2,x$
 
-<!-- Draw $a$ from $a \mid b=b_{M-1},x$ -->
+in order to get $(a_2,b_2).$
 
-<!-- Draw $b$ from $a \mid a=a_{M},x$ -->
+M. For the $M$th iteration of the Gibbs sampler,
 
-<!-- in order to get $(a_M,b_M).$ -->
+Draw $a$ from $a \mid b=b_{M-1},x$
+
+Draw $b$ from $a \mid a=a_{M},x$
+
+in order to get $(a_M,b_M).$
 
