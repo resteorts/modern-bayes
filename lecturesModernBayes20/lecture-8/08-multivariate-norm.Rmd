@@ -906,3 +906,84 @@ tr(AB) &= \sum_{i=1}^n (AB)_{ii} \\
 &= \sum_{i=1}^n (BA)_{ii} 
 = tr(BA)
 \end{align}
+
+Exam II Preparation
+===
+
+Consider the following Exponential model for an observation $x$:
+$$ p(x|a,b) = a b \exp(- a b x) \I(x>0)$$
+and suppose the prior is 
+$$ p(a,b) = \exp(- a - b)\I(a,b>0). $$
+
+Exam II Preparation
+===
+
+1. Write out the $p(a,b \mid x).$ Is is something you know how to sample from? Explain. 
+2. Derive any conditional distributions needed for a Gibbs sampler. 
+3. Write pseudo code to illustrate how one would utilize a Gibbs sampler to approximate the posterior distribution. 
+
+
+<!-- Solution -->
+<!-- === -->
+
+<!-- 1. The posterior distribution can be written as -->
+
+<!-- \begin{align} -->
+<!-- p(a,b \mid x)  -->
+<!-- & = a b \exp(- a b x)  \times \exp(- a - b)\I(a,b,x>0) -->
+<!-- \end{align} -->
+
+<!-- This distribution is not something that appears to be a known distribution or looks like it might be something easy to sample from, thus, Gibbs sampling is a natural choice. (Metropolis could be used as well.)  -->
+
+<!-- Solution -->
+<!-- === -->
+
+<!-- 2. We must derive the full conditionals $a \mid b,x$ and  -->
+<!-- $b \mid a,x.$ Consider  -->
+
+
+<!-- \begin{align} -->
+<!--     p(a \mid b,x)  -->
+<!--     &\underset{a}{\propto} p(x,a,b) \\  -->
+<!--     &\underset{a}{\propto} a \exp(-a b x - a)\I(a>0)  \\ -->
+<!--     &= a \exp(-(b x + 1)a)\I(a>0)\\ -->
+<!--     &\underset{a}{\propto} \Ga(a\mid 2,\, b x + 1). -->
+<!-- \end{align} -->
+
+
+<!-- Solution -->
+<!-- === -->
+
+<!-- It follows that  -->
+
+<!-- $$p(b \mid a,x) {\propto} \Ga(b\mid 2,\, a x + 1).$$ -->
+
+<!-- Solution -->
+<!-- === -->
+
+<!-- Initialize $(a,b)$ to $(a_0, b_0).$ -->
+
+<!-- 1. For the first iteration of the Gibbs sampler,  -->
+
+<!-- Draw $a$ from $a \mid b=b_0,x$ -->
+
+<!-- Draw $b$ from $a \mid a=a_1,x$ -->
+
+<!-- in order to get $(a_1,b_1).$ -->
+
+<!-- 2. For the second iteration of the Gibbs sampler, -->
+
+<!-- Draw $a$ from $a \mid b=b_1,x$ -->
+
+<!-- Draw $b$ from $a \mid a=a_2,x$ -->
+
+<!-- in order to get $(a_2,b_2).$ -->
+
+<!-- M. For the $M$th iteration of the Gibbs sampler, -->
+
+<!-- Draw $a$ from $a \mid b=b_{M-1},x$ -->
+
+<!-- Draw $b$ from $a \mid a=a_{M},x$ -->
+
+<!-- in order to get $(a_M,b_M).$ -->
+
