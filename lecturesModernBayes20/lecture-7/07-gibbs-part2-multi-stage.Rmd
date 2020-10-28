@@ -312,7 +312,7 @@ The updated CDF is
 Y = P(Z_i < z) &= \frac{F(z) - F(c)}{1 - F(c)}.
 \end{align*}
 
-Thus, $Y$ is a sample from the truncated Gamma.
+Thus, $Y$ is the updated CDF of the truncated Gamma.
 
 Remark: when we implement the GS, we do not sample the observed values. 
 We impute the censored values using the method just outlined.  

@@ -196,11 +196,13 @@ The Variance
 ===
 
 \begin{align}
-Var(\hat{I}) &= \dfrac{1}{n^2}\sum_i Var\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right)\\
-&=\dfrac{1}{n}Var\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right)  \implies \\
+Var(\hat{I}) &= \dfrac{1}{n^2}\sum_i Var_g\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right)\\
+&=\dfrac{1}{n}Var_g\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right)  \implies \\
 \widehat{Var}(\hat{I}) &= 
-\dfrac{1}{n}\widehat{Var}\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right).
+\dfrac{1}{n}\widehat{Var}_g\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right),
 \end{align}
+
+\textcolor{red}{where  $X_1, X_2, \ldots, X_n$ are iid samples from $g.$}
 
 Simple Example
 ===
