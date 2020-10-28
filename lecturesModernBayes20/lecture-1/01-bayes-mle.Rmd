@@ -19,17 +19,20 @@ Agenda
 
 Traditional inference
 ===
+
 You are given **data** $X$ and there is an **unknown parameter** you wish to estimate **$\theta$**
 
 How would you estimate $\theta$?
 
 - Find an unbiased estimator of $\theta$. 
 - Find the maximum likelihood estimate (MLE) of $\theta$ by looking at the likelihood of the data. 
-- Suppose that $\hat{\theta}$ estimates $\theta.$ Note: $\hat{\theta}$ may depend on the data $x_{1:n} = x_1, \ldots x_n.$
+- Suppose that $\hat{\theta}$ estimates $\theta.$ 
+
+Note: $\hat{\theta}$ may depend on the data $x_{1:n} = x_1, \ldots x_n.$
 
 Unbiased Estimator
 ===
-Recall that $\hat{\theta}$ is an unbiased estimator of $\theta$ if 
+Recall that $\hat{\theta}$ is an **unbiased estimator** of $\theta$ if 
 
 \begin{equation}
 E[\hat{\theta}] = \theta.
@@ -38,20 +41,25 @@ E[\hat{\theta}] = \theta.
 Maximum  Likelihood Estimation
 ===
 
-For each sample point $x_{1:n},$ let $\hat{\theta}$ be a parameter value at which $p(x_{1:n} \mid \theta)$ attains it's maximum as a function of $\theta,$ with $x_{1:n}$ held fixed. A \emph{maximum likelihood esimator (MLE)} of the parameter $\theta$ based on a sample $x_{1:n}$ is $\hat{\theta}.$
+For each sample point $x_{1:n},$ let $\hat{\theta}$ be a parameter value at which $p(x_{1:n} \mid \theta)$ attains it's maximum as a function of $\theta,$ with $x_{1:n}$ held fixed. 
 
-Find the MLE
+A **maximum likelihood esimator** (MLE) of the parameter $\theta$ based on a sample $x_{1:n}$ is $\hat{\theta}.$
+
+Finding the MLE
 ===
 
 The solution to the MLE are the possible candidates ($\theta$) that solve 
 
 \begin{equation}
+\label{eqn:mle}
 \frac{\partial p(x_{1:n} \mid \theta)}{\partial \theta} = 0.
 \end{equation}
 
-Solution to the above equation are only possible candidates for the MLE since the first derivative being 0 is a necessary condition for a maximum (but not a sufficient one). 
+The solution to equation \ref{eqn:mle} are only **possible candidates** for the MLE since the first derivative being 0 is a **necessary condition** for a maximum but not a sufficient one. 
 
-Our job is to find a global maximum. Thus, we need to ensure that we haven't found a local one.  
+Our job is to find a global maximum. 
+
+Thus, we need to ensure that we haven't found a local one.  
 
 MLE of Normal distribution
 ===
@@ -64,20 +72,20 @@ MLE of Normal distribution
 ===
 
 \begin{equation}
-p(x_{1:n} \mid \theta) = (2 \pi)^{-n/2} \times \exp \{\frac{-1}{2} \sum_i (x_i - \theta )^2  \}
+p(x_{1:n} \mid \theta) = (2 \pi)^{-n/2} \times \exp \{\frac{-1}{2} \sum_{i=1}^n (x_i - \theta )^2  \}
 \end{equation}
 
 Consider 
 
 \begin{equation}
-\log p(x_{1:n}) = -n/2 \log (2\pi) - \frac{1}{2} \sum_i (x_i - \theta )^2 
+\log p(x_{1:n}) = -n/2 \log (2\pi) - \frac{1}{2} \sum_{i=1}^n (x_i - \theta )^2 
 \end{equation}
 
 MLE of Normal distribution
 ===
 
 \begin{equation}
-\frac{\partial p(x_{1:n} \mid \theta)}{\partial \theta} = \sum_i(x_i - \theta)
+\frac{\partial p(x_{1:n} \mid \theta)}{\partial \theta} = \sum_{i=1}^n (x_i - \theta)
 \end{equation}
 
 This implies that 
@@ -90,7 +98,7 @@ MLE of Normal distribution
 Consider 
 
 $$\frac{\partial^2 p(x_{1:n} \mid \theta)}{\partial \theta^2} = -n < 0.$$
-Thus, our solution is unique. 
+Thus, our solution is unique (and a global solution). 
 
 Exercise
 ===
@@ -139,20 +147,32 @@ Thus, we can write the posterior mean as a function of the MLE and the prior mea
 Bernoulli-Bayes Estimation
 ===
 
-$$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Bernoulli}(\theta).$$
-This implies that $Y = \sum_i X_i \sim Binomial(n, \theta).$
+\begin{align}
+X_1, \ldots, X_n &\stackrel{iid}{\sim} \text{Bernoulli}(\theta). \\
+\theta &\sim \text{Beta}(a,b)
+\end{align}
 
-It can be shown that the MLE for $\theta$ is $\bar{x} = y/n.$
+Note that $Y = \sum_i X_i \sim Binomial(n, \theta).$
 
-Consider $\theta \sim \text{Beta}(a,b).$
+Exercise: The MLE for $\theta$ is $\bar{x} = y/n.$
 
-Recall that $$\theta \mid y \sim Beta(y + a, n - y + b).$$
+Exercise: $$\theta \mid y \sim \text{Beta}(y + a, n - y + b).$$
 
 Bernoulli-Bayes Estimation
 ===
 
-Consider the posterior mean
+Show that the posterior mean can be written as 
 
+$$
+E[\theta \mid y] =
+\text{MLE} \times \frac{n}{a + b + n} + \text{priorMean} \times \frac{a+b}{a + b + n},
+$$
+where $\text{MLE}=\bar{x}$ and $\text{priorMean} = \frac{a}{a+b}.$
+
+Bernoulli-Bayes Estimation
+===
+
+Proof:
 $$
 \begin{aligned}
 E[\theta \mid y] &= \frac{y + a}{y + a +  n - y + b}  = \frac{y + a}{a +  n  + b} \\
@@ -160,15 +180,16 @@ E[\theta \mid y] &= \frac{y + a}{y + a +  n - y + b}  = \frac{y + a}{a +  n  + b
 &= 
 \frac{y}{n} \times \frac{n}{a + b + n} + \frac{a}{a+b} \times \frac{a+b}{a + b + n} \\
 &= 
-MLE \times \frac{n}{a + b + n} + priorMean \times \frac{a+b}{a + b + n}
+\text{MLE} \times \frac{n}{a + b + n} + \text{priorMean} \times \frac{a+b}{a + b + n}
 \end{aligned}
 $$
+
 Thus, we have written the posterior mean as a linear comboination of the MLE and prior mean with weights being determined by a,b, and n.
 
 Evaluation of Estimators
 ===
 
-How do we evaluate estimators? We often use the mean sauared error. 
+How do we evaluate estimators? We often use the mean squared error. 
 
 $$\text{MSE}(\hat{\theta}) = E_\theta [(\hat{\theta} - \theta)^2].$$
 
@@ -179,6 +200,7 @@ $$\text{MSE}(\hat{\theta}) = Var_\theta(\hat{\theta}) + E_\theta[(\hat{\theta} -
 where the $$\text{Bias}_\theta (\hat{\theta}) = E_\theta(\hat{\theta}) - \theta.$$
 
 For a more in depth treatment of MSE and bias, see Section 7.3.1, Casella and Berger, p. 330 - 334.
+
 Binomial MLE
 ===
 Let $$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Bernoulli}(\theta).$$
@@ -205,7 +227,13 @@ is the MLE of $g(\hat{\theta}).$
 Proof: Theorem 7.2.10, Casella and Berger, page 318.
 
 
+Summary
+===
 
+- Unbiased Estimator
+- MLEs
+- Examples of MLE's
+- MSE
 
 
 
