@@ -258,17 +258,17 @@ Neither the joint posterior nor any of the full conditionals involving the likel
 Using latent variables
 ===
 
-Our data points $Y_1,\ldots,Y_n$ come from a mixture model:
+\textcolor{red}{Our data points $Y_1,\ldots,Y_n$ come from a mixture model:}
 
 \begin{align}
-Y_i \sim \sum_{j=1}^3 N(\mu_j,\varepsilon^2)
+\textcolor{red}{Y_i \sim \sum_{j=1}^3 N(\mu_j,\varepsilon^2)}
 \end{align}
 
-For each data point, define $Z_i$ to be a latent variable such that 
-$$P(Z_i = j) = w_j$$ for $j=1,2,3.$ This implies that
+\textcolor{red}{For each data point, define $Z_i$ to be a latent variable such that 
+$$P(Z_i = j) = w_j$$ for $j=1,2,3.$ This implies that}
 
 \begin{align}
-Y_i\mid Z_i  \sim  N(\mu_{Z_i},\varepsilon^2).
+\textcolor{red}{Y_i\mid Z_i  \sim  N(\mu_{Z_i},\varepsilon^2).}
 \end{align}
 
 
