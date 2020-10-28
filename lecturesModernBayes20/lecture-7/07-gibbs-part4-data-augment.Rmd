@@ -261,7 +261,7 @@ Using latent variables
 \textcolor{red}{Our data points $Y_1,\ldots,Y_n$ come from a mixture model:}
 
 \begin{align}
-\textcolor{red}{Y_i \sim \sum_{j=1}^3 \mu_j N(\mu_j,\varepsilon^2)}
+\textcolor{red}{Y_i \sim \sum_{j=1}^3 w_j N(\mu_j,\varepsilon^2)}
 \end{align}
 
 \textcolor{red}{For each data point, define $Z_i$ to be a latent variable such that 
