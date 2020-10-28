@@ -473,10 +473,12 @@ and
 p(c|\alpha, x_{1:n})\underset{c}{\propto}p(\alpha,c|x_{1:n})
 \underset{c}{\propto} c^{n\alpha}\I(0<c<x_*),
 \end{align*}
-which we will define to be Mono$(\alpha, x_*)$
+which we will define to be Mono$(\alpha, x_*),$ \textcolor{red}{and we define generally on the next slide.}
 
 Mono distribution
 ===
+\textcolor{red}{Here, we define the Mono distribution generally before returning to our example.}
+
 For $a>0$ and $b>0$, define the distribution $\Mono(a,b)$ (for monomial) with p.d.f.
 $$ \Mono(x|a,b)\propto x^{a-1}\I(0<x<b). $$
 Since $\int_0^b x^{a -1}d x = b^a/a$, we have
