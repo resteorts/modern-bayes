@@ -305,14 +305,14 @@ For the censored values of $Z_i$ we know $c_i$.
 Given $\theta$, $Z_i|\theta \sim \text{Gamma}(r,\theta)$.  
 
 Let $F$ be the CDF of $\text{Gamma}(Z_i \mid r,\theta)$ and truncate to 
-$(c,\infty)$.  
+$(c_i,\infty)$.  
 
 \textcolor{red}{Consider the following:}
 \begin{align*}
-P(Z < z \mid c) &= \frac{F(z) - F(c)}{1 - F(c)}.
+P(Z_i < z_i \mid c_i) &= \frac{F(z_i) - F(c_i)}{1 - F(c_i)}.
 \end{align*}
 
-\textcolor{red}{Then $Z \mid c$ has a truncated Gamma distribution.}
+\textcolor{red}{Then $Z_i \mid c_i$ has a truncated Gamma distribution.}
 
 Remark: when we implement the GS, we do not sample the observed values. 
 We impute the censored values using the method just outlined.  
