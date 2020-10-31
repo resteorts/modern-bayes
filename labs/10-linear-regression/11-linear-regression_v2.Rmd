@@ -16,6 +16,8 @@ Linear Regression Applied to Swimming
 - There are 6 times for each student, taken every two weeks. 
 - Each row corresponds to a swimmer and a higher column index indicates a later date. 
 
+This goes with Module 9 on linear regression.
+
 Data set
 ===
 
@@ -54,7 +56,7 @@ The conditional posterior for $\beta_i$ is multivariate normal with
     \tau_i \, | \, Y_i, X_i, \beta &\sim \text{Gamma}\left(a + 3\, , \, b + \frac{(Y_i - X_i\beta_i)^{T}(Y_i - X_i\beta_i)}{2} \right).
 \end{align*}
 
-These can be found in in Hoff in section 9.2.1.
+These can be found/verified in in Hoff in section 9.2.1.
 
 Task 2
 ===
@@ -84,7 +86,7 @@ Posterior Prediction (Task 4)
 ===
 The coach has to decide which swimmer should compete in a meet two weeks from the last recorded time. Using the posterior predictive distributions, compute $\text{Pr}\left\{y_i^{*}=\text{max}\left(y_1^{*},y_2^{*},y_3^{*},y_4^{*}\right)\right\}$ for each swimmer $i$ and use these probabilities to make a recommendation to the coach. 
 
-- This is left as an exercise. 
+
 
 
 
