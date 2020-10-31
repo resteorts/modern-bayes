@@ -292,4 +292,4 @@ Summary
 - What does logistic regression look like? 
 - We use the Metropolis algorithm via R
 - What did we learn from the case study? 
-- 
+
