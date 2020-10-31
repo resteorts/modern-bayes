@@ -92,7 +92,7 @@ MLE of Normal distribution
 ===
 
 \begin{equation}
-\frac{\partial p(x_{1:n} \mid \theta)}{\partial \theta} = \sum_{i=1}^n (x_i - \theta)
+\frac{\partial \log p(x_{1:n} \mid \theta)}{\partial \theta} = \sum_{i=1}^n (x_i - \theta)
 \end{equation}
 
 This implies that 
@@ -104,7 +104,7 @@ MLE of Normal distribution
 
 Consider 
 
-$$\frac{\partial^2 p(x_{1:n} \mid \theta)}{\partial \theta^2} = -n < 0.$$
+$$\frac{\partial^2 \log p(x_{1:n} \mid \theta)}{\partial \theta^2} = -n < 0.$$
 Thus, our solution is unique (and a global solution). 
 
 Invariance property of MLE's
