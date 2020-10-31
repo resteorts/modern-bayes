@@ -19,27 +19,28 @@ Agenda
 - Ordinary Least Squares
 - An application to swimmers
 
-Oxygen uptake experiment
+
+Oxygen uptake case study
 ===
 
-Exercise is hypotheized to relate to $O_2$ uptake
-
-What type of exercise is the most beneficial?
-
 Experimental design: 12 male volunteers.
+
 \begin{enumerate}
-\item $O_2$ uptake measured at the beginning of the study.
+\item $O_2$ uptake measured at the beginning of the study
 \item 6 men take part in a randomized aerobics program
-\item 6 remaining men do a running program
+\item 6 remaining men participate in a running program
 \item $O_2$ uptake measured at end of study
 \end{enumerate}
+
+What type of exercise is the most beneficial?
 
 Data
 ===
 ```{r}
-# running is 0, 1 is aerobic
+# 0 is running
+# 1 is aerobic exercise
 x1<-c(0,0,0,0,0,0,1,1,1,1,1,1)
-# age
+# x2 is age
 x2<-c(23,22,22,25,27,20,31,23,27,28,22,24)
 # change in maximal oxygen uptake
 y<-c(-0.87,-10.74,-3.27,-1.97,7.50,
@@ -75,6 +76,9 @@ For each group,
 $$y = \beta_o + \beta_1 x_2 + \epsilon$$
 
 Linearity means linear in the parameters ($\beta$'s). 
+
+Linear regression
+===
 
 We could also try the model
 
@@ -230,28 +234,38 @@ The Normal regression model specifies that
 Y_i &= \beta^T x_i + \bm{\epsilon}_i\\
 \epsilon_1,\ldots,\epsilon_n &\stackrel{iid}{\sim} Normal(0,\sigma^2)
 \end{align}
- 
-We can specify a simple Bayesian model as the following: 
 
-$$\by \mid X,\bbeta, \sigma^2 \sim MVN( X\bbeta, \sigma^2 I)$$
-$$\bbeta \sim MVN(0, \tau^2 I) $$
+We can re-write this as a multivariate regression model as:
 
-Normal Regression Model (continued)
+$$\by \mid X,\bbeta, \sigma^2 \sim MVN( X\bbeta, \sigma^2 I_p).$$
+
+Bayesian Normal Regression Model
 ===
-This specifies the density of the data: 
+ 
+We can specify a multivariate Bayesian model as: 
+
+$$\by \mid X,\bbeta, \sigma^2 \sim MVN( X\bbeta, \sigma^2 I_p)$$
+$$\bbeta \sim MVN(0, \tau^2 I_p),$$
+
+where $\sigma^2, \tau^2$ are known.
+
+Bayesian Normal Regression Model
+===
+
+The likelihood is 
 \begin{align}
 &p(y_1,\ldots,y_n \mid x_1,\ldots x_n, \bbeta, \sigma^2) \\
 &= \prod_{i=1}^n p(\by_i \mid \bx_i, \bbeta, \sigma^2) \\
 &(2\pi \sigma^2 )^{-n/2} \exp\{
 \frac{-1}{2\sigma^2} \sum_{i=1}^n (\by_i - \bbeta^T \bx_i)^2
 \}\\
-&= (2\pi \sigma^2 )^{-n/2} \exp\{\textcolor{red}{-\frac{1}{2}} (\by - X\bbeta)^T\textcolor{red}{(\sigma^2)^{-1} I}(\by - X\bbeta)\}
+&= (2\pi \sigma^2 )^{-n/2} \exp\{\textcolor{black}{-\frac{1}{2}} (\by - X\bbeta)^T\textcolor{black}{(\sigma^2)^{-1} I_p}(\by - X\bbeta)\}
 \end{align}
 
 
 Ordinary Least Squares
 ===
-We estimate the coefficients $\hat{\bm{\beta}} \in \R^p$ by least squares:
+We can estimate the coefficients $\hat{\bm{\beta}} \in \R^p$ by least squares:
 $$\hat{\bm{\beta}} = \argmin_{\bbeta \in \R^p} \|\by-X\bbeta\|_2^2$$
 This gives
 $$\hat{\bm{\beta}} = (X^T X)^{-1} X^T \by$$
@@ -260,15 +274,19 @@ without and with an intercept?)
 
 \bigskip
 The fitted values are
-$$\textcolor{red}{\hat{\bm{y}}} = X\hat{\bm{\beta}} = X(X^T X)^{-1} X^T \by$$
+$$\textcolor{black}{\hat{\bm{y}}} = X\hat{\bm{\beta}} = X(X^T X)^{-1} X^T \by$$
 This is a linear function of $\by$, $\hy = H\by$, where
-$H=X(X^T X)^{-1} X^T$ is sometimes called the hat matrix
+$H=X(X^T X)^{-1} X^T$ is sometimes called the **hat matrix**.
 
 Ordinary Least squares estimation
 ===
 Let SSR denote sum of squared residuals. 
 $$ \min_{\bbeta} SSR(\hbeta) = \min_{\bbeta} \|\by-X\hat{\bm{\beta}}\|_2^2$$
-Then 
+Show that  $$\hat{\bm{\beta}}  = (X^TX)^{-1}X^T\by.$$
+
+Ordinary Least squares estimation
+===
+Proof: Observe
 \begin{align}
  \frac{\partial SSR(\bbeta)}{\partial d\bbeta} &= 
 \frac{\partial (\by-X\bbeta)^T(\by-X\bbeta)}{\partial d\bbeta} \\
@@ -278,10 +296,19 @@ Then
 
 This implies $-X^T\by + X^TX\bbeta= 0 \implies \hat{\bm{\beta}}  = (X^TX)^{-1}X^T\by.$
 \vskip 1em
-Called the ordinary least squares estimator. When is it unique?
+
+This is called the **ordinary least squares estimator**. How do we know it is unique?
 
 Ordinary Least squares estimation
 ===
+Show that 
+
+$$\hat{\bm{\beta}} \sim MVN(\bbeta, \sigma^2  (X^TX)^{-1}).$$
+
+Ordinary Least squares estimation
+===
+Proof: Recall
+
 $$\hbeta  = (X^TX)^{-1}X^T\bY. $$
 \vskip 1em
 $$E(\hat{\bm{\beta}} ) = E[(X^TX)^{-1}X^T\bY]= 
