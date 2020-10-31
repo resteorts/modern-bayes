@@ -16,6 +16,9 @@ Agenda
 
 - Maximum Likelihood Esimation
 - Unbiased Estimators
+- Invariance Proptery of MLEs
+- Mean Squared Error
+- Practice Exercises
 
 
 Traditional inference
@@ -42,9 +45,11 @@ E[\hat{\theta}] = \theta.
 Maximum  Likelihood Estimation
 ===
 
-For each sample point $x_{1:n},$ let $\hat{\theta}$ be a parameter value at which $p(x_{1:n} \mid \theta)$ attains it's maximum as a function of $\theta,$ with $x_{1:n}$ held fixed. 
+Assume sample points $x_{1:n}.$
 
-A **maximum likelihood esimator** (MLE) of the parameter $\theta$ based on a sample $x_{1:n}$ is $\hat{\theta}.$
+Let $\hat{\theta}$ be a parameter value at which $p(x_{1:n} \mid \theta)$ attains its maximum as a function of $\theta,$ with $x_{1:n}$ held fixed. 
+
+A **maximum likelihood esimator** (MLE) of the parameter $\theta$ based on a sample $x_{1:n}$ is denoted by $\hat{\theta}.$
 
 Finding the MLE
 ===
@@ -56,11 +61,11 @@ The solution to the MLE are the possible candidates ($\theta$) that solve
 \frac{\partial p(x_{1:n} \mid \theta)}{\partial \theta} = 0.
 \end{equation}
 
-The solution to equation \ref{eqn:mle} are only **possible candidates** for the MLE since the first derivative being 0 is a **necessary condition** for a maximum but not a sufficient one. 
+The solution to equation \ref{eqn:mle} are only **possible candidates** for the MLE.
 
-Our job is to find a global maximum. 
+<!-- since the first derivative being 0 is a **necessary condition** for a maximum but not a sufficient one.  -->
 
-Thus, we need to ensure that we haven't found a local one.  
+Our job is to find a **global maximum**, and make sure that we have not found a **local maximum**. 
 
 MLE of Normal distribution
 ===
@@ -71,6 +76,7 @@ Show that the MLE is $\hat{\theta} =\bar{x}.$
 
 MLE of Normal distribution
 ===
+Proof:
 
 \begin{equation}
 p(x_{1:n} \mid \theta) = (2 \pi)^{-n/2} \times \exp \{\frac{-1}{2} \sum_{i=1}^n (x_i - \theta )^2  \}
@@ -101,91 +107,13 @@ Consider
 $$\frac{\partial^2 p(x_{1:n} \mid \theta)}{\partial \theta^2} = -n < 0.$$
 Thus, our solution is unique (and a global solution). 
 
-Exercise
+Invariance property of MLE's
 ===
 
-Show that 
+If $\hat{\theta}$ is the MLE of $\theta$, then for any function $g(\theta)$, the MLE of $g(\theta)$ 
+is the MLE of $g(\hat{\theta}).$
 
-$$\hat{\theta} = \bar{x}$$ is an unbiased estimator for $\theta.$
-
-Proof. 
-
-$$E[\hat{\theta}] = E[\bar{x}] = \frac{1}{n}\sum_iE[x_i] = \frac{1}{n} \sum_i \theta = \theta.$$
-
-Thus, we have showed that the MLE is an unbiased estimator for $\theta.$
-
-
-
-
-
-Normal-Normal model
-===
-
-Suppose that  $$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Normal}(\theta, 1),$$
-where we now consider $$\theta \stackrel{ind}{\sim} \text{Normal}(\mu, \tau^2).$$
-
-
-Let $\lambda = 1$ and $\lambda_o = 1/\tau^2.$
-
-Recall that from module 3, $$\theta \mid x_{1:n} \sim N(M,L^{-1}),$$ where
-$$L = n\lambda + \lambda_o$$
-and $$M = \frac{n \lambda \bar{x} + \lambda_o\mu}{n\lambda + \lambda_o}.$$
-
-
-Normal MLE
-===
-
-Observe that 
-
-$$
-M = \frac{n \lambda \bar{x} + \lambda_o\mu}{n\lambda + \lambda_o}
-= \frac{n \lambda \hat{\theta} + \lambda_o\mu}{n\lambda + \lambda_o}
-= \frac{n\lambda}{n\lambda + \lambda_o} \hat{\theta} + \frac{\lambda_o}{n\lambda + \lambda_o}\mu.
-$$
-
-Thus, we can write the posterior mean as a function of the MLE and the prior mean $\mu.$
-
-Bernoulli-Bayes Estimation
-===
-
-\begin{align}
-X_1, \ldots, X_n &\stackrel{iid}{\sim} \text{Bernoulli}(\theta). \\
-\theta &\sim \text{Beta}(a,b)
-\end{align}
-
-Note that $Y = \sum_i X_i \sim Binomial(n, \theta).$
-
-Exercise: The MLE for $\theta$ is $\bar{x} = y/n.$
-
-Exercise: $$\theta \mid y \sim \text{Beta}(y + a, n - y + b).$$
-
-Bernoulli-Bayes Estimation
-===
-
-Show that the posterior mean can be written as 
-
-$$
-E[\theta \mid y] =
-\text{MLE} \times \frac{n}{a + b + n} + \text{priorMean} \times \frac{a+b}{a + b + n},
-$$
-where $\text{MLE}=\bar{x}$ and $\text{priorMean} = \frac{a}{a+b}.$
-
-Bernoulli-Bayes Estimation
-===
-
-Proof:
-$$
-\begin{aligned}
-E[\theta \mid y] &= \frac{y + a}{y + a +  n - y + b}  = \frac{y + a}{a +  n  + b} \\
-&= \frac{y}{a + b + n} + \frac{a}{a + b + n} \\
-&= 
-\frac{y}{n} \times \frac{n}{a + b + n} + \frac{a}{a+b} \times \frac{a+b}{a + b + n} \\
-&= 
-\text{MLE} \times \frac{n}{a + b + n} + \text{priorMean} \times \frac{a+b}{a + b + n}
-\end{aligned}
-$$
-
-Thus, we have written the posterior mean as a linear comboination of the MLE and prior mean with weights being determined by a,b, and n.
+Proof: Theorem 7.2.10, Casella and Berger, page 318.
 
 Evaluation of Estimators
 ===
@@ -202,7 +130,106 @@ where the $$\text{Bias}_\theta (\hat{\theta}) = E_\theta(\hat{\theta}) - \theta.
 
 For a more in depth treatment of MSE and bias, see Section 7.3.1, Casella and Berger, p. 330 - 334.
 
-Binomial MLE
+
+Exercise 1
+===
+
+Show that 
+
+$$\hat{\theta} = \bar{x}$$ is an unbiased estimator for $\theta.$
+
+Solution to Exercise 1
+===
+
+Proof. 
+
+$$E[\hat{\theta}] = E[\bar{x}] = \frac{1}{n}\sum_iE[x_i] = \frac{1}{n} \sum_i \theta = \theta.$$
+
+Thus, we have showed that the MLE is an unbiased estimator for $\theta.$
+
+
+
+
+
+Exercise 2
+===
+
+Consider 
+
+\begin{align}
+X_1, \ldots, X_n &\stackrel{iid}{\sim} \text{Normal}(\theta, 1) \\
+\theta &\stackrel{ind}{\sim} \text{Normal}(\mu, \tau^2)
+\end{align}
+
+Write the posterior mean as a function of the MLE and the prior mean $\mu.$
+
+Solution to Exercise 2
+===
+
+Let $\lambda = 1$ and $\lambda_o = 1/\tau^2.$
+
+Recall that from module 3, $$\theta \mid x_{1:n} \sim N(M,L^{-1}),$$ where
+$$L = n\lambda + \lambda_o$$
+and $$M = \frac{n \lambda \bar{x} + \lambda_o\mu}{n\lambda + \lambda_o}.$$
+
+
+Solution to Exercise 2
+===
+
+Observe that 
+
+$$
+M = \frac{n \lambda \bar{x} + \lambda_o\mu}{n\lambda + \lambda_o}
+= \frac{n \lambda \hat{\theta} + \lambda_o\mu}{n\lambda + \lambda_o}
+= \frac{n\lambda}{n\lambda + \lambda_o} \hat{\theta} + \frac{\lambda_o}{n\lambda + \lambda_o}\mu.
+$$
+
+Thus, we can write the posterior mean as a function of the MLE and the prior mean $\mu.$
+
+Exercise 3
+===
+
+\begin{align}
+X_1, \ldots, X_n &\stackrel{iid}{\sim} \text{Bernoulli}(\theta). \\
+\theta &\sim \text{Beta}(a,b)
+\end{align}
+
+Observe that $Y = \sum_i X_i \sim \text{Binomial}(n, \theta).$
+
+It can be shown that the MLE for $\theta$ is $\bar{x} = y/n.$
+
+Recall that $$\theta \mid y \sim \text{Beta}(y + a, n - y + b).$$
+
+Exercise 3
+===
+
+Show that the posterior mean can be written as 
+
+$$
+E[\theta \mid y] =
+\text{MLE} \times \frac{n}{a + b + n} + \text{priorMean} \times \frac{a+b}{a + b + n},
+$$
+where $\text{MLE}=\bar{x}$ and $\text{priorMean} = \frac{a}{a+b}.$
+
+Solution to Exercise 3
+===
+
+Proof:
+$$
+\begin{aligned}
+E[\theta \mid y] &= \frac{y + a}{y + a +  n - y + b}  = \frac{y + a}{a +  n  + b} \\
+&= \frac{y}{a + b + n} + \frac{a}{a + b + n} \\
+&= 
+\frac{y}{n} \times \frac{n}{a + b + n} + \frac{a}{a+b} \times \frac{a+b}{a + b + n} \\
+&= 
+\text{MLE} \times \frac{n}{a + b + n} + \text{priorMean} \times \frac{a+b}{a + b + n}
+\end{aligned}
+$$
+
+Thus, we have written the posterior mean as a linear comboination of the MLE and prior mean with weights being determined by a,b, and n.
+
+
+Binomial MLE Exercise 
 ===
 Let $$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Bernoulli}(\theta).$$
 
@@ -210,7 +237,7 @@ Show that the MLE is $\hat{\theta} =\bar{x}.$
 
 Proof: Casella and Berger, Example 7.2.7, page 317-318.
 
-Normal-Normal model
+Normal-Normal model Exercise 
 ===
 Suppose that  $$X_1, \ldots, X_n \stackrel{iid}{\sim} \text{Normal}(\theta, \sigma^2),$$
 where $\theta, \sigma^2$ are both unknown. 
@@ -219,22 +246,17 @@ Show that $(\bar{x}, n^{-1} \sum_i (x_i - \bar{x})^2))$ are the MLE's for $(\the
 
 Proof: Casella and Berger, Example 7.2.7, page 317-318.
 
-Invariance property of MLE's
-===
 
-If $\hat{\theta}$ is the MLE of $\theta$, then for any function $g(\theta)$, the MLE of $g(\theta)$ 
-is the MLE of $g(\hat{\theta}).$
-
-Proof: Theorem 7.2.10, Casella and Berger, page 318.
 
 
 Summary
 ===
 
+- Maximum Likelihood Estimators (MLEs)
+- Invariance of MLEs
+- Mean squared errors
 - Unbiased Estimator
-- MLEs
-- Examples of MLE's
-- MSE
+- Practice exercises 
 
 
 
