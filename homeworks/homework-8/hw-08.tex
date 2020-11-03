@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage{amssymb}
+%\newcommand{\btheta}{\boldsymbol{\theta}}
+%\newcommand{\bmu}{\boldsymbol{\mu}}
+\newcommand{\bSigma}{\boldsymbol{\Sigma}}
+%\newcommand{\distas}[1]{\mathbin{\overset{#1}{\kern\z@\sim}}}%
+\input{custom2}
+
+
+
+
+
+\begin{document}
+\title{Homework 8}
+\author{STA-360, Fall 2020}
+\date{Due at 5:00 PM EDT on Friday November 13}
+\maketitle
+
+Total points: 10 (reproducibility) + 10 (Q1) + 8 (Q2) = 28 points. 
+
+\textbf{General instructions for homeworks}: Please follow the uploading file instructions according to the syllabus. You will give the commands to answer each question in its own code block, which will also produce plots that will be automatically embedded in the output file. Each answer must be supported by written statements as well as any code used. Your code must be completely reproducible and must compile. Syllabus: (https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring19.pdf)
+
+\textbf{Advice}: Start early on the homeworks and it is advised that you not wait until the day of. While the professor and the TA's check emails, they will be answered in the order they are received and last minute help will not be given unless we happen to be free.  
+
+\textbf{Commenting code}
+Code should be commented. See the Google style guide for questions regarding commenting or how to write 
+code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's will be accepted.
+
+Please look over the homework before lab this week. TA's will answer questions on the homework this week regarding these two 
+problems below. I recommend that you work through them as much as possible before lab this week. 
+
+\begin{enumerate}
+\item \emph{Lab component} (10 points) Please complete \textbf{Lab 10}, parts c and d which correspond with linear regression, which can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/labs/10-linear-regression/11-linear-regression_v2.pdf}.
+\begin{enumerate}
+\item[c)] (5 points) Complete lab 10, part c.
+\item[d)] (5 points) Complete lab 10, part d.
+\end{enumerate}
+
+\newpage
+
+\item (8 points) \emph{Multivariate Methods} 
+Consider the following hierarchical model:
+\[ \bm{y}_i \mid \btheta,\bSigma \stackrel{i.i.d.}{\sim} MVN(\btheta_{d \times 1},\bSigma_{d \times d}), \quad i = 1, \cdots, n, \]
+and independent priors $$\btheta_{d \times 1} \sim MVN(\bmu_{d \times 1},\bm{T}_{d \times d}), 
+\qquad \bSigma_{d \times d} \sim IW(\Psi_{d \times d},\nu).$$
+\begin{enumerate}
+\item (1 point) Show that $(\bmu_{1 \times d}^T \bm{T_{d \times d}}^{-1}\btheta_{d \times 1})^T = \btheta^T \bm{T}^{-1} \bmu$.\\
+\textit{Hint}: what's the transpose of a scalar?
+\item (1 point) Use (a) to show that:
+\[ p(\btheta) \propto e^{-\frac{1}{2}\left(\btheta^T\bm{T}^{-1}\btheta - 2\bmu^T\bm{T}^{-1}\btheta \right)} \]
+\item (2 points) Use (b) to show that
+$$ p(\btheta \mid \bSigma, \bm{y} )
+\sim MVN\left\{\bmu^*(\bSigma) := {\bm{T}^*}(n \boldsymbol{\Sigma}^{-1}\bar{\bm{y}} + \bm{T}^{-1}\bmu), \bm{T}^* := ( n\boldsymbol{\Sigma}^{-1} + \bm{T}^{-1})^{-1}\right\}. $$
+\item (2 points) Show that:
+\[ \text{tr}(\Psi\boldsymbol{\Sigma}^{-1})+\sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta})^T \boldsymbol{\Sigma}^{-1}(\bm{y}_i-\boldsymbol{\theta}) = \text{tr}\left\{\left(\Psi + \sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta}) (\bm{y}_i-\boldsymbol{\theta})^T \right) \boldsymbol{\Sigma}^{-1}\right\}.\]
+\textbf{Hint}: Recall that $\text{tr}(A)$ is the trace of matrix $A$ -- the sum of its diagonal entries. \textit{Lemma}: (i) for scalar $a$, $\text{tr}(a)=a$; (ii) $\text{tr}(ABC) = \text{tr}(BCA) = \text{tr}(CAB)$.
+\item (2 points) Use (d) to show (step-by-step) that:
+\[ [\bSigma|\btheta,\text{data}] \sim IW(\Psi^*(\btheta),\nu^*),\]
+%where $\Psi^*(\btheta)$ and $\nu^*$ are in class notes. 
+where $\nu^* = n + v$ and $\Psi^*(\btheta) = (\Psi + \sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta}) (\bm{y}_i-\boldsymbol{\theta})^T)^{-1} .$
+\end{enumerate}
+\end{enumerate}
+\end{document}
