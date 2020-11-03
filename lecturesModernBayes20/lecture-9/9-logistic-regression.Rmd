@@ -123,11 +123,60 @@ In a GLM, $$\eta = \beta^T X = \beta_1 X_1 + \ldots \beta_p X_p$$
 
 The link component connects the random and systematic components, via a link function $g.$ The link function provides a connection between $\mu$ and $\eta.$ 
 
-Example
+Summary
+===
+
+- Our goal is to estimate $\mu = E[Y\mid X]$
+
+- $\theta$ is a parameter we use to govern the shape of the density $Y\mid X.$ Thus, $\mu$ depends on $\theta.$
+
+- $\phi$ is a dispersion parameter of the density, which we will assume is known
+
+- For GLM's, $\eta = \beta^T X.$ Our goal is aiming to model a transformation of the mean $\mu$ by a function of $X$:
+$$g(\mu) = \eta(X).$$
+
+Gaussian Example
 ===
 
 
-Write out an example.
+Suppose $$Y\mid X \sim \text{Normal}(\mu, \sigma^2).$$
+
+Then $$f(y) = \frac{1}{\sqrt{2\pi}\sigma}\exp \left\{
+-\frac{1}{2\sigma^2} (y- \mu)^2
+\right\}.$$
+
+Show that $Y \mid X$ is in the exponential family. 
+
+Gaussian Example
+===
+
+\begin{align}
+f(y) 
+&= (\sqrt{2\pi}\sigma)^{-1}\sigma\exp \left\{
+-\frac{1}{2\sigma^2} (y- \mu)^2
+\right\} \\
+&= \exp\{\log(\sqrt{2\pi}\sigma)^{-1}\}
+\exp \left\{
+-\frac{1}{2\sigma^2} (y^2 - 2y\mu + \mu^2)
+\right\} \\
+&= \exp\{-\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma} \}
+\exp \left\{
+ \frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2} - \frac{y^2}{2\textcolor{blue}{\sigma^2}}
+\right\} \\
+&=
+\exp \{
+\frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2}
+- \frac{y^2}{2\textcolor{blue}{\sigma^2}}
+-\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma}
+\}
+\end{align}
+
+The natural parameter $\theta = \mu$ and $b(\theta) = \theta^2/2.$
+
+The dispersion parameter is $\phi = \sigma$ and $a(\phi) = \sigma^2.$
+
+Finally, $c(y,\phi) = \frac{y^2}{2\textcolor{blue}{\sigma^2}} - \log \phi - \log 2\pi.$
+
 
 
 
