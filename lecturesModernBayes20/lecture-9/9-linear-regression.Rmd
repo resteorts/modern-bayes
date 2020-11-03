@@ -401,6 +401,8 @@ Posterior inference applied to Oxygen uptake
 To continue the rest of the oxygen uptake example, please refer to 9.2 in Hoff
 (commentary and code). Pages 157 -- 159 in Hoff.
 
+I would like for your to continue this on your own. 
+
 
 Linear Regression Applied to Swimming (Lab 10)
 ===
@@ -408,6 +410,7 @@ Linear Regression Applied to Swimming (Lab 10)
 - The data set we consider contains times (in seconds) of four high school swimmers swimming 50 yards. 
 - There are 6 times for each student, taken every two weeks. 
 - Each row corresponds to a swimmer and a higher column index indicates a later date. 
+- This corresponds with Lab 10 and Homework 8 (the last homework)! 
 
 Data set
 ===
@@ -448,6 +451,8 @@ The conditional posterior for $\beta_i$ is multivariate normal with
 \end{align*}
 
 These can be found in in Hoff in section 9.2.1.
+
+\textbf{I highly recommend that you derive these as practice for the final exam.}
 
 Task 2
 ===

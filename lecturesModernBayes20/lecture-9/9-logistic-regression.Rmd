@@ -18,6 +18,119 @@ Agenda
 - Background
 - Logistic regression
 
+
+Beyond Linear Models
+===
+
+While linear models are useful, they are limited when  
+
+1. the range of $y_i$ is restricted (e.g., binary or count)
+2. the variance of $y_i$ depends on the mean
+
+**Generalized linear models** (GLMs) extend the linear model
+framework to address both of these issues. 
+
+General linear model
+===
+
+A general linear model is made up of a **linear predictor** 
+
+\begin{align}
+\eta_i = \beta_0 + \beta_1 x_{1i} + \ldots + \beta_p x_{pi}
+\end{align}
+
+and two funtions
+
+- a **link function** that describes how the mean $E(Y_i) = \mu_i$ depends on the linear predictor
+$$g(\mu_i) = \eta_i.$$
+
+- a **variance function** describes how the variance $\text{Var}(Y_i)$ depends on the mean
+$$\text{Var}(Y_i) = \phi V(\mu),$$
+where the dispersion parameter $\phi$ is a constant.
+
+Example
+===
+
+For the linear model considered in the last module, we have the linear predictor
+
+\begin{align}
+\eta_i = \beta_0 + \beta_1 x_{1i} + \ldots + \beta_p x_{pi}
+\end{align}
+
+where the link function is $$g(\mu_i) = \mu_i.$$
+and the variance function is $$V(\mu_i) = 1.$$
+
+Binomial Data
+===
+
+Suppose 
+
+$$Y_i \sim Binomial(n_i, p_i)$$ 
+and our goal is to model the proportion $Y_i/n_i.$
+
+- Then $E(Y_i/n_i) = p_i$ and $Var(Y_i/n_i) = \dfrac{pi(1-p_i)}{n}.$
+
+- The variance function is $V(\mu_i) = \mu_i (1-\mu_i).$
+
+- A common choice of the link function is 
+
+$$g(\mu_i) = \text{logit}(\mu_i) = \log(\mu_i/(1-\mu_i)).$$
+
+What's the big idea behind GLM's
+===
+
+- Depending on the type of data we have, we choose an appropriate transformation. 
+
+- For a linear model, we use the identity transformation. 
+
+- For binary data, we used the logit transform. 
+
+- For other data, we need to think about what transform would be appropriate. 
+
+Generalized Linear Models 
+===
+
+Given covariates $X$ and an outcome $Y,$ a **generalized linear model** is defined by three components:
+
+1. a **random component**, which specifies a distribution for $Y \mid X.$
+2. a **systematic component** that relates the parameter $\eta$ to the covariates $X$
+3. a **link function** that connects the random and systematic components
+
+Exponential Families
+===
+
+In a GLM, we are allowed to assume that $Y \mid X$ has a probability density function or probability mass function of the form
+
+\begin{align}
+\label{eqn:exponential}
+f(y; \theta, \phi) = \exp\left\{ \frac{y\theta - b(\theta)}{a(\phi)} c(y,\phi) \right\}
+\end{align}
+
+where $\theta$ and $\phi$ are the **natural and dispersion parameters**, respectively; $a,b,c$ are functions.
+
+Any density that can be written in the form of equation \ref{eqn:exponential} is called an **exponential family**. 
+
+Exponential Families
+===
+
+- We assume $E[Y\mid X] = \mu$ and our goal is to estimate $\mu.$
+
+- We usually assume that $\phi$ is known. 
+
+- The systematic component relates $\eta$ to $X.$ 
+
+In a GLM, $$\eta = \beta^T X = \beta_1 X_1 + \ldots \beta_p X_p$$
+
+The link component connects the random and systematic components, via a link function $g.$ The link function provides a connection between $\mu$ and $\eta.$ 
+
+Example
+===
+
+
+Write out an example.
+
+
+
 The Challenger Case Study
 ===
 
@@ -205,6 +318,16 @@ We can do this easily using the \texttt{logitMCMC} function in the \texttt{MCMCp
 
 This package implements a random walk Metroplis algorithm. 
 
+The random walk metropolis algorithm
+===
+
+- We saw the random walk metropolis algorithm in Module 6, slide 31. 
+
+- For a different review of this method, there is a nice explanation of it here: 
+\url{https://www.youtube.com/watch?v=U561HGMWjcw}
+
+- We don't need to code it up, as someone has written a nice package in R, but you could do this on your own if you wanted to. 
+
 Posterior sampling
 ===
 ```{r}
@@ -284,6 +407,10 @@ How would we simulate a predictive probability that a o-ring would fail?
 <!-- barplot(table(y.pred)) -->
 <!-- ``` -->
 
+
+
+
+
 Summary
 ===
 
@@ -292,4 +419,3 @@ Summary
 - What does logistic regression look like? 
 - We use the Metropolis algorithm via R
 - What did we learn from the case study? 
-

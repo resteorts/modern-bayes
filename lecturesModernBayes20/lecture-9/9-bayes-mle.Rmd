@@ -122,13 +122,33 @@ How do we evaluate estimators? We often use the mean squared error.
 
 $$\text{MSE}(\hat{\theta}) = E_\theta [(\hat{\theta} - \theta)^2].$$
 
-Observe that 
+Observe that
 
-$$\text{MSE}(\hat{\theta}) = Var_\theta(\hat{\theta}) + E_\theta[(\hat{\theta} - \theta)^2] = Var_\theta(\hat{\theta}) + \text{Bias}_\theta (\hat{\theta}),$$
+$$\text{MSE}(\hat{\theta}) = Var_\theta(\hat{\theta}) + E_\theta[(\hat{\theta} - \theta)^2] = Var_\theta(\hat{\theta}) + (\text{Bias}_\theta (\hat{\theta}))^2,$$
 
 where the $$\text{Bias}_\theta (\hat{\theta}) = E_\theta(\hat{\theta}) - \theta.$$
 
+
+
 For a more in depth treatment of MSE and bias, see Section 7.3.1, Casella and Berger, p. 330 - 334.
+
+Exercise 0
+===
+Show that $\text{MSE}(\hat{\theta}) = Var_\theta(\hat{\theta}) + (\text{Bias}_\theta (\hat{\theta}))^2.$
+
+Proof: 
+
+\begin{align}
+&\text{MSE}(\hat{\theta}) \\
+&=
+E_{\theta}[(\hat{\theta} - \theta)^2] \\
+&= E_{\theta}[(\hat{\theta} - E_{\theta}(\hat{\theta}) + E_{\theta}(\hat{\theta}) -\theta)^2] \\
+&=E_{\theta}[( \hat{\theta} - E_{\theta}(\hat{\theta}) ) ^2] \\
+&+ 2( E_{\theta}(\hat{\theta}) -\theta) \times (E_{\theta}[\hat{\theta} - E_{\theta}(\hat{\theta})]) + E_{\theta}[ (E_{\theta} (\hat{\theta}) - \theta)^2 ]\\
+&= E_{\theta}[( \hat{\theta} - E_{\theta}(\hat{\theta}) ) ^2] + [ E_{\theta}(\hat{\theta}) - \theta]^2\\
+&= Var_{\theta}(\hat{\theta}) + [Bias_{\theta}(\hat{\theta})]^2.
+\end{align}
+
 
 
 Exercise 1
