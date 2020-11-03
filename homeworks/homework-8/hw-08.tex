@@ -52,10 +52,11 @@ Consider the following hierarchical model:
 and independent priors $$\btheta_{d \times 1} \sim MVN(\bmu_{d \times 1},\bm{T}_{d \times d}), 
 \qquad \bSigma_{d \times d} \sim IW(\Psi_{d \times d},\nu).$$
 \begin{enumerate}
-\item (1 point) Show that $(\bmu_{1 \times d}^T \bm{T_{d \times d}}^{-1}\btheta_{d \times 1})^T = \btheta^T \bm{T}^{-1} \bmu$.\\
+\item (1 point) Show that $(\btheta^T \bm{T}^{-1} \bmu)^T = \bmu^T \bm{T}^{-1} \btheta.$
+%\item (1 point) Show that $(\bmu_{1 \times d}^T \bm{T_{d \times d}}^{-1}\btheta_{d \times 1})^T = \btheta^T \bm{T}^{-1} \bmu$.\\
 \textit{Hint}: what's the transpose of a scalar?
 \item (1 point) Use (a) to show that:
-\[ p(\btheta) \propto e^{-\frac{1}{2}\left(\btheta^T\bm{T}^{-1}\btheta - 2\bmu^T\bm{T}^{-1}\btheta \right)} \]
+\[ p(\btheta) \propto e^{-\frac{1}{2}\left(\btheta^T\bm{T}^{-1}\btheta - 2\btheta^T \bm{T}^{-1} \bmu \right)} \]
 \item (2 points) Use (b) to show that
 $$ p(\btheta \mid \bSigma, \bm{y} )
 \sim MVN\left\{\bmu^*(\bSigma) := {\bm{T}^*}(n \boldsymbol{\Sigma}^{-1}\bar{\bm{y}} + \bm{T}^{-1}\bmu), \bm{T}^* := ( n\boldsymbol{\Sigma}^{-1} + \bm{T}^{-1})^{-1}\right\}. $$
