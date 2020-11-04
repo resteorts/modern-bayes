@@ -135,6 +135,36 @@ The dispersion parameter is $\phi = \sigma$ and $a(\phi) = \sigma^2.$
 
 Finally, $c(y,\phi) = \frac{y^2}{2\textcolor{blue}{\sigma^2}} - \log \phi - \log 2\pi.$
 
+Bernoulli Example
+===
+
+Suppose $Y \in \{ 0, 1\}$  and 
+$$Y\mid X \stackrel{iid}{\sim} \text{Bernoulli}(p).$$
+
+Show that $Y\mid X$ is an exponential family. 
+
+Bernoulli Solution
+===
+\begin{align}
+f(y) &= p^y(1-p)^{1-y} \\
+&= \exp\{
+y \log p + (1-y) \log(1-p)
+\} \\
+&= \exp\{
+y \log (\textcolor{blue}{\frac{p}{1-p}}) + \log(1-p)
+\} \\
+\end{align}
+
+The natural parameter 
+$\theta = \frac{p}{1-p}.$
+
+The mean is $\mu = p,$ which implies using the inverse of the relation above that 
+$p = e^{\theta}/(1 + e^{\theta}).$
+
+This implies $b(\theta) = log(1-p) = -log(1 + e^{\theta}).$
+
+There is no dispersion parameter, so $a(\phi) = 1$ and $c(y,\phi) = 0.$
+
 
 
 
