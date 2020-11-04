@@ -18,6 +18,74 @@ Agenda
 - Background
 - Logistic regression
 
+The Challenger Case Study
+===
+
+On 28 January 1986, the Space Shuttle Challenger broke apart, 73 seconds into
+flight. All seven crew members died. The cause of the disaster was the failure of
+an o-ring on the right solid rocket booster.
+
+O-rings
+===
+
+- O-rings help seal the joints of different segments of the solid rocket boosters. 
+
+- We learned after this fatal mission that o-rings can fail at extremely low temperatures. 
+
+Loading the Faraway Package
+===
+```{r}
+# Load data from space shuttle missions
+library(faraway)
+data("orings")
+orings[1,] <- c(53,1)
+head(orings)
+```
+
+Space Shuttle Missions
+===
+
+The 1986 crash of the space shuttle Challenger was linked to failure of o-ring seals in the rocket engines. 
+
+Data was collected on the 23 previous shuttle missions, where the following variables were collected:
+
+- temperate for each mission
+- damage to the number of o-rings (failure versus non-failure)
+
+<!-- Plot -->
+<!-- === -->
+<!-- ```{r, echo=FALSE} -->
+<!-- plot(damage~temp, data=orings, xlab="temperature (F)", -->
+<!--      ylab="damage (out of 6)", -->
+<!--      pch=16, col="red", ylim=c(0,6)) -->
+<!-- ``` -->
+
+
+
+Plot
+===
+```{r}
+library(ggplot2)
+geom_boxplot(outlier.colour="black", outlier.shape=14,
+             outlier.size=2, notch=FALSE)
+damage <- as.factor(orings$damage)
+temp <- orings$temp
+head(damage) 
+```
+
+Boxplot of temperature versus o-ring failure 
+===
+```{r, warning=FALSE ,echo=FALSE}
+p <- ggplot(orings, aes(x=as.factor(orings$damage), y=temp)) + 
+  geom_boxplot()
+p + ggtitle("") +
+  xlab("Damage") + ylab("Temp (F)")
+```
+
+Linear models
+===
+
+Why is **linear regression** not appropriate for this data? 
 
 Beyond Linear Models
 ===
@@ -28,13 +96,23 @@ While linear models are useful, they are limited when
 2. the variance of $y_i$ depends on the mean
 
 **Generalized linear models** (GLMs) extend the linear model
-framework to address both of these issues. 
+framework to address both of these issues.
+
+Motivations and goals
+===
+
+- We will revisit not just the challenger data, but other missions to understand the relationship between o-ring failure and temperature. 
+- In order to understand this case study, we first need to learn about exponential families, generalized linear models, and logistic regression.
+ 
 
 Background
 ===
 
-Before, we can introduce GLMs, we need to introduce 
-**exponential families**.
+We need to introduce:
+
+- exponential families
+- generalized linear models
+- and logistic regression 
 
 Exponential Families
 ===
@@ -105,49 +183,7 @@ Exponential Families and GLMs
 \Large
 Let's look at a few examples to solidify our knowledge of exponential families. 
 
-Gaussian Example
-===
 
-
-Suppose $$Y\mid X \sim \text{Normal}(\mu, \sigma^2).$$
-
-Then $$f(y) = \frac{1}{\sqrt{2\pi}\sigma}\exp \left\{
--\frac{1}{2\sigma^2} (y- \mu)^2
-\right\}.$$
-
-Show that $Y \mid X$ is in the exponential family, and provide the respective parameters.
-
-Gaussian Solution
-===
-
-\begin{align}
-f(y) 
-&= (\sqrt{2\pi}\sigma)^{-1}\sigma\exp \left\{
--\frac{1}{2\sigma^2} (y- \mu)^2
-\right\} \\
-&= \exp\{\log(\sqrt{2\pi}\sigma)^{-1}\}
-\exp \left\{
--\frac{1}{2\sigma^2} (y^2 - 2y\mu + \mu^2)
-\right\} \\
-&= \exp\{-\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma} \}
-\exp \left\{
- \frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2} - \frac{y^2}{2\textcolor{blue}{\sigma^2}}
-\right\} \\
-&=
-\exp \{
-\frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2}
-- \frac{y^2}{2\textcolor{blue}{\sigma^2}}
--\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma}
-\}
-\end{align}
-
-The natural parameter $\theta = \mu$ and $b(\theta) = \theta^2/2.$
-
-The dispersion parameter is $\phi = \sigma$ and $a(\phi) = \sigma^2.$
-
-Finally, $c(y,\phi) = \frac{y^2}{2\textcolor{blue}{\sigma^2}} - \log \phi - \log 2\pi.$
-
-The link function $g(\mu) = \mu$ such that we model $\mu = \beta^TX.$
 
 Bernoulli Example
 ===
@@ -165,101 +201,26 @@ f(y) &= p^y(1-p)^{1-y} \\
 y \log p + (1-y) \log(1-p)
 \} \\
 &= \exp\{
-y \log (\textcolor{blue}{\frac{p}{1-p}}) + \log(1-p) + 0
+y \log ({\frac{p}{1-p}}) + \log(1-p) + 0
 \} 
 \end{align}
 
-The natural parameter 
-$\theta = \frac{p}{1-p}.$
+The natural parameter $\theta = \dfrac{p}{1-p}.$
 
-The mean is $\mu = p,$ which implies using the inverse of the relation above that 
+The mean is $\mu = p,$ which implies that
 $p = e^{\theta}/(1 + e^{\theta}).$
 
 This implies $b(\theta) = \log(1-p) = -\log(1 + e^{\theta}).$
 
 There is no dispersion parameter, so $a(\phi) = 1$ and $c(y,\phi) = 0.$
 
-The link function $g(\mu) = \log(\frac{\mu}{1-\mu})$ such that we model $\log(\frac{\mu}{1-\mu}) = \beta^TX.$
+The link function $g(\mu) = \log(\frac{\mu}{1-\mu})$ such that we model $\log(\frac{\mu}{1-\mu}) = \beta^TX.$ This is known as **logistic regression**. 
 
 
-
-
-The Challenger Case Study
+Challenger Case Study
 ===
 
-On 28 January 1986, the Space Shuttle Challenger broke apart, 73 seconds into
-flight. All seven crew members died. The cause of the disaster was the failure of
-an o-ring on the right solid rocket booster.
-
-O-rings
-===
-
-- O-rings help seal the joints of different segments of the solid rocket boosters. 
-
-- We learned after this fatal mission that o-rings can fail at extremely low temperature. 
-
-
-
-Motivations and goals
-===
-
-- In 1986, the Challenger space shuttle exploded as it took off.
-- The question of interest was what happened and could it have been prevented?
-- We will revisit not just the challenger data, but other missions to understand the relationship between o-ring failure and temperature. 
-- To understand this, we need to learn about logistic regression. 
-
-
-Loading the Faraway Package
-===
-```{r}
-library(faraway)
-data("orings")
-orings[1,] <- c(53,1)
-head(orings)
-```
-
-Space Shuttle Missions
-===
-
-The 1986 crash of the space shuttle Challenger was linked to failure of o-ring seals in the rocket engines. 
-
-Data was collected on the 23 previous shuttle missions, where the following variables were collected:
-
-- temperate for each mission
-- damage to the number of o-rings (out of a total of six)
-
-Plot
-===
-```{r}
-plot(damage~temp, data=orings, xlab="temperature (F)",
-     ylab="damage (out of 6)",
-     pch=16, col="red", ylim=c(0,6))
-```
-
-
-
-Plot
-===
-```{r}
-library(ggplot2)
-geom_boxplot(outlier.colour="black", outlier.shape=14,
-             outlier.size=2, notch=FALSE)
-damage <- as.factor(orings$damage)
-temp <- orings$temp
-head(damage) 
-```
-
-Boxplot of temperature versus o-ring failure 
-===
-```{r, warning=FALSE ,echo=FALSE}
-p <- ggplot(orings, aes(x=as.factor(orings$damage), y=temp)) + 
-  geom_boxplot()
-p + ggtitle("") +
-  xlab("Damage") + ylab("Temp (F)")
-```
-
-Response and covariate
-===
+Let's return to the case study of the challenger, where 
 
 - The response is the damage to the o-ring (in each shuttle launch). 
 
@@ -334,8 +295,9 @@ This shows that logit function guarantees that the probability $p_i$ lives in $[
 
 
 
-Bayesian Logistic Regression
+Logistic Regression
 ===
+
 Recall that 
 \begin{align}
 Y_i \mid p_i &\sim \text{Bernoulli}(p_i)
@@ -345,6 +307,11 @@ for $i=1,\ldots,n.$
 \begin{align}
 \text{logit}(p_i)  &:= \log(\frac{p_i}{1-p_i}) = \beta_0 + \beta_1x_i.
 \end{align}
+
+Note: This is the logistic GLM that we saw earlier. To perform logistic regression in \texttt{R}, you can use the \texttt{glm} function with the logit link. 
+
+Bayesian Logistic Regression
+===
 
 \textbf{How can we build minimal Bayesian prior knowledge?}
 
@@ -472,3 +439,47 @@ Summary
 - What does logistic regression look like? 
 - We use the Metropolis algorithm via R
 - What did we learn from the case study? 
+
+Gaussian Example
+===
+
+
+Suppose $$Y\mid X \sim \text{Normal}(\mu, \sigma^2).$$
+
+Then $$f(y) = \frac{1}{\sqrt{2\pi}\sigma}\exp \left\{
+-\frac{1}{2\sigma^2} (y- \mu)^2
+\right\}.$$
+
+Show that $Y \mid X$ is in the exponential family, and provide the respective parameters.
+
+Gaussian Solution
+===
+
+\begin{align}
+f(y) 
+&= (\sqrt{2\pi}\sigma)^{-1}\sigma\exp \left\{
+-\frac{1}{2\sigma^2} (y- \mu)^2
+\right\} \\
+&= \exp\{\log(\sqrt{2\pi}\sigma)^{-1}\}
+\exp \left\{
+-\frac{1}{2\sigma^2} (y^2 - 2y\mu + \mu^2)
+\right\} \\
+&= \exp\{-\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma} \}
+\exp \left\{
+ \frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2} - \frac{y^2}{2\textcolor{blue}{\sigma^2}}
+\right\} \\
+&=
+\exp \{
+\frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2}
+- \frac{y^2}{2\textcolor{blue}{\sigma^2}}
+-\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma}
+\}
+\end{align}
+
+The natural parameter $\theta = \mu$ and $b(\theta) = \theta^2/2.$
+
+The dispersion parameter is $\phi = \sigma$ and $a(\phi) = \sigma^2.$
+
+Finally, $c(y,\phi) = \frac{y^2}{2\textcolor{blue}{\sigma^2}} - \log \phi - \log 2\pi.$
+
+The link function $g(\mu) = \mu$ such that we model $\mu = \beta^TX.$
