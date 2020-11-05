@@ -689,9 +689,9 @@ Exam II
 
 There were issues on both problems 3 and 4. 
 
-Due to this, I'm releasing these problems so that you can go over these for the final. 
+Due to this, I'm releasing Exam II: \url{https://github.com/resteorts/modern-bayes/blob/master/exercises/final-exam/exam2-2020-version2.pdf}
 
-No solutions will be posted to encourage you to work through these derivations on your own. 
+No solutions will be posted to encourage you to work through these derivations on your own. See a member of the TA Team if you have a question, and make sure to bring your derivation with you so we can help understand how best to help you! 
 
 
 
