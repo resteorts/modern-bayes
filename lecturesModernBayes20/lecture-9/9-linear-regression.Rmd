@@ -30,7 +30,7 @@ Remainder of Semester
 
 \textbf{Reading period}
 
-- All OH will be held. Mine will be during class to avoid any conflicts and be more friend to international students. 
+- All OH will be held. Mine will be during class to avoid any conflicts and be more friendly to international students. 
  
 
 Final Exam
@@ -664,9 +664,9 @@ I am proposing to drop your lowest exam grade (out of Exam I, Exam II, and the F
 
 - Homework: 30 percent
 - Highest Exam: 35
-- Lowest Exam: 35
+- Second Highest Exam: 35
 
-- So your two highest exam scores will be weighted evenly and you lowest exam score will be completely dropped. 
+- So your **two highest exam scores** will be weighted evenly and you lowest exam score will be completely dropped. 
 - Yes, you still must take the final exam. 
 
 Course Evaluations
