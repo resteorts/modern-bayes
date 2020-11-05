@@ -48,15 +48,11 @@ The final exam is **November 22, 2 PM - 5 PM EDT** (open note/open book)
 Agenda
 ===
 
-- Motivation: oxygen uptake example 
+- Oxygen uptake example
 - Linear regression
-- Multiple and Multivariate Linear Regression
-- Bayesian Linear Regression
-- Background on the Euclidean norm and argmin 
-- Ordinary Least Squares + Exercises 
-- Setting Prior Parameters
-- The g-prior
-- How does this all fit together 
+- Multiple Linear Regression
+- Ordinary Least Squares
+- An application to swimmers (Lab 10 and Homework 8)
 
 
 Oxygen uptake case study
@@ -359,7 +355,7 @@ Proof: Observe
 & = -  2X^T\by + 2X^TX\bbeta
 \end{align}
 
-This implies $-X^T\by + X^TX\bbeta= 0 \implies \hat{\bm{\beta}}_{ols}  = (X^TX)^{-1}X^T\by.$
+This implies $-X^T\by + X^TX\bbeta= 0 \implies \hat{\bm{\beta}}  = (X^TX)^{-1}X^T\by.$
 \vskip 1em
 
 This is called the **ordinary least squares estimator**. How do we know it is unique?
@@ -429,32 +425,26 @@ summary(fit.ols)$coef
 ```
 
 
-Exercise 3 (Multivariate inference for regression models)
+Multivariate inference for regression models
 ===
-
-Let 
 \begin{align}
-\bm{y} &\mid \bbeta \sim \text{MVN}(X \bbeta, \sigma^2 I)\\
-\bbeta &\sim \text{MVN}(\bbeta_0, \Sigma_0)
+\bm{y} &\mid \bbeta \sim MVN(X \bbeta, \sigma^2 I)\\
+\bbeta &\sim MVN(\bbeta_0, \Sigma_0)
 \end{align}
+The posterior can be shown to be 
+$$\bbeta \mid \bm{y}, X \sim MVN(\bbeta_n, \Sigma_n)$$
 
-Show that the posterior is 
-$$\bbeta \mid \bm{y}, X \sim \text{MVN}(\bbeta_n, \Sigma_n), \; \text{where}$$
-\begin{align*}
-\bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
-(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2) \\
-\Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
-\end{align*}
+where
 
-Remark: If $\Sigma_o^{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{ols}$
+$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
+(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2)$$
 
-If $\Sigma_o^{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
-
+$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}$$
 
 Multivariate inference for regression models
 ===
-The posterior from Exercise 3 can be shown to be 
-$$\bbeta \mid \bm{y}, X \sim \text{MVN}(\bbeta_n, \Sigma_n)$$
+The posterior can be shown to be 
+$$\bbeta \mid \bm{y}, X \sim MVN(\bbeta_n, \Sigma_n)$$
 
 where
 
@@ -463,120 +453,16 @@ $$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\si
 
 $$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}$$
 
-Setting prior parameters
+Remark: If $\Sigma_o^{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{ols}$
+
+If $\Sigma_o^{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
+
+Posterior inference applied to Oxygen uptake
 ===
+To continue the rest of the oxygen uptake example, please refer to 9.2 in Hoff
+(commentary and code). Pages 157 -- 159 in Hoff.
 
-How would you set the prior parameters for 
-
-- $\sigma^2$
-- $\Sigma_{o}$
-- $\beta_0$
-
-
-Setting prior parameters
-===
-
-- Estimate $\sigma^2$ by $\dfrac{y^Ty - \hat{\beta}_{ols}^TX^Ty}{n - (p + 1)}$ because this is an unbiased estimator of $\sigma^2.$
-
-- Set $$\Sigma_{o}^{-1} = \frac{(X^TX)}{n\sigma^2},$$ which is known as the unit information prior (Kass and Wasserman, 1995). 
-
-- Set $\beta_0 = \hat{\beta}_{ols}.$ (This centers the prior distribution of $\beta$ around the OLS estimate).
-
-\textbf{Why are these reasonable choices?}
-
-
-Setting prior parameters
-===
-
-- Do you think that the posterior would be sensitive to the choice of these parameters? 
-
-- How could you improve upon our choices regarding priors on $\beta_0$ and $\Sigma_0$?  
-
-The g-prior
-===
-To improve things by doing the **least amount of calculus**, we can put a \emph{g-prior} on $\bbeta$ (not $\bbeta_0).$
-
-The g-prior on $\bbeta$ has the following form: 
-$$ \bbeta \mid \bX, \sigma^2  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
-where $g$ is a constant, such as $g=n.$
-
-
-It can be shown that (Zellner, 1986):
-
-1. g shrinks the coefficients and can prevent overfitting to the data
-2. if $g = n$, then as n increases, inference approximates that using $\hat{\beta}_{ols}$
-
-The g-prior
-===
-Under the g-prior, it follows that
-\begin{align}
-\bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2]  \\
-&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1} \frac{X^Ty}{\sigma^2} \\
-&= \frac{g}{g+1} (X^TX)^{-1} X^Ty
-= \frac{g}{g+1} \hat{\beta}_{ols}
-\end{align}
-
-\begin{align}
-\Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] \\
-&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1}
-=\frac{g}{g+1} \sigma^2 (X^TX)^{-1} \\
-&= \frac{g}{g+1} \Var[\hat{\beta}_{ols}]
-\end{align}
-
-Prior on $\Sigma_0$
-===
-
-What prior would you place on $\Sigma_0$ and why? 
-
-Next steps
-===
-
-- How do all these concepts fit together? How can you build a hierarhical model using linear regression and the tools that you've learned?
-
-- I recommend doing the derivations from this module on your own. 
-
-- I recommend reading through Hoff to solidify you knowledge. This material is around page 153, but chapter 9 is helpful regarding being complementary to this material. 
-
-- You could also code this up to further solidify you knowledge of this, but you'll get practice on this with lab 10 and homework 8. 
-
-
-
-<!-- Setting prior parameters -->
-<!-- === -->
-<!-- ```{r} -->
-<!-- n <- length(y) -->
-<!-- beta_hat_ols <- solve(t(X) %*% X) %*% t(X) %*% y -->
-<!-- (sigma_o_squared <- t(y) %*% y - t(beta_hat_ols) %*% t(X) %*% y) -->
-<!-- (sigma_o_squared <- as.numeric(sigma_o_squared)) -->
-<!-- ``` -->
-
-<!-- Setting prior parameters -->
-<!-- === -->
-<!-- ```{r} -->
-<!-- (Sigma_o <- solve((t(X) %*% X)/(n*sigma_o_squared))) -->
-<!-- ``` -->
-
-<!-- Posterior inference -->
-<!-- === -->
-<!-- \tiny -->
-<!-- ```{r} -->
-<!-- beta_n <- solve(solve(t(X) %*% X) + (t(X) %*% X)/sigma_o_squared) -->
-<!-- beta_n <- beta_n %*% (solve(Sigma_o) %*% beta_hat_ols + (t(X) %*% y)/sigma_o_squared) -->
-<!-- cbind(beta_hat_ols, beta_n) -->
-<!-- ``` -->
-
-<!-- Posterior inference -->
-<!-- === -->
-<!-- ```{r} -->
-<!-- (sigma_n <- solve(solve(Sigma_o) + (t(X) %*% X)/sigma_o_squared)) -->
-<!-- ``` -->
-
-<!-- Posterior inference applied to Oxygen uptake -->
-<!-- === -->
-<!-- To continue the rest of the oxygen uptake example, please refer to 9.2 in Hoff -->
-<!-- (commentary and code). Pages 157 -- 159 in Hoff. -->
-
-<!-- I would like for your to continue this on your own.  -->
+I would like for your to continue this on your own. 
 
 
 Linear Regression Applied to Swimming (Lab 10)
@@ -656,6 +542,8 @@ Code a Gibbs sampler to fit each of the models. For each swimmer $i,$ obtain dra
 Posterior Prediction (Task 4)
 ===
 The coach has to decide which swimmer should compete in a meet two weeks from the last recorded time. Using the posterior predictive distributions, compute $\text{Pr}\left\{y_i^{*}=\text{max}\left(y_1^{*},y_2^{*},y_3^{*},y_4^{*}\right)\right\}$ for each swimmer $i$ and use these probabilities to make a recommendation to the coach. 
+
+- This is left as an exercise. 
 
 Final Grades
 ===
