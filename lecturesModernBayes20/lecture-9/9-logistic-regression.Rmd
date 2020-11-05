@@ -465,46 +465,46 @@ Summary
 - Returning to the Challenger case study
 - What did you learn? 
 
-<!-- Gaussian Example -->
-<!-- === -->
+Gaussian Example
+===
 
 
-<!-- Suppose $$Y\mid X \sim \text{Normal}(\mu, \sigma^2).$$ -->
+Suppose $$Y\mid X \sim \text{Normal}(\mu, \sigma^2).$$
 
-<!-- Then $$f(y) = \frac{1}{\sqrt{2\pi}\sigma}\exp \left\{ -->
-<!-- -\frac{1}{2\sigma^2} (y- \mu)^2 -->
-<!-- \right\}.$$ -->
+Then $$f(y) = \frac{1}{\sqrt{2\pi}\sigma}\exp \left\{
+-\frac{1}{2\sigma^2} (y- \mu)^2
+\right\}.$$
 
-<!-- Show that $Y \mid X$ is in the exponential family, and provide the respective parameters. -->
+Show that $Y \mid X$ is in the exponential family, and provide the respective parameters.
 
-<!-- Gaussian Solution -->
-<!-- === -->
+Gaussian Solution
+===
 
-<!-- \begin{align} -->
-<!-- f(y)  -->
-<!-- &= (\sqrt{2\pi}\sigma)^{-1}\sigma\exp \left\{ -->
-<!-- -\frac{1}{2\sigma^2} (y- \mu)^2 -->
-<!-- \right\} \\ -->
-<!-- &= \exp\{\log(\sqrt{2\pi}\sigma)^{-1}\} -->
-<!-- \exp \left\{ -->
-<!-- -\frac{1}{2\sigma^2} (y^2 - 2y\mu + \mu^2) -->
-<!-- \right\} \\ -->
-<!-- &= \exp\{-\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma} \} -->
-<!-- \exp \left\{ -->
-<!--  \frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2} - \frac{y^2}{2\textcolor{blue}{\sigma^2}} -->
-<!-- \right\} \\ -->
-<!-- &= -->
-<!-- \exp \{ -->
-<!-- \frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2} -->
-<!-- - \frac{y^2}{2\textcolor{blue}{\sigma^2}} -->
-<!-- -\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma} -->
-<!-- \} -->
-<!-- \end{align} -->
+\begin{align}
+f(y)
+&= (\sqrt{2\pi}\sigma)^{-1}\sigma\exp \left\{
+-\frac{1}{2\sigma^2} (y- \mu)^2
+\right\} \\
+&= \exp\{\log(\sqrt{2\pi}\sigma)^{-1}\}
+\exp \left\{
+-\frac{1}{2\sigma^2} (y^2 - 2y\mu + \mu^2)
+\right\} \\
+&= \exp\{-\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma} \}
+\exp \left\{
+ \frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2} - \frac{y^2}{2\textcolor{blue}{\sigma^2}}
+\right\} \\
+&=
+\exp \{
+\frac{y\textcolor{blue}{\mu} -\textcolor{blue}{\mu^2/2}}{\sigma^2}
+- \frac{y^2}{2\textcolor{blue}{\sigma^2}}
+-\log(\sqrt{2\pi}) - \log\textcolor{blue}{\sigma}
+\}
+\end{align}
 
-<!-- The natural parameter $\theta = \mu$ and $b(\theta) = \theta^2/2.$ -->
+The natural parameter $\theta = \mu$ and $b(\theta) = \theta^2/2.$
 
-<!-- The dispersion parameter is $\phi = \sigma$ and $a(\phi) = \sigma^2.$ -->
+The dispersion parameter is $\phi = \sigma$ and $a(\phi) = \sigma^2.$
 
-<!-- Finally, $c(y,\phi) = \frac{y^2}{2\textcolor{blue}{\sigma^2}} - \log \phi - \log 2\pi.$ -->
+Finally, $c(y,\phi) = \frac{y^2}{2\textcolor{blue}{\sigma^2}} - \log \phi - \log 2\pi.$
 
-<!-- The link function $g(\mu) = \mu$ such that we model $\mu = \beta^TX.$ -->
+The link function $g(\mu) = \mu$ such that we model $\mu = \beta^TX.$

@@ -10,6 +10,24 @@ output:
 font-size: 8px
 ---
 
+Remainder of Semester
+===
+
+- Thursday, November 5: Linear Regression 
+- Friday, November 6: Lab 10 (Homework 8)
+- Tuesday, November 10: Linear and Logistic Regression
+- Thursday, November 12: Logistic Regression + Final Exam 
+- Reading period: All OH will be held. Mine will be during class to avoid any conflicts and be more friend to international students. 
+- Last homework (and extra credit) due Friday November 13, 5 PM EDT 
+
+Final Exam
+===
+
+- The final exam is November 22, 2 PM - 5 PM EDT (open note/open book)
+- The material will be on modules 1 -- 9.
+- I will be dropping your lowest exam score in your final grade calculation
+- I hope that this will allow more flexibility and less stress for everyone 
+
 
 Agenda
 ===
