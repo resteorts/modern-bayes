@@ -346,16 +346,16 @@ $H=X(X^T X)^{-1} X^T$ is sometimes called the **hat matrix**.
 Exercise 1 (OLS)
 ===
 Let SSR denote sum of squared residuals. 
-$$ \min_{\bbeta} SSR(\hbeta) = \min_{\bbeta} \|\by-X\hat{\bm{\beta}}\|_2^2$$
+$$ \min_{\bbeta} SSR(\bbeta) = \min_{\bbeta} \|\by-X{\bm{\beta}}\|_2^2$$
 Show that  $$\hat{\bm{\beta}}  = (X^TX)^{-1}X^T\by.$$
 
 Ordinary Least squares estimation
 ===
 Proof: Observe
 \begin{align}
- \frac{\partial SSR(\bbeta)}{\partial d\bbeta} &= 
-\frac{\partial (\by-X\bbeta)^T(\by-X\bbeta)}{\partial d\bbeta} \\
-&= \frac{\partial \by^T\by - 2\bbeta^TX^T\by + \hbeta^T(X^TX)\bbeta}{\partial d\bbeta}\\
+ \frac{\partial SSR(\bbeta)}{\partial \bbeta} &= 
+\frac{\partial (\by-X\bbeta)^T(\by-X\bbeta)}{\partial \bbeta} \\
+&= \frac{\partial \by^T\by - 2\bbeta^TX^T\by + \hbeta^T(X^TX)\bbeta}{\partial \bbeta}\\
 & = -  2X^T\by + 2X^TX\bbeta
 \end{align}
 
