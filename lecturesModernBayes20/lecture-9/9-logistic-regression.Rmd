@@ -218,7 +218,7 @@ y \log ({\frac{p}{1-p}}) + \log(1-p) + 0
 \} 
 \end{align}
 
-- The natural parameter is $\theta = \dfrac{p}{1-p}.$
+- The natural parameter is $\theta = \log \dfrac{p}{1-p}.$
 
 - The mean is $\mu = p,$ which implies that
 $p = e^{\theta}/(1 + e^{\theta}).$
