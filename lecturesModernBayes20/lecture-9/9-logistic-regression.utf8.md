@@ -36,12 +36,23 @@ O-rings
 
 Loading the Faraway Package
 ===
-```{r}
+
+```r
 # Load data from space shuttle missions
 library(faraway)
 data("orings")
 orings[1,] <- c(53,1)
 head(orings)
+```
+
+```
+##   temp damage
+## 1   53      1
+## 2   57      1
+## 3   58      1
+## 4   63      1
+## 5   66      0
+## 6   67      0
 ```
 
 Space Shuttle Missions
@@ -66,23 +77,33 @@ Data was collected on the 23 previous shuttle missions, where the following vari
 
 Plot
 ===
-```{r}
+
+```r
 library(ggplot2)
 geom_boxplot(outlier.colour="black", outlier.shape=14,
              outlier.size=2, notch=FALSE)
+```
+
+```
+## geom_boxplot: outlier.colour = black, outlier.fill = NULL, outlier.shape = 14, outlier.size = 2, outlier.stroke = 0.5, outlier.alpha = NULL, notch = FALSE, notchwidth = 0.5, varwidth = FALSE, na.rm = FALSE, orientation = NA
+## stat_boxplot: na.rm = FALSE, orientation = NA
+## position_dodge2
+```
+
+```r
 damage <- as.factor(orings$damage)
 temp <- orings$temp
 head(damage) 
 ```
 
+```
+## [1] 1 1 1 1 0 0
+## Levels: 0 1
+```
+
 Boxplot of temperature versus o-ring failure 
 ===
-```{r, warning=FALSE ,echo=FALSE}
-p <- ggplot(orings, aes(x=as.factor(orings$damage), y=temp)) + 
-  geom_boxplot()
-p + ggtitle("") +
-  xlab("Damage") + ylab("Temp (F)")
-```
+![](9-logistic-regression_files/figure-beamer/unnamed-chunk-3-1.pdf)<!-- --> 
 
 Linear models
 ===
@@ -373,8 +394,39 @@ The random walk metropolis algorithm
 
 Posterior sampling
 ===
-```{r}
+
+```r
 library(MCMCpack)
+```
+
+```
+## Loading required package: coda
+```
+
+```
+## Loading required package: MASS
+```
+
+```
+## ##
+## ## Markov Chain Monte Carlo Package (MCMCpack)
+```
+
+```
+## ## Copyright (C) 2003-2020 Andrew D. Martin, Kevin M. Quinn, and Jong Hee Park
+```
+
+```
+## ##
+## ## Support provided by the U.S. National Science Foundation
+```
+
+```
+## ## (Grants SES-0350646 and SES-0350613)
+## ##
+```
+
+```r
 failure <- orings$damage
 temperature <- orings$temp
 output <- MCMClogit(failure~temperature, 
@@ -384,15 +436,40 @@ output <- MCMClogit(failure~temperature,
 Traceplots
 ===
 \footnotesize
-```{r}
+
+```r
 plot(output)
 ```
+
+![](9-logistic-regression_files/figure-beamer/unnamed-chunk-5-1.pdf)<!-- --> 
 
 Summary
 ===
 \footnotesize
-```{r}
+
+```r
 summary(output)
+```
+
+```
+## 
+## Iterations = 1001:2000
+## Thinning interval = 1 
+## Number of chains = 1 
+## Sample size per chain = 1000 
+## 
+## 1. Empirical mean and standard deviation for each variable,
+##    plus standard error of the mean:
+## 
+##                Mean     SD Naive SE Time-series SE
+## (Intercept) 19.4239 8.1171 0.256684        0.88555
+## temperature -0.2955 0.1191 0.003765        0.01309
+## 
+## 2. Quantiles for each variable:
+## 
+##                2.5%     25%     50%     75%    97.5%
+## (Intercept)  5.3608 13.6196 18.7297 24.4156 36.08274
+## temperature -0.5441 -0.3734 -0.2853 -0.2108 -0.09241
 ```
 
 Simulating Posterior Prediction
@@ -408,8 +485,23 @@ How would we simulate a predictive probability that a o-ring would fail?
 Simulating Posterior Prediction
 ===
 
-```{r}
+
+```r
 library(boot)
+```
+
+```
+## 
+## Attaching package: 'boot'
+```
+
+```
+## The following objects are masked from 'package:faraway':
+## 
+##     logit, melanoma
+```
+
+```r
 temp <- 80
 fail.prob <- inv.logit(output[,1]+ temp*output[,2])
 y.pred <- rbinom(2100, size=1, prob=fail.prob)
@@ -419,9 +511,12 @@ y.pred <- rbinom(2100, size=1, prob=fail.prob)
 Simulating Posterior Prediction
 ===
 
-```{r}
+
+```r
 barplot(table(y.pred))
 ```
+
+![](9-logistic-regression_files/figure-beamer/unnamed-chunk-8-1.pdf)<!-- --> 
 
 Your Turn
 ===
