@@ -433,22 +433,22 @@ How would we simulate a predictive probability that a o-ring would fail?
 - What does your group think intuitively?
 - Code up a simulation of a posterior prediction and what do you find? 
 
-<!-- Your Turn -->
-<!-- === -->
+Your Turn
+===
 
-<!-- ```{r} -->
-<!-- library(boot) -->
-<!-- temp <- 20 -->
-<!-- fail.prob <- inv.logit(output[,1]+ temp*output[,2]) -->
-<!-- y.pred <- rbinom(2100, size=1, prob=fail.prob) -->
-<!-- ``` -->
+```{r}
+library(boot)
+temp <- 20
+fail.prob <- inv.logit(output[,1]+ temp*output[,2])
+y.pred <- rbinom(2100, size=1, prob=fail.prob)
+```
 
-<!-- Your Turn -->
-<!-- === -->
+Your Turn
+===
 
-<!-- ```{r} -->
-<!-- barplot(table(y.pred)) -->
-<!-- ``` -->
+```{r}
+barplot(table(y.pred))
+```
 
 
 
