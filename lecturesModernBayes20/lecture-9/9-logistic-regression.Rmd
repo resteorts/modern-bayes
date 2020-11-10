@@ -465,9 +465,20 @@ Summary
 - Returning to the Challenger case study
 - What did you learn? 
 
-Gaussian Example
+
+Course evaluations
 ===
 
+- Course evaluations are available on github
+- There are instructions on how to fill out the course evaluations on Piazza 
+- Please do also fill out the TA evaluations as well as they are eligible for awards that will help them in their careers
+- If there is 100 percent response, everyone in the class will receive 1 point on their final grade. (We are currently just above 50 percent response.)
+- If there is something that has not been resolved in the course, please let me know so that it can be fixed. Kindly send myself (or your TA advocate an email regarding the issue). 
+
+
+
+Gaussian Example
+===
 
 Suppose $$Y\mid X \sim \text{Normal}(\mu, \sigma^2).$$
 
