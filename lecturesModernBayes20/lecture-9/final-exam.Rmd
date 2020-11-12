@@ -1,6 +1,6 @@
 
 ---
-title: "Final Exam --- STA 360"
+title: "STA 360 Final Exam Review"
 author: "Rebecca C. Steorts"
 output: 
      beamer_presentation:
@@ -223,9 +223,339 @@ M =\frac{\lambda_0\mu_0+\lambda\sum_{i = 1}^n x_i}{\lambda_0+ n\lambda}.$$
 Review of Normal-Gamma model (Module 4)
 ===
 
+- Consider our first hiearchical model with more than two levels
 
 
 \vspace*{1em}
 
 \textbf{Module 4}: \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-4/04-normal-gamma.pdf}
+
+Normal-Gamma model
+===
+
+Assume that the likelihood is
+
+$X_1,\dotsc,X_n\mid \mu,\lambda \iid\N(\mu,\lambda^{-1})$ and assume **both**
+
+- the mean $\mu$ and 
+- the precision $\lambda= 1/\sigma^2$ are **unknown**. 
+
+Given the likelihood, we place the following priors:
+\begin{align*}
+\bm\mu|\lambda \,\,&\sim \N(m,(c\lambda)^{-1})\\
+\bm\lambda \,\,&\sim\Ga(a,b),
+\end{align*}
+
+where $m,c,a,b$ are known.
+
+Normal-Gamma model
+===
+
+The joint p.d.f. of $\mu, \lambda$ can be written as 
+
+$$ p(\mu,\lambda) = p(\mu|\lambda) p(\lambda) =\N(\mu\mid m,(c\lambda)^{-1})\Ga(\lambda\mid a,b) $$
+which we  denote by 
+
+$$\NormalGamma(\mu,\lambda\mid m,c,a,b).$$
+
+
+Normal-Gamma model
+===
+
+We derived
+\begin{align}\label{equation:NormalGamma-posterior}
+\bm\mu,\bm\lambda|x_{1:n}\,\sim\,\NormalGamma(M,C,A,B)
+\end{align}
+i.e., $p(\mu,\lambda|x_{1:n}) =\NormalGamma(\mu,\lambda\mid M,C,A,B)$, where
+\begin{align*}
+    M & =\frac{c m +\sum_{i=1}^n x_i}{c + n}\\
+    C & = c + n\\
+    A & = a + n/2\\
+    B & = b +\tfrac{1}{2}\big(c m^2-C M^2+\textstyle\sum_{i=1}^n x_i^2\big).
+\end{align*}
+
+Case study on IQ scores
+===
+
+- We considered a case study on IQ scores (for two groups) and talked about when we might consider the Normal-Gamma model over the Normal-Normal model. 
+
+- This case study is a good one to review as it combines many different concepts in the course. 
+
+
+Review of Monte Carlo and MCMC (Modules 5-7)
+===
+
+- Monte Carlo (naive, rejection, and importance sampling)
+- Markov Chain Monte Carlo (Gibbs and Metropolis)
+
+\textbf{Modules 5-7}:
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-monte-carlo.pdf
+
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-6/06-metropolis.pdf}
+
+\url{https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-7}
+
+
+
+
+Goal of Monte Carlo and MCMC
+===
+
+Recall Bayes' Theorem:
+
+\begin{align}
+p(\theta \mid x) &= \frac{p(\theta , x)}{p(x)} \\
+&= \frac{p(x \mid \theta) p(\theta)}{\textcolor{blue}{p(x)}}
+\end{align}
+
+As our models become more complex, we cannot compute $p(x),$ which calls for the use of needing to approximate the posterior distribution. 
+
+Monte Carlo
+===
+
+- If were not faced with a high-dimensional problem, then we can resort to using Monte Carlo. This is appealing as it's simple, fast, and easy. 
+
+- We illustrated this in the case study of the IQ scores in model 4, where we took some very simple Monte Carlo samples to help solve our case study. 
+
+Markov Chain Monte Carlo
+===
+
+- If we are faced with high-dimensional problems, then we need to utilize MCMC (either Gibbs or Metropolis). 
+
+- To use Gibbs, we must derive the full conditional distributions. Gibbs is appealing as it's relatively straight forward. 
+
+- We typically turn to Metropolis last as it's more complex to implement. 
+
+Key concepts 
+===
+
+- Understanding when Monte Carlo can be used and when it cannot. 
+
+- Being able to work through Gibbs sampling problems. This means deriving the joint likelihood and full conditional distributions. 
+
+- Understanding latent variable or data augmentation problems. 
+
+- Understanding when you cannot use Gibbs and must use Metropolis (example: logistic regression on o-rings from Module 9).
+
+Multivariate Normal 
+===
+
+- Multivariate Notation 
+- Multivariate Normal and inverse Wishart
+- MVN-MVN conjugacy
+- MVN-inverseWishart conjugacy
+- MVN-MVN-inverseWishart model 
+
+
+\textbf{Module 8}:
+
+\url:{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-8/08-multivariate-norm.pdf}
+
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-8/08-missing-data.pdf}
+
+Multivariate Notation
+===
+
+Assume that $\bm{y}_{p \times 1} \sim (\mu_{p \times 1}, \Sigma_{p \times p}).$
+
+$$\bm{y}_{p \times 1}= \left( \begin{array}{c}
+y_{1}\\
+{y_{2}}\\
+\vdots\\
+y_{p}
+\end{array} \right).$$
+
+
+
+$$\bmu_{p \times 1}= \left( \begin{array}{c}
+\mu_1\\
+\mu_2\\
+\vdots\\
+\mu_p
+\end{array} \right)
+$$
+$$
+\sig_{p \times p} = Cov(\bm{y}) =
+\left( \begin{array}{cccc}
+\sigma_1^2 & \sigma_{12} & \ldots&  \sigma_{1p}\\
+\sigma_{21} & \sigma_2^2 & \ldots& \sigma_{2p}\\
+\vdots & \vdots & \ddots & \vdots \\
+\sigma_{p1} & \sigma_{p2} &\ldots& \sigma_p^2
+\end{array} \right).
+$$
+
+MVN-MVN
+===
+
+Suppose that $$\bm{y} = (y_1 \ldots y_n)^T \mid \theta \sim MVN(\theta, \Sigma). $$
+Let $$\pi(\btheta) \sim MVN(\bmu, \Omega). $$
+
+MVN-MVN
+===
+
+We derived that 
+
+$$\btheta \mid \bm{y}, \Sigma \sim MVN(A_n^{-1}b_n, A_n^{-1}) = MVN(\mu_n, \Sigma_n),$$
+
+where
+
+$$A_n = A_o + A_1 = \Omega^{-1}+n\Sigma^{-1}$$ and $$b_n = b_o + b_1 = \Omega^{-1}\mu + \Sigma^{-1} n\bar{y}.$$
+
+MVN-inverseWishart
+===
+
+We then considered the following model:
+
+$$\bm{y} \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}),$$
+
+
+MVN-inverseWishart
+===
+
+We showed that 
+$$\Sigma \mid \bm{y}, \btheta \sim \text{inverseWishart}(\nu_o + n, [S_o + S_\theta]^{-1} =: S_n),$$
+where $S_\theta = \sum_i (\bm{y}_i - \btheta) (\bm{y}_i - \btheta)^T.$
+
+MVN-MVN-inverseWishart
+===
+
+We  then considered the following hierachical model: 
+$$\bm{y} \mid \btheta, \Sigma \sim MVN(\btheta, \Sigma).$$ 
+$$ \btheta \sim MVN(\mu, \Omega)$$
+$$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}),$$
+
+where we used semi-conjuacy from the previous two derivations, which provide us with full conditional distributions. (Work through this on your own as an exercise for the final exam.)
+
+- Derive the full joint to see why it's difficult to sample from. 
+- Derive the full conditionals (Hint: use derivations we have done before.)
+- Write out the Gibbs sampler (and you can check this as we did this in class).
+- What diagnostics would you need to look at to make sure that your sampler has not failed to converge?
+
+
+Linear Regression
+===
+
+- Setup
+- Multivariate Linear Regression
+- Multivariate Bayesian Linear Regression
+
+
+
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-linear-regression.pdf}
+
+Setup
+===
+
+Let's assume that we have data points $(x_i, y_i)$ available for all  $i=1,\ldots,n.$
+
+- $y$ is the response variable
+\[  \by= \left( \begin{array}{c}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{array} \right)_{n \times 1} \]
+
+- $\bx_{i}$ is the $i$th row of the design matrix $X_{n \times p}.$
+
+Consider the regression coefficients
+
+\[  \bbeta = \left( \begin{array}{c}
+\beta_{1}\\
+\beta_{2}\\
+\vdots\\
+\beta_{p}
+\end{array} \right)_{p \times 1} \]
+
+Multivariate Linear Regression
+===
+
+The Normal regression model specifies that
+
+- $E[Y\mid \bx_i]$ is linear and
+- the sampling variability around the mean is independently and identically (iid) drawn from a normal distribution
+
+\begin{align}
+Y_i &= \bbeta^T \bx_i + \bm{\epsilon}_i\\
+\epsilon_1,\ldots,\epsilon_n &\stackrel{iid}{\sim} \text{Normal}(0,\sigma^2)
+\end{align}
+
+This implies $Y_i \mid \bbeta, \bx_i \sim \text{Normal}(\bbeta^T \bx_i,\sigma^2).$
+
+We can re-write this as
+
+$$\by \mid X,\bbeta, \sigma^2 \sim \text{MVN}( X\bbeta, \sigma^2 I_p).$$
+
+Multivariate Bayesian Linear Regression
+===
+
+Let 
+\begin{align}
+\bm{y} &\mid \bbeta \sim \text{MVN}(X \bbeta, \sigma^2 I)\\
+\bbeta &\sim \text{MVN}(\bbeta_0, \Sigma_0)
+\end{align}
+
+We derived (exercise 3)
+$$\bbeta \mid \bm{y}, X \sim \text{MVN}(\bbeta_n, \Sigma_n), \; \text{where}$$
+\begin{align*}
+\bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
+(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2) \\
+\Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
+\end{align*}
+
+Remark: If $\Sigma_o^{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{ols}$
+
+If $\Sigma_o^{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
+
+The g-prior
+===
+
+To improve our model by doing the **least amount of calculus**, we can put a \emph{g-prior} on $\bbeta$ (not $\bbeta_0).$
+
+The g-prior on $\bbeta$ has the following form: 
+$$ \bbeta \mid \bX, \sigma^2  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
+where $g$ is a constant, such as $g=n.$
+
+
+It can be shown that (Zellner, 1986):
+
+1. g shrinks the coefficients and can prevent overfitting to the data
+2. if $g = n$, then as n increases, inference approximates that using $\hat{\beta}_{ols}$
+
+The g-prior
+===
+Under the g-prior, it follows that
+\begin{align}
+\bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2]  \\
+&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1} \frac{X^Ty}{\sigma^2} \\
+&= \frac{g}{g+1} (X^TX)^{-1} X^Ty
+= \frac{g}{g+1} \hat{\beta}_{ols}
+\end{align}
+
+\begin{align}
+\Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] \\
+&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1}
+=\frac{g}{g+1} \sigma^2 (X^TX)^{-1} \\
+&= \frac{g}{g+1} \Var[\hat{\beta}_{ols}]
+\end{align}
+
+Logistic Regression
+===
+
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-logistic-regression.pdf}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
