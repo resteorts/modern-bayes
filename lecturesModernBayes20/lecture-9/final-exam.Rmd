@@ -9,6 +9,17 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+- Final exam 
+- Course webpage (hover over icons)
+- Final Exam Review
+- OH today: can get your estimated course grade/rank
+- OH today: can talk to me about STA 490 if there are questions
+- Homework 8: Extending this by 24 hours to allow for a bit more time in case you need it. 
+
+
 Course evalautions
 ===
  
