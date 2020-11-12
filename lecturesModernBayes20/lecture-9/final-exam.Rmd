@@ -543,6 +543,8 @@ Under the g-prior, it follows that
 Logistic Regression
 ===
 
+- Forthcoming
+
 \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-logistic-regression.pdf}
 
 
