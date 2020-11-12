@@ -148,7 +148,7 @@ a X + b Y\sim\N(a\mu + b m,\,a^2\sigma^2+ b^2 s^2).
 Symmetry of the Normal Distribution
 ===
 
-The normal distribution is symmetric. Why? 
+The normal distribution is symmetric about its mean. Why? 
 
 
 
