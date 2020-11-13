@@ -64,7 +64,7 @@ $$ p(\btheta \mid \bSigma, \bm{y} )
 \[ \text{tr}(\Psi\boldsymbol{\Sigma}^{-1})+\sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta})^T \boldsymbol{\Sigma}^{-1}(\bm{y}_i-\boldsymbol{\theta}) = \text{tr}\left\{\left(\Psi + \sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta}) (\bm{y}_i-\boldsymbol{\theta})^T \right) \boldsymbol{\Sigma}^{-1}\right\}.\]
 \textbf{Hint}: Recall that $\text{tr}(A)$ is the trace of matrix $A$ -- the sum of its diagonal entries. \textit{Lemma}: (i) for scalar $a$, $\text{tr}(a)=a$; (ii) $\text{tr}(ABC) = \text{tr}(BCA) = \text{tr}(CAB)$.
 \item (2 points) Use (d) to show (step-by-step) that:
-\[ [\bSigma|\btheta,\text{data}] \sim IW(\Psi^*(\btheta),\nu^*),\]
+\[ [\bSigma|\btheta,\text{data}] \sim IW(\nu^*, \Psi^*(\btheta))\]
 %where $\Psi^*(\btheta)$ and $\nu^*$ are in class notes. 
 where $\nu^* = n + v$ and $\Psi^*(\btheta) = (\Psi + \sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta}) (\bm{y}_i-\boldsymbol{\theta})^T)^{-1} .$
 \end{enumerate}
