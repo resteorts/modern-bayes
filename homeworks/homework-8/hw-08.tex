@@ -50,7 +50,7 @@ Because this problem is extra credit, the TA Team will not answer questions on t
 Consider the following hierarchical model:
 \[ \bm{y}_i \mid \btheta,\bSigma \stackrel{i.i.d.}{\sim} MVN(\btheta_{d \times 1},\bSigma_{d \times d}), \quad i = 1, \cdots, n, \]
 and independent priors $$\btheta_{d \times 1} \sim MVN(\bmu_{d \times 1},\bm{T}_{d \times d}), 
-\qquad \bSigma_{d \times d} \sim IW(\Psi_{d \times d},\nu).$$
+\qquad \bSigma_{d \times d} \sim IW(\nu, \Psi_{d \times d}).$$
 \begin{enumerate}
 \item (1 point) Show that $(\btheta^T \bm{T}^{-1} \bmu)^T = \bmu^T \bm{T}^{-1} \btheta.$
 %\item (1 point) Show that $(\bmu_{1 \times d}^T \bm{T_{d \times d}}^{-1}\btheta_{d \times 1})^T = \btheta^T \bm{T}^{-1} \bmu$.\\
