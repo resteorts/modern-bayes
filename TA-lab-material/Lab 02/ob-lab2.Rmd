@@ -1,0 +1,209 @@
+---
+title: "Lab 2: Intro to Bayes"
+author: "Olivier Binette"
+date: "21/08/2020"
+fontsize: 11pt
+output: 
+  beamer_presentation:
+    include:
+      in_header: preamble.tex
+---
+
+# Agenda
+
+1. Introduction :)
+2. Solution to Lab 2
+3. Some tips for homework 1
+4. Questions
+
+# Introduction
+Olivier Binette
+
+olivier.binette@gmail.com
+
+Office hours: Wednesday 9am-10am EST
+
+\pause
+## My job:
+
+- Help you with the labs, homeworks, and content of the course.
+  - Please email questions and/or come to office hours!
+- Advocate for you.
+  - Let me know if you have any issue, if you're not satisfied with grading, or if there's anything else.
+- I don't do the grading.
+
+# Task 1
+
+**Reminder:**
+
+If you have independent variables $Y_i \sim \text{Bernouilli}(\theta)$, then
+$$
+  X = \sum_{i=1}^n Y_i \sim \text{Binomial}(\theta, n).
+$$
+
+**Example:**
+
+- $Y_i$: indicator variable that individual $i$ gets sick in a certain period of time.
+- $X$: total number of people getting sick in the given period of time among the individuals $i = 1,2,\dots, n$.
+
+# Task 1
+
+Assume that 
+$$X\mid \theta \sim \text{Binomial} (\theta, n),$$
+$$\theta \sim \text{Beta}(a,b).$$
+
+Derive the posterior distribution of $\theta$ given $X$.
+
+
+# Solution to Task 1
+\setbeamercovered{transparent}
+\begin{eqnarray*}
+p(\theta \mid X) &=& \frac{p(X\mid \theta)p(\theta)}{p(X)}\\ \pause
+  &\propto&  p(X \mid \theta) p(\theta)\\ \pause
+  &=& {n \choose X} \theta^{X} (1 - \theta)^{(n-X)} \times \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \theta^{(a-1)} (1 - \theta)^{(b-1)}\\ \pause
+  &\propto& \theta^{X} (1 - \theta)^{(n-X)} \times \theta^{(a-1)} (1 - \theta)^{(b-1)}\\ \pause
+  &\propto& \theta^{X + a -1} (1 - \theta)^{(n-X + b -1)}
+\end{eqnarray*}
+
+Therefore
+
+$$
+  \theta \mid X \sim \text{Beta}(X+a, n-X+b).
+$$
+
+# Task 2
+
+Simulate some data using the \textsf{rbinom} function of size $n = 100$ and probability equal to 1\%. Remember to \textsf{set.seed(123)} so that you can replicate your results.
+\pause
+
+The data can be simulated as follows:
+```{r, echo=TRUE}
+# set a seed
+set.seed(123)
+# create the observed data
+obs.data <- rbinom(n = 100, size = 1, prob = 0.01) 
+head(obs.data)
+length(obs.data)
+```
+
+
+# Task 3
+
+1. Write a function with:
+
+- **input:** simulated data and sequence of $\theta$ values.
+- **output:** binomial likelihood of the data corresponding to each $\theta$ value.
+\pause
+```{r}
+theta = c(0.01, 0.1)
+N = length(obs.data)
+X = sum(obs.data)
+LH = choose(N, X) * theta^(X) * (1-theta)^(N-X)
+LH
+```
+\pause
+```{r}
+likelihood <- function(obs.data, theta) {
+  N = length(obs.data)
+  X = sum(obs.data)
+  LH = choose(N, X) * theta^(X) * (1-theta)^(N-X)
+  return(LH)
+}
+```
+
+# Task 3
+
+2. Plot the likelihood over a grid of $\theta$ values
+
+```{r, fig.align="center", fig.width=4, fig.height=3}
+theta = seq(0,1, length.out = 1000)
+plot(theta, likelihood(obs.data, theta), type="l",
+     ylab="likelihood", xlab="theta")
+```
+
+# Task 4
+
+1. Write a function with:
+
+- **input:** prior parameters $a$, $b$, and the observed data.
+- **output:** parameters of the Beta posterior distribution of $\theta$.
+takes as its inputs prior parameters \textsf{a} and \textsf{b} for the Beta-Bernoulli model and the observed data, and produces the posterior parameters you need for the model.
+\pause
+
+```{r}
+post_parameters <- function(a, b, obs.data) {
+  N = length(obs.data)
+  X = sum(obs.data)
+  a.post = a + X
+  b.post = N - X + b
+  return(c(a.post, b.post))
+}
+```
+
+# Task 4
+
+2. \textbf{Generate and print} the posterior parameters for a non-informative prior i.e. \textsf{(a,b) = (1,1)} and for an informative case \textsf{(a,b) = (3,1)}.
+\pause
+
+```{r}
+post_parameters(1,1, obs.data)
+post_parameters(3,1, obs.data)
+```
+
+# Task 5
+
+Create two plots, one for the informative and one for the non-informative case to show the posterior distribution and superimpose the prior distributions on each along with the likelihood. What do you see?
+
+# Task 5
+
+I'll only do the non-informative prior part with you.
+
+\small
+```{r, results='hide', eval=FALSE, size="small"}
+params1 = post_parameters(1,1, obs.data)
+
+# Plot posterior distribution
+theta = seq(0,1, length.out=1000)
+plot(theta, dbeta(theta, shape1=params1[1], shape2=params1[2]), 
+     type="l", xlab="theta", ylab="")
+# Plot prior
+lines(theta, dbeta(theta, shape1=1, shape2=1), col=2, lty=2)
+# Plot likelihood
+LH = likelihood(obs.data, theta)
+lines(theta, 1000*LH/sum(LH), col=3, lty=3)
+
+legend("topright", legend=c("posterior", "prior", "LH"), 
+       lty=c(1,2,3), col=c(1,2,3))
+```
+\normalsize
+
+# Task 5
+Here's the result:
+
+```{r, echo=FALSE, fig.align="center", fig.width=4, fig.height=3}
+params1 = post_parameters(1,1, obs.data)
+
+# Plot posterior distribution
+theta = seq(0,1, length.out=1000)
+plot(theta, dbeta(theta, shape1=params1[1], shape2=params1[2]), 
+     type="l", xlab="theta", ylab="", lwd=2)
+# Prior
+lines(theta, dbeta(theta, shape1=1, shape2=1), col=2, lty=2)
+# Likelihood
+LH = likelihood(obs.data, theta)
+lines(theta, 1000*LH/sum(LH), col=3, lty=3, lwd=2)
+
+legend("topright", legend=c("posterior", "prior", "LH"), 
+       lty=c(1,2,3), col=c(1,2,3), lwd=2)
+```
+
+\pause
+
+**Observation:** The posterior is almost the same as the normalized likelihood.
+
+**Interpretation:** With a non-informative prior, the *likelihood* drives inference.
+
+
+# Questions
+
+- Questions?

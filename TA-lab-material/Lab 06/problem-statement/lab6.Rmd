@@ -1,0 +1,188 @@
+
+---
+title: "Lab 6, STA 360"
+author: "Rebecca C. Steorts"
+output: 
+     pdf_document:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+# Agenda
+
+This will be worked in lab and will not be turned in for credit. 
+
+
+Estimate 
+$$ I = \int_{-\infty}^{\infty} \exp(-x^4) \; dx$$ 
+
+
+1. Evaluate $I$ using substitution and the gamma
+function.\footnote{This is not an approximation given that we can actually compute the integral exactly. We will use this exact expression when comparing to Monte Carlo and Importance sampling in the other tasks below.}
+2.  Estimate $I$ using Monte Carlo. How does this compare to the exact value obtain in Task 1?
+3.  Estimate $I$ using importance sampling. How does this compare to the exact value obtain in Task 1?
+
+# Solutions 
+
+Our goal is to estimate 
+$$ I = \int_{-\infty}^{\infty} \exp(-x^4) \; dx$$ 
+
+\textbf{Actual Value (Task 1)}
+
+For the sake of comparison, we can derive the true value using substitution and the gamma function.  We will use the substitution $u = x^4$ to derive the result below. 
+
+This means that $x = u^{-1/4}.$ It follows that $$u = x^4 \implies du = 4 x^3 dx \implies du = 4 u^{-3/4}.$$
+
+It then can be shown that
+\begin{align*}
+\int_{-\infty}^\infty \exp(-x^{-4})\,dx &= 2\int_0^\infty \exp(-x^{-4})\,dx \\
+&= 2\int_0^\infty \frac{\exp(-u)}{4u^{3/4}} \, du \\
+&= 2^{-1/2}\int_0^\infty u^{1/4-1}e^{-u}\,du \\
+&= \frac{\Gamma(1/4)}{2} \\
+&= 1.813.
+\end{align*}
+
+
+\textbf{Monte Carlo (Task 2)}
+
+In this task, we perform Monte carlo. Let $y=\sqrt{2}x^{2}$.  We will perform $u$-substitution to evaluate the integral with Monte Carlo.
+
+Note that 
+
+$$y=\sqrt{2}x^{2} \implies  x = y^{-1/2} 2^{-1/4}$$
+and $$y=\sqrt{2}x^{2} \implies  x^2 = y^2/2.$$
+
+In addition, 
+
+$$y=\sqrt{2}x^{2} \implies 
+dy = \sqrt{2} \times 2x dx \implies 
+dy = \sqrt{2} \times 2 y^{-1/2} \times 2^{-1/4} dx.$$
+
+This implies that
+
+\begin{align*}
+I &= \int_{-\infty}^{\infty}\exp(-x^{4})\,dx \\
+&=2^{-1/2} \int_{0}^{\infty}\frac{2^{1/4}\exp(-y^{2}/2)}{\sqrt{y}}\,dy \\
+&=2^{-1/4} \int_{0}^{\infty}\frac{\sqrt{2\pi}\exp(-y^{2}/2)}{\sqrt{2\pi}\sqrt{y}}\,dy \\
+&=2^{-1/4} \int_{0}^{\infty}\sqrt{\frac{2\pi}{y}}\phi(y)\,dy\\
+&= 2^{-5/4} \int_0^\infty\sqrt{\frac{2\pi}{y}}2\phi(y)\,dy.
+\end{align*}
+
+The function $2\phi(y)$ is the density of the normal distribution truncated (or folded) at zero.  We can sample from this distribution by taking samples from the standard normal distribution and then taking their absolute value.  Note that if $X \sim N(0,1)$ we see for any $c > 0$
+
+\begin{align*}
+P(|X| < c) &= P(-c < X < c) \\
+&= 2(\Phi(c) - 1/2) \\
+&= 2\Phi(c) - 1,
+\end{align*}
+
+the derivative of which is the pdf we are sampling from. 
+
+\textbf{Normal Density (Task 3)}
+
+In this task, we can multiply and divide the integral by a density that has a support equal to the area over which we are integrating.  An obvious choice is the standard normal density, $\phi$:
+
+\begin{align*}
+\int_{-\infty}^\infty \exp(-x^4)\,dx &= \int_{-\infty}^\infty \frac{\exp(-x^4)}{\phi(x)}\phi(x)\,dx.
+\end{align*}
+
+We can therefore evaluate the integral by sampling from a standard normal and averaging the values evaluated in $\exp(-x^4)/\phi(x)$. 
+
+\textbf{Truncating the Integral (Going Beyond the Lab Tasks)}
+
+Finally, we also investigate sometihng further than what was asked in the lab assignment, which we we'll refer to as truncating the integral. Note that in \texttt{R}, we find $\exp(-(10)^4)=0$.  This means that the function decreases so quickly that it is essentially zero by the time $x=10$.  We can reasonably assume, therefore, that truncating the tails of the integral will not significantly affect the value.  In other words, we have
+
+\begin{align*}
+\int_{-\infty}^\infty \exp(-x^4)\,dx \approx \int_{-10}^{10}\exp(-x^4)\,dx \\
+&= \int_{-10}^{10} \frac{20\exp(-x^4)}{20}\,dx,
+\end{align*}
+
+which represents the expecation of $20\exp(-x^4)$ over the uniform distribution on $[-10,10]$.  
+
+\textbf{Comparison of Methods}
+The results of 10,000 simulations using the three methods described above are summarized in Table \ref{ex1table}; the true value is included for comparison.  Of these methods, multiplying and dividing by the standard normal density and then sampling from this density seems to yield the best estimate, which is both closer to the true value and has lower standard error.  The other two methods are comparable in both their estimates and standard errors.  
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & Mean & SE \\ 
+  \hline
+True value & 1.81 &  \\ 
+  Truncated Normal & 1.79 & 0.06 \\ 
+  Full Normal & 1.81 & 0.01 \\ 
+  Truncated Uniform & 1.78 & 0.05 \\ 
+   \hline
+\end{tabular}
+\caption{\label{ex1table} Comparison of the Monte Carlo estimate for the value of the integral using various methods with 10,000 draws for each method.}
+\end{table}
+
+
+```{r}
+knitr::opts_chunk$set(cache=TRUE)
+library(xtable)
+# define target functions for MC estimate
+mc1 <- function(x){
+  # folded normal target
+  return(sqrt(2*pi/abs(x)))
+}
+
+mc2 <- function(x){
+  # normal target
+  exp(-x^4)/dnorm(x)
+}
+
+mc3 <- function(x){
+  # uniform target
+  return(20*exp(-x^4))
+}
+mcSE <- function(values){
+  # this function calculates the standard error
+  # of an MC estimate with target function values
+  # eg values should be vector of f(x_i)
+  return(sqrt(var(values)/length(values)))
+}
+# folded normal
+draws <- rnorm(10000)
+values <- sapply(draws,mc1)
+# normal
+draws2 <- rnorm(10000)
+values2 <- sapply(draws2,mc2)
+# uniform
+draws3 <- runif(10000,min=-10,max=10)
+values3 <- sapply(draws3,mc3)
+# plot histograms
+pdf(file="mc1hist.pdf")
+hist(values*2^(-5/4), xlab = expression(f(X)),
+     main = "Folded Normal")
+dev.off()
+pdf(file="mc2hist.pdf")
+hist(values2, xlab = expression(f(X)),
+     main = "Normal")
+dev.off()
+pdf(file="mc3hist.pdf")
+hist(values3, xlab = expression(f(X)),
+     main = "Uniform")
+dev.off()
+# put results in a data frame and display with xtable
+mc.mean <- mean(values)*2^(-5/4)
+mc.sd<- 2^(-10/4)*sd(values)/sqrt(length(values))
+means <- c(gamma(1/4)/2,mc.mean,mean(values2),mean(values3))
+SEs <- c(NA, mcSE(values),mcSE(values2),mcSE(values3))
+mc.df <- data.frame(Mean = means, SE = SEs, 
+                    row.names = c("True value", "row.names
+                                  Normal", "Full Normal",  
+                                  "Truncated Uniform"))
+xtable(mc.df)
+```
+
+The histograms of the samples are give in Figure \ref{ex1hist}.
+\begin{figure}[!ht]
+\centering
+\includegraphics[width = .3\textwidth]{mc1hist.pdf}
+\includegraphics[width = .3\textwidth]{mc2hist.pdf}
+\includegraphics[width = .3\textwidth]{mc3hist.pdf}
+\caption{\label{ex1hist} Histograms for the various Monte Carlo simulations.}
+\end{figure}
+An ideal histogram would be highly centered around the true value of 1.81.  For the folded normal, we see that there are some very large observations that skew the distribution.  The normal method also results in a strange histogram, with values concentrated near the edges.  The uniform has many values close to zero and a large number near 20.  The values near 20 result from draws that are close to zero ($20e^0=20$).  None of these histograms suggest that the standard error will be low.  
+

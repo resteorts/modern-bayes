@@ -1,0 +1,361 @@
+---
+title: "Lab 3: Decision Theory"
+author: "Olivier Binette"
+date: "28/08/2020"
+fontsize: 11pt
+output: 
+  beamer_presentation:
+    include:
+      in_header: preamble.tex
+---
+
+# Agenda
+
+1. Review of decision theory
+2. Walkthrough of lab 3
+    - A little bit of functional programming
+4. Questions
+
+Note: I can talk more about homework 3 and conjugate families at my OH (this lab is pretty packed already).
+
+# 
+\section{Review of decision theory}
+
+# Review of decision theory
+
+\pause
+
+**Statistical ingredients:**
+
+- Statistical model for your data $X$ defined by a likelihood function $p(X \mid \theta)$.
+
+- Prior $p(\theta)$.
+
+\pause
+
+**Decision ingredients:**
+
+- Action $a = a(X)$.
+
+- Loss function $\ell(\theta_0, a)$ which gives you the loss of taking action $a$ if the true value of the parameter is $\theta_0$.
+
+
+
+# Review of decision theory
+
+**Example:** You want to estimate a normal mean with known variance.
+
+\pause
+
+- Model: $X \mid \mu \sim N(0,1)$.
+- Prior $p(\mu) \propto e^{-\mu^2/2}$.
+
+\pause
+
+- Action (how you choose to estimate $\mu$): $\hat \mu = X$.
+- Loss: $\ell(\mu, \hat\mu) = (\mu - \hat \mu)^2$.
+
+
+# Review of decision theory
+
+## How do we evaluate the quality of an action?
+
+**Frequentist risk:**
+
+- Think of it as the "what if?" risk.
+\pause
+
+- What if $\theta = 0$? What if $\theta = 0.1$? What if ...
+\pause
+
+- For all possible values of $\theta$, we compute the expected loss with respect to $X \sim p(X \mid \theta)$:
+$$
+  R(\theta, a) = \mathbb{E}_{X \sim p(X \mid \theta)} \left[\ell(\theta, a(X))\right] \pause = \int \ell(\theta, a(X)) p(x \mid \theta)\,dx.
+$$
+
+# Review of decision theory
+
+## How do we evaluate the quality of an action?
+
+**Posterior risk:**
+\pause
+
+- It comes after observing the data.
+\pause
+
+- Given the observed $X$ and given my prior on $\theta$, what do I expect to be my loss if I take the action $a = a(X)$?
+$$
+  \rho(a, X) = \mathbb{E}_{\theta\sim p(\theta \mid X)} \left[\ell(\theta, a)\right]
+  \pause = \int \ell(\theta, a) p(\theta \mid X)\, d\theta.
+$$
+
+# Review of decision theory
+
+## Summary:
+\pause
+
+- The **frequentist risk** considers fixed values of $\theta$ and random $X$.
+\pause
+
+- The **posterior risk** considers fixed observed $X$ and random values of $\theta$ (following the posterior distribution).
+
+# Review of decision theory
+
+## Finally:
+
+- The **Bayes rule** is to take the action which minimizes the posterior risk:
+$$
+  a = a(X) = \arg \min_{\delta} \rho(\delta, X) \pause = \arg \min_\delta \mathbb{E}_{\theta \sim p(\theta \mid X)}\left[ \ell(\theta, \delta) \right].
+$$
+\pause
+
+- A rule is **inadmissible** if its frequentist risk is always worst than for some other rule. It is **admissible** otherwise.
+
+# 
+
+\section{Lab 3}
+
+# Lab 3
+
+## Problem (resource allocation):
+
+- Public health officials need to allocate resources for infected individuals in a small city.
+\pause
+
+- They want to choose the fraction $c$ of the population which will be covered by the resources.
+\pause
+
+- Unknown proportion $\theta$ of the population is infected, prior $\theta \sim \text{Beta}(a, b)$ with $a=0.05$ and $b=1$.
+\pause
+
+- Loss function loss function $\ell(\theta,c) =|\theta-c|$ if $c\geq\theta$, $\ell(\theta,c) =10|\theta-c|$ if $c<\theta$.
+\pause
+
+- Sample $X_1,\ldots,X_n \stackrel{iid}{\sim} \text{Bernouilli}(\theta)$, observed $\sum_{i=1}^{n} X_i = 1$, $n=30$.
+
+# Task 1
+
+## Plot the posterior risk $\rho(c, \{X_i\})$ as a function of $c$ and find where the minimum occurs.
+\pause
+
+- First let's code up the loss function in R:
+
+```{r}
+loss <- function(theta, c){ 
+  (c >= theta)*(c - theta) + (c < theta)*10*(theta - c)
+}
+```
+\pause
+
+- We know that the posterior distribution of $\theta$ is $\text{Beta}(a+1, b+29)$.
+\pause
+
+- Therefore the posterior risk is
+```{r}
+post_risk <- Vectorize(function(c, a=0.05, b=1, nsim=5000) {
+  theta.post = rbeta(nsim, a+1, b+29)
+  mean(loss(theta.post, c))
+})
+```
+
+# Task 1
+
+## Plot the posterior risk $\rho(c, \{X_i\})$ as a function of $c$ and find where the minimum occurs.
+
+- And we can plot the posterior risk:
+```{r, fig.width=4, fig.height=3, fig.align="center"}
+source(url("https://gist.githubusercontent.com/OlivierBinette/b77cc476f34cb6bf706844d395f91e23/raw/cecada69add82dcdb4333e7133ea68d65bc2f972/prettyplot.R"))
+
+c = seq(0,1, length.out = 100)
+rho = post_risk(c)
+plot(c, rho, type="l")
+```
+
+# Task 1
+
+## Plot the posterior risk $\rho(c, \{X_i\})$ as a function of $c$ and find where the minimum occurs.
+
+- The minimum of the posterior risk is
+```{r}
+c[which.min(rho)]
+```
+
+# Task 2
+
+## Perform a sensitivity analysis for the choice of prior.
+\pause
+
+- Let's define some other prior parameters in a reasonable range:
+```{r}
+as = c(0.01, 0.05, 0.1, 1)
+bs = c(0.5, 1, 3, 10)
+
+prior.params = expand.grid(a=as, b=bs)
+head(prior.params)
+```
+
+# Task 2
+
+## Perform a sensitivity analysis for the choice of prior.
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center"}
+rho = post_risk(c, a=prior.params[1,1], b=prior.params[1,2])
+plot(c, rho, type="l")
+
+for (i in 2:nrow(prior.params)) {
+  rho = post_risk(c,  a=prior.params[i,1], b=prior.params[i,2])
+  lines(c, rho)
+}
+```
+\normalfont
+
+# Task 3
+
+## Plot the Bayes decision rule, the empirical mean and the constant decision $c = 0.1$ as a function of the number of observed cases.
+\pause
+
+- First let's rewrite the posterior risk function to take the number of observed cases as an argument.
+
+```{r}
+post_risk <- Vectorize(function(c, X, n=30, a=0.05, b=1, nsim=2000) {
+  theta.post = rbeta(nsim, a+X, b+n-X)
+  mean(loss(theta.post, c))
+})
+```
+\pause
+
+- Now let's define the Bayes rule:
+```{r}
+bayes_rule = Vectorize(function(X, n=30, nsim=400) {
+  c = seq(0,1, length.out=100)
+  c[which.min(post_risk(c, X, nsim=nsim))]
+})
+```
+
+# Task 3
+
+## Plot the Bayes decision rule, the empirical mean and the constant decision $c = 0.1$ as a function of the number of observed cases.
+
+- Let's also define the sample mean rule and the constant rule:
+```{r}
+mean_rule <- Vectorize(function(X, n=30) {
+  return(X/n)
+})
+
+constant_rule <- Vectorize(function(X, n=30) {
+  return(0.1)
+})
+```
+
+# Task 3
+
+## Plot the Bayes decision rule, the empirical mean and the constant decision $c = 0.1$ as a function of the number of observed cases.
+
+- Finally we can plot the different rules:
+\small
+```{r, eval=FALSE}
+X = 0:30
+
+# Bayes rule
+plot(X, bayes_rule(X), type="l", col=1)
+
+# Empirical mean
+lines(X, X/30, col=2)
+
+# Constant rule
+lines(X, rep(0.1, length(X)), col=3)
+
+legend("bottomright", legend=c("Bayes", "mean", "constant"), 
+       lty=1, col=1:3)
+```
+\normalfont
+
+# Task 3
+
+## Plot the Bayes decision rule, the empirical mean and the constant decision $c = 0.1$ as a function of the number of observed cases.
+
+```{r, echo=FALSE, fig.width=4, fig.height=3, fig.align="center"}
+X = 0:30
+
+# Bayes rule
+plot(X, bayes_rule(X), type="l", 
+     col=cmap.seaborn(1),
+     xlab="No. of observed cases", "Resource allocation")
+
+# Empirical mean
+lines(X, mean_rule(X), col=cmap.seaborn(2))
+
+# Constant rule
+lines(X, constant_rule(X), col=cmap.seaborn(3))
+
+legend("topleft", legend=c("Bayes", "mean", "constant"), 
+       lty=1, col=cmap.seaborn(c(1,2,3)),
+       cex=0.7)
+```
+
+# Task 4
+
+## Plot the frequentist risk $R(\theta, \delta)$ as a function of $\theta$ for the three procedures in the previous task. Report your findings.
+\pause
+
+- Let's define the frequentist risk:
+
+```{r}
+freq_risk = Vectorize(function(rule, theta, nsim=400) {
+  X.s = rbinom(nsim, 30, theta)
+  mean(loss(theta, rule(X.s)))
+}, vectorize.args = "theta")
+```
+
+# Task 4
+
+## Plot the frequentist risk $R(\theta, \delta)$ as a function of $\theta$ for the three procedures in the previous task. Report your findings.
+\small
+```{r, eval=FALSE}
+theta = seq(0,1, length.out=20)
+
+# Bayes rule
+plot(theta, freq_risk(bayes_rule, theta), type="l", ylim=c(0,1),
+     xlab="theta", ylab="Freq. risk",
+     col=cmap.seaborn(1))
+
+# Sample mean
+lines(theta, freq_risk(mean_rule, theta), col=cmap.seaborn(2))
+
+# Constant
+lines(theta, freq_risk(constant_rule, theta), col=cmap.seaborn(3))
+
+legend("topleft", legend=c("Bayes", "mean", "constant"), 
+       lty=1, col=cmap.seaborn(c(1,2,3)),
+       cex=0.7)
+```
+\normalfont
+
+# Task 4
+
+## Plot the frequentist risk $R(\theta, \delta)$ as a function of $\theta$ for the three procedures in the previous task.
+
+```{r, echo=FALSE, fig.width=4, fig.height=3, fig.align="center", cache=TRUE}
+theta = seq(0,1, length.out=80)
+
+# Bayes rule
+plot(theta, freq_risk(bayes_rule, theta), type="l", ylim=c(0,1.5),
+     xlab="theta", ylab="Freq. risk",
+     col=cmap.seaborn(1))
+
+# Sample mean
+lines(theta, freq_risk(mean_rule, theta), col=cmap.seaborn(2))
+
+# Constant
+lines(theta, freq_risk(constant_rule, theta), col=cmap.seaborn(3))
+
+legend("topleft", legend=c("Bayes", "mean", "constant"), 
+       lty=1, col=cmap.seaborn(c(1,2,3)),
+       cex=0.7)
+```
+
+# Task 5
+
+## Based on your plot of the frequentist risk, consider the three estimators---the constant, the mean, and the Bayes estimators. Which estimators are admissible? Be sure to explain why or why they are not admissible.
+
+
