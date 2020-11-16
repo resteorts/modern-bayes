@@ -1,0 +1,496 @@
+---
+title: "Lab 5: Rejection sampling"
+author: "Olivier Binette"
+date: "28/08/2020"
+fontsize: 11pt
+output: 
+  beamer_presentation:
+    include:
+      in_header: preamble.tex
+---
+
+# Agenda
+
+1. Rejection sampling
+2. Lab 5 Tasks 1-3
+3. Questions / Office Hours
+
+# 
+\section{Rejection sampling}
+
+# Rejection sampling
+
+**The problem:** You want to sample from a distribution on $\mathbb{R}$ given either:\pause
+
+1. its probability density function $p(\theta)$; or\pause
+
+2. some function $f(\theta) \propto p(\theta)$.\pause
+
+**Example:**
+
+- In a Bayesian framework, we want to sample from the posterior distribution $p(\theta \mid x) \propto p(x \mid \theta) p(\theta) = f(\theta)$.
+\pause
+
+- You might want call `rnorm` and `rgamma`, use a parametric bootstrap, approximate the $p$-value corresponding to a complex null hypothesis, etc.
+
+# Rejection sampling
+
+**Summary:**
+
+- Sampling from probability distributions is a fundamental problem in statistics and computer science.
+\pause
+
+- Often you only have access to the probability density function or something proportional to it.
+\pause
+
+- Rejection sampling is *one* way to address this.
+
+# Rejection sampling
+
+The area under the graph of a function $f$ is the set of points $(x,y)$ such that $0 \leq y \leq f(x)$.\pause
+
+**Fundamental lemma of rejection sampling:** Let $f$ be a positive and integrable function. If $(X,Y)$ is uniformly distributed under the graph of $f$, then the marginal probability density function of $X$ is proportional to $f$.
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig1}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig2}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig3}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig4}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig5}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig6}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig7}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig8}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig9}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig10}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig11}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig12}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig13}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig14}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig15}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig16}
+\end{center}
+
+# Rejection sampling
+
+\begin{center}
+  \includegraphics[width=\linewidth]{figures/fig17}
+\end{center}
+
+# Rejection sampling
+
+## Rejection sampling Algorithm
+
+**Input:**
+
+- An integrable function $f \geq 0$ and an enveloppe $g \geq f$ which you can sample from.\footnote{You can sample from the density proportional to $g$.}
+\pause
+
+**Output:**
+
+- A sample $X$ distributed following the density proportional to $f$.
+\pause
+
+**Algorithm:**
+
+1. Sample $X \sim g$ and $Y \mid X \sim \text{unif}(0, g(X))$.
+\pause
+
+2. If $Y < f(X)$, then return $X$. Otherwise go back to step 1.
+
+# Rejection sampling
+
+**Note:**
+
+- The function $g$ is called the *enveloppe* function, and the corresponding distribution is the *proposal* distribution, or the *instrumental* distribution.
+
+- The function $f$ is called the *target*.
+
+#
+
+\section{Lab 5}
+
+# Lab 5
+
+We want to sample from the density proportional to
+$$
+  f(x) = \sin^2(\pi x),\quad x \in [0,1],
+$$
+using rejection sampling.
+\pause
+
+We'll consider two proposal distributions: 
+
+- $Unif(0,1)$
+- $\text{Beta}(2,2)$
+
+
+# Lab 5
+
+**Task 1:** Plot $f(x)$ and the Unif(0,1) density. Sample from $f(x)$ using the Unif(0,1) pdf as an enveloping function.
+
+```{r, echo=FALSE, include=FALSE}
+source(url("https://gist.githubusercontent.com/OlivierBinette/b77cc476f34cb6bf706844d395f91e23/raw/cecada69add82dcdb4333e7133ea68d65bc2f972/prettyplot.R"))
+```
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", eval=FALSE}
+f <- function(x) sin(pi*x)^2
+unif <- Vectorize(function(x) 1)
+
+x = seq(0,1, length.out = 200)
+plot(x, f(x), type="l", col=1, lwd=2, ylab="")
+lines(x, unif(x), col=2, lwd=2)
+
+legend("topleft", legend=c("f", "unif"), 
+       col=cmap.knitr(c(1,2)), lwd=2, lty=1, cex=0.7)
+```
+\normalfont
+
+
+# Lab 5
+
+**Task 1:** Plot $f(x)$ and the Unif(0,1) density. Sample from $f(x)$ using the Unif(0,1) pdf as an enveloping function.
+
+```{r, fig.width=4, fig.height=3, fig.align="center", echo=F}
+#source(url("https://gist.githubusercontent.com/OlivierBinette/b77cc476f34cb6bf706844d395f91e23/raw/cecada69add82dcdb4333e7133ea68d65bc2f972/prettyplot.R"))
+
+f <- function(x) sin(pi*x)^2
+unif <- Vectorize(function(x) 1)
+
+x = seq(0,1, length.out = 200)
+plot(x, f(x), type="l", col=1, lwd=2, ylab="")
+lines(x, unif(x), col=2, lwd=2)
+
+legend("topleft", legend=c("f", "unif"), 
+       col=cmap.knitr(c(1,2)), lwd=2, lty=1, cex=0.7)
+```
+
+
+# Lab 5
+
+**Task 1:** Plot $f(x)$ and the Unif(0,1) density. Sample from $f(x)$ using the Unif(0,1) pdf as an enveloping function.
+
+Let's implement rejection sampling for a single data point:
+
+\small
+```{r}
+sample = NULL
+while (is.null(sample)) {
+  # Step 1
+  x = runif(1, min=0, max=1)
+  y = runif(1, min=0, max=unif(x))
+  
+  # Step 2
+  if (y < f(x)) sample = x
+}
+
+x
+```
+\normalfont
+
+# Lab 5
+
+Now let's code a more general rejection sampling method.
+
+\small
+```{r}
+rejection_sampling <- function(f, g, rg) {
+  while (TRUE) { # Bad practice; doing this for brevity here.
+    # Step 1
+    x = rg(1)
+    y = runif(1, min=0, max=g(x))
+    
+    # Step 2
+    if (y < f(x)) return(sample)
+  }
+}
+
+rejection_sampling(f, unif, runif)
+```
+\normalfont
+
+# Lab 5
+
+**Task 2** Plot a histogram of the points that fall in the acceptance region. Do this for a simulation size of $10^2$ and $10^5$ and report your acceptance ratio. Compare the ratios and histograms.
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", eval=FALSE}
+k = 10^2
+
+x = runif(k)
+y = runif(k)
+
+samples = x[y < f(x)]
+
+hist(samples)
+mean(y < f(x))
+```
+\normalfont
+
+# Lab 5
+
+**Task 2** Plot a histogram of the points that fall in the acceptance region. Do this for a simulation size of $10^2$ and $10^5$ and report your acceptance ratio. Compare the ratios and histograms.
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", echo=FALSE}
+k = 10^2
+
+x = runif(k)
+y = runif(k)
+
+samples = x[y < f(x)]
+
+hist(samples)
+mean(y < f(x))
+```
+\normalfont
+
+
+
+
+
+
+# Lab 5
+
+**Task 2** Plot a histogram of the points that fall in the acceptance region. Do this for a simulation size of $10^2$ and $10^5$ and report your acceptance ratio. Compare the ratios and histograms.
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", eval=FALSE}
+k = 10^6
+
+x = runif(k)
+y = runif(k)
+
+samples = x[y < f(x)]
+
+hist(samples)
+mean(y < f(x))
+```
+\normalfont
+
+# Lab 5
+
+**Task 2** Plot a histogram of the points that fall in the acceptance region. Do this for a simulation size of $10^2$ and $10^5$ and report your acceptance ratio. Compare the ratios and histograms.
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", echo=FALSE}
+k = 10^6
+
+x = runif(k)
+y = runif(k)
+
+samples = x[y < f(x)]
+
+hist(samples)
+mean(y < f(x))
+```
+\normalfont
+
+# Lab 5
+
+**Task 3** Repeat Tasks 1 - 2 for Beta(2,2) as an enveloping function.
+
+\small
+```{r}
+g = function(x) dbeta(x, 2,2)
+rg = function(n) rbeta(n, 2,2)
+```
+\normalfont
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", eval=FALSE}
+f <- function(x) sin(pi*x)^2
+unif <- Vectorize(function(x) 1)
+
+x = seq(0,1, length.out = 200)
+plot(x, f(x), type="l", col=1, lwd=2, ylab="", ylim=c(0,1.5))
+lines(x, unif(x), col=2, lwd=2)
+lines(x, g(x), col=3, lwd=2)
+
+legend("topleft", legend=c("f", "unif", "Beta(2,2)"), 
+       col=cmap.knitr(c(1,2,3)), lwd=2, lty=1, cex=0.7)
+```
+\normalfont
+
+
+# Lab 5
+
+**Task 3** Repeat Tasks 1 - 2 for Beta(2,2) as an enveloping function.
+
+\small
+```{r, fig.width=4.5, fig.height=4, fig.align="center", echo=FALSE}
+f <- function(x) sin(pi*x)^2
+unif <- Vectorize(function(x) 1)
+
+x = seq(0,1, length.out = 200)
+plot(x, f(x), type="l", col=1, lwd=2, ylab="", ylim=c(0,1.5))
+lines(x, unif(x), col=2, lwd=2)
+lines(x, g(x), col=3, lwd=2)
+
+legend("topleft", legend=c("f", "unif", "Beta(2,2)"), 
+       col=cmap.knitr(c(1,2,3)), lwd=2, lty=1, cex=0.6)
+```
+
+# Lab 5
+
+**Task 3** Repeat Tasks 1 - 2 for Beta(2,2) as an enveloping function.
+
+\small
+```{r}
+g = function(x) dbeta(x, 2,2)
+rg = function(n) rbeta(n, 2,2)
+```
+
+```{r}
+rejection_sampling(f, g, rg)
+```
+\normalfont
+
+# Lab 5
+
+**Task 3** Repeat Tasks 1 - 2 for Beta(2,2) as an enveloping function.
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", eval=FALSE}
+k = 10^2
+
+x = rg(k)
+y = runif(k, min=0, max=g(x))
+
+samples = x[y < f(x)]
+
+hist(samples)
+mean(y < f(x))
+```
+\normalfont
+
+# Lab 5
+
+**Task 3** Repeat Tasks 1 - 2 for Beta(2,2) as an enveloping function.
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", echo=FALSE}
+k = 10^2
+
+x = rg(k)
+y = runif(k, min=0, max=g(x))
+
+samples = x[y < f(x)]
+
+hist(samples)
+mean(y < f(x))
+```
+\normalfont
+
+# Lab 5
+
+**Task 3** Repeat Tasks 1 - 2 for Beta(2,2) as an enveloping function.
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", eval=FALSE}
+k = 10^6
+
+x = rg(k)
+y = runif(k, min=0, max=g(x))
+
+samples = x[y < f(x)]
+
+hist(samples)
+mean(y < f(x))
+```
+\normalfont
+
+# Lab 5
+
+**Task 3** Repeat Tasks 1 - 2 for Beta(2,2) as an enveloping function.
+
+\small
+```{r, fig.width=4, fig.height=3, fig.align="center", echo=FALSE}
+k = 10^6
+
+x = rg(k)
+y = runif(k, min=0, max=g(x))
+
+samples = x[y < f(x)]
+
+hist(samples)
+mean(y < f(x))
+```
+\normalfont

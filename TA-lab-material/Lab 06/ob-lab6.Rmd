@@ -1,0 +1,228 @@
+---
+title: "Lab 6: Monte Carlo"
+author: "Olivier Binette and Michael Christensen"
+date: "Friday September 18, 2020"
+fontsize: 11pt
+output: 
+  beamer_presentation:
+    include:
+      in_header: preamble.tex
+---
+
+```{r, echo=FALSE, include=FALSE}
+set.seed(1)
+```
+
+
+# Agenda
+
+1. Review of Monte Carlo and Importance Sampling
+2. Lab 6 Tasks 1-3
+3. Questions / Office Hours
+
+# 
+\section{Review of Monte Carlo and Importance Sampling}
+
+
+# Review of Monte Carlo and Importance Sampling
+
+**Goal:** Approximate an integral
+$$
+  I = \int_{\mathcal{X}} h(x) f(x)\, dx = \mathbb{E}_{f}[h(x)]
+$$
+which is intractable, where $f(x)$ is a probability density function.
+\pause
+
+**What's the problem?**
+\pause
+
+- Typically $h(x)$ is messy or high-dimensional. We need numerical techniques.
+\pause
+
+- In dimension $d=3$ or higher (e.g. $\mathcal{X} = \mathbb{R}^3$), Monte Carlo typically improves upon numerical integration techniques.
+
+# Review of Monte Carlo and Importance Sampling
+
+We want to approximate $I = \int_{\mathcal{X}} h(x) f(x)\, dx = \mathbb{E}_{f}[h(x)]$...
+
+**Monte-Carlo solution:**\pause Sample $X_1, X_2, X_3, \dots, X_n$ from $f$, and estimate $I$ by the empitical average
+$$
+  \overline h_n = \frac{1}{n}\sum_{i=1}^n h(x_i).
+$$
+\pause
+
+- The estimate $\overline h_n$ converges almost surely to $I$ as $n \rightarrow \infty$ by the strong law of large numbers.
+
+# Review of Monte Carlo and Importance Sampling
+
+We want to approximate $I = \int_{\mathcal{X}} h(x) f(x)\, dx = \mathbb{E}_{f}[h(x)]$...
+
+**Importance Sampling:**\pause Maybe it's hard to sample from $f$, and instead you'd like to take your samples from a density $g$. So divide and multiply by $g(x)$ to write
+$$
+  I = \int_{\mathcal{X}} h(x) f(x)\, dx = \int_{\mathcal{X}}h(x)  \frac{f(x)}{g(x)} g(x)\, dx = \mathbb{E}_g\left[h(x)  \frac{f(x)}{g(x)}\right].
+$$
+\pause
+
+Now use a Monte-Carlo estimate of $I$ with respect to $g$: sample $x_1, x_2, \dots, x_n$ from $g$ and estimate $I$ by
+$$
+  \hat I = \frac{1}{n}\sum_{i=1}^n h(x_i)\frac{f(x_i)}{g(x_i)}.
+$$
+
+#
+\section{Lab 6}
+
+# Lab 6
+
+Consider
+$$
+  I = \int_{-\infty}^\infty e^{-x^4}\,dx.
+$$
+\pause
+
+1. Find a closed form solution to $I$ and evaluate this.
+2. Approximate $I$ using Monte-Carlo.
+3. Approximate $I$ using importance sampling
+
+# Lab 6
+
+## Task 1: Find a closed form solution to $I$.
+
+How can we compute $I = \int_{-\infty}^\infty e^{-x^4}\,dx$?
+\pause
+
+- Change of variable ($u$-substitution)!
+\pause
+
+- First write $I = 2\int_{0}^\infty e^{-x^4}\,dx$.
+\pause
+
+- Set $u = x^4$, \pause$x = u^{1/4}$.\pause Then $du = 4x^3 dx$,\pause $dx = \frac{du}{4x^3} = \frac{du}{4 u^{3/4}}$.\pause
+\begin{align*}
+I &= 2\int_{-\infty}^\infty e^{-x^4}\,dx\\\pause
+  &= 2\int_{0}^\infty \frac{e^{-u}}{4u^{3/4}}\,du\\\pause
+  &= \frac{1}{2}\int_{0}^\infty u^{-3/4} e^{-u}\,du\\ \pause
+  &= \frac{1}{2}\int_{0}^\infty \underbrace{u^{-3/4} e^{-u}}_{\text{Gamma kernel}}\,du
+\end{align*}
+
+# Lab 6
+
+## Task 1: Find a closed form solution to $I$.
+
+Remember that the Gamma density is $\frac{b^a}{\Gamma(a)} x^{a-1}e^{-bx}$.\pause
+
+So $\int_0^\infty\frac{b^a}{\Gamma(a)} x^{a-1}e^{-bx}\,dx = 1$
+\pause
+and $\int_0^\infty x^{a-1}e^{-bx}\,dx = \frac{\Gamma(a)}{b^a}.$
+\pause
+
+In our context, we therefore have
+\begin{align*}
+I &= \frac{1}{2}\int_{0}^\infty \underbrace{u^{-3/4} e^{-u}}_{\text{Gamma kernel}}\,du\\\pause
+  &= \frac{1}{2}\int_{0}^\infty u^{1/4 - 1} e^{-u}\,du\\\pause
+  &=  \frac{1}{2} \frac{\Gamma(1/4)}{1^{1/4}}\\\pause
+  &= \frac{\Gamma(1/4)}{2}\\\pause
+  &= 1.813
+\end{align*}
+
+# Lab 6
+
+## Task 2: Estimate $I = \int_{-\infty}^\infty e^{-x^4}\,dx$ using Monte-Carlo.
+\pause
+
+Beka suggests the substitution $y = \sqrt{2}x^2$.\pause Then
+$$
+  I = 2^{-5/4}\int_0^\infty \sqrt{\frac{2\pi}{y}} 2\phi(y) \,dy
+$$
+where $2\phi(y)$ is the density of the normal distribution truncated to $[0,\infty)$.
+\pause
+
+So if $Y\sim N(0,1)$, then $Y = |X|$ has density $2\phi$.\pause
+
+**Monte-Carlo algorithm:**\pause
+
+1. Sample $X_1, X_2, \dots, X_n \sim N(0,1)$.\pause
+2. Approximate $I$ by 
+$$
+  \hat I_{MC} = \frac{1}{n}\sum_{i=1}^n 2^{-5/4}\sqrt{\frac{2\pi}{|X_i|}}.
+$$
+# Lab 6
+
+# Lab 6
+
+## Task 2: Estimate $I = \int_{-\infty}^\infty e^{-x^4}\,dx$ using Monte-Carlo.
+
+Let's implement this:\pause
+
+\small
+```{r, echo=TRUE, include=TRUE}
+integrand <- function(x) {
+  2^{-5/4} * sqrt(2*pi/abs(x))
+}
+
+n = 10^6
+X = rnorm(n)
+values = integrand(X)
+mean(values)
+sd(values)/sqrt(n)
+```
+\normalfont
+
+
+# Lab 6
+
+## Task 3: Estimate $I$ using importance sampling.
+\pause
+
+Let's use a *Normal* instrumental distribution:\pause
+
+\begin{align*}
+  I &= \int_{-\infty}^\infty e^{-x^4}\,dx\\\pause
+    &= \int_{-\infty}^\infty \frac{e^{-x^4}}{\phi(x)}\phi(x)\,dx\pause
+\end{align*}
+where $\phi$ is the normal density.\pause
+
+**Importance sampling algorithm:**\pause
+
+1. Sample $X_1, X_2, \dots, X_n \sim N(0,1)$.\pause
+2. Estimate $I$ by
+$$
+  \hat I_{IS} = \frac{1}{n}\sum_{i=1}^n \frac{e^{-X_i^4}}{\phi(X_i)}.
+$$
+\pause
+
+# Lab 6
+
+## Task 3: Estimate $I$ using importance sampling.
+
+Let's implement this:\pause
+
+\small
+```{r}
+integrand_IS <- function(x) {
+  exp(-x^4)/dnorm(x)
+}
+
+n = 10^6
+X = rnorm(n)
+values_IS = integrand_IS(X)
+mean(values_IS)
+sd(values_IS)/sqrt(n)
+```
+\normalfont
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
