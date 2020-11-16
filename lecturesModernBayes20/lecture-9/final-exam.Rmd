@@ -554,15 +554,159 @@ Under the g-prior, it follows that
 Logistic Regression
 ===
 
-- Forthcoming
+- Generalized Linear Models
+- Exponential Families
 
 \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-9/9-logistic-regression.pdf}
 
+Generalized Linear Models
+===
+
+We turn to **generalized linear models** when 
+
+- the range of $y_i$ is restricted
+- the variance of $y_i$ depends on the mean
+
+Exponential Families 
+===
+
+In a GLM, pdfs or pmfs can be shown to be an exponential family using equation~\ref{eqn:exponential}.
+
+\begin{align}
+\label{eqn:exponential}
+f(y; \theta, \phi) = \exp\left\{ \frac{y\theta - b(\theta)}{a(\phi)} + c(y,\phi) \right\},
+\end{align}
+
+It's important to identify the parameters of the exponential family, namely: 
+
+$$\theta, \; \phi, \; a(\phi),\; b(\theta),\; c(y,\phi).$$
+
+
+Generalized Linear Models
+===
+
+We assume $\mu = E[Y\mid X]$ and our goal is to estimate $\mu.$
+
+- The **systematic component** relates $\eta$ to $X.$ 
+
+In a GLM, $$\eta = \beta^T X = \beta_1 X_1 + \ldots \beta_p X_p$$
+
+- The **link component** connects the **random** and **systematic components**, via a link function $g(\mu) = \eta(X).$ 
+
+- The link function provides a connection between $\mu = E[Y\mid X]$ and $\eta.$ 
+
+Bernoulli Example
+===
+
+Suppose $Y \in \{ 0, 1\}$  and 
+$$Y\mid X \stackrel{iid}{\sim} \text{Bernoulli}(p).$$
+
+We showed that $Y \mid X$ is in the exponential family, where 
+
+\begin{align}
+f(y) &= \exp\{
+y \log ({\frac{p}{1-p}}) + \log(1-p) + 0
+\} 
+\end{align}
+
+- The natural parameter is $\theta = \log \dfrac{p}{1-p}.$
+
+- The mean is $\mu = p,$ which implies that
+$p = e^{\theta}/(1 + e^{\theta}).$
+
+- This implies $b(\theta) = -\log(1-p) = -\log(1 + e^{\theta}).$
+
+- There is no dispersion parameter, so $a(\phi) = 1$ and $c(y,\phi) = 0.$
+
+
+Bernoulli Example (Continued)
+===
+
+The link function is $$g(\mu) = \log(\frac{\mu}{1-\mu})$$ such that we model $$\log(\frac{\mu}{1-\mu}) = \text{logit}(\mu)= \beta^TX.$$
+
+This is known as **logistic regression**, which is a GLM with the **logit link**.
+
+Logistic regression
+===
+
+Our motivation for logistic regression was the Challenger case study, where 
+
+- the response is the damage to the o-ring (in each shuttle launch). 
+
+- the covariate is the temperature (F) in each shuttle launch. 
+
+Logistic regression
+===
+
+- Let $p_i$ be the probability that an o-ring $i$ fails. 
+
+- The corresponding **odds of failure** is $$\frac{p_i}{1-p_i}.$$
+The response 
+
+\begin{align}
+Y_i \mid p_i &\sim \text{Bernoulli}(p_i)
+\end{align}
+for $i=1,\ldots,n.$
+
+The logistic GLM writes that the logit of the probability  $p_i$
+as linear function of the predictor variable(s) $x_i$: 
+
+\begin{align}
+\text{logit}(p_i)  &:= \log(\frac{p_i}{1-p_i}) = \beta_0 + \beta_1x_i.
+\end{align}
+
+
+Intuition of Model
+===
+
+We assume our 23 data points are **conditionally independent**. 
+
+$$\text{Pr(failure = 1)} = \frac{\exp\{\beta_0 + \beta_1 \times \text{temp}\}}{1+ \exp\{\beta_0 + \beta_1 \times \text{temp}\}}$$
+\begin{align}
+&\text{failure}_1,\ldots, \text{failure}_{23} \mid \beta_0, \beta_1, \text{temp}_1,\ldots, \text{temp}_{23} \\
+& \sim 
+\prod_i 
+\left(\frac{\exp\{\beta_0 + \beta_1 \times \text{temp}_i\}}{1+ \exp\{\beta_0 + \beta_1 \times \text{temp}_i\}}\right)^{\text{failure}_i} \\
+&\times
+\left(\frac{1}{1+ \exp\{\beta_0 + \beta_1 \times \text{temp}_i\}}\right)^{\text{1-failure}_i}
+\end{align}
+
+Bayesian Logistic Regression
+===
+
+For $i=1,\ldots,n$
+
+\begin{align}
+Y_i \mid p_i &\sim \text{Bernoulli}(p_i)\\
+\text{logit}(p_i) &:= \log(\frac{p_i}{1-p_i}) = \beta_0 + \beta_1x_i.
+\end{align}
 
 
 
 
+\begin{align}
+\beta_0 &\sim \text{Normal}(0,1000) \\
+\beta_1 &\sim \text{Normal}(0,1000) 
+\end{align}
 
+How would you solve this computationally? 
+
+Exam Resources
+===
+
+1. **Exams 2020** \url{https://github.com/resteorts/modern-bayes/tree/master/exercises/exams-fall-2020}
+2. **Final Exam Practice Problems** \url{https://github.com/resteorts/modern-bayes/tree/master/exercises/final-exam}
+3. **Final Exam Exercises** \url{https://github.com/resteorts/modern-bayes/tree/master/exercises/exercises-final-exam}
+
+
+Exam Resources
+===
+
+1. **Exam I Exercises** \url{https://github.com/resteorts/modern-bayes/tree/master/exercises/exercises-exam-one}
+2. **Exam II Exercises** \url{https://github.com/resteorts/modern-bayes/tree/master/exercises/exercises-exam-two}
+3. **Additional Practice Exercises**
+\url{https://github.com/resteorts/modern-bayes/blob/master/exercises/additional-practice-problems/practice-problems.pdf}
+4. **Multiple Choice Questions** \url{https://github.com/resteorts/modern-bayes/tree/master/exercises/multiple-choice}
 
 
 
