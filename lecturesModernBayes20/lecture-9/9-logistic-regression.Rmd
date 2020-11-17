@@ -493,7 +493,7 @@ Gaussian Solution
 
 \begin{align}
 f(y)
-&= (\sqrt{2\pi}\sigma)^{-1}\sigma\exp \left\{
+&= (\sqrt{2\pi}\sigma)^{-1}\exp \left\{
 -\frac{1}{2\sigma^2} (y- \mu)^2
 \right\} \\
 &= \exp\{\log(\sqrt{2\pi}\sigma)^{-1}\}
