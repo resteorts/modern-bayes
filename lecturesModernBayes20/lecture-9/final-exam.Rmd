@@ -13,7 +13,9 @@ font-size: 8px
 Final Exam
 ===
 
-- Open note/Open book
+The final exam is Sunday, November 22, 2 PM - 5 PM EDT. \footnote{The format and length will be the same at Exam II (open note/open book). It should take you about 75-100 minutes. You will have 15 minutes after the final to upload. I do not expect you will need the full three hours for the exam.}
+
+
 - Four questions
 - Question 1: True False
 - Other three questions: derivation based and focused on material after Exam II. 
