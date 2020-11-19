@@ -353,8 +353,9 @@ Ordinary Least squares estimation
 ===
 Proof: Observe
 \begin{align}
- \frac{\partial SSR(\bbeta)}{\partial \bbeta} &= 
-\frac{\partial (\by-X\bbeta)^T(\by-X\bbeta)}{\partial \bbeta} \\
+ \frac{\partial SSR(\bbeta)}{\partial \bbeta} 
+ &:=  \frac{\partial \|\by-X{\bm{\beta}}\|_2^2}{\partial \bbeta} \\
+&= \frac{\partial (\by-X\bbeta)^T(\by-X\bbeta)}{\partial \bbeta} \\
 &= \frac{\partial \by^T\by - 2\bbeta^TX^T\by + \hbeta^T(X^TX)\bbeta}{\partial \bbeta}\\
 & = -  2X^T\by + 2X^TX\bbeta
 \end{align}
