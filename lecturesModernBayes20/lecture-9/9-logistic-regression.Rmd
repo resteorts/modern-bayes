@@ -475,6 +475,12 @@ Course evaluations
 - If there is 100 percent response, everyone in the class will receive 1 point on their final grade. (We are currently just above 50 percent response.)
 - If there is something that has not been resolved in the course, please let me know so that it can be fixed. Kindly send myself (or your TA advocate an email regarding the issue). 
 
+Exponential Families
+===
+
+More info about exponential families can be found here
+\url{https://www.cs.princeton.edu/courses/archive/spring09/cos513/scribe/lecture11.pdf}
+
 
 
 Gaussian Example
