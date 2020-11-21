@@ -1,0 +1,801 @@
+
+---
+title: "Module 9: Linear Regression"
+author: "Rebecca C. Steorts"
+date: Hoff, Chapter 9
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+Remainder of Semester
+===
+
+\textbf{This week}
+
+- Thursday, November 5: Linear Regression 
+- Friday, November 6: Lab 10 (Homework 8)
+
+\vspace*{1em}
+
+\textbf{Next week}
+
+- Tuesday, November 10: Linear and Logistic Regression
+- Thursday, November 12: Logistic Regression + Final Exam 
+- Friday November 13, 5 PM EDT: Homework 8 (last homework + extra credit) 
+
+\vspace*{1em}
+
+\textbf{Reading period}
+
+- All OH will be held. Mine will be during class to avoid any conflicts and be more friendly to international students. 
+ 
+
+Final Exam
+===
+
+The final exam is **November 22, 2 PM - 5 PM EDT** (open note/open book)
+
+- The material will be on modules 1 -- 9.
+- I will go over more details regarding the exam next week 
+
+ 
+
+
+
+Agenda
+===
+
+- Motivation: oxygen uptake example 
+- Linear regression
+- Multiple and Multivariate Linear Regression
+- Bayesian Linear Regression
+- Background on the Euclidean norm and argmin 
+- Ordinary Least Squares + Exercises 
+- Setting Prior Parameters
+- The g-prior
+- How does this all fit together 
+
+
+Oxygen uptake case study
+===
+
+Experimental design: 12 male volunteers.
+
+\begin{enumerate}
+\item $O_2$ uptake measured at the beginning of the study
+\item 6 men take part in a randomized aerobics program
+\item 6 remaining men participate in a running program
+\item $O_2$ uptake measured at end of study
+\end{enumerate}
+
+What type of exercise is the most beneficial?
+
+Data
+===
+```{r}
+# 0 is running
+# 1 is aerobic exercise
+x1<-c(0,0,0,0,0,0,1,1,1,1,1,1)
+# x2 is age
+x2<-c(23,22,22,25,27,20,31,23,27,28,22,24)
+# change in maximal oxygen uptake
+y<-c(-0.87,-10.74,-3.27,-1.97,7.50,
+     -7.25,17.05,4.96,10.40,11.05,0.26,2.51)
+```
+
+Exploratory Data Analysis
+===
+```{r, echo=FALSE}
+par(mfrow=c(1,1))
+plot(y~x2,pch=16,xlab="age",ylab="change in maximal oxygen uptake", 
+     col=c("red","green")[x1+1])
+legend(27,0,legend=c("aerobic","running"),pch=c(16,16),col=c("green","red"))
+```
+
+Data analysis
+===
+
+$y$ = change in oxygen uptake (scalar)
+
+$x_1$ = exercise indicator (0 for running, 1 for aerobic)
+
+$x_2$ = age
+
+How can we estimate $p(y \mid x_1, x_2)?$
+
+Linear regression
+===
+Assume that smoothness is a function of age.
+
+For each group,
+
+$$y = \beta_o + \beta_1 x_2 + \epsilon$$
+
+Linearity means **linear in the parameters** ($\beta$'s). 
+
+Linear regression
+===
+
+We could also try the model
+
+$$y = \beta_o + \beta_1 x_2 +  \beta_2 x_2^2 + \beta_3 x_2^3 + \epsilon$$
+
+which is also a linear regression model. 
+
+Notation 
+===
+- $X_{n\times p}$: regression features or covariates (design matrix)
+- $\bx_i$: $i$th row vector of the regression covariates
+- $\by_{n\times 1}$: response variable (vector)
+- $\bbeta_{p \times 1}$: vector of regression coefficients 
+
+
+Notation (continued)
+===
+$$\bm{X}_{n \times p} = 
+\left( \begin{array}{cccc}
+x_{11} & x_{12} & \ldots&  x_{1p}\\
+x_{21} & x_{22} & \ldots& x_{2p} \\
+x_{i1} & x_{i2} & \ldots& x_{ip} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} &\ldots& x_{np}
+\end{array} \right).
+$$
+
+- A column of x represents a particular covariate we might be interested in, such as age of a person. 
+
+- Denote $x_i$ as the ith \textcolor{red}{row vector} of the $X_{n \times p}$ matrix. 
+
+\[  x_{i}= \left( \begin{array}{c}
+x_{i1}\\
+\textcolor{red}{x_{i2}}\\
+\vdots\\
+x_{ip}
+\end{array} \right) \]
+
+Notation (continued)
+===
+\[  \bbeta= \left( \begin{array}{c}
+\beta_1\\
+\beta_2\\
+\vdots\\
+\beta_p
+\end{array} \right) \]
+
+\[  \by= \left( \begin{array}{c}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{array} \right) \]
+
+$$\by_{n \times 1} = 
+X_{n \times p} \bbeta_{p \times 1} + \bm{\epsilon}_{n \times 1}$$
+
+
+
+
+
+Regression models
+===
+How does an outcome $\bm{y}$ vary as a function of the covariates which we represent as $X_{n\times p}$ matrix?
+
+
+- Can we predict $\bm{y}$ as a function of each row in the matrix $X_{n\times p}$ denoted by $\bx_i.$
+- Which $\bx_i$'s have an effect?
+
+Such questions can be assessed via a linear regression model $p(\by \mid X).$
+
+
+Multiple linear regression
+===
+Consider the following: 
+
+$$y_i = \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + 
+\beta_4 x_{i4} + \epsilon_i$$
+
+where
+\begin{align}
+x_{i1} &= 1 \; \text{for subject} \; i \\
+x_{i2} &= 0 \; \text{for running}; \text{1 for aerobics}  \\
+x_{i3} &= \text{age of subject i}\\
+x_{i4} &= x_{i2} \times x_{i3} 
+\end{align}
+
+Under this model,
+$$E[\bm{y} \mid \bm{x}] = \beta_1 + \beta_3 \times age \; \text{if} \; x_2=0$$
+$$E[\bm{y} \mid \bm{x}] = (\beta_1 + \beta_2) + (\beta_3 + \beta_4)\times age \; \text{if} \; x_2=1 $$
+
+
+
+Least squares regression lines 
+===
+```{r, echo=FALSE}
+par(mfrow=c(2,2),mar=c(3,3,1,1),mgp=c(1.75,.75,0))
+
+plot(y~x2,pch=16,col=c("red","green")[x1+1],ylab="change in maximal oxygen uptake",xlab="",xaxt="n")
+abline(h=mean(y[x1==0]),col="red") 
+abline(h=mean(y[x1==1]),col="green")
+mtext(side=3,expression(paste(beta[3]==0,"  ",beta[4]==0)) )
+
+plot(y~x2,pch=16,col=c("red","green")[x1+1],xlab="",ylab="",xaxt="n",yaxt="n")
+abline(lm(y~x2),col="red")
+abline(lm((y+.5)~x2),col="green")
+mtext(side=3,expression(paste(beta[2]==0,"  ",beta[4]==0)) )
+
+plot(y~x2,pch=16,col=c("red","green")[x1+1],
+     xlab="age",ylab="change in maximal oxygen uptake" )
+fit<-lm(y~x1+x2)
+abline(a=fit$coef[1],b=fit$coef[3],col="red")
+abline(a=fit$coef[1]+fit$coef[2],b=fit$coef[3],col="green")
+mtext(side=3,expression(beta[4]==0)) 
+
+plot(y~x2,pch=16,col=c("red","green")[x1+1],
+     xlab="age",ylab="",yaxt="n")
+abline(lm(y[x1==0]~x2[x1==0]),col="red")
+abline(lm(y[x1==1]~x2[x1==1]),col="green")
+```
+
+Multivariate Setup 
+===
+Let's assume that we have data points $(x_i, y_i)$ available for all  $i=1,\ldots,n.$
+
+- $y$ is the response variable
+\[  \by= \left( \begin{array}{c}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{array} \right)_{n \times 1} \]
+
+- $\bx_{i}$ is the $i$th row of the design matrix $X_{n \times p}.$
+
+Consider the regression coefficients
+
+\[  \bbeta = \left( \begin{array}{c}
+\beta_{1}\\
+\beta_{2}\\
+\vdots\\
+\beta_{p}
+\end{array} \right)_{p \times 1} \]
+
+Normal Regression Model
+===
+The Normal regression model specifies that
+
+- $E[Y\mid \bx_i]$ is linear and
+- the sampling variability around the mean is independently and identically (iid) drawn from a normal distribution
+
+\begin{align}
+Y_i &= \bbeta^T \bx_i + \bm{\epsilon}_i\\
+\epsilon_1,\ldots,\epsilon_n &\stackrel{iid}{\sim} \text{Normal}(0,\sigma^2)
+\end{align}
+
+This implies $Y_i \mid \bbeta, \bx_i \sim \text{Normal}(\bbeta^T \bx_i,\sigma^2).$
+
+
+
+
+Multivariate Bayesian Normal Regression Model
+===
+
+We can re-write this as a multivariate regression model as:
+
+$$\by \mid X,\bbeta, \sigma^2 \sim \text{MVN}( X\bbeta, \sigma^2 I_p).$$
+ 
+We can specify a multivariate Bayesian model as: 
+
+$$\by \mid X,\bbeta, \sigma^2 \sim \text{MVN}( X\bbeta, \sigma^2 I_p)$$
+$$\bbeta \sim \text{MVN}(0, \tau^2 I_p),$$
+
+where $\sigma^2, \tau^2$ are known.
+
+Bayesian Normal Regression Model
+===
+
+The likelihood is 
+\begin{align}
+&p(y_1,\ldots,y_n \mid x_1,\ldots x_n, \bbeta, \sigma^2) \\
+&= \prod_{i=1}^n p(\by_i \mid \bx_i, \bbeta, \sigma^2) \\
+&(2\pi \sigma^2 )^{-n/2} \exp\{
+\frac{-1}{2\sigma^2} \sum_{i=1}^n (\by_i - \bbeta^T \bx_i)^2
+\}\\
+&= (2\pi \sigma^2 )^{-n/2} \exp\{\textcolor{black}{-\frac{1}{2}} (\by - X\bbeta)^T\textcolor{black}{(\sigma^2)^{-1} I_p}(\by - X\bbeta)\}
+\end{align}
+
+Background
+===
+
+The Euclidean norm ($L^2$ norm or square root of the sum of squares) of $\boldsymbol{y} = (y_1, \ldots, y_n)$ is defined by 
+
+$$ \|\boldsymbol{y}\|_2 = \sqrt{y_1^2 + \ldots + y_n^2}.$$
+It follows that 
+
+$$ \|\boldsymbol{y}\|_2^2 = y_1^2 + \ldots + y_n^2.$$
+\vspace*{1em}
+
+\textbf{Why do we use this notation?} It's compact and convenient! 
+
+Background
+===
+
+We would like to find $$\argmin_{\bbeta \in \R^p} \|\by-X\bbeta\|_2^2,$$
+
+where the $\argmin$ (the arguments of the minima) are the points or elements of the domains of some function as which the functions values are minimized. 
+
+
+Ordinary Least Squares
+===
+We can estimate the coefficients $\hat{\bm{\beta}} \in \R^p$ by least squares:
+$$\hat{\bm{\beta}} = \argmin_{\bbeta \in \R^p} \|\by-X\bbeta\|_2^2$$
+
+
+One can show that 
+$$\hat{\bm{\beta}} = (X^T X)^{-1} X^T \by$$
+
+
+\bigskip
+The fitted values are
+$$\textcolor{black}{\hat{\bm{y}}} = X\hat{\bm{\beta}} = X(X^T X)^{-1} X^T \by$$
+This is a linear function of $\by$, $\hy = H\by$, where
+$H=X(X^T X)^{-1} X^T$ is sometimes called the **hat matrix**.
+
+Exercise 1 (OLS)
+===
+Let SSR denote sum of squared residuals. 
+$$ \min_{\bbeta} SSR(\bbeta) = \min_{\bbeta} \|\by-X{\bm{\beta}}\|_2^2$$
+Show that  $$\hat{\bm{\beta}}  = (X^TX)^{-1}X^T\by.$$
+
+Ordinary Least squares estimation
+===
+Proof: Observe
+\begin{align}
+ \frac{\partial SSR(\bbeta)}{\partial \bbeta} 
+ &:=  \frac{\partial \|\by-X{\bm{\beta}}\|_2^2}{\partial \bbeta} \\
+&= \frac{\partial (\by-X\bbeta)^T(\by-X\bbeta)}{\partial \bbeta} \\
+&= \frac{\partial \by^T\by - 2\bbeta^TX^T\by + \hbeta^T(X^TX)\bbeta}{\partial \bbeta}\\
+& = -  2X^T\by + 2X^TX\bbeta
+\end{align}
+
+This implies $-X^T\by + X^TX\bbeta= 0 \implies \hat{\bm{\beta}}_{ols}  = (X^TX)^{-1}X^T\by.$
+\vskip 1em
+
+This is called the **ordinary least squares estimator**. How do we know it is unique?
+
+Exercise 2 (OLS)
+===
+Show that 
+
+$$\hat{\bm{\beta}} \sim MVN(\bbeta, \sigma^2  (X^TX)^{-1}).$$
+
+Ordinary Least squares estimation
+===
+Proof: Recall
+
+$$\hbeta  = (X^TX)^{-1}X^T\bY. $$
+\vskip 1em
+$$E(\hat{\bm{\beta}} ) = E[(X^TX)^{-1}X^T\bY]= 
+(X^TX)^{-1}X^T E[\bY] = (X^TX)^{-1}X^TX
+\bbeta.$$
+
+\vskip 1em
+\begin{align}
+\Var(\hat{\bm{\beta}}) &= \Var\{ (X^TX)^{-1}X^T\bY\}\\
+ &=
+(X^TX)^{-1}X^T \sigma^2 I_n X (X^TX)^{-1}\\
+& = \sigma^2  (X^TX)^{-1}
+\end{align}
+
+$$\hat{\bm{\beta}} \sim MVN(\bbeta, \sigma^2  (X^TX)^{-1}).$$
+
+Recall data set up
+===
+\footnotesize
+```{r}
+# running is 0, 1 is aerobic
+x1<-c(0,0,0,0,0,0,1,1,1,1,1,1)
+# age
+x2<-c(23,22,22,25,27,20,31,23,27,28,22,24)
+# change in maximal oxygen uptake
+y<-c(-0.87,-10.74,-3.27,-1.97,7.50,
+     -7.25,17.05,4.96,10.40,11.05,0.26,2.51)
+```
+Recall data set up
+===
+\footnotesize
+```{r}
+(x3 <- x2) #age
+(x2 <- x1) #aerobic versus running 
+(x1<- seq(1:length(x2))) #index of person
+(x4 <- x2*x3)
+```
+
+Recall data set up
+===
+\footnotesize
+```{r}
+(X <- cbind(x1,x2,x3,x4))
+```
+
+OLS estimation in R
+===
+\footnotesize
+```{r}
+## using the lm function
+fit.ols<-lm(y~ X[,2] + X[,3] +X[,4])
+summary(fit.ols)$coef
+```
+
+
+Exercise 3 (Multivariate inference for regression models)
+===
+
+Let 
+\begin{align}
+\bm{y} &\mid \bbeta \sim \text{MVN}(X \bbeta, \sigma^2 I)\\
+\bbeta &\sim \text{MVN}(\bbeta_0, \Sigma_0)
+\end{align}
+
+Show that the posterior is 
+$$\bbeta \mid \bm{y}, X \sim \text{MVN}(\bbeta_n, \Sigma_n), \; \text{where}$$
+\begin{align*}
+\bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (nX^TX)/\sigma^2)^{-1}
+(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2) \\
+\Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (nX^TX)/\sigma^2)^{-1}
+\end{align*}
+
+Remark: If $\Sigma_o^{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{ols}$
+
+If $\Sigma_o^{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
+
+Exercise 3 Solution 
+===
+Let's start with the likelihood:
+\begin{align}
+\bm{y} &\mid \bbeta \sim \text{MVN}(X \bbeta, \sigma^2 I)
+\end{align} 
+
+\begin{align}
+p(\bm{y}  \mid  \bbeta) &\propto \exp\{\frac{-1}{2\sigma^2}
+\sum_{i=1}^n
+(\bm{y}_i - X\bbeta)^T(\bm{y}_i - X\bbeta)
+\} \\
+&\propto \exp\{\frac{-1}{2\sigma^2}
+\sum_{i=1}^n
+[
+\bm{y}_i^T\bm{y}_i + \bbeta^TX^TX\bbeta - 2\bbeta^TX^T\bm{y}_i
+]
+\}\\
+&\propto \exp\{\frac{-1}{2\sigma^2}
+\sum_{i=1}^n
+[
+\bbeta^TX^TX\bbeta - 2\bbeta^TX^T\bm{y}_i
+]
+\}\\
+&\propto \exp\{-\frac{1}{2}
+[
+\bbeta^T\textcolor{blue}{\frac{n\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{X^T\bar{\bm{y}}}{\sigma^2}}
+]
+\}
+\end{align} 
+
+This implies that $A_1 = \frac{n\;X^TX}{\sigma^2}$ and $b_1 = \frac{X^T\bar{\bm{y}}}{\sigma^2}.$
+
+Exercise 3 Solution 
+===
+Now, let's consider the prior. 
+
+\begin{align}
+\bbeta &\sim \text{MVN}(\bbeta_0, \Sigma_0)
+\end{align}
+
+\begin{align}
+p(\bbeta) 
+&\propto \exp\{-\frac{1}{2}
+(\bbeta - \bbeta_0)^T\Sigma_0^{-1}(\bbeta - \bbeta_0)
+\} \\
+&\propto \exp\{-\frac{1}{2}
+[\bbeta^T \Sigma_0^{-1} \bbeta +\bbeta_0^T\Sigma_0^{-1}\bbeta_0 - 2 \bbeta^T\Sigma_0^{-1}\bbeta_0]
+\} \\
+&\propto \exp\{-\frac{1}{2}
+[\bbeta^T \textcolor{blue}{\Sigma_0^{-1}} \bbeta - 2 \bbeta^T\textcolor{red}{\Sigma_0^{-1}\bbeta_0}]
+\} 
+\end{align}
+
+This implies that $A_o = \Sigma_0^{-1}$ and $b_o = \Sigma_0^{-1}\bbeta_0.$
+
+Exercise 3 Solution 
+===
+The posterior is 
+
+\begin{align}
+p(\bbeta \mid \bm{y}) &\propto
+\exp\{-\frac{1}{2}
+[
+\bbeta^T\textcolor{blue}{\frac{n\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{X^T\bar{\bm{y}}}{\sigma^2}}
+]
+\}\\
+&\times
+\exp\{-\frac{1}{2}
+[\bbeta^T \textcolor{blue}{\Sigma_0^{-1}} \bbeta - 2 \bbeta^T\textcolor{red}{\Sigma_0^{-1}\bbeta_0}]
+\} \\
+&= \exp\{-\frac{1}{2}
+[
+\bbeta^T A_1 \bbeta - 2\bbeta^T b_1
+]
+\}\\
+&= \exp\{-\frac{1}{2}
+[
+\bbeta^T A_o \bbeta - 2\bbeta^T b_o
+]
+\} \\
+&= \exp\{-\frac{1}{2}
+[
+\bbeta^T \textcolor{blue}{(A_o + A_1)} \bbeta - 2\bbeta^T \textcolor{red}{(b_o + b_1)}
+]
+\}
+\end{align}
+
+Exercise 3 Solution 
+===
+
+Let $A_n = A_o + A_1$ and $b_n = b_o + b_1.$
+
+Using the kernel of the multivariate normal, we can now find the posterior mean and the posterior covariance:
+
+$$A_n = A_o + A_1 = \Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2}.$$
+$$b_n = b_o + b_1 = \Sigma_0^{-1}\bbeta_0 + \frac{X^T\bar{\bm{y}}}{\sigma^2}.$$
+$$\bbeta \mid \bm{y} \sim MVN(A_n^{-1} b_n, A_n^{-1}) =: MVN(\bbeta_n, \Sigma_n),$$
+
+where $$\mu_n = (\Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2})^{-1}(\Sigma_0^{-1}\bbeta_0 + \frac{X^T\bar{\bm{y}}}{\sigma^2})$$ and
+
+
+$$\Sigma_n = (\Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2})^{-1}.$$
+
+Multivariate inference for regression models
+===
+The posterior from Exercise 3 can be shown to be 
+$$\bbeta \mid \bm{y}, X \sim \text{MVN}(\bbeta_n, \Sigma_n)$$
+
+where
+
+$$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}
+(\Sigma_o^{-1}\bbeta_0 + X^T\bm{y}/\sigma^2)$$
+
+$$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (X^TX)/\sigma^2)^{-1}$$
+
+Setting prior parameters
+===
+
+How would you set the prior parameters for 
+
+- $\sigma^2$
+- $\Sigma_{o}$
+- $\beta_0$
+
+
+Setting prior parameters
+===
+
+- Estimate $\sigma^2$ by $\dfrac{y^Ty - \hat{\beta}_{ols}^TX^Ty}{n - (p + 1)}$ because this is an unbiased estimator of $\sigma^2.$
+
+- Set $$\Sigma_{o}^{-1} = \frac{(X^TX)}{n\sigma^2},$$ which is known as the unit information prior (Kass and Wasserman, 1995). 
+
+- Set $\beta_0 = \hat{\beta}_{ols}.$ (This centers the prior distribution of $\beta$ around the OLS estimate).
+
+\textbf{Why are these reasonable choices?}
+
+
+Setting prior parameters
+===
+
+- Do you think that the posterior would be sensitive to the choice of these parameters? 
+
+- How could you improve upon our choices regarding priors on $\beta_0$ and $\Sigma_0$?  
+
+The g-prior
+===
+To improve things by doing the **least amount of calculus**, we can put a \emph{g-prior} on $\bbeta$ (not $\bbeta_0).$
+
+The g-prior on $\bbeta$ has the following form: 
+$$ \bbeta \mid \bX, \sigma^2  \sim MVN(0, g\; \sigma^2 (\bX^T\bX)^{-1}),$$
+where $g$ is a constant, such as $g=n.$
+
+
+It can be shown that (Zellner, 1986):
+
+1. g shrinks the coefficients and can prevent overfitting to the data
+2. if $g = n$, then as n increases, inference approximates that using $\hat{\beta}_{ols}$
+
+The g-prior
+===
+Under the g-prior, it follows that
+\begin{align}
+\bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2]  \\
+&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1} \frac{X^Ty}{\sigma^2} \\
+&= \frac{g}{g+1} (X^TX)^{-1} X^Ty
+= \frac{g}{g+1} \hat{\beta}_{ols}
+\end{align}
+
+\begin{align}
+\Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] \\
+&= \left(\frac{X^TX}{g \sigma^2} + \frac{X^TX}{\sigma^2}\right)^{-1}
+=\frac{g}{g+1} \sigma^2 (X^TX)^{-1} \\
+&= \frac{g}{g+1} \Var[\hat{\beta}_{ols}]
+\end{align}
+
+Prior on $\Sigma_0$
+===
+
+What prior would you place on $\Sigma_0$ and why? 
+
+Next steps
+===
+
+- How do all these concepts fit together? How can you build a hierarhical model using linear regression and the tools that you've learned?
+
+- I recommend doing the derivations from this module on your own. 
+
+- I recommend reading through Hoff to solidify you knowledge. This material is around page 153, but chapter 9 is helpful regarding being complementary to this material. 
+
+- You could also code this up to further solidify you knowledge of this, but you'll get practice on this with lab 10 and homework 8. 
+
+
+
+<!-- Setting prior parameters -->
+<!-- === -->
+<!-- ```{r} -->
+<!-- n <- length(y) -->
+<!-- beta_hat_ols <- solve(t(X) %*% X) %*% t(X) %*% y -->
+<!-- (sigma_o_squared <- t(y) %*% y - t(beta_hat_ols) %*% t(X) %*% y) -->
+<!-- (sigma_o_squared <- as.numeric(sigma_o_squared)) -->
+<!-- ``` -->
+
+<!-- Setting prior parameters -->
+<!-- === -->
+<!-- ```{r} -->
+<!-- (Sigma_o <- solve((t(X) %*% X)/(n*sigma_o_squared))) -->
+<!-- ``` -->
+
+<!-- Posterior inference -->
+<!-- === -->
+<!-- \tiny -->
+<!-- ```{r} -->
+<!-- beta_n <- solve(solve(t(X) %*% X) + (t(X) %*% X)/sigma_o_squared) -->
+<!-- beta_n <- beta_n %*% (solve(Sigma_o) %*% beta_hat_ols + (t(X) %*% y)/sigma_o_squared) -->
+<!-- cbind(beta_hat_ols, beta_n) -->
+<!-- ``` -->
+
+<!-- Posterior inference -->
+<!-- === -->
+<!-- ```{r} -->
+<!-- (sigma_n <- solve(solve(Sigma_o) + (t(X) %*% X)/sigma_o_squared)) -->
+<!-- ``` -->
+
+<!-- Posterior inference applied to Oxygen uptake -->
+<!-- === -->
+<!-- To continue the rest of the oxygen uptake example, please refer to 9.2 in Hoff -->
+<!-- (commentary and code). Pages 157 -- 159 in Hoff. -->
+
+<!-- I would like for your to continue this on your own.  -->
+
+
+Linear Regression Applied to Swimming (Lab 10)
+===
+- We will consider Exercise 9.1 in Hoff very closely to illustrate linear regression. 
+- The data set we consider contains times (in seconds) of four high school swimmers swimming 50 yards. 
+- There are 6 times for each student, taken every two weeks. 
+- Each row corresponds to a swimmer and a higher column index indicates a later date. 
+- This corresponds with Lab 10 and Homework 8 (the last homework)! 
+
+Data set
+===
+
+```{r}
+read.table("data/swim.dat",header=FALSE)
+```
+
+Full conditionals (Task 1)
+===
+We will fit a separate linear regression model for each swimmer, with swimming time as the response and week as the explanatory variable. Let $y_{i}\in \mathbbm{R}^{6}$ be the 6 recorded times for swimmer $i.$ Let
+\[X_i =
+\begin{bmatrix}
+    1 & 1  \\
+    1 & 3 \\ 
+    ... \\
+    1 & 9\\
+    1 & 11
+\end{bmatrix}
+\] be the design matrix for swimmer $i.$ Then we use the following linear regression model: 
+\begin{align*}
+    Y_i &\sim \mathcal{N}_6\left(X_i\beta_i, \tau_i^{-1}\mathcal{I}_6\right) \\
+    \beta_i &\sim \mathcal{N}_2\left(\beta_0, \Sigma_0\right) \\
+    \tau_i &\sim \text{Gamma}(a,b).
+\end{align*}
+Derive full conditionals for $\beta_i$ and $\tau_i.$ 
+
+Solution (Task 1)
+===
+The conditional posterior for $\beta_i$ is multivariate normal with 
+\begin{align*}
+    \mathbbm{V}[\beta_i \, | \, Y_i, X_i, \textcolor{red}{\tau_i} ] &= (\Sigma_0^{-1} + \textcolor{red}{\tau_i} X_i^{T}X_i)^{-1}\\ 
+    \mathbbm{E}[\beta_i \, | \, Y_i, X_i, \textcolor{red}{\tau_i} ] &= 
+    (\Sigma_0^{-1} + \textcolor{red}{\tau_i} X_i^{T}X_i)^{-1} (\Sigma_0^{-1}\beta_0 + \textcolor{red}{\tau_i} X_i^{T}Y_i).
+\end{align*} while
+\begin{align*}
+    \tau_i \, | \, Y_i, X_i, \beta &\sim \text{Gamma}\left(a + 3\, , \, b + \frac{(Y_i - X_i\beta_i)^{T}(Y_i - X_i\beta_i)}{2} \right).
+\end{align*}
+
+These can be found in in Hoff in section 9.2.1.
+
+\textbf{I highly recommend that you derive these as practice for the final exam.}
+
+Task 2
+===
+Complete the prior specification by choosing $a,b,\beta_0,$ and $\Sigma_0.$ Let your choices be informed by the fact that times for this age group tend to be between 22 and 24 seconds. 
+
+Solution (Task 2)
+===
+Choose $a=b=0.1$ so as to be somewhat uninformative. 
+
+Choose $\beta_0 = [23\,\,\, 0]^{T}$ with 
+\[\Sigma_0 =
+\begin{bmatrix}
+    5 & 0  \\
+    0 & 2 
+\end{bmatrix}.
+\] This centers the intercept at 23 (the middle of the given range) and the slope at 0 (so we are assuming no increase) but we choose the variance to be a bit large to err on the side of being less informative.
+
+Gibbs sampler (Task 3)
+===
+Code a Gibbs sampler to fit each of the models. For each swimmer $i,$ obtain draws from the posterior predictive distribution for $y_i^{*},$ the time of swimmer $i$ if they were to swim two weeks from the last recorded time.
+
+
+ 
+
+
+Posterior Prediction (Task 4)
+===
+The coach has to decide which swimmer should compete in a meet two weeks from the last recorded time. Using the posterior predictive distributions, compute $\text{Pr}\left\{y_i^{*}=\text{max}\left(y_1^{*},y_2^{*},y_3^{*},y_4^{*}\right)\right\}$ for each swimmer $i$ and use these probabilities to make a recommendation to the coach. 
+
+Final Grades
+===
+
+I am proposing to drop your lowest exam grade (out of Exam I, Exam II, and the Final Exam). 
+
+- Homework: 30 percent
+- Highest Exam: 35
+- Second Highest Exam: 35
+
+- So your **two highest exam scores** will be weighted evenly and you lowest exam score will be completely dropped. 
+- Yes, you still must take the final exam. 
+
+Course Evaluations
+===
+
+- I would be very appreciative if you would fill out the course evaluations
+- They are located on DukeHub
+- Directions: \url{https://assessment.trinity.duke.edu/students-course-evaluations}
+- If there is a 100 percent response rate, I will give everyone in the course 1 point on their final exam grade.
+
+Exam II
+===
+
+- Students did extremely well on problems 1 and 2. 
+- You should feel very proud of how you did on these problems. Great job! 
+
+
+Exam II
+===
+
+There were issues on both problems 3 and 4. 
+
+Due to this, I'm releasing Exam II: \url{https://github.com/resteorts/modern-bayes/blob/master/exercises/final-exam/exam2-2020-version2.pdf}
+
+No solutions will be posted to encourage you to work through these derivations on your own. See a member of the TA Team if you have a question, and make sure to bring your derivation with you so we can help understand how best to help you! 
+
+
+
