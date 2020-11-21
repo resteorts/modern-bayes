@@ -443,7 +443,7 @@ Show that the posterior is
 $$\bbeta \mid \bm{y}, X \sim \text{MVN}(\bbeta_n, \Sigma_n), \; \text{where}$$
 \begin{align*}
 \bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (nX^TX)/\sigma^2)^{-1}
-(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{\bar{y}}/\sigma^2) \\
+(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2) \\
 \Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (nX^TX)/\sigma^2)^{-1}
 \end{align*}
 
@@ -451,109 +451,6 @@ Remark: If $\Sigma_o^{-1} << (X^TX)^{-1}$ then $\bbeta_n \approx \hat{\bbeta}_{o
 
 If $\Sigma_o^{-1} >> (X^TX)^{-1}$ then $\bbeta_n \approx \bbeta_{0}$
 
-Exercise 3 Solution 
-===
-Let's start with the likelihood:
-\begin{align}
-\bm{y} &\mid \bbeta \sim \text{MVN}(X \bbeta, \sigma^2 I)
-\end{align} 
-
-\begin{align}
-p(\bm{y}  \mid  \bbeta) &\propto \exp\{\frac{-1}{2\sigma^2}
-\sum_{i=1}^n
-(\bm{y}_i - X\bbeta)^T(\bm{y}_i - X\bbeta)
-\} \\
-&\propto \exp\{\frac{-1}{2\sigma^2}
-\sum_{i=1}^n
-[
-\bm{y}_i^T\bm{y}_i + \bbeta^TX^TX\bbeta - 2\bbeta^TX^T\bm{y}_i
-]
-\}\\
-&\propto \exp\{\frac{-1}{2\sigma^2}
-\sum_{i=1}^n
-[
-\bbeta^TX^TX\bbeta - 2\bbeta^TX^T\bm{y}_i
-]
-\}\\
-&\propto \exp\{-\frac{1}{2}
-[
-\bbeta^T\textcolor{blue}{\frac{n\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{X^T\bar{\bm{y}}}{\sigma^2}}
-]
-\}
-\end{align} 
-
-This implies that $A_1 = \frac{n\;X^TX}{\sigma^2}$ and $b_1 = \frac{X^T\bar{\bm{y}}}{\sigma^2}.$
-
-Exercise 3 Solution 
-===
-Now, let's consider the prior. 
-
-\begin{align}
-\bbeta &\sim \text{MVN}(\bbeta_0, \Sigma_0)
-\end{align}
-
-\begin{align}
-p(\bbeta) 
-&\propto \exp\{-\frac{1}{2}
-(\bbeta - \bbeta_0)^T\Sigma_0^{-1}(\bbeta - \bbeta_0)
-\} \\
-&\propto \exp\{-\frac{1}{2}
-[\bbeta^T \Sigma_0^{-1} \bbeta +\bbeta_0^T\Sigma_0^{-1}\bbeta_0 - 2 \bbeta^T\Sigma_0^{-1}\bbeta_0]
-\} \\
-&\propto \exp\{-\frac{1}{2}
-[\bbeta^T \textcolor{blue}{\Sigma_0^{-1}} \bbeta - 2 \bbeta^T\textcolor{red}{\Sigma_0^{-1}\bbeta_0}]
-\} 
-\end{align}
-
-This implies that $A_o = \Sigma_0^{-1}$ and $b_o = \Sigma_0^{-1}\bbeta_0.$
-
-Exercise 3 Solution 
-===
-The posterior is 
-
-\begin{align}
-p(\bbeta \mid \bm{y}) &\propto
-\exp\{-\frac{1}{2}
-[
-\bbeta^T\textcolor{blue}{\frac{n\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{X^T\bar{\bm{y}}}{\sigma^2}}
-]
-\}\\
-&\times
-\exp\{-\frac{1}{2}
-[\bbeta^T \textcolor{blue}{\Sigma_0^{-1}} \bbeta - 2 \bbeta^T\textcolor{red}{\Sigma_0^{-1}\bbeta_0}]
-\} \\
-&= \exp\{-\frac{1}{2}
-[
-\bbeta^T A_1 \bbeta - 2\bbeta^T b_1
-]
-\}\\
-&= \exp\{-\frac{1}{2}
-[
-\bbeta^T A_o \bbeta - 2\bbeta^T b_o
-]
-\} \\
-&= \exp\{-\frac{1}{2}
-[
-\bbeta^T \textcolor{blue}{(A_o + A_1)} \bbeta - 2\bbeta^T \textcolor{red}{(b_o + b_1)}
-]
-\}
-\end{align}
-
-Exercise 3 Solution 
-===
-
-Let $A_n = A_o + A_1$ and $b_n = b_o + b_1.$
-
-Using the kernel of the multivariate normal, we can now find the posterior mean and the posterior covariance:
-
-$$A_n = A_o + A_1 = \Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2}.$$
-$$b_n = b_o + b_1 = \Sigma_0^{-1}\bbeta_0 + \frac{X^T\bar{\bm{y}}}{\sigma^2}.$$
-$$\bbeta \mid \bm{y} \sim MVN(A_n^{-1} b_n, A_n^{-1}) =: MVN(\bbeta_n, \Sigma_n),$$
-
-where $$\mu_n = (\Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2})^{-1}(\Sigma_0^{-1}\bbeta_0 + \frac{X^T\bar{\bm{y}}}{\sigma^2})$$ and
-
-
-$$\Sigma_n = (\Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2})^{-1}.$$
 
 Multivariate inference for regression models
 ===
