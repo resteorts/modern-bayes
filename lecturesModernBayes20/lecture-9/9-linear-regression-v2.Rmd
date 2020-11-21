@@ -443,7 +443,7 @@ Show that the posterior is
 $$\bbeta \mid \bm{y}, X \sim \text{MVN}(\bbeta_n, \Sigma_n), \; \text{where}$$
 \begin{align*}
 \bbeta_n &= E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (nX^TX)/\sigma^2)^{-1}
-(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{y}/\sigma^2) \\
+(\Sigma_o^{-1}\bbeta_0 + \bX^T\bm{\bar{y}}/\sigma^2) \\
 \Sigma_n &= \text{Var}[\bbeta \mid \bm{y}, X, \sigma^2] = (\Sigma_o^{-1} + (nX^TX)/\sigma^2)^{-1}
 \end{align*}
 
