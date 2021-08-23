@@ -35,7 +35,8 @@ Prof. Rebecca Steorts (resteorts.github.io)
 \item Course webpage: https://resteorts.github.io/teach/bayes21.html
 \end{itemize}
 
-Class will be in person unless you are notified! OH will be over zoom or 1-1 when possible. 
+Class will be in person unless you are notified! OH will be over zoom to limit the spread of COVID. 
+
 
 Teaching Assistants
 ===
@@ -146,20 +147,6 @@ Course Objectives
 - Learn to effectively communicate results through written assignments and exams
 
 
-Social Networks
-===
-
-```{r, echo=FALSE,out.width = '100%'}
-knitr::include_graphics("figures/multi_view.png")
-```
-
-Precision Medicine 
-===
-
-```{r, echo=FALSE,out.width = '100%'}
-knitr::include_graphics("figures/suchi.png")
-```
-
 
 Unstable/slow internet?
 ===
@@ -228,16 +215,6 @@ Activities & Assessments
 
 - <font class="vocab">Class/Lab</font>: **You will be responsible for keeping up with all class and lab material on a weekly basis (even though there are recordings)!** 
 
-Lab Engagement 
-===
-
-0. Students are expected to have attempted the lab solutions before coming to lab and have watched the lab videos provided if they had trouble. 
-1. Students are encouraged to post lab questions in advance to Piazza regarding lab, which should be posted no later than each Thursday at 5 PM EST. 
-2. Each lab TA will go over all lab tasks, providing clarifications, solutions/advice, and more advanced insights. 
-3. Each lab TA will take questions (in person) or go over those posted Piazza. 
-4. You should always indicate what lab you are in to provide help to your TA. 
-5. Attendance is highly encouraged in order to learn tips and tricks and in order to get hints/advice which are important for homeworks and exams.
-
 Class Engagement
 ===
 
@@ -248,6 +225,18 @@ Class Engagement
 4. Prof. Steorts will provide exercises for the class to work through, practice exams, and an interactive environment. 
 5. TAs will be present to help (as able and as available) in these activities such that we can break into small groups and students can receive more individualized attention. 
 
+Lab Engagement 
+===
+
+0. Students are expected to have attempted the lab solutions before coming to lab and have watched the lab videos provided if they had trouble. 
+1. Students are encouraged to post lab questions in advance to Piazza regarding lab, which should be posted no later than each Thursday at 5 PM EST. 
+2. Each lab TA will go over all lab tasks, providing clarifications, solutions/advice, and more advanced insights. 
+3. Each lab TA will take questions (in person) or go over those posted Piazza. 
+4. You should always indicate what lab you are in to provide help to your TA. 
+5. Attendance is highly encouraged in order to learn tips and tricks and in order to get hints/advice which are important for homeworks and exams.
+
+
+
 Homeworks
 ===
 
@@ -256,7 +245,7 @@ Homeworks
 3. All files must be zipped together and submitted to Sakai as one file (including Rmd and pdf). Your pdf document must be uploaded to Duke Gradescope. Please make sure to upload early to avoid issues. 
 4. Ask questions early if you have a problem to a TA regarding submission issues. 
 5. Your lowest homework will be dropped. 
-6. The first two homeworks can be submitted in Sakai and on GradeScope. 
+6. The first four our homeworks can be submitted in Sakai and on GradeScope. 
 
 Remark: Sakai is for reproducible code. Gradescope is to make grading easier for everyone. Unfortunately, there is not a platform that handles both. 
 
@@ -288,7 +277,7 @@ Grade Calculation
 | Homework | 30%|
 | Exam 1 | 20% |
 | Exam 2 | 20% |
-| Final Exam | 30% |
+| Exam 3 | 30% |
 
 - See the syllabus for grade breakdowns. 
 - Grades will **never** be curved down. 
@@ -296,7 +285,7 @@ Grade Calculation
 - There will be no attendance grade or participation grade. 
 
 
-Excused Absences
+Absences
 ===
 
 - Students who miss a class due to a scheduled varsity trip, religious holiday, or short-term illness should fill out the respective form.
@@ -305,6 +294,10 @@ Excused Absences
 - If you have a personal or family emergency or chronic health condition that affects your ability to participate in class, please contact your academic dean’s office.
 
 - Exam dates cannot be changed and no make-up exams will be given. 
+
+- What if I have COVID symptoms? 
+  - Please do not come to class or return to class until you are cleared to come back. Forms can be found here:
+  https://trinity.duke.edu/undergraduate/academic-policies/illness
 
 
 Late Work and Regrade Requests
@@ -342,9 +335,9 @@ Where to find help
 
 - **If you have a question during lecture or lab, feel free to ask it!** There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.
 
-- **Office Hours**: A lot of questions are most effectively answered in-person, so office hours are a valuable resource. Please use them!
+- **Office Hours**: A lot of questions are most effectively answered in office hours, so please take advantage of these.
 
-- Piazza: Outside of class and office hours, any general questions about course content or assignments should be posted on the forum since there are likely other students with the same questions.
+- Piazza: Outside of class and office hours, any general questions about course content or assignments should be posted on the forum since there are likely other students with the same questions. **Please be careful not to give away the answers to homework questions and please keep it polite/friendly on the forum.**
 
 Academic Resource Center
 ===
