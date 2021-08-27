@@ -427,10 +427,17 @@ Posterior predictive distribution
 $$
 \begin{aligned}
 p(x_{n+1}|x_{1:n}) &= \int p(x_{n+1},\theta|x_{1:n})\,d\theta\\
-&= \int p(x_{n+1}|\theta,x_{1:n}) p(\theta|x_{1:n})\,d\theta\\
+& \int \frac{p(x_{n+1},\theta, x_{1:n})}{p(x_{1:n})}\,d\theta \quad (\text{Conditional probability})\\
+& \int \frac{p(x_{n+1}|\theta,x_{1:n})p(x_{1:n}) p(\theta|x_{1:n})}{p(x_{1:n})}\,d\theta \quad (\text{Product rule})\\
+&= \int p(x_{n+1}|\theta,x_{1:n}) p(\theta|x_{1:n})\,d\theta \\
 & = \int p(x_{n+1}|\theta) p(\theta|x_{1:n})\,d\theta.
 \end{aligned}
 $$
+
+
+
+
+
 
 
 
