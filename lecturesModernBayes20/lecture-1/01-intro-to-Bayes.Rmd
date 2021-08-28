@@ -422,7 +422,7 @@ Let's derive the posterior preditive distribution.
 Posterior predictive distribution
 ===
 - We may wish to predict a new data point $x_{n+1}$
-- We assume that $x_{1:(n+1)}$ are independent given $\theta$
+- \textcolor{red}{Assumption 1}: We assume that $x_{1:(n+1)}$ are independent given $\theta$
 
 $$
 \begin{aligned}
@@ -430,7 +430,7 @@ p(x_{n+1}|x_{1:n}) &= \int p(x_{n+1},\theta|x_{1:n})\,d\theta\\
 & \int \frac{p(x_{n+1},\theta, x_{1:n})}{p(x_{1:n})}\,d\theta \quad (\text{Conditional probability})\\
 & \int \frac{p(x_{n+1}|\theta,x_{1:n})p(\theta|x_{1:n})p(x_{1:n})}{p(x_{1:n})}\,d\theta \quad (\text{Product rule})\\
 &= \int p(x_{n+1}|\theta,x_{1:n}) p(\theta|x_{1:n})\,d\theta \\
-& = \int p(x_{n+1}|\theta) p(\theta|x_{1:n})\,d\theta.
+& = \int p(x_{n+1}|\theta) p(\theta|x_{1:n})\,d\theta \quad \text{By Assumption 1.}
 \end{aligned}
 $$
 
