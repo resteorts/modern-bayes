@@ -446,8 +446,10 @@ Posterior predictive distribution
 The posterior predictive can be derived to be
 $$
 \begin{aligned}
-\Pr(X_{n+1} = 1\mid x_{1:n}) & = \int \Pr(X_{n+1} = 1\mid \theta) p(\theta|x_{1:n}) d\theta\\
-& =\int \theta\,\Beta(\theta|a_n,b_n) =\frac{a_n}{a_n + b_n} d\theta\\ (\quad (\text{Mean of Beta distribution}).
+\Pr(X_{n+1} = 1\mid x_{1:n}) 
+&= \int \Pr(X_{n+1} = 1\mid \theta) p(\theta|x_{1:n}) d\theta\\
+& =\int \theta\,\Beta(\theta|a_n,b_n) d\theta \\
+& =\frac{a_n}{a_n + b_n}  \quad (\text{Mean of Beta distribution}).
 \end{aligned}
 $$
 
