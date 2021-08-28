@@ -147,7 +147,8 @@ What is the proportion of people that approve of President Obama in PA?
 
 Obama Example
 ===
-```{r}
+
+```r
 n = 10
 # Fixing values of a,b. 
 # I've chosen the prior on Beta to be skewed
@@ -167,37 +168,38 @@ post = dbeta(th, x+a, n-x+b)
 
 Likelihood
 ===
-```{r}
+
+```r
 plot(th, like, type='l', ylab = "Density", 
      lty = 3, lwd = 3, xlab = expression(theta))
 ```
 
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-2-1.pdf)<!-- --> 
+
 
 Prior
 ===
-```{r}
+
+```r
 plot(th, prior, type='l', ylab = "Density", 
      lty = 3, lwd = 3, xlab = expression(theta))
 ```
 
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-3-1.pdf)<!-- --> 
+
 Posterior
 ===
-```{r}
+
+```r
 plot(th, post, type='l', ylab = "Density", 
      lty = 3, lwd = 3, xlab = expression(theta))
 ```
 
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-4-1.pdf)<!-- --> 
+
 Likelihood, Prior, and Posterior
 ===
-```{r, echo=FALSE}
-plot(th, like, type = "l", ylab = "Density", 
-     xlab = expression(theta), lty = 2, lwd = 3, 
-     col = "green",ylim = c(0,3.5) )
-lines(th, prior, lty = 3, lwd = 3, col= "red")
-lines(th, post, lty=1, lwd = 3, col= "blue")
-legend(0.1,3, c("Prior", "Likelihood", "Posterior"), lty=c(2,3,1), lwd=c(3,3,3), 
-       col = c("red", "green", "blue"))
-```
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-5-1.pdf)<!-- --> 
 
 Back to the Prior
 ===
@@ -294,7 +296,8 @@ The equations are written as percentiles above!
 How Much Do You Sleep
 ===
 
-```{r}
+
+```r
 #load the BB package
 library(BB)
 
@@ -305,11 +308,47 @@ myfn <- function(shape){
 	return(test)
 	}
 BBsolve(c(1,1), myfn)
+```
 
+```
+##   Successful convergence.
+```
 
+```
+## $par
+## [1] 3.263743 7.185121
+## 
+## $residual
+## [1] 5.905161e-08
+## 
+## $fn.reduction
+## [1] 3.521457e-05
+## 
+## $feval
+## [1] 115
+## 
+## $iter
+## [1] 20
+## 
+## $convergence
+## [1] 0
+## 
+## $message
+## [1] "Successful convergence"
+## 
+## $cpar
+## method      M     NM 
+##      2     50      1
+```
+
+```r
 ## using quantiles
 fn = function(x){qbeta(c(0.5,0.9),x[1],x[2])-c(0.3,0.5)}
 estimated <- BBsolve(c(1,1),fn)
+```
+
+```
+##   Successful convergence.
 ```
 
 How Much Do You Sleep
@@ -325,7 +364,8 @@ X \mid \theta &\sim \textrm{Binomial}(27,\theta)\\
 How Much Do You Sleep
 ===
 
-```{r}
+
+```r
 th = seq(0,1,length=500)
 a = estimated$par[1]
 b = estimated$par[2]
@@ -341,26 +381,13 @@ lines(th,prior,lty=3,lwd=3)
 legend(0.7,4,c("Prior","Likelihood","Posterior"),
 lty=c(3,1,2),lwd=c(3,3,3))
 ```
+
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-7-1.pdf)<!-- --> 
 
 How Much Do You Sleep
 ===
 
-```{r, echo=FALSE}
-th = seq(0,1,length=500)
-a = estimated$par[1]
-b = estimated$par[2]
-n = 27
-x = 11
-prior = dbeta(th,a,b)
-like = dbeta(th,x+1,n-x+1)
-post = dbeta(th,x+a,n-x+b)
-plot(th,post,type="l",ylab="Density",lty=2,lwd=3,
-xlab = expression(theta))
-lines(th,like,lty=1,lwd=3)
-lines(th,prior,lty=3,lwd=3)
-legend(0.7,4,c("Prior","Likelihood","Posterior"),
-lty=c(3,1,2),lwd=c(3,3,3))
-```
+![](01-intro-to-Bayes_files/figure-beamer/unnamed-chunk-8-1.pdf)<!-- --> 
 
 
 Cast of characters
