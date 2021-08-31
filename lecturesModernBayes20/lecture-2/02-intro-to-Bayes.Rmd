@@ -151,7 +151,7 @@ $$\ell(\theta,c) =\branch{|\theta-c|}{c\geq\theta}
                        
 \vspace*{1em}
 
-**This applied example corresponds to lab 3 and homework 4.**
+**This applied example corresponds to lab 3 and homework 3.**
                        
 Resource allocation for disease prediction (continued)
 ===                       
