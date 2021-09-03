@@ -17,7 +17,9 @@ Total pts: 10 (reproducibility) + 30 (Q1) + 20 (Q2) + 40 (Q3) = 100\\
 Code should be commented. See the Google style guide for questions regarding commenting or how to write 
 code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's will be accepted.
 
+\vspace*{1em}
 
+\textbf{The goal of this problem is to make sure that you have an understanding of simple Bayesian models and how to work with them in R markdown, which is the point of the lab assignment this week. Your TA's will go over the first two tasks and help you with the three other tasks if you're having trouble or need some help.}
 \begin{enumerate}
 \item {\em Lab component} 
   (30 points total) Please refer to lab 2 and complete tasks 3---5. 
@@ -27,7 +29,8 @@ code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's wi
   \item (10) Task 5
   \end{enumerate}
   
-  
+\newpage
+\textbf{The goal of this problem is to see how a conjugate model relates to real data. You will get practice deriving a posterior distribution that you have not seen before, plotting densities as we did in class, and seeing a connection to real data. Finally, you will get practice thinking about when the model below might be appropriate in practice.}  
 \item (20  points total) {\em The Exponential-Gamma Model}
 We write $X\sim\Exp(\theta)$ to indicate that $X$ has the Exponential distribution, that is, its p.d.f.\ is
 $$ p(x|\theta) =\Exp(x|\theta) = \theta\exp(-\theta x)\I(x>0). $$
@@ -45,6 +48,8 @@ Plot the prior and posterior p.d.f.s. (Be sure to make your plots on a scale tha
 \item (5) Give a specific example of an application where an Exponential model would be reasonable. Give an example where an Exponential model would NOT be appropriate, and explain why.
 \end{enumerate}
 
+\newpage
+\textbf{The goal of this problem is to introduce you to a new family of distributions, get more practice deriving the posterior, and work with a posterior predictive distribution on your own for the first time. This will be an intense problem, so reach out if you're having trouble!}  
 \item (40 points total) {\em Priors, Posteriors, Predictive Distributions (Hoff, 3.9)}
 An unknown quantity $Y \mid \theta $ has a Galenshore($a, \theta$) distribution if its density is given by 
 $$p(y \mid \theta) = \frac{2}{\Gamma(a)} \; \theta^{2a} y^{2a - 1} e^{-\theta^2 y^2}$$
