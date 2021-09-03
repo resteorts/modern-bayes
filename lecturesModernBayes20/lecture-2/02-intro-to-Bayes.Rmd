@@ -476,3 +476,10 @@ where the Bayes estimator is NOT in a closed form solution.
 - The frequentist risk and why it's used. 
 - The integrated risk  and why it's used. 
 - Admissibility and how to determine if an estimator is admissible or inadmissible. 
+
+Module 2 Derivations
+===
+
+Module 2 Derivations can be found below:
+
+https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-2/02-class-notes

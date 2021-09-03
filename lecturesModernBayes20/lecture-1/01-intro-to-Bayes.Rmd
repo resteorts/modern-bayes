@@ -552,3 +552,12 @@ p(\theta|x_{1:n}) &\propto p(x_{1:n}|\theta) p(\theta) \\
 Therefore, since the posterior density must integrate to $1$, we have
 $$p(\theta|x_{1:n}) =\Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).$$
 
+Module 1 Derivations
+===
+
+Class notes from Module 1 can be found below:
+
+https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-1/01-class-notes
+
+
+
