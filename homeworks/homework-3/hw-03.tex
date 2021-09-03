@@ -36,10 +36,10 @@ code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's wi
   
   \newpage
   
-Practice problems for exam 1 (not to be graded).   
+Total points: Q1 (15) + Q2 (15)  = 30 points total
   
-\item (15 points total) {\em The Uniform-Pareto}
-
+\item (15 points total) {\em The Uniform-Pareto} \\
+\textbf{The goal of this problem is to continue getting more practice calculating the posterior distribution.}\\
 Suppose $a < x < b.$ Consider the notation
 $I_{(a,b)}(x),$ where $I$ denotes the indicator function. We define $I_{(a,b)}(x)$ to be the following:
 $$
@@ -61,21 +61,22 @@ where $p(\theta) = \dfrac{\alpha \beta^\alpha}{\theta^{\alpha +1}}I_{(\beta,\inf
 Write out the likelihood $p(X=x\mid \theta).$ Then calculate the posterior distribution of $\theta|X=x.$  
   
   
-\item (15)  points total) {\em The Bayes estimator or Bayes procedure}
+\item (15)  points total) {\em The Bayes estimator or Bayes rule} \\
+\textbf{The goal of this problem is to practice a similar problem that we considered in Module 2, where we derived the Bayes rule under squared error loss and found the result was the posterior mean.}\\
 \begin{enumerate}
-\item (5 pts) Find the Bayes estimator (or Bayes procedure) when the loss function is  $L(\theta, \delta(x))~=~c~(\theta-\delta(x))^2,$ where $\textcolor{red}{c >0}$ is a constant. 
-\item (10 pts) Derive the Bayes estimator (or Bayes procedure) when $L(\theta, \delta(x)) = w(\theta) (g(\theta)-\delta(x))^2.$ Do so without writing any integrals. Note that you can write $\rho(\pi,\delta(x)) =  E[L(\theta,\delta(x))|X].$  \textcolor{red}{You may assume that $w(\theta) > 0.$} \textcolor{red}{Don't forget to prove or state why the Bayes rules are unique.}
+\item (5 pts) Find the Bayes estimator (or Bayes rule) when the loss function is  $L(\theta, \delta(x))~=~c~(\theta-\delta(x))^2,$ where $\textcolor{red}{c >0}$ is a constant. 
+\item (10 pts) Derive the Bayes estimator (or Bayes rule) when $L(\theta, \delta(x)) = w(\theta) (g(\theta)-\delta(x))^2.$ Do so without writing any integrals. Note that you can write $\rho(\pi,\delta(x)) =  E[L(\theta,\delta(x))|X].$  \textcolor{red}{You may assume that $w(\theta) > 0.$} \textcolor{red}{Don't forget to prove or state why the Bayes rule(s) are unique.}
 \end{enumerate}
 
-\item  (10 points total) {\em Basic decision theory}
-
-Consider the decision problem in which $\Theta = \{ \theta_1, \theta_2\}, 
-A = \{a_1, a_2, a_3, a_4, a_5\}$, and the loss function is given as follows: 
-$$L(\theta_1, a_1) = 0,\quad L(\theta_1, a_2) = 3,\quad L(\theta_1, a_3) = 1,\quad L(\theta_1, a_4) = 3,\quad
-L(\theta_1, a_5) = 4;$$ 
-$$L(\theta_2, a_1) = 4,\quad L(\theta_2, a_2) = 6,\quad L(\theta_2, a_3) = 0,\quad L(\theta_2, a_4) = 0,\quad
-L(\theta_2, a_5) = 1.$$
-Consider the prior $\pi$ under which $\pi(\theta_1) = 4/5$ and $\pi(\theta_2) = 1/5.$ Find the Bayes action(s) or rule(s) under this prior. 
+%\item  (10 points total) {\em Basic decision theory}
+%
+%Consider the decision problem in which $\Theta = \{ \theta_1, \theta_2\}, 
+%A = \{a_1, a_2, a_3, a_4, a_5\}$, and the loss function is given as follows: 
+%$$L(\theta_1, a_1) = 0,\quad L(\theta_1, a_2) = 3,\quad L(\theta_1, a_3) = 1,\quad L(\theta_1, a_4) = 3,\quad
+%L(\theta_1, a_5) = 4;$$ 
+%$$L(\theta_2, a_1) = 4,\quad L(\theta_2, a_2) = 6,\quad L(\theta_2, a_3) = 0,\quad L(\theta_2, a_4) = 0,\quad
+%L(\theta_2, a_5) = 1.$$
+%Consider the prior $\pi$ under which $\pi(\theta_1) = 4/5$ and $\pi(\theta_2) = 1/5.$ Find the Bayes action(s) or rule(s) under this prior. 
 
 
 \end{enumerate}
