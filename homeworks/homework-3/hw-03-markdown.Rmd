@@ -1,0 +1,55 @@
+---
+title: 'Homework 3'
+author: "STA-360"
+date: "Due at 5:00 PM EDT  on Friday 10 September"
+output: pdf_document
+indent: true
+documentclass: article
+---
+
+**There is no reproducibility component to this homework, so you only need to upload this assignment to Gradescope. You do not need to submit your solution to the lab exercise since it's not worth any points.**\
+
+**General instructions for homeworks**: Please follow the uploading file instructions according to the syllabus. You will give the commands to answer each question in its own code block, which will also produce plots that will be automatically embedded in the output file. Each answer must be supported by written statements as well as any code used. Your code must be completely reproducible and must compile. 
+
+**Advice**: Start early on the homeworks and it is advised that you not wait until the day of. While the professor and the TA's check emails, they will be answered in the order they are received and last minute help will not be given unless we happen to be free.  
+
+**Commenting code**
+Code should be commented. See the Google style guide for questions regarding commenting or how to write 
+code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's will be accepted.
+
+1. *Lab component* (0 points total) Please refer to module 2 and lab 3 and complete tasks 3---5. **This will not be graded as the entire solution is already posted. You will still be responsible for this material on the exam.**
+
+  (a) (0) Task 3
+  (b) (0) Task 4
+  (c) (0) Task 5
+  
+\newpage
+  
+  Total points: Q1 (15) + Q2 (15)  = 30 points total
+  
+2. (15 points total) *The Uniform-Pareto*\
+**The goal of this problem is to continue getting more practice calculating the posterior distribution.**\
+Suppose $a < x < b.$ Consider the notation $I_{(a,b)}(x),$ where $I$ denotes the indicator function. We define $I_{(a,b)}(x)$ to be the following:
+$$
+I_{(a,b)}(x)=
+\begin{cases} 
+1 & \text{if $a < x < b$,}
+\\
+0 &\text{otherwise.}
+\end{cases}
+$$
+
+\textcolor{red}{Let X be a random variable and let x be an observed value.} Let 
+$$
+\begin{aligned}
+\color{red}{X=x} \mid \theta &\sim \text{Uniform}(0,\theta)\\
+\theta &\sim \text{Pareto}(\alpha,\beta),
+\end{aligned}
+$$
+where $p(\theta) = \dfrac{\alpha\beta^\alpha}{\theta^{\alpha+1}}I_{(\beta,\infty)}(\theta).$ Write out the likelihood $p(X=x\mid \theta).$ Then calculate the posterior distribution of $\theta|X=x.$  
+  
+3. (15  points total) *The Bayes estimator or Bayes rule*\
+**The goal of this problem is to practice a similar problem that we considered in Module 2, where we derived the Bayes rule under squared error loss and found the result was the posterior mean.**
+
+(a) (5 pts) Find the Bayes estimator (or Bayes rule) when the loss function is  $L(\theta, \delta(x))~=~c~(\theta-\delta(x))^2,$ where $\textcolor{red}{c >0}$ is a constant. 
+(b) (10 pts) Derive the Bayes estimator (or Bayes rule) when $L(\theta, \delta(x)) = w(\theta) (g(\theta)-\delta(x))^2.$ Do so without writing any integrals. Note that you can write $\rho(\pi,\delta(x)) =  E[L(\theta,\delta(x))|X].$  \textcolor{red}{You may assume that $w(\theta) > 0.$} \textcolor{red}{Don't forget to prove or state why the Bayes rule(s) are unique.}
