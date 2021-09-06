@@ -14,4 +14,6 @@ Other topics:
 
 10. In general, I would recommend reading all of Hoff as it will greatly enhance your understanding of the entire course. 
 
+Optional Reading: http://www.stats.org.uk/bayesian/Fienberg2003.pdf (Provides background on the history of Bayes for those that are interested). 
+
 
