@@ -9,7 +9,14 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
 
+- Thank you for filling out the survey and feedback. 
+- There is a post on piazza that tries to address most questions/suggestions. 
+- New OH Wednesday evening with Cathy. Proposed times: 5 - 7 PM or 7 to 9 PM. 
+- If there is anything that I did not address on Piazza regarding the survey, feel free to talk to me 1-1 or send me a private Piazza message. 
+- Class next week will be in person. 
 
 
 Agenda
@@ -78,10 +85,7 @@ a X + b Y\sim\N(a\mu + b m,\,a^2\sigma^2+ b^2 s^2).
 \item Careful: \texttt{rnorm}, \texttt{dnorm}, \texttt{pnorm}, and \texttt{qnorm} in \texttt{R} take the mean and \textcolor{red}{standard deviation} $\sigma$ as arguments (not mean and variance $\sigma^2$). For example, \texttt{rnorm(n,m,s)} generates $n$ normal random variables from $\N(m,s^2)$.
 \end{itemize}
 
-Symmetry of the Normal Distribution
-===
 
-The normal distribution is symmetric about its mean. Why? 
 
 
 
