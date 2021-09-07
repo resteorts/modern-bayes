@@ -114,7 +114,7 @@ p(\theta \mid x_{1:n})
 \end{align}
 
 This implies that 
-$$\theta \mid x_{1:n} \sim N(\bar{x}, (n\ell)^{-1})$$
+$$\theta \mid x_{1:n} \sim N(\bar{x}, (n\ell)^{-1}) = N(\bar{x}, \sigma^2/n)$$
 
 Normal-Normal
 ===
