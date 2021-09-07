@@ -99,6 +99,7 @@ Derive the posterior distribution.\footnote{Please observe that the posterior is
 
 Solution
 ===
+
 \begin{align}
 p(\theta \mid x_{1:n}) 
 &\propto
@@ -115,6 +116,22 @@ p(\theta \mid x_{1:n})
 
 This implies that 
 $$\theta \mid x_{1:n} \sim N(\bar{x}, (n\ell)^{-1}) = N(\bar{x}, \sigma^2/n)$$
+
+Commonly asked questions on the Normal-Uniform derivation
+===
+
+1. Why do we add and subtract $\bar{x}$? 
+
+This trick makes the cross product term 1. 
+
+
+2. Why is the cross product term 1? The cross product term is: 
+
+\begin{align*}
+&\exp\big(-\tfrac{2}{2}\ell)\sum_i(x_i -\bar{x})(\bar{x} - \theta)\\
+&=\exp\big(-\ell)(\bar{x} - \theta)\sum_i(x_i -\bar{x})\\
+&=e^{0}=1.
+\end{align*}
 
 Normal-Normal
 ===
@@ -144,7 +161,10 @@ We now consider the **prior** distribution on $\theta.$
 
 Due to the symmetry of the normal p.d.f.,
 \begin{align}\label{equation:prior}
-\N(\theta\mid\mu_0,\lambda_0^{-1}) =\N(\mu_0\mid\theta,\lambda_0^{-1})
+\N(\theta\mid\mu_0,\lambda_0^{-1}) =
+\sqrt{\frac{\lambda_o}{2\pi}}\exp\big(-\tfrac{1}{2}\lambda_o (\theta - \mu_o)^2\big)\notag\\
+= \sqrt{\frac{\lambda_o}{2\pi}}\exp\big(-\tfrac{1}{2}\lambda_o (\mu_o - \theta)^2\big)\notag\\
+= \N(\mu_0\mid\theta,\lambda_0^{-1})
 \underset{\theta}{\propto}\textcolor{red}{\exp\big(\lambda_0\mu_0\theta-\tfrac{1}{2}\lambda_0\theta^2\big)},
 \end{align}
 where $x=\mu_0$ and $\ell=\lambda_0$.
