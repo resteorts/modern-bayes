@@ -379,3 +379,10 @@ If our sample size is large enough (for any application or real world example), 
 \item the posterior variance will tend to 0. 
 \end{enumerate}
 
+Module 3 Class Notes
+===
+
+Module 3 Class Notes can be found here:
+
+https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-3/03-class-notes
+
