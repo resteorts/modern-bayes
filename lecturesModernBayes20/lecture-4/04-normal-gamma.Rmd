@@ -359,5 +359,8 @@ Detailed Takeaways
 - The case study for this problem (on IQ scores) is a good review problem regarding when you should use the normal-normal-gamma model over the normal-normal model. This is something that you should be able to conceptually walk through for this case study or a similar case study. 
 
 
+Module 4 Notes
+===
 
+Module 4 Class Notes can be found here:
 
