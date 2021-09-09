@@ -12,11 +12,10 @@ font-size: 8px
 Announcements
 ===
 
-- Exam I is on Thursday, September 24
-- Tuesday September 22 we will review
+- Exam I is on Thursday, September 30
+- Tuesday September 28 we will review
 - Material will cover modules 1 -- 4.
-- There will be no lab on September 25th
-- Olivier and Michael will hold extra review sessions (the week of the exam) in place of lab that will be announced soon
+- There will be no lab on October 1.
 - Who cannot make any OH due to a class conflict? 
 
 
