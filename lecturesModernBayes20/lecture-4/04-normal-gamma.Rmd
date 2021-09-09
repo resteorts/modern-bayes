@@ -364,3 +364,4 @@ Module 4 Notes
 
 Module 4 Class Notes can be found here:
 
+https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-4/04-class-notes
