@@ -18,6 +18,27 @@ Agenda
 - Importance Sampling
 - Rejection Sampling
 
+What's the big picture
+===
+
+Suppose we want to find the posterior distribution of 
+
+$$p(\theta \mid x) = \frac{p(\theta, x)}{p(x)} = \frac{p(x \mid \theta) p(\theta)}{p(x)}$$
+
+
+
+What's the big picture
+===
+
+Suppose we want to find the posterior distribution of 
+
+$$p(\theta \mid x) = \frac{p(\theta, x)}{p(x)} = \frac{p(x \mid \theta) p(\theta)}{p(x)}$$
+
+- What happens if we derive the posterior distribution and it's not a distribution that we recognize? 
+- What are our options?
+- In the next several modules, we will explore ways to sample from the posterior distribution or in fact any distribution that is not available in closed form. 
+- Lab 5 and Lab 6 investigate these ideas more indepth. (You will go over lab 6 on your own as an exercise that will not be turned in for credit). 
+
 Intractable Integrals
 ===
 Goal: approximate
@@ -229,15 +250,24 @@ Importance Sampling Solution
 \int \left[ I(u > 5) \frac{\phi_o(u)}{\phi_{\theta}(u)}
 \right]
 \phi_{\theta}(u)
-\; du.
+\; du\\
+& = E_{\phi_{\theta}}\left[I(u > 5) \frac{\phi_o(u)}{\phi_{\theta}(u)}\right]
 \end{align}
-In other words, if 
-$$ h(u) = I(u>5)\frac{\phi_o(u)}{\phi_{\theta}(u)}$$
-then $p = E_{\phi_{\theta}}[h(X)].$
+
+<!-- In other words, if  -->
+<!-- $$ h(u) = I(u>5)\frac{\phi_o(u)}{\phi_{\theta}(u)}$$ -->
+<!-- then $p = E_{\phi_{\theta}}[h(X)].$ -->
+
+Importance Sampling Solution
+===
 \vskip 1em
 If
-$X_1, \ldots, X_n \sim N(\theta, 1),$ then an unbiased estimate is 
-$\hat{p} = \frac{1}{n} \sum_i  h(X_i).$
+$U_1, \ldots, U_n \stackrel{iid}{\sim} N(\theta, 1),$ then an unbiased estimate is 
+$$\hat{p} = \frac{1}{n} \sum_i \left[I(u_i > 5) \frac{\phi_o(u_i)}{\phi_{\theta}(u_i)}\right],$$
+
+which is an \textbf{importance sampler} by definition. 
+
+Now, let's empirically compare the Monte carlo estimate to the importance sampler estimate. 
 
 Naive Method (Monte Carlo) Solution
 ===
@@ -718,12 +748,16 @@ An ideal histogram would be highly centered around the true value of 1.81.  For 
 Exam I
 ===
 
-- Closed notes, closed book. 
+- Open notes, open book. 
+- This is a closed exam to speaking to others except your instructor and teaching assistants until the exam grades have been released to all students. 
 - You will be given cover page with distributions. 
-- Please make sure that you arrive early and not late. 
+- This exam will be held virtually in case that anyone falls ill or needs to quarantine. 
+- Please make sure that you arrive early and not late to the zoom session so that you do not miss any announcements. 
 - Please only ask questions privately through the chat and do not broadcast these to everyone. 
 - Material covers: Modules 1--4. 
 - Material covers lectures (slides and written material in class), labs, and homeworks. 
+- You will be given 30 minutes after the exam to upload one PDF document to Gradescope and assign pages. 
+
 
 Exam I
 ===
@@ -772,11 +806,9 @@ Module IV (Recap)
 Review Materials 
 ===
 
-- Two quizzes (ungraded). 
 - Practice exercises: https://github.com/resteorts/modern-bayes/tree/master/exercises
 - Review homework exercises
-- Next Tuesday, there there will be a timed question at the start of the review session that is meant to help prepare you for the exam. We will go over it in class. 
-
+- I highly recommend that you work all these problems on your own and make sure that you understand the solutions (which are provided). 
 
 
 

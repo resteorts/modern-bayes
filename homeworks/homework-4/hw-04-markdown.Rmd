@@ -1,0 +1,24 @@
+---
+title: 'Homework 4'
+author: "STA-360"
+date: "Due at 5:00 PM EDT on Friday, 17 September"
+output: pdf_document
+indent: true
+documentclass: article
+---
+
+Total points: 10 (reproducibility) + 10 (Q1) + 25 (Q2) = 45 points.\
+
+**General instructions for homeworks**: Please follow the uploading file instructions according to the syllabus. You will give the commands to answer each question in its own code block, which will also produce plots that will be automatically embedded in the output file. Each answer must be supported by written statements as well as any code used. Your code must be completely reproducible and must compile. 
+
+**Advice**: Start early on the homeworks and it is advised that you not wait until the day of. While the professor and the TA's check emails, they will be answered in the order they are received and last minute help will not be given unless we happen to be free.  
+
+**Commenting code**
+Code should be commented. See the Google style guide for questions regarding commenting or how to write 
+code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's will be accepted.
+
+1. (10 points, 5 points each) Hoff, 3.10 (Change of variables).
+  
+2. (15 points total) *Lab component* (25 points total) Please refer to lab 4 and complete tasks 4---5.
+(a) (10) Task 4
+(b) (15) Task 5
