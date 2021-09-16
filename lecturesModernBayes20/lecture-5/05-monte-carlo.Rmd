@@ -355,6 +355,34 @@ The Mandelbrot
 
 
 
+
+The Mandelbrot
+===
+
+The Mandelbrot set is a set of points in the complex plane.\footnote{The complex plane is a two-dimensional space with the a vertical imaginary
+axis, and a horizontal real axis.}
+
+A point in this plane can be defined using a complex number $c \in C$ such that
+$$c=a+bi,$$ where a,b are real numbers and $i = \sqrt{-1}.$
+
+Formally, $c\in C$ belongs to the Mandelbrot set iff 
+
+$$lim_{n\rightarrow \infty}  ||z_{n+1} = z_n^2 + c|| \nrightarrow \infty \quad  \text{where} \quad z_o = 0. $$
+
+- Note that $||\cdot||$ is the  Euclidean norm\footnote{This measures how far a point is from it's origin.} 
+
+
+The Mandelbrot
+===
+
+Formally, $c\in C$ belongs to the Mandelbrot set iff 
+
+$$lim_{n\rightarrow \infty}  ||z_{n+1} = z_n^2 + c|| \nrightarrow \infty \quad  \text{where} \quad z_o = 0. $$
+
+- We have a re-cursive function.\footnote{To read more about fractals, see \url{https://www.kth.se/social/files/5504b42ff276543e4aa5f5a1/An_introduction_to_the_Mandelbrot_Set.pdf}.}  
+- Conjugate distributions -- out the window! 
+- We're going to need to do something numerical! 
+
 Exercise
 ===
 \begin{itemize}
