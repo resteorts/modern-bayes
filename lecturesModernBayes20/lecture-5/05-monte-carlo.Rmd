@@ -78,7 +78,7 @@ Numerical integration error rates (big Ohh concepts)
 
 - Said differently, with $n$ evaluations, you get an error of order $n^{-1/d}.$
 
-- But, the Monte Carlo estimate retains an error rate of $n^{-1/2}.$
+- But,the Monte Carlo estimate retains an error rate of $n^{-1/2}.$
 (The constant in this error rate may be quite large).
 
 Classical Monte Carlo Integration
@@ -262,7 +262,7 @@ Importance Sampling Solution
 ===
 \vskip 1em
 If
-$U_1, \ldots, U_n \stackrel{iid}{\sim} N(\theta, 1),$ then an unbiased estimate is 
+$U_1, \ldots, U_n \stackrel{iid}{\sim} N(\textcolor{red}{\theta= 5}, 1),$ then an unbiased estimate is 
 $$\hat{p} = \frac{1}{n} \sum_i \left[I(u_i > 5) \frac{\phi_o(u_i)}{\phi_{\theta}(u_i)}\right],$$
 
 which is an \textbf{importance sampler} by definition. 
@@ -418,9 +418,8 @@ Suppose that $$\textcolor{red}{f(x)} = \tilde{f}(x)/\alpha, \alpha>0$$.
 
 Assumption: $f$ is difficult to evaluate, $\tilde{f}$ is easy! 
 
-Suppose the density $g$ is such that for some known constant $M,$ 
-$$Mg(x) \geq \ell(x)$$ for all $x.$ Procedure:
-
+<!-- Suppose there exists a density $g(x)$ and constant $M>0$ such that -->
+<!-- $$Mg(x) \geq \ell(x)$$ for all $x.$  -->
 
 \begin{enumerate}
 \item Choose a \textcolor{blue}{proposal distribution $q$} such that $c>0$ with 
@@ -431,8 +430,7 @@ $$c \textcolor{blue}{q(x)} \geq \tilde{f}(x).$$
 %\item Flip a coin with probability of success $r(X).$ If we have a success,
 %retain X. Else return to (1).
 \end{enumerate}
-Output: $Z \sim f$
-Proof: Exercise.
+Output: $Z \sim f(x)$
 
 Visualizing just f
 ===
