@@ -314,7 +314,7 @@ Output: $x_o,x_1,\ldots,x_n$
 
 Comment: $r$ is the rule for uniformly drawing a point in the box (slide 18).
 
-You do not need to know the proof of the Metropolis Algorithm for this class. 
+ 
 
 Metropolis Algorithm
 ===
@@ -511,7 +511,7 @@ Code (continued)
 ===
 ```{r}
 ##S = total num of simulations
-theta<-0 ; delta<-1 ; S<-500 ; THETA<-NULL
+theta<-0 ; delta<-1 ; S<-50 ; THETA<-NULL
 
 for(s in 1:S){
 ## simulating our proposal
@@ -657,4 +657,11 @@ Detailed Takeways
 - How long should you run an MCMC chain
 - How you would walk through a case study of metropolis but on the normal-uniform model (very similar to the in class study)
 
+
+Information about Markov chains
+===
+
+If you're wondering what a Markov chain and a problem looks like in a discrete space, take a look at this video: \url{https://www.youtube.com/watch?v=i3AkTO9HLXo}
+
+If you're wanting to read more about Markov chains, see \url{http://faculty.washington.edu/yenchic/18A_stat516/Lec3_DTMC_p1.pdf}
 
