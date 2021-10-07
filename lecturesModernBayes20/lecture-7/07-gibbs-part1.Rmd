@@ -9,17 +9,6 @@ output:
 font-size: 8px
 ---
 
-Announcements
-===
-
-- Exam II will be Thursday October 29th (it will be open note, open book)
-- No required class on November 3rd (Election day). I will post an ansyn. lecture for you to watch at your convenience so we don't get behind on material. 
-- There are more practice problems posted (and more coming).
-- Thank you for all the feedback from the survey. 
-- If you are a student that needs an extra OH, please email me by tomorrow at 5 PM so I can organize this with three preferred times. 
-- Detailed takeways have been posted for each module (1-6) to help you prepare for exams. 
-
-
 
 Agenda
 ===
