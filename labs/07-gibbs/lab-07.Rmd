@@ -24,7 +24,7 @@ You want to sample from the posterior $p(a,b|x_{1:n})$.  You may assume that $$a
 2. Code up your own Gibbs sampler using part (1). 
 3. Run the Gibbs sampler, providing convergence diagnostics. 
 4.  Plot a histogram or a density estimate of the estimated posterior using (2) and (3).
-5.  How do you know that your estimated posterior in (3) is reliable? 
+5.  How do you know that your estimated posterior in (3) is reliable? \textbf{If your traceplot for example or running average plot is not "flattening out," then try running more Gibbs iterations.}
 
 
 # Task 1
