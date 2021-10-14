@@ -37,6 +37,17 @@ Agenda
 - Gibbs sampling (multi-stage sampler)
 - Missing data (censoring) application
 
+What will you learn in this lecture
+===
+
+- The general form of the Gibbs sampler
+- What is censoring and an application of it
+- How to model censored data
+- How to derive the full conditionals of our model
+- How to connect the full conditionals to a Gibbs sampler
+- How to implement this in R, run this, and run diagnostics 
+- In summary, we will replicate a medical study from start to finish! 
+
 
 Multi-stage Gibbs sampler
 ===

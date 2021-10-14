@@ -15,6 +15,15 @@ Agenda
 - Latent Variable Allocation (Trick for Gibbs Sampling)
 - Application to the Dutch Example
 
+What will you learn in this lecture
+===
+
+- We will return to the Dutch application and model it more realistically
+- We will learn about the two component mixture model
+- In order to derive the conditional distributions, we will use latent variables as a tool 
+- We will derive these conditional distributions, which allow us to use a Gibbs sampler
+- We will then perform analysis on the data set! 
+
 Goal
 ===
 
