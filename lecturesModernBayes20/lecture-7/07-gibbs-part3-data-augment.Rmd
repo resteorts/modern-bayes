@@ -296,7 +296,7 @@ slight off.
 
 How might we fix this in our model? 
 
-Comceptual Question
+Conceptual Question
 ===
 
 Recall
