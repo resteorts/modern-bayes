@@ -19,6 +19,16 @@ Agenda
 - Pareto example
 - Diagnostics
 
+What will you learn in this lecture
+===
+
+- What is a Gibbs sampler?
+- Some important properties of a Gibbs sampler
+- What is needed in order to run a Gibbs sampler (the conditional distributions)
+- How to find the conditional distributions for some examples
+- Diagnostics used for monitoring "convergence" of the Gibbs sampler 
+- By the end of the lecture, you should know how to derive conditional distributions, run a Gibbs sampler, analyze diagnostics, and interpret summary statistics from the Gibbs sampler! 
+
 Background knowledge
 ===
 
