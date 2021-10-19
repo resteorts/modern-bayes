@@ -374,15 +374,20 @@ Histograms
 
 Caution: watch out for modes
 ===
-Example illustrates a big thing that can go wrong with MCMC (although fortunately, in this case, the results are still valid if interpreted correctly). 
+ 
 \begin{itemize}
 \item Why are females assigned to component 0 and males assigned to component 1? Why not the other way around? 
-\item In fact, the model is symmetric with respect to the two components, and thus the posterior is also symmetric. 
+<!-- \item In fact, the model is symmetric with respect to the two components, and thus the posterior is also symmetric.  -->
 \item If we run the sampler multiple times (starting from the same initial values), sometimes it will settle on females as 0 and males as 1, and sometimes on females as 1 and males as 0 --- see Figure \ref{figure:mixb}. 
 \item Roughly speaking, the posterior has two modes.
-\item  If the sampler were behaving properly, it would move back and forth between these two modes.
+\item If the sampler were behaving properly, it would move back and forth between these two modes.
 \item But it doesn't---it gets stuck in one and stays there.
 \end{itemize}
+
+Caution: watch out for modes
+===
+
+Example illustrates a big thing that can go wrong with MCMC (although fortunately, in this case, the results are still valid if interpreted correctly).
 
 # Detailed Takeaways
 
