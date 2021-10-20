@@ -614,3 +614,17 @@ Detailed Takeways
 - Running Aveage Plots
 - Survival Funtions
 
+In class notes
+===
+
+Notes on burn-in can be found here:
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/class-notes/gibbs-partI/burn-in.pdf}
+
+Notes on Exponential example can be found here:
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/class-notes/gibbs-partI/gibbs-exponential-example.pdf}
+
+Notes on truncated exponential example can be found here:
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/class-notes/gibbs-partI/gibbs-truncated-exponential-example.pdf}
+
+Notes on the two-stage Gibbs sampler set up can be found here:
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/class-notes/gibbs-partI/intro-gibbs.pdf}
