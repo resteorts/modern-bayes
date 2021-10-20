@@ -73,7 +73,7 @@ Big picture
 - What does this model look like?
 - The posterior will be intractable? Why? 
 - What should we do in order to help us solve the problem? 
-- This will be your homework for this coming week, and it will be solved and work in lab 8 with your TA's. 
+- This will be your homework for this coming week, and it will be solved and worked in lab 8 with your TA's this week. 
 - You should have read through the lecture notes for class and attempted to work through the problems on your own before attending Lab 8. 
 
 Likelihood (three component mixture model)

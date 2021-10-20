@@ -837,4 +837,10 @@ Review Materials
 - I highly recommend that you work all these problems on your own and make sure that you understand the solutions (which are provided). 
 
 
+In class notes
+===
+
+Derivation of bounds can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-class-notes/derivation-of-bounds.pdf}
+
+Notes on importance sampling can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-class-notes/importance-sampling.pdf}
 
