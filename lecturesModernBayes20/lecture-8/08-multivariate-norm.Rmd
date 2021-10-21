@@ -57,13 +57,6 @@ What are the main topics for Exam II
 8. Gaussian mixture models using latent variables (data augmentation)
 
 
-Upcoming OH
-===
-
-- OH will also be prioritized by the voted upon topics before moving onto other questions. 
-- Lab this week will focus on these prioritized topics that you as a class vote on.
-- \textbf{There will lab next Friday, where you will work on homework 7.}
-
 
 
 Agenda
