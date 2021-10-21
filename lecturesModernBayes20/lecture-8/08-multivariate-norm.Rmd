@@ -14,20 +14,12 @@ Exam II
 ===
 
 - Coverage will be modules 5 -- 7
-- The exam will be during in class on Thursday, October 29th
+- The exam will be during on Thursday, November 4th
 - The exam will be open note/open book (open resources)
 - You may not talk to anyone during the exam except for myself or a TA
 - All questions must be sent via private chat. 
 - Look over the ENTIRE exam during the first 15 minutes to see if you have clarifying questions to avoid a triage of questions at the end of the exam. 
 - You are to not talk/post/communicate with anyone about the exam until after grades are released (or this is an honor code violation), so DO NOT post anywhere (including piazza).  
-
-Exam II
-===
-
-- There will be four questions
-- Q1: Free response
-- Q2: True/False
-- Q3/Q4: derivations and conceptual
 
 Exam II General Topics
 ===
@@ -64,14 +56,13 @@ What are the main topics for Exam II
 7. Censoring using latent variables
 8. Gaussian mixture models using latent variables (data augmentation)
 
-On Tuesday, the TA's (Lavonne, Michael, Ziang, and myself) will cover four of these topics as voted on by you as a class. 
 
 Upcoming OH
 ===
 
 - OH will also be prioritized by the voted upon topics before moving onto other questions. 
 - Lab this week will focus on these prioritized topics that you as a class vote on.
-- \textbf{There will lab next Friday, where you will work on homework 7. There will be no class on election day.}
+- \textbf{There will lab next Friday, where you will work on homework 7.}
 
 
 
