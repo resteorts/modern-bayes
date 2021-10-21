@@ -134,7 +134,8 @@ $$\bm{X}_{n \times p} =
 \left( \begin{array}{cccc}
 x_{11} & \textcolor{red}{x_{12}} & \ldots&  x_{1p}\\
 x_{21} & \textcolor{red}{x_{22}} & \ldots& x_{2p} \\
-x_{i1} & \textcolor{red}{x_{i2}} & \ldots& x_{3p} \\
+x_{31} & \textcolor{red}{x_{32}} & \ldots& x_{3p} \\
+x_{i1} & \textcolor{red}{x_{i2}} & \ldots& x_{ip} \\
 \vdots & \vdots & \ddots & \vdots \\
 x_{n1} & \textcolor{red}{x_{n2}} &\ldots& x_{np}
 \end{array} \right).
