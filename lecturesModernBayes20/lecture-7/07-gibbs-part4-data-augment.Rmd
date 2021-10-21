@@ -356,4 +356,7 @@ Detailed Summary
 - Analyzing the output (posterior densities and credible intervals)
 
 
+Class notes
+===
 
+Class notes 
