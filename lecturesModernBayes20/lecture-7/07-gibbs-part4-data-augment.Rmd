@@ -359,4 +359,10 @@ Detailed Summary
 Class notes
 ===
 
-Class notes 
+Class notes on the Multinomial-Dirchlet can be found here: 
+
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/class-notes/gibbs-partv/exercise-multinomial-dirichlet-with-blanks.pdf}
+
+Class notes on the full conditional derived in class can be found here:
+
+\url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/class-notes/gibbs-partv/full-conditional-latent.pdf}
