@@ -268,10 +268,6 @@ Assume a matrix $H_{p \times p}.$
 
 $$\text{trace}(H) = \sum_i h_{ii},$$ where $h_{ii}$ are the diagonal elements of $H.$
 
-Interactive Exercise
-===
-
-We're going to move into working in groups, so you can work on the following exercises. 
 
 
 The trace of a matrix 
@@ -299,9 +295,8 @@ that B is a $n \times n$ matrix.
 Lemma 1:  
 
 $$tr(AB) = tr(BA)$$
-Proof: Exercise. 
+Proof: Exercise. (You can find the proof at the end of the slides to check your work).
 
-(Take 5-7 minutes to complete this.)
 
 
 
