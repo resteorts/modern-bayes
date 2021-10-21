@@ -128,8 +128,6 @@ where $i=1,\ldots,n$ and $p=2.$
 Example: Reading Comprehension
 ===
 
-What does this data look like that is observed? 
-
 $$\bm{X}_{n \times p} = 
 \left( \begin{array}{cccc}
 x_{11} & \textcolor{red}{x_{12}} & \ldots&  x_{1p}\\
