@@ -26,6 +26,7 @@ Agenda
  
 
 You can find Olivier's outline for Lab 8 here: \url{https://github.com/OlivierBinette/Labs-STA-360}
+(Look at the Lab 8 Folder)
 
 Goal
 ===
