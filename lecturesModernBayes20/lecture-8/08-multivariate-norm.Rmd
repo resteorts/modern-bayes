@@ -88,6 +88,20 @@ Agenda
 - How to draw samples from the MVN and inverse wishart distributions
 - Case study on reading comprehension
 
+What you should learn
+===
+
+- You will learn background on linear algebra
+- You will learn how to model multivariate data, where we consider
+an application to reading comprehension tests
+- You will learn the notation for multivariate random variables
+- You will learn about the multivariate density of the normal 
+- You will derive the posterior of the MVN-MVN
+- You will derive the posterior of the MVN-inverseWishart
+- You will consider a more complex model of the MVN-MVN-inverseWishart which will be covered in homework 7. 
+- Together we will look at the reading comprehension to understand how to make inferences
+and you will also finish this in lab and homework.
+
 Goal
 ===
 
