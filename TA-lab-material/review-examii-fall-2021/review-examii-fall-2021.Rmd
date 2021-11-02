@@ -1,0 +1,147 @@
+---
+title: "Review Exam II, Fall 2021"
+author: "Rebecca C. Steorts"
+date: ""
+fontsize: 10pt
+output: 
+  beamer_presentation:
+    include:
+      in_header: preamble.tex
+---
+
+```{r, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width=4, fig.height=3, fig.align="center")
+set.seed(1)
+```
+
+
+## Problem 4 (Exam 2, 2020), part a
+
+\begin{align}
+&p(y_{1:n} \mid z_i, \theta_i, \sigma_i^2)\\
+&\propto 
+\prod_i \{
+N(y_i \mid \theta_1, \sigma_1^2) I(Z_i = 0) 
++
+N(y_i \mid \theta_2, \sigma_2^2) I(Z_i = 1) 
+ \}\\
+ &\propto 
+\prod_i \{
+N(y_i \mid \theta_1, \sigma_1^2) p
++
+N(y_i \mid \theta_2, \sigma_2^2) (1-p) 
+ \}\\
+&\propto 
+\prod_{i=1}^n  \{
+N(y_i \mid \theta_{Z_i}, \sigma^2_{Z_i}) P(Z_i \mid p) 
+ \}
+\end{align}
+
+
+## Problem 4 (Exam 2, 2020), part b
+
+Using a latent variable approach, as illustrated in class, this will be easier to sample from as we should be able to sample from the full conditional distributions.
+
+
+## Problem 4 (Exam 2, 2020), part c
+
+
+Derive the joint posterior distribution. 
+
+
+## Problem 4 (Exam 2, 2020), part c
+
+
+\begin{align}
+& p(p, \theta_1, \theta_2, \sigma_1^2, \sigma_2^2, Z, p \mid y_{1:n})\\
+\propto
+& p(p, \theta_1, \theta_2, \sigma_1^2, \sigma_2^2, Z, y_{1:n}) \\
+& \propto p(y_{1:n} \mid z_i, \theta_i, \sigma_i^2) \\
+& p(\theta_1 \mid \mu, \tau^2) p(\theta_2 \mid \mu, \tau^2) \\
+& p(\sigma_1^2 \mid v/2, v\gamma^2/2) p(\sigma_2^2 \mid v/2, v\gamma^2/2)\\
+& p(p \mid a,b) \times p(Z_i \mid p)
+\end{align}
+
+## Problem 4 (Exam 2, 2020), part c (alternative way)
+
+\begin{align}
+& p(p, \theta_1, \theta_2, \sigma_1^2, \sigma_2^2, Z, p \mid y_{1:n})\\
+\propto
+& \prod_{i=1}^n  \{
+N(y_i \mid \theta_{Z_i}, \sigma_{Z_i^2}) P(Z_i \mid p) 
+ \}\\
+& \prod_{j=1}^2 \{
+N(\theta_j \mid \mu, \tau^2) \times IG(\sigma_j^2 \mid v/2, v\gamma^2/2)
+\} \\
+&\times \text{Beta}(p \mid a,b)\\
+& \times \text{Bernoulli}(Z_i \mid p)
+\end{align}
+
+## Problem 4, part d (Full conditionals)
+
+\begin{align}
+p(p \mid z) \propto
+& p(p, \theta_1, \theta_2, \sigma_1^2, \sigma_2^2, Z, p \mid y_{1:n})\\
+\propto
+& p(p, \theta_1, \theta_2, \sigma_1^2, \sigma_2^2, Z, y_{1:n}) \\
+& \propto p(y_{1:n} \mid z_i, \theta_i, \sigma_i^2) \\
+& p(\theta_1 \mid \mu, \tau^2) p(\theta_2 \mid \mu, \tau^2) \\
+& p(\sigma_1^2 \mid v/2, v\gamma^2/2) p(\sigma_2^2 \mid v/2, v\gamma^2/2)\\
+& p(p \mid a,b) \\
+& \propto \prod_{i=1}^n  \{
+N(y_i \mid \theta_{Z_i}, \sigma_{Z_i^2}) P(Z_i \mid p) 
+ \}\\
+&  \prod_{j=1}^2 \{
+N(\theta_j \mid \mu, \tau^2) \times IG(\sigma_j^2 \mid v/2, v\gamma^2/2)
+\} \\
+&\times \text{Beta}(p \mid a,b) \times \times \text{Bernoulli}(Z_i \mid p)
+\end{align}
+
+## Problem 4, part d (Full conditionals)
+
+What is relevant here and what is not relevant? 
+
+\textcolor{blue}{Goal: We want to identify terms that we can drop that do not depend on our random variable. We repeat this process again and again! }
+
+## Problem 4, part d (Full conditionals)
+
+\begin{align}
+p(p \mid z_i) 
+& \propto \prod_{i=1}^n  \{
+N(y_i \mid \theta_{Z_i}, \sigma_{Z_i^2}) P(Z_i \mid p) 
+ \}\\
+&  \prod_{j=1}^2 \{
+N(\theta_j \mid \mu, \tau^2) \times IG(\sigma_j^2 \mid v/2, v\gamma^2/2)
+\} \\
+&\times \text{Beta}(p \mid a,b) \times Bernoulli(Z_i \mid p)\\
+&\propto
+ \text{Bernoulli}(Z_i \mid p) \times \text{Beta}(p \mid a,b)
+\end{align}
+
+\textcolor{blue}{This will be an updated Beta distribution just like in Module 7, part III of the in class notes.}
+
+## Problem 4, part d (Full conditionals)
+
+Calculating the other full conditionals is similar. Let's why this is true.  
+
+## Problem 4, part d (Full conditionals)
+
+\begin{align}
+p(\theta_j \mid \theta_{-j}, y_{1:n}, z, p) 
+& \propto \prod_{i=1}^n  \{
+N(y_i \mid \theta_{Z_i}, \sigma_{Z_i^2}) P(Z_i \mid p) 
+ \}\\
+&  \prod_{j=1}^2 \{
+N(\theta_j \mid \mu, \tau^2) \times IG(\sigma_j^2 \mid v/2, v\gamma^2/2)
+\} \\
+&\times \text{Beta}(p \mid a,b) \times \text{Bernoulli} (Z_i \mid p)\\
+&\propto \prod_{i:{Z_i=j}}  \{
+N(y_i \mid \theta_j, \sigma_j^2) N(\theta_j \mid \mu,\tau^2)
+ \}\\
+\end{align}
+
+This leads to an updated normal-normal as we did in Module 3, expect we have two of them. 
+
+
+
+

@@ -1,6 +1,6 @@
 ---
 title: "Lab 8.5: Review for Exam II"
-author: "Olivier Binette"
+author: "Olivier Binette and Rebecca C. Steorts"
 date: "Friday October 23, 2020"
 fontsize: 11pt
 output: 
@@ -16,30 +16,11 @@ set.seed(1)
 
 # Agenda
 
-- Annoucements
+- Review for Exam II
 - Review of gaussian mixture models
 - Gibbs sampling exercise
 - Appendix: general review of sampling methods
 
-#
-\section{Announcements}
-
-# Announcements
-
-- Please vote!
-  - Forgot to register? Not a problem! Bring an ID and proof of residence (e.g. bank statement or utility bill) to vote **before October 31** at an early voting site.
-
-
-- Please fill out the TA section of your class evaluation!
-  - Your evaluations are very important to me.
-
-# Announcements
-
-On DukeHub:
-
-![](evaluation.png)
-
-After filling out the course evaluation, you should have the option to add an evaluation for your TAs.
 
 # 
 \section{Review of gaussian mixture models}
@@ -63,9 +44,32 @@ We have height data $X_i$, $i=1,2, \dots, n$, corresponding to males ($Z_i = 0$)
 
 **Task 1:** Write down the likelihood of the data $X_{1:n}$.
 
+# Solution 
+
+$$p(x_{1:n} \mid z, \mu, \lambda) \propto
+\prod_{i=1}^n \text{Normal}(\mu_{Z_i},\lambda^{-1})
+\propto \prod_{i=1}^n \pi_{z_j} \text{Normal}(\mu_{Z_i},\lambda^{-1})
+$$
+where 
+
+$$p(Y_i \mid \text{all variables}) = N(Y_i \mid \mu_{Z_i}, \lambda)$$
+$$P(Z_i = 0 \mid \pi) = \pi, \qquad P(Z_i = 1 \mid \pi) = 1-\pi.$$
+
 # Review of gaussian mixture models
 
 **Task 2:** Write down the joint posterior distribution (up to a proportionality constant).
+
+# What is the joint posterior
+
+# Solution
+\begin{align}
+&p(\mu_j, \lambda, \pi, Z_i, \mid x_{1:n})\\
+& \propto p(\mu_j, \lambda, \pi, Z_i, x_{1:n})\\
+& \propto p(x_{1:n} \mid z_i, \mu, \lambda) \\
+& \times
+p(Z_i \mid \pi)  \\
+& \times p(\pi) p(\mu_j) p(\lambda) \\
+\end{align}
 
 # Review of gaussian mixture models
 
@@ -75,6 +79,21 @@ We have height data $X_i$, $i=1,2, \dots, n$, corresponding to males ($Z_i = 0$)
 2. $\pi\mid - \sim \;?$
 3. $\mu_j\mid - \sim \;?$
 4. $\lambda\mid - \sim \;?$
+
+Example Solution
+===
+
+\begin{align} 
+&\lambda \propto 
+p(\mu_j, \lambda, \pi, Z_i, x_{1:n})\\
+& \propto p(x_{1:n} \mid z_i, \mu, \lambda) \\
+& \times
+p(Z_i \mid \pi)  \\
+& \times p(\pi) p(\mu_j) p(\lambda) \\
+& \propto p(x_{1:n} \mid z_i, \mu, \lambda) \times p(\lambda) \\
+& \propto \prod_{i=1}^n \pi_{z_i} \text{Normal}(\mu_{Z_i},\lambda^{-1}) 
+\times \text{InveseGamma}(\lambda \mid c,d)
+\end{align}
 
 # Gibbs sampling exercise
 
