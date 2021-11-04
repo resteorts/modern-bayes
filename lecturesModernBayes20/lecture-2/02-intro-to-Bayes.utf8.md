@@ -184,7 +184,8 @@ where $x = x_{1:n}$.
 
 Resource allocation for disease prediction in R
 ===
-```{r, cache=TRUE}
+
+```r
 # set seed 
 set.seed(123)
 
@@ -206,19 +207,12 @@ post = dbeta(th,sum_x+a,n-sum_x+b)
 
 Likelihood, Prior, and Posterior
 ===
-```{r, echo=FALSE}
-plot(th, like, type = "l", ylab = "Density", 
-     xlab = expression(theta), lty = 2, lwd = 3, 
-     col = "green",ylim = c(0,21) )
-lines(th, prior, lty = 3, lwd = 3, col= "red")
-lines(th, post, lty=1, lwd = 3, col= "blue")
-legend(0.6,10, c("Prior", "Likelihood", "Posterior"), lty=c(2,3,1), lwd=c(3,3,3), 
-       col = c("red", "green", "blue"))
-```
+![](02-intro-to-Bayes_files/figure-beamer/unnamed-chunk-2-1.pdf)<!-- --> 
 
 The loss function
 ===
-```{r}
+
+```r
 # compute the loss given theta and c 
 loss_function = function(theta, c){
   if (c < theta){
@@ -231,7 +225,8 @@ loss_function = function(theta, c){
 
 Posterior risk
 ===
-```{r}
+
+```r
 # compute the posterior risk given c 
 # s is the number of random draws 
 posterior_risk = function(c, s = 30000){
@@ -248,24 +243,42 @@ posterior_risk = function(c, s = 30000){
 
 Posterior Risk (continued)
 ===
-```{r}
+
+```r
 # a sequence of c in [0, 0.5]
 c = seq(0, 0.5, by = 0.01)
 post_risk <- apply(as.matrix(c),1,posterior_risk)
 head(post_risk)
 ```
 
+```
+## [1] 0.33917940 0.25367603 0.18868962 0.14489894 0.11693106 0.09453471
+```
+
 Posterior expected loss/posterior risk for disease prevelance
 ===
-```{r}
+
+```r
 # plot posterior risk against c 
 
 pdf(file="posterior-risk.pdf")
 plot(c, post_risk, type = 'l', col='blue', 
     lwd = 3, ylab ='p(c, x)' )
 dev.off()
+```
+
+```
+## pdf 
+##   2
+```
+
+```r
 # minimum of posterior risk occurs at c = 0.08
 (c[which.min(post_risk)])
+```
+
+```
+## [1] 0.08
 ```
 
 Posterior expected loss/posterior risk for disease prevelance
@@ -288,7 +301,8 @@ Sensitivity Analysis
 
 Posterior Risk Function (More Advanced)
 ===
-```{r, cache=TRUE}
+
+```r
 # compute the posterior risk given c 
 # s is the number of random draws 
 posterior_risk = function(c, a_prior, b_prior, 
@@ -305,7 +319,8 @@ posterior_risk = function(c, a_prior, b_prior,
 
 Posterior Risk Function (More Advanced)
 ===
-```{r, cache=TRUE}
+
+```r
 # a sequence of c in [0, 0.5]
 c = seq(0, 0.5, by = 0.01)
 post_risk <- apply(as.matrix(c),1,
@@ -313,9 +328,14 @@ post_risk <- apply(as.matrix(c),1,
 head(post_risk)
 ```
 
+```
+## [1] 0.33742709 0.25432988 0.19124960 0.14450410 0.11565159 0.09530153
+```
+
 Sensitivity Analysis
 ===
-```{r, cache=TRUE}
+
+```r
 # set prior
 as = c(0.05, 1, 0.05); bs = c(1, 1, 10)
 post_risk = matrix(NA, 3, length(c))
@@ -335,7 +355,8 @@ post_risk[i,] = apply(as.matrix(c), 1,
 
 Plot
 ===
-```{r}
+
+```r
 plot(c, post_risk[1,], type = 'l', 
      col='blue', lty = 1, yaxt = "n", ylab = "p(c, x)")
 par(new = T)
@@ -349,36 +370,43 @@ legend("bottomright", lty = c(1,2,3),
        legend = c("a = 0.05 b = 1", 
                   "a = 1 b = 1", "a = 0.05 b = 5"))
 ```
+
+![](02-intro-to-Bayes_files/figure-beamer/unnamed-chunk-10-1.pdf)<!-- --> 
 
 Optimal resources (a,b vary)
 ===
 \textcolor{red}{For $a = 0.05, 1, 0.05$ and $b = 1, 2, 10$ respectively,
 the optimal value for c is:}
 
-```{r}
+
+```r
 (c[which.min(post_risk[1,])])
+```
+
+```
+## [1] 0.08
+```
+
+```r
 (c[which.min(post_risk[2,])])
+```
+
+```
+## [1] 0.12
+```
+
+```r
 (c[which.min(post_risk[3,])])
+```
+
+```
+## [1] 0.06
 ```
 
 
 Plot
 ===
-```{r, echo=FALSE}
-plot(c, post_risk[1,], type = 'l', 
-     col='blue', lty = 1, yaxt = "n", ylab = "p(c, x)")
-par(new = T)
-plot(c, post_risk[2,], type = 'l', 
-     col='red', lty = 2, yaxt = "n", ylab = "")
-par(new = T)
-plot(c, post_risk[3,], type = 'l', 
-     lty = 3, yaxt = "n", ylab = "")
-legend("bottomright", lty = c(1,2,3), 
-       col = c("blue", "red", "black"), 
-       legend = c("a = 0.05 b = 1", 
-                  "a = 1 b = 1", "a = 0.05 b = 5"))
-
-```
+![](02-intro-to-Bayes_files/figure-beamer/unnamed-chunk-12-1.pdf)<!-- --> 
 
 
 Frequentist Risk
