@@ -24,6 +24,11 @@ Agenda
 - Marginal likelihood
 - Posterior Prediction
 
+What should you learn? 
+===
+
+You should learn the main principles of Bayesian inference/prediction and how to apply these to real data analysis. You will continue with this in lab/homework to make sure that you understand these key principles.
+
 
 Traditional inference
 ===

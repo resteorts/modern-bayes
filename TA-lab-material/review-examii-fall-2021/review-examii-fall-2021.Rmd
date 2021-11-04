@@ -118,7 +118,7 @@ N(\theta_j \mid \mu, \tau^2) \times IG(\sigma_j^2 \mid v/2, v\gamma^2/2)
  \text{Bernoulli}(Z_i \mid p) \times \text{Beta}(p \mid a,b)
 \end{align}
 
-\textcolor{blue}{This will be an updated Beta distribution just like in Module 7, part III of the in class notes.}
+\textcolor{blue}{This will be an updated Beta distribution just like in Module 7, part III of the in class notes (slide 18).}
 
 ## Problem 4, part d (Full conditionals)
 
