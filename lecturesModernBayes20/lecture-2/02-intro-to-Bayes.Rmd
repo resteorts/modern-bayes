@@ -19,6 +19,11 @@ Agenda
 - Integrated Risk
 - An Application to Resource Allocation 
 
+What will your learn?
+===
+
+You will learn basic decision theory. In short, you will learn about ``optimal estimators" for Bayesian inference and how they connect to frequentist theory. We will connect this to an application of resource application, where we cannot compute the optimal number of resources in closed form. 
+
 General setup
 ===
 Assume an unknown state $S$ (a.k.a. the state of nature).
