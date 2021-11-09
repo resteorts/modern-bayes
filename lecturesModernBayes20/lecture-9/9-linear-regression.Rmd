@@ -10,36 +10,16 @@ output:
 font-size: 8px
 ---
 
-Remainder of Semester
-===
 
-\textbf{This week}
-
-- Thursday, November 5: Linear Regression 
-- Friday, November 6: Lab 10 (Homework 8)
-
-\vspace*{1em}
-
-\textbf{Next week}
-
-- Tuesday, November 10: Linear and Logistic Regression
-- Thursday, November 12: Logistic Regression + Final Exam 
-- Friday November 13, 5 PM EDT: Homework 8 (last homework + extra credit) 
-
-\vspace*{1em}
-
-\textbf{Reading period}
-
-- All OH will be held. Mine will be during class to avoid any conflicts and be more friendly to international students. 
  
 
 Final Exam
 ===
 
-The final exam is **November 22, 2 PM - 5 PM EDT** (open note/open book)
+Exam III is **December 2, during class** (open note/open book)
 
 - The material will be on modules 1 -- 9.
-- I will go over more details regarding the exam next week 
+- I will go over more details closer to the exam
 
  
 
@@ -780,22 +760,4 @@ Course Evaluations
 - They are located on DukeHub
 - Directions: \url{https://assessment.trinity.duke.edu/students-course-evaluations}
 - If there is a 100 percent response rate, I will give everyone in the course 1 point on their final exam grade.
-
-Exam II
-===
-
-- Students did extremely well on problems 1 and 2. 
-- You should feel very proud of how you did on these problems. Great job! 
-
-
-Exam II
-===
-
-There were issues on both problems 3 and 4. 
-
-Due to this, I'm releasing Exam II: \url{https://github.com/resteorts/modern-bayes/blob/master/exercises/final-exam/exam2-2020-version2.pdf}
-
-No solutions will be posted to encourage you to work through these derivations on your own. See a member of the TA Team if you have a question, and make sure to bring your derivation with you so we can help understand how best to help you! 
-
-
 
