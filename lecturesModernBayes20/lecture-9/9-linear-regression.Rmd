@@ -413,9 +413,9 @@ summary(fit.ols)$coef
 Exercise 3 (Multivariate inference for regression models)
 ===
 
-Let 
+Let $\bm{y} = (y_1, \ldots y_n)_{n \times 1}$ and 
 \begin{align}
-\bm{y} &\mid \bbeta \sim \text{MVN}(X \bbeta, \sigma^2 I)\\
+y_i &\mid \bbeta \sim \text{MVN}(X \bbeta, \sigma^2 I)\\
 \bbeta &\sim \text{MVN}(\bbeta_0, \Sigma_0)
 \end{align}
 
@@ -441,28 +441,28 @@ Let's start with the likelihood:
 \begin{align}
 p(\bm{y}  \mid  \bbeta) &\propto \exp\{\frac{-1}{2\sigma^2}
 \sum_{i=1}^n
-(\bm{y}_i - X\bbeta)^T(\bm{y}_i - X\bbeta)
+({y}_i - X\bbeta)^T(\bm{y}_i - X\bbeta)
 \} \\
 &\propto \exp\{\frac{-1}{2\sigma^2}
 \sum_{i=1}^n
 [
-\bm{y}_i^T\bm{y}_i + \bbeta^TX^TX\bbeta - 2\bbeta^TX^T\bm{y}_i
+{y}_i^T{y}_i + \bbeta^TX^TX\bbeta - 2\bbeta^TX^T{y}_i
 ]
 \}\\
 &\propto \exp\{\frac{-1}{2\sigma^2}
 \sum_{i=1}^n
 [
-\bbeta^TX^TX\bbeta - 2\bbeta^TX^T\bm{y}_i
+\bbeta^TX^TX\bbeta - 2\bbeta^TX^T{y}_i
 ]
 \}\\
 &\propto \exp\{-\frac{1}{2}
 [
-\bbeta^T\textcolor{blue}{\frac{n\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{X^T\bar{\bm{y}}}{\sigma^2}}
+\bbeta^T\textcolor{blue}{\frac{n\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{nX^T\bar{{y}}}{\sigma^2}}
 ]
 \}
 \end{align} 
 
-This implies that $A_1 = \frac{n\;X^TX}{\sigma^2}$ and $b_1 = \frac{X^T\bar{\bm{y}}}{\sigma^2}.$
+This implies that $A_1 = \frac{n\;X^TX}{\sigma^2}$ and $\textcolor{red}{b_1 = \frac{nX^T\bar{{y}}}{\sigma^2}}.$
 
 Exercise 3 Solution 
 ===
@@ -495,7 +495,7 @@ The posterior is
 p(\bbeta \mid \bm{y}) &\propto
 \exp\{-\frac{1}{2}
 [
-\bbeta^T\textcolor{blue}{\frac{n\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{X^T\bar{\bm{y}}}{\sigma^2}}
+\bbeta^T\textcolor{blue}{\frac{n\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{nX^T\bar{{y}}}{\sigma^2}}
 ]
 \}\\
 &\times
@@ -527,10 +527,10 @@ Let $A_n = A_o + A_1$ and $b_n = b_o + b_1.$
 Using the kernel of the multivariate normal, we can now find the posterior mean and the posterior covariance:
 
 $$A_n = A_o + A_1 = \Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2}.$$
-$$b_n = b_o + b_1 = \Sigma_0^{-1}\bbeta_0 + \frac{X^T\bar{\bm{y}}}{\sigma^2}.$$
+$$b_n = b_o + b_1 = \Sigma_0^{-1}\bbeta_0 + \frac{nX^T\bar{{y}}}{\sigma^2}.$$
 $$\bbeta \mid \bm{y} \sim MVN(A_n^{-1} b_n, A_n^{-1}) =: MVN(\bbeta_n, \Sigma_n),$$
 
-where $$\mu_n = (\Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2})^{-1}(\Sigma_0^{-1}\bbeta_0 + \frac{X^T\bar{\bm{y}}}{\sigma^2})$$ and
+where $$\mu_n = (\Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2})^{-1}(\Sigma_0^{-1}\bbeta_0 + \frac{nX^T\bar{{y}}}{\sigma^2})$$ and
 
 
 $$\Sigma_n = (\Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2})^{-1}.$$
@@ -543,7 +543,7 @@ $$\bbeta \mid \bm{y}, X \sim \text{MVN}(\bbeta_n, \Sigma_n)$$
 where
 
 $$\bbeta_n = E[\bbeta\ \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (nX^TX)/\sigma^2)^{-1}
-(\Sigma_o^{-1}\bbeta_0 + X^T\bm{y}/\sigma^2)$$
+(\Sigma_o^{-1}\bbeta_0 + nX^T\bar{y}/\sigma^2)$$
 
 $$\Sigma_n = \text{Var}[\bbeta \mid \bm{y}, \bX, \sigma^2] = (\Sigma_o^{-1} + (nX^TX)/\sigma^2)^{-1}$$
 
@@ -751,7 +751,7 @@ I am proposing to drop your lowest exam grade (out of Exam I, Exam II, and the F
 - Second Highest Exam: 35
 
 - So your **two highest exam scores** will be weighted evenly and you lowest exam score will be completely dropped. 
-- Yes, you still must take the final exam. 
+- It's highly recommended that you take Exam III! 
 
 Course Evaluations
 ===
