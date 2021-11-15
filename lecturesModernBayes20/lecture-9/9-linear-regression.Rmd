@@ -458,12 +458,12 @@ p(\bm{y}  \mid  \bbeta) &\propto \exp\{\frac{-1}{2\sigma^2}
 \}\\
 &\propto \exp\{-\frac{1}{2}
 [
-\bbeta^T\textcolor{blue}{\frac{n\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{X^T\bm{{y}}}{\sigma^2}}
+\bbeta^T\textcolor{blue}{\frac{\;X^TX}{\sigma^2}}\bbeta - 2\bbeta^T\textcolor{red}{\frac{X^T\bm{{y}}}{\sigma^2}}
 ]
 \}
 \end{align} 
 
-This implies that $A_1 = \frac{n\;X^TX}{\sigma^2}$ and $\textcolor{red}{b_1 = \frac{X^T\bm{{y}}}{\sigma^2}}.$
+This implies that $A_1 = \frac{\;X^TX}{\sigma^2}$ and $\textcolor{red}{b_1 = \frac{X^T\bm{{y}}}{\sigma^2}}.$
 
 Exercise 3 Solution 
 ===
@@ -527,14 +527,14 @@ Let $A_n = A_o + A_1$ and $b_n = b_o + b_1.$
 
 Using the kernel of the multivariate normal, we can now find the posterior mean and the posterior covariance:
 
-$$A_n = A_o + A_1 = \Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2}.$$
+$$A_n = A_o + A_1 = \Sigma_0^{-1} + \frac{\;X^TX}{\sigma^2}.$$
 $$b_n = b_o + b_1 = \Sigma_0^{-1}\bbeta_0 + \frac{X^T\bm{{y}}}{\sigma^2}.$$
 $$\bbeta \mid \bm{y} \sim MVN(A_n^{-1} b_n, A_n^{-1}) =: MVN(\bbeta_n, \Sigma_n),$$
 
-where $$\mu_n = (\Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2})^{-1}(\Sigma_0^{-1}\bbeta_0 + \frac{X^T\bm{{y}}}{\sigma^2})$$ and
+where $$\mu_n = (\Sigma_0^{-1} + \frac{X^TX}{\sigma^2})^{-1}(\Sigma_0^{-1}\bbeta_0 + \frac{X^T\bm{{y}}}{\sigma^2})$$ and
 
 
-$$\Sigma_n = (\Sigma_0^{-1} + \frac{n\;X^TX}{\sigma^2})^{-1}.$$
+$$\Sigma_n = (\Sigma_0^{-1} + \frac{X^TX}{\sigma^2})^{-1}.$$
 
 Multivariate inference for regression models
 ===
