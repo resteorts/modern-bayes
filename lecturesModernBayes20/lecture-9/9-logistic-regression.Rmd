@@ -430,8 +430,6 @@ Suppose that it's very cold, 20 F.
 
 How would we simulate a predictive probability that a o-ring would fail? 
 
-- What does your group think intuitively?
-- Code up a simulation of a posterior prediction and what do you find? 
 
 Your Turn
 ===
@@ -466,14 +464,14 @@ Summary
 - What did you learn? 
 
 
-Course evaluations
-===
+<!-- Course evaluations -->
+<!-- === -->
 
-- Course evaluations are available on github
-- There are instructions on how to fill out the course evaluations on Piazza 
-- Please do also fill out the TA evaluations as well as they are eligible for awards that will help them in their careers
-- If there is 100 percent response, everyone in the class will receive 1 point on their final grade. (We are currently just above 50 percent response.)
-- If there is something that has not been resolved in the course, please let me know so that it can be fixed. Kindly send myself (or your TA advocate an email regarding the issue). 
+<!-- - Course evaluations will become available soon -->
+<!-- - There are instructions on how to fill out the course evaluations on Piazza  -->
+<!-- - Please do also fill out the TA evaluations as well as they are eligible for awards that will help them in their careers -->
+<!-- - If there is 100 percent response, everyone in the class will receive 1 point on their final grade. (We are currently just above 50 percent response.) -->
+<!-- - If there is something that has not been resolved in the course, please let me know so that it can be fixed. Kindly send myself (or your TA advocate an email regarding the issue).  -->
 
 Exponential Families
 ===
