@@ -758,7 +758,6 @@ Course Evaluations
 ===
 
 - I would be very appreciative if you would fill out the course evaluations
-- They are located on DukeHub
-- Directions: \url{https://assessment.trinity.duke.edu/students-course-evaluations}
-- If there is a 100 percent response rate, I will give everyone in the course 1 point on their final exam grade.
+- They are located at: duke.evaluationkit.com
+- If there is a 100 percent response rate, I will give everyone in the course 1 point on their final grade.
 
