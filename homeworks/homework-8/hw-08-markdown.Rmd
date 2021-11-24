@@ -1,0 +1,57 @@
+---
+title: 'Homework 8'
+author: "STA-360"
+date: "5 PM Friday November 5"
+output: pdf_document
+indent: true
+documentclass: article
+---
+
+Total points: 10 (reproducibility) + 10 (Q1) = 20 points. **Q2 is worth up to 8 points of extra credit on this assignment to help anyone that has had a difficult time in the course and also to help you prepare for the final exam.**\
+
+**General instructions for homeworks**: Please follow the uploading file instructions according to the syllabus. You will give the commands to answer each question in its own code block, which will also produce plots that will be automatically embedded in the output file. Each answer must be supported by written statements as well as any code used. Your code must be completely reproducible and must compile. 
+
+**Advice**: Start early on the homeworks and it is advised that you not wait until the day of. While the professor and the TA's check emails, they will be answered in the order they are received and last minute help will not be given unless we happen to be free.  
+
+**Commenting code**
+Code should be commented. See the Google style guide for questions regarding commenting or how to write 
+code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's will be accepted.
+
+Please look over the homework before lab this week. TA's will answer questions on the homework this week regarding these two 
+problems below. I recommend that you work through them as much as possible before lab this week.
+
+1. *Lab component* (10 points) Please complete **Lab 10**, parts c and d which correspond with linear regression, which can be found here:  https://github.com/resteorts/modern-bayes/blob/master/labs/10-linear-regression/11-linear-regression_v2.pdf. It is highly recommend that you work through parts (a) and (b) on your own and derive these as these are excellent practice exercises for the exam. You can check your own work on this.
+  c) (5 points) Complete lab 10, part c.
+  
+  d) (5 points) Complete lab 10, part d.
+
+\newpage
+
+2. **Extra Credit** (8 points) *Multivariate Methods* 
+This problem is optional for the homework, but it is worth extra credit. It is also a type of problem that is reasonable to appear on the final exam, and it's similar to what we did in class regarding the multivariate normal distribution. 
+
+Because this problem is extra credit, the TA Team will not answer questions on this except for clarification questions. These should be sent privately. You should work on your own on this problem and not with others to help you prepare for the final examination. 
+
+Consider the following hierarchical model:
+
+$$y_i \mid \theta,\Sigma \stackrel{i.i.d.}{\sim} MVN(\theta_{d \times 1},\Sigma_{d \times d}), \quad i = 1, \cdots, n,$$
+
+and independent priors 
+
+$$\theta_{d \times 1} \sim MVN(\mu_{d \times 1}, T_{d \times d}), 
+\qquad \Sigma_{d \times d} \sim \text{inverseWishart}(\nu, \Psi^{-1}_{d \times d}).$$
+  (a) (1 point) Show that $(\theta^T T^{-1} \mu)^T = \mu^T T^{-1} \theta.$ *Hint*: what's the transpose of a scalar?
+    
+  (b) (1 point) Use (a) to show that:
+  $$p(\theta) \propto e^{-\frac{1}{2}\left(\theta^T T^{-1}\theta - 2\theta^T T^{-1} \mu \right)}$$
+  
+  (c) (2 points) Use (b) to show that
+  $$ p(\theta \mid \Sigma, y ) \sim MVN\left\{\mu^*(\Sigma) := {T^*}(n \boldsymbol{\Sigma}^{-1}\bar{y} + T^{-1}\mu), T^* := (n\boldsymbol{\Sigma}^{-1} + T^{-1})^{-1}\right\}. $$
+  
+  (d) (2 points) Show that:
+  $$tr(\Psi\boldsymbol{\Sigma}^{-1})+\sum_{i=1}^n (y_i-\boldsymbol{\theta})^T \boldsymbol{\Sigma}^{-1}(y_i-\boldsymbol{\theta}) = \text{tr}\left\{\left(\Psi + \sum_{i=1}^n (y_i-\boldsymbol{\theta}) (y_i-\boldsymbol{\theta})^T \right) \boldsymbol{\Sigma}^{-1}\right\}.$$
+  **Hint**: Recall that $tr(A)$ is the trace of matrix $A$ -- the sum of its diagonal entries. *Lemma*: (i) for scalar $a$, $tr(a)=a$; (ii) $tr(ABC) = tr(BCA) = tr(CAB)$.
+  
+  (e) (2 points) Use (d) to show (step-by-step) that:
+  $$[\Sigma|\theta,data] \sim IW(\nu^*, \Psi^*(\theta))$$
+  where $\nu^* = n + v$ and $\Psi^*(\theta) = (\Psi + \sum_{i=1}^n (y_i-\boldsymbol{\theta}) (y_i-\boldsymbol{\theta})^T)^{-1} .$
