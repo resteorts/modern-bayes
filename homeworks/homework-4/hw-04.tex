@@ -3,8 +3,8 @@
 \input{custom2}
 \begin{document}
 \title{Homework 4}
-\author{STA-360}
-\date{Due at 5:00 PM EDT on Friday, 17 September}
+\author{STA-360/602}
+\date{Due at 5:00 PM EDT on January, 31}
 \maketitle
 
 Total points: 10 (reproducibility) + 10 (Q1) + 25 (Q2) = 45 points. \\
@@ -38,35 +38,35 @@ code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's wi
   
 \end{enumerate}
 
-\newpage
-
-$$
-\theta = Beta(a,b)
-$$
-
-$$
-\psi = \log[\frac{\theta}{(1-\theta)}]
-$$
-
-Goal: Is to obtain $p_{\psi}(\psi)$ using the change of variables expression given in Hoff. 
-
-To start with one thing we should do is to solve for $\theta$ in terms of $\psi.$
-Show that $$\theta =: h(\psi) = \frac{e^{\psi}}{1 + e^{\psi}}.$$
-
-The change of variables as given in Hoff (and remember from calculus) is 
-
-$$p_{\psi}(\psi) = p_{\theta}(h(\psi)) \times |\frac{dh}{d\psi}|.$$
-
-Now we want to use the change of variable rules. Specifically, you should be able to find/show that
-$$|\frac{dh}{d\psi}| = \frac{e^{\psi}}{(1 + e^{\psi})^2
-}.$$
-
-Putting everything together,
-
-
-$$p_{\psi}(\psi) = p_{\theta}(h(\psi)) \times |\frac{dh}{d\psi}|
-= \frac{1}{B(a,b)} [h(\psi)]^{a-1} [1- h(\psi)]^{b-1} \times \frac{e^{\psi}}{(1 + e^{\psi})^2} = \text{simplify.}
-$$
+%\newpage
+%
+%$$
+%\theta = Beta(a,b)
+%$$
+%
+%$$
+%\psi = \log[\frac{\theta}{(1-\theta)}]
+%$$
+%
+%Goal: Is to obtain $p_{\psi}(\psi)$ using the change of variables expression given in Hoff. 
+%
+%To start with one thing we should do is to solve for $\theta$ in terms of $\psi.$
+%Show that $$\theta =: h(\psi) = \frac{e^{\psi}}{1 + e^{\psi}}.$$
+%
+%The change of variables as given in Hoff (and remember from calculus) is 
+%
+%$$p_{\psi}(\psi) = p_{\theta}(h(\psi)) \times |\frac{dh}{d\psi}|.$$
+%
+%Now we want to use the change of variable rules. Specifically, you should be able to find/show that
+%$$|\frac{dh}{d\psi}| = \frac{e^{\psi}}{(1 + e^{\psi})^2
+%}.$$
+%
+%Putting everything together,
+%
+%
+%$$p_{\psi}(\psi) = p_{\theta}(h(\psi)) \times |\frac{dh}{d\psi}|
+%= \frac{1}{B(a,b)} [h(\psi)]^{a-1} [1- h(\psi)]^{b-1} \times \frac{e^{\psi}}{(1 + e^{\psi})^2} = \text{simplify.}
+%$$
 
 
 
