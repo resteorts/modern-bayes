@@ -523,3 +523,10 @@ The dispersion parameter is $\phi = \sigma$ and $a(\phi) = \sigma^2.$
 Finally, $c(y,\phi) = \frac{y^2}{2\textcolor{blue}{\sigma^2}} - \log \phi - \log 2\pi.$
 
 The link function $g(\mu) = \mu$ such that we model $\mu = \beta^TX.$
+
+Exam III
+===
+
+- There will be three questions on exam III. 
+- The first question will be a cumulative question regarding the entire semester's worth of information. 
+- The other two questions will come from the most recent modules 8 and 9. 
