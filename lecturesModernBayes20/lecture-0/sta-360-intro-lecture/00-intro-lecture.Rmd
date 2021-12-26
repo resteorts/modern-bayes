@@ -1,6 +1,6 @@
 
 ---
-title: "Module 0: Introduction to Bayesian Statistics (STA 360/602)"
+title: "Module 0: Introduction to Bayesian Statistics (STA 360)"
 author: "Professor Rebecca C. Steorts"
 output: 
      beamer_presentation:
@@ -29,10 +29,10 @@ Prof. Rebecca Steorts (resteorts.github.io)
 \vspace*{1em}
 
 \begin{itemize}
-\item Class: Tues/Th, 10:15 -- 11:30 AM EDT 
-\item OH: Tues/Th, 9:15 - 10:15 AM EDT (Zoom)
+\item Class: Tues/Th, 1:45 - 3:00 PM EDT (Old Chemistry 116)
+\item OH: Tues/Th, 3:00 - 4:00 PM EDT (Old Chemistry 216)
 \item Zoom ID: 925 6381 7937
-\item Course webpage: https://resteorts.github.io/teach/bayes22.html
+\item Course webpage: https://resteorts.github.io/teach/bayes21.html
 \end{itemize}
 
 Class will be in person unless you are notified! OH will be over zoom to limit the spread of COVID. 
@@ -41,12 +41,12 @@ Class will be in person unless you are notified! OH will be over zoom to limit t
 Teaching Assistants
 ===
 
-Evan Knox, PhD Student
+Kim Roche, PhD Student
 
 \begin{itemize}
-\item Lab-01: Monday: 1:45 PM – 3:00 PM EDT, Old Chemistry 025 (Back up: Aihua)
-\item Meeting ID: 979 3386 5844
-\item Will hold OH and grade
+\item Lab-01: Friday: 10:15am - 11:30am EDT, Old Chemistry 101 (Back up: David)
+\item Meeting ID: 992 3819 1368
+\item Will hold OH
 \end{itemize}
 
 Lab will be in person unless notified. OH will be over zoom. 
@@ -54,29 +54,42 @@ Lab will be in person unless notified. OH will be over zoom.
 Teaching Assistants
 ===
 
-Aihua Li, MS Student
+David Buch, PhD Student
 
 \begin{itemize}
-\item Lab-02: Friday: 3:30 - 4:45 PM EDT, Old Chemistry 101 (Back up: Evan)
-\item Meeting ID: 979 3386 5844
-\item Will hold OH and grade
+\item Lab-02: Friday: 1:45 PM – 3:00 PM EDT, Old Chemistry 101 (Back up: Cathy)
+\item Meeting ID: 974 1981 3582
+\item Will hold OH
 \end{itemize}
 
 Lab will be in person unless notified. OH will be over zoom. 
+
+Teaching Assistants
+===
+
+Cathy Lee, PhD Student
+
+\begin{itemize}
+\item Responsible to majority of grading
+\item Will be helping with labs and answering questions on Piazza
+\item Will be holding office hours
+\end{itemize}
+
+OH will be over zoom. 
 
 
 
 Where to find information
 ===
 
-- Course website (all major course information here): [https://resteorts.github.io/teach/bayes22.html](https://resteorts.github.io/teach/bayes22.html)
+- Course website (all major course information here): [https://resteorts.github.io/teach/bayes21.html](https://resteorts.github.io/teach/bayes21.html)
 
 - Piazza Forum: 
 
 [https://piazza.com/duke](https://piazza.com/duke)
 
 
-- Course syllabus [https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring-22.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring-22.pdf)
+- Course syllabus [https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall21.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall21.pdf)
 
 \vspace*{2em}
 
@@ -85,12 +98,12 @@ Remark: Videos on Github are too large to view, so you will need to download the
 Where to find information
 ===
 
-- Sakai (upload homework Rmd file and any supporting files (data)): [https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1](https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1)
+- Sakai (upload homeworks): [https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1](https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1)
 
-- Duke Gradescope (upload homework pdf only):
+- Duke Gradescope (upload homeworks):
 [https://gradescope.com/auth/saml/duke](https://gradescope.com/auth/saml/duke)
 
-- See syllabus for detailed uploading instructions 
+
  
 
 Other resources
@@ -106,7 +119,7 @@ Other resources
 Course information
 ===
 
-Course website (all major course information here):  [https://resteorts.github.io/teach/bayes22.html](https://resteorts.github.io/teach/bayes22.html)
+Course website (all major course information here):  [https://resteorts.github.io/teach/bayes21.html](https://resteorts.github.io/teach/bayes21.html)
 
 Course cheat sheet (a summary of course information):
 [https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf)
@@ -197,6 +210,7 @@ Activities & Assessments
 
 - <font class="vocab">Homework</font>: Individual assignments combining conceptual and computational skills along with lab exercises. *Lowest score dropped.*
 
+
 - <font class="vocab">Labs</font>: **Attending lab is highly encouraged**, and, there will be a lab problem on each homework each week. 
 
 - <font class="vocab">Class/Lab</font>: **You will be responsible for keeping up with all class and lab material on a weekly basis (even though there are recordings)!** 
@@ -226,13 +240,14 @@ Lab Engagement
 Homeworks
 ===
 
-1. Please see the syllabus regarding homework instructions for Sakai and Gradescope. 
-2. Please start the homework early and not late. 
-3. Ask questions early and post to Piazza.  
-4. Your lowest homework will be dropped. 
-5. All homework assignments can be submitted in Sakai and on Gradescope in case you wish to work ahead in the course. 
+1. All code must be written to be reproducible in Markdown. 
+2. All derivations can be done in any format of your choosing (word, latex, markdown, written by hand) but must be converted to a pdf document. It must be legible.
+3. All files must be zipped together and submitted to Sakai as one file (including Rmd and pdf). Your pdf document must be uploaded to Duke Gradescope. Please make sure to upload early to avoid issues. 
+4. Ask questions early if you have a problem to a TA regarding submission issues. 
+5. Your lowest homework will be dropped. 
+6. The first four our homeworks can be submitted in Sakai and on GradeScope. 
 
-Remark: Sakai is for reproducible code (you will receive a grade for this). Gradescope is to make grading is done fairly/consistently for all students. Unfortunately, there is not a platform that handles both. 
+Remark: Sakai is for reproducible code. Gradescope is to make grading easier for everyone. Unfortunately, there is not a platform that handles both. 
 
 **Please see the syllabus for all homework guidelines.**
 
@@ -268,7 +283,6 @@ Grade Calculation
 - Grades will **never** be curved down. 
 - You are expected to attend lectures and labs in order to keep up with the course material.
 - There will be no attendance grade or participation grade. 
-- If you are an undergraduate, you will be graded as a graduate student in the course. 
 
 
 Absences
