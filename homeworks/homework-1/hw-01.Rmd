@@ -1,7 +1,7 @@
 ---
 title: 'Data Wrangling in \texttt{R}'
 author: "STA 360/602: Homework 1"
-date: "Due January 10 at 5 PM EDT"
+date: "Due Friday January 7 at 5 PM EDT"
 output: pdf_document
 ---
 
