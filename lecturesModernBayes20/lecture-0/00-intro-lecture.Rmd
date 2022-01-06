@@ -20,7 +20,10 @@ What is Bayesian Statistics?
 \vspace*{1em}
 -[Wikipedia](https://en.wikipedia.org/wiki/Bayesian_statistics)
 
+Class, Lab, OH
+===
 
+All classes are currently remote until notified due to COVID-19. 
 
 Instructor
 ===
@@ -35,7 +38,20 @@ Prof. Rebecca Steorts (resteorts.github.io)
 \item Course webpage: https://resteorts.github.io/teach/bayes22.html
 \end{itemize}
 
-Class will be in person unless you are notified! OH will be over zoom to limit the spread of COVID. 
+ 
+
+
+Teaching Assistants
+===
+
+Aihua Li, MS Student
+
+\begin{itemize}
+\item Lab-01: Monday: 1:45 PM – 3:00 PM EDT, Old Chemistry 025 (Back up: Evan)
+\item Meeting ID: 979 3386 5844
+\item Will hold OH and grade
+\end{itemize}
+
 
 
 Teaching Assistants
@@ -44,25 +60,12 @@ Teaching Assistants
 Evan Knox, PhD Student
 
 \begin{itemize}
-\item Lab-01: Monday: 1:45 PM – 3:00 PM EDT, Old Chemistry 025 (Back up: Aihua)
+\item Lab-02: Friday: 3:30 - 4:45 PM EDT, Old Chemistry 101 (Back up: Aihua)
 \item Meeting ID: 979 3386 5844
 \item Will hold OH and grade
 \end{itemize}
 
-Lab will be in person unless notified. OH will be over zoom. 
 
-Teaching Assistants
-===
-
-Aihua Li, MS Student
-
-\begin{itemize}
-\item Lab-02: Friday: 3:30 - 4:45 PM EDT, Old Chemistry 101 (Back up: Evan)
-\item Meeting ID: 979 3386 5844
-\item Will hold OH and grade
-\end{itemize}
-
-Lab will be in person unless notified. OH will be over zoom. 
 
 
 
