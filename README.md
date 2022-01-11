@@ -32,11 +32,8 @@ An introductory video of the course webpage can be found here: https://github.co
 
 The syllabus is a comprehensive place regarding expectations for STA 360. 
 
-[Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall21.pdf)
+[Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring-22.pdf)
 
-The Google group is a place where starting on the first day of class, you can post a question regarding lecture, lab, or a homework assignment so that everyone can see it. 
-
-[Google group](https://groups.google.com/forum/#!forum/bayes20)
 
 Sakai will be used so you can see your grades throughout the semester. Homework submissions will be uploaded here on Sakai as well. 
 
