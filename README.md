@@ -1,4 +1,4 @@
-Welcome to STA 360, Fall 2021!!
+Welcome to STA 602, Spring 2022! 
 
 The readings/preparations for the class can be found at the very bottom of this file for reference. These are subject to change and will be updated as the course progresses. Please see the course webpage for the first few weeks of the course, videos, homeworks, and assignments. 
 
