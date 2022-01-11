@@ -2,6 +2,20 @@ Welcome to STA 360, Fall 2021!!
 
 The readings/preparations for the class can be found at the very bottom of this file for reference. These are subject to change and will be updated as the course progresses. Please see the course webpage for the first few weeks of the course, videos, homeworks, and assignments. 
 
+Please find directory information below regarding each folder:
+
+### :card_index_dividers: Folder descriptions
+
+- **exam-cover-page:** Template of the coverage page for the examination
+- **TA-lab-material** This is material that Olivier Binette has prepared has potential solutions to lab exercises
+- **exercises** This is folders where exercises for exams can be found 
+- **homeworks** All homework exercises can be found here, included source files in LateX and Rmd 
+- **intro-to-webpage** This contrains a video regarding how to navigate the course webpage 
+- **labs** This contains all lab material (and source) material for the semester 
+- **lecturesModernBayes20** This contains all lecture material
+- **reading** This contains reading materials that have been posted to the repo
+- **syllabus** This contains the syllabus for the course
+
 
 ## Tenative Course Schedule 
 
