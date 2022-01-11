@@ -7,15 +7,15 @@ Please find directory information below regarding each folder:
 ### :card_index_dividers: Folder descriptions
 
 - **exam-cover-page:** Template of the coverage page for the examination
-- **TA-lab-material** This is material that Olivier Binette has prepared has potential solutions to lab exercises
-- **exercises** This is folders where exercises for exams can be found 
-- **homeworks** All homework exercises can be found here, included source files in LateX and Rmd 
-- **intro-to-webpage** This contrains a video regarding how to navigate the course webpage 
-- **labs** This contains all lab material (and source) material for the semester 
-- **lecturesModernBayes20** This contains all lecture material
-- **reading** This contains reading materials that have been posted to the repo
-- **syllabus** This contains the syllabus for the course
-- **videos** Past videos of the course 
+- **TA-lab-material:** This is material that Olivier Binette has prepared has potential solutions to lab exercises
+- **exercises:** This is folders where exercises for exams can be found 
+- **homeworks:** All homework exercises can be found here, included source files in LateX and Rmd 
+- **intro-to-webpage:** This contrains a video regarding how to navigate the course webpage 
+- **labs:** This contains all lab material (and source) material for the semester 
+- **lecturesModernBayes20:** This contains all lecture material
+- **reading:** This contains reading materials that have been posted to the repo
+- **syllabus:** This contains the syllabus for the course
+- **videos:** Past videos of the course 
 
 
 ## Tenative Course Schedule 
