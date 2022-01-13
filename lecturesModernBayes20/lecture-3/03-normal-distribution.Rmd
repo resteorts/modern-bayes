@@ -9,15 +9,6 @@ output:
 font-size: 8px
 ---
 
-Announcements
-===
-
-- Thank you for filling out the survey and feedback. 
-- There is a post on piazza that tries to address most questions/suggestions. 
-- New OH Wednesday evening with Cathy. Proposed times: 5 - 7 PM or 7 to 9 PM. 
-- If there is anything that I did not address on Piazza regarding the survey, feel free to talk to me 1-1 or send me a private Piazza message. 
-- Class next week will be in person. 
-
 
 Agenda
 ===
