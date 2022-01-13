@@ -9,6 +9,34 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+- Thank you to everyone that completed the survey. 
+- I'll provide some actionable items below. 
+
+Feedback
+===
+
+- The github repo has been cleaned up extensively. 
+- Exams will be solely online (during class period) by feedback from class, and will be open note and open book. 
+- "Please move the lab time." These weren't set by me, and I don't have the authority to do this. 
+- "Please go faster/slower." "Great pace." 
+- "I'd like more OH hours." The TA's and I are pretty flexible if you have a question or need to meet. Can anyone not make any OH due to a class conflict? If so, see me after class. 
+- The class is quite divided regarding being online and being in person. We'll do out best to work this out in a safe way for everyone.
+- "Lab is not helping me." 
+
+Resources 
+===
+
+Don't let the resources be overwhelming. 
+
+Instead, figure out what works the best for you and use them. What works for one student may be drastically different than what works for another student. 
+
+My goal is to set you up for success and provide you with many different ways to succeed so you're not struggling. 
+
+If you find yourself struggling, please let me know so I can help you. 
+
 
 Agenda
 ===
