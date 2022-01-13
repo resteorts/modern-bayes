@@ -15,7 +15,8 @@ Please find directory information below regarding each folder:
 - **lecturesModernBayes20:** This contains all lecture material
 - **reading:** This contains reading materials that have been posted to the repo
 - **syllabus:** This contains the syllabus for the course
-- **videos:** Past videos of the course 
+- **videos:** Past videos of the past courses that you can utilize only if you wish
+- **deprecated** Information that should ignore completely
 
 
 ## Tenative Course Schedule 
