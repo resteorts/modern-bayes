@@ -7,15 +7,15 @@ Please find directory information below regarding each folder:
 ### :card_index_dividers: Folder descriptions
 
 - **exam-cover-page:** Template of the coverage page for the examination
-- **TA-lab-material** This is material that Olivier Binette has prepared has potential solutions to lab exercises
-- **exercises** This is folders where exercises for exams can be found 
-- **homeworks** All homework exercises can be found here, included source files in LateX and Rmd 
-- **intro-to-webpage** This contrains a video regarding how to navigate the course webpage 
-- **labs** This contains all lab material (and source) material for the semester 
-- **lecturesModernBayes20** This contains all lecture material
-- **reading** This contains reading materials that have been posted to the repo
-- **syllabus** This contains the syllabus for the course
-- **videos** Past videos of the course 
+- **TA-lab-material:** This is material that Olivier Binette has prepared has potential solutions to lab exercises
+- **exercises:** This is folders where exercises for exams can be found 
+- **homeworks:** All homework exercises can be found here, included source files in LateX and Rmd 
+- **intro-to-webpage:** This contrains a video regarding how to navigate the course webpage 
+- **labs:** This contains all lab material (and source) material for the semester 
+- **lecturesModernBayes20:** This contains all lecture material
+- **reading:** This contains reading materials that have been posted to the repo
+- **syllabus:** This contains the syllabus for the course
+- **videos:** Past videos of the course 
 
 
 ## Tenative Course Schedule 
@@ -32,11 +32,8 @@ An introductory video of the course webpage can be found here: https://github.co
 
 The syllabus is a comprehensive place regarding expectations for STA 360. 
 
-[Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall21.pdf)
+[Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring-22.pdf)
 
-The Google group is a place where starting on the first day of class, you can post a question regarding lecture, lab, or a homework assignment so that everyone can see it. 
-
-[Google group](https://groups.google.com/forum/#!forum/bayes20)
 
 Sakai will be used so you can see your grades throughout the semester. Homework submissions will be uploaded here on Sakai as well. 
 
