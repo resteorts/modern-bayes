@@ -135,17 +135,52 @@ The change in IQ score for the first-grade students was:\footnote{The original d
 
 Do a teacher's expectations influence student achievement?
 ===
-```{r, echo=FALSE}
-library(plyr)
-library(ggplot2)
-library(dplyr)
-library(xtable)
-library(reshape)
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:plyr':
+## 
+##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+##     summarize
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```
+## 
+## Attaching package: 'reshape'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     rename
+```
+
+```
+## The following objects are masked from 'package:plyr':
+## 
+##     rename, round_any
 ```
 
 Spurters/Control Data
 ===
-```{r}
+
+```r
 #spurters
 x <- c(18, 40, 15, 17, 20, 44, 38)
 #control
@@ -168,7 +203,8 @@ spurters to perform better than their classmates?
 
 Histogram of Change in IQ Scores
 ===
-```{r}
+
+```r
 xLimits = seq(min(iqData$Gain) - (min(iqData$Gain) %% 5),
               max(iqData$Gain) + (max(iqData$Gain) %% 5),
               by = 5)
@@ -185,32 +221,13 @@ ggplot(data = iqData, aes(x = Gain,
   ggtitle("Histogram of Change in IQ Scores") + 
   labs(x = "Change in IQ Score", fill = "Group") + 
   theme(plot.title = element_text(hjust = 0.5))  
-
-
 ```
+
+![](04-normal-gamma_files/figure-beamer/unnamed-chunk-3-1.pdf)<!-- --> 
 
 Histogram of Change in IQ Scores
 ===
-```{r, echo=FALSE}
-xLimits = seq(min(iqData$Gain) - (min(iqData$Gain) %% 5),
-              max(iqData$Gain) + (max(iqData$Gain) %% 5),
-              by = 5)
-
-ggplot(data = iqData, aes(x = Gain, 
-                          fill = Treatment, 
-                          colour = I("black"))) + 
-  geom_histogram(position = "dodge", alpha = 0.5, 
-                 breaks = xLimits, closed = "left")+
-  scale_x_continuous(breaks = xLimits, 
-                     expand = c(0,0))+ 
-  scale_y_continuous(expand = c(0,0), 
-                     breaks = seq(0, 10, by = 1))+
-  ggtitle("Histogram of Change in IQ Scores") + 
-  labs(x = "Change in IQ Score", fill = "Group") + 
-  theme(plot.title = element_text(hjust = 0.5))  
-
-
-```
+![](04-normal-gamma_files/figure-beamer/unnamed-chunk-4-1.pdf)<!-- --> 
 
 IQ Tests and Modeling
 ===
@@ -246,59 +263,16 @@ Hyperparameter settings
 
 
 
-```{r,echo=FALSE}
-prior = data.frame(m = 0, c = 1, a = 0.5, b = 50)
-findParam = function(prior, data){
-  postParam = NULL
-  c = prior$c
-  m = prior$m
-  a = prior$a
-  b = prior$b
-  n = length(data)
-  postParam = data.frame(m = (c*m + n*mean(data))/(c + n), 
-                c = c + n, 
-                a = a + n/2, 
-                b =  b + 0.5*(sum((data - mean(data))^2)) + 
-                  (n*c *(mean(data)- m)^2)/(2*(c+n)))
-  return(postParam)
-}
-postS = findParam(prior, x)
-postC = findParam(prior, y)
 
-sim = 10000
-
-lambdas = rgamma(sim, postS$a, postS$b)
-lambdac = rgamma(sim, postC$a, postS$b)
-mus = sapply(sqrt(1/(postS$c*lambdas)),rnorm, n = 1, mean = postS$m)
-muc = sapply(sqrt(1/(postC$c*lambdac)),rnorm, n = 1, mean = postC$m)
-
-
-simDF = data.frame(lambda = c(lambdas, lambdac),
-                   mu = c(mus, muc),
-                   Treatment = rep(c("Spurters", "Controls"),
-                                   each = sim))
-simDF$lambda = simDF$lambda^{-0.5}
-
-sim = 10000
-
-lambda = apply(as.matrix(sim), 1,rgamma, prior$a, prior$b)
-mu = sapply(sqrt(1/(prior$c*lambda)), rnorm, n = 1, mean = prior$m)
-
-simPrior = data.frame(lambda, mu)
-simPrior$lambda = simPrior$lambda^{-0.5}
-```
 
 Prior Samples
 ===
-```{r,echo=FALSE}
-ggplot(data = simPrior, aes(x = mu, y = lambda)) +
-  geom_point(alpha = 0.5, colour = "darkgreen") + 
-  labs(x = expression(paste(mu, " (Mean Change in IQ Score)")),
-       y = expression(paste(lambda^{-1/2}, " (Std. Dev. of Change)"))) +
-  ggtitle("Prior Samples")+ 
-  theme(plot.title = element_text(hjust = 0.5))+ 
-  xlim(-50,50) + ylim(0, 40)
+
 ```
+## Warning: Removed 2139 rows containing missing values (geom_point).
+```
+
+![](04-normal-gamma_files/figure-beamer/unnamed-chunk-6-1.pdf)<!-- --> 
 
 
 Original question

@@ -1,0 +1,9 @@
+\frametitle{Prior Samples}
+\protect\hypertarget{prior-samples}{}
+
+\begin{verbatim}
+## Warning: Removed 2139 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{04-normal-gamma_files/figure-beamer/unnamed-chunk-6-1.pdf}
+
