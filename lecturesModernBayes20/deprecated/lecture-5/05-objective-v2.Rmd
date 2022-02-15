@@ -1,0 +1,80 @@
+
+---
+title: "Why Are Non-informative Priors Informative?"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+
+
+
+
+
+
+
+
+A ``flat" prior
+===
+
+Let's talk about what people really mean when they use the term ``flat," since it can have different meanings.
+\vskip 1em
+
+Often statisticians will refer to a prior as being flat, when a plot of its density actually looks flat, i.e., uniform. 
+
+$$\theta \sim \text{Unif}(0,1).$$
+
+\vskip 1em
+
+Why do we call it flat? It's assigning equal weight to each parameter value. Does it always do this?
+
+Uniform(0,1) prior
+===
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/unif.pdf}
+  \end{center}
+\end{figure}
+
+Uniform(0,1) prior (continued)
+===
+
+What happens if we consider though the transformation to $\phi = 1/\theta.$ 
+
+Is our prior still flat (does it place equal weight at every parameter value)?
+
+
+Uniform prior versus the Transformed Prior
+===
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{figures/unif.pdf}
+     \includegraphics[width=0.4\textwidth]{figures/transformationPlot}
+     \caption{Comparison of the Uniform prior and the transformed prior on $\theta.$ Observe that the figure on the right is very informative under the transformative, and thus, prior is extremely informative.}
+  \end{center}
+\end{figure}
+
+Non-informative priors
+===
+
+We must be careful with the notion of non-informative priors as they can be quite informative as we have just illustated with a very simple example .
+
+
+
+
+Further Reading
+===
+
+If you'd like to know more about invariance, please see the the following references.
+
+1. http://www.ctanujit.org/uploads/2/5/3/9/25393293/theory_of_point_estimation.pdf
+2. https://www.springer.com/us/book/9780387400846
+3. Papers on Subjective and Objective Priors, https://projecteuclid.org/euclid.ba/1340371033
+
+
+

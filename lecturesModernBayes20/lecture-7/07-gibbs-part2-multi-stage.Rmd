@@ -9,25 +9,7 @@ output:
 font-size: 8px
 ---
 
-Announcements
-===
 
-- For exam II, I will allow you either to take the Exam II (in class) or participate in Datathon. 
-- The choice is up to you. You must email myself and the TA team no later than this Friday if you plan on working on Datathon and let me know your teams (no larger than groups of two). 
-- You must work with a team from the class for Datathon, and complete a submission that will be graded by myself/TAs. 
-- Part of your analysis must be Bayesian in nature in order to receive a passing grade on the Datathon exam. 
-- If you have trouble finding a group, please let me know. 
-- If you do not follow these instructions for Datathon, you may not receive a passing grade on the exam. 
-
-
-Announcements
-===
-
-- How are final grades calculated in this class? 
-
-\url{https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall21.pdf}
-
-- If you would like to know your raw score in the class, rank, and grade, please come see me on Thursday at the start of OH so I can quickly go through these or set up a quick time over zoom. 
 
 
 Agenda
