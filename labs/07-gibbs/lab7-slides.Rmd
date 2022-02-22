@@ -17,7 +17,7 @@ In this lab, we will deriving conditional distributions, code a Gibbs sampler, a
 Problem Statement
 ===
 
-Consider the following Exponential model for observation(s) $\bf{x}=(x_1,\ldots,x_n).$\footnote{Please note that in the attached data there are 40 observations, which can be found in \text{data-exponential.csv}.}:
+Consider the following Exponential model for observation(s) $\bf{x}=(x_1,\ldots,x_n).$\footnote{The data can be found in \text{data-exponential.csv}.}:
 $$ p(x|a,b) = a b \exp(- a b x) I(x>0),$$ where the $x_i$ are assumed to be iid for $i=1,\ldots n.$
 and suppose the prior is 
 $$ p(a,b) = \exp(- a - b)I(a,b>0). $$
