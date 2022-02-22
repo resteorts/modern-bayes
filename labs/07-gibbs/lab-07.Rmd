@@ -29,7 +29,7 @@ You want to sample from the posterior $p(a,b|x_{1:n})$.  You may assume that $$a
 
 # Task 1
 
-Consider the following Exponential model for observation(s) $x=(x_1,\ldots,x_n).$\footnote{Please note that in the attached data there are 40 observations, which can be found in \text{data-exponential.csv}.}:
+Consider the following Exponential model for observation(s) $x=(x_1,\ldots,x_n).$\footnote{The observed data can be found in \text{data-exponential.csv}.}:
 $$ p(x|a,b) = a b \exp(- a b x) I(x>0)$$
 and suppose the prior is 
 $$ p(a,b) = \exp(- a - b)I(a,b>0). $$
