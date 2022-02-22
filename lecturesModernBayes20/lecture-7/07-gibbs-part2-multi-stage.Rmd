@@ -256,7 +256,9 @@ Let's start with $\theta|\cdots$
 \begin{itemize}
 \item Since $\theta \perp x_{1:n}\mid z_{1:n}$ (i.e., $\theta$ is conditionally independent of $x_{1:n}$ given $z_{1:n}$),
 \begin{align}
-p(\theta|\cdots) &= p(\theta|z_{1:n},x_{1:n}) = p(\theta|z_{1:n}) \\ &= \Ga\big(\theta\,\big\vert\, a+nr,\, b+\textstyle\sum_{i=1}^n z_i\big) 
+p(\theta|\cdots) &= p(\theta|z_{1:n},x_{1:n}) = p(\theta|z_{1:n}) \\ &=
+p(z_{1:n} \mid \theta) p(\theta) \\ &=
+\Ga\big(\theta\,\big\vert\, a+nr,\, b+\textstyle\sum_{i=1}^n z_i\big) 
 \end{align}
 using the fact that the prior on $\theta$ is conjugate. 
 \end{itemize}
