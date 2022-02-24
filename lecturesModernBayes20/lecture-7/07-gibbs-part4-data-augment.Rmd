@@ -338,7 +338,7 @@ Partial code for this problem can be found at https://github.com/resteorts/moder
 
 \textbf{Before the next class, work through lab 8 on your own (or in groups).}
 
-\textbf{On Friday, your TA will go through the lab and answer questions that you have. Please post to Piazza if you have specific questions that you'd like each TA to go through in more detail.}
+\textbf{Your TA will go through the lab and answer questions that you have. Please post to Piazza if you have specific questions that you'd like each TA to go through in more detail.}
 
 
 Detailed Summary
