@@ -576,7 +576,8 @@ Working with Multivariate Normal Distribution
 ===
 The `R` package, `mvtnorm`, contains functions for evaluating and simulating from a multivariate normal density.
 
-```{r}
+
+```r
 library(mvtnorm)
 ```
 
@@ -584,10 +585,16 @@ Simulating Data
 ===
 Simulate a single multivariate normal random vector using the `rmvnorm` function.
 
-```{r}
+
+```r
 # Each row corresponds to a sample
 # Here we have one sample (one row)
 rmvnorm(n = 1, mean = rep(0, 2), sigma = diag(2))
+```
+
+```
+##              [,1]       [,2]
+## [1,] -0.001905545 -0.4985444
 ```
 
 
@@ -595,16 +602,29 @@ Evaluation
 ===
 Evaluate the multivariate normal density at a single value using the `dmvnorm` function.
 
-```{r}
+
+```r
 dmvnorm(rep(0, 2), mean = rep(0, 2), sigma = diag(2))
+```
+
+```
+## [1] 0.1591549
 ```
 
 Working with the Multivariate Normal
 ===
 - Now let's simulate many multivariate normals. 
 - Each row is a different sample from this multivariate normal distribution.
-```{r}
+
+```r
 rmvnorm(n = 3, mean = rep(0, 2), sigma = diag(2))
+```
+
+```
+##           [,1]       [,2]
+## [1,] 0.2083146 -0.1482745
+## [2,] 0.3040606 -1.3955189
+## [3,] 0.6346164 -2.1045761
 ```
 
 
@@ -616,10 +636,17 @@ Work with the Wishart density
 
 - Each row is a different sample from the Wishart distribution. 
 
-```{r}
+
+```r
 nu0 <- 2
 Sigma0 <- diag(2)
 rWishart(1, df = nu0, Sigma = Sigma0)[, , 1]
+```
+
+```
+##           [,1]       [,2]
+## [1,]  2.603319 -0.7825390
+## [2,] -0.782539  0.3951888
 ```
 
 An Application to Reading Comprehension
@@ -689,7 +716,8 @@ $\nu_0 = p + 2 = 4,$ which is the mean of the inverse Wishart distribution (Hoff
 
 Load in data
 ===
-```{r}
+
+```r
 # read in data
 Y <- structure(c(59, 43, 34, 32, 42, 38, 55, 67, 64, 
                  45, 49, 72, 34, 70, 34, 50, 41, 52, 
@@ -702,15 +730,38 @@ Y <- structure(c(59, 43, 34, 32, 42, 38, 55, 67, 64,
 ```
 
 Quick calculations
-```{r}
+
+```r
 (n <- dim(Y)[1])
+```
+
+```
+## [1] 22
+```
+
+```r
 (ybar <- apply(Y,2,mean))
+```
+
+```
+##  pretest posttest 
+## 47.18182 53.86364
+```
+
+```r
 (Sigma <- cov(Y))
+```
+
+```
+##           pretest posttest
+## pretest  182.1558 148.4069
+## posttest 148.4069 243.6472
 ```
 
 Application to reading comprehension
 ===
-```{r}
+
+```r
 # set hyper-parameters
 mu0 <- c(50,50)
 L0 <- matrix(c(625,312.5,312.5,625),nrow=2)
@@ -720,9 +771,32 @@ S0 <- L0
 
 Gibbs sampler
 ===
-```{r,echo=FALSE}
-library (mvtnorm)
-library(MCMCpack)
+
+```
+## Loading required package: coda
+```
+
+```
+## Loading required package: MASS
+```
+
+```
+## ##
+## ## Markov Chain Monte Carlo Package (MCMCpack)
+```
+
+```
+## ## Copyright (C) 2003-2022 Andrew D. Martin, Kevin M. Quinn, and Jong Hee Park
+```
+
+```
+## ##
+## ## Support provided by the U.S. National Science Foundation
+```
+
+```
+## ## (Grants SES-0350646 and SES-0350613)
+## ##
 ```
 
 Gibbs sampler (review)
@@ -743,7 +817,8 @@ Suppose the Gibbs sampler is at iteration $s.$
 
 Gibbs sampler
 ===
-```{r}
+
+```r
 THETA <- SIGMA <- NULL
 set.seed(1)
 for (s in 1:5000) {
@@ -770,60 +845,58 @@ Using the samples from the Gibbs sampler, we have generated 5,000 samples $$(\bm
 
 Glance at Gibbs sampler
 ===
-```{r}
+
+```r
 head(THETA)
+```
+
+```
+##          [,1]     [,2]
+## [1,] 45.76871 53.64765
+## [2,] 43.84243 51.80471
+## [3,] 43.41651 51.30521
+## [4,] 46.85067 50.64238
+## [5,] 42.62048 53.71350
+## [6,] 50.32035 58.93397
+```
+
+```r
 head(SIGMA)
+```
+
+```
+##          [,1]     [,2]     [,3]     [,4]
+## [1,] 270.7381 175.9276 175.9276 213.0155
+## [2,] 237.3720 191.0999 191.0999 266.0570
+## [3,] 245.6029 183.9140 183.9140 248.4452
+## [4,] 169.6788 114.1658 114.1658 200.8390
+## [5,] 247.0899 197.0802 197.0802 295.1981
+## [6,] 289.4997 246.9184 246.9184 319.9786
 ```
 
 Traceplot of $\theta_1$
 ===
-```{r, echo=FALSE}
-n.iter<-5000
-plot(1:n.iter, THETA[,1], pch = 16, cex = .35,
-     xlab = "Iteration", ylab = expression(theta),
-     main = expression(paste("Traceplot of ", theta)))
-```
+![](08-multivariate-norm_files/figure-beamer/unnamed-chunk-12-1.pdf)<!-- --> 
 
 Traceplot of $\theta_2$
 ===
-```{r, echo=FALSE}
-plot(1:n.iter, THETA[,2], pch = 16, cex = .35,
-     xlab = "Iteration", ylab = expression(theta),
-     main = expression(paste("Traceplot of ", theta)))
-```
+![](08-multivariate-norm_files/figure-beamer/unnamed-chunk-13-1.pdf)<!-- --> 
 
 Running average plot of $\theta_1$
 ===
-```{r,echo=FALSE}
-run.avg <- apply(THETA, 2, cumsum)/(1:n.iter)
-plot(1:n.iter, run.avg[,1], type = "l",
-     xlab = "Iteration", ylab = expression(theta),
-     main = expression(paste("Running Average Plot of ", theta)))
-```
+![](08-multivariate-norm_files/figure-beamer/unnamed-chunk-14-1.pdf)<!-- --> 
 
 Running average plot of $\theta_2$
 ===
-```{r,echo=FALSE}
-plot(1:n.iter, run.avg[,2], type = "l",
-     xlab = "Iteration", ylab = expression(theta),
-     main = expression(paste("Running Average Plot of ", theta)))
-```
+![](08-multivariate-norm_files/figure-beamer/unnamed-chunk-15-1.pdf)<!-- --> 
 
 Estimated density of $\theta_1$
 ===
-```{r, echo=FALSE}
-plot(density(THETA[,1]), xlab = expression(theta), 
-     main = expression(paste("Density of ", theta)))
-abline(v = mean(THETA[,1]), col = "red")
-```
+![](08-multivariate-norm_files/figure-beamer/unnamed-chunk-16-1.pdf)<!-- --> 
 
 Estimated density of $\theta_2$
 ===
-```{r, echo=FALSE}
-plot(density(THETA[,2]), xlab = expression(theta), 
-     main = expression(paste("Density of ", theta)))
-abline(v = mean(THETA[,2]), col = "red")
-```
+![](08-multivariate-norm_files/figure-beamer/unnamed-chunk-17-1.pdf)<!-- --> 
 
 Traceplots and running average plots
 ===
@@ -844,8 +917,14 @@ Given our samples from our Gibbs sampler, we can approximate posterior probabili
 
 Confidence regions
 ===
-```{r}
+
+```r
 quantile(THETA[,2] - THETA[,1], prob=c(0.025,0.5,0.975))
+```
+
+```
+##      2.5%       50%     97.5% 
+##  1.356260  6.614818 11.667128
 ```
 
 Posterior inference
@@ -856,8 +935,13 @@ We can quanify this by calculating
 $$Pr(\theta_2 > \theta_1 \mid y_1,\ldots y_n) = 0.99 
 $$
 
-```{r}
+
+```r
 mean(THETA[,2] > THETA[,1])
+```
+
+```
+## [1] 0.9926
 ```
 
 Detailed Takeaways on Background 
