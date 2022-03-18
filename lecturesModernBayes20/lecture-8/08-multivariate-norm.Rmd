@@ -545,7 +545,7 @@ Now we can calculate $p(\Sigma \mid \bm{y},  \btheta)$
 \text{tr}((S_o +S_\theta) \Sigma^{-1})/2\}
 \end{align}
 This implies that 
-$$\Sigma \mid \bm{y}, \btheta \sim \text{inverseWishart}(\nu_o + n, [S_o + S_\theta]^{-1} =: S_n)$$
+$$\Sigma \mid \bm{y}, \btheta \sim \text{inverseWishart}(\nu_o + n, [S_o + S_\theta]^{-1} =: S_n^{-1})$$
 
 Continued
 ===
