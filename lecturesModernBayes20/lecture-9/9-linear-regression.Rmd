@@ -80,7 +80,7 @@ legend(27,0,legend=c("aerobic","running"),pch=c(16,16),col=c("green","red"))
 Data analysis
 ===
 
-$y$ = change in oxygen uptake (scalar)
+$y$ = change in maximal oxygen uptake (scalar)
 
 $x_1$ = exercise indicator (0 for running, 1 for aerobic)
 
