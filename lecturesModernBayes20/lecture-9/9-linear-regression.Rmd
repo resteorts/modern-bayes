@@ -16,12 +16,10 @@ font-size: 8px
 Final Exam
 ===
 
-Exam III is **December 2, during class** (open note/open book)
+Exam III is **April 12, during class** (open note/open book)
 
 - The material will be on modules 1 -- 9.
 - I will go over more details closer to the exam
-
- 
 
 
 
@@ -745,7 +743,7 @@ The coach has to decide which swimmer should compete in a meet two weeks from th
 Final Grades
 ===
 
-I am proposing to drop your lowest exam grade (out of Exam I, Exam II, and the Final Exam). 
+I am proposing to drop your lowest exam grade (out of Exam I, Exam II, and the Exam III). 
 
 - Homework: 30 percent
 - Highest Exam: 35
