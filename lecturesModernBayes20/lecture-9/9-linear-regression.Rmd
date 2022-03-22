@@ -13,7 +13,7 @@ font-size: 8px
 
  
 
-Final Exam
+Exam III
 ===
 
 Exam III is **April 12, during class** (open note/open book)
