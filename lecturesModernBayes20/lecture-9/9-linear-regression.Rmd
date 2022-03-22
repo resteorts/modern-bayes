@@ -43,13 +43,17 @@ Oxygen uptake case study
 Experimental design: 12 male volunteers.
 
 \begin{enumerate}
-\item $O_2$ uptake measured at the beginning of the study
 \item 6 men take part in a randomized aerobics program
-\item 6 remaining men participate in a running program
-\item $O_2$ uptake measured at end of study
+\item 6 remaining men take part in a randomized running program
+\item \textcolor{blue}{The maximal $O_2$ uptake measured before and after the 12 week program} 
+\item \textcolor{blue}{The change in maximal $O_2$ uptake is then calculated for each individual}
 \end{enumerate}
 
 What type of exercise is the most beneficial?
+
+\vspace*{2em}
+
+Full details of the study can be found in Hoff, page 149-151. 
 
 Data
 ===
