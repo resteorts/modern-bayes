@@ -472,7 +472,7 @@ and
 p(c|\alpha, x_{1:n})\underset{c}{\propto}p(\alpha,c|x_{1:n})
 \underset{c}{\propto} c^{n\alpha}\I(0<c<x_*),
 \end{align*}
-which we will define to be Mono$(\alpha, x_*),$ \textcolor{red}{and we define generally on the next slide.}
+which we will define to be Mono$(\textcolor{blue}{n\alpha + 1}, x_*),$ \textcolor{red}{and we define generally on the next slide.}
 
 Mono distribution
 ===
