@@ -704,8 +704,8 @@ Y <- structure(c(59, 43, 34, 32, 42, 38, 55, 67, 64,
 Quick calculations
 ```{r}
 (n <- dim(Y)[1])
-(ybar <- apply(Y,2,mean))
-(Sigma <- cov(Y))
+ybar <- apply(Y,2,mean)
+Sigma <- cov(Y)
 ```
 
 Application to reading comprehension
