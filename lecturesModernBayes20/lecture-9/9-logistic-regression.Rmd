@@ -3,7 +3,7 @@
 title: "Module 9: Logistic Regression"
 author: "Rebecca C. Steorts"
 output: 
-     beamer_presentation:
+     beamer_presentation: 
       includes: 
           in_header: custom2.tex
 font-size: 8px
@@ -213,8 +213,12 @@ y \log ({\frac{p}{1-p}}) + \log(1-p) + 0
 Bernoulli Solution
 ===
 \begin{align}
+f(y; \theta, \phi) = \exp\left\{ \frac{y\textcolor{blue}{\theta} - \textcolor{magenta}{b(\theta)}}{\textcolor{red}{a(\phi)}} + \textcolor{orange}{c(y,\phi)} \right\},
+\end{align}
+
+\begin{align}
 f(y) &= \exp\{
-y \log ({\frac{p}{1-p}}) + \log(1-p) + 0
+y \textcolor{blue}{\log ({\frac{p}{1-p}})} + \textcolor{magenta}{\log(1-p)} + \textcolor{orange}{0}
 \} 
 \end{align}
 
