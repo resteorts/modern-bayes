@@ -1,0 +1,195 @@
+
+---
+title: "Module 9: Exponential Families and Generalized Linear Regression"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation: 
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+
+The Exponential Family
+===
+
+The probability density in the exponential family takes the following form:
+
+\begin{align}
+p(x \mid \eta) &= h(x) \exp\{
+\eta^T T(x) - A(\eta),
+\}
+\end{align}
+
+\begin{enumerate}
+\item where $\eta$ is the natural parameter
+\item $T, a,$ and $h$ are functions
+\end{enumerate}
+
+The Exponential Family
+===
+
+\begin{align}
+p(x \mid \eta) &= h(x) \exp\{
+\eta^T T(x) - A(\eta)
+\}
+\end{align}
+
+\begin{enumerate}
+\item The form of $h(x)$ is not of fundamental importance
+\item $$A(\eta) = log \int h(x) \exp\{
+\eta^T T(x) \} \; dx $$
+\end{enumerate}
+
+The Exponential Family
+===
+
+It is also common to write the exponential family in the following way:
+
+\begin{align}
+p(x \mid \eta) &= 
+\frac{1}{Z(\eta)}h(x) \exp\{
+\eta^T T(x)
+\},
+\end{align}
+which is equivalent to
+
+$$A(\eta) = \log Z(\eta).$$
+
+The Bernoulli distribution
+===
+
+Suppose $$X\mid \pi \sim \text{Bernoulli}(\pi).$$
+
+\begin{align}
+p(x\mid \pi) &= \pi^x(1-\pi)^{1-x}\\
+&= \exp\{x\log(\pi) + (1-x)\log(1-\pi)\}\\
+&= \exp\{x\log(\frac{\pi}{1-\pi}) + \log(1-\pi)\}
+\end{align}
+
+What is the trick: Take the exponential of the log of the original distribution! 
+
+The Bernoulli distribution
+===
+
+\begin{align}
+p(x \mid \eta) &= h(x) \exp\{
+\eta^T T(x) - A(\eta)
+\}
+\end{align}
+
+\begin{align}
+p(x\mid \pi) 
+&= \exp\{x\log(\frac{\pi}{1-\pi}) + \log(1-\pi)\}
+\end{align}
+
+\begin{itemize}
+\item $\eta = \log\frac{\pi}{1-\pi} \implies \eta = \frac{e^{\eta}}{1+ e^{\eta}} = \frac{1}{1+ e^{-\eta}}$
+\item $T(x) = x$
+\item $A(\eta) = -log(1-\pi) = \log(1 + e^{\eta})$
+\item $h(x) = 1$
+\end{itemize}
+
+The Gaussian distribution
+===
+
+Let $$X \mid \mu, \sigma^2 \sim N(\mu, \sigma^2)$$
+
+It follows that 
+
+\begin{align}
+p(x \mid \mu, \sigma^2) &= \frac{1}{\sqrt{2\pi}\sigma} \exp\{
+\frac{-1}{2\sigma^2} (x-\mu)^2
+\} \\
+&=
+\frac{1}{\sqrt{2\pi}} \exp\{
+\frac{\mu}{\sigma^2} x 
+- \frac{1}{2\sigma^2} x^2 
+- \frac{1}{2\sigma^2} \mu^2
+- \ln \sigma
+\}
+\end{align}
+
+The Gaussian distribution
+===
+
+\begin{align}
+p(x \mid \eta) &= h(x) \exp\{
+\eta^T T(x) - A(\eta)
+\}
+\end{align}
+
+\begin{align}
+p(x \mid \mu, \sigma^2) 
+&=
+\frac{1}{\sqrt{2\pi}} \exp\{
+\frac{\mu}{\sigma^2} x 
+- \frac{1}{2\sigma^2} x^2 
+- \frac{1}{2\sigma^2} \mu^2
+- \ln \sigma
+\}
+\end{align}
+
+\begin{itemize}
+\item $$\eta = (\frac{\mu}{\sigma^2}, \frac{-1}{2\sigma^2})^T$$
+\item $$T(x) = (x, x^2)^T$$
+\item  $$A(\eta) = \frac{\mu^2}{2\sigma^2} + \ln \sigma = \frac{-\eta_1^2}{4 \eta_2} - \frac{-1}{2}\ln (-2\eta_2)$$
+\item $h(x) = \frac{1}{\sqrt{2\pi}}$
+\end{itemize}
+
+Remark: The univariate Gaussian is a two-parameter distribution, where its sufficient statistics will be a vector. 
+
+
+
+Sufficiency 
+===
+
+Sufficiency characterizes what is ``essential" in a data set. 
+
+In other words, it also tells us what we can throw away or ignore. 
+
+The notion of sufficiency goes beyond exponential families, however, there are strong ties to them. 
+
+Sufficiency 
+===
+
+A statistic $T(X)$ is a function of a random variable $X.$ Let the distribution of $X$ depend upon the parameter $\theta.$
+
+
+$T(X)$ is sufficient for $\theta$ if there is no information in $X$ regarding $\theta$ beyond that in $T(X).$ That is, having observed $T(X)$, we can throw away the observed data $X$ for inferential purposes. 
+
+Bayesian Sufficiency 
+===
+
+Let $\theta$ be a random variable. 
+
+Then $T(X)$ is sufficient for $\theta$ if the following conditional independence holds:
+
+$\theta$ is independent of $X$ when we condition on $T(X).$
+
+Frequentist sufficiency
+===
+
+Let $\theta$ be an unknown, fixed parameter. 
+
+$T(X)$ is sufficient for $\theta$ if the following holds:
+
+$$p(x \mid T(x), \theta) = p(x \mid T(x))$$
+Note: We can use this to find the Neyman factorization theorem, which is quite easy from the Bayesian point of view. It can be utilized under the frequentist one as well. 
+
+Sufficiency and the exponential family
+===
+
+An important feature of the exponential family is that we can find the sufficient statistic from inspection. Specifically $T(X)$ will be sufficient for $\eta.$
+
+Generalized Linear Models
+===
+
+
+
+
+GLMS
+===
+
+Then make the connection to GLMs 
+
