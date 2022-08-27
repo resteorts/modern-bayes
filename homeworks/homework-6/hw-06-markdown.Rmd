@@ -1,7 +1,6 @@
 ---
 title: 'Homework 6'
 author: "STA-360"
-date: "Due at 5:00 PM EDT on Friday October 15th"
 output: pdf_document
 indent: true
 documentclass: article
