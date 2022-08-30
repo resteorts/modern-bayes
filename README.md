@@ -1,4 +1,4 @@
-Welcome to STA 602, Spring 2022! 
+Welcome to STA 360, Fall 2022! 
 
 The readings/preparations for the class can be found at the very bottom of this file for reference. These are subject to change and will be updated as the course progresses. Please see the course webpage for the first few weeks of the course, videos, homeworks, and assignments. 
 
@@ -21,7 +21,7 @@ Please find directory information below regarding each folder:
 
 ## Tenative Course Schedule 
 
-[Course Webpage](https://resteorts.github.io/teach/bayes21.html)
+[Course Webpage](https://resteorts.github.io/teach/bayes22.html)
 
 The course webpage is meant to be a place such that you don't have to interact with github unless you choose to. The goal is that nearly all course materials should be accessible from this one place. 
 
