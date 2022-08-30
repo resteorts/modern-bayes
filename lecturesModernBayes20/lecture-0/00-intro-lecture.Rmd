@@ -122,7 +122,7 @@ Other resources
 Course information
 ===
 
-Course website (all major course information here):  [https://resteorts.github.io/teach/bayes21.html](https://resteorts.github.io/teach/bayes21.html)
+Course website (all major course information here):  [https://resteorts.github.io/teach/bayes22.html](https://resteorts.github.io/teach/bayes22.html)
 
 Course cheat sheet (a summary of course information):
 [https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf)
@@ -359,7 +359,7 @@ Technology/Other
 - Ensure the volume on all devices is set to mute.
 - Refrain from engaging in activities not related to the class discussion. Browsing the web and social media, excessive messaging, playing games, etc. is not only a distraction for you but is also a distraction for everyone around you.
 - If you have a question, I don't mind if you interrupt me during class. 
-- If you find a **typo in the slides**, please write these down and email these to myself/Cathy so they can be fixed. 
+- If you find a **typo in the slides**, please write these down and post these privately to the instructors on Piazza so they can be fixed. 
 
 Accessibility
 ===
