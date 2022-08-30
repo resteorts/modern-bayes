@@ -21,7 +21,7 @@ Please find directory information below regarding each folder:
 
 ## Tenative Course Schedule 
 
-[Course Webpage](https://resteorts.github.io/teach/bayes21.html)
+[Course Webpage](https://resteorts.github.io/teach/bayes22.html)
 
 The course webpage is meant to be a place such that you don't have to interact with github unless you choose to. The goal is that nearly all course materials should be accessible from this one place. 
 
