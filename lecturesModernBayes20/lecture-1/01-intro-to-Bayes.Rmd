@@ -58,9 +58,9 @@ The Bernoulli distribution is very common due to binary outcomes.
 - Consider flipping a coin (heads or tails).
 - We can represent this a binary random variable where the probability of heads is $\theta$ and the probability of tails is $1-\theta.$
 
-The write the random variable as $X \sim \Bernoulli(\theta) \I(0 < \theta < 1)$ 
+Consider $X \sim \Bernoulli(\theta) \I(0 < \theta < 1)$ 
 
-It follows that the likelihood is
+The likelihood is
 $$p(x \mid \theta) = \theta^x (1-\theta)^{(1-x)}\I(0 < \theta < 1).$$
 
 - Exercise: what is the mean and the variance of $X$? 
@@ -145,7 +145,7 @@ Approval ratings of Obama
 What is the proportion of people that approve of President Obama in PA?
 
 - We take a random sample of 10 people in PA and find that 6 approve of President Obama.
-- The national approval rating (Zogby poll) of President Obama in mid-September 2015 was 45\%. We'll assume that in PA his approval rating is approximately 50\%.
+- The national approval rating (Zogby poll) of President Obama in mid-September 2015 was 50\%. We'll assume that in PA his approval rating is also 50\%. 
 - Based on this prior information, we'll use a Beta prior for $\theta$ and we'll choose $a$ and $b.$
 - Let's first look at a simple choice of just setting the prior. 
 
