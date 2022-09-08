@@ -125,9 +125,10 @@ What do you notice about the prior and the posterior from the Bernoulli-Beta exa
 Conjugacy
 ===
 
-If the posterior distribution comes from the same family of distributions as the prior, we say that the prior and posterior are conjugate distributions. 
+If the posterior distribution comes from the same family of distributions as the prior, we say that the prior is conjugate for the sampling model. (You want to see if the posterior has an updated form of the prior). 
 
-More formally, the prior is called a conjugate family for the likelihood funtion. 
+More formally, a class $P$ of prior distributions for $\theta$ is called conjugate for the sampling model (likelihood) $p(y \mid \theta)$ 
+$$ p(\theta) \in P \implies p(\theta \mid y) \in P.$$
 
 Example
 ===
