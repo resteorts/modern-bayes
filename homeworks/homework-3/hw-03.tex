@@ -59,6 +59,19 @@ Let
 \end{align*}
 where $p(\theta) = \dfrac{\alpha \beta^\alpha}{\theta^{\alpha +1}}I_{(\beta,\infty)}(\theta).$
 Write out the likelihood $p(X=x\mid \theta).$ Then calculate the posterior distribution of $\theta|X=x.$  
+
+\textbf{Hint 1}: To set up this problem, do the following:
+
+$$p(\theta \mid x) \propto \frac{1}{\theta} I_{(0,\theta)}(x)
+\times 
+\frac{\alpha \beta^{\alpha}}
+{\theta^{\alpha + 1}}
+I_{(\beta, \infty)}(\theta).$$
+
+\textbf{Hint 2}: You cannot drop the indicators. You must write the indicators as functions of $\theta$ since this is the random variable. 
+
+\textbf{Hint 3}: It will end up being an updated Pareto. 
+
   
   
 \item (15)  points total) {\em The Bayes estimator or Bayes rule} \\
