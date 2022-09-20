@@ -289,7 +289,7 @@ IS Solution
 ```{r}
 set.seed(1)
 y <- rnorm(n=mySample, mean=5)
-h <- dnorm(y, mean=0)/dnorm(y, mean=5) * I(y>5)
+h <- dnorm(y, mean=0)/dnorm(y, mean=5) * I(y>5) 
 mean(h)                       # gives 2.865596e-07
 sd(h)/sqrt(length(h))         # gives 2.157211e-09
 ```
@@ -304,7 +304,7 @@ What happens when we look at the region $u>100$?
 ```{r}
 set.seed(1)
 y <- rnorm(n=mySample, mean=100)
-h <- dnorm(y, mean=0)/dnorm(y, mean=100) * I(y>100)
+h <- dnorm(y, mean=0)/dnorm(y, mean=100, sd=3) * I(y>100)
 (mean(h))                       
 # versus 2.865596e-07 (u>5)
 (sd(h)/sqrt(length(h)))        
