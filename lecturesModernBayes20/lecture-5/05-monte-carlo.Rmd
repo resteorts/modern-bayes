@@ -9,6 +9,11 @@ output:
 font-size: 8px
 ---
 
+Announcements
+===
+
+- There is a hint added on Homework 4
+- Questions about Exam I (October 6) will be covered at the end of class today 
 
 Agenda
 ===
