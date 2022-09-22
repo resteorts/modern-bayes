@@ -16,8 +16,22 @@ Total points: 10 (reproducibility) + 10 (Q1) + 25 (Q2) = 45 points.\
 Code should be commented. See the Google style guide for questions regarding commenting or how to write 
 code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's will be accepted.
 
-1. (10 points, 5 points each) Hoff, 3.10 (Change of variables).
+\begin{enumerate}
+\item (10 points, 5 points each) Hoff, 3.10 (Change of variables).
+
+Let $\psi= g(\theta),$ where g is a monotone function of $\theta,$ and $h$ be the inverse of $g$ so that $\theta = h(\psi).$ If $p_{\theta}(\theta)$ is the probability density of $\theta,$ then the probability density of $\psi$ induced by $p_{\theta}$ is given by 
+$$p_{\psi}(\psi) = p_{\theta}(h(\psi)) \times | \frac{dh}{d\psi} |.$$
+\begin{enumerate}
+\item Let $\theta \sim \text{beta}(a,b)$ and let $\psi = \log[\theta/(1- \theta)].$ Obtain the form of $p_{\psi}$ and plot is for the case that $a=b=1.$  \\
+\textbf{Hint: Show that $$p_{\psi}(\psi) = \frac{e^{\psi}}{(e^{\psi} + 1)^2}.$$}
+\item Let $\theta \sim \text{gamma}(a = shape,b = rate)$ and let $\psi = \log(\theta).$ Obtain the form of $p_{\psi}$ and plot is for the case that $a=b=1.$ \\
+\textbf{Hint: Show that $$p_{\psi}(\psi) = e^{\psi - e^{\psi}}.$$}
+\end{enumerate}
+
   
-2. *Lab component* (25 points total) Please refer to lab 4 and complete tasks 4---5.
-(a) (10) Task 4
-(b) (15) Task 5
+\item Lab component (25 points total) Please refer to lab 4 and complete tasks 4---5.
+\begin{enumerate}
+\item[(a)] (10) Task 4
+\item[(b)] (15) Task 5
+\end{enumerate}
+\end{enumerate}
