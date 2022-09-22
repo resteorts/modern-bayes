@@ -23,7 +23,7 @@ Let $\psi= g(\theta),$ where g is a monotone function of $\theta,$ and $h$ be th
 $$p_{\psi}(\psi) = p_{\theta}(h(\psi)) \times | \frac{dh}{d\psi} |.$$
 \begin{enumerate}
 \item Let $\theta \sim \text{beta}(a,b)$ and let $\psi = \log[\theta/(1- \theta)].$ Obtain the form of $p_{\psi}$ and plot is for the case that $a=b=1.$  \\
-\textbf{Hint: Show that $$p_{\psi}(\psi) = \frac{b^{a}}{\Gamma(a)}
+\textbf{Hint: Show that $$p_{\psi}(\psi) = \frac{1}{B(a,b)}
 \frac{e^{a\psi}}{(e^{\psi} + 1)^{(a+b))}} = \frac{e^{\psi}}{(e^{\psi} + 1)^2},$$} when $a=b=1.$
 \item Let $\theta \sim \text{gamma}(a = shape,b = rate)$ and let $\psi = \log(\theta).$ Obtain the form of $p_{\psi}$ and plot is for the case that $a=b=1.$ \\
 \textbf{Hint: Show that $$p_{\psi}(\psi) = \frac{b^{a}}{\Gamma(a)} e^{a\psi - be^{\psi}} = e^{\psi - e^{\psi}},$$} when $a=b=1.$
