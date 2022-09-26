@@ -421,7 +421,7 @@ Goal: Sample from a \textcolor{red}{complicated pdf $f(x).$}
 \vskip 0.5 em
 Suppose that $$\textcolor{red}{f(x)} = \tilde{f}(x)/\alpha, \alpha>0$$.
 
-Assumption: $f$ is difficult to evaluate, $\tilde{f}$ is easy! 
+\textbf{Assumption: $f$ is difficult to evaluate, $\tilde{f}$ is easy! Why? $\alpha$ may be very difficult to calculate even computationally.}
 
 <!-- Suppose there exists a density $g(x)$ and constant $M>0$ such that -->
 <!-- $$Mg(x) \geq \ell(x)$$ for all $x.$  -->
@@ -436,6 +436,16 @@ $$c \textcolor{blue}{q(x)} \geq \tilde{f}(x).$$
 %retain X. Else return to (1).
 \end{enumerate}
 Output: $Z \sim f(x)$
+
+
+
+
+
+
+
+
+
+
 
 Visualizing just f
 ===
@@ -854,3 +864,66 @@ Derivation of bounds can be found here: \url{https://github.com/resteorts/modern
 
 Notes on importance sampling can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-class-notes/importance-sampling.pdf}
 
+Appendix
+===
+
+The appendix sketches out a proof of the general rejection sampler, which you do not need to know for the exam. 
+
+
+
+
+Lemma 1
+===
+
+Lemma: If $$X \sim q \quad Y \mid X \sim \text{Unif}(0,cq) \implies
+ (X,Y) \sim Unif(B),$$ where $B = \{(x,y), \quad x\in R^d, \quad 0< y < cq(x)\}.$
+
+\vspace*{1em}
+
+Proof: 
+
+a.) If $y \notin (0,cq),$ then $p(x,y) = p(y \mid x) p(x) = 0.$
+
+\vspace*{1em}
+
+b.) Else, $p(x,y) = p(y \mid x) p(x) = \frac{1}{cq(x)} \times q(x) = \frac{1}{c}.$
+
+
+
+
+
+Lemma 2
+===
+If $(X,Y) \sim Unif(A),$ where $A = \{(x,y): x\in R^d, 0 < y< \tilde{f}(x)\},$ then $X \sim f.$
+
+\vspace*{1em}
+
+Proof: It follows that 
+$m(A) = \int \tilde{f}(x) dx = \int \alpha f(x) dx
+= \alpha.$
+
+Consider $1 = \int_{A} b\; dx dy = b\int [\int_{0}^{\tilde{f}(x)} dy] dx = b \int \tilde{f}(x) dx = b \alpha \implies
+b = 1/\alpha.$
+
+Then $p(x) = \int p(x,y) dy = 
+\int \frac{1}{\alpha} I(0 < y < \tilde{f}(x)) dy 
+= \frac{1}{\alpha} \int_{0}^{\tilde{f}(x)} dy
+= \frac{1}{\alpha} \tilde{f}(x) = f(x).$
+
+Proposition
+===
+
+Suppose f and q are pdfs on $\mathbb{R}^d$ such that 
+$$f(x) = \tilde{x} / \alpha, \alpha > 0$$ and 
+$$cq(x) \geq \tilde{f}(x) \forall x \in \mathbb{R}^d.$$ 
+
+\vspace*{1em}
+
+If $$X_1, X_2, \ldots, \sim q,$$
+$$Y_k \mid X_k \sim Unif(0, cq(X_k)),$$ and 
+$$Z = X_k \; \text{where} \;  K=min\{k: Y_k \leq \tilde{f}(X_k)\}$$ then $$Z \sim f.$$
+
+Proof of Proposition
+===
+
+The proposition follows by Lemma 1 and Lemma 2.
