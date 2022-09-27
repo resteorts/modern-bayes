@@ -39,3 +39,5 @@ $$p_J(\psi) \propto \frac{n^{1/2}e^{\psi/2}}{1+ e^{\psi}} \propto \frac{e^{\psi/
 \item (15 points) Task 5
 \end{enumerate}
 \end{enumerate}
+
+\textbf{You can refer to class notes to help you check your answers. See Module 5, slides 44 - 51}
