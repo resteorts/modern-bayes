@@ -20,8 +20,21 @@ code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's wi
 
 \begin{enumerate}
 %\item (10 points, 5 points each) 3.10 (Change of variables).
-\item (15 points, 5 points each) Hoff, 3.12 (Jeffrey's prior). 
-\textbf{For part a, you should be able to recognize this as a common distribution, so please state the distribution and parameters.}
+\item (15 points, 5 points each) Hoff, 3.12 (Jeffrey's prior). \\
+Jeffrey's (1961) suggested a default rule for generating a prior distribution of a parameter $\theta$ in a sampling model $p(y \mid \theta).$ Jeffreys' prior is given by 
+$$p_J(\theta) \propto \sqrt{I(\theta)},$$
+where $$I(\theta) = - E\left[
+\frac{\partial^2 \log p(Y \mid \theta)}{\partial \theta^2}
+\mid \theta \right]
+$$ is the Fisher information. 
+\begin{enumerate}
+\item Let $Y \sim \text{Binomial}(n,\theta).$ Show that $p_J(\theta) \propto Beta(1/2,1/2).$
+\item Re-parameterize the model in part a such that $\psi= \log[\theta/(1-\theta)].$ This implies that $p(y \mid \psi) = 
+{n \choose y} e^{\psi y} (1 + e^{\psi})^{-n}.$ Show that 
+$$p_J(\psi) \propto \frac{n^{1/2}e^{\psi/2}}{1+ e^{\psi}} \propto \frac{e^{\psi/2}}{1+ e^{\psi}}.$$
+\item Take the prior distribution from (a) and apply the change of variables formula from exercise 3.10 (see Homework 4) to obtain the induced prior density on $\psi.$ This density should be the same as the one derived in part b) of this exercise. This consistency under re-parametrization is the defining characteristic of Jeffereys' prior. 
+\end{enumerate}
+%\textbf{For part a, you should be able to recognize this as a common distribution, so please state the distribution and parameters.}
 %\item (15 points) 3.14, part d.  (Unit information prior). 
 %\item (15 points) (Normal-Normal)  Derive the posterior predictive density $p(x_{n +1}|x_{1:n})$ for the Normal--Normal model covered in lecture. Hint: There is an easy way to do this and a hard way. To make the problem easier, consider writing $X_{n+1} = \btheta + Z$ given $x_{1:n}$, where $Z\sim\N(0,\lambda^{-1})$.)
 

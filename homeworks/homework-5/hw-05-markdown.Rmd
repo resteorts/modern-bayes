@@ -16,8 +16,26 @@ Total points: 10 (reproducibility) + 15 (Q1) + 25 (Q2) = 50 points.\
 Code should be commented. See the Google style guide for questions regarding commenting or how to write 
 code \url{https://google.github.io/styleguide/Rguide.xml}. No late homework's will be accepted.
 
-1. (15 points, 5 points each) Hoff, 3.12 (Jeffrey's prior).
+\begin{enumerate}
+\item (15 points, 5 points each) Hoff, 3.12 (Jeffrey's prior).
+
+Jeffrey's (1961) suggested a default rule for generating a prior distribution of a parameter $\theta$ in a sampling model $p(y \mid \theta).$ Jeffreys' prior is given by 
+$$p_J(\theta) \propto \sqrt{I(\theta)},$$
+where $$I(\theta) = - E\left[
+\frac{\partial^2 \log p(Y \mid \theta)}{\partial \theta^2}
+\mid \theta \right]
+$$ is the Fisher information. 
+\begin{enumerate}
+\item Let $Y \sim \text{Binomial}(n,\theta).$ Show that $p_J(\theta) \propto Beta(1/2,1/2).$
+\item Re-parameterize the model in part a such that $\psi= \log[\theta/(1-\theta)].$ This implies that $p(y \mid \psi) = 
+{n \choose y} e^{\psi y} (1 + e^{\psi})^{-n}.$ Show that 
+$$p_J(\psi) \propto \frac{n^{1/2}e^{\psi/2}}{1+ e^{\psi}} \propto \frac{e^{\psi/2}}{1+ e^{\psi}}.$$
+\item Take the prior distribution from (a) and apply the change of variables formula from exercise 3.10 (see Homework 4) to obtain the induced prior density on $\psi.$ This density should be the same as the one derived in part b) of this exercise. This consistency under re-parametrization is the defining characteristic of Jeffereys' prior. 
+\end{enumerate}
   
-2. *Lab component* (25 points total) Please refer to lab 5 and complete tasks 4---5.
-(a) (10) Task 4
-(b) (15) Task 5
+\item Lab component (25 points total) Please refer to lab 5 and complete tasks 4---5.
+\begin{enumerate}
+\item (10 points) Task 4
+\item (15 points) Task 5
+\end{enumerate}
+\end{enumerate}
