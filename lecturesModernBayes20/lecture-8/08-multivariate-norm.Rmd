@@ -305,7 +305,9 @@ Linear Algebra Tricks
 
 Lemma 2: 
 
-Suppose $\bm{x}$ is a vector. $\bm{x}^TA\bm{x}$ is called a **quadratic form**. 
+Suppose $\bm{x_{p \times 1}}$ is a vector and $A$ is a $p \times p$ dimensional matrix. 
+
+Then $\bm{x_{1 \times p}}^TA_{p \times p}\bm{x_{p \times 1}}$ is called a **quadratic form**. 
 
 $$\bm{x}^TA\bm{x} = tr(\bm{x}^TA\bm{x}) = tr(\bm{x}\bm{x}^TA) = tr(A\bm{x}\bm{x}^T)$$
 
