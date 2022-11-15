@@ -16,10 +16,10 @@ font-size: 8px
 Exam III
 ===
 
-Exam III is **April 12, during class** (open note/open book)
+Exam III is **Tuesday, December 6th** (open note/open book). 
 
 - The material will be on modules 1 -- 9.
-- I will go over more details closer to the exam
+- I will go over more details closer to the exam and at the end of lecture today. 
 
 
 
