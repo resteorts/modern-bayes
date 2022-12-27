@@ -10,25 +10,13 @@ font-size: 8px
 ---
 
 
-Final Exam
-===
-
-The final exam is Sunday, November 22, 2 PM - 5 PM EDT. \footnote{The format and length will be the same at Exam II (open note/open book). It should take you about 75-100 minutes. You will have 15 minutes after the final to upload. I do not expect you will need the full three hours for the exam.}
-
-
-- Four questions
-- Question 1: True False
-- Other three questions: derivation based and focused on material after Exam II. 
-- All questions do have coverage from Exams I and II given all the material is quite cumulative. 
 
 Final Exam
 ===
 
 What are the big areas to study since Exam II? 
 
-- Maximum likelihood estimation
 - Multivariate methods (normal and inverse wishart)
-- Missing data will not be on the final exam since we didn't cover it in live lecture 
 - Linear regression
 - GLMs and exponential families
 - Logistic regression

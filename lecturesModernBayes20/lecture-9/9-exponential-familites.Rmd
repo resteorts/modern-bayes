@@ -110,7 +110,81 @@ p(x \mid \mu, \sigma^2) &= \frac{1}{\sqrt{2\pi}\sigma} \exp\{
 \}
 \end{align}
 
-The Gaussian distribution
+
+
+
+<!-- Sufficiency  -->
+<!-- === -->
+
+<!-- Sufficiency characterizes what is ``essential" in a data set.  -->
+
+<!-- In other words, it also tells us what we can throw away or ignore.  -->
+
+<!-- The notion of sufficiency goes beyond exponential families, however, there are strong ties to them.  -->
+
+<!-- Sufficiency  -->
+<!-- === -->
+
+<!-- A statistic $T(X)$ is a function of a random variable $X.$ Let the distribution of $X$ depend upon the parameter $\theta.$ -->
+
+
+<!-- $T(X)$ is sufficient for $\theta$ if there is no information in $X$ regarding $\theta$ beyond that in $T(X).$ That is, having observed $T(X)$, we can throw away the observed data $X$ for inferential purposes.  -->
+
+<!-- Bayesian Sufficiency  -->
+<!-- === -->
+
+<!-- Let $\theta$ be a random variable.  -->
+
+<!-- Then $T(X)$ is sufficient for $\theta$ if the following conditional independence holds: -->
+
+<!-- $\theta$ is independent of $X$ when we condition on $T(X).$ -->
+
+<!-- Frequentist sufficiency -->
+<!-- === -->
+
+<!-- Let $\theta$ be an unknown, fixed parameter.  -->
+
+<!-- $T(X)$ is sufficient for $\theta$ if the following holds: -->
+
+<!-- $$p(x \mid T(x), \theta) = p(x \mid T(x))$$ -->
+<!-- Note: We can use this to find the Neyman factorization theorem, which is quite easy from the Bayesian point of view. It can be utilized under the frequentist one as well.  -->
+
+<!-- Sufficiency and the exponential family -->
+<!-- === -->
+
+<!-- An important feature of the exponential family is that we can find the sufficient statistic from inspection. Specifically $T(X)$ will be sufficient for $\eta.$ -->
+
+Sufficiency
+===
+
+One nice property of exponential families is that T(X) will be sufficient for $\eta.$
+
+
+Generalized Linear Models
+===
+
+We now turn to problems involving pairs of variables (X,Y), where both variables are assumed to be observed. 
+
+We summarize the structural component of the models as: 
+
+$$\mu = E[Y \mid X] = f(\theta^T x).$$ 
+Example: In linear regression, $f(\cdot)$ is the identity function. 
+
+
+
+GLMS
+===
+
+There are two choices for GLMS
+
+1. There is the choice of the exponential family distribution.
+2. There is the choice of the response function $f(\cdot)$, which is often called the link function. 
+
+We will look at this for an example of logistic regression, where the response variable is the Bernoulli distribution. 
+
+
+
+Exercise: The Gaussian distribution
 ===
 
 \begin{align}
@@ -130,66 +204,12 @@ p(x \mid \mu, \sigma^2)
 \}
 \end{align}
 
-\begin{itemize}
-\item $$\eta = (\frac{\mu}{\sigma^2}, \frac{-1}{2\sigma^2})^T$$
-\item $$T(x) = (x, x^2)^T$$
-\item  $$A(\eta) = \frac{\mu^2}{2\sigma^2} + \ln \sigma = \frac{-\eta_1^2}{4 \eta_2} - \frac{-1}{2}\ln (-2\eta_2)$$
-\item $h(x) = \frac{1}{\sqrt{2\pi}}$
-\end{itemize}
+\begin{align}
+\eta &= (\frac{\mu}{\sigma^2}, \frac{-1}{2\sigma^2})^T\\
+T(x) &= (x, x^2)^T\\
+A(\eta) &= \frac{\mu^2}{2\sigma^2} + \ln \sigma = \frac{-\eta_1^2}{4 \eta_2} - \frac{-1}{2}\ln (-2\eta_2)\\
+h(x) &= \frac{1}{\sqrt{2\pi}}
+\end{align}
 
 Remark: The univariate Gaussian is a two-parameter distribution, where its sufficient statistics will be a vector. 
-
-
-
-Sufficiency 
-===
-
-Sufficiency characterizes what is ``essential" in a data set. 
-
-In other words, it also tells us what we can throw away or ignore. 
-
-The notion of sufficiency goes beyond exponential families, however, there are strong ties to them. 
-
-Sufficiency 
-===
-
-A statistic $T(X)$ is a function of a random variable $X.$ Let the distribution of $X$ depend upon the parameter $\theta.$
-
-
-$T(X)$ is sufficient for $\theta$ if there is no information in $X$ regarding $\theta$ beyond that in $T(X).$ That is, having observed $T(X)$, we can throw away the observed data $X$ for inferential purposes. 
-
-Bayesian Sufficiency 
-===
-
-Let $\theta$ be a random variable. 
-
-Then $T(X)$ is sufficient for $\theta$ if the following conditional independence holds:
-
-$\theta$ is independent of $X$ when we condition on $T(X).$
-
-Frequentist sufficiency
-===
-
-Let $\theta$ be an unknown, fixed parameter. 
-
-$T(X)$ is sufficient for $\theta$ if the following holds:
-
-$$p(x \mid T(x), \theta) = p(x \mid T(x))$$
-Note: We can use this to find the Neyman factorization theorem, which is quite easy from the Bayesian point of view. It can be utilized under the frequentist one as well. 
-
-Sufficiency and the exponential family
-===
-
-An important feature of the exponential family is that we can find the sufficient statistic from inspection. Specifically $T(X)$ will be sufficient for $\eta.$
-
-Generalized Linear Models
-===
-
-
-
-
-GLMS
-===
-
-Then make the connection to GLMs 
 
