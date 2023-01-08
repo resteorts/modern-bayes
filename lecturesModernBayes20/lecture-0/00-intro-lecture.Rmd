@@ -41,14 +41,14 @@ Class will be in person unless you are notified! OH will be over zoom as student
 Teaching Assistants
 ===
 
-Evan Knox, PhD Student, Head TA
+Andrea Aveni, PhD Student
 
 \begin{itemize}
-\item Lab-01: Monday 1:45pm - 3:00pm EDT, Old Chemistry 003 (Backup: Holly)
+\item Lab-01: Monday 1:45pm - 3:00pm EDT, Old Chemistry 003 (Backup: Lexin)
 Meeting ID: 954 6174 7646
 \item Lab-02: Monday: 3:30 – 4:45 PM EDT: Allen 103 (Back up: Lexin)
-Meeting ID: 954 6174 7646
 \item Will hold OH
+\item Will grade and answer questions on piazza! 
 \end{itemize}
 \textbf{Please note that structured lab material will be done in lab-01 and questions will be answered in lab-02. Labs are also pre-recorded in case you want to do this on your own. Your choice!}
 
@@ -67,10 +67,11 @@ Lexin Lu, MS Student
 
 OH will be over zoom. 
 
+
 Teaching Assistants
 ===
 
-Holly Cui, Undergraduate Student
+Xiaozhu Zhang, MS Student
 
 \begin{itemize}
 \item Will hold OH
@@ -85,14 +86,14 @@ OH will be over zoom.
 Where to find information
 ===
 
-- Course website (all major course information here): [https://resteorts.github.io/teach/bayes22.html](https://resteorts.github.io/teach/bayes22.html)
+- Course website (all major course information here): [https://resteorts.github.io/teach/bayes-spring-23.html](https://resteorts.github.io/teach/bayes-spring-23.html)
 
 - Piazza Forum: 
 
 [https://piazza.com/duke](https://piazza.com/duke)
 
 
-- Course syllabus [https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall22.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta360-fall22.pdf)
+- Course syllabus [https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring-23.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring-23.pdf)
 
 \vspace*{2em}
 
@@ -100,6 +101,9 @@ Remark: Videos on Github are too large to view, so you will need to download the
 
 Where to find information
 ===
+
+- Course cheat sheet (a summary of course information):
+[https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf)
 
 - Sakai (upload homeworks): [https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1](https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1)
 
@@ -119,13 +123,9 @@ Other resources
 - A One Pager on Prob Distributions  
 [https://github.com/resteorts/modern-bayes/blob/master/reading/common-distributions-one-pager.pdf](https://github.com/resteorts/modern-bayes/blob/master/reading/common-distributions-one-pager.pdf)
 
-Course information
-===
 
-Course website (all major course information here):  [https://resteorts.github.io/teach/bayes22.html](https://resteorts.github.io/teach/bayes22.html)
 
-Course cheat sheet (a summary of course information):
-[https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf)
+
 
 Prior Knowledge 
 ===
