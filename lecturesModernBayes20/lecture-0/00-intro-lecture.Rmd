@@ -1,6 +1,6 @@
 
 ---
-title: "Module 0: Introduction to Bayesian Statistics (STA 360)"
+title: "Module 0: Introduction to Bayesian Statistics (STA 360/602)"
 author: "Professor Rebecca C. Steorts"
 output: 
      beamer_presentation:
@@ -31,8 +31,8 @@ Prof. Rebecca Steorts (resteorts.github.io)
 \begin{itemize}
 \item Class: Tues/Th, 1:45 - 3:00 PM EDT (Old Chemistry 116)
 \item OH: Tues/Th, 3:00 - 4:00 PM EDT (Old Chemistry 216)
-\item Zoom ID: 967 9852 0140
-\item Course webpage: https://resteorts.github.io/teach/bayes22.html
+\item Zoom ID: 944 0907 6733
+\item Course webpage: https://resteorts.github.io/teach/bayes-spring-23.html
 \end{itemize}
 
 Class will be in person unless you are notified! OH will be over zoom as students have tended to like this and I can answer questions more rapidly. 
@@ -151,7 +151,7 @@ Course Objectives
 
 
 
-Unstable/slow internet?
+Missed class?
 ===
 
 Go to [https://github.com/resteorts/modern-bayes/](https://github.com/resteorts/modern-bayes/) and fork the repository. 
