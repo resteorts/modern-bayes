@@ -154,18 +154,20 @@ $$ p(\theta) \in P \implies p(\theta \mid x) \in P.$$
 
 Tip: In practice, we check to see if the posterior has an updated form of the prior. 
 
-Example
+Conjugacy
 ===
 
-- The Gaussian family is conjugate to itself with respect to a Gaussian likelihood.
+\textbf{Benefits}
 
-- That is, if the likelihood function is Gaussian, choosing a Gaussian prior over the mean will ensure that the posterior distribution is also Gaussian. 
+- We do minimal or often no math. In fact, \url{https://en.wikipedia.org/wiki/Conjugate_prior} provides many conjugate families. 
 
-- We will return to conjugacy later. 
+- We have an exact posterior distribution. No approximations are needed.
 
-- First, we will look at a simple example to illustrate the idea of the Bernoulli-Beta. 
+- Computation is fast and simple! 
 
-\url{https://en.wikipedia.org/wiki/Conjugate_prior} provides many conjugate families. 
+\textbf{Downside}
+
+- Sometimes an unrealistic assumption, however, might provide guidance to us.
 
 Approval ratings of Obama
 ===
