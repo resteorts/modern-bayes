@@ -50,7 +50,7 @@ Meeting ID: 954 6174 7646
 \item Will hold OH
 \item Will grade and answer questions on piazza! 
 \end{itemize}
-\textbf{Please note that structured lab material will be done in lab-01 and questions will be answered in lab-02. Labs are also pre-recorded in case you want to do this on your own. Your choice!}
+
 
 Lab will be in person unless notified. OH will be over zoom. 
 
@@ -62,7 +62,7 @@ Lexin Lu, MS Student
 \begin{itemize}
 \item Will hold OH
 \item Will answer questions over Piazza
-\item Will be grading 
+\item Will grade and answer questions on piazza! 
 \end{itemize}
 
 OH will be over zoom. 
@@ -76,7 +76,7 @@ Xiaozhu Zhang, MS Student
 \begin{itemize}
 \item Will hold OH
 \item Will answer questions over Piazza
-\item Will be grading 
+\item Will grade and answer questions on piazza! 
 \end{itemize}
 
 OH will be over zoom. 
@@ -151,7 +151,7 @@ Course Objectives
 
 
 
-Missed class?
+Missed class/review material?
 ===
 
 Go to [https://github.com/resteorts/modern-bayes/](https://github.com/resteorts/modern-bayes/) and fork the repository. 
