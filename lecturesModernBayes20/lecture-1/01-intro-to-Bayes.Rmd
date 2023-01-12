@@ -257,16 +257,20 @@ posterior predictive & $p(x_{n+1}|x_{1:n})$ \\
 
 Marginal likelihood
 ===
-The **marginal likelihood** is
+The **marginal likelihood** is defined as 
 $$ p(x) = \int p(x|\theta) p(\theta) \,d\theta $$
 
-- What is the marginal likelihood for the Bernoulli-Beta?
+
 
 Example: Back to the Bernoulli-Beta
 ===
-Suppose $$\; \theta\sim Beta(a,b)$$ and $$X_1,\dotsc,X_n\mid \theta \stackrel{iid}{\sim} Bernoulli(\theta)$$
+$$X_1,\dotsc,X_n\mid \theta \stackrel{iid}{\sim} Bernoulli(\theta)$$ and 
+$$\; \theta\sim Beta(a,b).$$
+\vspace*{1em}
 
-Example: Back to the Bernoulli-Beta
+What is the marginal likelihood for the Bernoulli-Beta?
+
+Marginal Likelihood: Bernoulli-Beta
 ===
 Then the marginal likelihood is
 $$
@@ -283,14 +287,7 @@ d\theta\\
 $$
 by the integral definition of the Beta function.
 
-Posterior predictive distribution
-===
-Let $a_n = a +\sum x_i$ and $b_n = b + n-\sum x_i.$
 
-Recall that the posterior distribution is
-$p(\theta|x_{1:n}) = \Beta(\theta|a_n,b_n).$ 
-
-Let's derive the posterior preditive distribution. 
 
 Posterior predictive distribution
 ===
@@ -308,14 +305,22 @@ p(x_{n+1}|x_{1:n}) &= \int p(x_{n+1},\theta|x_{1:n})\,d\theta\\
 \end{aligned}
 $$
 
+Posterior predictive distribution: Bernoulli-Beta
+===
+$$X_1,\dotsc,X_n\mid \theta \stackrel{iid}{\sim} Bernoulli(\theta)$$ and 
+$$\; \theta\sim Beta(a,b).$$
+
+
+The posterior distribution can be shown to be
+$p(\theta|x_{1:n}) = \Beta(\theta|a_n,b_n),$
+where $a_n = a +\sum x_i$ and $b_n = b + n-\sum x_i.$
 
 
 
 
 
 
-
-Posterior predictive distribution
+Posterior predictive distribution: Bernoulli-Beta
 ===
 The posterior predictive can be derived to be
 $$
@@ -346,13 +351,15 @@ $$p(x_{n+1}|x_{1:n}) =
 \end{cases}
 $$
 
-Hence, the posterior predictive p.m.f. is
+More formally, 
 
 $$
 \begin{aligned}
 p(x_{n+1}|x_{1:n}) & = \frac{a_n^{x_{n+1}} b_n^{1-x_{n+1}}}{a_n + b_n}\I(x_{n+1}\in\{0,1\}).
 \end{aligned}
 $$
+
+\textcolor{blue}{Either solution above is correct.}
 
 Overall Summary
 ===
@@ -393,7 +400,10 @@ Detailed Summary for Exam
 - Proper posterior
 - How do you incorporate a pilot study into your posterior analysis (Ex: See sleep study)
 
+Supplemental Material
+===
 
+Below you will find supplemental material, such as exercises to help you for the exam with solutions provided. 
 
 Exercise
 ===
