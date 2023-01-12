@@ -20,14 +20,16 @@ Agenda
 - Posterior of Bernoulli-Beta
 - Conjugacy
 - Example with 2012 election data
-- No sleep example
 - Marginal likelihood
 - Posterior Prediction
+- Additional problems at the end of lecture (derivation + applied) 
 
 What should you learn? 
 ===
 
-You should learn the main principles of Bayesian inference/prediction and how to apply these to real data analysis. You will continue with this in lab/homework to make sure that you understand these key principles.
+- You should learn the main principles of Bayesian inference/prediction and how to apply these to real data analysis. 
+
+- You will continue with this in lab/homework to make sure that you understand these key principles.
 
 
 Traditional inference
@@ -38,7 +40,8 @@ How would you estimate $\theta$?
 
 - Find an unbiased estimator of $\theta$. 
 - Find the maximum likelihood estimate (MLE) of $\theta$ by looking at the likelihood of the data. 
-- If you cannot remember the definition of an unbiased estimator or the MLE, review these before our next class. 
+- Please review unbiased estimation and finding an MLE.  
+- Please also review other background material such as likelihoods, sufficient statistics, basic probability concepts, etc. Most of this material can be reviewed in Chapters 1-3 in Hoff.  
 
 Bayesian inference
 ===
@@ -49,7 +52,14 @@ Bayesian methods trace its origin to the 18th century and English Reverend Thoma
 - $p(\theta \mid x)$ posterior
 - $p(x)$ marginal distribution
 
-Derive the posterior distribution of $p(\theta \mid x).$
+How can we derive $p(\theta \mid x)?$
+
+Derivation of $p(\theta \mid x)$
+===
+
+
+
+
 
 Bernoulli distribution
 ===
@@ -99,7 +109,10 @@ i.e., $p(\theta)\propto \theta^{a-1}(1-\theta)^{b-1}$ on the interval from $0$ t
 
 - Here, 
 $$B(a,b) = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$$.
-- The mean is $E(\theta) =\int \theta\,p(\theta)d\theta = a/(a+b)$.
+
+- Parameters $a$, $b$ control the shape of the distribution. 
+
+- This distribution models random behavior of percentages/proportions. 
 
 
 
@@ -107,15 +120,18 @@ Posterior of Bernoulli-Beta
 ===
 Lets derive the posterior of $\; \theta \mid x_{1:n}$
 
-$$\begin{aligned}
-&p(\theta|x_{1:n})  \\
-&\propto p(x_{1:n}|\theta) p(\theta)\notag\\
-& =\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}\frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1}I(0<\theta<1) \notag\\
-& \propto \theta^{a +\sum x_i - 1}(1-\theta)^{b +n-\sum x_i - 1}I(0<\theta<1)\notag\\
-& \propto \textstyle Beta\big(\theta\mid a +\sum x_i, \, b + n-\sum x_i\big).
-\label{equation:Beta-Bernoulli-posterior}
-\end{aligned}
-$$
+
+<!-- $$\begin{aligned} -->
+<!-- &p(\theta|x_{1:n})  \\ -->
+<!-- &\propto p(x_{1:n}|\theta) p(\theta)\notag\\ -->
+<!-- & =\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}\frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1}I(0<\theta<1) \notag\\ -->
+<!-- & \propto \theta^{a +\sum x_i - 1}(1-\theta)^{b +n-\sum x_i - 1}I(0<\theta<1)\notag\\ -->
+<!-- & \propto \textstyle Beta\big(\theta\mid a +\sum x_i, \, b + n-\sum x_i\big). -->
+<!-- \label{equation:Beta-Bernoulli-posterior} -->
+<!-- \end{aligned} -->
+<!-- $$ -->
+
+
 
 Conjugacy
 ===
@@ -125,10 +141,18 @@ What do you notice about the prior and the posterior from the Bernoulli-Beta exa
 Conjugacy
 ===
 
-If the posterior distribution comes from the same family of distributions as the prior, we say that the prior is conjugate for the sampling model. (You want to see if the posterior has an updated form of the prior). 
+If the posterior distribution comes from the same family of distributions as the prior, we say that the prior is conjugate for the likelihood. 
 
-More formally, a class $P$ of prior distributions for $\theta$ is called conjugate for the sampling model (likelihood) $p(y \mid \theta)$ 
-$$ p(\theta) \in P \implies p(\theta \mid y) \in P.$$
+\vspace*{1em}
+
+ 
+
+More formally, a class $P$ of prior distributions for $\theta$ is called \textbf{conjugate} for the likelihood $p(x \mid \theta)$  if
+
+$$ p(\theta) \in P \implies p(\theta \mid x) \in P.$$
+\vspace*{1em}
+
+Tip: In practice, we check to see if the posterior has an updated form of the prior. 
 
 Example
 ===
@@ -140,6 +164,8 @@ Example
 - We will return to conjugacy later. 
 
 - First, we will look at a simple example to illustrate the idea of the Bernoulli-Beta. 
+
+\url{https://en.wikipedia.org/wiki/Conjugate_prior} provides many conjugate families. 
 
 Approval ratings of Obama
 ===
@@ -207,9 +233,211 @@ legend(0.1,3, c("Prior", "Likelihood", "Posterior"), lty=c(2,3,1), lwd=c(3,3,3),
 
 Back to the Prior
 ===
+
 - We choose the prior here very arbitrarly due to very little information of "subjective knowledge."
 
-- Let's consider an example where we have more infomation and can set $a,b$ from such subjective information. 
+- In the supplemental material (end of lecture), find an example where we have more infomation and can set $a,b$ from in a more subjective and principled manner. 
+
+
+
+Cast of characters
+===
+- Observed data: $x$
+- This often involves many data points, e.g., $x = x_{1:n}=(x_1,\dotsc,x_n)$.
+
+\begin{center}
+\begin{tabular}{ l l }
+likelihood & $p(x_{1:n}|\theta)$  \\
+prior & $p(\theta)$ \\
+posterior & $p(\theta|x_{1:n})$ \\
+marginal likelihood & $p(x_{1:n})$ \\
+posterior predictive & $p(x_{n+1}|x_{1:n})$ \\
+\end{tabular}
+\end{center}
+
+Marginal likelihood
+===
+The **marginal likelihood** is
+$$ p(x) = \int p(x|\theta) p(\theta) \,d\theta $$
+
+- What is the marginal likelihood for the Bernoulli-Beta?
+
+Example: Back to the Bernoulli-Beta
+===
+Suppose $$\; \theta\sim Beta(a,b)$$ and $$X_1,\dotsc,X_n\mid \theta \stackrel{iid}{\sim} Bernoulli(\theta)$$
+
+Example: Back to the Bernoulli-Beta
+===
+Then the marginal likelihood is
+$$
+\begin{aligned}
+&p(x_{1:n}) \\
+&= \int p(x_{1:n}|\theta) p(\theta) \,d\theta\\
+& = \int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}\frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1} d\theta\\
+& = \frac{1}{B(a,b)}\int_0^1\theta^{\sum x_i+a-1}(1-\theta)^{n-\sum x_i+b-1} 
+d\theta\\
+& = \frac{\textcolor{red}{B\big(a +\sum x_i,\, b + n-\sum x_i\big)}}{B(a,b)}\int_0^1 \frac{\theta^{\sum x_i+a-1}(1-\theta)^{n-\sum x_i+b-1}}{\textcolor{red}{B\big(a +\sum x_i,\, b + n-\sum x_i\big)}}
+d\theta\\
+& =\frac{B\big(a +\sum x_i,\, b + n-\sum x_i\big)}{B(a,b)},
+\end{aligned}
+$$
+by the integral definition of the Beta function.
+
+Posterior predictive distribution
+===
+Let $a_n = a +\sum x_i$ and $b_n = b + n-\sum x_i.$
+
+Recall that the posterior distribution is
+$p(\theta|x_{1:n}) = \Beta(\theta|a_n,b_n).$ 
+
+Let's derive the posterior preditive distribution. 
+
+Posterior predictive distribution
+===
+- We may wish to predict a new data point $x_{n+1}$
+- \textcolor{red}{Assumption 1}: Assume that $x_{1:(n+1)}$ are independent given $\theta$
+
+
+$$
+\begin{aligned}
+p(x_{n+1}|x_{1:n}) &= \int p(x_{n+1},\theta|x_{1:n})\,d\theta\\
+& \int \frac{p(x_{n+1},\theta, x_{1:n})}{p(x_{1:n})}\,d\theta \quad (\text{Conditional probability})\\
+& \int \frac{p(x_{n+1}|\theta,x_{1:n})p(\theta|x_{1:n})p(x_{1:n})}{p(x_{1:n})}\,d\theta \quad (\text{Product rule})\\
+&= \int p(x_{n+1}|\theta,x_{1:n}) p(\theta|x_{1:n})\,d\theta \\
+& = \int p(x_{n+1}|\theta) p(\theta|x_{1:n})\,d\theta \quad \text{By Assumption 1.}
+\end{aligned}
+$$
+
+
+
+
+
+
+
+
+Posterior predictive distribution
+===
+The posterior predictive can be derived to be
+$$
+\begin{aligned}
+\Pr(X_{n+1} = 1\mid x_{1:n}) 
+&= \int \Pr(X_{n+1} = 1\mid \theta) p(\theta|x_{1:n}) d\theta\\
+& =\int \theta\,\Beta(\theta|a_n,b_n) d\theta \\
+& =\frac{a_n}{a_n + b_n}  \quad (\text{Mean of Beta distribution}).
+\end{aligned}
+$$
+
+Similarly, 
+$$
+\begin{aligned}
+\Pr(X_{n+1} = 0 \mid x_{1:n}) & = 1- \Pr(X_{n+1} = 1 \mid x_{1:n}) = \frac{b_n}{a_n + b_n}.
+\end{aligned}
+$$
+
+
+Posterior predictive distribution (continued)
+===
+This implies that 
+
+$$p(x_{n+1}|x_{1:n}) =
+\begin{cases} 
+ \frac{a_n}{a_n + b_n} & \mbox{if } x_{n+1} = 1  \\
+\frac{b_n}{a_n + b_n} & \mbox{if } x_{n+1} = 0
+\end{cases}
+$$
+
+Hence, the posterior predictive p.m.f. is
+
+$$
+\begin{aligned}
+p(x_{n+1}|x_{1:n}) & = \frac{a_n^{x_{n+1}} b_n^{1-x_{n+1}}}{a_n + b_n}\I(x_{n+1}\in\{0,1\}).
+\end{aligned}
+$$
+
+Overall Summary
+===
+
+- We covered the "cast of characters" needed to work with Bayesian models
+- These include the likelihood, prior, posterior, marginal likelihood, and posterior predictive distribution
+- We derived Bayes' Theorem
+- Bernoulli-Beta
+- Conjugacy
+
+Background Knowledge
+===
+
+- Familiar with Discrete and Continuous Distributions
+- Can calculate expectations and variances 
+- Change of variables
+- Mean squared error 
+- Sufficiency 
+- Confident calculating the likelihood and log-likelihood
+- Confident in working with partial derivatives
+- Familiar maximizing or minimizing functions (and proving they are global max/min)
+ 
+
+Detailed Summary for Exam 
+===
+
+- Bayes Theorem
+- Likelihood
+- Prior
+- Posterior derivation
+- Marginal likelihood
+- Posterior predictive distribution
+- Conjugacy 
+- Proportionality 
+- Understanding when models are appropriate for data given to you (Ex: Approval ratings for Obama)
+- What is an informative prior
+- What is a non-informative prior
+- Proper posterior
+- How do you incorporate a pilot study into your posterior analysis (Ex: See sleep study)
+
+
+
+Exercise
+===
+
+We write $X\sim\Poisson(\theta)$ if $X$ has the Poisson distribution with rate $\theta>0$, that is, its p.m.f.\ is
+$$ p(x|\theta) = \Poisson(x|\theta)= e^{-\theta} \theta^x / x!$$
+for $x\in\{0,1,2,\dotsc\}$ (and is $0$ otherwise). Suppose $X_1,\dotsc,X_n \stackrel{iid}{\sim}
+\Poisson(\theta)$ given $\theta$, and your prior is
+$$ p(\theta) =\Ga(\theta|a,b) =\frac{b^a}{\Gamma(a)} \theta^{a-1} e^{-b\theta}\I(\theta>0) .$$
+What is the posterior distribution on $\theta$?
+
+Solution
+===
+Since the data is independent given $\theta$, the likelihood factors and we get
+\begin{align*}
+p(x_{1:n}|\theta) & = \prod_{i = 1}^n p(x_i|\theta) \\
+& = \prod_{i = 1}^n e^{-\theta} \theta^{x_i} / x_i! \\
+& \underset{\theta}{\propto} e^{-n\theta} \theta^{\sum x_i}.
+\end{align*}
+
+Solution
+===
+Thus, using Bayes' theorem,
+\begin{align*}
+p(\theta|x_{1:n}) &\propto p(x_{1:n}|\theta) p(\theta) \\
+& \propto e^{-n\theta} \theta^{\sum x_i} \theta^{a-1} e^{-b\theta}\I(\theta>0) \\
+& \propto e^{-(b+n)\theta} \theta^{a+\sum x_i-1}\I(\theta>0) \\
+& \propto \Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).
+\end{align*}
+Therefore, since the posterior density must integrate to $1$, we have
+$$p(\theta|x_{1:n}) =\Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).$$
+
+Module 1 Derivations
+===
+
+Class notes from Module 1 can be found below:
+
+https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-1/01-class-notes
+
+
+Additional Applied Example
+===
+
+Below, there is an additional applied example that you may find useful regarding this material.
 
 How Much Do You Sleep Example
 ===
@@ -367,203 +595,4 @@ lines(th,prior,lty=3,lwd=3)
 legend(0.7,4,c("Prior","Likelihood","Posterior"),
 lty=c(3,1,2),lwd=c(3,3,3))
 ```
-
-
-Cast of characters
-===
-- Observed data: $x$
-- Note this could consist of many data points, e.g., $x = x_{1:n}=(x_1,\dotsc,x_n)$.
-
-\begin{center}
-\begin{tabular}{ l l }
-likelihood & $p(x|\theta)$  \\
-prior & $p(\theta)$ \\
-posterior & $p(\theta|x)$ \\
-marginal likelihood & $p(x)$ \\
-posterior predictive & $p(x_{n+1}|x_{1:n})$ \\
-loss function & $\ell(s,a)$ \\
-posterior expected loss & $\rho(a,x)$ \\
-risk / frequentist risk & $R(\theta,\delta)$ \\
-integrated risk & $r(\delta)$
-\end{tabular}
-\end{center}
-
-Marginal likelihood
-===
-The **marginal likelihood** is
-$$ p(x) = \int p(x|\theta) p(\theta) \,d\theta $$
-
-- What is the marginal likelihood for the Bernoulli-Beta?
-
-Example: Back to the Bernoulli-Beta
-===
-Suppose $$\; \theta\sim Beta(a,b)$$ and $$X_1,\dotsc,X_n\mid \theta \stackrel{iid}{\sim} Bernoulli(\theta)$$
-
-Example: Back to the Bernoulli-Beta
-===
-Then the marginal likelihood is
-$$
-\begin{aligned}
-&p(x_{1:n}) \\
-&= \int p(x_{1:n}|\theta) p(\theta) \,d\theta\\
-& = \int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}\frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1} d\theta\\
-& = \frac{1}{B(a,b)}\int_0^1\theta^{\sum x_i+a-1}(1-\theta)^{n-\sum x_i+b-1} 
-d\theta\\
-& = \frac{\textcolor{red}{B\big(a +\sum x_i,\, b + n-\sum x_i\big)}}{B(a,b)}\int_0^1 \frac{\theta^{\sum x_i+a-1}(1-\theta)^{n-\sum x_i+b-1}}{\textcolor{red}{B\big(a +\sum x_i,\, b + n-\sum x_i\big)}}
-d\theta\\
-& =\frac{B\big(a +\sum x_i,\, b + n-\sum x_i\big)}{B(a,b)},
-\end{aligned}
-$$
-by the integral definition of the Beta function.
-
-Posterior predictive distribution
-===
-Let $a_n = a +\sum x_i$ and $b_n = b + n-\sum x_i.$
-
-Recall that the posterior distribution is
-$p(\theta|x_{1:n}) = \Beta(\theta|a_n,b_n).$ 
-
-Let's derive the posterior preditive distribution. 
-
-Posterior predictive distribution
-===
-- We may wish to predict a new data point $x_{n+1}$
-- \textcolor{red}{Assumption 1}: Assume that $x_{1:(n+1)}$ are independent given $\theta$
-
-$$
-\begin{aligned}
-p(x_{n+1}|x_{1:n}) &= \int p(x_{n+1},\theta|x_{1:n})\,d\theta\\
-& \int \frac{p(x_{n+1},\theta, x_{1:n})}{p(x_{1:n})}\,d\theta \quad (\text{Conditional probability})\\
-& \int \frac{p(x_{n+1}|\theta,x_{1:n})p(\theta|x_{1:n})p(x_{1:n})}{p(x_{1:n})}\,d\theta \quad (\text{Product rule})\\
-&= \int p(x_{n+1}|\theta,x_{1:n}) p(\theta|x_{1:n})\,d\theta \\
-& = \int p(x_{n+1}|\theta) p(\theta|x_{1:n})\,d\theta \quad \text{By Assumption 1.}
-\end{aligned}
-$$
-
-
-
-
-
-
-
-
-Posterior predictive distribution
-===
-The posterior predictive can be derived to be
-$$
-\begin{aligned}
-\Pr(X_{n+1} = 1\mid x_{1:n}) 
-&= \int \Pr(X_{n+1} = 1\mid \theta) p(\theta|x_{1:n}) d\theta\\
-& =\int \theta\,\Beta(\theta|a_n,b_n) d\theta \\
-& =\frac{a_n}{a_n + b_n}  \quad (\text{Mean of Beta distribution}).
-\end{aligned}
-$$
-
-Similarly, 
-$$
-\begin{aligned}
-\Pr(X_{n+1} = 0 \mid x_{1:n}) & = 1- \Pr(X_{n+1} = 1 \mid x_{1:n}) = \frac{b_n}{a_n + b_n}.
-\end{aligned}
-$$
-
-
-Posterior predictive distribution (continued)
-===
-This implies that 
-
-$$p(x_{n+1}|x_{1:n}) =
-\begin{cases} 
- \frac{a_n}{a_n + b_n} & \mbox{if } x_{n+1} = 1  \\
-\frac{b_n}{a_n + b_n} & \mbox{if } x_{n+1} = 0
-\end{cases}
-$$
-
-Hence, the posterior predictive p.m.f. is
-
-$$
-\begin{aligned}
-p(x_{n+1}|x_{1:n}) & = \frac{a_n^{x_{n+1}} b_n^{1-x_{n+1}}}{a_n + b_n}\I(x_{n+1}\in\{0,1\}).
-\end{aligned}
-$$
-
-Overall Summary
-===
-
-- We covered the "cast of characters" needed to work with Bayesian models
-- These include the likelihood, prior, posterior, marginal likelihood, and posterior predictive distribution
-- We derived Bayes' Theorem
-- Bernoulli-Beta
-- Conjugacy
-
-Background Knowledge
-===
-
-- Familiar with Discrete and Continuous Distributions
-- Can calculate expectations and variances 
-- Change of variables
-- Mean squared error 
-- Sufficiency 
-- Confident calculating the likelihood and log-likelihood
-- Confident in working with partial derivatives
-- Familiar maximizing or minimizing functions (and proving they are global max/min)
- 
-
-Detailed Summary for Exam 
-===
-
-- Bayes Theorem
-- Likelihood
-- Prior
-- Posterior derivation
-- Marginal likelihood
-- Posterior predictive distribution
-- Conjugacy 
-- Proportionality 
-- Understanding when models are appropriate for data given to you (Ex: Approval ratings for Obama)
-- What is an informative prior
-- What is a non-informative prior
-- Proper posterior
-- How do you incorporate a pilot study into your posterior analysis (Ex: See sleep study)
-
-
-
-Exercise
-===
-
-We write $X\sim\Poisson(\theta)$ if $X$ has the Poisson distribution with rate $\theta>0$, that is, its p.m.f.\ is
-$$ p(x|\theta) = \Poisson(x|\theta)= e^{-\theta} \theta^x / x!$$
-for $x\in\{0,1,2,\dotsc\}$ (and is $0$ otherwise). Suppose $X_1,\dotsc,X_n \stackrel{iid}{\sim}
-\Poisson(\theta)$ given $\theta$, and your prior is
-$$ p(\theta) =\Ga(\theta|a,b) =\frac{b^a}{\Gamma(a)} \theta^{a-1} e^{-b\theta}\I(\theta>0) .$$
-What is the posterior distribution on $\theta$?
-
-Solution
-===
-Since the data is independent given $\theta$, the likelihood factors and we get
-\begin{align*}
-p(x_{1:n}|\theta) & = \prod_{i = 1}^n p(x_i|\theta) \\
-& = \prod_{i = 1}^n e^{-\theta} \theta^{x_i} / x_i! \\
-& \underset{\theta}{\propto} e^{-n\theta} \theta^{\sum x_i}.
-\end{align*}
-
-Solution
-===
-Thus, using Bayes' theorem,
-\begin{align*}
-p(\theta|x_{1:n}) &\propto p(x_{1:n}|\theta) p(\theta) \\
-& \propto e^{-n\theta} \theta^{\sum x_i} \theta^{a-1} e^{-b\theta}\I(\theta>0) \\
-& \propto e^{-(b+n)\theta} \theta^{a+\sum x_i-1}\I(\theta>0) \\
-& \propto \Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).
-\end{align*}
-Therefore, since the posterior density must integrate to $1$, we have
-$$p(\theta|x_{1:n}) =\Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).$$
-
-Module 1 Derivations
-===
-
-Class notes from Module 1 can be found below:
-
-https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-1/01-class-notes
-
-
 
