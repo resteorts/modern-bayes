@@ -390,14 +390,14 @@ where $X$ has distribution $p(x|\btheta)$.  In other words,
 $$ R(\theta,\delta) = \int \ell(\theta,\delta(x))\,p(x|\theta)\,dx$$
 if $X$ is continuous, while the integral is replaced with a sum if $X$ is discrete.
 
-The integrated risk
-===
+<!-- The integrated risk -->
+<!-- === -->
 
-The \term{integrated risk}  associated with $\delta(X)$ is
-\begin{align}
-r(\delta) &= \E(\ell(\btheta,\delta(X)) = \int R(\theta,\delta)\,p(\theta)\,d\theta \\
-&= \int \int \ell(\theta,\delta(x))\,p(x|\theta)p(\theta)\,dx \,d\theta
-\end{align}
+<!-- The \term{integrated risk}  associated with $\delta(X)$ is -->
+<!-- \begin{align} -->
+<!-- r(\delta) &= \E(\ell(\btheta,\delta(X)) = \int R(\theta,\delta)\,p(\theta)\,d\theta \\ -->
+<!-- &= \int \int \ell(\theta,\delta(x))\,p(x|\theta)p(\theta)\,dx \,d\theta -->
+<!-- \end{align} -->
 
 
 
@@ -480,7 +480,6 @@ the rational here.
 where the Bayes estimator is NOT in a closed form solution.
 - How to conduct a sensitivity analysis for a posterior analysis and report your findings.
 - The frequentist risk and why it's used. 
-- The integrated risk  and why it's used. 
 - Admissibility and how to determine if an estimator is admissible or inadmissible. 
 
 Module 2 Derivations
