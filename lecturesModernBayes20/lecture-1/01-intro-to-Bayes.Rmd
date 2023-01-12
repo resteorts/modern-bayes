@@ -118,7 +118,7 @@ $$B(a,b) = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$$.
 
 Posterior of Bernoulli-Beta
 ===
-Lets derive the posterior of $\; \theta \mid x_{1:n}$
+Let's derive the posterior of $\; \theta \mid x_{1:n}$
 
 
 <!-- $$\begin{aligned} -->
@@ -182,10 +182,10 @@ Obama Example
 n = 10
 # Fixing values of a,b. 
 # I've chosen the prior on Beta to be skewed
-a = 21/8
-b = 0.04
-#a = 0.25
-#b = 0.25
+#a = 21/8
+#b = 0.04
+a = 0.25
+b = 0.25
 th = seq(0,1, length=500)
 x = 6
 
