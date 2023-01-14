@@ -26,19 +26,19 @@ Reproducibility component: 10 points.
 
 1.  (22 points total, equally weighted) The data set **rnf6080.dat** records hourly rainfall at a certain location in Canada, every day from 1960 to 1980.
 
-a. Load the data set into R and make it a data frame called \texttt{rain.df}.  What command did you use?
+a. Load the data set into R and make it a data frame called \texttt{rain_df}.  What command did you use?
 
-b. How many rows and columns does \texttt{rain.df} have?  How do you know?  (If there are not 5070 rows and 27 columns, you did something wrong in the first part of the problem.)
+b. How many rows and columns does \texttt{rain_df} have?  How do you know?  (If there are not 5070 rows and 27 columns, you did something wrong in the first part of the problem.)
 
-c. What command would you use to get the names of the columns of \texttt{rain.df}? What are those names?
+c. What command would you use to get the names of the columns of \texttt{rain_df}? What are those names?
 
 d. What command would you use to get the value at row 2, column 4? What is the value?
 e. What command would you use to display the whole second row?  What is the content of that row?
 f.  What does the following command do?
 ```
-names(rain.df) <- c("year","month","day",seq(0,23))
+names(rain_df) <- c("year","month","day",seq(0,23))
 ```
-g.  Create a new column called \texttt{daily}, which is the sum of the 24 hourly columns.
+g.  Create a new column called \texttt{daily_rain_fall}, which is the sum of the 24 hourly columns.
 h. Give the command you would use to create a histogram of the daily rainfall amounts.  Please make sure to attach your figures in your .pdf report. 
 i. Explain why that histogram above cannot possibly be right.
 j. Give the command you would use to fix the data frame.

@@ -443,7 +443,9 @@ Module 1 Derivations
 
 Class notes from Module 1 can be found below:
 
-https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-1/01-class-notes
+https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/notes-module1.pdf
+
+https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-1/notes-module1.pdf
 
 
 Additional Applied Example
