@@ -179,23 +179,23 @@ What is the proportion of people that approve of President Obama in PA?
 Obama Example
 ===
 ```{r}
-n = 10
+n <- 10
 # Fixing values of a,b. 
 # I've chosen the prior on Beta to be skewed
 #a = 21/8
 #b = 0.04
-a = 0.25
-b = 0.25
-th = seq(0,1, length=500)
-x = 6
+a <- 0.25
+b <- 0.25
+th <- seq(0,1, length=500)
+x <- 6
 
 # we set the likelihood, prior, and posteriors with 
 # THETA as the sequence that we plot on the x-axis.
 # Beta(c,d) refers to shape parameter
-like = dbeta(th, x+1, n-x+1)
-prior = dbeta(th, a, b)
+like <- dbeta(th, x+1, n-x+1)
+prior <- dbeta(th, a, b)
 # print(a/(a + b))
-post = dbeta(th, x+a, n-x+b)
+post <- dbeta(th, x+a, n-x+b)
 ```
 
 
