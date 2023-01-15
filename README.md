@@ -1,4 +1,4 @@
-Welcome to STA 360, Fall 2022! 
+Welcome to STA 360/602! 
 
 The readings/preparations for the class can be found at the very bottom of this file for reference. These are subject to change and will be updated as the course progresses. Please see the course webpage for the first few weeks of the course, videos, homeworks, and assignments. 
 
@@ -21,24 +21,7 @@ Please find directory information below regarding each folder:
 
 ## Tenative Course Schedule 
 
-[Course Webpage](https://resteorts.github.io/teach/bayes22.html)
-
-The course webpage is meant to be a place such that you don't have to interact with github unless you choose to. The goal is that nearly all course materials should be accessible from this one place. 
-
-[Cheat Sheet to Course](https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf)
-
-This has summary information regarding the course times, labs, OH, hw deadlines, and exam dates. In addition, this has all the zoom codes you need as a reference guide. 
-
-An introductory video of the course webpage can be found here: https://github.com/resteorts/modern-bayes/blob/master/intro-to-webpage/intro-to-webpage.mp4?raw=true
-
-The syllabus is a comprehensive place regarding expectations for STA 360. 
-
-[Syllabus](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring-22.pdf)
-
-
-Sakai will be used so you can see your grades throughout the semester. Homework submissions will be uploaded here on Sakai as well. 
-
-[Sakai](https://sakai.duke.edu/portal/site/da825873-0b0f-419f-b6e9-ddcc6f0106f0/tool/e52fb460-c770-4f77-9a55-a86822a8e645)
+The course webpage can be found at resteorts.github.io (see Teaching Tab). Revelant links should be on the webpage. 
 
 # Suggested Readings
 
