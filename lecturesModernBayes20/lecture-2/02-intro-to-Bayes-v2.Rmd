@@ -46,7 +46,7 @@ If the actions are data dependent, the literature denotes this as a decision rul
 
 \vspace*{1em}
 
-$(\Theta, \mathcal{A}, \ell)$ define a game, where typically the goal is to minimize one's loss (or win the game). 
+$(\Theta, \mathcal{A}, \ell)$ define a game, where typically the goal is to minimize the loss function. 
 
 \vspace*{1em}
 
@@ -59,7 +59,7 @@ Rules of ``the game"
 
 \vspace*{1em}
 
-Example: Nature decides it will rain all day long. 
+Example: Nature decides it will rain today. 
 
 \vspace*{1em}
 
@@ -93,7 +93,11 @@ $$\mathcal{A} = \{\text{Umbrella}, \text{No Umbrella}\}$$
 
 \vspace*{1em}
 
-The confusion matrix illustrates a loss function $\ell(\theta, a)$ for all combinations of $a,\theta.$
+The 2 by 2 matrix illustrates a loss function $\ell(\theta, a)$ for all combinations of $a,\theta.$
+
+\vspace*{1em}
+
+\textbf{What do you learn from this figure?}
 
 Risk
 ===
@@ -111,7 +115,7 @@ Suppose that $\theta \in \Theta.$ Suppose that $X$ has distribution  $p(x|\theta
 
 
 The \term{risk} (or \term{frequentist risk}) associated with an action or decision procedure $\delta(X)$ is 
-$$ R(\theta,\delta(X)) = \E\big(\ell(\theta,\delta(X))\mid \theta) = \int \ell(\theta,\delta(x))\,p(x|\theta)\,dx.$$
+$$ R(\theta,\delta(X)) = \E\big(\ell(\theta,\delta(X))\mid \theta) = \int \ell(\theta,\delta(x))\,\textcolor{blue}{p(x|\theta)}\,dx,$$
 if $X$ is continuous, while the integral is replaced with a sum if $X$ is discrete.
 
 <!-- \vspace{1em} -->
@@ -124,19 +128,19 @@ Posterior risk (or Bayes' risk)
 
 The \textbf{posterior risk} is defined to be 
 
-$$\rho(\theta, \delta(X)) = \E\big(\ell(\theta,\delta(X))\mid X = x) = \int \ell(\theta,\delta(X)) \; p(\theta \mid x) \; d\theta,$$
+$$\rho(\theta, \delta(X)) = \E\big(\ell(\theta,\delta(X))\mid X = x) = \int \ell(\theta,\delta(X)) \; \textcolor{blue}{p(\theta \mid x)} \; d\theta,$$
 
 if $\Theta$ is continuous, while the integral is replaced with a sum if $\Theta$ is discrete.
 
 
-Motivating Example (Return)
+Exercise 
 ===
 
-1. Given our motivating example, calculate the frequentist risk and Bayes risk.
+1. Given our motivating example, calculate the frequentist risk and posterior risk.
 
-2. Suppose it always rains. Find the frequentist risk and Bayes risk.
+2. Suppose it always rains. Find the frequentist risk and posterior risk given this assumption.
 
-3. What is the action that minimizes the frequentist risk and Bayes risk.
+3. What is the action that minimizes the frequentist risk and posterior risk from part 2.
 
 Exercise, where solution can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/reading/babybayes-master.pdf} pages 99--
 100.
@@ -197,7 +201,7 @@ Also,
 Bayes rule
 ===
 
-A \term{Bayes rule} is an optimal decision procedure $\hat{\delta}(X)$ minimizes the posterior risk for all values of $x \in \mathcal{X}.\footnote{Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies.}$
+A \term{Bayes rule} is an optimal decision procedure $\hat{\delta}(X)$ that \textbf{minimizes the posterior risk} for all values of $x \in \mathcal{X}.\footnote{Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies.}$
 
 Assumptions
 ===
