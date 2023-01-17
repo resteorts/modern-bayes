@@ -287,11 +287,14 @@ d\theta\\
 $$
 by the integral definition of the Beta function.
 
+Posterior predictive distribution
+===
+
 
 
 Posterior predictive distribution
 ===
-- We may wish to predict a new data point $x_{n+1}$
+- At times, we may wish to find the \textcolor{red}{conditional distribution of $x_{n+1}$ given $x_{1:(n+1)}.$}
 - \textcolor{red}{Assumption 1}: Assume that $x_{1:(n+1)}$ are independent given $\theta$
 
 
@@ -346,8 +349,8 @@ This implies that
 
 $$p(x_{n+1}|x_{1:n}) =
 \begin{cases} 
- \frac{a_n}{a_n + b_n} & \mbox{if } x_{n+1} = 1  \\
-\frac{b_n}{a_n + b_n} & \mbox{if } x_{n+1} = 0
+ \frac{a_n}{a_n + b_n} = \frac{(a + \sum_i x_i)}{a + b + n} & \mbox{if } x_{n+1} = 1  \\
+\frac{b_n}{a_n + b_n} = \frac{b + \sum_i (1 - x_i)}{a + b + n} & \mbox{if } x_{n+1} = 0
 \end{cases}
 $$
 
@@ -355,11 +358,48 @@ More formally,
 
 $$
 \begin{aligned}
-p(x_{n+1}|x_{1:n}) & = \frac{a_n^{x_{n+1}} b_n^{1-x_{n+1}}}{a_n + b_n}\I(x_{n+1}\in\{0,1\}).
+p(x_{n+1}|x_{1:n}) & = \frac{a_n^{x_{n+1}} b_n^{1-x_{n+1}}}{a_n + b_n}\I(x_{n+1}\in\{0,1\})\\
+&= \frac{(a + \sum_i x_i)^{x_{n+1}} (b + \sum_i (1 - x_i))^{1-x_{n+1}}}{(a + b + n)}\I(x_{n+1}\in\{0,1\})
 \end{aligned}
 $$
 
-\textcolor{blue}{Either solution above is correct.}
+\textcolor{blue}{Either solution above is correct. (See page 40 of Hoff for a similar derivation of this result).}
+
+Posterior predictive distribution
+===
+
+Observe that the posterior predictive distribution:
+
+1. Does not depend on unknown parameters.
+2. The predictive distribution depends on the observed data.
+
+Posterior Predictive Function
+===
+
+```{r}
+posterior_pred <- function(a, b, x, n, new_point) {
+  if (new_point == 1) {
+    return((a + x)/(a + b + n))
+  }else {
+    return(b + (1 - x)/(a + b + n))
+  }
+}
+
+(posterior_pred(a = 2, b = 6, x = 6, 
+                n = 10, new_point = 1))
+(posterior_pred(a = 2, b = 6, x = 6, 
+                n = 10, new_point = 0))
+```
+
+Posterior Predictive Plot
+===
+```{r, echo=FALSE}
+plot(0, posterior_pred(a = 2, b = 6, x = 6, 
+                n = 10, new_point = 0), lty = 2, xlim = c(-0.5,1.5), ylim = c(-0.5,12), xlab="binary outcome (0,1)", ylab="posterior predictive distribution", type = "h", lwd = 2)
+points(1, posterior_pred(a = 2, b = 6, x = 6, 
+                n = 10, new_point = 1), type = "h", lwd = 2)
+
+```
 
 Overall Summary
 ===

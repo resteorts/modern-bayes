@@ -20,7 +20,7 @@ Agenda
 - Bayes rule under squared error loss
 - Lab/Homework: Application to resource allocation
 
-What will your learn?
+What will you learn?
 ===
 
 The basics of decision theory, which include:
