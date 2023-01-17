@@ -1,0 +1,623 @@
+
+---
+title: "Module 2: Introduction to Decision Theory"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+Agenda
+===
+- What is decision theory?
+- Simple set up for discrete case
+- General setup
+- Loss functions
+- Frequentist Risk
+- Bayesian risk
+- Bayes rule under squared error loss
+- Lab/Homework: Application to resource allocation
+
+What will your learn?
+===
+
+The basics of decision theory, which include:
+
+- notation/terminology
+- discrete example
+- loss function(s)
+- frequentist risk and posterior risk 
+- practice working with these concepts via derivations, lab, and via homework 
+
+Principles/Notation
+===
+
+Decision theory consists of three basic principles:
+
+\vspace*{1em}
+
+1. Possible states of nature $\Theta$ (the parameter space).
+2. A set of possible actions $\mathcal{A}$
+3. A loss function $\ell(\theta, a),$ where $\theta \in \Theta$ and $a \in \mathcal{A}.$  
+
+If the actions are data dependent, the literature denotes this as a decision rule $\delta(x).$
+
+\vspace*{1em}
+
+$(\Theta, \mathcal{A}, \ell)$ define a game, where typically the goal is to minimize one's loss (or win the game). 
+
+\vspace*{1em}
+
+Note: We may or may not have observed data $x \in \mathcal{X}.$
+
+Rules of ``the game"
+===
+
+1. Nature selects a point $\theta \in \Theta.$
+
+\vspace*{1em}
+
+Example: Nature decides it will rain all day long. 
+
+\vspace*{1em}
+
+2. You (the statistician) chose an action $a \in \mathcal{A}$ \textbf{where you are not informed of the state of nature.}
+
+\vspace*{1em}
+
+Example: Your \textbf{action} is to NOT carry an umbrella. 
+
+Based upon 1 and 2, you will lose an amount $\ell(\theta, a).$
+
+
+Motivating Example
+===
+
+$$\Theta = \{\text{Rain}, \text{No Rain}\}$$
+$$\mathcal{A} = \{\text{Umbrella}, \text{No Umbrella}\}$$
+\begin{center}
+\begin{tabular}{l|l|c|c|c}
+\multicolumn{2}{c}{}&\multicolumn{2}{c}{$\mathcal{A}$}&\\
+\cline{3-4}
+\multicolumn{2}{c|}{}&Umbrella & No Umbrella
+&\multicolumn{1}{c}{}\\
+\cline{2-4}
+\multirow{2}{*}{$\Theta$}& Rain & $0$ & $10$\\
+\cline{2-4}
+& No Rain & $1$ & $0$\\
+\cline{2-4}
+\end{tabular}
+\end{center}
+
+\vspace*{1em}
+
+The confusion matrix illustrates a loss function $\ell(\theta, a)$ for all combinations of $a,\theta.$
+
+Risk
+===
+
+We will define two types of risk that are commonly used, the \emph{frequentist risk} and the \emph{posterior risk}. 
+
+\vspace*{1em}
+
+Our goal is to minimize our risk (we want to avoid losing, such as losing money, bad outcomes, or getting wet!)
+
+Frequentist risk 
+===
+
+Suppose that $\theta \in \Theta.$ Suppose that $X$ has distribution  $p(x|\theta)$.
+
+
+The \term{risk} (or \term{frequentist risk}) associated with an action or decision procedure $\delta(X)$ is 
+$$ R(\theta,\delta(X)) = \E\big(\ell(\theta,\delta(X))\mid \theta) = \int \ell(\theta,\delta(x))\,p(x|\theta)\,dx.$$
+if $X$ is continuous, while the integral is replaced with a sum if $X$ is discrete.
+
+<!-- \vspace{1em} -->
+
+<!-- $$ R(\theta,a) = \E\big(\ell(\theta,a \mid \theta) = \sum_x \ell(\theta,a) \,p(x|\theta).$$ -->
+
+
+Posterior risk (or Bayes' risk) 
+===
+
+The \textbf{posterior risk} is defined to be 
+
+$$\rho(\theta, \delta(X)) = \E\big(\ell(\theta,\delta(X))\mid X = x) = \int \ell(\theta,\delta(X)) \; p(\theta \mid x) \; d\theta,$$
+
+if $\Theta$ is continuous, while the integral is replaced with a sum if $\Theta$ is discrete.
+
+
+Motivating Example (Return)
+===
+
+1. Given our motivating example, calculate the frequentist risk and Bayes risk.
+
+2. Suppose it always rains. Find the frequentist risk and Bayes risk.
+
+3. What is the action that minimizes the frequentist risk and Bayes risk.
+
+Exercise, where solution can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/reading/babybayes-master.pdf} pages 99--
+100.
+
+
+
+
+General setup
+===
+Assume an unknown state of nature $\Theta$ ($\theta \in \Theta$).
+
+Also, 
+
+- we observe data $x = x_{1:n} \in \mathcal{X},$ 
+- we take an action $a$ or decision procedure $\delta(X),$
+- we incur a real-valued loss function $\ell(\theta,\delta(X)).$
+
+<!-- \begin{center} -->
+<!-- \begin{tabular}{ c l } -->
+<!-- $\Theta$ & state of nature (unknown) \\ -->
+<!-- $x$ & observed data (known) \\ -->
+<!-- $a$ or $\delta(x)$ & action or decision procedure\\ -->
+<!-- $\ell(\theta,\delta(x))$ & loss function -->
+<!-- \end{tabular} -->
+<!-- \end{center} -->
+
+<!-- Example  -->
+<!-- === -->
+
+<!-- 1. State of nature: $\theta \in \Theta$ -->
+<!-- 2. Observed data: $x = x_{1:n}$ -->
+<!-- 3. Decision rule: $\delta(X)$ -->
+<!-- 4. Loss function: $\ell(\theta,\delta(X)) = (\theta-\delta(X))^2$ (quadratic loss or squared error loss) -->
+
+
+
+<!-- Question -->
+<!-- === -->
+
+<!-- Why do we consider the squared error loss function over other loss functions, such as the absolute error loss function?  -->
+
+
+<!-- Bayesian approach -->
+<!-- === -->
+
+<!-- - $S$ is a random variable,  -->
+<!-- - the distribution of $x$ depends on $S$,  -->
+<!-- - and the optimal decision is to choose an action $a$ that minimizes the \term{posterior expected loss} or \term{posterior risk}, -->
+<!-- $$\rho(a,x) =\E(\ell(S,a)|x).$$ -->
+
+<!-- In other words, $\rho(a,x) =\sum_s \ell(s,a) p(s|x)$ if $S$ is a discrete random variable, while if $S$ is continuous then the sum is replaced by an integral. -->
+
+<!-- Bayesian approach (continued) -->
+<!-- === -->
+
+<!-- 1. A \term{decision procedure} $\delta$ is a systematic way of choosing actions $a$ based on observations $x$. Typically, this is a deterministic function $a=\delta(x)$ (but sometimes introducing some randomness into $a$ can be useful). -->
+
+Bayes rule
+===
+
+A \term{Bayes rule} is an optimal decision procedure $\hat{\delta}(X)$ minimizes the posterior risk for all values of $x \in \mathcal{X}.\footnote{Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies.}$
+
+Assumptions
+===
+
+1.  Assume observed data $x = x_{1:n}.$ 
+2.  Assume that $\hat{\delta}(X)$ is the \textbf{optimal decision rule} $\delta(X).$ 
+3.  Assume squared error loss $$\ell(\theta,\delta(X)) = (\theta-\delta(X))^2.$$
+
+Theorem
+===
+
+Show that the posterior mean $\hat{\delta}(x) = E[\theta \mid x_{1:n}]$ minimizes the posterior risk. (It's important to verify the solution is unique). 
+
+Proof
+===
+
+By definition, we want to **minimize the posterior risk.**
+
+The **posterior risk** can be written as
+
+\begin{align*}
+\rho(\theta, \delta(x))&=\E(\ell(\theta,{\delta}(x))|x_{1:n}) =
+\E((\theta-{\delta}(x)))^2|x_{1:n}) \\
+&= 
+\E(\theta^2 - 2\theta \;{\delta}(x))  + {\delta}(x)) |x_{1:n})\\
+&=\E(\theta^2|x_{1:n}) - 2{\delta}(x))\E(\theta|x_{1:n}) + {\delta}^2(x)).
+\end{align*}
+
+
+
+
+
+
+
+<!-- Finding the Bayes rule -->
+<!-- === -->
+
+<!-- We just showed that -->
+<!-- $$\rho(\theta, \delta(x)) = \E(\theta^2|x_{1:n}) - 2\hat{\delta}(x))\l\E(\theta|x_{1:n}) + \hat{\delta}^2(x))$$ -->
+<!-- Setting the derivative with respect to $\hat\theta$ equal to $0$, and solving, we find that the minimum occurs at $\hat\theta = \E(\btheta|x_{1:n})$, \textbf{the posterior mean}.  -->
+
+<!-- Let's walk through this derivation together.  -->
+
+Proof (continued)
+===
+
+Let's now **minimize the posterior risk.**
+
+Recall that $$\rho(\theta, \delta(x)) = \E(\theta^2|x_{1:n}) - 2{\delta}(x))\E(\theta|x_{1:n}) + {\delta}^2(x))$$
+
+\begin{align*}
+\frac{\partial \rho(\theta,\delta(x))}{\partial {\delta}(x))} 
+&= \frac{\partial \{\E(\theta^2|x_{1:n}) - 2{\delta}(x))\E(\theta|x_{1:n}) +{\delta}^2(x))\}}{\partial {\delta{x}}} \\
+&= -2 \E(\theta|x_{1:n}) + 2 {\theta}
+\end{align*}
+
+Proof (continued)
+===
+
+Now, let 
+$$ 0 -2 \E(\theta|x_{1:n}) + 2 \delta(x) =: 0, $$
+which implies that $$\delta(x) = \E(\theta|x_{1:n}).$$
+
+Because the loss function is convex, $\delta(x) = \E(\theta|x_{1:n})$ is the unique solution. 
+
+Summary of Theorem
+===
+
+To summarize, we just showed that the Bayes rule under squared error loss is 
+
+$$\hat{\delta}(x) = \E(\theta|x_{1:n}).$$
+\vspace*{1em}
+
+That is, the **Bayes rule is the posterior mean**! 
+
+
+
+Resource allocation for disease prediction
+===
+
+\textbf{This material corresponds with lab 3 and homework 3.}
+
+Suppose public health officials in a small city need to decide how much resources to devote toward prevention and treatment of a certain disease, but the fraction $\theta$ of infected individuals in the city is unknown.
+
+Resource allocation for disease prediction (continued)
+===
+
+Suppose they allocate enough resources to accomodate a fraction $c$ of the population. Recall that $\theta$ is the fraction of the infected individuals in the city. 
+
+- If $c$ is too large, there will be wasted resources, while if it is too small, preventable cases may occur and some individuals may go untreated. 
+- After deliberation, they adopt the following loss function:
+$$\ell(\theta,c) =\branch{|\theta-c|}{c\geq\theta}
+                       {10|\theta-c|}{c<\theta.}$$
+                       
+\vspace*{1em}
+
+**This applied example corresponds to lab 3 and homework 3.**
+                       
+Resource allocation for disease prediction (continued)
+===                       
+                       
+- By considering data from other similar cities, they determine a prior $p(\theta)$. For simplicity, suppose $\btheta\sim\Beta(a,b)$ (i.e., $p(\theta) =\Beta(\theta|a,b)$), with $a=0.05$ and $b=1$.\footnote{We could certainly consider other choices of $a,b$ but we consider these choices for simplicity. You'll look at other choices in lab/homework.}
+
+-  They conduct a survey assessing the disease status of $n=30$ individuals, $x_1,\ldots,x_n$. 
+
+This is modeled as $X_1,\ldots,X_n \stackrel{iid}{\sim} \Bernoulli(\theta)$, which is reasonable if the individuals are uniformly sampled and the population is large. Suppose all but one are disease-free, i.e.,
+    $\sum_{i=1}^n x_i = 1$.
+
+The Bayes procedure
+===
+The **Bayes procedure** is to minimize the posterior expected loss
+$$\rho(c,x) =\E(\ell(\btheta,c)|x) = \int \ell(\theta,c)p(\theta|x)d\theta $$
+where $x = x_{1:n}$.
+
+1.  We know $p(\theta|x)$ as an updated Beta, so we can numerically compute this integral for each $c$.
+2. Figure \ref{figure:rho} shows $\rho(c,x)$ for our example.
+3. The minimum occurs at $c\approx 0.08$, so under the
+    assumptions above, this is the optimal amount of resources to allocate. 
+4. How would one perform a sensitivity analysis of the prior assumptions?
+
+
+Resource allocation for disease prediction in R
+===
+```{r, cache = TRUE}
+## set seed
+set.seed(123)
+## data and number of total obs.
+sum_x <- 1
+n <- 30
+# prior parameters
+a <- 0.05
+b <- 1
+# posterior parameters
+an <- a + sum_x
+bn <- b + n - sum_x
+# seq of theta values
+th <- seq(0, 1, length.out = 100)
+## likelihood, prior, posterior
+like <- dbeta(th, sum_x + 1, n - sum_x + 1)
+prior <- dbeta(th, a, b)
+post <- dbeta(th, sum_x + a, n - sum_x + b)
+```
+
+Likelihood, Prior, and Posterior
+===
+```{r, echo=FALSE}
+plot(th, like, type = "l", ylab = "Density",
+     xlab = expression(theta), lty = 2, lwd = 3,
+     col = "green", ylim = c(0, 21))
+lines(th, prior, lty = 3, lwd = 3, col = "red")
+lines(th, post, lty = 1, lwd = 3, col = "blue")
+legend(0.6, 10, c("Prior", "Likelihood", "Posterior"),
+       lty = c(2, 3, 1), lwd = c(3, 3, 3),
+       col = c("red", "green", "blue"))
+```
+
+The loss function
+===
+```{r}
+## Compute the loss given theta and c.
+loss_function <- function(theta, c) {
+  if (c < theta) {
+    return(10 * abs(theta - c))
+  }else {
+    return(abs(theta - c))
+  }
+}
+```
+
+Posterior risk
+===
+```{r}
+# Compute the posterior risk given c.
+# S is the number of random draws.
+posterior_risk <- function(c, s = 30000) {
+  # Randow draws from posterior distribution,
+  # which is a beta with params an and bn.
+  theta <- rbeta(s, an, bn)
+  # Calculating values of the loss times the posterior.
+  loss <- apply(as.matrix(theta), 1, loss_function, c)
+  # average values from the loss function (integral)
+  mean(loss)
+}
+```
+
+Posterior Risk (continued)
+===
+```{r}
+# a sequence of c in [0, 0.5]
+c <- seq(0, 0.5, by = 0.01)
+post_risk <- apply(as.matrix(c), 1, posterior_risk)
+head(post_risk)
+```
+
+Posterior expected loss/posterior risk for disease prevelance
+===
+```{r}
+# Plot posterior risk against c.
+pdf(file = "posterior-risk.pdf")
+plot(c, post_risk, type = "l", col = "blue",
+    lwd = 3, ylab = "p(c, x)")
+dev.off()
+# minimum of posterior risk occurs at c = 0.08
+(c[which.min(post_risk)])
+```
+
+Posterior expected loss/posterior risk for disease prevelance
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/posterior-risk}
+    % Source: Original work by R.C. Steorts
+  \end{center}
+  \caption{}
+ \label{figure:rho}
+\end{figure}
+
+Sensitivity Analysis
+===
+
+\textcolor{red}{Suppose now that $a = 0.05, 1, 0.05$ and $b = 1, 2, 10.$}
+
+\textcolor{red}{If we have different prior, the posterior risk is minimized at different $c$ values. The optimal $c$ depends on not only the data, but also the prior setting.}
+
+Posterior Risk Function (More Advanced)
+===
+```{r, cache=TRUE}
+# Compute the posterior risk given c.
+# S is the number of random draws.
+posterior_risk <- function(c, a_prior, b_prior,
+                          sum_x, n, s = 30000) {
+  # Randow draws from beta distribution.
+  a_post <- a_prior + sum_x
+  b_post <- b_prior + n - sum_x
+  theta <- rbeta(s, a_post, b_post)
+  loss <- apply(as.matrix(theta), 1, loss_function, c)
+  # average values from the loss function
+  mean(loss)
+}
+```
+
+Posterior Risk Function (More Advanced)
+===
+```{r, cache=TRUE}
+# a sequence of c in [0, 0.5]
+c <- seq(0, 0.5, by = 0.01)
+post_risk <- apply(as.matrix(c), 1, posterior_risk, 
+                   a, b, sum_x, n)
+head(post_risk)
+```
+
+Sensitivity Analysis
+===
+```{r, cache=TRUE}
+# set prior values
+as <- c(0.05, 1, 0.05)
+bs <- c(1, 1, 10)
+post_risk <- matrix(NA, 3, length(c))
+# for each pair of a and b, compute the posterior risks
+for (i in 1:3) {
+  a_prior <- as[i]
+  b_prior <- bs[i]
+# Using advanced function of posterior risk.
+post_risk[i,  ] <- apply(as.matrix(c),  1,
+                      posterior_risk,  a_prior,
+                      b_prior,  sum_x,  n)
+}
+```
+
+Plot
+===
+```{r}
+plot(c,  post_risk[1,  ], type = "l",
+     col = "blue",  lty = 1,  yaxt = "n",  ylab = "p(c, x)")
+par(new = TRUE)
+plot(c, post_risk[2, ], type = "l",
+     col = "red", lty = 2, yaxt = "n", ylab = "")
+par(new = TRUE)
+plot(c, post_risk[3, ], type = "l",
+     lty = 3, yaxt = "n", ylab = "")
+legend("bottomright", lty = c(1, 2, 3),
+       col = c("blue", "red", "black"),
+       legend = c("a = 0.05 b = 1",
+                  "a = 1 b = 1", "a = 0.05 b = 5"))
+```
+
+Optimal resources (a,b vary)
+===
+\textcolor{red}{For $a = 0.05, 1, 0.05$ and $b = 1, 2, 10$ respectively,
+the optimal value for c is:}
+
+```{r}
+(c[which.min(post_risk[1, ])])
+(c[which.min(post_risk[2, ])])
+(c[which.min(post_risk[3, ])])
+```
+
+
+Plot
+===
+```{r, echo=FALSE}
+plot(c, post_risk[1, ], type = "l",
+     col = "blue", lty = 1, yaxt = "n", ylab = "p(c, x)")
+par(new = TRUE)
+plot(c, post_risk[2, ], type = "l",
+     col = "red", lty = 2, yaxt = "n", ylab = "")
+par(new = TRUE)
+plot(c, post_risk[3, ], type = "l",
+     lty = 3, yaxt = "n", ylab = "")
+legend("bottomright", lty = c(1, 2, 3),
+       col = c("blue", "red", "black"),
+       legend = c("a = 0.05 b = 1",
+                  "a = 1 b = 1", "a = 0.05 b = 5"))
+```
+
+
+Frequentist Risk
+===
+1. Consider a decision problem in which $S = \btheta$.
+2. The \term{risk} (or \term{frequentist risk}) associated with a decision procedure $\delta$ is 
+$$ R(\theta,\delta) = \E\big(\ell(\btheta,\delta(X))\mid\btheta =\theta\big),$$
+where $X$ has distribution $p(x|\btheta)$.  In other words,
+$$ R(\theta,\delta) = \int \ell(\theta,\delta(x))\,p(x|\theta)\,dx$$
+if $X$ is continuous, while the integral is replaced with a sum if $X$ is discrete.
+
+<!-- The integrated risk -->
+<!-- === -->
+
+<!-- The \term{integrated risk}  associated with $\delta(X)$ is -->
+<!-- \begin{align} -->
+<!-- r(\delta) &= \E(\ell(\btheta,\delta(X)) = \int R(\theta,\delta)\,p(\theta)\,d\theta \\ -->
+<!-- &= \int \int \ell(\theta,\delta(x))\,p(x|\theta)p(\theta)\,dx \,d\theta -->
+<!-- \end{align} -->
+
+
+
+Example: Resource allocation, revisited
+===
+1. The frequentist risk provides a useful way to compare decision procedures in a prior-free way.
+2. In addition to the Bayes procedure or Bayes rule that we have considered earlier in the lecture, consider two other potential optimal decision rules: choosing $c = \bar x$ (sample mean) or $c=0.1$ (constant).\footnote{Recall: The Bayes rule minimizes the posterior risk with respect to the parameter of interest.}
+3. \textcolor{red}{Remark: both the frequentist rules are looking an optimal estimator in a prior free way. (There are many other examples, but we'll just look at two simple cases.)}
+
+Example: Resource allocation, revisited
+===
+3. Figure \ref{figure:procedures} shows each procedure as a function of $\sum x_i$, the observed number of diseased cases. For the prior we have chosen, the Bayes procedure always picks $c$ to be a little bigger than $\bar x$.
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{figures/procedures.png}
+    % Source: Original work by J. W. Miller.
+  \end{center}
+  \caption{Resources allocated $c$, as a function of the number of diseased individuals observed, $\sum x_i$, for the three different procedures.}
+  \label{figure:procedures}
+\end{figure}
+
+Example: Resource allocation, revisited
+===
+
+4. Figure \ref{figure:risk} shows the risk $R(\theta,\delta)$ as a function of $\theta$ for each procedure. Smaller risk is better. (Recall that for each $\theta$, the risk is the expected loss, averaging over all possible data sets. The observed data doesn't factor into it at all.)
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{figures/risk.png}
+    % Source: Original work by J. W. Miller.
+  \end{center}
+  \caption{Risk functions for the three different procedures.}
+  \label{figure:risk}
+\end{figure}
+
+Example: Resource allocation, revisited
+===
+
+5. The constant procedure is fantastic when $\theta$ is near $0.1$, but gets very bad very quickly for larger $\theta$. The Bayes procedure is better than the sample mean for nearly all $\theta$'s. These curves reflect the usual situation---some procedures will work better for certain $\theta$'s and some will work better for others.
+6. A decision procedure which is  \term{inadmissible} is one that is dominated everywhere.
+That is, $\delta$ is \term{\textcolor{red}{admissible}} if there is no $\delta'$ such that $$R(\theta,\delta')\leq R(\theta,\delta)$$
+for all $\theta$ and $R(\theta,\delta')< R(\theta,\delta)$ for at least one $\theta$. \textcolor{red}{A decision rule is admissible so long as it is not being dominated everywhere.}  
+7. Bayes procedures are admissible under very general conditions.
+8. Admissibility is nice to have, but it doesn't mean a procedure is necessarily good. Silly procedures can still be admissible---e.g., in this example, the constant procedure $c = 0.1$ is admissible too!
+
+
+Takeaways
+===
+
+- In understanding an optimal decision rule, we first must have a parameter of interest ($\theta$) and define an optimal estimator ($\delta(X)$ or $\hat{\theta}$). 
+
+- There are many ways to define a loss function. A few that we talked about were the 0-1, quadratic, and absolute value loss. 
+
+- Next, we define several ways of finding an optimal decision rule. There were three that we considered. We considered minimizing the posterior risk (Bayes rule), the risk (frequentist risk), or the integrated risk. 
+
+- Finally, we defined admissible/inadmissible rules. 
+
+Detailed Takeways for Exam
+===
+
+- $\hat{\theta}$ is an estimator of $\theta$
+- Loss function $L(\theta, \hat{\theta})$
+- Examples of loss functions
+- The difference between an action and an estimator
+- Posterior risk
+- Decision procedure
+- Bayes rule (or Bayes estimator)
+- How to derive the Bayes estimator
+- What is the Bayes estimator under squared error loss? 
+- What is the Bayes estimator under weighted squared error loss? 
+- When you find the Bayes estimator, what condition do you always need to check? 
+
+Detailed Takeways for Exam (Continued)
+===
+- How to approach decision theory problems such as the resource allocation problem,
+where you're given the set up and then you must given the model and the loss function and back up 
+the rational here.
+- How to solve for the Bayes estimator for an applied problem such as the resource allocation problem,
+where the Bayes estimator is NOT in a closed form solution.
+- How to conduct a sensitivity analysis for a posterior analysis and report your findings.
+- The frequentist risk and why it's used. 
+- Admissibility and how to determine if an estimator is admissible or inadmissible. 
+
+Module 2 Derivations
+===
+
+Module 2 Derivations can be found below:
+
+https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-2/02-class-notes
