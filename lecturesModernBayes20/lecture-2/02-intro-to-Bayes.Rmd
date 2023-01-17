@@ -29,7 +29,12 @@ The basics of decision theory, which include:
 - discrete example
 - loss function(s)
 - frequentist risk and posterior risk 
-- practice working with these concepts via derivations, lab, and via homework 
+- practice working with these concepts via derivations, lab, and via homework
+
+\vspace*{1em}
+
+Background/review: Convex function \url{https://en.wikipedia.org/wiki/Convex_function}
+Result: ``A twice-differentiable function of a single variable is convex if and only if its second derivative is non-negative on its entire domain." -Wikipedia
 
 Principles/Notation
 ===
@@ -226,7 +231,7 @@ The **posterior risk** can be written as
 \rho(\theta, \delta(x))&=\E(\ell(\theta,{\delta}(x))|x_{1:n}) =
 \E((\theta-{\delta}(x)))^2|x_{1:n}) \\
 &= 
-\E(\theta^2 - 2\theta \;{\delta}(x))  + {\delta}(x)) |x_{1:n})\\
+\E(\theta^2 - 2\theta \;{\delta}(x))  + {\delta}^2(x)) |x_{1:n})\\
 &=\E(\theta^2|x_{1:n}) - 2{\delta}(x))\E(\theta|x_{1:n}) + {\delta}^2(x)).
 \end{align*}
 
@@ -265,7 +270,7 @@ Now, let
 $$ 0 -2 \E(\theta|x_{1:n}) + 2 \delta(x) =: 0, $$
 which implies that $$\delta(x) = \E(\theta|x_{1:n}).$$
 
-Because the loss function is convex, $\delta(x) = \E(\theta|x_{1:n})$ is the unique solution. 
+Because the loss function is convex, $\delta(x) = \E(\theta|x_{1:n})$ is the unique solution.\footnote{Alternatively, the second partial derivative is 0, which is non-negative implying the function is convex and the solution is unique.}
 
 Summary of Theorem
 ===
