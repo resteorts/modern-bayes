@@ -19,9 +19,15 @@ Agenda
 - Integrated Risk
 - An Application to Resource Allocation 
 
+What will your learn?
+===
+
+You will learn basic decision theory. In short, you will learn about ``optimal estimators" for Bayesian inference and how they connect to frequentist theory. We will connect this to an application of resource application, where we cannot compute the optimal number of resources in closed form. 
+
 General setup
 ===
 Assume an unknown state $S$ (a.k.a. the state of nature).
+
 Assume 
 
 - we receive an observation $x$, 
@@ -43,9 +49,14 @@ Example
 1. State: $S = \btheta$
 2. Observation: $x = x_{1:n}$
 3. Action: $a = \hat\theta$
-4. Loss: $\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2$ (quadratic loss, a.k.a. square loss)
+4. Loss: $\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2$ (quadratic loss, a.k.a. squared error loss)
 
-\textcolor{red}{Question: Why do we consider quadratic loss over other loss functions?}
+
+
+Question
+===
+
+Why do we consider the squared error loss function over other loss functions, such as the absolute error loss function? 
 
 
 Bayesian approach
@@ -62,16 +73,24 @@ Bayesian approach (continued)
 ===
 
 1. A \term{decision procedure} $\delta$ is a systematic way of choosing actions $a$ based on observations $x$. Typically, this is a deterministic function $a=\delta(x)$ (but sometimes introducing some randomness into $a$ can be useful).
-2. A \term{Bayes procedure} is a decision procedure that chooses an $a$ minimizing the posterior expected loss $\rho(a,x)$, for each $x$.
-3. Note: Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies. 
+2. A \term{Bayes procedure or rule} is a decision procedure $\delta$ that chooses an action $a$ that minimizes the posterior expected loss $\rho(a,x)$, for each $x$.\footnote{Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies.}
 
-What is the optimal decision rule?
+What is the Bayes rule assuming squared error loss?
 ===
 
-- Goal: Minimize the posterior risk
-- First note that 
-$$\ell(\theta,\hat\theta) =\theta^2 - 2\theta\hat\theta + \hat\theta^2$$
-- It then follows that the \textbf{posterior loss} is
+Goal: Find the Bayes rule. 
+
+1.  Assume that $\hat{\theta}$ is an estimator of $\theta.$ 
+2.  Assume data $x_{1:n}.$ 
+3.  Assume squared error loss $$\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2.$$
+
+Finding the Bayes rule
+===
+
+By definition, we want to **minimize the posterior risk** (or posterior expected loss).
+
+The **posterior risk** can be written as
+
 \begin{align*}
 \rho(\hat\theta,x_{1:n})&=\E(\ell(\theta,\hat\theta)|x_{1:n}) =
 \E((\theta-\hat\theta)^2|x_{1:n}) \\
@@ -81,16 +100,23 @@ $$\ell(\theta,\hat\theta) =\theta^2 - 2\theta\hat\theta + \hat\theta^2$$
 \end{align*}
 which is a convex function of $\hat\theta$. 
 
-What is the optimal decision rule?
+
+
+
+Finding the Bayes rule
 ===
+
 We just showed that
 $$\rho(\hat\theta,x_{1:n}) = \E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2$$
 Setting the derivative with respect to $\hat\theta$ equal to $0$, and solving, we find that the minimum occurs at $\hat\theta = \E(\btheta|x_{1:n})$, \textbf{the posterior mean}. 
 
 Let's walk through this derivation together. 
 
-What is the optimal decision rule?
+What is the Bayes rule?
 ===
+
+Let's now **minimize the posterior risk.** 
+
 \begin{align*}
 \frac{\partial \rho(\hat\theta,x_{1:n})}{\partial \hat{\theta}}
 &= \frac{\partial \{\E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2\}}{\partial \hat{\theta}}
@@ -101,6 +127,18 @@ $$ -2 \E(\theta|x_{1:n}) + 2 \hat{\theta} = 0, $$
 which implies that $$\hat{\theta} = \E(\theta|x_{1:n}).$$
 
 Why is the solution unique?
+
+What is the Bayes rule (under squared error loss)?
+===
+
+To summarize, we just showed that the Bayes rule under squared error loss is 
+
+$$\hat{\theta} = \E(\theta|x_{1:n}).$$
+\vspace*{1em}
+
+That is, the **Bayes rule is the posterior mean**! 
+
+
 
 Resource allocation for disease prediction
 ===
@@ -116,6 +154,10 @@ Suppose they allocate enough resources to accomodate a fraction $c$ of the popul
 - After deliberation, they adopt the following loss function:
 $$\ell(\theta,c) =\branch{|\theta-c|}{c\geq\theta}
                        {10|\theta-c|}{c<\theta.}$$
+                       
+\vspace*{1em}
+
+**This applied example corresponds to lab 3 and homework 3.**
                        
 Resource allocation for disease prediction (continued)
 ===                       
@@ -142,46 +184,47 @@ where $x = x_{1:n}$.
 
 Resource allocation for disease prediction in R
 ===
-```{r, cache=TRUE}
-# set seed 
+```{r, cache = TRUE}
+## set seed
 set.seed(123)
-
-# data
-sum_x = 1
-n = 30
+## data and number of total obs.
+sum_x <- 1
+n <- 30
 # prior parameters
-a = 0.05; b = 1
+a <- 0.05
+b <- 1
 # posterior parameters
-an = a + sum_x
-bn = b + n - sum_x
-th = seq(0,1,length.out = 100)
-# writing the likelihood as a beta 
-# a trick from module 1
-like = dbeta(th, sum_x+1,n-sum_x+1)
-prior = dbeta(th,a,b)
-post = dbeta(th,sum_x+a,n-sum_x+b)
+an <- a + sum_x
+bn <- b + n - sum_x
+# seq of theta values
+th <- seq(0, 1, length.out = 100)
+## likelihood, prior, posterior
+like <- dbeta(th, sum_x + 1, n - sum_x + 1)
+prior <- dbeta(th, a, b)
+post <- dbeta(th, sum_x + a, n - sum_x + b)
 ```
 
 Likelihood, Prior, and Posterior
 ===
 ```{r, echo=FALSE}
-plot(th, like, type = "l", ylab = "Density", 
-     xlab = expression(theta), lty = 2, lwd = 3, 
-     col = "green",ylim = c(0,21) )
-lines(th, prior, lty = 3, lwd = 3, col= "red")
-lines(th, post, lty=1, lwd = 3, col= "blue")
-legend(0.6,10, c("Prior", "Likelihood", "Posterior"), lty=c(2,3,1), lwd=c(3,3,3), 
+plot(th, like, type = "l", ylab = "Density",
+     xlab = expression(theta), lty = 2, lwd = 3,
+     col = "green", ylim = c(0, 21))
+lines(th, prior, lty = 3, lwd = 3, col = "red")
+lines(th, post, lty = 1, lwd = 3, col = "blue")
+legend(0.6, 10, c("Prior", "Likelihood", "Posterior"),
+       lty = c(2, 3, 1), lwd = c(3, 3, 3),
        col = c("red", "green", "blue"))
 ```
 
 The loss function
 ===
 ```{r}
-# compute the loss given theta and c 
-loss_function = function(theta, c){
-  if (c < theta){
-    return(10*abs(theta - c))
-  } else{
+## Compute the loss given theta and c.
+loss_function <- function(theta, c) {
+  if (c < theta) {
+    return(10 * abs(theta - c))
+  }else {
     return(abs(theta - c))
   }
 }
@@ -190,17 +233,16 @@ loss_function = function(theta, c){
 Posterior risk
 ===
 ```{r}
-# compute the posterior risk given c 
-# s is the number of random draws 
-posterior_risk = function(c, s = 30000){
-  # randow draws from posterior distribution
-  # which is a beta with params an and bn
-  theta = rbeta(s, an, bn)
-  
-  # calculating values of the loss times the posterior
-  loss <- apply(as.matrix(theta),1,loss_function,c)
+# Compute the posterior risk given c.
+# S is the number of random draws.
+posterior_risk <- function(c, s = 30000) {
+  # Randow draws from posterior distribution,
+  # which is a beta with params an and bn.
+  theta <- rbeta(s, an, bn)
+  # Calculating values of the loss times the posterior.
+  loss <- apply(as.matrix(theta), 1, loss_function, c)
   # average values from the loss function (integral)
-  risk = mean(loss)
+  mean(loss)
 }
 ```
 
@@ -208,19 +250,18 @@ Posterior Risk (continued)
 ===
 ```{r}
 # a sequence of c in [0, 0.5]
-c = seq(0, 0.5, by = 0.01)
-post_risk <- apply(as.matrix(c),1,posterior_risk)
+c <- seq(0, 0.5, by = 0.01)
+post_risk <- apply(as.matrix(c), 1, posterior_risk)
 head(post_risk)
 ```
 
 Posterior expected loss/posterior risk for disease prevelance
 ===
 ```{r}
-# plot posterior risk against c 
-
-pdf(file="posterior-risk.pdf")
-plot(c, post_risk, type = 'l', col='blue', 
-    lwd = 3, ylab ='p(c, x)' )
+# Plot posterior risk against c.
+pdf(file = "posterior-risk.pdf")
+plot(c, post_risk, type = "l", col = "blue",
+    lwd = 3, ylab = "p(c, x)")
 dev.off()
 # minimum of posterior risk occurs at c = 0.08
 (c[which.min(post_risk)])
@@ -247,17 +288,17 @@ Sensitivity Analysis
 Posterior Risk Function (More Advanced)
 ===
 ```{r, cache=TRUE}
-# compute the posterior risk given c 
-# s is the number of random draws 
-posterior_risk = function(c, a_prior, b_prior, 
-                          sum_x, n, s = 30000){
-  # randow draws from beta distribution 
-  a_post = a_prior + sum_x
-  b_post = b_prior + n - sum_x
-  theta = rbeta(s, a_post, b_post)
-  loss <- apply(as.matrix(theta),1,loss_function,c)
+# Compute the posterior risk given c.
+# S is the number of random draws.
+posterior_risk <- function(c, a_prior, b_prior,
+                          sum_x, n, s = 30000) {
+  # Randow draws from beta distribution.
+  a_post <- a_prior + sum_x
+  b_post <- b_prior + n - sum_x
+  theta <- rbeta(s, a_post, b_post)
+  loss <- apply(as.matrix(theta), 1, loss_function, c)
   # average values from the loss function
-  risk = mean(loss)
+  mean(loss)
 }
 ```
 
@@ -265,46 +306,44 @@ Posterior Risk Function (More Advanced)
 ===
 ```{r, cache=TRUE}
 # a sequence of c in [0, 0.5]
-c = seq(0, 0.5, by = 0.01)
-post_risk <- apply(as.matrix(c),1,
-                   posterior_risk, a, b, sum_x, n)
+c <- seq(0, 0.5, by = 0.01)
+post_risk <- apply(as.matrix(c), 1, posterior_risk, 
+                   a, b, sum_x, n)
 head(post_risk)
 ```
 
 Sensitivity Analysis
 ===
 ```{r, cache=TRUE}
-# set prior
-as = c(0.05, 1, 0.05); bs = c(1, 1, 10)
-post_risk = matrix(NA, 3, length(c))
-
+# set prior values
+as <- c(0.05, 1, 0.05)
+bs <- c(1, 1, 10)
+post_risk <- matrix(NA, 3, length(c))
 # for each pair of a and b, compute the posterior risks
-for (i in 1:3){
-  a_prior = as[i]
-  b_prior = bs[i]
-
-  # using the more advanced function 
-  # of the posterior risk  
-post_risk[i,] = apply(as.matrix(c), 1,
-                      posterior_risk, a_prior,
-                      b_prior, sum_x, n)
+for (i in 1:3) {
+  a_prior <- as[i]
+  b_prior <- bs[i]
+# Using advanced function of posterior risk.
+post_risk[i,  ] <- apply(as.matrix(c),  1,
+                      posterior_risk,  a_prior,
+                      b_prior,  sum_x,  n)
 }
 ```
 
 Plot
 ===
 ```{r}
-plot(c, post_risk[1,], type = 'l', 
-     col='blue', lty = 1, yaxt = "n", ylab = "p(c, x)")
-par(new = T)
-plot(c, post_risk[2,], type = 'l', 
-     col='red', lty = 2, yaxt = "n", ylab = "")
-par(new = T)
-plot(c, post_risk[3,], type = 'l', 
+plot(c,  post_risk[1,  ], type = "l",
+     col = "blue",  lty = 1,  yaxt = "n",  ylab = "p(c, x)")
+par(new = TRUE)
+plot(c, post_risk[2, ], type = "l",
+     col = "red", lty = 2, yaxt = "n", ylab = "")
+par(new = TRUE)
+plot(c, post_risk[3, ], type = "l",
      lty = 3, yaxt = "n", ylab = "")
-legend("bottomright", lty = c(1,2,3), 
-       col = c("blue", "red", "black"), 
-       legend = c("a = 0.05 b = 1", 
+legend("bottomright", lty = c(1, 2, 3),
+       col = c("blue", "red", "black"),
+       legend = c("a = 0.05 b = 1",
                   "a = 1 b = 1", "a = 0.05 b = 5"))
 ```
 
@@ -314,28 +353,27 @@ Optimal resources (a,b vary)
 the optimal value for c is:}
 
 ```{r}
-(c[which.min(post_risk[1,])])
-(c[which.min(post_risk[2,])])
-(c[which.min(post_risk[3,])])
+(c[which.min(post_risk[1, ])])
+(c[which.min(post_risk[2, ])])
+(c[which.min(post_risk[3, ])])
 ```
 
 
 Plot
 ===
 ```{r, echo=FALSE}
-plot(c, post_risk[1,], type = 'l', 
-     col='blue', lty = 1, yaxt = "n", ylab = "p(c, x)")
-par(new = T)
-plot(c, post_risk[2,], type = 'l', 
-     col='red', lty = 2, yaxt = "n", ylab = "")
-par(new = T)
-plot(c, post_risk[3,], type = 'l', 
+plot(c, post_risk[1, ], type = "l",
+     col = "blue", lty = 1, yaxt = "n", ylab = "p(c, x)")
+par(new = TRUE)
+plot(c, post_risk[2, ], type = "l",
+     col = "red", lty = 2, yaxt = "n", ylab = "")
+par(new = TRUE)
+plot(c, post_risk[3, ], type = "l",
      lty = 3, yaxt = "n", ylab = "")
-legend("bottomright", lty = c(1,2,3), 
-       col = c("blue", "red", "black"), 
-       legend = c("a = 0.05 b = 1", 
+legend("bottomright", lty = c(1, 2, 3),
+       col = c("blue", "red", "black"),
+       legend = c("a = 0.05 b = 1",
                   "a = 1 b = 1", "a = 0.05 b = 5"))
-
 ```
 
 
@@ -348,14 +386,14 @@ where $X$ has distribution $p(x|\btheta)$.  In other words,
 $$ R(\theta,\delta) = \int \ell(\theta,\delta(x))\,p(x|\theta)\,dx$$
 if $X$ is continuous, while the integral is replaced with a sum if $X$ is discrete.
 
-The integrated risk
-===
+<!-- The integrated risk -->
+<!-- === -->
 
-The \term{integrated risk}  associated with $\delta(X)$ is
-\begin{align}
-r(\delta) &= \E(\ell(\btheta,\delta(X)) = \int R(\theta,\delta)\,p(\theta)\,d\theta \\
-&= \int \int \ell(\theta,\delta(x))\,p(x|\theta)p(\theta)\,dx \,d\theta
-\end{align}
+<!-- The \term{integrated risk}  associated with $\delta(X)$ is -->
+<!-- \begin{align} -->
+<!-- r(\delta) &= \E(\ell(\btheta,\delta(X)) = \int R(\theta,\delta)\,p(\theta)\,d\theta \\ -->
+<!-- &= \int \int \ell(\theta,\delta(x))\,p(x|\theta)p(\theta)\,dx \,d\theta -->
+<!-- \end{align} -->
 
 
 
@@ -414,6 +452,35 @@ Takeaways
 
 - Finally, we defined admissible/inadmissible rules. 
 
+Detailed Takeways for Exam
+===
 
+- $\hat{\theta}$ is an estimator of $\theta$
+- Loss function $L(\theta, \hat{\theta})$
+- Examples of loss functions
+- The difference between an action and an estimator
+- Posterior risk
+- Decision procedure
+- Bayes rule (or Bayes estimator)
+- How to derive the Bayes estimator
+- What is the Bayes estimator under squared error loss? 
+- What is the Bayes estimator under weighted squared error loss? 
+- When you find the Bayes estimator, what condition do you always need to check? 
 
+Detailed Takeways for Exam (Continued)
+===
+- How to approach decision theory problems such as the resource allocation problem,
+where you're given the set up and then you must given the model and the loss function and back up 
+the rational here.
+- How to solve for the Bayes estimator for an applied problem such as the resource allocation problem,
+where the Bayes estimator is NOT in a closed form solution.
+- How to conduct a sensitivity analysis for a posterior analysis and report your findings.
+- The frequentist risk and why it's used. 
+- Admissibility and how to determine if an estimator is admissible or inadmissible. 
 
+Module 2 Derivations
+===
+
+Module 2 Derivations can be found below:
+
+https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-2/02-class-notes

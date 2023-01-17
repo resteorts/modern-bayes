@@ -12,128 +12,267 @@ font-size: 8px
 Agenda
 ===
 - What is decision theory?
+- Simple set up for discrete case
 - General setup
-- Example of general set up
-- Bayesian risk
+- Loss functions
 - Frequentist Risk
-- Integrated Risk
-- An Application to Resource Allocation 
+- Bayesian risk
+- Bayes rule under squared error loss
+- Lab/Homework: Application to resource allocation
 
 What will your learn?
 ===
 
-You will learn basic decision theory. In short, you will learn about ``optimal estimators" for Bayesian inference and how they connect to frequentist theory. We will connect this to an application of resource application, where we cannot compute the optimal number of resources in closed form. 
+The basics of decision theory, which include:
 
-General setup
+- notation/terminology
+- discrete example
+- loss function(s)
+- frequentist risk and posterior risk 
+- practice working with these concepts via derivations, lab, and via homework 
+
+Principles/Notation
 ===
-Assume an unknown state $S$ (a.k.a. the state of nature).
 
-Assume 
+Decision theory consists of three basic principles:
 
-- we receive an observation $x$, 
-- we take an action $a$, and
-- we incur a real-valued loss $\ell(S,a)$.
+\vspace*{1em}
 
+1. Possible states of nature $\Theta$ (the parameter space).
+2. A set of possible actions $\mathcal{A}$
+3. A loss function $\ell(\theta, a),$ where $\theta \in \Theta$ and $a \in \mathcal{A}.$  
+
+If the actions are data dependent, the literature denotes this as a decision rule $\delta(x).$
+
+\vspace*{1em}
+
+$(\Theta, \mathcal{A}, \ell)$ define a game, where typically the goal is to minimize the loss function. 
+
+\vspace*{1em}
+
+Note: We may or may not have observed data $x \in \mathcal{X}.$
+
+Rules of ``the game"
+===
+
+1. Nature selects a point $\theta \in \Theta.$
+
+\vspace*{1em}
+
+Example: Nature decides it will rain today. 
+
+\vspace*{1em}
+
+2. You (the statistician) chose an action $a \in \mathcal{A}$ \textbf{where you are not informed of the state of nature.}
+
+\vspace*{1em}
+
+Example: Your \textbf{action} is to NOT carry an umbrella. 
+
+Based upon 1 and 2, you will lose an amount $\ell(\theta, a).$
+
+
+Motivating Example
+===
+
+$$\Theta = \{\text{Rain}, \text{No Rain}\}$$
+$$\mathcal{A} = \{\text{Umbrella}, \text{No Umbrella}\}$$
 \begin{center}
-\begin{tabular}{ c l }
-$S$ & state (unknown) \\
-$x$ & observation (known) \\
-$a$ & action \\
-$\ell(s,a)$ & loss
+\begin{tabular}{l|l|c|c|c}
+\multicolumn{2}{c}{}&\multicolumn{2}{c}{$\mathcal{A}$}&\\
+\cline{3-4}
+\multicolumn{2}{c|}{}&Umbrella & No Umbrella
+&\multicolumn{1}{c}{}\\
+\cline{2-4}
+\multirow{2}{*}{$\Theta$}& Rain & $0$ & $10$\\
+\cline{2-4}
+& No Rain & $1$ & $0$\\
+\cline{2-4}
 \end{tabular}
 \end{center}
 
-Example 
+\vspace*{1em}
+
+The 2 by 2 matrix illustrates a loss function $\ell(\theta, a)$ for all combinations of $a,\theta.$
+
+\vspace*{1em}
+
+\textbf{What do you learn from this figure?}
+
+Risk
 ===
 
-1. State: $S = \btheta$
-2. Observation: $x = x_{1:n}$
-3. Action: $a = \hat\theta$
-4. Loss: $\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2$ (quadratic loss, a.k.a. squared error loss)
+We will define two types of risk that are commonly used, the \emph{frequentist risk} and the \emph{posterior risk}. 
 
+\vspace*{1em}
 
+Our goal is to minimize our risk (we want to avoid losing, such as losing money, bad outcomes, or getting wet!)
 
-Question
+Frequentist risk 
 ===
 
-Why do we consider the squared error loss function over other loss functions, such as the absolute error loss function? 
+Suppose that $\theta \in \Theta.$ Suppose that $X$ has distribution  $p(x|\theta)$.
 
 
-Bayesian approach
+The \term{risk} (or \term{frequentist risk}) associated with an action or decision procedure $\delta(X)$ is 
+$$ R(\theta,\delta(X)) = \E\big(\ell(\theta,\delta(X))\mid \theta) = \int \ell(\theta,\delta(x))\,\textcolor{blue}{p(x|\theta)}\,dx,$$
+if $X$ is continuous, while the integral is replaced with a sum if $X$ is discrete.
+
+<!-- \vspace{1em} -->
+
+<!-- $$ R(\theta,a) = \E\big(\ell(\theta,a \mid \theta) = \sum_x \ell(\theta,a) \,p(x|\theta).$$ -->
+
+
+Posterior risk (or Bayes' risk) 
 ===
 
-- $S$ is a random variable, 
-- the distribution of $x$ depends on $S$, 
-- and the optimal decision is to choose an action $a$ that minimizes the \term{posterior expected loss} or \term{posterior risk},
-$$\rho(a,x) =\E(\ell(S,a)|x).$$
+The \textbf{posterior risk} is defined to be 
 
-In other words, $\rho(a,x) =\sum_s \ell(s,a) p(s|x)$ if $S$ is a discrete random variable, while if $S$ is continuous then the sum is replaced by an integral.
+$$\rho(\theta, \delta(X)) = \E\big(\ell(\theta,\delta(X))\mid X = x) = \int \ell(\theta,\delta(X)) \; \textcolor{blue}{p(\theta \mid x)} \; d\theta,$$
 
-Bayesian approach (continued)
+if $\Theta$ is continuous, while the integral is replaced with a sum if $\Theta$ is discrete.
+
+
+Exercise 
 ===
 
-1. A \term{decision procedure} $\delta$ is a systematic way of choosing actions $a$ based on observations $x$. Typically, this is a deterministic function $a=\delta(x)$ (but sometimes introducing some randomness into $a$ can be useful).
-2. A \term{Bayes procedure or rule} is a decision procedure $\delta$ that chooses an action $a$ that minimizes the posterior expected loss $\rho(a,x)$, for each $x$.\footnote{Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies.}
+1. Given our motivating example, calculate the frequentist risk and posterior risk.
 
-What is the Bayes rule assuming squared error loss?
+2. Suppose it always rains. Find the frequentist risk and posterior risk given this assumption.
+
+3. What is the action that minimizes the frequentist risk and posterior risk from part 2.
+
+Exercise, where solution can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/reading/babybayes-master.pdf} pages 99--
+100.
+
+
+
+
+General setup
+===
+Assume an unknown state of nature $\Theta$ ($\theta \in \Theta$).
+
+Also, 
+
+- we observe data $x = x_{1:n} \in \mathcal{X},$ 
+- we take an action $a$ or decision procedure $\delta(X),$
+- we incur a real-valued loss function $\ell(\theta,\delta(X)).$
+
+<!-- \begin{center} -->
+<!-- \begin{tabular}{ c l } -->
+<!-- $\Theta$ & state of nature (unknown) \\ -->
+<!-- $x$ & observed data (known) \\ -->
+<!-- $a$ or $\delta(x)$ & action or decision procedure\\ -->
+<!-- $\ell(\theta,\delta(x))$ & loss function -->
+<!-- \end{tabular} -->
+<!-- \end{center} -->
+
+<!-- Example  -->
+<!-- === -->
+
+<!-- 1. State of nature: $\theta \in \Theta$ -->
+<!-- 2. Observed data: $x = x_{1:n}$ -->
+<!-- 3. Decision rule: $\delta(X)$ -->
+<!-- 4. Loss function: $\ell(\theta,\delta(X)) = (\theta-\delta(X))^2$ (quadratic loss or squared error loss) -->
+
+
+
+<!-- Question -->
+<!-- === -->
+
+<!-- Why do we consider the squared error loss function over other loss functions, such as the absolute error loss function?  -->
+
+
+<!-- Bayesian approach -->
+<!-- === -->
+
+<!-- - $S$ is a random variable,  -->
+<!-- - the distribution of $x$ depends on $S$,  -->
+<!-- - and the optimal decision is to choose an action $a$ that minimizes the \term{posterior expected loss} or \term{posterior risk}, -->
+<!-- $$\rho(a,x) =\E(\ell(S,a)|x).$$ -->
+
+<!-- In other words, $\rho(a,x) =\sum_s \ell(s,a) p(s|x)$ if $S$ is a discrete random variable, while if $S$ is continuous then the sum is replaced by an integral. -->
+
+<!-- Bayesian approach (continued) -->
+<!-- === -->
+
+<!-- 1. A \term{decision procedure} $\delta$ is a systematic way of choosing actions $a$ based on observations $x$. Typically, this is a deterministic function $a=\delta(x)$ (but sometimes introducing some randomness into $a$ can be useful). -->
+
+Bayes rule
 ===
 
-Goal: Find the Bayes rule. 
+A \term{Bayes rule} is an optimal decision procedure $\hat{\delta}(X)$ that \textbf{minimizes the posterior risk} for all values of $x \in \mathcal{X}.\footnote{Sometimes the loss is restricted to be nonnegative, to avoid certain pathologies.}$
 
-1.  Assume that $\hat{\theta}$ is an estimator of $\theta.$ 
-2.  Assume data $x_{1:n}.$ 
-3.  Assume squared error loss $$\ell(\theta,\hat\theta) = (\theta-\hat\theta)^2.$$
-
-Finding the Bayes rule
+Assumptions
 ===
 
-By definition, we want to **minimize the posterior risk** (or posterior expected loss).
+1.  Assume observed data $x = x_{1:n}.$ 
+2.  Assume that $\hat{\delta}(X)$ is the \textbf{optimal decision rule} $\delta(X).$ 
+3.  Assume squared error loss $$\ell(\theta,\delta(X)) = (\theta-\delta(X))^2.$$
+
+Theorem
+===
+
+Show that the posterior mean $\hat{\delta}(x) = E[\theta \mid x_{1:n}]$ minimizes the posterior risk. (It's important to verify the solution is unique). 
+
+Proof
+===
+
+By definition, we want to **minimize the posterior risk.**
 
 The **posterior risk** can be written as
 
 \begin{align*}
-\rho(\hat\theta,x_{1:n})&=\E(\ell(\theta,\hat\theta)|x_{1:n}) =
-\E((\theta-\hat\theta)^2|x_{1:n}) \\
+\rho(\theta, \delta(x))&=\E(\ell(\theta,{\delta}(x))|x_{1:n}) =
+\E((\theta-{\delta}(x)))^2|x_{1:n}) \\
 &= 
-\E(\theta^2 - 2\theta\hat\theta + \hat\theta^2|x_{1:n})\\
-&=\E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2,
+\E(\theta^2 - 2\theta \;{\delta}(x))  + {\delta}(x)) |x_{1:n})\\
+&=\E(\theta^2|x_{1:n}) - 2{\delta}(x))\E(\theta|x_{1:n}) + {\delta}^2(x)).
 \end{align*}
-which is a convex function of $\hat\theta$. 
 
 
 
 
-Finding the Bayes rule
+
+
+
+<!-- Finding the Bayes rule -->
+<!-- === -->
+
+<!-- We just showed that -->
+<!-- $$\rho(\theta, \delta(x)) = \E(\theta^2|x_{1:n}) - 2\hat{\delta}(x))\l\E(\theta|x_{1:n}) + \hat{\delta}^2(x))$$ -->
+<!-- Setting the derivative with respect to $\hat\theta$ equal to $0$, and solving, we find that the minimum occurs at $\hat\theta = \E(\btheta|x_{1:n})$, \textbf{the posterior mean}.  -->
+
+<!-- Let's walk through this derivation together.  -->
+
+Proof (continued)
 ===
 
-We just showed that
-$$\rho(\hat\theta,x_{1:n}) = \E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2$$
-Setting the derivative with respect to $\hat\theta$ equal to $0$, and solving, we find that the minimum occurs at $\hat\theta = \E(\btheta|x_{1:n})$, \textbf{the posterior mean}. 
+Let's now **minimize the posterior risk.**
 
-Let's walk through this derivation together. 
-
-What is the Bayes rule?
-===
-
-Let's now **minimize the posterior risk.** 
+Recall that $$\rho(\theta, \delta(x)) = \E(\theta^2|x_{1:n}) - 2{\delta}(x))\E(\theta|x_{1:n}) + {\delta}^2(x))$$
 
 \begin{align*}
-\frac{\partial \rho(\hat\theta,x_{1:n})}{\partial \hat{\theta}}
-&= \frac{\partial \{\E(\theta^2|x_{1:n}) - 2\hat\theta\E(\theta|x_{1:n}) +\hat\theta^2\}}{\partial \hat{\theta}}
-&= -2 \E(\theta|x_{1:n}) + 2 \hat{\theta}
+\frac{\partial \rho(\theta,\delta(x))}{\partial {\delta}(x))} 
+&= \frac{\partial \{\E(\theta^2|x_{1:n}) - 2{\delta}(x))\E(\theta|x_{1:n}) +{\delta}^2(x))\}}{\partial {\delta{x}}} \\
+&= -2 \E(\theta|x_{1:n}) + 2 {\theta}
 \end{align*}
+
+Proof (continued)
+===
+
 Now, let 
-$$ -2 \E(\theta|x_{1:n}) + 2 \hat{\theta} = 0, $$
-which implies that $$\hat{\theta} = \E(\theta|x_{1:n}).$$
+$$ 0 -2 \E(\theta|x_{1:n}) + 2 \delta(x) =: 0, $$
+which implies that $$\delta(x) = \E(\theta|x_{1:n}).$$
 
-Why is the solution unique?
+Because the loss function is convex, $\delta(x) = \E(\theta|x_{1:n})$ is the unique solution. 
 
-What is the Bayes rule (under squared error loss)?
+Summary of Theorem
 ===
 
 To summarize, we just showed that the Bayes rule under squared error loss is 
 
-$$\hat{\theta} = \E(\theta|x_{1:n}).$$
+$$\hat{\delta}(x) = \E(\theta|x_{1:n}).$$
 \vspace*{1em}
 
 That is, the **Bayes rule is the posterior mean**! 
@@ -142,6 +281,8 @@ That is, the **Bayes rule is the posterior mean**!
 
 Resource allocation for disease prediction
 ===
+
+\textbf{This material corresponds with lab 3 and homework 3.}
 
 Suppose public health officials in a small city need to decide how much resources to devote toward prevention and treatment of a certain disease, but the fraction $\theta$ of infected individuals in the city is unknown.
 
