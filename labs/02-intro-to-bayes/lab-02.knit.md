@@ -35,15 +35,34 @@ $$\theta \mid X \sim \text{Beta}(x+a,n-x+b).$$
 Simulate some data using the \textsf{rbinom} function of size $n = 100$ and probability equal to 1\%. Remember to \textsf{set.seed(123)} so that you can replicate your results.
 
 The data can be simulated as follows:
-```{r,echo=TRUE}
+
+```r
 # set a seed
 set.seed(123)
 # create the observed data
 obs_data <- rbinom(n = 100, size = 1, prob = 0.01)
 # inspect the observed data
 head(obs_data)
+```
+
+```
+## [1] 0 0 0 0 0 0
+```
+
+```r
 tail(obs_data)
+```
+
+```
+## [1] 0 0 0 0 0 0
+```
+
+```r
 length(obs_data)
+```
+
+```
+## [1] 100
 ```
 
 # Task 3
@@ -54,7 +73,8 @@ The likelihood function is given below. Since this is a probability and is only 
 
 You have a rough sketch of what you should do for this part of the assignment. Try this out in lab on your own. 
 
-```{r, echo = TRUE}
+
+```r
 ### Bernoulli LH Function ###
 # Input: obs_data, theta
 # Output: bernoulli likelihood
@@ -82,7 +102,8 @@ Create two plots, one for the informative and one for the non-informative case t
 # Solution to Task 3
 
 The likelihood function is given below. Since this is a probability and is only valid over the interval from $[0, 1],$ I will generate a sequence over that interval of length 1000.
-```{r, echo = TRUE}
+
+```r
 ### Bernoulli LH Function ###
 # Input - the data, theta grid #
 # Produces likelihood values #
@@ -102,3 +123,5 @@ plot(theta_sim, likelihood_sim, type = "l",
  main = "Likelihood Profile", xlab = "Simulated Support",
   ylab = "Likelihood")
 ```
+
+![](lab-02_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
