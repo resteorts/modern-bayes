@@ -1,5 +1,6 @@
 .lecturesModernBayes/
 *.DStore
+.DS_Store
 .RData
 *.Rhistory
 *.Rapp.history
