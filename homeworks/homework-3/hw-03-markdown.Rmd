@@ -63,4 +63,4 @@ I_{(\beta, \infty)}(\theta).$$
 **The goal of this problem is to practice a similar problem that we considered in Module 2, where we derived the Bayes rule under squared error loss and found the result was the posterior mean.**
 
 (a) (5 pts) Find the Bayes estimator (or Bayes rule) when the loss function is  $L(\theta, \delta(x))~=~c~(\theta-\delta(x))^2,$ where $\textcolor{red}{c >0}$ is a constant. 
-(b) (10 pts) Derive the Bayes estimator (or Bayes rule) when $L(\theta, \delta(x)) = w(\theta) (g(\theta)-\delta(x))^2.$ Do so without writing any integrals. Note that you can write $\rho(\pi,\delta(x)) =  E[L(\theta,\delta(x))|X].$  \textcolor{red}{You may assume that $w(\theta) > 0.$} \textcolor{red}{Don't forget to prove or state why the Bayes rule(s) are unique.}
+(b) (10 pts) Derive the Bayes estimator (or Bayes rule) when $L(\theta, \delta(x)) = w(\theta) (g(\theta)-\delta(x))^2.$ Do so without writing any integrals. Note that you can write $\rho(\theta,\delta(x)) =  E[L(\theta,\delta(x))|X].$  \textcolor{red}{You may assume that $w(\theta) > 0.$} \textcolor{red}{Don't forget to prove or state why the Bayes rule(s) are unique.}
