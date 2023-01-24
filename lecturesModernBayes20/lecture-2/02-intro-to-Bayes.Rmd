@@ -137,18 +137,86 @@ $$\rho(\theta, \delta(X)) = \E\big(\ell(\theta,\delta(X))\mid X = x) = \int \ell
 
 if $\Theta$ is continuous, while the integral is replaced with a sum if $\Theta$ is discrete.
 
-
-Exercise 
+Exercise
 ===
 
-1. Given our motivating example, calculate the frequentist risk and posterior risk.
+Let's return to the umbrella problem. Notice that there is no data defined. (This is called a no data problem).
 
-2. Suppose it always rains. Find the frequentist risk and posterior risk given this assumption.
+\textbf{1. What is the frequentist risk?}
 
-3. What is the action that minimizes the frequentist risk and posterior risk from part 2.
+Solution: 
 
-Exercise, where solution can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/reading/babybayes-master.pdf} pages 99--
+$$ R(\theta,a) = \E_{X}\big(\ell(\theta,a) \mid \theta) = \ell(\theta,a)$$
+because there is no data $X.$
+
+Observe that the frequentist risk and the loss are the same. This is \emph{always} the case when there is no data. 
+
+
+Exercise (continued)
+===
+
+\textbf{2. Suppose that the state of nature $\theta$ is rain all the time. Find the action $a$ that minimizes the frequentist risk.}
+
+Solution: Assuming that it rains all the time, we know that
+
+
+$$
+R(\text{Rain}, a) = \begin{cases}
+  0  &  \text{if }\; a = \text{Umbrella}\\
+ 10 &  \text{if } \; a = \text{No Umbrella}
+\end{cases}
+$$
+The action $a$ that minimizes the frequentist risk above is $a = \text{Umbrella}.$
+
+Exercise (continued)
+===
+
+3. \textbf{Consider the prior below on the state of nature $\theta.$ Define the posterior risk and simplify it.} 
+
+$$
+\theta = \begin{cases}
+  \text{Rain}  &  \text{with probability}\; p\\
+ \text{No Rain} &  \text{with probability}\; 1-p\\
+\end{cases}
+$$
+The posterior risk is
+$$\rho(\theta, a) = \E_{\Theta}\big(\ell(\theta,\delta(X))\mid X = x) = \sum_{\Theta} \ell(\theta,\delta(X)) p(\theta).$$
+
+Exercise (continued)
+===
+
+In the situation, where one carries the umbrella
+
+$$\rho(\theta, a) = p \times 0 + (1-p) \times 1 = 1-p.$$
+In the situation, where one decides to not carry the umbrella
+
+
+$$\rho(\theta, a) = p \times 10 + (1-p) \times 0 = 10p.$$
+
+Exercise (continued)
+===
+
+4. \textbf{Find the action(s) that minimizes the posterior risk.}
+
+To minimize the posterior risk, we consider the following:
+
+If $1-p < 10p,$ the optimal decision is to carry the umbrella. 
+
+On the other hand, if $1-p > 10p,$ the optimal decision is to not carry the umbrella.
+
+Exercise (continued)
+===
+
+5. \textbf{Find the action that minimizes the posterior risk when p = 0.2.}
+
+Then the posterior risk from carrying the umbrella is $1-p = 0.8$ and the posterior risk from not carrying the umbrella is $10p = 2.$ 
+
+In this situation and fixed value of p, the posterior risk is minimized by carrying the umbrella. 
+
+
+See written details here: \url{https://github.com/resteorts/modern-bayes/blob/master/reading/babybayes-master.pdf} pages 99--
 100.
+
 
 
 
