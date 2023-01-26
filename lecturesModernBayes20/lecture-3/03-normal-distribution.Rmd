@@ -299,6 +299,7 @@ $$\btheta_m-\btheta_f\mid x_{1:k},y_{1:\ell}\,\sim\,\N(M_m-M_f,\, L_m^{-1} + L_f
 so we can compute $\Pr(\text{bimodal}\mid \text{data})$ using the normal c.d.f.\ $\Phi$:
 \begin{align*}
 &\Pr(\text{bimodal}\mid \text{data})= \Pr\big(|\btheta_m-\btheta_f|>2\sigma \mid x_{1:k},y_{1:\ell}\big) \\
+&= \textcolor{red}{\Pr(\btheta_m-\btheta_f < -2 \sigma) + \Pr(\btheta_m-\btheta_f > 2 \sigma)} \\
 &= \Phi(-2\sigma\mid 13.4,0.45^2)
 + \big(1-\Phi(2\sigma\mid 13.4,0.45^2)\big)\\
 & = 6.1\times 10^{-9}.
