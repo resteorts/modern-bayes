@@ -87,7 +87,7 @@ First, consider the NormalGamma density. Dropping constants of proportionality, 
 &= \sqrt{\frac{c\lambda}{2\pi}}\exp\Big(-\tfrac{1}{2} c\lambda(\mu-m)^2\Big)
 \frac{b^a}{\Gamma(a)}\lambda^{a-1}\exp(-b\lambda)\notag\\
 &\underset{\mu,\lambda}{\propto} 
-\textcolor{red}{\lambda^{a-1/2}\exp\Big(-\tfrac{1}{2}\lambda(c\mu^2 - 2 c m\mu + c m^2 + 2 b)\Big)}.\label{equation:NormalGamma}
+\lambda^{\textcolor{blue}{a}-1/2}\exp\Big(-\tfrac{1}{2}\lambda(\textcolor{blue}{c}\mu^2 - 2 \textcolor{blue}{c m}\mu + \textcolor{blue}{c m^2} + \textcolor{blue}{2 b})\Big).\label{equation:NormalGamma}
 \end{align}
 
 Posterior derivation (continued)
@@ -95,7 +95,7 @@ Posterior derivation (continued)
 Similarly, for any $x$,
 \begin{align}
 \N(x\mid\mu,\lambda^{-1}) & =\sqrt{\frac{\lambda}{2\pi}}\exp\Big(-\tfrac{1}{2}\lambda(x-\mu)^2\Big)\notag\\
-&\underset{\mu,\lambda}{\propto} \textcolor{red}{\lambda^{1/2}\exp\Big(-\tfrac{1}{2}\lambda(\mu^2 - 2 x \mu + x^2)}\Big).
+&\underset{\mu,\lambda}{\propto} {\lambda^{1/2}\exp\Big(-\tfrac{1}{2}\lambda(\mu^2 - 2 x \mu + x^2)}\Big).
 \label{equation:individual}
 \end{align}
 
@@ -107,9 +107,9 @@ Posterior derivation (continued)
 &\underset{\mu,\lambda}{\propto}
 \textcolor{red}{\lambda^{a-1/2} \exp\Big(-\tfrac{1}{2}\lambda(c\mu^2 - 2 c m\mu + c m^2 + 2 b)\Big)}\\
   & \qquad\times \textcolor{red}{\lambda^{n/2} \exp\Big(-\tfrac{1}{2}\lambda(n\mu^2 - 2 (\textstyle\sum x_i) \mu + \sum x_i^2)\Big)}\\
-& = \lambda^{a+n/2-1/2}
-\exp\Big(-\tfrac{1}{2}\lambda\big((c+n)\mu^2 - 2 (c m +\textstyle\sum x_i) \mu + \textcolor{blue}{c m^2 + 2 b + \sum x_i^2}\big)\Big)\\
-&\overset{\text{(a)}}{=}\lambda^{A-1/2}\exp\Big(-\tfrac{1}{2}\lambda\big(C\mu^2 - 2 C M \mu + \textcolor{blue}{C M^2 + 2 B}\big)\Big)\\
+& = \lambda^{\textcolor{blue}{a+n/2}-1/2}
+\exp\Big(-\tfrac{1}{2}\lambda\big((\textcolor{blue}{c+n})\mu^2 - 2 (\textcolor{blue}{c m +\textstyle\sum x_i}) \mu + \textcolor{blue}{c m^2 + 2 b + \sum x_i^2}\big)\Big)\\
+&\overset{\text{(a)}}{=}\lambda^{\textcolor{blue}{A}-1/2}\exp\Big(-\tfrac{1}{2}\lambda\big(\textcolor{blue}{C}\mu^2 - 2 \textcolor{blue}{C M} \mu + \textcolor{blue}{\textcolor{blue}{C M^2} + 2 B}\big)\Big)\\
 &\overset{\text{(b)}}{\propto} \NormalGamma(\mu,\lambda\mid M,C,A,B)
 \end{align*}
 where step (b) is by Equation \ref{equation:NormalGamma},
@@ -118,12 +118,15 @@ $$C M^2 + 2 B = c m^2 + 2 b + \sum x_i^2.$$
 \end{small}
 Posterior derivation (continued)
 ===
-This choice of $A$ and $C$ match the claimed form of the posterior, and 
-solving for $M$ and $B$, we get $M = (c m + \sum x_i)/(c+n)$ and 
-$$ B = b +\tfrac{1}{2}(c m^2-C M^2+\textstyle\sum x_i^2), $$
-as claimed.
+We have two equations and two unknowns (B and M):
+$$\,C M = (c m + \textstyle\sum x_i)$$
+$$C M^2 + 2 B = c m^2 + 2 b + \sum x_i^2.$$
 
-Alternative derivation: complete the square all way (longer and much more tedious).
+
+Solving for $M$ and $B$, (verify this on your own), we can find that $$M = (c m + \sum x_i)/(c+n)$$ and $$B = b +\tfrac{1}{2}(c m^2-C M^2+\textstyle\sum x_i^2).$$
+
+
+Alternative derivation: complete the square all way. This is in the reading notes if you'd like to see a different derivation. 
 
 Do a teacher's expectations influence student achievement?
 ===
