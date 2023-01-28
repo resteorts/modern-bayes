@@ -662,7 +662,7 @@ Takeaways
 
 - There are many ways to define a loss function. A few that we talked about were the 0-1, quadratic, and absolute value loss. 
 
-- Next, we define several ways of finding an optimal decision rule. There were three that we considered. We considered minimizing the posterior risk (Bayes rule), the risk (frequentist risk), or the integrated risk. 
+- Next, we define several ways of finding an optimal decision rule. There were two that we considered. We considered minimizing the posterior risk (Bayes rule) and the risk (frequentist risk).
 
 - Finally, we defined admissible/inadmissible rules. 
 
