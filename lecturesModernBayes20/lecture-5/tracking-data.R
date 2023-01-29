@@ -1,5 +1,92 @@
 #playing around with an importance sampling example
 
+
+# simulate a uniform density 
+
+uniform_simulation <- runif(n=10^10, min=0, max=1)
+hist(uniform_simulation)
+mean(uniform_simulation)
+var(uniform_simulation)
+
+# simulate normal(0,1) data and compare to the dnorm density
+
+## simulated density
+x <- seq(-3,3,length.out=1000)
+hist(rnorm(x), freq=FALSE, main="", xlab = "x-values")
+## true density
+curve(dnorm(x, mean = 0, sd = 1),
+      from = -3,
+      to = 3,
+      add = TRUE,
+      col = "blue",
+      xlab = "x-values")
+
+
+theta <- rcauchy(10, 36, 0.02)  
+likelihood <- apply(as.matrix(theta), 1, dcauchy, latitude, 0.002)
+posterior <- sapply()
+
+# generate the likelihood from the data and simulated theta_i
+
+
+
+
+
+# example simulate a cauchy distribution and compare to the one in R. 
+
+# this will return a value from the prior on the cauchy
+
+
+
+#cauchy_like <- function(theta, s=0.002){
+  #return(dcauchy(theta, s))
+#}
+
+# let's simulate the cauchy likelihood and compare to the true one
+
+simulations <- 100
+theta <- seq(30, 40, length.out = simulations)
+plot(theta, rcauchy(theta, 36.07, 0.02)) #Prior distribution (cauchy)
+
+
+cauchy_like <- rcauchy(simulations, theta, 0.002)
+hist(cauchy_like)
+
+
+
+cauchy_prior <- function(simulations, theta_not = 36.07, s_not = 0.02){
+  return(rcauchy(simulations, theta_not, s_not))
+}
+
+
+
+
+theta <- cauchy_prior(simulations = 10, 36,0.02)
+cauchy_like(theta)
+
+
+(marginal <- theta*cauchy_like(theta))
+
+ 
+
+
+monte_carlo <- function(x){
+  return(dnorm(x))
+}
+
+draws <- rnorm(10000)
+monte_carlo_approximation <- sapply(draws, monte_carlo)
+hist(monte_carlo_approximation)
+
+
+
+
+
+
+
+
+
+
 latitude <- c(36.077916, 36.078032, 36.078129, 36.078048,
               36.077942, 36.089612, 36.077789, 36.077563)
 
@@ -7,6 +94,11 @@ longitude <- c(79.009266, 79.009180,  79.009094, 79.008891,
                79.008962, 79.035760, 79.008917, 79.009281)
 
 hist(latitude)
+
+#draw one monte carlo sample
+
+(theta <- rcauchy(1, 36.07, 0.02)) # simulate a value of theta
+(x <- dcauchy(theta, 0.002)) #simulate a value of the likelihood
 
 ## data point is latitude, which has a cauchy distribution
 ## prior theta has a cauchy but is not conjugate

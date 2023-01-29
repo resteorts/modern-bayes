@@ -18,8 +18,7 @@ Announcements
 Agenda
 ===
 - Motivation
-- Monte Carlo (The Naive Method)
-- Importance Sampling
+- Monte Carlo (The Classical or Naive Method)
 - Rejection Sampling
 
 
@@ -163,153 +162,13 @@ Using the same approach, we could easily approximate any number of other posteri
 \end{align*}
 
 
-Importance Sampling
-===
-Recall that we have a difficult, problem child of a function $h(x)!$
-
-\begin{itemize}
-\item Generate samples from a distribution $g(x).$
-\item We then "re-weight" the output.
-\end{itemize}
-
-\vskip 1em
-Note: $g$ is chosen to give greater mass to regions where $h$ is large (the important part of the space).
-\vskip 1em
-This is called \emph{importance sampling.}
-
-Importance Sampling
-===
-Let $g$ be an arbitrary density function and then we can write 
-\begin{align}
-\label{is}
-I = E_f[h(x)] = \int_X h(x) \frac{f(x)}{g(x)} {g(x)}\; dx = 
-E_g\left[\frac{h(x)f(x)}{g(x)}\right].
-\end{align}
-
-This is estimated by
-\begin{align}
-\label{is2}
-\hat{I} = 
-\frac{1}{n} \sum_{j=1}^n \frac{f(X_j)}{g(X_j)}
-h(X_j) \longrightarrow  
-E_f[h(X)]
-\end{align}
-based on a sample generated from $g$ (not $f$). Since (\ref{is}) can be written as an expectation under $g$, (\ref{is2}) converges to (\ref{is}) for the same reason the Monte carlo estimator $\bar{h}_n$ converges.
-
-The Variance
-===
-
-\begin{align}
-Var(\hat{I}) &= \dfrac{1}{n^2}\sum_i Var_g\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right)\\
-&=\dfrac{1}{n}Var_g\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right)  \implies \\
-\widehat{Var}(\hat{I}) &= 
-\dfrac{1}{n}\widehat{Var}_g\left(\dfrac{h(X_i) f(X_i)}{g(X_i)}\right),
-\end{align}
-
-\textcolor{red}{where  $X_1, X_2, \ldots, X_n$ are iid samples from $g.$}
-
-Simple Example
-===
-Suppose we want to estimate $P(X>5),$ where $X \sim N(0,1).$ 
-
-\vskip 1 em
-\textbf{Naive method (Monte carlo)}: 
-\begin{itemize}
-\item Generate $X_1 \ldots X_n \stackrel{iid}{\sim} N(0,1)$
-\item Take the proportion $\hat{p} = \bar{X} > 5$ as your estimate
-\end{itemize}
-
-\textbf{Importance sampling method}:
-\begin{itemize} 
-\item Sample from a distribution that gives high probability to the ``important region" (the set $(5, \infty)$).
-\item Do re-weighting.
-\end{itemize}
-
-Importance Sampling Solution
-===
- Let $f = \phi_o$ and $g = \phi_{\theta}$ be the densities of the $N(0,1)$ and $N(\theta,1)$ distributions ($\theta$ taken around 5 will work). Then
-\begin{align} p &= \int I(u > 5) \phi_o(u)\; du \\
- &= 
-\int \left[ I(u > 5) \frac{\phi_o(u)}{\phi_{\theta}(u)}
-\right]
-\phi_{\theta}(u)
-\; du\\
-& = E_{\phi_{\theta}}\left[I(u > 5) \frac{\phi_o(u)}{\phi_{\theta}(u)}\right]
-\end{align}
-
-<!-- In other words, if  -->
-<!-- $$ h(u) = I(u>5)\frac{\phi_o(u)}{\phi_{\theta}(u)}$$ -->
-<!-- then $p = E_{\phi_{\theta}}[h(X)].$ -->
-
-Importance Sampling Solution
-===
-\vskip 1em
-If
-$U_1, \ldots, U_n \stackrel{iid}{\sim} N(\textcolor{red}{\theta= 5}, 1),$ then an unbiased estimate is 
-$$\hat{p} = \frac{1}{n} \sum_i \left[I(u_i > 5) \frac{\phi_o(u_i)}{\phi_{\theta}(u_i)}\right],$$
-
-which is an \textbf{importance sampler} by definition. 
-
-Now, let's empirically compare the Monte carlo estimate to the importance sampler estimate. 
-
-Naive Method (Monte Carlo) Solution
-===
-```{r}
-1 - pnorm(5)                  # gives 2.866516e-07
-## Naive method (Monte Carlo)
-set.seed(1)
-mySample <- 100000
-x <- rnorm(n=mySample)
-# pHat is a bernoulli proportion
-pHat <- sum(x>5)/length(x)
-# to calculate the variance, 
-# use p(1-p)/number of trials
-sdPHat <- sqrt(pHat*(1-pHat)/length(x)) # gives 0
-```
-
-IS Solution
-===
-```{r}
-set.seed(1)
-y <- rnorm(n=mySample, mean=5)
-h <- dnorm(y, mean=0)/dnorm(y, mean=5) * I(y>5) 
-mean(h)                       # gives 2.865596e-07
-sd(h)/sqrt(length(h))         # gives 2.157211e-09
-```
-What is the difference between the naive (monte carlo) and the IS solution?
-
-Question
-===
-Is there some special choice regarding our importance region? 
-
-What happens when we look at the region $u>100$?
-
-```{r}
-set.seed(1)
-y <- rnorm(n=mySample, mean=100)
-h <- dnorm(y, mean=0)/dnorm(y, mean=100, sd=3) * I(y>100)
-(mean(h))                       
-# versus 2.865596e-07 (u>5)
-(sd(h)/sqrt(length(h)))        
-# versus 2.157211e-09 (u>5)
-```
-
-Importance Sampling Reference
-===
-
-For more reading on importance sampling, see the following reference:
-\url{https://www.amazon.com/Monte-Statistical-Methods-Springer-Statistics/dp/1441919392}. 
-
-This book also covers Monte carlo and Markov chain monte carlo methods extensively, so you may
-find this as a useful reference. 
-
-
 Rejection Sampling
 ===
-Rejection sampling is a method for drawing random samples from a distribution whose p.d.f.  can be evaluated up to a constant of proportionality. 
+
+Rejection sampling is a method for drawing random samples from a distribution whose p.d.f. can be evaluated up to a constant of proportionality. 
 
 \vskip 1 em
-Compared with the inverse c.d.f.  method, rejection sampling has the advantage of working on complicated multivariate distributions. (see homework)
+Compared with the inverse c.d.f. method, rejection sampling has the advantage of working on complicated multivariate distributions. (see homework)
 
 \vskip 1 em
 
@@ -485,14 +344,12 @@ Takeaways
 
 - What is Monte Carlo (The naive method)
 - Why do we use Monte Carlo over numerical integration?
-- Importance sampling
 - Rejection sampling
 
 Detailed Takeaways
 ===
 
 - Why do we use Monte Carlo? 
-- Why do we use importance sampling?
 - Why do we use rejection sampling?
 - When would we use a particular method above over another for a case study? This would be problem specific. So, if you know someting about the important region at hand, you would typically use importance sampling. Rejection sampling and importance sampling will typically out perform naive Monte Carlo in terms of providing a lower variance estimate. 
 - In the next modules, we will learn about Markov chain Monte Carlo algorithms (MCMC), which are used for working in high dimensional spaces. 
@@ -905,3 +762,8 @@ Proof of Proposition
 ===
 
 The proposition follows by Lemma 1 and Lemma 2.
+
+Example
+===
+
+Find the value of I
