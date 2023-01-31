@@ -9,16 +9,12 @@ output:
 font-size: 8px
 ---
 
-Announcements
-===
-
-- There is a hint added on Homework 4
-- Questions about Exam I will be covered at the end of class today 
 
 Agenda
 ===
 - Motivation
 - Monte Carlo (The Classical or Naive Method)
+- Inverse CDF Method
 - Rejection Sampling
 
 
@@ -38,7 +34,9 @@ $$E_X[h(x)] = \textcolor{red}{\int_X h(x) f(x)\; dx}$$ which is \emph{intractabl
 
 \vspace*{1em}
 
-Suppose the $h(\cdot)$ is the identity function, then 
+\textbf{Example}: Suppose the $h(\cdot)$ is the identity function.
+
+\vspace*{1em}
 
 $$E_X[h(x)] = E_X[X] = \textcolor{red}{\int_X x f(x)\; dx}$$
 
@@ -55,8 +53,49 @@ This is called Monte Carlo sampling (and is the simplest way of producing sample
 \vspace*{1em}
 
 
-Why is this statistically valid?
+Illustration
+===
 
+Simulate a N(0,1) histogram, and the mean and variance. Compare it to the density in R. Do this for 10 versus 1000 simulations. 
+
+```{r, echo = FALSE}
+x <- seq(-3,3,length.out=10)
+hist(rnorm(x), freq=FALSE, main="", xlab = "x-values")
+## true density
+curve(dnorm(x, mean = 0, sd = 1),
+      from = -3,
+      to = 3,
+      add = TRUE,
+      col = "blue",
+      xlab = "x-values")
+```
+
+Illustration
+===
+
+Simulate a N(0,1) histogram, and the mean and variance. Compare it to the density in R. Do this for 10 versus 1000 simulations. 
+
+```{r, echo = FALSE}
+x <- seq(-3,3,length.out=10000)
+hist(rnorm(x), freq=FALSE, main="", xlab = "x-values")
+## true density
+curve(dnorm(x, mean = 0, sd = 1),
+      from = -3,
+      to = 3,
+      add = TRUE,
+      col = "blue",
+      xlab = "x-values")
+```
+
+Illustration
+===
+
+```{r}
+mean(rnorm(x))
+var(rnorm(x))
+```
+
+What do you observe empirically?
 
 
 Monte Carlo Sampling
@@ -79,6 +118,7 @@ $$v_n = V[\frac{1}{n} \sum_j h(x_j) ]= \frac{1}{n^2}\sum_j V[h(x_j)] \approx
 $$\frac{\bar{h}_n - E_f[h(X)]}{\sqrt v_n} \;\stackrel{\text{approx.}}{\sim}\; N(0,1).$$
 
 (Technically, it converges in distribution). 
+
 
 
 Root Mean Squared Error (RMSE)
@@ -161,6 +201,38 @@ Using the same approach, we could easily approximate any number of other posteri
 &\approx \frac{1}{N}\sum_{i = 1}^N \bm\mu_S^{(i)}/\bm\mu_C^{(i)}.
 \end{align*}
 
+Background: inverse CDF method
+===
+
+For a random variable $X$ with c.d.f. $F,$ define the generalized CDF as
+$$F^{-1}(u) = min\{x: F(x) \geq u\}.$$
+If $$U \sim Uniform(0,1)$$ then $$F^{-1}(U) \sim X.$$
+
+Illustration
+===
+
+$$X \sim Exponential(1).\footnote{\text{Applications include the length of time, in minutes, of long distance business telephone calls, and the amount of time, in months, a car battery lasts.}}$$Then
+
+$$f(x) = \exp(-x) \implies F(x) = 1 - \exp(-x).$$
+Let $u = 1- \exp^{-x}$ and solve for $u.$ Then
+$x = -log(1-u).$
+
+Let $U \sim Uniform(0,1) \implies 1-U \sim Uniform(0,1).$
+
+Thus, $$X \sim -log(U).$$
+
+Illustration
+===
+
+```{r, echo=FALSE}
+nsim <- 1000
+U <- runif(nsim)
+X <- -log(U)
+Y <- rexp(nsim)
+par(mfrow=(c(1,2)))
+hist(X, freq=FALSE, main="Exponenial via Uniform")
+hist(Y, freq=FALSE, main="Exponenial via R")
+```
 
 Rejection Sampling
 ===
