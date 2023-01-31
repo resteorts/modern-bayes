@@ -20,14 +20,20 @@ Agenda
 - Application to IQ scores (spurters versus controls)
 
 
-NormalGamma distribution
+Setup
 ===
-Let
 
 $X_1,\dotsc,X_n\mid \mu,\lambda \iid\N(\mu,\lambda^{-1})$ and assume **both**
 
 - the mean $\mu$ and 
 - the precision $\lambda= 1/\sigma^2$ are **unknown**. 
+
+\vspace*{1em}
+
+Applications: IQ scores, snow fall or rain fall 
+
+NormalGamma distribution
+===
 
 The $\NormalGamma(m,c,a,b)$ distribution, with $m\in\R$ and $c,a,b>0$, is a joint distribution on $(\mu,\lambda)$ obtained by letting
 \begin{align*}
@@ -44,9 +50,9 @@ NormalGamma distribution (continued)
 ===
 It turns out that this provides a **conjugate prior** for $(\mu,\lambda)$.
 
-One can show the posterior is
+\textcolor{blue}{One can show that the joint posterior of $(\mu, \lambda \mid x_{1:n})$ is}
 \begin{align}\label{equation:NormalGamma-posterior}
-\bm\mu,\bm\lambda|x_{1:n}\,\sim\,\NormalGamma(M,C,A,B)
+\mu,\lambda|x_{1:n}\,\sim\,\NormalGamma(M,C,A,B)
 \end{align}
 i.e., $p(\mu,\lambda|x_{1:n}) =\NormalGamma(\mu,\lambda\mid M,C,A,B)$, where
 \begin{align*}
