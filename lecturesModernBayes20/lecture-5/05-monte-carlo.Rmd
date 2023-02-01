@@ -23,40 +23,73 @@ Sampling Methods
 
 In this module, we will talk about ways of approximating 
 
-$$E_X[h(x)] = \textcolor{red}{\int_X h(x) f(x)\; dx}$$ which is \emph{intractable}. This means that we cannot compute the integral in closed form. 
+$$\E_X[h(x)] = \textcolor{red}{\int_X h(x) f(x)\; dx}$$ which is \emph{intractable}. This means that we cannot compute the integral in closed form. 
 
 Why? This means h(x) is a complicated function or we cannot evaluate $f(x).$
 
 Sampling Methods
 ===
 
-$$E_X[h(x)] = \textcolor{red}{\int_X h(x) f(x)\; dx}$$ which is \emph{intractable}. This means that we cannot compute the integral in closed form. 
+$$\E_X[h(x)] = \textcolor{red}{\int_X h(x) f(x)\; dx}$$ which is \emph{intractable}. This means that we cannot compute the integral in closed form. 
 
 \vspace*{1em}
 
-\textbf{Example}: Suppose the $h(\cdot)$ is the identity function.
+\textbf{Example}: Suppose the $h(x)=1$ for all $x.$
 
 \vspace*{1em}
 
-$$E_X[h(x)] = E_X[X] = \textcolor{red}{\int_X x f(x)\; dx}$$
+$$\E_f[h(x)] = \E_f[X] = \textcolor{red}{\int_X x f(x)\; dx}$$
 
 
-Sampling Methods
+Monte Carlo Sampling
 ===
 
-Solution: Draw samples $X_1, \ldots, X_n \stackrel{iid}{\sim} f(x).$ 
-
-$$E_X[h(x)] \approx  \frac{1}{n}\sum_{j=1}^n h(X_j).$$
-
-This is called Monte Carlo sampling (and is the simplest way of producing samples). 
+Suppose that we wish to find $$\E_f[X].$$
 
 \vspace*{1em}
 
+Solution: 
 
-Illustration
+\begin{enumerate}
+\item Draw samples $X_1, \ldots, X_N \stackrel{iid}{\sim} f.$ 
+\item Let $\frac{1}{N}\sum_{i=1}^N X_i$ approximate $\E_f[X]$
+\end{enumerate}
+
+\vspace*{1em}
+
+This is called **Monte Carlo sampling** (and is the simplest way of producing samples). 
+
+\vspace*{1em}
+
+Generalization
 ===
 
-Simulate a N(0,1) histogram, and the mean and variance. Compare it to the density in R. Do this for 10 versus 1000 simulations. 
+Suppose we want to estimate $\E[h(Y) \mid Z = z].$
+
+\vspace*{1em}
+
+Solution: 
+
+\begin{enumerate}
+\item Draw samples $Y_1, \ldots, Y_N \stackrel{iid}{\sim} Y \mid Z = z.$ 
+\item Let $\frac{1}{N}\sum_{i=1}^N h(Y_i)$ approximate $\E[h(Y) \mid Z = z].$
+\end{enumerate}
+
+\vspace*{1em}
+
+Remark: The generalization is equivalent to the special case by letting $X$ have distribution $h(Y) \mid Z = z.$
+
+
+
+
+
+Monte Carlo Illustration
+===
+
+Simulate a N(0,1) histogram using Monte Carlo samples. Compare it to the standard normal density in R. Provide 10 and 10,000 simulations. 
+
+Monte Carlo Illustration
+===
 
 ```{r, echo = FALSE}
 x <- seq(-3,3,length.out=10)
@@ -70,10 +103,8 @@ curve(dnorm(x, mean = 0, sd = 1),
       xlab = "x-values")
 ```
 
-Illustration
+Monte Carlo Illustration
 ===
-
-Simulate a N(0,1) histogram, and the mean and variance. Compare it to the density in R. Do this for 10 versus 1000 simulations. 
 
 ```{r, echo = FALSE}
 x <- seq(-3,3,length.out=10000)
@@ -87,45 +118,47 @@ curve(dnorm(x, mean = 0, sd = 1),
       xlab = "x-values")
 ```
 
-Illustration
+
+
+Monte Carlo Properties
 ===
 
-```{r}
-mean(rnorm(x))
-var(rnorm(x))
-```
+Suppose that $\E|X| < \infty.$
 
-What do you observe empirically?
-
-
-Monte Carlo Sampling
-===
-The generic problem here is to evaluate 
-$$\textcolor{red}{E_f[h(x)] = \int_X h(x) f(x) \; dx.}$$
 \vskip 1em
-The classical way to solve this is generate samples $(X_1,\ldots,X_n)$ from $f.$ 
-\vskip 1 em
-Now propose as an approximation the empirical average:
-$$E_f[h(x)] \approx \frac{1}{n}\sum_{j=1}^n h(x_j) := \bar{h}_n.$$ 
-\vskip 1 em
-Why?  $\bar{h}_n$ converges a.s.\ (i.e.\ for almost every generated sequence) to $E_f[h(X)]$ by the Strong Law of Large Numbers.
 
-Monte Carlo (continued)
+Then $$\frac{1}{N} \sum_{i=1}^N X_i \rightarrow \E[X] \quad \text{as} \quad N \rightarrow \infty.$$
+
+\vskip 1em
+
+Why? This is true by the Strong Law of Large Numbers. It ensures that our approximation converges to the ``true value."
+
+Monte Carlo Properties
 ===
-Also, under certain assumptions\footnote{see Casella and Robert, page 65, for details}, the asymptotic variance $v_n$ can be approximated and then can be estimated from the sample $X = (X_1,\ldots,X_n)$ by 
-$$v_n = V[\frac{1}{n} \sum_j h(x_j) ]= \frac{1}{n^2}\sum_j V[h(x_j)] \approx
-\textcolor{red}{\frac{1}{n^2}} \sum_{j=1}^n [h(x_j) - \bar{h}_n]^2.$$ Finally, by the CLT (for large $n$), 
-$$\frac{\bar{h}_n - E_f[h(X)]}{\sqrt v_n} \;\stackrel{\text{approx.}}{\sim}\; N(0,1).$$
 
-(Technically, it converges in distribution). 
+$\frac{1}{N} \sum_{i=1}^N X_i$ is an **unbiased estimator** of $\E[X].$
 
+Proof:
 
+$$\E[\frac{1}{N} \sum_{i=1}^N X_i] = \frac{1}{N} \times N \times \E[X_i] = \E[X].$$
 
-Root Mean Squared Error (RMSE)
+Monte Carlo Properties
 ===
-\textcolor{red}{Assume that $X_i$ are iid observations. Suppose h is the identity function.}
 
-Then
+The **variance** of $\frac{1}{N} \sum_{i=1}^N X_i$ is 
+
+$$\V(\frac{1}{N} \sum_{i=1}^N X_i) = \frac{1}{N^2}\V(\sum_{i=1}^N X_i) = 
+\frac{1}{N^2}\sum_{i=1}^N \V(X_i) = \frac{1}{N} \V(X).$$
+
+
+
+
+
+Monte Carlo Properties
+===
+
+Because our estimator is unbiased, the **Root Mean Squared Error** (RMSE) is
+
 \begin{align}
 \text{RMSE} &=: \Big[\E\big(|\tfrac{1}{N}\textstyle\sum X_i - \E X|^2\big)\Big]^{1/2}\notag\\
 & = \Big[\V\big(\tfrac{1}{N}\textstyle\sum X_i\big)\Big]^{1/2}\notag\\
@@ -134,7 +167,7 @@ Then
 
 The RMSE tells us how far the approximation will be from the true value, on average. 
 
-As a practical matter, we need to be able to draw the samples $X_i$ in a computationally-efficient way. 
+Remark: $$\text{MSE} = [\sigma(X)/{\sqrt N}]^2 = \frac{1}{N}V(X).$$
 
 
 

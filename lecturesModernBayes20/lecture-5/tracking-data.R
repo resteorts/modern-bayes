@@ -11,7 +11,7 @@ var(uniform_simulation)
 # simulate normal(0,1) data and compare to the dnorm density
 
 ## simulated density
-x <- seq(-3,3,length.out=1000)
+x <- seq(-3,3,length.out=10)
 hist(rnorm(x), freq=FALSE, main="", xlab = "x-values")
 ## true density
 curve(dnorm(x, mean = 0, sd = 1),
