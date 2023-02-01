@@ -51,6 +51,7 @@ with the following hyperparameter settings, based on subjective prior knowledge:
 \item $b = 10^2 a$ (Standard deviation of the changes expected to be around $10 = \sqrt{b/a} = \E(\lambda)^{-1/2}$.)
 \end{itemize}
 
+
 The updated posterior parameters are
 \begin{align*}
 \text{for spurters:} & \\

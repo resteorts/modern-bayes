@@ -34,29 +34,62 @@ $$E_X[h(x)] = \textcolor{red}{\int_X h(x) f(x)\; dx}$$ which is \emph{intractabl
 
 \vspace*{1em}
 
-\textbf{Example}: Suppose the $h(\cdot)$ is the identity function.
+\textbf{Example}: Suppose the $h(x)=1$ for all $x.$
 
 \vspace*{1em}
 
-$$E_X[h(x)] = E_X[X] = \textcolor{red}{\int_X x f(x)\; dx}$$
+$$E_f[h(x)] = E_f[X] = \textcolor{red}{\int_X x f(x)\; dx}$$
 
 
-Sampling Methods
+Monte Carlo Sampling
 ===
 
-Solution: Draw samples $X_1, \ldots, X_n \stackrel{iid}{\sim} f(x).$ 
-
-$$E_X[h(x)] \approx  \frac{1}{n}\sum_{j=1}^n h(X_j).$$
-
-This is called Monte Carlo sampling (and is the simplest way of producing samples). 
+Suppose that we wish to find $$E_f[X].$$
 
 \vspace*{1em}
 
+Solution: 
 
-Illustration
+\begin{enumerate}
+\item Draw samples $X_1, \ldots, X_N \stackrel{iid}{\sim} f.$ 
+\item Let $\frac{1}{N}\sum_{i=1}^N X_i$ approximate $E_f[X]$
+\end{enumerate}
+
+\vspace*{1em}
+
+This is called **Monte Carlo sampling** (and is the simplest way of producing samples). 
+
+\vspace*{1em}
+
+Generalization
 ===
 
-Simulate a N(0,1) histogram, and the mean and variance. Compare it to the density in R. Do this for 10 versus 1000 simulations. 
+Suppose we want to estimate $E[h(Y) \mid Z = z].$
+
+\vspace*{1em}
+
+Solution: 
+
+\begin{enumerate}
+\item Draw samples $Y_1, \ldots, Y_N \stackrel{iid}{\sim} Y \mid Z = z.$ 
+\item Let $\frac{1}{N}\sum_{i=1}^N h(Y_i)$ approximate $E[h(Y) \mid Z = z].$
+\end{enumerate}
+
+\vspace*{1em}
+
+Remark: The generalization is equivalent to the special case by letting $X$ have distribution $h(Y) \mid Z = z.$
+
+
+
+
+
+Monte Carlo Illustration
+===
+
+Simulate a N(0,1) histogram using Monte Carlo samples. Compare it to the standard normal density in R. Provide 10 and 10,000 simulations. 
+
+Monte Carlo Illustration
+===
 
 ```{r, echo = FALSE}
 x <- seq(-3,3,length.out=10)
@@ -70,10 +103,8 @@ curve(dnorm(x, mean = 0, sd = 1),
       xlab = "x-values")
 ```
 
-Illustration
+Monte Carlo Illustration
 ===
-
-Simulate a N(0,1) histogram, and the mean and variance. Compare it to the density in R. Do this for 10 versus 1000 simulations. 
 
 ```{r, echo = FALSE}
 x <- seq(-3,3,length.out=10000)
@@ -87,16 +118,32 @@ curve(dnorm(x, mean = 0, sd = 1),
       xlab = "x-values")
 ```
 
-Illustration
+
+
+Monte Carlo Properties
 ===
 
-```{r}
-mean(rnorm(x))
-var(rnorm(x))
-```
+Suppose that $E|X| < \infty.$
 
-What do you observe empirically?
+\vskip 1em
 
+Then $$\frac{1}{N} \sum_{i=1}^N X_i \rightarrow E[X] \quad \text{as} \quad N \rightarrow \infty.$$
+
+\vskip 1em
+
+Why? This is true by the Strong Law of Large Numbers. It ensures that our approximation converges to the ``true value."
+
+Monte Carlo Properties
+===
+
+$\frac{1}{N} \sum_{i=1}^N X_i$ is an **unbiased estimator** of $E[X].$
+
+Proof:
+
+$$E[\frac{1}{N} \sum_{i=1}^N X_i] = \frac{1}{N} \times N \times E[X_i] = E[X].$$
+
+Monte Carlo Properties
+===
 
 Monte Carlo Sampling
 ===
@@ -123,7 +170,7 @@ $$\frac{\bar{h}_n - E_f[h(X)]}{\sqrt v_n} \;\stackrel{\text{approx.}}{\sim}\; N(
 
 Root Mean Squared Error (RMSE)
 ===
-\textcolor{red}{Assume that $X_i$ are iid observations. Suppose h is the identity function.}
+\textcolor{red}{Assume that $X_i$ are iid observations. Suppose $h(x) = 1$ for all $x$.}
 
 Then
 \begin{align}
