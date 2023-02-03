@@ -866,7 +866,59 @@ Proof of Proposition
 
 The proposition follows by Lemma 1 and Lemma 2.
 
-Example
+Lemma 3
+===
+Let 
+$$X \sim q \quad \text{and} \quad Y \mid X \sim \text{Uniform}(0, cq(x)).$$ 
+
+Then $$(X,Y) \sim Uniform(B), \quad \text{where} \quad
+B = \{(x,y): x \in {R}^d, 0 < y < c q(x)\}.$$
+
+
+Proof of Lemma 3
 ===
 
-Find the value of I
+1. Suppose $y \notin (0, cq(x)).$ 
+
+Then $$p(x,y) = p(y\mid x) p(x) = 0.$$
+
+2.
+Otherwise $$p(x,y) = p(y\mid x) p(x) = \frac{1}{c q(x)} \times q(x) = \frac{1}{c}.$$
+
+Lemma 4
+===
+
+If $$(X,Y) \sim Uniform(A),$$ where 
+$$A = \{ (x,y): x\in R^d, 0 <y < \tilde{f}(x)\}$$
+then $$X \sim f.$$
+
+Proof of Lemma 4
+===
+
+$$m(A) = \int \tilde{f}(x) dx = \int \alpha f(x) dx.$$
+\begin{align}
+p(x) &= \int p(x,y) dy \\
+&= \int \frac{1}{\alpha} I(0 < y < \tilde{f}(x)) dy \\
+&= \frac{1}{\alpha} \int_{0}^{\tilde{f}(x) dy} \\
+&= \frac{\tilde{f}(x)}{\alpha} =  \frac{\alpha f(x)}{\alpha} = f(x).
+\end{align}
+
+Proposition
+===
+
+Suppose $f$ and $q$ are pdfs on $R^d$ such that 
+$$f(x) = \frac{\tilde{f}(x)}{\alpha}, \alpha > 0$$
+and $cq(x) \geq \tilde{f}(x)$ for all $x \in R^d, c>0.$
+
+If $X_1, X_2, \ldots q$ then 
+$$Y_k \mid X_k \sim Uniform(0, cq(X_k))$$
+and $$Z = X_K \quad \text{where} \quad
+K = \min\{k: Y_k \leq \tilde{f}(X_k) \}$$ then
+$Z \sim f.$
+
+Proof of Proposition
+===
+
+The general rejection sampler proof follows directly from Lemma 3 -- 4. 
+
+
