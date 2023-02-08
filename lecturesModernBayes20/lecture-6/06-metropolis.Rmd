@@ -35,16 +35,15 @@ Recall that $f(x)$ is very complicated and hard to sample from.
 How to deal with this?
 \begin{enumerate}
 \item What's a simple way?
-\item What are two other ways? 
+\item What is another way? 
 \item What happens in high dimensions?
 \end{enumerate}
 
 High dimensional spaces
 ===
 \begin{itemize}
-\item In low dimensions, IS and RS works pretty well. 
-\item But in high dimensions, a proposal $g(x)$ that worked in 2-D, often doesn't mean that it 
-will work in any dimension. 
+\item In low dimensions, rejection sampling works pretty well. 
+\item But in high dimensions we run into problems.
 \item Why? It's hard to capture high dimensional spaces! 
 \end{itemize}
 
@@ -297,33 +296,103 @@ Note: I will use $Q_{ab} = Q(a,b)$ at times.
 What is known and unknown above? (Think back to rejection sampling)
 \end{enumerate}
 
+
 Metropolis Algorithm
 ===
+Assume a symmetric proposal matrix $Q.$ So, $Q_{ab} = Q_{ba}.$
+
+Initialize a starting point $x_o \in X.$
+
+\vspace*{1em}
+
+Goal: run $n$ total iterations of the algorithm to produce $(x_o, x_1, \ldots, x_n)$ samples. 
+
+\vspace*{1em}
+
+This is useful as $$\sum_{i=1}^n f(x_i) \approx E_\pi[f(x)].$$
+
+Metropolis Algorithm
+===
+
+For \textcolor{red}{$i \in 1,2,\ldots,n$:}
 \begin{itemize}
-\item Choose a symmetric proposal matrix $Q.$ So, $Q_{ab} = Q_{ba}.$
-\item Initialize $x_o \in X.$
-\item for $i \in 0,1,2,\ldots,n-1$:
-\begin{itemize}
-\item Sample proposal $x$ from $Q(x_i, x)$ if $x$ is discrete, otherwise, $p(x \mid x_i).$
+\item Sample a new data point $x^{*}$ from $Q(x_i, x^{*})$ if $x$ is discrete, otherwise, $p(x^{*} \mid x_i).$
 \item Sample $\textcolor{red}{r}$ from Uniform$(0,1).$
-\item If $$r < \frac{\tilde{\pi}(x)}{\tilde{\pi}(x_i)},$$ accept and $x_{i+1} = x.$
-\item Otherwise, reject and $x_{i+1} = x_i.$
-\end{itemize}
+\item If $$r < \frac{\tilde{\pi}(x^{*})}{\tilde{\pi}(x_i)},$$ accept and $x_{i+1} = x^{*}.$ \textcolor{red}{accept the new data point}
+\item Otherwise, reject and $x_{i+1} = x_i.$ \textcolor{red}{keep the current data point}
 \end{itemize}
 Output: $x_o,x_1,\ldots,x_n$
 
 Comment: $r$ is the rule for uniformly drawing a point in the box (slide 18).
 
- 
-
-Metropolis Algorithm
+Metropolis Algorithm (Intuition) 
 ===
 
-Video that explains the Metropolis Algorithm:
-\url{https://www.youtube.com/watch?v=gxHe9wAWuGQ&list=ULSc5hOS5HqdY&index=18}
+How do we decide to accept or reject $x^{*}?$ 
 
-Video that explains the correctness of the Metropolis Algorithm:
-\url{https://www.youtube.com/watch?v=0j-Pq1OU4LY&list=ULSc5hOS5HqdY&index=21}
+\vspace*{1em}
+
+In short, what is the intuition regarding how one would construct the Metropolis algorithm? \footnote{This adaptation is from Hoff, page 174, with credit due completely to Hoff.}
+
+Metropolis Algorithm (Intuition) 
+===
+
+Suppose that we are considering to add a new data point $x^{*}$ that is close to our current state $x_i.$
+
+\vspace*{1em}
+
+1. If $\tilde{\pi}(x^{*}) > \tilde{\pi}(x_i),$ then we would want to add a data point that is ``close to" an existing data point in our set $x_i.$ 
+
+\vspace*{1em}
+
+2. However, if $\tilde{\pi}(x^{*}) < \tilde{\pi}(x_i),$ this case is not as clear cut. In short, we will want to accept/reject $x^{*}$ in a logical way. (We will walk through this in detail below).
+
+Metropolis Algorithm (Intuition) 
+===
+
+Define $$r = \frac{\tilde{\pi}(x^{*})}{\tilde{\pi}(x_i)}.$$
+
+1. Suppose r > 1. 
+
+\textbf{Idea}: Since $x_i$ is in our data set already, we should include $x^{*}$ since it has higher probability than $x_i.$
+
+\textbf{Procedure}: Accept $x^{*},$ and update $x_{i+1} = x^{*}.$
+
+\textbf{Summary}: We always accept $x^{*}$ when $r>1.$ (This is the trivial case). 
+
+Metropolis Algorithm (Intuition) 
+===
+
+2. Suppose r < 1.
+
+\textbf{Idea}: The relative frequency values in our set equal to $x^{*}$ compared to those equal to $x_{i}$ will be $r.$ This implies that for every instance of $x_{i}$ we should only have a fraction of an instance of a $x^{*}$ value. 
+
+\textbf{Procedure}: Set $x_{i+1}$ to $x^{*}$ or $x_{i}$ with probability $r$ and $1-r,$ respectively. 
+
+\textbf{Summary}: We will accept/reject the new data point $x_{i+1}$ with probability $r$ and $1-r.$
+
+Metropolis Algorithm (Intuition) 
+===
+
+Reminder: We always accept in case 1, so we only need to consider case 2. 
+
+$$
+x_{i+1} = \begin{cases}
+  x^{*}  &  \text{with probability} \quad \min(r,1)\\
+  x_{i} &  \text{with probability} \quad 1 - \min(r,1)
+\end{cases}
+$$
+\vspace*{1em}
+
+We accomplish the sampling by drawing $u \sim \text{Uniform}(0,1).$ Then $x_{i+1} = x^{*}$ if $u < r.$ Otherwise, 
+$x_{i+1} = x_{i}.$
+
+Metropolis Algorithm (Correctness) 
+===
+
+The Metropolis Algorithm is ``correct"  as one can show that it satisfies the conditions of the Ergodic Theorem. 
+(Details are sketched along with definitions at the end of the slides for those that might be interested.)
+
 
 Metropolis within a Bayesian setting
 ===
@@ -665,3 +734,111 @@ If you're wondering what a Markov chain and a problem looks like in a discrete s
 
 If you're wanting to read more about Markov chains, see \url{http://faculty.washington.edu/yenchic/18A_stat516/Lec3_DTMC_p1.pdf}
 
+Ergodic Theorem
+===
+
+Suppose $(X_o, X_1, \ldots, X_n)$ is an irreducible (time-homoegenous) discrete Markov Chain with stationary distribution $\pi.$ 
+
+Then $$\frac{1}{n} \sum_{i=1}^n f(X_i) \stackrel{a.s.}{\rightarrow} E_f[X]$$ as $n \rightarrow \infty$ where $X \sim \pi.$ Also, $f: \mathcal{X} \rightarrow R$ is a bounded function.
+
+If the Markov Chain is aperiodic, then 
+$$P(X_n = x \mid X_o = x_o) \rightarrow \pi(x)$$ as $n \rightarrow \infty$ for all $x, x_o \in \mathcal{X}.$
+
+Notation
+===
+
+Let $(X_i) = (X_o, X_1, \ldots, X_n).$
+
+Time-Homogeneous Markov Chain
+===
+
+A Markov Chain $(X_i)$ is time homogeneous if 
+$$P(X_{i+1} = b \mid X_i = a) = T_{ab}$$ for all 
+$i$, for all $a,b \in \mathcal{X},$ and for matrix T.
+
+The matrix T is called the transition matrix (which is a stochastic matrix). 
+
+Stationary Distribution
+===
+
+A pmf $\pi$ defined on $\mathcal{X}$ is a stationary distribution (with respect to the transition kernel) if 
+
+$$\pi T = \pi.$$
+Another way to write this is as follows:
+
+$$\sum_{a \in \mathcal{X}} \pi_a T_{ab} = \pi_b$$ for all $b \in \mathcal{X}.$
+
+
+Irreducible
+===
+
+A Markov Chain $(X_i)$ is irreducible if for all $a,b \in \mathcal{X}$ there exists $t \geq 0$ such that
+$$P(X_t = b \mid X_o = a) > 0.$$
+
+
+Aperiodic
+===
+
+An irreducible Markov chain $(X_i)$ is aperiodic if for all $a \in \mathcal{X}$
+
+$$gcd\{
+P(X_t = a \mid X_o \mid a) > 0
+\} = 1.$$
+
+$\text{greatest common divisor} = gcd$
+
+
+
+
+Metropolis (Correctness)
+===
+
+We need to prove that the ergodic theorem holds. (I'll provide a sketch of the proof, which requires knowledge of measure theory/real analysis). 
+
+The transition kernel can be written as follows:
+
+\begin{align}
+T(x,x_i) &= P(X_{i+1} = x \mid X_i = x_i)\\
+&= p(x \mid x_i) \times p(\text{accept} \; x \mid x, x_i) \\
+&= Q(x_i,x) min(1, \tilde{\pi}(x)/ \tilde{\pi}(x_i))
+\end{align}
+
+as long as $x_i \neq x.$
+
+Proposition: Detailed Balance
+===
+
+$X_i$ has stationary distribution $\pi.$
+
+Proof: Need to verify that $\pi_a T_{ab} = \pi_b T_{ba}.$
+
+a. If $a=b$, the above trivially holds.
+b. If $a\neq b,$ 
+\begin{align}
+\pi(a) T(a,b) &= \pi(a) Q(a,b) \min(1, \tilde{\pi}(x)/ \tilde{\pi}(x_i)) \\
+&= Q(a,b) \min(\pi(a), \pi(b)) \quad \text{symmetric about a,b} \\
+&= \pi(b) T(b,a)
+\end{align}
+
+Thus, detailed balance is satisfied. 
+
+Result: Aperiodity and Irreduciblity
+===
+
+Assume $\pi(x) > 0$ for all $x \in \mathcal{X}.$
+
+
+1. If Q is irreducible, then T is irreducible.
+
+2. If Q is aperiodic, then T is aperiodic. 
+
+
+
+Proposition
+===
+If $\pi(x) > 0$ for all $x \in \mathcal{X}$ and $Q$ is irreducible then
+$$\frac{1}{n} \sum_{i=1}^n f(X_i) \stackrel{a.s.}{\rightarrow} E_f[X]$$ as $n \rightarrow \infty.$
+
+Also, if Q is aperiodic, then
+
+$$P(X_n = x \mid X_o = x_o) \rightarrow \pi(x)$$ as $n \rightarrow \infty$ for all $x \in \mathcal{X}.$
