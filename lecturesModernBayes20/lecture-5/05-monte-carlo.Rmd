@@ -1,7 +1,7 @@
 
 ---
 title: "Module 5: Introduction to Monte Carlo"
-author: "Rebecca C. Steorts"
+author: "Andrea Aveni, Vincent Kubala, and Rebecca C. Steorts"
 output: 
      beamer_presentation:
       includes: 
@@ -444,6 +444,59 @@ Entire picture and an example point $X$ and $Y$
   \caption{Entire picture and an example point $X$ and $Y.$}
 \end{figure}
 
+Efficiency of the Rejection Sampler
+===
+
+\textbf{Recall}: $$f(x) = \frac{\tilde{f}(x)}{\alpha}, \alpha > 0$$ (typically don't know $\alpha$ in practice.)
+
+\vspace*{1em}
+
+\textbf{Constraint}: $$cq(x) \geq \tilde{f}(x).$$ (We can choose c to make our rejection sampler efficient.)
+
+\vspace*{1em}
+
+\textbf{Recall}: $q(x)$ is our **proposal distribution** or **enveloping function** (Uniform, Beta, etc.).
+
+Efficiency of the Rejection Sampler
+===
+
+\textbf{Result}: The **acceptance ratio** is inversely proportional to $c.$
+
+\begin{align}
+\text{eff}(q(x)) &= Pr(\text{samples accepted}) \\
+&= \int Pr(x \; \text{accepted}) \times q(x) \; dx \\
+&= \int \frac{\tilde{f}(x)}{c q(x)} \times q(x) dx \\
+&= \frac{1}{c}\int  \tilde{f}(x) dx \\
+&= \frac{\alpha}{c} \\
+& \propto \frac{1}{c}.
+\end{align}
+
+Efficiency of the Rejection Sampler
+===
+
+Note that for all $x \in \mathcal{X}$:
+
+\begin{align}
+cq(x) &\geq \tilde{f}(x) \implies \\
+c &\geq \frac{\tilde{f}(x)}{q(x)}.
+\end{align}
+
+It follows that the optimal value of $c,$ denoted by $\hat{c}$ is
+
+\begin{align}
+\hat{c} = \max_x \frac{\tilde{f}(x)}{q(x)}. 
+\end{align}
+
+Equivalent to Andrea's Lab
+===
+
+This result is equivalent to what Andrea did in lab, where he assumed that $f(x) = \tilde{f}(x)$ and $\alpha = \frac{1}{c}.$ 
+
+In Andrea's lab, the optimal $\alpha$ will be $\min(q/f).$ 
+
+It's fine to use either formulation, but I would recommend choosing one or the other for consistency. 
+
+
 Takeaways
 ===
 
@@ -567,6 +620,8 @@ Takeaways
 1. What do you notice about the enveloping functions and the acceptance ratio as the number of samples is large? 
 
 2. What does this tell you about the uniform proposal versus the beta proposal in this specific application? 
+
+
 
 
 Exercise (Lab 6)
@@ -852,7 +907,7 @@ Proposition
 ===
 
 Suppose f and q are pdfs on $\mathbb{R}^d$ such that 
-$$f(x) = \tilde{x} / \alpha, \alpha > 0$$ and 
+$$f(x) = \tilde{f}(x) / \alpha, \alpha > 0$$ and 
 $$cq(x) \geq \tilde{f}(x) \forall x \in \mathbb{R}^d.$$ 
 
 \vspace*{1em}

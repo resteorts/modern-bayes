@@ -1,0 +1,202 @@
+---
+title: "602Lab3"
+author: "Andera Aveni"
+date: '2023-01-22'
+output: pdf_document
+---
+
+#Setting: Prior, Likelihood -> Posterior
+
+```{r}
+library(ggplot2)
+library(latex2exp)
+set.seed(32445)
+```
+
+```{r}
+#Prior parameters
+a=0.05; b=1
+
+#Sufficient statistics
+N=30; Sx=1
+
+#Updated parameters
+na=a+Sx; nb=b+N-Sx
+
+#Prior, Likelihood, Posterior
+theta=c(1:1000)/1000
+prior=dbeta(theta,a,b)
+posterior=dbeta(theta,na,nb)
+
+ggplot()+
+  geom_line(aes(x=theta,y=prior),col="black")+
+  geom_line(aes(x=theta,y=posterior),col="red")+
+  theme_bw()
+```
+#Loss Function
+
+The loss function is determined by the problem, usually it is an actual monetary loss. It measures the how much it is dangerous=costly to act thinking that the parameter is $\theta_{SUPPOSED}=c$ when in reality it is $\theta_{TRUE}=\theta$. In our problem, some social scientists/politicians/economists have determined that the loss function is given by
+$$\ell(\theta,c)=\begin{cases}c-\theta&\textrm{ if }c\geq\theta\\ 10(\theta-c)&\textrm{ if }c<\theta\end{cases}$$
+This is a reasonable loss function because we have that $\ell(\theta,\theta)=0$, that is there is no loss in being right, and $\ell(\theta,c)$ is increasing in $|\theta-c|$, that is, the more wrong we are the highest the loss. Finally, this is a convex function, a property that guarantiess the mathematical tractability of the problem.
+However this is an asymmetric loss function, and this is quite reasonable in this context. Not curing a citizen in time can cost much more than an unused medical machinery (in ethical, legal, political, reputational terms).
+
+```{r}
+loss_fun=function(t,c){
+  if(c<t){l=10*(t-c)}
+  else{l=c-t}
+  return(l)
+}
+```
+
+#Posterior Risk
+
+We don't know the true vaue of theta (and probably we never will!), but we have an idea about it. Our idea is based on our personal assumtions $p(\theta)$ and (hopefully) of some data $x$. This idea on $\theta$ is represented by the posterior $p(\theta|x)$.
+The loss function is not very usefull by itself because we don't know $\theta$, so to actually use it we consider a weighted average of the loss where the weight is given by the posterior on $\theta$. We thus obtain the posterior risk
+$$R_x(c)=\int_{\Theta}\ell(\theta,c)p(\theta|x)\mathrm{d}\theta$$
+We approximate this integral by generating a sequence of thetas $(\theta_j)_{j=1}^I$ from the posterior $p(\theta|x)$ and the averaging the loss evaluated in these values,
+$$R_x(c)\approx\frac1I\sum_{j=1}^I\ell(\theta_j,c).$$
+This function of $c$, represents how much we will lose \textbf{on average} by chosing to act as if the parameter is $c$.
+
+```{r}
+risk_fun=function(C,a,b,Sx,N,infinity=1000){
+  lenC=length(C)
+  na=a+Sx
+  nb=b+N-Sx
+  theta=rbeta(infinity,na,nb)
+  risk=c()
+  for(j in 1:lenC){
+    loss=apply(as.matrix(theta),1,loss_fun,C[j])
+    risk[j]=mean(loss)
+  }
+  return(risk)
+}
+
+C=(1:250)/500
+risk=risk_fun(C,a,b,Sx,N)
+best=C[which.min(risk)]
+
+ggplot()+geom_line(aes(x=C,y=risk))+
+  geom_vline(xintercept=best,color="red")+theme_bw()
+```
+The Bayesian choice is the to take the value of $c$ that minimizes the Posterior Risk, that is
+$$c_{\mathrm{Bayes}}:=\arg\min_{c}R_x(c)$$
+
+#Sensitivity Analysis
+
+```{r}
+A=(1:19)/20
+lenA=length(A)
+B=rep(1,lenA)
+
+C=(1:250)/500
+
+RISK=matrix(nrow=lenA,ncol=length(C))
+Best=rep(NA,lenA)
+
+for(j in 1:lenA){
+  risk=risk_fun(C,A[j],B[j],Sx,N)
+  RISK[j,]=risk
+  Best[j]=C[which.min(risk)]
+}
+```
+
+```{r}
+Risk=data.frame(risk=as.vector(RISK),
+               a=A,
+               c=rep(C, each=nrow(RISK)))
+ggplot(Risk,aes(x=c, y=risk, group=a,color=a))+
+  geom_line(alpha=1,size=0.1)+
+  theme_bw()+
+  ggtitle(TeX("Risk Function for different values of a"))
+```
+```{r}
+ggplot()+geom_line(aes(x=A,y=Best))+theme_bw()+ylim(0,0.25)
+```
+#Part 3
+
+We now see how our results would change is we observed a different value of $\texttt{Sx}=\sum_{j=1}^{30}x_j$.
+
+```{r}
+seqSx=0:30
+optimum=matrix(nrow=3,ncol=31)
+
+optimum_fun=function(Sx, a, b, N, infinity=100){
+  C=(1:1000)/1000
+  risk=apply(as.matrix(C), 1, risk_fun, a, b, Sx, N, infinity) 
+  return(C[which.min(risk)])
+}
+
+a=0.05; b=1
+
+optimum[1,]=apply(as.matrix(seqSx),1,optimum_fun,a,b,N)
+optimum[2,]=seqSx/N
+optimum[3,]=0.1
+```
+
+```{r}
+plot(seqSx,optimum[1,],
+     col="blue",type="l",
+     ylim=c(0,1), 
+     ylab = "resources allocated", 
+     xlab = "observed number of diseased cases")
+par(new = T)
+plot(seqSx,optimum[2,],
+     col="green",type="l",
+     ylim=c(0,1),ylab="", xlab="") 
+par(new = T)
+plot(seqSx,optimum[3,],
+     col="red",type="l",
+     ylim=c(0,1),ylab="", xlab="")
+legend("topleft", lty = c(1,1,1), 
+       col = c("blue", "green", "red"), 
+       legend = c("Bayes", "Sample mean", "constant"))
+```
+
+# Frequentist Evaluation
+
+We now consider different true values of theta, we generate random samples from the models with these parameters and we compare the different procedures.
+If $c:x\to\Theta$ is a procedure that picks an optimal value of the parameter given that $x$ has been observed, then the Frequentist risk of this procedure is given by
+$$R^{\mathrm{Freq}}_{\theta}(c)=\mathbb E_{x\sim p(x|\theta)}[\ell(\theta,c(x))]=\int_{x\in X}\ell(\theta,c(x))p(x|\theta)\mathrm{d}x$$
+We approximate this quanity by sampling a sequence of samples $(x_j)_{j=1}^{I}$ from $p(x|\theta)$ and by computing
+$$R^{\mathrm{Freq}}_{\theta}(c)\approx\frac1{I}\sum_{j=1}^I\ell(\theta,c(x_j))$$
+
+```{r}
+theta=(0:25)/25
+infinity=100
+N=30
+# frequentist risk for the 3 estimators given a theta
+
+frequentist_risk = function(t){
+  seqSx=rbinom(infinity, N ,t)
+  
+  Bayesian_c = apply(as.matrix(seqSx), 1, optimum_fun, a, b, N) 
+  Frequentist_c = seqSx/N
+  Constant_c = 0.1
+  
+  loss1 = apply(as.matrix(Bayesian_c), 1, loss_fun, t=t) 
+  loss2 = apply(as.matrix(Frequentist_c), 1, loss_fun, t=t)
+  risk1 = mean(loss1)
+  risk2 = mean(loss2)
+  risk3 = loss_fun(t, Constant_c) 
+  return(c(risk1, risk2, risk3))
+}
+
+FRisk=apply(as.matrix(theta), 1, frequentist_risk)
+```
+
+```{r}
+plot(theta, FRisk[1,],col="blue",type="l",ylim = c(0,1),
+     ylab = "frequentist risk", xlab = "theta")
+par(new = T)
+plot(theta, FRisk[2,],col="green",type="l",
+     ylab = "", xlab = "", ylim = c(0,1)) 
+par(new = T)
+plot(theta, FRisk[3,],col = "red",type="l",
+     ylab = "", xlab = "", ylim = c(0,1))
+legend("topright", lty = c(1,1,1),
+       col = c("blue", "green", "red"),
+       legend = c("Bayes", "Sample mean", "constant"))
+```
+
+
+
