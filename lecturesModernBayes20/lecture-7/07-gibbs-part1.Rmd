@@ -187,7 +187,7 @@ Gibbs sampler code
 # run Gibbs sampler
 n.sims <- 10000
 # return the result (res)
-res <- sampleGibbs(.25,.25,n.sims,data)
+res <- sampleGibbs(0.25,0.25,n.sims,data)
 head(res)
 ```
 
@@ -226,7 +226,7 @@ Toy Example
 ===
 An easy way to generate a sample from $Z\sim\TExp(\theta,(0,c))$, is:
 \begin{enumerate}
-    \item Sample $U\sim \Uniform(0,F(c|\theta))$ where $$F(x|\theta) = 1-e^{-\theta x}$$ is the $\Exp(\theta)$ c.d.f.
+    \item First, sample $\textcolor{blue}{U}\sim \Uniform(0,F(c|\theta))$ where $$F(x|\theta) = 1-e^{-\theta x}$$ is the $\Exp(\theta)$ c.d.f.
     \item Set $Z = F^{-1}(U|\theta)$ where $$F^{-1}(u|\theta) = -(1/\theta)\log(1 - u)$$ is the inverse c.d.f.\ for $u\in(0,1)$.
 \end{enumerate}
 
