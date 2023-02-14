@@ -23,12 +23,26 @@ $$ p(\theta) =\Ga(\theta|a,b) =\frac{b^a}{\Gamma(a)} \theta^{a-1} e^{-b\theta}\I
 \vspace*{1em}
 
 \begin{enumerate}
-\item \textbf{Derive} (step by step) $p(x_{1:n} \mid \theta)$ where $x_{1:n} = (X_1,\dotsc,X_n).$
+\item \textbf{Derive} (step by step) $p( \theta \mid x_{1:n} )$ where $x_{1:n} = (X_1,\dotsc,X_n).$
 \item Assume the squared error loss function. \textbf{Provide} the Bayes rule (under the model defined above). (You do not have to prove the result).
 \item \textbf{Derive} (step by step) the posterior predictive distribution of $p(\tilde{x} \mid x_{1:n}),$ for a new observation $\tilde{x}.$ Identify the distribution of the posterior predictive and its parameters for full credit. 
-
-
 \end{enumerate}
+
+\textbf{Solutions}:
+\begin{enumerate}
+\item $$p(\theta \mid x_{1:n}) = \text{Gamma}(a_n = a + \sum_i x_i, b_n = b + n).$$
+\item The Bayes' rule is the posterior mean, which is $\frac{a_n}{b_n}$ under the updated posterior distribution above. 
+\item 
+\begin{align}
+p(\tilde{x} \mid x_{1:n}) &= \frac{\Gamma(\tilde{x} + a_n)}
+{\Gamma(a_n)\tilde{x}!} \times b_n^{a_n} (\frac{1}{b_n+1})^{\tilde{x} + a_n}\\
+&\implies
+\tilde{x} \mid x_{1:n} \sim \text{NegativeBinomial}(a_n, \frac{b_n}{b_n + 1}).
+\end{align}
+\end{enumerate}
+
+
+
 
 %\newpage
 %\vfill
