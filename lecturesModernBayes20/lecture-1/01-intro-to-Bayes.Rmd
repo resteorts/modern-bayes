@@ -24,6 +24,7 @@ Agenda
 - Posterior Prediction
 - Additional problems at the end of lecture (derivation + applied) 
 
+
 What should you learn? 
 ===
 
@@ -74,6 +75,9 @@ The likelihood is
 $$p(x \mid \theta) = \theta^x (1-\theta)^{(1-x)}\I(0 < \theta < 1).$$
 
 - Exercise: what is the mean and the variance of $X$? 
+- What is the connection with the Bernoulli and the Binomial distribution?
+
+
 
 
 Bernoulli distribution
@@ -84,6 +88,21 @@ Notation
 ===
 - $\propto$: means "proportional to"
 - $x_{1:n}$ denotes $x_1,\ldots,x_n$
+
+Bernoulli and Binomial Connection
+===
+
+$X_1,\ldots,X_n \stackrel{iid}{\sim} \Bernoulli(\theta).$\footnote{This represents $n$ coin flips with success probability $\theta.$}
+
+\vspace*{1em}
+
+Suppose $Y = \sum_i X_{i=1}^n.$ Then $Y \sim Binomial(n, \theta)$.\footnote{This represents $n$ Bernoulli trials with success probability $\theta.$}
+
+\vspace*{1em}
+
+Remark: A binomial random variable with parameter $n=1$
+is equivalent to a Bernoulli random variable, i.e. there is only one trial.
+
 
 Likelihood
 ===
