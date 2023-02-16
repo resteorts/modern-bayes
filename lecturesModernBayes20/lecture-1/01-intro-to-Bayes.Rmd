@@ -258,7 +258,6 @@ Back to the Prior
 - In the supplemental material (end of lecture), find an example where we have more information and can set $a,b$ from in a more subjective and principled manner. 
 
 
-
 Cast of characters
 ===
 - Observed data: $x$
@@ -461,7 +460,7 @@ Supplemental Material
 
 Below you will find supplemental material, such as exercises to help you for the exam with solutions provided. 
 
-Exercise
+Exercise 1
 ===
 
 We write $X\sim\Poisson(\theta)$ if $X$ has the Poisson distribution with rate $\theta>0$, that is, its p.m.f.\ is
@@ -480,7 +479,7 @@ p(x_{1:n}|\theta) & = \prod_{i = 1}^n p(x_i|\theta) \\
 & \underset{\theta}{\propto} e^{-n\theta} \theta^{\sum x_i}.
 \end{align*}
 
-Solution
+Solution 1
 ===
 Thus, using Bayes' theorem,
 \begin{align*}
@@ -491,6 +490,52 @@ p(\theta|x_{1:n}) &\propto p(x_{1:n}|\theta) p(\theta) \\
 \end{align*}
 Therefore, since the posterior density must integrate to $1$, we have
 $$p(\theta|x_{1:n}) =\Ga\big(\theta\mid a+\textstyle\sum x_i,\,b+n\big).$$
+
+Exercise 2
+===
+
+Suppose that $Y = \sum_i X_i,$ where $X_i \mid \theta \stackrel{iid}{\sim}{\text{Bernoulli}}(\theta)$ for $i=1,\ldots,n.$
+
+a. What is the distribution of $Y.$
+b. What is a conjugate prior? (Provide the distribution and parameters).
+c. What is the posterior update for $\theta \mid Y$ assuming the conjugate prior in part b. 
+d. Write the posterior mean $E[\theta \mid Y]$ as a weighted average of the prior mean and the sample mean, where you specify the weights. 
+
+Solution
+===
+
+a. $Y \sim \text{Binomial}(n, \theta).$
+b. A conjugate prior is $\theta \sim \text{Beta}(a,b)$ for $a,b > 0$ and known.
+c. The posterior update is $\theta \mid Y \sim \text{Beta}(a + y, n + b - y).$
+
+Solution
+===
+
+Recall the prior mean is $a/(a+b)$ and the sample mean is $y/n.$
+
+d. The posterior mean is 
+\begin{align}
+E[\theta \mid Y] &= \frac{a + y}{a + b + n}\\
+&=\frac{a}{a + b + n} + \frac{y}{a + b + n} \\
+&=\frac{a}{a + b + n} \times \textcolor{red}{\frac{a+b}{a+b}} + \frac{y}{a + b + n} \times \textcolor{red}{\frac{n}{n}} \\
+&= \frac{a+b}{a+b+n} \times \textcolor{blue}{\frac{a}{a+b}} + \frac{n}{a + b + n} \times \textcolor{blue}{\frac{y}{n}} 
+\end{align}
+
+Above the prior mean and sample mean is in blue and the respective weights are multipled by either prior mean or sample mean. 
+
+Solution
+===
+
+The weights are proportional to $a+b$ for the prior mean and $n$ for the sample mean. 
+
+This leads to an interpretation of $a$ and $b$ as "prior data":
+
+- $a \approx$ "prior number of 1's."
+- $b \approx$ "prior number of 0's."
+- $a + b \approx$ "prior sample size"
+
+Remark: If $n >> a + b$ then we would inform $\theta$ according to the data. However, if $n << a + b,$ we would inform $\theta$ according to our prior sample or historical data. (This is explained more in depth on page 39 of Hoff).
+
 
 Module 1 Derivations
 ===
