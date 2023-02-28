@@ -162,7 +162,7 @@ Likelihood
 We can summarize the likelihood into the following:
 
 \begin{align}
-  &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i},
+  &\textcolor{blue}{X_i \mid Z_i} = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i},
 \end{align}
 
 where
@@ -180,7 +180,7 @@ Model
 ===
 We can write a generative model to include the likelihood as
 \begin{align}
-  &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
+  &\textcolor{blue}{X_i \mid Z_i} = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
      & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\
     & \theta\sim \Ga(a, b)
 \end{align}
@@ -216,7 +216,7 @@ Likelihood
 ===
 Recall the model is:
 \begin{align}
-  &X_i = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
+  &\textcolor{blue}{X_i \mid Z_i} = \branch{Z_i}{Z_i \leq c_i}{c_i}{Z_i > c_i}\\
      & Z_1,\ldots,Z_n|\theta\,\stackrel{iid}{\sim} \,\Ga(r,\theta)\\
     & \theta\sim \Ga(a, b)
 \end{align}
