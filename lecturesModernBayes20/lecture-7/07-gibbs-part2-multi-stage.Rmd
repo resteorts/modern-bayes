@@ -450,7 +450,19 @@ The estimated density of $\theta$
 plot(density(res[,1]), xlab = expression(theta), 
      main = expression(paste("Density of ", theta)))
 abline(v = mean(res[,1]), col = "red")
+quantile(res[,1], c(0.025, 0.975))
+abline(v = 2.65, col = "blue") 
+abline(v = 4.07, col = "blue")
 ```
+
+The estimated density of $\theta$
+===
+
+How do we interpret the estimated posterior density of $\theta \mid -$ once we have run enough MCMC iterations? 
+
+1. This is the approximated posterior density of how long individuals are likely to live conditional on all the other parameters. 
+2. The red line is the posterior mean (see the code in the previous slide). 
+3. The blue lines represent a 95 percent confident region.
 
 The estimated density of $z_9$
 ===
