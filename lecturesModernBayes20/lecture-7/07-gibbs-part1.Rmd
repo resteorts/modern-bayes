@@ -636,3 +636,5 @@ Notes on truncated exponential example can be found here:
 
 Notes on the two-stage Gibbs sampler set up can be found here:
 \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/class-notes/gibbs-partI/intro-gibbs.pdf}
+
+

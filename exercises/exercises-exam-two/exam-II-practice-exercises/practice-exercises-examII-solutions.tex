@@ -115,7 +115,44 @@ But that means that the rejection step can be by-passed completely by just sampl
 
 Thus, we can directly sample $$V\sim\Uniform(0,F(c)),$$ by drawing $$U\sim\Uniform(0,1)$$ and setting $$V = F(c)U.$$ 
 
+\item Prove that the full conditional distributions $f(x \mid y)$ and $f(y \mid x)$ determine the joint distribution of $f(x,y).$
+Specifically, show that the joint can be written as
 
+$$f(x,y) = 
+\frac{f(y \mid x)}
+{\int [ f(y\mid x)/f(x \mid y) ]dy}.$$
+
+
+
+
+
+Note that the joint distribution can be written as follows:
+\begin{align}
+f(x,y) &= f(y \mid x)f(y)  \\
+&= f(x \mid y)f(x) 
+\end{align}
+
+Consider 
+
+\begin{align}
+\text{Denominator} &=
+\int \frac{f(y\mid x)}{f(x \mid y)}) dy\\
+&=\int \frac{f(x)}{f(x,y)} /
+ \frac{f(y)}{f(x,y)} \; dy\\
+ & = \int \frac{f(x)}{f(y)} \; dy\\
+ &= \frac{1}{f(x)}
+\end{align}
+
+This completes the argument.
+
+%This implies that 
+%
+%\begin{align}
+%
+%
+%\end{align}
+
+Reference: This proof can be found in Casella and Robert, Monte Carlo Statistical Methods. The proof is known as the Hammersley-Clifford Theorem, which is a result when the  conditional distributions determine the joint. (This occurs for multi-Gibbs stage models, so this proof can be extended to the multi-stage case).
 
 
 \end{enumerate}
