@@ -341,7 +341,7 @@ where $k= \min \{k: Y_k \in A\},$
 Then it follows that
 $$X \sim \text{Uniform}(A).$$
 
-Proof: Exercise. Hint: Try the discrete case first and use a geometric series. 
+
 
 Drawing Uniform Samples
 ===
