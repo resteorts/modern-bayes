@@ -467,14 +467,14 @@ How do we interpret the estimated posterior density of $\theta$ given all other 
 3. The blue lines represent a 95 percent confident region.
 
 
-<!-- The estimated density of $z_{9}$ -->
-<!-- === -->
+The estimated density of the ninth observation of z
+===
 
-<!-- How do we interpret the estimated posterior density of $\z_{9} \mid $ once we have run enough MCMC iterations?  -->
+How do we interpret the estimated posterior density of the ninth observation of $z$ once we have run enough MCMC iterations?
 
-<!-- 1. This is the approximated posterior density of the ninth censored random variable on all the other parameters. -->
-<!-- 2. The red line is the posterior mean of this censored random variable (see the code in the previous slide). -->
-<!-- 3. You could add 95 percent confidence regions similar to those that were made for $\theta \mid  $ -->
+1. This is the approximated posterior density of the ninth censored random variable on all the other parameters.
+2. The red line is the posterior mean of this censored random variable (see the code in the previous slide).
+3. You could add 95 percent confidence regions similar to those that were made for $\theta$
 
 
 The estimated density of $z_{9}$
