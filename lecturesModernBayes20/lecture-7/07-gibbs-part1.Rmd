@@ -105,6 +105,14 @@ converge---is referred to as the \emph{mixing rate}.
 \item An algorithm with good performance is said to ``have good mixing'', or ``mix well''.
 \end{itemize}
 
+Gibbs is a type of MCMC
+===
+\textcolor{blue}{Under some conditions, assume that $E|(X,Y)| < \infty.$ Assume that $$(X,Y) \sim p(x,y)$$}
+
+\textcolor{blue}{Then $$\frac{1}{M} \sum_{i=1}^M (X_i, Y_i) \rightarrow E[(X,Y)]$$ as $M \rightarrow \infty.$}
+
+\textcolor{blue}{Thus, we have an approximation of $E[(X,Y)],$ which is referred to MCMC in this setting (the pairs are not i.i.d.)}
+
 Exponential Example
 ===
 Consider the following Exponential model for observation(s) $x=(x_1,\ldots,x_n).$\footnote{Please note that in the attached data there are 40 observations, which can be found in \text{data-exponential.csv}.}:
