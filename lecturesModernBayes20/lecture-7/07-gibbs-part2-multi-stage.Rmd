@@ -472,7 +472,7 @@ The estimated density of the ninth observation of z
 
 How do we interpret the estimated posterior density of the ninth observation of $z$ once we have run enough MCMC iterations?
 
-1. This is the approximated posterior density of the ninth censored random variable on all the other parameters.
+1. This is the approximated posterior density of the ninth censored random variable conditional on all the other parameters.
 2. The red line is the posterior mean of this censored random variable (see the code in the previous slide).
 3. You could add 95 percent confidence regions similar to those that were made for $\theta$
 
