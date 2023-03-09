@@ -63,14 +63,64 @@ Multinomial or Categorical distribution
 ===
 
 Assume $X = (x_1, x_2, \ldots x_n)$ where $x_i \in \{1,\ldots, m\}.$
-Assume $\theta = (\theta_1,\ldots,\theta_m),$ where $\sum_i \theta_i =1.$
+
+\begin{enumerate}
+\item n: number of observations.
+\item m: number of categories or bins.
+\end{enumerate}
+
+Assume $\theta = (\theta_1,\ldots,\theta_m) \; \geq 0,$ where $\sum_i \theta_i = 1.$
 
 
 Assume that $$X \mid \theta \stackrel{ind}{\sim} \text{Multinomial}(\theta)$$
 or 
 $$ X \mid \theta \stackrel{ind}{\sim} \text{Categorical}(\theta)$$
 \vskip 1em
-$$P(X_i = j \mid {\theta}) = \theta_j$$
+$$P(X_i = j \mid {\theta}) = \theta_j$$ where $j \in \{1,\ldots, m\}$ and $i=1,\ldots,n.$
+
+Binomial Special Case
+===
+
+Consider $j \in {1,2}.$ Let $i=1,\ldots,n.$
+
+\vspace*{1em}
+
+Then $\theta = (\theta_1, \theta_2) \geq 0,$ where $\theta_1 + \theta_2 = 1.$
+
+\vspace*{1em}
+
+$$ X \mid \theta \stackrel{ind}{\sim} \text{Categorical}(\theta).$$
+
+1. Suppose that j = 1. Then $P(X_i = 1 \mid \theta) = \theta_1.$
+
+2. Suppose that j = 2. Then $P(X_i = 2 \mid \theta) = \theta_2.$
+
+\vspace*{1em}
+
+This is equivalent to $X \sim \text{Binomial}(n, \theta_1).$
+
+Multinomial or Categorical distribution
+===
+
+Consider $j \in {1,2, 3}.$ Let $i=1,\ldots,n.$
+
+\vspace*{1em}
+
+Then $\theta = (\theta_1, \theta_2, \theta_3) \geq 0,$ where $\theta_1 + \theta_2 + \theta_3 = 1.$
+
+\vspace*{1em}
+
+$$ X \mid \theta \stackrel{ind}{\sim} \text{Categorical}(\theta).$$
+
+1. Suppose that j = 1. Then $P(X_i = 1 \mid \theta) = \theta_1.$
+
+2. Suppose that j = 2. Then $P(X_i = 2 \mid \theta) = \theta_2.$
+
+3. Suppose that j = 3. Then $P(X_i = 3 \mid \theta) = \theta_3.$
+
+\vspace*{1em}
+
+Example: Extend heights example to three categories of gender, which might be male, female, and other.  
 
 Conjugate prior (Dirichlet)
 ===
