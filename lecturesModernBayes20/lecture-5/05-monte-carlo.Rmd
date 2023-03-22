@@ -976,4 +976,11 @@ Proof of Proposition
 
 The general rejection sampler proof follows directly from Lemma 3 -- 4. 
 
+Video on Rejection Sampling 
+===
+
+https://www.youtube.com/watch?v=OXDqjdVVePY
+
+Thank you to Mona Su, Class of 2023 for the recommendation! 
+
 
