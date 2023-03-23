@@ -313,7 +313,7 @@ $$\bm\mu|\lambda,x_{1:n}\, \sim \,\N(M_\lambda,L_\lambda^{-1})$$
  where $$L_\lambda =\lambda_0+ n\lambda \;\;  \text{and} \;\;
  M_\lambda =\frac{\lambda_0\mu_0+\lambda\sum_{i = 1}^n x_i}{\lambda_0+ n\lambda}.$$
 
-For any fixed value of $\mu$, it is straightforward to derive\footnote{do this on your own} that
+For any fixed value of $\mu$, it is straightforward to derive\footnote{derivation is found at the end of slides} that
 \begin{align}\label{equation:lambda-semi-conjugate}
 \bm\lambda|\mu, x_{1:n}\,\sim\,\Ga(A_\mu, B_\mu)
 \end{align}
@@ -636,5 +636,47 @@ Notes on truncated exponential example can be found here:
 
 Notes on the two-stage Gibbs sampler set up can be found here:
 \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/class-notes/gibbs-partI/intro-gibbs.pdf}
+
+
+Exercise
+===
+
+Recall that 
+
+\begin{align}
+X_1, \ldots, X_n \mid \lambda &\stackrel{iid}{\sim} \text{Normal}(\mu, \lambda^{-1})\\
+\lambda &\sim \text{Gamma}(a,b)
+\end{align}
+
+Let's derive the posterior update of $\lambda \mid x_{1:n},$ which we utilized in an earlier derivation. 
+
+Exercise
+===
+
+\begin{align}
+p(\lambda \mid x_{1:n}) &\propto p(x_{1:n} \mid \lambda) p(\lambda) \\
+&= \prod_{i=1}^n [\sqrt{\frac{\lambda}{2\pi}} 
+\exp\{ 
+-\frac{\lambda}{2} 
+(x_i - \mu)^2
+\} ] \times
+\frac{b^a}{\Gamma(a)}\lambda^{a-1}e^{-b\lambda}\\
+& \propto (\lambda)^{n/2} \exp\{ 
+-\frac{\lambda}{2} 
+\sum_{i=1}^n (x_i - \mu)^2
+\} ] \times \lambda^{a-1}e^{-b\lambda} \\
+& \propto (\lambda)^{a + n/2 - 1} 
+\exp\{ 
+\lambda[b +
+\sum_{i=1}^n (x_i - \mu)^2]
+\} 
+\end{align}
+
+This implies that 
+
+\begin{align}
+\lambda \mid x_{1:n} \sim \text{Gamma}(a + n/2, b +
+\sum_{i=1}^n (x_i - \mu)^2)
+\end{align}
 
 
