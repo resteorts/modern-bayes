@@ -390,7 +390,7 @@ Goals
 
 Conjugate to MVN
 ===
-Suppose that $$\bm{y} = (y_1 \ldots y_n)^T \mid \theta \sim MVN(\theta, \Sigma). $$
+Suppose that \textcolor{blue}{$$\bm{y_i} = (y_{i1} \ldots y_{ip})^T \mid \theta \sim MVN(\theta, \Sigma), $$ where $i=1,\ldots,n.$}
 Let $$\pi(\btheta) \sim MVN(\bmu, \Omega). $$
 
 What is the full conditional distribution of $\btheta \mid \bm{y}, \Sigma$?
