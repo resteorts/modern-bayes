@@ -6,7 +6,7 @@ indent: true
 documentclass: article
 ---
 
-Total points: 10 (reproducibility) + 10 (Q1) = 20 points. **Q2 is worth up to 8 points of extra credit on this assignment to help anyone that has had a difficult time in the course and also to help you prepare for the final exam.**\
+Total points: 10 (reproducibility) + 10 (Q1) = 20 points. 
 
 **General instructions for homeworks**: Please follow the uploading file instructions according to the syllabus. You will give the commands to answer each question in its own code block, which will also produce plots that will be automatically embedded in the output file. Each answer must be supported by written statements as well as any code used. Your code must be completely reproducible and must compile. 
 
@@ -26,10 +26,7 @@ problems below. I recommend that you work through them as much as possible befor
 
 \newpage
 
-2. **Extra Credit** (8 points) *Multivariate Methods* 
-This problem is optional for the homework, but it is worth extra credit. It is also a type of problem that is reasonable to appear on the final exam, and it's similar to what we did in class regarding the multivariate normal distribution. 
-
-Because this problem is extra credit, the TA Team will not answer questions on this except for clarification questions. These should be sent privately. You should work on your own on this problem and not with others to help you prepare for the final examination. 
+2. **Optional Problem (Not Graded)** (8 points) *Multivariate Methods* 
 
 Consider the following hierarchical model:
 
