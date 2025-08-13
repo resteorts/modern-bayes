@@ -1,0 +1,282 @@
+---
+title: "Module 0: Welcome to STA 602"
+author: "Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+# Welcome!
+
+## Teaching Team
+
+::: columns
+::: {.column width="50%"}
+**Instructor**:
+
+Professor Rebecca Steorts
+
+Old Chem 216
+
+[rebecca.steorts\@duke.edu](mailto:rebecca.steorts@duke.edu)
+:::
+
+::: {.column width="50%"}
+**Teaching assistants**
+
+ 
+Gwen Jacobson (gwen.jacobson@duke.edu)
+
+Raymond Sun (raymond.sun@duke.edu)
+
+
+:::
+:::
+
+## Course logistics
+
+**Lectures**
+
+Mondays and Wednesdays, 10:00 -- 11:15 AM, Perkins 217
+
+<br>
+
+**Labs**
+
+Lab 01: Thursday, 3:05 - 4:20 PM, Old Chemistry 116 
+
+\vspace*{1em}
+Lab 02: Thursday, 4:44 - 5:55 PM, Social Sciences 136
+
+------------------------------------------------------------------------
+
+## What is Bayesian Statistics?
+
+
+"Bayesian statistics is a theory in the field of statistics based on the Bayesian interpretation of probability where probability expresses a degree of belief in an event. The degree of belief may be based on prior knowledge about the event, such as the results of previous experiments, or on personal beliefs about the event. This differs from a number of other interpretations of probability, such as the frequentist interpretation that views probability as the limit of the relative frequency of an event after many trials."*[^1]
+
+\vspace*{1em}
+
+[^1]: Source: [Wikipedia](https://en.wikipedia.org/wiki/Bayesian_statistics)
+
+## Course learning objectives {.midi}
+
+By the end of the semester, you will be able to ...
+
+::: incremental
+- Provide a foundation to Bayesian statistical methods
+
+- Explore, visualize, and analyze data in a reproducible and shareable manner using Bayesian methods from the course
+
+- Gain experience in data wrangling and munging, building Bayesian models, visualizing them, and interpreting them 
+
+- Work on problems and case studies inspired by and based on real-world questions and data
+
+- Learn to effectively communicate results through written assignments and exams
+:::
+
+## Course topics
+
+**Bayesian methods**
+
+-   Introduction to Bayesian methods
+-   Decision theory
+-   Hierarchical Models
+-   Introduction to Monte Carlo sampling
+-   Markov chain Monte Carlo (and sampling techniques)
+-   Metropolis and Gibbs sampling
+-   Multivariate Bayesian Models
+-   Bayesian Mixture Models
+-   Bayesian Regression Models
+
+# Course details
+
+## Pre-reqs
+
+**Pre-reqs**
+
+- STA 210 [https://www2.stat.duke.edu/courses/Spring19/sta210.001/](https://www2.stat.duke.edu/courses/Spring19/sta210.001/)
+- STA 230 [https://www2.stat.duke.edu/courses/Fall18/sta230/](https://www2.stat.duke.edu/courses/Fall18/sta230/)
+- Linear algebra [http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/lecture_12](http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/lecture_12)
+- R programming/github (STA 199) [https://www2.stat.duke.edu/courses/Spring18/Sta199/](https://www2.stat.duke.edu/courses/Spring18/Sta199/)
+
+<br>
+
+<u>**Background knowledge**</u>
+
+::: columns
+::: {.column width="45%"}
+**Statistical methods**
+
+-   Linear and logistic regression
+-   Statistical inference
+-   Basic understanding of random variables
+:::
+
+::: {.column width="45%"}
+**Computing**
+
+-   Using R for data analysis
+-   Writing reports using Rmd 
+-   Understanding of github 
+-   Understanding reproducibility 
+:::
+:::
+
+## Course toolkit
+
+**Course webpage**: [https://resteorts.github.io/teach/bayes-fall-25.html](https://resteorts.github.io/teach/bayes-fall-25.html)
+
+**GitHub**: [github.com/modern-bayes](https://github.com/modern-bayes)
+
+-   Course information and course scheudle 
+
+**Canvas**
+
+-   Changes to Schedule
+-   Ed Discussion 
+-   Homework uploads 
+
+**Gradescope** (link on course webpage)
+
+-  Homework uploads (make sure to upload to Canvas as well).
+
+**Ed Discussion** (link on course webpage)
+
+-  Course discussion 
+
+## Class Meetings
+
+::: columns
+::: {.column width="50%"}
+**Lectures**
+
+-   Some traditional lecture
+-   Derivations to go over together or in small groups
+-   Bring fully-charged laptop / tablet to use R
+:::
+
+::: {.column width="50%"}
+**Labs (start first week of class)**
+
+-   Continuation from class material 
+-   Work on class assignments with TA support
+-   Time for clarifying questions regarding course material 
+
+:::
+:::
+
+
+**Attendance is strongly expected (if you are healthy!); please check will another student if you do miss lecture or lab regarding material and announcements.**
+
+
+# Computing toolkit
+
+## R and RStudio
+
+- Install R and RStudio on your laptop
+
+
+**or**
+
+
+- Access RStudio through [Docker container](https://cmgr.oit.duke.edu/containers) provided by Duke OIT
+
+- Reserve a generic **RStudio** container (there is no course specific container)
+
+## Canvas and Gradescope
+
+- All homework assignments will be uploaded to Gradescope and Canvas. 
+
+- Gradescope allows more fair and balanced grading. 
+
+- Canvas allows us to check the reproducibility of your work. 
+
+- Unfortunately, there is no platform that does both (to my knowledge). 
+
+- Feedback will be given in Gradscrope and is invidivual and private. 
+
+## Ed Discussion
+
+-   Online discussion forum (like Piazza, etc.)
+
+-   Platform to ask questions about course content, logistics, assignments, etc.
+
+-   Content organized by channels. Before posting, please browse previous posts to see if your question has already been answered. If not, please post your question in the relevant channel.
+
+-   Questions about grades, absences, and other private matters should be emailed to me with "STA 310" in the subject line. 
+
+# Activities & Assessment
+
+## Homework (20%)
+
+-   6 - 9 individual assignments
+-   Combination of derivations, conceptual questions, guided analyses, and open-ended analyses
+-   All homework grades will count toward your final grade. 
+
+## Quizzes (80%)
+
+-   3 individual online quizzes
+
+-   Covers content since the previous quiz, including readings, lecture notes, in-class activities, and homework
+
+-   All quiz grades will count toward your final grade. 
+
+## Grading
+
+Final grades will be calculated as follows
+
+| Category      | Percentage |
+|---------------|------------|
+| Homework      | 20%        |
+| Quizzes       | 80%        |
+
+See the course syllabus for letter grade thresholds. 
+
+# Course community
+
+## Course community
+
+-   Uphold the Duke Community Standard:
+
+    > ::: nonincremental
+    > -   I will not lie, cheat, or steal in my academic endeavors;
+    > -   I will conduct myself honorably in all my endeavors;
+    > -   I will act if the Standard is compromised.
+    > :::
+
+<br>
+
+-   Commit to respect, honor, and celebrate our diverse community
+
+-   Commit to being part of a learning environment that is welcoming and accessible to everyone
+
+## Accessibility
+
+-   The [Student Disability Access Office (SDAO)](https://access.duke.edu/students) is available to ensure that students are able to engage with their courses and related assignments.
+
+-   If you have documented accommodations from SDAO, please send the documentation within the first week to make sure all accommodations can be put in place as quickly as possible!
+
+-   I am committed to making all course activities and materials accessible. If any course component is not accessible to you in any way, please don't hesitate to let me know.
+
+
+## Support {.midi}
+
+-   **Office hours** to meet with a member of the teaching team.
+
+    -   Find the course schedule on the course webpage
+
+-   **Ed Discussion** for questions about course logistics, content, and assignments
+
+-   **Email** for questions not appropriate for Ed Discussion, e.g., regarding personal matters or grades
+
+    -   Please put **STA 602** in the subject line
+
+See the syllabus regarding additional academic and mental health and wellness resources. 
+
+## Questions 
+
+Questions? 
+
