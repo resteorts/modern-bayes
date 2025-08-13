@@ -29,73 +29,66 @@ Prof. Rebecca Steorts (resteorts.github.io)
 \vspace*{1em}
 
 \begin{itemize}
-\item Class: Tues/Th, 1:45 - 3:00 PM EDT (Old Chemistry 116)
-\item OH: Tues/Th, 3:00 - 4:00 PM EDT (Old Chemistry 216)
-\item Zoom ID: 944 0907 6733
-\item Course webpage: https://resteorts.github.io/teach/bayes-spring-23.html
+\item Class: Mo/Wed, 10:00 -- 11:45 AM EDT (Perkins 217)
+\item OH: TBD (XXX)
+\item Zoom ID: XXX
+\item Course webpage: https://resteorts.github.io/teach/bayes-spring-25.html
 \end{itemize}
 
 Class will be in person unless you are notified! OH will be over zoom as students have tended to like this and I can answer questions more rapidly. 
 
+Lab times
+===
+
+\begin{itemize}
+\item Lab-01: Thursday 3:05 -- 4:20 PM EDT, Old Chemistry 116 
+Meeting ID: XXXXXX
+\item Lab-02: Thursday: 4:40 -- 5:55 PM, Social Sciences 136
+\end{itemize}
+Meeting ID: XXXXXXX
 
 Teaching Assistants
 ===
 
-Andrea Aveni, PhD Student
+Gwen Jacobson, PhD Student
 
 \begin{itemize}
-\item Lab-01: Monday 1:45pm - 3:00pm EDT, Old Chemistry 003 (Backup: Lexin)
-Meeting ID: 954 6174 7646
-\item Lab-02: Monday: 3:30 – 4:45 PM EDT: Allen 103 (Back up: Lexin)
+\item Will hold lab sessions
 \item Will hold OH
+\item Will answer questions over Piazza
 \item Will grade and answer questions on piazza! 
 \end{itemize}
-
 
 Lab will be in person unless notified. OH will be over zoom. 
 
 Teaching Assistants
 ===
 
-Lexin Lu, MS Student
+Raymond Sun
 
 \begin{itemize}
+\item Will hold lab sessions
 \item Will hold OH
 \item Will answer questions over Piazza
 \item Will grade and answer questions on piazza! 
 \end{itemize}
 
 OH will be over zoom. 
-
-
-Teaching Assistants
-===
-
-Xiaozhu Zhang, MS Student
-
-\begin{itemize}
-\item Will hold OH
-\item Will answer questions over Piazza
-\item Will grade and answer questions on piazza! 
-\end{itemize}
-
-OH will be over zoom. 
-
 
 
 Where to find information
 ===
 
-- Course website (all major course information here): [https://resteorts.github.io/teach/bayes-spring-23.html](https://resteorts.github.io/teach/bayes-spring-23.html)
-
-- Piazza Forum: 
-
-[https://piazza.com/duke](https://piazza.com/duke)
-
-
-- Course syllabus [https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring-23.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-spring-23.pdf)
+- Course website (all major course information here): [https://resteorts.github.io/teach/bayes-spring-25.html](https://resteorts.github.io/teach/bayes-spring-25.html)
 
 \vspace*{2em}
+
+
+- Course syllabus [https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-fall-25.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/syllabus-sta602-fall-25.pdf)
+
+\vspace*{2em}
+
+- Please ask questions via Ed Discussion on Canvas. 
 
 Remark: Videos on Github are too large to view, so you will need to download these if you wish to watch them. The fastest way, is to clone the repository and they will all download. They are stored this way in case your internet connection is slow.
 
@@ -105,13 +98,11 @@ Where to find information
 - Course cheat sheet (a summary of course information):
 [https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf](https://github.com/resteorts/modern-bayes/blob/master/syllabus/deadlines-cheatsheat.pdf)
 
-- Sakai (upload homeworks): [https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1](https://shib.oit.duke.edu/idp/authn/external?conversation=e1s1)
+- Canvas (upload homeworks) (entire zipped files for reproducibility checks)
 
 - Duke Gradescope (upload homeworks):
 [https://gradescope.com/auth/saml/duke](https://gradescope.com/auth/saml/duke)
 
-
- 
 
 Other resources
 ===
@@ -224,9 +215,8 @@ Class Engagement
 0. Students are expected to have read the assigned reading before coming to class. 
 1. Students are expected to have watched the pre-recorded videos. 
 2. Prof. Steorts will go through the concepts in class again, highlighting the most important parts, providing clarifications, solutions/advice, and more advanced insights. 
-3. Prof. Steorts will take questions (in person) or those that are posted in advance to Piazza by Monday at 10 AM EDT and Wed at 10 AM EDT. 
-4. Prof. Steorts will provide exercises for the class to work through, practice exams, and an interactive environment. 
-5. TAs will be present to help (as able and as available) in these activities such that we can break into small groups and students can receive more individualized attention. 
+3. Prof. Steorts will provide exercises for the class to work through, practice exams, and an interactive environment. 
+4 . TAs will be present to help (as able and as available) in these activities such that we can break into small groups and students can receive more individualized attention. 
 
 Lab Engagement 
 ===
@@ -234,7 +224,7 @@ Lab Engagement
 0. Students are expected to have attempted the lab solutions before coming to lab and have watched the lab videos provided if they had trouble. 
 1. Students are encouraged to post lab questions in advance to Piazza regarding lab, which should be posted no later than each Thursday at 5 PM EST. 
 2. Each lab TA will go over all lab tasks, providing clarifications, solutions/advice, and more advanced insights. 
-3. Each lab TA will take questions (in person) or go over those posted Piazza. 
+3. Each lab TA will take questions (in person) or go over those posted to Ed Discussion. 
 4. You should always indicate what lab you are in to provide help to your TA. 
 5. Attendance is highly encouraged in order to learn tips and tricks and in order to get hints/advice which are important for homeworks and exams.
 
@@ -248,16 +238,16 @@ Homeworks
 3. You reproducible Rmd file is uploaded to Sakai. Your PDF file is uploaded to Gradescope. 
 4. Ask questions early if you have a problem to a TA regarding submission issues. 
 5. Your lowest homework will be dropped. 
-6. The first four our homeworks can be submitted in Sakai and on GradeScope at anytime in case you want to work ahead. 
+6. The first four our homeworks can be submitted in CanvAS and on Gradescope at anytime in case you want to work ahead. 
 
-Remark: Sakai is for reproducible code. Gradescope is to make grading easier for everyone. Unfortunately, there is not a platform that handles both. 
+Remark: Canvas is for reproducible code. Gradescope is to make grading easier for everyone. Unfortunately, there is not a platform that handles both. 
 
 **Please see the syllabus for all homework guidelines.**
 
-Why Sakai + Gradescope?
+Why Canvas + Gradescope?
 ===
 
-1. Sakai will be used for reproducibility so this can be checked. This will account for part of your grade each assignment. 
+1. Canvas will be used for reproducibility so this can be checked. This will account for part of your grade each assignment. 
 
 2. Gradescope will be used to:
 
