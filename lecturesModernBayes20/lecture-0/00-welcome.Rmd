@@ -192,11 +192,13 @@ By the end of the semester, you will be able to ...
 
 - Gradescope allows more fair and balanced grading. 
 
+- You must label your own pages on Gradescope to avoid any deductions of points. 
+
 - Canvas allows us to check the reproducibility of your work. 
 
 - Unfortunately, there is no platform that does both (to my knowledge). 
 
-- Feedback will be given in Gradscrope and is invidivual and private. 
+- Feedback will be given in Gradescope and is individual and private. 
 
 ## Ed Discussion
 
@@ -206,15 +208,16 @@ By the end of the semester, you will be able to ...
 
 -   Content organized by channels. Before posting, please browse previous posts to see if your question has already been answered. If not, please post your question in the relevant channel.
 
--   Questions about grades, absences, and other private matters should be emailed to me with "STA 310" in the subject line. 
+-   Questions about grades, absences, and other private matters should be emailed to me with "STA 602" in the subject line. 
 
 # Activities & Assessment
 
 ## Homework (20%)
 
--   6 - 9 individual assignments
+-   6 - 8 individual assignments
 -   Combination of derivations, conceptual questions, guided analyses, and open-ended analyses
 -   All homework grades will count toward your final grade. 
+-   No late assignments will be accepted. 
 
 ## Quizzes (80%)
 
@@ -222,7 +225,7 @@ By the end of the semester, you will be able to ...
 
 -   Covers content since the previous quiz, including readings, lecture notes, in-class activities, and homework
 
--   All quiz grades will count toward your final grade. 
+-   All quiz grades will count toward your final grade. No late assignments will be accepted. 
 
 ## Grading
 

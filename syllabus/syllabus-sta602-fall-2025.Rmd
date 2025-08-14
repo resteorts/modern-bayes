@@ -1,0 +1,266 @@
+---
+title: Syllabus
+author: 
+output: pdf_document
+---
+
+
+## Teaching team and office hours
+
+|  Role        | Name       | Office Hours         | Location              |
+|----------|-----------|---------------|-----------------------|
+| Instructor | Professor Rebecca Steorts  | TuTh   4:00 -- 5:00 PM  |    TBD        |
+| Teaching Assistant   |  Gwen Jacobson   |   TuTh   4:00 -- 5:00 PM             |            TBD          |
+| Teaching Assistant   |  Raymond Sun        |    MW 5:00 -- 6:00 PM               |             TBD         |
+
+## Course info
+
+|          | Day       | Time          | Location              |
+|----------|-----------|---------------|-----------------------|
+| Lectures | Mon & Wed | 10:00 am - 11:15 am | Perkins 217         |
+| Lab01   | Thurs    | 3:05 pm - 4:20 pm | Old Chem 216       |
+| Lab02   | Thurs    | 4:40 pm - 5:55 pm | Social Sciences 136       |
+
+## Textbooks
+
+You are expected to have all pre-reqs to be in the course (see pre-reqs section below). Students are expected to be very familiar with \texttt{R} and are \textbf{encouraged} to have learned \texttt{LaTex} by the end of the course. 
+
+\begin{enumerate}
+\item[] Required Textbook: \textit{A First Course in Bayesian Statistical Methods}, Peter D.\ Hoff, 2009, New York: Springer. Please make sure you have a copy of the book as there will be required reading throughout the course. I will refer to this as ``Hoff" throughout the course. 
+\item[] Optional supplementary text:  \textit{Statistical Inference, Second Edition}. Casella and Berger \url{https://fsalamri.files.wordpress.com/2015/02/casella_berger_statistical_inference1.pdf}
+\item[] Optional supplementary text:  \textit{Some of Bayesian Statistics: The Essential Parts}. Rebecca C. Steorts, Copyright, 2015. \url{https://stat.duke.edu/~rcs46/books/bayes_manuscripts.pdf} I will refer to this as ``PhD notes in the course."
+\item[] Optional supplementary text:  \textit{Baby Bayes using \texttt{R}}. Rebecca C. Steorts, Copyright, 2016. 
+\url{https://stat.duke.edu/~rcs46/books/babybayes-master.pdf} I will refer to this as ``undergrad notes" in the course. 
+\item[] Optional supplementary text:  \textit{Bayesian Data Analysis}. Gelman, A., Carlin, J.B., Stern, H.S., Dunson, D.B., Vehtari, A., \& Rubin, D.B. (2013). CRC press.
+\item[] \emph{The R Cookbook}, \url{http://www.cookbook-r.com/}.
+\item[] Github Setup and Commands: \url{https://www.youtube.com/watch?v=SWYqp7iY_Tc}.
+\item[] Github Tutorial: \url{https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners}.
+
+\end{enumerate}
+
+## Course description
+
+STA 602 is graduate-level course that introduces students to Bayesian inference and equips them with the tools to fit Bayesian models. The course covers the foundations of Bayesian statistics, including likelihood functions, prior and posterior distributions. The course covers a wide survey of topics to allow students to understand both the methodology and applications of Bayesian analysis. Students will learn to apply these concepts to analyze real-world data sets using statistical software (R). 
+
+## **Prerequisites**
+
+Students are expected to have a solid background in regression analysis (STA210), elementary probability (STA 230 or STA 240), and elementary linear algebra (MATH 202/216/218/221). These will be building blocks for course topics, and very little review will be provided in this course.  If you are unsure what prior knowledge is expected, please refer to the following past syllabi \& resources, and review any gaps in knowledge before the start of the semester. STA 211 now required to be taken prior or at the same time as STA 360/602. 
+
+\begin{enumerate}
+\item STA 210: \url{https://www2.stat.duke.edu/courses/Spring19/sta210.001/}
+\item STA 211 \url{https://stat.duke.edu/courses/mathematics-regression}
+\item STA 230: \url{https://www2.stat.duke.edu/courses/Fall18/sta230/}
+\item Linear algebra: \url{http://www.stat.columbia.edu/~fwood/Teaching/w4315/Fall2009/lecture_12}
+\item R programming. Students are expected to have a solid foundation of R programming prior to the first day of lecture. For a review of R programming, please see the following \textbf{review lectures and videos} on R at \url{https://github.com/resteorts/modern-bayes}.
+\item github: I expect that you have a solid foundation of using github prior to the first day of class as this will be important for accessing all class resources.  Resources can be found at \url{https://github.com/resteorts/modern-bayes}
+\item Common Distributions. I will assume that you have a good handle on common distributions from your probability class. In case you need to review this, there is a good reference, here: \url{https://github.com/resteorts/modern-bayes/blob/master/reading/statistical-inference.pdf}, where you can review common probability distributions. There is a quick reference guide that Simon Mak has made here: \url{https://github.com/resteorts/modern-bayes/blob/master/reading/distribution-quick-reference.pdf} that students have found helpful. Finally, I have prepared a summary of this information into one page, which is what you'll receive on exams. This can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/reading/common-distributions-one-pager.pdf}. I would suggest using this on homeworks or when practicing for the exams. 
+\end{enumerate}
+\emph{Remark}: This course will be very difficult without a strong foundation in the topics above, so please do review these in advance. 
+
+## Course learning objectives
+
+By the end of the semester, you will be able to ...
+
+-   understand how Bayesian statistics updates beliefs with new data.
+-   explain and work with priors, likelihoods, posteriors, and predictions.
+-   build and interpret Bayesian models for real-world problems.
+-   use both analytical solutions and computational tools to fit models.
+-   identify the appropriate model given the data and analysis objective.
+-   analyze real-world data by fitting and interpreting Bayesian models. 
+-   use R for analysis for reproducible analysis and synthesize reports on your own.
+-   effectively communicate results from statistical analyses to a general audience via writing. 
+
+## Course community
+
+### Duke Community Standard
+
+As a student in this course, you have agreed to uphold the [Duke Community Standard](https://studentaffairs.duke.edu/conduct/about-us/duke-community-standard) as well as the practices specific to this course.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_KN97j30ST4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+### Inclusive community
+
+It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students' learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength, and benefit. It is my intent to present materials and activities that are respectful of diversity and in alignment with [Duke's Commitment to Diversity and Inclusion](https://provost.duke.edu/initiatives/commitment-to-diversity-and-inclusion). Your suggestions are encouraged and appreciated. Please let me know ways to improve the effectiveness of the course for you personally, or for other students or student groups.
+
+Furthermore, I would like to create a learning environment that supports a diversity of thoughts, perspectives and experiences, and honors your identities. To help accomplish this:
+
+-   If you have a name that differs from those that appear in your official Duke records, please let me know! 
+-   If you feel like your performance in the class is being impacted by your experiences outside of class, please don't hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your academic dean is an excellent resource.
+-   I (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please let me or a member of the teaching team know.
+
+### Accessibility
+
+If there is any portion of the course that is not accessible to you due to challenges with technology or the course format, please let me know so we can make appropriate accommodations.
+
+The [Student Disability Access Office (SDAO)](https://access.duke.edu/students) is available to ensure that students are able to engage with their courses and related assignments. Students should be in touch with the Student Disability Access Office to [request or update accommodations](https://access.duke.edu/requests) under these circumstances.
+
+### Communication
+
+All lecture notes, assignment instructions, an up-to-date schedule, and other course materials may be found on the course website.
+
+All announcements will primarily made in class, so please make sure to come to lecture or get updates if you miss lecture. Some major announcments will be posted on Canvas and through email, however the majority of announcements will be made in class. 
+
+### Where to get help
+
+-   If you have a question during lecture or lab, feel free to ask it! There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.
+-   The teaching team is here to help you be successful in the course. You are encouraged to attend office hours[^1] to ask questions about the course content and assignments. Many questions are most effectively answered as you discuss them with others, so office hours are a valuable resource. Please use them!
+-   Outside of class and office hours, any general questions about course content or assignments should be posted on Duke Ed. There is a chance another student has already asked a similar question, so please check the other posts before adding a new question. If you know the answer to a question posted on the message board, I encourage you to respond!
+
+[^1]: Office hours are times the teaching team set aside each week to meet with students. [Click here](https://academicguides.duke.edu/reasons-to-attend-office-hours/) to learn more about how to effectively use office hours.
+
+### Email
+
+If there is a question that's not appropriate for Ed Discussion (or you may be unsure about), please email directly with "STA 602" in the subject line. Barring extenuating circumstances, I will respond to STA 602 emails as quickly as possible. Response time may be slower for emails received Friday - Sunday. 
+
+## Activities & Assessment
+
+The activities and assessments in this course are designed to help you successfully achieve the course learning objectives. Each activity and assessment is part of the *prepare, practice, perform* cycle for each topic.
+
+-   **Prepare**: Includes reading assignments and occasional videos to introduce new concepts and ensure a basic comprehension of the material.
+
+-   **Practice**: Includes in-class activities and exercises to explore the topics new topics in more depth. These activities will be completed either during lecture or outside of class on your own. As they are intended for practice, they will not be graded.
+
+-   **Perform**: Includes homework and quizzes. These assignments are an opportunity for you to demonstrate your understanding of the course material and how it is applied to the analysis of real-world data.
+
+### Readings
+
+There will be reading assignments to accompany each topic. Readings will primarily come from the course textbook or supplemental readings, but they may periodically include articles and other resources. It is strongly recommended that you complete the readings before lectures, so you have an introduction to the topic before class.
+
+### Lectures
+
+Lectures will be interactive with a mix of presenting lecture notes, short in-class activities, and  exercises. The activities will give you an opportunity to explore concepts in more depth.
+
+### Homework
+
+There will a series of homework assignments during the semester. In these assignments, you will apply what you've learned as you answer conceptual questions and complete guided and open-ended analyses. You may discuss homework assignments with other students; however, homework should be completed and submitted individually. Homework will be submitted to both Gradescope and Canvas.
+
+
+### Quizzes
+
+There will be 3 quizzes during the semester. Quizzes will cover the readings, lecture notes and activities, and any assignments since the previous quiz.
+
+## Grading
+
+The final course grade will be calculated as follows:
+
+<center>
+
+| Category      | Percentage |
+|---------------|------------|
+| Homework      | 20%        |
+| Quizzes       | 80%        |
+
+</center>
+
+<br>
+
+The final letter grade will be determined based on the following thresholds:
+
+<center>
+
+| Letter Grade | Final Course Grade |
+|--------------|--------------------|
+| A            | \>= 93             |
+| A-           | 90 - 92.99         |
+| B+           | 87 - 89.99         |
+| B            | 83 - 86.99         |
+| B-           | 80 - 82.99         |
+| C+           | 77 - 79.99         |
+| C            | 73 - 76.99         |
+| C-           | 70 - 72.99         |
+| D+           | 67 - 69.99         |
+| D            | 63 - 66.99         |
+| D-           | 60 - 62.99         |
+| F            | \< 60              |
+
+These are upper bounds for grade cutoffs, depending on the class performance the cutoffs may be lowered but they won't be increased.
+
+## Course policies
+
+### Academic honesty
+
+By participating in this course, you agree to abide by the following when completing assignments:
+
+-   The homework assignments must be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what's the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to homework questions (including any code) with anyone other than myself and the teaching assistants.
+
+-   You may not discuss or otherwise work with others on quizzes. Unauthorized collaboration or using unauthorized materials will be considered a violation for all students involved.
+
+-   For the projects collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.
+
+-   **Reusing code**: Unless explicitly stated otherwise, you may make use of online resources (e.g. StackOverflow) for coding examples on assignments. If you directly use code from an outside source (or use it as inspiration), you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
+
+-   **Use of artificial intelligence (AI)**: You should treat AI tools, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course:^[2](https://sta210-fa23.netlify.app/syllabus#fn2)^ (1) *Cognitive dimension:* Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate---rather than hinder---learning. (2) *Ethical dimension***:** Students using AI should be transparent about their use and make sure it aligns with academic integrity.
+
+    -   **AI tools for code:** You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use [these guidelines](https://guides.lib.monash.edu/c.php?g=219786&p=6972087) for citing AI-generated content.
+
+    -   **No AI tools for narrative:** Unless instructed otherwise, AI is [**not**]{.underline} permitted for writing narrative on assignments. In general, you may use AI as a resource as you complete assignments but not to answer the exercises for you. You are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.
+
+If you are unsure if the use of a particular resource complies with the academic honesty policy, please ask me or a teaching assistant.
+
+Regardless of course delivery format, it is the responsibility of all students to understand and follow all Duke policies, including academic integrity (e.g., completing one's own work, following proper citation of sources, adhering to guidance around group work projects,and more). Ignoring these requirements is a violation of the Duke Community Standard. Any questions and/or concerns regarding academic integrity can be directed to the Office of Student Conduct and Community Standards at [conduct\@duke.edu](mailto:conduct@duke.edu).
+
+Any violations in academic honesty standards as outlined in the [Duke Community Standard](https://studentaffairs.duke.edu/conduct/about-us/duke-community-standard) and those specific to this course will automatically result in a 0 for the assignment and will be reported to the [Office of Student Conduct](https://studentaffairs.duke.edu/conduct) for further action.
+
+### Late work & extensions
+
+Given that things come up periodically, we are dropping your lowest homework and quizzes. Given this, there will be no late extensions on any assignments. Please make sure that you stay up to date on the class and assignments. 
+The due dates for assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback within a timely manner. 
+
+
+If there are circumstances that are having a longer-term impact on your academic performance, please let your academic dean know, as they can be a resource. Please let me know if you need help contacting your academic dean.
+
+### Regrade requests
+
+Regrade requests must be submitted via Gradescope within one week of the assignment. Regrade requests will 
+only be considered if points were tallied incorrectly or a correct answer was mistakenly marked as incorrect. Requests to dispute the number of points deducted for an incorrect response will not be considered. If a regrade request is submitted, the entire question will be regraded, so your score could increase, decrease, or remain unchanged.
+
+### Attendance
+
+You are expected to attend all lectures and labs with a fully-charged laptop or tablet with access to RStudio. We understand there may be times when you are unable to attend a class meeting; in such instances it is your responsibility to make up the missed material. Labs will primarily be used to work on homework and the projects. If you miss a lab meeting dedicated to group work, please communicate with your teammates to make a plan to contribute to the assignment. [Click here](https://trinity.duke.edu/undergraduate/academic-policies/class-attendance-and-missed-work) for more information on the Trinity attendance policies.
+
+### Attendance Policy Related to COVID Symptoms, Exposure, or Infection
+
+Student health, safety, and well-being are the university's top priorities. To help ensure your well-being and the well-being of those around you, please do not come to class if you have tested positive for COVID-19 or have possible symptoms and have not yet been tested. If any of these situations apply to you, you must follow university guidance related to the ongoing COVID-19 pandemic and current health and safety protocols. If you are experiencing any COVID-19 symptoms, contact student health ([dshcheckin\@duke.edu](mailto:dshcheckin@duke.edu), 919-681-9355). Learn more about current university policy related to COVID-19 at [coronavirus.duke.edu](https://coronavirus.duke.edu/).
+
+To keep the university community as safe and healthy as possible, you will be expected to follow these guidelines. Please reach out to me and your academic dean as soon as possible if you need to quarantine or isolate so that we can discuss arrangements for your continued participation in class.
+
+## Accommodations
+
+### **Academic accommodations**
+
+If you are a student with a disability and need accommodations for this class, it is your responsibility to register with the Student Disability Access Office (SDAO) and provide them with documentation of your disability. SDAO will work with you to determine what accommodations are appropriate for your situation. Please note that accommodations are not retroactive and disability accommodations cannot be provided until a Faculty Accommodation Letter has been given to me. Please contact SDAO for more information: [sdao\@duke.edu](mailto:sdao@duke.edu) or [access.duke.edu](https://access.duke.edu/).
+
+### **Religious accommodations**
+
+Students are permitted by university policy to be absent from class to observe a religious holiday. Accordingly, Trinity College of Arts & Sciences and the Pratt School of Engineering have established procedures to be followed by students for notifying their instructors of an absence necessitated by the observance of a religious holiday. Please submit requests for religious accommodations at the beginning of the semester so that we can work to make suitable arrangements well ahead of time. You can find the policy and relevant notification form here: [trinity.duke.edu/undergraduate/academic-policies/religious-holidays](https://trinity.duke.edu/undergraduate/academic-policies/religious-holidays)
+
+## Additional support
+
+### Academic Resource Center
+
+The Academic Resource Center (the ARC) offers services to support students academically during their undergraduate careers at Duke. The ARC can provide support with time management, academic skills and strategies, unique learning styles, peer tutoring, learning consultations, learning communities, and more. ARC services are available free to any Duke undergraduate student, in any year, studying in any discipline.
+
+Contact <a href="mailto:arc@duke.edu" title="email">ARC\@duke.edu</a>, 919-684-5917.
+
+### Mental health and wellness resources
+
+Student mental health and wellness is of primary importance at Duke, and the university offers resources to support students in managing daily stress and self-care. Duke offers several resources for students to seek assistance on coursework and to nurture daily habits that support overall well-being, some of which are listed below
+
+-   **DuWell**: (919) 681-8421, provides Moments of Mindfulness (stress management and resilience building) and Koru (meditation) programming to assist students in developing a daily emotional well-being practice. [Click here](https://studentaffairs.duke.edu/duwell) to see schedules for programs please see. All are welcome and no experience necessary. [duwell\@studentaffairs.duke.edu](mailto:duwell@studentaffairs.duke.edu), or [studentaffairs.duke.edu/duwell](https://studentaffairs.duke.edu/duwell)
+
+If your mental health concerns and/or stressful events negatively affect your daily emotional state, academic performance, or ability to participate in your daily activities, many resources are available to help you through difficult times. Duke encourages all students to access these resources.
+
+-   **DukeReach**: Provides comprehensive outreach services to identify and support students in managing all aspects of well-being. If you have concerns about a student's behavior or health visit the website for resources and assistance. [studentaffairs.duke.edu/dukereach](http://studentaffairs.duke.edu/dukereach)
+-   **Counseling and Psychological Services (CAPS)**: CAPS services include individual, group, and couples counseling services, health coaching, psychiatric services, and workshops and discussions. CAPS also provides referral to off-campus resources for specialized care. (919) 660-1000. [studentaffairs.duke.edu/caps](https://studentaffairs.duke.edu/caps)
+-   **Blue Devils Care**: A convenient, confidential, and free way for Duke students to receive 24/7 mental health support through TalkNow and scheduled counseling. [bluedevilscare.duke.edu](https://bluedevilscare.duke.edu)
+-   **Two-Click Support**: Duke Student Government and DukeReach partnership that connects students to help in just two clicks. [bit.ly/TwoClickSupport](https://bit.ly/TwoClickSupport)
+
+### Technology Accommodations
+
+Students with demonstrated high financial need who have limited access to computers may request assistance in the form of loaner laptops. For new Spring 2024 technology assistance requests, please go [here](https://dukelife.duke.edu/technology-assistance-program/). Please note that supplies are limited.
+
+See the [Support](support.qmd) page for a more comprehensive list of academic and mental health wellness resources.
+
+
