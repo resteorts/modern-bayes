@@ -9,17 +9,19 @@ output: pdf_document
 
 |  Role        | Name       | Office Hours         | Location              |
 |----------|-----------|---------------|-----------------------|
-| Instructor | Professor Rebecca Steorts  | MW    After class  |    In my office        |
-| Teaching Assistant   |  Gwen Jacobson   |  Tu/W 4:00 -- 5:00 PM             |            TBD          |
-| Teaching Assistant   |  Raymond Sun        |  MW 5:00 -- 6:00 PM               |             TBD |
+| Instructor | Professor Rebecca Steorts  | MW    After class  |    In my office (or class zoom)       |
+| Teaching Assistant   |  Gwen Jacobson   |  Tu/W 4:00 -- 5:00 PM             |            TBD (or lab zoom)         |
+| Teaching Assistant   |  Raymond Sun        |  MW 5:00 -- 6:00 PM               |             TBD (or lab zoom) |
 
 ## Course info
 
-|          | Day       | Time          | Location              |
+|          | Day       | Time          | Location              | Zoom
 |----------|-----------|---------------|-----------------------|
-| Lectures | Mon & Wed | 10:00 am - 11:15 am | Perkins 217         |
-| Lab01   | Thurs    | 3:05 pm - 4:20 pm | Old Chem 216       |
-| Lab02   | Thurs    | 4:40 pm - 5:55 pm | Social Sciences 136       |
+| Lectures | Mon & Wed | 10:00 am - 11:15 am | Perkins 217         |  972 7448 1273
+| Lab01   | Thurs    | 3:05 pm - 4:20 pm | Old Chem 216       | 937 1662 9115
+| Lab02   | Thurs    | 4:40 pm - 5:55 pm | Social Sciences 136       | 937 1662 9115
+
+** Please make sure that you have zoom information organized in case this is needed. The instructor and TA's are happy to meet with students outside of office hours by appointment.**
 
 ## Textbooks
 
@@ -105,8 +107,8 @@ All announcements will primarily made in class, so please make sure to come to l
 ### Where to get help
 
 -   If you have a question during lecture or lab, feel free to ask it! There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.
--   The teaching team is here to help you be successful in the course. You are encouraged to attend office hours[^1] to ask questions about the course content and assignments. Many questions are most effectively answered as you discuss them with others, so office hours are a valuable resource. Please use them!
--   Outside of class and office hours, any general questions about course content or assignments should be posted on Duke Ed. There is a chance another student has already asked a similar question, so please check the other posts before adding a new question. If you know the answer to a question posted on the message board, I encourage you to respond!
+-   The teaching team is here to help you be successful in the course. You are expected to attend office hours[^1] to ask questions about the course content and assignments. Many questions are most effectively answered as you discuss them with others, so office hours are a valuable resource. Please use them!
+-   Outside of class and office hours, any general questions about course content or assignments should be posted on Duke Ed. There is a chance another student has already asked a similar question, so please check the other posts before adding a new question. If you know the answer to a question posted on the message board, I encourage you to respond! Please do be careful regarding your posts, and provide a direct message if you're concerned about giving too much information away to the entire class! 
 
 [^1]: Office hours are times the teaching team set aside each week to meet with students. [Click here](https://academicguides.duke.edu/reasons-to-attend-office-hours/) to learn more about how to effectively use office hours.
 
@@ -122,11 +124,11 @@ The activities and assessments in this course are designed to help you successfu
 
 -   **Practice**: Includes in-class activities and exercises to explore the topics new topics in more depth. These activities will be completed either during lecture or outside of class on your own. As they are intended for practice, they will not be graded.
 
--   **Perform**: Includes homework and quizzes. These assignments are an opportunity for you to demonstrate your understanding of the course material and how it is applied to the analysis of real-world data.
+-   **Perform**: Includes homework and quizzes/exams. These assignments are an opportunity for you to demonstrate your understanding of the course material. We will discuss the format of the exams closer to their posted date. 
 
 ### Readings
 
-There will be reading assignments to accompany each topic. Readings will primarily come from the course textbook or supplemental readings, but they may periodically include articles and other resources. It is strongly recommended that you complete the readings before lectures, so you have an introduction to the topic before class.
+There will be reading assignments to accompany each topic. Readings will primarily come from the course textbook or supplemental readings, but they may periodically include articles and other resources. It is strongly recommended that you complete the readings before lectures, so you have an introduction to the topic before class. The readings are fair game for quizzes/exams! 
 
 ### Lectures
 
@@ -187,7 +189,6 @@ By participating in this course, you agree to abide by the following when comple
 
 -   You may not discuss or otherwise work with others on quizzes. Unauthorized collaboration or using unauthorized materials will be considered a violation for all students involved.
 
--   For the projects collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.
 
 -   **Reusing code**: Unless explicitly stated otherwise, you may make use of online resources (e.g. StackOverflow) for coding examples on assignments. If you directly use code from an outside source (or use it as inspiration), you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
 
@@ -205,20 +206,22 @@ Any violations in academic honesty standards as outlined in the [Duke Community 
 
 ### Late work & extensions
 
-Given that things come up periodically, we are dropping your lowest homework and quizzes. Given this, there will be no late extensions on any assignments. Please make sure that you stay up to date on the class and assignments. 
-The due dates for assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback within a timely manner. 
+Please make sure that you stay up to date on the class and assignments. The due dates for assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback within a timely manner. 
 
 
 If there are circumstances that are having a longer-term impact on your academic performance, please let your academic dean know, as they can be a resource. Please let me know if you need help contacting your academic dean.
 
+**There are no dropped assignments in this course and all assignments will count towards your final grade.**
+
 ### Regrade requests
 
-Regrade requests must be submitted via Gradescope within one week of the assignment. Regrade requests will 
-only be considered if points were tallied incorrectly or a correct answer was mistakenly marked as incorrect. Requests to dispute the number of points deducted for an incorrect response will not be considered. If a regrade request is submitted, the entire question will be regraded, so your score could increase, decrease, or remain unchanged.
+Regrade requests must be submitted via Gradescope within one week of the assignment. Regrade requests will  only be considered if points were tallied incorrectly or a correct answer was mistakenly marked as incorrect. Requests to dispute the number of points deducted for an incorrect response will not be considered. **If a regrade request is submitted, the entire question will be regraded, so your score could increase, decrease, or remain unchanged.**
 
 ### Attendance
 
-You are expected to attend all lectures and labs with a fully-charged laptop or tablet with access to RStudio. We understand there may be times when you are unable to attend a class meeting; in such instances it is your responsibility to make up the missed material. Labs will primarily be used to work on homework and the projects. If you miss a lab meeting dedicated to group work, please communicate with your teammates to make a plan to contribute to the assignment. [Click here](https://trinity.duke.edu/undergraduate/academic-policies/class-attendance-and-missed-work) for more information on the Trinity attendance policies.
+You are expected to attend all lectures and labs with a fully-charged laptop or tablet with access to RStudio. We understand there may be times when you are unable to attend a class meeting; in such instances it is your responsibility to make up the missed material. 
+
+Labs will primarily be used to work on homework and the projects. If you miss a lab meeting dedicated to group work, please communicate with your teammates to make a plan to contribute to the assignment. [Click here](https://trinity.duke.edu/undergraduate/academic-policies/class-attendance-and-missed-work) for more information on the Trinity attendance policies.
 
 ### Attendance Policy Related to COVID Symptoms, Exposure, or Infection
 
