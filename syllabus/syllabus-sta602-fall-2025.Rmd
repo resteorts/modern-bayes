@@ -9,9 +9,9 @@ output: pdf_document
 
 |  Role        | Name       | Office Hours         | Location              |
 |----------|-----------|---------------|-----------------------|
-| Instructor | Professor Rebecca Steorts  | TuTh   4:00 -- 5:00 PM  |    TBD        |
-| Teaching Assistant   |  Gwen Jacobson   |   TuTh   4:00 -- 5:00 PM             |            TBD          |
-| Teaching Assistant   |  Raymond Sun        |    MW 5:00 -- 6:00 PM               |             TBD         |
+| Instructor | Professor Rebecca Steorts  | MW    After class  |    In my office        |
+| Teaching Assistant   |  Gwen Jacobson   |  Tu/W 4:00 -- 5:00 PM             |            TBD          |
+| Teaching Assistant   |  Raymond Sun        |  MW 5:00 -- 6:00 PM               |             TBD |
 
 ## Course info
 
