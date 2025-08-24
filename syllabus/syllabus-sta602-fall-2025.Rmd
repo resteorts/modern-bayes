@@ -10,8 +10,8 @@ output: pdf_document
 |  Role        | Name       | Office Hours         | Location              |
 |----------|-----------|---------------|-----------------------|
 | Instructor | Professor Rebecca Steorts  | MW    After class  |    In my office (or class zoom)       |
-| Teaching Assistant   |  Gwen Jacobson   |  Tu/W 4:00 -- 5:00 PM             |            TBD (or lab zoom)         |
-| Teaching Assistant   |  Raymond Sun        |  MW 5:00 -- 6:00 PM               |             TBD (or lab zoom) |
+| Teaching Assistant   |  Gwen Jacobson   |  Tu/W 4:00 -- 5:00 PM             |            Old Chem 203B (or lab zoom)         |
+| Teaching Assistant   |  Raymond Sun        |  MW 5:00 -- 6:00 PM               |             Old Chem 203B (or lab zoom) |
 
 ## Course info
 
@@ -22,6 +22,9 @@ output: pdf_document
 | Lab02   | Thurs    | 4:40 pm - 5:55 pm | Social Sciences 136       | 937 1662 9115
 
 ** Please make sure that you have zoom information organized in case this is needed. The instructor and TA's are happy to meet with students outside of office hours by appointment.**
+
+- Class Zoom and Steorts OH ID: 972 7448 1273
+- Lab Zoom ID: 937 1662 9115
 
 ## Textbooks
 
