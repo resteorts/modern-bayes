@@ -200,10 +200,10 @@ Obama Example
 ```{r}
 n <- 10
 # Fixing values of a,b. Chosen skewed Beta.
-# a = 21/8
-# b = 0.04
-a <- 0.25
-b <- 0.25
+a = 21/8
+b = 0.04
+#a <- 0.25
+#b <- 0.25
 th <- seq(0, 1, length = 500)
 x <- 6
 # we set the likelihood, prior, and posteriors with 
@@ -253,7 +253,7 @@ legend(0.1, 3, c("Prior", "Likelihood", "Posterior"), lty = c(2, 3, 1), lwd = c(
 Back to the Prior
 ===
 
-- We choose the prior here two different ways. What happened? 
+- We choose the prior here two different ways. What do you observe? 
 
 - In the supplemental material (end of lecture), find an example where we have more information and can set $a,b$ from in a more subjective and principled manner. 
 
@@ -389,30 +389,30 @@ Observe that the posterior predictive distribution:
 1. Does not depend on unknown parameters.
 2. The predictive distribution depends on the observed data.
 
-Posterior Predictive Function
-===
+<!-- Posterior Predictive Function -->
+<!-- === -->
 
-```{r}
-posterior_pred <- function(a = 1, b = 1, 
-          x = x, n = 100, new_point) {
-  if (new_point == 1) {
-    return((a + x)/(a + b + n))
-  }else {
-    return(b + (n - x)/(a + b + n))
-  }
-}
-new_value <- posterior_pred(a = a, b = b, x = x,
-                n = n, new_point = 0)
-print(new_value)
-print(1-new_value)
-```
+<!-- ```{r} -->
+<!-- posterior_pred <- function(a = 1, b = 1,  -->
+<!--           x = x, n = 100, new_point) { -->
+<!--   if (new_point == 1) { -->
+<!--     return((a + x)/(a + b + n)) -->
+<!--   }else { -->
+<!--     return(b + (n - x)/(a + b + n)) -->
+<!--   } -->
+<!-- } -->
+<!-- new_value <- posterior_pred(a = a, b = b, x = x, -->
+<!--                 n = n, new_point = 0) -->
+<!-- print(new_value) -->
+<!-- print(1-new_value) -->
+<!-- ``` -->
 
-Posterior Predictive Plot
-===
-```{r, echo=FALSE}
-plot(0, new_value, lty = 2, xlim = c(-0.5,1.5), ylim = c(-0.5,1), xlab="binary outcome (0,1)", ylab="posterior predictive distribution", type = "h", lwd = 2)
-points(1, 1-new_value, type = "h", lwd = 2)
-```
+<!-- Posterior Predictive Plot -->
+<!-- === -->
+<!-- ```{r, echo=FALSE} -->
+<!-- plot(0, new_value, lty = 2, xlim = c(-0.5,1.5), ylim = c(-0.5,1), xlab="binary outcome (0,1)", ylab="posterior predictive distribution", type = "h", lwd = 2) -->
+<!-- points(1, 1-new_value, type = "h", lwd = 2) -->
+<!-- ``` -->
 
 
 
@@ -424,6 +424,8 @@ Overall Summary
 - We derived Bayes' Theorem
 - Bernoulli-Beta
 - Conjugacy
+- Marginal distribution
+- Posterior predictive
 
 Background Knowledge
 ===
