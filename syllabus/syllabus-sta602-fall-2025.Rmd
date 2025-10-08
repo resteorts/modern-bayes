@@ -281,6 +281,8 @@ Please see homework submission instructions below to ensure full points on all p
 
 - PDF you submit to Gradescope: This should be the exact PDF to which your .Rmd renders, and it should include both non-code problems and code problems/output. Label your pages on Gradescope! 
 
+- Regrade requests should be made on Gradescope (and we will review these). If you have more extensive questions, please come to office hours or reach out to Professor Steorts and CC the entire teaching team. 
+
 IMPORTANT: This means that if you have a separate PDF for the completed non-code parts, you need to write your .Rmd so that those pages are included when you render the PDF. If you are having trouble figuring out how to do this, please reach out to the teaching team in the first week of class!
 
 
