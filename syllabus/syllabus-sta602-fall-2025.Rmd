@@ -10,7 +10,7 @@ output: pdf_document
 |  Role        | Name       | Office Hours         | Location              |
 |----------|-----------|---------------|-----------------------|
 | Instructor | Professor Rebecca Steorts  | MW    After class  |    In my office (or class zoom)       |
-| Teaching Assistant   |  Gwen Jacobson   |  Tu/W 4:30 -- 5:30 PM             |            Old Chem 203B (or lab zoom)         |
+| Teaching Assistant   |  Gwen Jacobson   |  Tu/W 4:00 -- 5:00 PM             |            Old Chem 203B (or lab zoom)         |
 | Teaching Assistant   |  Raymond Sun        |  MW 5:00 -- 6:00 PM               |             Old Chem 203B (or lab zoom) |
 
 ## Course info
@@ -18,8 +18,8 @@ output: pdf_document
 |          | Day       | Time          | Location              | Zoom
 |----------|-----------|---------------|-----------------------|
 | Lectures | Mon & Wed | 10:05 am - 11:20 am | Perkins 217         |  972 7448 1273
-| Lab01   | Thurs    | 3:05 pm - 4:20 pm | Old Chem 116       | 937 1662 9115
-| Lab02   | Thurs    | 4:40 pm - 5:55 pm | Social Sciences 136       | 937 1662 9115
+| OH  | Thurs    | 3:05 pm - 4:20 pm | Old Chem 116       | 937 1662 9115
+| Lab   | Thurs    | 4:40 pm - 5:55 pm | Social Sciences 136       | 937 1662 9115
 
 ** Please make sure that you have zoom information organized in case this is needed. The instructor and TA's are happy to meet with students outside of office hours by appointment.**
 
@@ -268,5 +268,17 @@ If your mental health concerns and/or stressful events negatively affect your da
 Students with demonstrated high financial need who have limited access to computers may request assistance in the form of loaner laptops. For new Spring 2024 technology assistance requests, please go [here](https://dukelife.duke.edu/technology-assistance-program/). Please note that supplies are limited.
 
 See the [Support](support.qmd) page for a more comprehensive list of academic and mental health wellness resources.
+
+### Homework Submission Guidelines
+
+Please see homework submission instructions below to ensure full points on all parts. 
+
+- .zip file you submit to Canvas: This should include (1) your .Rmd file, (2) your PDF submission, and (3) all other files (data, images, PDFs, etc.) necessary for your .Rmd file to render.
+
+- .Rmd file: This should be set to render to a PDF. Please let any of us (Prof. Steorts, Raymond, and I) know if this is presenting problems for you, and we'll work with you to resolve it!
+
+- PDF you submit to Gradescope: This should be the exact PDF to which your .Rmd renders, and it should include both non-code problems and code problems/output. Label your pages on Gradescope! 
+
+IMPORTANT: This means that if you have a separate PDF for the completed non-code parts, you need to write your .Rmd so that those pages are included when you render the PDF. If you are having trouble figuring out how to do this, please reach out to the teaching team in the first week of class!
 
 
