@@ -271,18 +271,22 @@ See the [Support](support.qmd) page for a more comprehensive list of academic an
 
 \newpage
 
-### Homework Submission Guidelines
+### Homework and Quiz Submission Guidelines
 
-Please see homework submission instructions below to ensure full points on all parts. 
+Please see homework/quiz submission instructions below to ensure full points on all parts. 
 
 - .zip file you submit to Canvas: This should include (1) your .Rmd file, (2) your PDF submission, and (3) all other files (data, images, PDFs, etc.) necessary for your .Rmd file to render.
 
-- .Rmd file: This should be set to render to a PDF. Please let any of us (Prof. Steorts, Raymond, and I) know if this is presenting problems for you, and we'll work with you to resolve it!
+- .Rmd file: This should be set to render to a PDF. Please let any of the teaming team know if this is presenting problems for you, and we'll work with you to resolve it! 
+
+- If there is no reproducibility component, there is no need to upload a .zip file to Canvas. 
 
 - PDF you submit to Gradescope: This should be the exact PDF to which your .Rmd renders, and it should include both non-code problems and code problems/output. Label your pages on Gradescope! 
 
 - Regrade requests should be made on Gradescope (and we will review these). If you have more extensive questions, please come to office hours or reach out to Professor Steorts and CC the entire teaching team. 
 
 IMPORTANT: This means that if you have a separate PDF for the completed non-code parts, you need to write your .Rmd so that those pages are included when you render the PDF. If you are having trouble figuring out how to do this, please reach out to the teaching team in the first week of class!
+
+
 
 
