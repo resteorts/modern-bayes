@@ -269,6 +269,8 @@ Students with demonstrated high financial need who have limited access to comput
 
 See the [Support](support.qmd) page for a more comprehensive list of academic and mental health wellness resources.
 
+\newpage
+
 ### Homework Submission Guidelines
 
 Please see homework submission instructions below to ensure full points on all parts. 
