@@ -9,15 +9,56 @@ output:
 font-size: 8px
 ---
 
-Feedback on Course
+<!-- Feedback on Course -->
+<!-- === -->
+
+<!-- - Please take a few minutes to fill out how the course is going and any improvements -->
+
+<!-- https://forms.gle/BXd36Zi37kM4rWsY8 -->
+
+<!-- - The exams are still being finalized after we all have done a first pass at grading them.  -->
+<!-- - Thank you for your patience as we work to get these back to you as quickly as possible.  -->
+
+Reminders
+===
+- There is no class on Monday, October 13 as it is fall break. There will be no homework due that week.
+- Your assignment is to make sure that you fully understand all parts of Quiz I and gaps in knowledge. 
+- Please see me personally (or one of the TA's) if you'd like to discuss the quiz or set up a time to discuss it.
+
+Agenda
 ===
 
-- Please take a few minutes to fill out how the course is going and any improvements
+- Thank you for filling out the evaluations (heard from half the class). I will leave the survey open if you'd like to give feedback. It's anonymous. https://forms.gle/BXd36Zi37kM4rWsY8
 
-https://forms.gle/BXd36Zi37kM4rWsY8
+General comments
+===
 
-- The exams are still being finalized after we all have done a first pass at grading them. 
-- Thank you for your patience as we work to get these back to you as quickly as possible. 
+- The homework instructions could have been more clear, and a section or separate document would be helpful in detailing this or describing this earlier. Thank you for bringing this to our attention so we can improve upon this. 
+- Almost all students thought the class was well organized and liked the course resources. 
+- Almost all students thought that class expectations were clear. 
+- Pacing varied among students, however, the average appears to balance out. 
+- Students liked that lab is optional and thought the TA's were very helpful. 
+- If students would like for me to have more OH or support, please just let me know as I am very happy to answer your questions or help you! 
+
+ 
+
+Quiz I
+===
+
+- Most of the class did well on the exam (it was difficult). 
+- If you fell below a 70 percent, I would like to chat with you about your score just to help make sure that you're succeeding in the class and identifying how I can best help you! 
+- A majority of the class had difficulty regarding a rigorous derivation on problem 4. Please see detailed comments (from myself and Gwen) and we recommend that you go through this derivation again. 
+- Half the class had problems with 2(c), so please go back over this as well. 
+- Other problems that you may want to review are as follows: 1(c), 3(a), 3(d). 
+
+General comments
+===
+
+- Students like the code in lectures
+- I will strive to provide more intuition and provide more guidance into how this ties into research moving forward. In addition, I will strive to provide thought questions after the lecture for you to think about. 
+- In this regard, please do take at what should have learned after each lecture and the optional exercises. 
+- For students that would like extra practice, this is available after each slides and on the github repo. Please let us know if you're having trouble find it. 
+
 
 
 Agenda
@@ -366,8 +407,7 @@ Power low distribution
 
 The power law (also called the scaling law) states that a relative change in one quantity results in a proportional relative change in another. 
 
-Example: One simple example to think of is a square. If we double the length of one side, from 2 to 4 inches, then the area will 
-quadruple (from 4 to 16 inches squared).
+Example: One simple example to think of is a square. If we double the length of one side, from 2 to 4 inches, then the area will quadruple (from 4 to 16 inches squared).
 
 
 
@@ -472,6 +512,8 @@ As a joint distribution on $(\alpha,c)$,
 \item this does not seem to have a recognizable form, 
 \item and it is not clear how we might sample from it directly.
 \end{itemize}
+
+What it needed to set up a Gibbs sampler? 
 
 Gibbs sampling
 ===
@@ -584,37 +626,38 @@ Running averages
 \end{figure}
 
 
-Survival functions
-===
-A survival function is defined to be $$S(x) = \Pr(X>x) = 1-\Pr(X\leq x).$$
+<!-- Survival functions -->
+<!-- === -->
+<!-- A survival function is defined to be $$S(x) = \Pr(X>x) = 1-\Pr(X\leq x).$$ -->
 
- Power law distributions are often displayed by plotting their survival function $S(x),$ on a log-log plot. 
- \vskip 1em
- Why?
-  $S(x) = (c/x)^\alpha$ for the $\Pareto(\alpha,c)$ distribution and on a log-log plot this appears as a line with slope $-\alpha$.
- \vskip 1em
-  The posterior survival function (or more precisely, the posterior predictive survival function), is $S(x|x_{1:n}) = \Pr(X_{n+1}>x\mid x_{1:n})$. 
-  
-Survival functions
-===
- Figure \ref{figure:Pareto}(e) shows an empirical estimate of the survival function (based on the empirical c.d.f., $\hat F(x) = \frac{1}{n}\sum_{i = 1}^n \I(x\geq x_i)$) along with the posterior survival function, approximated by
-\begin{align}
-S(x|x_{1:n}) &= \Pr(X_{n+1}>x\mid x_{1:n}) \\
-&= \int \Pr(X_{n+1}>x\mid \alpha,c) p(\alpha,c|x_{1:n})d\alpha d c\\
-&\approx\frac{1}{N}\sum_{i = 1}^N \Pr(X_{n+1}>x\mid \alpha_i,c_i)
-=\frac{1}{N}\sum_{i = 1}^N (c_i/x)^{\alpha_i}.
-\end{align}
-This is computed for each $x$ in a grid of values.
+<!--  Power law distributions are often displayed by plotting their survival function $S(x),$ on a log-log plot.  -->
+<!--  \vskip 1em -->
+<!--  Why? -->
+<!--   $S(x) = (c/x)^\alpha$ for the $\Pareto(\alpha,c)$ distribution and on a log-log plot this appears as a line with slope $-\alpha$. -->
+<!--  \vskip 1em -->
+<!--   The posterior survival function (or more precisely, the posterior predictive survival function), is $S(x|x_{1:n}) = \Pr(X_{n+1}>x\mid x_{1:n})$.  -->
 
-Survival functions
-===
-\begin{figure}[htbp]
-\begin{center}
- \includegraphics[width=0.65\textwidth]{examples/Pareto-survival-function.png}
- \caption{Empirical vs posterior survival function}
- \label{figure:Pareto}
-\end{center}
-\end{figure}
+<!-- Survival functions -->
+<!-- === -->
+<!--  Figure \ref{figure:Pareto}(e) shows an empirical estimate of the survival function (based on the empirical c.d.f., $\hat F(x) = \frac{1}{n}\sum_{i = 1}^n \I(x\geq x_i)$) along with the posterior survival function, approximated by -->
+<!-- \begin{align} -->
+<!-- S(x|x_{1:n}) &= \Pr(X_{n+1}>x\mid x_{1:n}) \\ -->
+<!-- &= \int \Pr(X_{n+1}>x\mid \alpha,c) p(\alpha,c|x_{1:n})d\alpha d c\\ -->
+<!-- &\approx\frac{1}{N}\sum_{i = 1}^N \Pr(X_{n+1}>x\mid \alpha_i,c_i) -->
+<!-- =\frac{1}{N}\sum_{i = 1}^N (c_i/x)^{\alpha_i}. -->
+<!-- \end{align} -->
+<!-- This is computed for each $x$ in a grid of values. -->
+
+<!-- Survival functions -->
+<!-- === -->
+<!-- \begin{figure}[htbp] -->
+<!-- \begin{center} -->
+<!--  \includegraphics[width=0.65\textwidth]{examples/Pareto-survival-function.png} -->
+<!--  \caption{Empirical vs posterior survival function} -->
+<!--  \label{figure:Pareto} -->
+<!-- \end{center} -->
+<!-- \end{figure} -->
+
 
 Detailed Takeways
 ===
@@ -630,7 +673,7 @@ Detailed Takeways
 - Trace plots
 - Estimated Densities
 - Running Aveage Plots
-- Survival Funtions
+
 
 In class notes
 ===
