@@ -40,16 +40,6 @@ General comments
 - Students liked that lab is optional and thought the TA's were very helpful. 
 - If students would like for me to have more OH or support, please just let me know as I am very happy to answer your questions or help you! 
 
- 
-
-Quiz I
-===
-
-- Most of the class did well on the exam (it was difficult). 
-- If you fell below a 70 percent, I would like to chat with you about your score just to help make sure that you're succeeding in the class and identifying how I can best help you! 
-- A majority of the class had difficulty regarding a rigorous derivation on problem 4. Please see detailed comments (from myself and Gwen) and we recommend that you go through this derivation again. 
-- Half the class had problems with 2(c), so please go back over this as well. 
-- Other problems that you may want to review are as follows: 1(c), 3(a), 3(d). 
 
 General comments
 ===
@@ -59,7 +49,21 @@ General comments
 - In this regard, please do take at what should have learned after each lecture and the optional exercises. 
 - For students that would like extra practice, this is available after each slides and on the github repo. Please let us know if you're having trouble find it. 
 
+Quiz I
+===
 
+- Most of the class did well on the exam (it was difficult). 
+- If you fell below a 70 percent, I would like to chat with you about your score no later than October 15th just to help make sure that you're succeeding in the class and identifying how I can best help you! 
+- A majority of the class had difficulty regarding a rigorous derivation on problem 4. Please see detailed comments (from myself and Gwen) and we recommend that you go through this derivation again. 
+- Half the class had problems with 2(c), so please go back over this as well. 
+- Other problems that you may want to review are as follows: 1(c), 3(a), 3(d). 
+
+Quiz I
+===
+
+- If your derivation on a problem was not clear, you did not receive full credit for it. 
+- If you used ChatGPT, and your citation or use of it was not clear, you did not received for credit for it. 
+- Please work with us in office hours regarding what a clear solution to your problem would look like or going through any comments on your problem set. 
 
 Agenda
 ===
