@@ -464,7 +464,7 @@ How do we interpret the estimated posterior density of $\theta$ given all other 
 
 1. This is the approximated posterior density of the rate of how long individuals are likely to live conditional on all the other parameters.
 2. The red line is the posterior mean of this rate (see the code in the previous slide).
-3. The blue lines represent a 95 percent confident region.
+3. The blue lines represent a 95 percent credible region.
 
 
 The estimated density of the ninth observation of z

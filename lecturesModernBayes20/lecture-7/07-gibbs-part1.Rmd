@@ -406,7 +406,7 @@ Distributions of sizes and frequencies often tend to follow a ``power law'' dist
     \item returns on stocks
 \end{itemize}
 
-Power low distribution
+Power law distribution
 ===
 
 The power law (also called the scaling law) states that a relative change in one quantity results in a proportional relative change in another. 
