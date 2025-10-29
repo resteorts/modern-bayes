@@ -42,33 +42,33 @@ It is highly recommend that you work through parts (a) and (b) on your own and d
 \item[d)] (5 points) Complete lab 10, part d.
 \end{enumerate}
 
-\newpage
-
-\item \textbf{Extra Credit} (8 points) \emph{Multivariate Methods} 
-This problem is optional for the homework, but it is worth extra credit. It is also a type of problem that is reasonable to appear on the final exam, and it's similar to what we did in class regarding the multivariate normal distribution. 
-
-Because this problem is extra credit, the TA Team will not answer questions on this except for clarification questions. These should be sent privately. You should work on your own on this problem and not with others to help you prepare for the final examination. 
-
-Consider the following hierarchical model:
-\[ \bm{y}_i \mid \btheta,\bSigma \stackrel{i.i.d.}{\sim} MVN(\btheta_{d \times 1},\bSigma_{d \times d}), \quad i = 1, \cdots, n, \]
-and independent priors $$\btheta_{d \times 1} \sim MVN(\bmu_{d \times 1},\bm{T}_{d \times d}), 
-\qquad \bSigma_{d \times d} \sim \text{inverseWishart}(\nu, \Psi^{-1}_{d \times d}).$$
-\begin{enumerate}
-\item (1 point) Show that $(\btheta^T \bm{T}^{-1} \bmu)^T = \bmu^T \bm{T}^{-1} \btheta.$
-%\item (1 point) Show that $(\bmu_{1 \times d}^T \bm{T_{d \times d}}^{-1}\btheta_{d \times 1})^T = \btheta^T \bm{T}^{-1} \bmu$.\\
-\textit{Hint}: what's the transpose of a scalar?
-\item (1 point) Use (a) to show that:
-\[ p(\btheta) \propto e^{-\frac{1}{2}\left(\btheta^T\bm{T}^{-1}\btheta - 2\btheta^T \bm{T}^{-1} \bmu \right)} \]
-\item (2 points) Use (b) to show that
-$$ p(\btheta \mid \bSigma, \bm{y} )
-\sim MVN\left\{\bmu^*(\bSigma) := {\bm{T}^*}(n \boldsymbol{\Sigma}^{-1}\bar{\bm{y}} + \bm{T}^{-1}\bmu), \bm{T}^* := ( n\boldsymbol{\Sigma}^{-1} + \bm{T}^{-1})^{-1}\right\}. $$
-\item (2 points) Show that:
-\[ \text{tr}(\Psi\boldsymbol{\Sigma}^{-1})+\sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta})^T \boldsymbol{\Sigma}^{-1}(\bm{y}_i-\boldsymbol{\theta}) = \text{tr}\left\{\left(\Psi + \sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta}) (\bm{y}_i-\boldsymbol{\theta})^T \right) \boldsymbol{\Sigma}^{-1}\right\}.\]
-\textbf{Hint}: Recall that $\text{tr}(A)$ is the trace of matrix $A$ -- the sum of its diagonal entries. \textit{Lemma}: (i) for scalar $a$, $\text{tr}(a)=a$; (ii) $\text{tr}(ABC) = \text{tr}(BCA) = \text{tr}(CAB)$.
-\item (2 points) Use (d) to show (step-by-step) that:
-\[ [\bSigma|\btheta,\text{data}] \sim IW(\nu^*, \Psi^*(\btheta))\]
-%where $\Psi^*(\btheta)$ and $\nu^*$ are in class notes. 
-where $\nu^* = n + v$ and $\Psi^*(\btheta) = (\Psi + \sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta}) (\bm{y}_i-\boldsymbol{\theta})^T)^{-1} .$
-\end{enumerate}
+%\newpage
+%
+%\item \textbf{Extra Credit} (8 points) \emph{Multivariate Methods} 
+%This problem is optional for the homework, but it is worth extra credit. It is also a type of problem that is reasonable to appear on the final exam, and it's similar to what we did in class regarding the multivariate normal distribution. 
+%
+%Because this problem is extra credit, the TA Team will not answer questions on this except for clarification questions. These should be sent privately. You should work on your own on this problem and not with others to help you prepare for the final examination. 
+%
+%Consider the following hierarchical model:
+%\[ \bm{y}_i \mid \btheta,\bSigma \stackrel{i.i.d.}{\sim} MVN(\btheta_{d \times 1},\bSigma_{d \times d}), \quad i = 1, \cdots, n, \]
+%and independent priors $$\btheta_{d \times 1} \sim MVN(\bmu_{d \times 1},\bm{T}_{d \times d}), 
+%\qquad \bSigma_{d \times d} \sim \text{inverseWishart}(\nu, \Psi^{-1}_{d \times d}).$$
+%\begin{enumerate}
+%\item (1 point) Show that $(\btheta^T \bm{T}^{-1} \bmu)^T = \bmu^T \bm{T}^{-1} \btheta.$
+%%\item (1 point) Show that $(\bmu_{1 \times d}^T \bm{T_{d \times d}}^{-1}\btheta_{d \times 1})^T = \btheta^T \bm{T}^{-1} \bmu$.\\
+%\textit{Hint}: what's the transpose of a scalar?
+%\item (1 point) Use (a) to show that:
+%\[ p(\btheta) \propto e^{-\frac{1}{2}\left(\btheta^T\bm{T}^{-1}\btheta - 2\btheta^T \bm{T}^{-1} \bmu \right)} \]
+%\item (2 points) Use (b) to show that
+%$$ p(\btheta \mid \bSigma, \bm{y} )
+%\sim MVN\left\{\bmu^*(\bSigma) := {\bm{T}^*}(n \boldsymbol{\Sigma}^{-1}\bar{\bm{y}} + \bm{T}^{-1}\bmu), \bm{T}^* := ( n\boldsymbol{\Sigma}^{-1} + \bm{T}^{-1})^{-1}\right\}. $$
+%\item (2 points) Show that:
+%\[ \text{tr}(\Psi\boldsymbol{\Sigma}^{-1})+\sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta})^T \boldsymbol{\Sigma}^{-1}(\bm{y}_i-\boldsymbol{\theta}) = \text{tr}\left\{\left(\Psi + \sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta}) (\bm{y}_i-\boldsymbol{\theta})^T \right) \boldsymbol{\Sigma}^{-1}\right\}.\]
+%\textbf{Hint}: Recall that $\text{tr}(A)$ is the trace of matrix $A$ -- the sum of its diagonal entries. \textit{Lemma}: (i) for scalar $a$, $\text{tr}(a)=a$; (ii) $\text{tr}(ABC) = \text{tr}(BCA) = \text{tr}(CAB)$.
+%\item (2 points) Use (d) to show (step-by-step) that:
+%\[ [\bSigma|\btheta,\text{data}] \sim IW(\nu^*, \Psi^*(\btheta))\]
+%%where $\Psi^*(\btheta)$ and $\nu^*$ are in class notes. 
+%where $\nu^* = n + v$ and $\Psi^*(\btheta) = (\Psi + \sum_{i=1}^n (\bm{y}_i-\boldsymbol{\theta}) (\bm{y}_i-\boldsymbol{\theta})^T)^{-1} .$
+%\end{enumerate}
 \end{enumerate}
 \end{document}

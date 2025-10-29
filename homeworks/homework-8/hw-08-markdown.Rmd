@@ -26,28 +26,28 @@ problems below. I recommend that you work through them as much as possible befor
 
 \newpage
 
-2. **Optional Problem (Not Graded)** (8 points) *Multivariate Methods* 
+<!-- 2. **Optional Problem (Not Graded)** (8 points) *Multivariate Methods*  -->
 
-Consider the following hierarchical model:
+<!-- Consider the following hierarchical model: -->
 
-$$y_i \mid \theta,\Sigma \stackrel{i.i.d.}{\sim} MVN(\theta_{d \times 1},\Sigma_{d \times d}), \quad i = 1, \cdots, n,$$
+<!-- $$y_i \mid \theta,\Sigma \stackrel{i.i.d.}{\sim} MVN(\theta_{d \times 1},\Sigma_{d \times d}), \quad i = 1, \cdots, n,$$ -->
 
-and independent priors 
+<!-- and independent priors  -->
 
-$$\theta_{d \times 1} \sim MVN(\mu_{d \times 1}, T_{d \times d}), 
-\qquad \Sigma_{d \times d} \sim \text{inverseWishart}(\nu, \Psi^{-1}_{d \times d}).$$
-  (a) (1 point) Show that $(\theta^T T^{-1} \mu)^T = \mu^T T^{-1} \theta.$ *Hint*: what's the transpose of a scalar?
-    
-  (b) (1 point) Use (a) to show that:
-  $$p(\theta) \propto e^{-\frac{1}{2}\left(\theta^T T^{-1}\theta - 2\theta^T T^{-1} \mu \right)}$$
-  
-  (c) (2 points) Use (b) to show that
-  $$ p(\theta \mid \Sigma, y ) \sim MVN\left\{\mu^*(\Sigma) := {T^*}(n \boldsymbol{\Sigma}^{-1}\bar{y} + T^{-1}\mu), T^* := (n\boldsymbol{\Sigma}^{-1} + T^{-1})^{-1}\right\}. $$
-  
-  (d) (2 points) Show that:
-  $$tr(\Psi\boldsymbol{\Sigma}^{-1})+\sum_{i=1}^n (y_i-\boldsymbol{\theta})^T \boldsymbol{\Sigma}^{-1}(y_i-\boldsymbol{\theta}) = \text{tr}\left\{\left(\Psi + \sum_{i=1}^n (y_i-\boldsymbol{\theta}) (y_i-\boldsymbol{\theta})^T \right) \boldsymbol{\Sigma}^{-1}\right\}.$$
-  **Hint**: Recall that $tr(A)$ is the trace of matrix $A$ -- the sum of its diagonal entries. *Lemma*: (i) for scalar $a$, $tr(a)=a$; (ii) $tr(ABC) = tr(BCA) = tr(CAB)$.
-  
-  (e) (2 points) Use (d) to show (step-by-step) that:
-  $$[\Sigma|\theta,data] \sim IW(\nu^*, \Psi^*(\theta))$$
-  where $\nu^* = n + v$ and $\Psi^*(\theta) = (\Psi + \sum_{i=1}^n (y_i-\boldsymbol{\theta}) (y_i-\boldsymbol{\theta})^T)^{-1} .$
+<!-- $$\theta_{d \times 1} \sim MVN(\mu_{d \times 1}, T_{d \times d}),  -->
+<!-- \qquad \Sigma_{d \times d} \sim \text{inverseWishart}(\nu, \Psi^{-1}_{d \times d}).$$ -->
+<!--   (a) (1 point) Show that $(\theta^T T^{-1} \mu)^T = \mu^T T^{-1} \theta.$ *Hint*: what's the transpose of a scalar? -->
+
+<!--   (b) (1 point) Use (a) to show that: -->
+<!--   $$p(\theta) \propto e^{-\frac{1}{2}\left(\theta^T T^{-1}\theta - 2\theta^T T^{-1} \mu \right)}$$ -->
+
+<!--   (c) (2 points) Use (b) to show that -->
+<!--   $$ p(\theta \mid \Sigma, y ) \sim MVN\left\{\mu^*(\Sigma) := {T^*}(n \boldsymbol{\Sigma}^{-1}\bar{y} + T^{-1}\mu), T^* := (n\boldsymbol{\Sigma}^{-1} + T^{-1})^{-1}\right\}. $$ -->
+
+<!--   (d) (2 points) Show that: -->
+<!--   $$tr(\Psi\boldsymbol{\Sigma}^{-1})+\sum_{i=1}^n (y_i-\boldsymbol{\theta})^T \boldsymbol{\Sigma}^{-1}(y_i-\boldsymbol{\theta}) = \text{tr}\left\{\left(\Psi + \sum_{i=1}^n (y_i-\boldsymbol{\theta}) (y_i-\boldsymbol{\theta})^T \right) \boldsymbol{\Sigma}^{-1}\right\}.$$ -->
+<!--   **Hint**: Recall that $tr(A)$ is the trace of matrix $A$ -- the sum of its diagonal entries. *Lemma*: (i) for scalar $a$, $tr(a)=a$; (ii) $tr(ABC) = tr(BCA) = tr(CAB)$. -->
+
+<!--   (e) (2 points) Use (d) to show (step-by-step) that: -->
+<!--   $$[\Sigma|\theta,data] \sim IW(\nu^*, \Psi^*(\theta))$$ -->
+<!--   where $\nu^* = n + v$ and $\Psi^*(\theta) = (\Psi + \sum_{i=1}^n (y_i-\boldsymbol{\theta}) (y_i-\boldsymbol{\theta})^T)^{-1} .$ -->
