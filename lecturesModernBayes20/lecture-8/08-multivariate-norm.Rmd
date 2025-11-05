@@ -556,7 +556,16 @@ Suppose that we wish now to take
 $$\btheta \mid \bm{y}, \Sigma \sim MVN(\mu_n, \Sigma_n)$$ (which we finished an example on earlier).
 Now let $$\Sigma \mid \bm{y}, \btheta \sim \text{inverseWishart}(\nu_n, S_n^{-1})$$
 \vskip 1em 
-There is no closed form expression for this posterior. Solution?
+There is no closed form expression for $\theta, \Sigma \mid  \bm{y}$. How can we proceed to sample from this joint distribution? 
+
+Monte Carlo or MCMC
+===
+
+- We can use Monte Carlo sampling (as in the univariate module). Convince yourself of why this is the case! 
+
+- We could use Gibbs sampling (which generalizes to more complex multivariate methods). 
+
+- Which method would be preferred and why? 
 
 Gibbs sampler
 ===
@@ -573,6 +582,8 @@ Suppose the Gibbs sampler is at iteration $s.$
 \item[b)] Sample $\Sigma^{(s+1)} \sim \text{inverseWishart}(\nu_n, S_n^{-1})$
 \end{enumerate}
 \end{enumerate}
+
+
 
 Working with Multivariate Normal Distribution
 ===
@@ -617,6 +628,8 @@ Work with the Wishart density
 - We can simulate a single Wishart distributed matrix using the `rWishart` function.
 
 - Each row is a different sample from the Wishart distribution. 
+
+- Inverting the Wishart as defined in R, gives the inverse Wishart.
 
 ```{r}
 nu0 <- 2
@@ -672,7 +685,7 @@ $$ \Sigma \sim \text{inverseWishart}(\nu_o, S_o^{-1}).$$
 Since the true mean cannot be below 0 or above 100, we will use a prior variance that puts little probability outside of this range.
 
 We’ll take the prior variances on $\theta_1$ and $\theta_2$ 
-to be $$\lambda_{0,1}^2 = \lambda_{0,2}^2 = (50/2)^2 = 625$$ so that the prior probability that $P(\theta_j \neq [0,100]) =0.05.$
+to be $$\lambda_{0,1}^2 = \lambda_{0,2}^2 = (50/2)^2 = 625$$ so that the prior probability that $P(\theta_j \notin [0,100]) =0.05.$
 
 The two exams are measuring similar things, so we will take the prior correlation of 0.5 or rather $\lambda_{1,2} = 625/2 = 312.5$
 
@@ -842,9 +855,10 @@ Examine the trace plots and running average plots of $\Sigma$ on your own.
 
 Return to posterior inference
 ===
-Given our samples from our Gibbs sampler, we can approximate posterior probabilities and confidence regions. 
+Given our samples from our Gibbs sampler, we can approximate posterior probabilities and credible regions. 
 
-Confidence regions
+
+Credible regions
 ===
 ```{r}
 quantile(THETA[,2] - THETA[,1], prob=c(0.025,0.5,0.975))
