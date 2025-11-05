@@ -17,6 +17,7 @@ Agenda
 \item Introduction to Pima Indian data set
 \item Approach to handling missing at random data
 \item Application to Pima Indian data set
+\item This lecture follows Hoff for the methodology and the application (code). 
 \end{itemize}
 
 Model set up
@@ -36,7 +37,7 @@ The four variables are \texttt{glu} (blood plasma glucose concentration), \textt
 
 Pima Indian data set
 ===
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 library(MASS) 
 library(mvtnorm)
 library(MCMCpack)
