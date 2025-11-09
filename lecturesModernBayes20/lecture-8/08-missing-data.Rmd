@@ -194,7 +194,7 @@ Step 3 of Gibbs sampler
 \begin{align}
 p(\bm{Y}_{miss} \mid \bm{Y}_{obs}, \btheta, \Sigma)
 & \propto 
-p(\bm{Y}_{miss} \bm{Y}_{obs} \mid \btheta, \Sigma) \\
+p(\bm{Y}_{miss}, \bm{Y}_{obs} \mid \btheta, \Sigma) \\
 &= \prod_{i=1}^n 
 p(\bm{y}_{i,miss},\bm{y}_{i,obs} \mid \theta, \Sigma ) \\
 &\propto 
