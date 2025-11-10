@@ -643,7 +643,7 @@ We will follow an example from Hoff (Section 7.4, p. 112).
 
 A sample of 22 children are given reading comprehension tests before and after receiving a particular instructional method. 
 
-Each student $i$ will then have two scores, $Y_{i,1}$ and $Y_{i,2}$ denoting the pre- and post-instructional scores respectively, where $i=1,ldots n.$
+Each student $i$ will then have two scores, $Y_{i,1}$ and $Y_{i,2}$ denoting the pre- and post-instructional scores respectively, where $i=1,\ldots n.$
 
 Denote each student’s pair of scores $\bm{Y}_i$
 $$
@@ -699,8 +699,7 @@ What about the prior settings for $\Sigma?$
 
 We take $S_o$ to be about the same as $\Lambda_o.$
 
-We will center $\Sigma$ around $S_o$ by setting 
-$\nu_0 = p + 2 = 4,$ which is the mean of the inverse Wishart distribution (Hoff, p. 100).
+We will center $\Sigma$ around $S_o$ (the mean of the inverse Wishart distribution) by setting $\nu_0 = p + 2 = 4$(Hoff, p. 100).
 
 Load in data
 ===
@@ -744,14 +743,14 @@ Gibbs sampler (review)
 ===
 Suppose the Gibbs sampler is at iteration $s.$
 \begin{enumerate}
-\item Sample $\btheta^{(s+1)}$ from it's full conditional:
+\item Sample $\btheta^{(s+1)}$ from its full conditional:
 \begin{enumerate}
-\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bX$ and $\Sigma^{(s)}$
+\item[a)] Compute $\mu_n$ and $\Sigma_n$ from $\bm{y}$ and $\Sigma^{(s)}$
 \item[b)] Sample $\btheta^{(s+1)}\sim MVN(\mu_n, \Sigma_n)$
 \end{enumerate}
 \item Sample $\Sigma^{(s+1)}$ from its full conditional:
 \begin{enumerate}
-\item[a)] Compute $S_n$ from $\bX$ and $\theta^{(s+1)}$
+\item[a)] Compute $S_n$ from $\bm{y}$ and $\theta^{(s+1)}$
 \item[b)] Sample $\Sigma^{(s+1)} \sim \text{inverseWishart}(\nu_n, S_n^{-1})$
 \end{enumerate}
 \end{enumerate}
