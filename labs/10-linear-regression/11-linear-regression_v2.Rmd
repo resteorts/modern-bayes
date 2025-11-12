@@ -48,7 +48,7 @@ Solution (Task 1)
 ===
 The conditional posterior for $\beta_i$ is multivariate normal with 
 \begin{align*}
-    \mathbbm{V}[\beta_i \, | \, Y_i, X_i, \textcolor{red}{\tau_i} ] &= (\Sigma_0^{-1} + \tau X_i^{T}X_i)^{-1}\\ 
+    \mathbbm{V}[\beta_i \, | \, Y_i, X_i, \textcolor{red}{\tau_i} ] &= (\Sigma_0^{-1} + \textcolor{red}{\tau_i} X_i^{T}X_i)^{-1}\\ 
     \mathbbm{E}[\beta_i \, | \, Y_i, X_i, \textcolor{red}{\tau_i} ] &= 
     (\Sigma_0^{-1} + \textcolor{red}{\tau_i} X_i^{T}X_i)^{-1} (\Sigma_0^{-1}\beta_0 + \textcolor{red}{\tau_i} X_i^{T}Y_i).
 \end{align*} while
