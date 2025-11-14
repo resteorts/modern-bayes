@@ -18,8 +18,8 @@ Agenda
 
 Dirichlet
 ===
-A Dirichlet distribution\footnote{This is the multivariate version of the Beta distribution.} is a distribution of the $K$-dimensional probability simplex\footnote{In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.}
-$$\bigtriangleup_K = \{(\pi_1,\ldots, \pi_k): \pi_k \geq 0, \sum_k \pi_k = 1\}.$$
+A Dirichlet distribution\footnote{This is the multivariate version of the Beta distribution.} is a distribution of the $K-1$-dimensional probability simplex\footnote{In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.}
+$$\bigtriangleup_{K-1} = \{(\pi_1,\ldots, \pi_k): \pi_k \geq 0, \sum_k \pi_k = 1\}.$$
 
 We say that $(\pi_1,\ldots, \pi_k)$ is Dirichlet distributed:
 
@@ -43,6 +43,16 @@ $\sum_k \theta_k =1, \theta_i \geq 0$ for all i
 \includegraphics[width=0.3\textwidth]{figures/simplex}
 \end{center}
 \end{figure}
+
+Dirichlet distribution
+===
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/simplex-flat}
+\end{center}
+\end{figure}
+
 
 Dirichlet distribution
 ===
