@@ -1,0 +1,837 @@
+\documentclass{beamer}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\setbeamertemplate{footline}[frame number]
+
+\title{The Exponential Family and \\ Generalized Linear Models}
+\author{Rebecca C. Steorts (adaptation from notes of Yue Jiang)}
+%\date{March 28, 2023}
+
+\begin{document}
+
+
+
+% Slide 1: Title
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+% Slide 1: Title
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{The Exponential Family and Generalized Linear Models}
+
+\begin{enumerate}
+\item Exponential families have nice properties that allow us to calculate certain quantities, such as the MLE, quite easily. 
+\item We will connect the importance of these to generalized linear models. 
+\item We could derive (very tediously) general expressions for GLM's using the exponential family form that involve the regression parameter estimates (and other quantities that we calculate), however, we won't do this in this class as the mathematics is tedious and ugly. If you'd like to see this or know more about it, please let me know! 
+\end{enumerate}
+
+
+
+\end{frame}
+
+% Slide 3: The exponential family (definition)
+\begin{frame}
+\frametitle{The Exponential Family}
+The exponential family of probability distributions are those that
+can be expressed in a specific form.
+
+\vspace*{1em}
+Suppose $X$ is a random variable with a distribution that depends on parameter(s) $\theta$. 
+
+\vspace*{1em}
+A random variable $X$ belongs to the exponential family if its density (or mass) function can be written as:
+\[
+f(x|\theta) = h(x)\exp\Bigl(\eta(\theta)^T T(x) - \psi(\theta)\Bigr).
+\]
+
+
+\end{frame}
+
+
+
+
+% Slide 4: Exponential family details
+\begin{frame}
+\frametitle{The Exponential Family}
+
+\[
+f(x|\theta) = h(x)\exp\Bigl(\eta(\theta)^T T(x) - \psi(\theta)\Bigr).
+\]
+
+Note that the term $\eta(\theta)^T T(x)$ represents 
+$
+  \sum_{i=1}^k \eta_i(\theta) T_i(x).
+$
+\vspace*{1em}
+
+Here, $\eta_i(\theta)$ and $\psi(\theta)$ are real-valued functions of the parameters ($\theta$). 
+Also, each of $T_i(x)$ and $h(x)$ are real-valued functions of the data.
+
+\vspace*{1em}
+
+In the case of a single parameter ($\theta$), we have a member of a one-parameter exponential family distribution as follows:
+
+\[
+f(x|\theta) = h(x)\exp\Bigl(\eta(\theta) T(x) - \psi(\theta)\Bigr).
+\]
+\end{frame}
+
+% Slide 5: One-parameter exponential family
+\begin{frame}
+\frametitle{One-Parameter Exponential Family}
+
+For simplicity, we will first consider the one-parameter exponential family of distributions as follows:
+
+\[
+f(x|\theta) = h(x)\exp\Bigl(\eta(\theta) T(x) - \psi(\theta)\Bigr).
+\]
+\end{frame}
+
+% Slide 6: The binomial distribution (introduction)
+\begin{frame}
+\frametitle{The Binomial Distribution}
+Suppose $X \sim \operatorname{Bin}(n,p)$, where $n$ is known and $0 < p < 1$.\\[1em]
+\textbf{Questions:}
+\begin{itemize}
+  \item What is the probability mass function $f(x|p)$ corresponding to $X$?
+  \item Is $X$ a member of the one-parameter exponential family?
+  \item If yes, identify the components $\eta(p)$, $\psi(p)$, $T(x)$, and $h(x)$. If not, explain why not.
+\end{itemize}
+\end{frame}
+
+% Slide 7: The binomial distribution (rewriting PMF)
+\begin{frame}
+\frametitle{The Binomial Distribution}
+The probability mass function can be written as
+\begin{align}
+f(x|p) &= \binom{n}{x} p^x (1-p)^{n-x} \, 1\{x \in \{0,1,\dots,n\}\} \\
+&=  \binom{n}{x}  \Big(\frac{p}{1-p}\Big)^x (1-p)^n \, 1\{x \in \{0,1,\dots,n\}\} \\
+& = \binom{n}{x} \exp\Bigl( x\log\frac{p}{1-p} + n\log(1-p) \Bigr) \, 1\{x \in \{0,1,\dots,n\}\}.
+\end{align}
+Is $X$ a member of the one-parameter exponential family? If yes, identify the components $\eta(p), \psi(p), T(x), h(x).$ If not, explain. 
+\end{frame}
+
+
+
+% Slide 8: The binomial distribution (components)
+\begin{frame}
+\frametitle{The Binomial Distribution}
+
+Recall that $$ f(x|p) = \binom{n}{x} \exp\Bigl( x\log\frac{p}{1-p} + n\log(1-p) \Bigr) \, 1\{x \in \{0,1,\dots,n\}\}.$$
+
+Yes, $X$ is a member of the exponential family with the following parameters:
+\begin{align*}
+\eta(p) &= \log\frac{p}{1-p},\\[1mm]
+T(x) &= x,\\[1mm]
+\psi(p) &= -n\log(1-p),\\[1mm]
+h(x) &= \binom{n}{x}\, 1\{x \in \{0,1,\dots,n\}\}.
+\end{align*}
+\end{frame}
+
+% Slide 9: Sufficiency for the binomial distribution
+\begin{frame}
+\frametitle{The Binomial Distribution}
+Suppose $X \sim \operatorname{Bin}(n,p)$, where $n$ is known and $0 < p < 1$.
+
+The probability mass function is given by 
+
+$$f(x|p) = \binom{n}{x} p^x (1-p)^{n-x} \, 1\{x \in \{0,1,\dots,n\}\}.$$
+\vspace*{1em}
+
+The sufficient statistic is $T(x) = x.$ A sufficient statistic is one that provides all the information about $\theta$ that the entire sample could have provided. 
+\vspace*{1em}
+
+What does this mean in terms of the binomial distribution?
+\end{frame}
+
+% Slide 10: More on sufficiency
+\begin{frame}
+\frametitle{More on Sufficiency}
+Sufficient statistics must be functions of the data (and cannot depend on the parameter value). 
+
+\vspace*{1em}
+
+Sufficiency suggests that because $T(x)$ contains all the information about $\theta,$ then it suffices to utilize $T(x)$ for inference. Thus, we don't need the individual data points themselves (just the sufficient statistic). 
+\end{frame}
+
+
+% Slide 10: More on sufficiency
+\begin{frame}
+\frametitle{More on Sufficiency}
+Intuitively, for $X \sim \operatorname{Bin}(n,p)$, knowing the number of successes $x$ is all that is needed for inference on $p$, rather than knowing which specific observations were successes or failures.
+\end{frame}
+
+% Slide 11: The normal distribution (introduction)
+\begin{frame}
+\frametitle{The Normal Distribution}
+Suppose $X \sim N(\mu, \sigma^2)$ with parameter $\theta=(\mu,\sigma)$.\\[1em]
+\textbf{Questions:}
+\begin{itemize}
+  \item What is the dimension of $\theta$ in this case?
+  \item What is the probability density function $f(x|\theta)$? Again, pay attention to the support of $X.$
+  \item Is $X$ a member of the exponential family? If yes, identify the components $\eta_i(\theta)$, $\psi(\theta)$, $T_i(x)$, and $h(x)$. If not, explain.
+\end{itemize}
+\end{frame}
+
+% Slide 12: The normal distribution (density form)
+\begin{frame}
+\frametitle{The Normal Distribution (Density)}
+The density is given by:
+\[
+f(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\} \, 1\{x \in \mathbb{R}\}.
+\]
+\end{frame}
+
+% Slide 13: The normal distribution (rewritten in exponential family form)
+\begin{frame}
+\frametitle{The Normal Distribution (Exponential Family Form)}
+Rewriting the density:
+\[
+f(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi}} \exp\!\left\{-\frac{x^2}{2\sigma^2} + \frac{x\mu}{\sigma^2} -\left(\frac{\mu^2}{2\sigma^2} + \log\sigma\right)\right\} \, 1\{x\in\mathbb{R}\}.
+\]
+Thus, we identify:
+\begin{align*}
+\eta_1(\theta) &= -\frac{1}{2\sigma^2}, \quad &T_1(x) &= x^2,\\[1mm]
+\eta_2(\theta) &= \frac{\mu}{\sigma^2}, \quad &T_2(x) &= x,\\[1mm]
+\psi(\theta) &= \frac{\mu^2}{2\sigma^2} + \log\sigma,\\[1mm]
+h(x) &= \frac{1}{\sqrt{2\pi}} \, 1\{x\in\mathbb{R}\}.
+\end{align*}
+\end{frame}
+
+% Slide 14: i.i.d. Sampling from the Exponential Family
+\begin{frame}
+\frametitle{i.i.d. Sampling from the Exponential Family}
+Suppose we have $n$ i.i.d. samples $x_1,x_2,\dots,x_n$ from an exponential family distribution. 
+
+\vspace*{1em}
+The joint density is 
+\[
+f(x_1,\dots,x_n|\theta) = \prod_{i=1}^n h(x_i)\exp\Bigl(\eta(\theta)^T T(x_i) - \psi(\theta)\Bigr).
+\]
+This can be rewritten as:
+\[
+f(x_1,\dots,x_n|\theta) = \Bigl(\prod_{i=1}^n h(x_i)\Bigr)\exp\Bigl(\eta(\theta)^T \sum_{i=1}^n T(x_i) - n\psi(\theta)\Bigr).
+\]
+\end{frame}
+
+% Slide 15: Sufficient statistics for the normal distribution
+\begin{frame}
+\frametitle{Sufficient Statistics for the Normal Distribution}
+For an i.i.d. sample from $N(\mu,\sigma^2)$, the statistics
+\[
+\sum_{i=1}^n x_i^2 \quad \text{and} \quad \sum_{i=1}^n x_i
+\]
+are sufficient for the parameters $(\mu,\sigma^2)$.\\[1em]
+\textbf{Question:} What does this mean in plain English?
+\end{frame}
+
+% Slide 16: Canonical Form (introduction)
+\begin{frame}
+\frametitle{Canonical Form}
+The exponential family can be written in canonical form as:
+\[
+f(x|\theta) = h(x)\exp\Bigl(\eta(\theta)^T T(x) - \psi(\theta)\Bigr).
+\]
+If $\eta(\cdot)$ is invertible, we define the canonical parameter $\eta = \eta(\theta)$ so that $\theta = \eta^{-1}(\eta)$. (This is not optimal notation in terms of writing $\eta$ as both a function and a variable. We will remedy this soon). 
+
+%Then, we can express:
+%\[
+%f(x|\eta) = h(x)\exp\Bigl(\eta^T T(x) - \psi\bigl(\eta^{-1}(\eta)\bigr)\Bigr).
+%\]
+\end{frame}
+
+% Slide 17: Canonical Form (restated)
+\begin{frame}
+\frametitle{Canonical Form (Restated)}
+
+We can re-write the exponential family in its canonical form using $\eta$ (the canonical parameters):
+
+\[
+f(x|\theta) = h(x)\exp\Bigl(\eta(\theta)^T T(x) - \psi(\theta)\Bigr).
+\]
+
+\[
+f(x|\eta) = h(x)\exp\Bigl(\eta^T T(x) - \psi\bigl(\eta^{-1}(\eta)\bigr)\Bigr).
+\]
+
+
+This rewriting shows that in the canonical form the parameters directly multiply with the sufficient statistics, and the function $\psi(\theta)$ is composed with $\eta^{-1}(\cdot)$ as it acts on the (untransformed) parameters $\theta$.
+\end{frame}
+
+% Slide 18: The binomial distribution (canonical form)
+\begin{frame}
+\frametitle{The Binomial Distribution in Canonical Form}
+Recall that
+\[
+f(x|p) = \binom{n}{x}\exp\!\Bigl\{x\log\frac{p}{1-p}+n\log(1-p)\Bigr\}\, 1\{x \in \{0,1,\dots,n\}\}.
+\]
+
+Taking 
+\[
+\eta = \log\frac{p}{1-p} \quad \Longrightarrow \quad 1-p = \frac{1}{1+e^\eta}.
+\]
+
+We can re-express the binomial distribution in the canonical form as follows:
+\[
+f(x|\eta) = \binom{n}{x}\exp\Bigl\{\eta x - n\log\bigl(1+e^\eta\bigr)\Bigr\}\, 1\{x \in \{0,1,\dots,n\}\}.
+\]
+\end{frame}
+
+% Slide 19: Canonical components for the binomial distribution
+\begin{frame}
+\frametitle{Canonical Components for the Binomial}
+
+Recall that 
+\[
+f(x|\eta) = \binom{n}{x}\exp\Bigl\{\eta x - n\log\bigl(1+e^\eta\bigr)\Bigr\}\, 1\{x \in \{0,1,\dots,n\}\}.
+\]
+
+In canonical form we have:
+\[
+\eta = \log\frac{p}{1-p}, \quad T(x)=x,\quad A(\eta)= n\log\bigl(1+e^\eta\bigr),\quad h(x)= \binom{n}{x}.
+\]
+\end{frame}
+
+% Slide 20: The Log-Partition Function
+\begin{frame}
+\frametitle{The Log-Partition Function}
+
+The function composition $\psi\bigl(\eta^{-1}(\eta)\bigr)$ is called the log-partition function. Define $A(\eta) = \psi\bigl(\eta^{-1}(\eta)\bigr),$ where we will work with $A(\eta)$ moving forward. 
+
+\vspace*{1em}
+
+This function is useful as we can easily calculate the mean and variance of distributions in the exponential family by differentiating the log-partition (instead of proceeding with messy integration).
+
+\vspace*{1em}
+
+Specifically, the following hold:
+
+\[
+\frac{\partial A}{\partial \eta_i} = E\bigl[T_i(x)\bigr] \quad \text{and} \quad \frac{\partial^2 A}{\partial \eta_i \partial \eta_j} = \operatorname{Cov}\bigl(T_i(x), T_j(x)\bigr).
+\]
+
+The first and second derivatives of $A(\eta)$ are the mean and variances, respectively, of the sufficient statistic. 
+\end{frame}
+
+% Slide 21: Log-Partition for the Binomial
+\begin{frame}
+\frametitle{Log-Partition Function for the Binomial}
+Recall in canonical form for the binomial distribution, the log-partition function is $A(\eta) = n \log(1 + e^{\eta}),$ where $\eta = \log(\frac{p}{1-p}).$
+\vspace*{1em}
+Then,
+\[
+E(x) = \frac{\partial A}{\partial \eta} = \frac{n e^\eta}{1+e^\eta} = np,
+\]
+and
+\[
+\operatorname{Var}(x) = \frac{\partial^2 A}{\partial \eta^2} = \frac{n e^\eta}{(1+e^\eta)^2} = np(1-p).
+\]
+\vspace*{1em}
+
+This corresponds to the mean and variance of the binomial distribution.
+\end{frame}
+
+% Slide 22: Maximum Likelihood Estimation (intro)
+\begin{frame}
+\frametitle{Maximum Likelihood Estimation}
+For $n$ i.i.d. samples from an exponential family in canonical form, the joint density is:
+\begin{align}
+f(x_1,\dots,x_n|\eta) &= \prod_{i=1}^n h(x_i) \exp\!\Bigl(\eta^T T(x_i) - A(\eta)\Bigr) \\
+&= \Big(
+\prod_{i=1}^n h(x_i)
+\Big)
+\exp\!\Bigl(\sum_{i=1}^n \eta^T T(x_i) - nA(\eta)\Bigr) 
+\end{align}
+\textbf{Question:} What important fact do you notice about this formulation?
+\end{frame}
+
+\begin{frame}
+\frametitle{Maximum Likelihood Estimation}
+The product of exponential family distributions is also in the exponential family with sufficient statistic $\sum_{i=1}^n T(x_i).$
+
+\vspace*{1em}
+
+For example, the sufficient statistic for the joint distribution of $n$ iid Binomial random variables is $\sum_{i=1}^n x_i.$ Thus, all that is required for inference on the parameter $p$ from the $n$ observations is the sum of all the observations. 
+\end{frame}
+
+% Slide 23: Maximum Likelihood Estimation (derivation)
+\begin{frame}
+\frametitle{Maximum Likelihood Estimation (Derivation)}
+\begin{align}
+f(x|\eta)  &= \Big(
+\prod_{i=1}^n h(x_i)
+\Big) \exp\!\Bigl(\sum_{i=1}^n \eta^T T(x_i) - nA(\eta)\Bigr) \\
+\log L = &=  \log \Big(
+\prod_{i=1}^n h(x_i)
+\Big) 
++ \sum_{i=1}^n \eta^T T(x_i) - nA(\eta)\\
+\nabla_{\eta} \log L &= \sum_{i=1}^n T(x_i) - n \nabla_{\eta} A(\eta) :=0
+\end{align}
+This implies that 
+
+$$E[T(x)) =  \nabla_{\eta} A(\eta) = \frac{1}{n} \sum_{i=1}^n T(x_i),$$
+which is known as a method of moments estimator. 
+
+\end{frame}
+
+% Slide 23: Maximum Likelihood Estimation (derivation)
+\begin{frame}
+\frametitle{Generalized Linear Models}
+
+A generalized linear model has three components:
+
+\begin{itemize}
+\item An outcome $Y$ that follows a distribution from the
+exponential family
+\item A linear predictor $X \beta$
+\item A link function $g$ that connects the conditional expectation of $Y$ to the linear predictor
+\end{itemize}
+$$E(Y \mid X) = g^{-1}(X \beta).$$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Dispersion Parameters}
+
+We often incorporate a dispersion parameter into exponential families
+
+$$f(x \mid \theta) = h(x)\exp\Bigl(\eta(\theta)^T T(x) - \psi(\theta)\Bigr).$$
+
+The dispersion parameter often gets at the notion of variance, and we essentially have a two-parameter exponential family, where $\theta$ corresponds to some notion of the mean and $\phi$ for the variance such that 
+
+$$f(x \mid \theta, \phi) = h(x, \phi )\exp\Bigl(\frac{\eta(\theta)^T T(x) - \psi(\theta)}{c(\phi)}\Bigr).$$
+
+This is called an exponential dispersion family, where our prior formulation is a special case of it.\footnote{For more details about this, see Dunn and Smith (2018), Chapter 5).}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Generalized Linear Models}
+
+For an exponential family that is in the canonical form has many convenient properties, as we have already demonstrated. 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Generalized Linear Models}
+
+Recall that a link function $g$ that connects the conditional expectation of $Y$ to the linear predictor
+via
+$$E(Y \mid X) = g^{-1}(X \beta).$$
+
+\vspace*{1em}
+
+\begin{itemize}
+\item The canonical link is often used since it directly relates the canonical parameter to the linear predictor. 
+\item The canonical link is also often computationally convenient as the MLE's are easily found under this formulation. 
+\item There are reason for using non-canonical links that are often problem specific and could be computationally driven. 
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Binary Regression}
+
+Assume the response $Y$ follows a Bernoulli distribution or rather Binomial distribution with $n=1.$ Let's formulate binary regression as a GLM by using the fact that we know that $Y$ is a member of the exponential family. 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Binary Regression}
+Recall that we previously showed that
+\[
+f(x|\eta) = \exp\Bigl\{\eta y - \log\bigl(1+e^\eta\bigr)\Bigr\}\, 1\{y \in \{0,1,\dots,n\}\}, \text{where} 
+\]
+
+$$
+\eta = \log\frac{p}{1-p}, \quad T(x)=x,\quad A(\eta)= \log\bigl(1+e^\eta\bigr),$$
+$$h(y)= 1\{y \in \{0,1,\dots,n\}\}.$$
+
+\vspace*{1em}
+
+Recall that
+
+$p = E(Y \mid X)$ and $p = \frac{e^{\eta}}{(1 + e^{\eta})}.$
+\end{frame}
+
+\begin{frame}
+\frametitle{Binary Regression}
+
+It follows that 
+
+$$ E(Y \mid X) = g^{-1}(X \beta) = \frac{\exp{X \beta}}{(1 + \exp{X \beta)}} \implies$$
+
+$$ \log \frac{E(Y \mid X)}{1 - E(Y \mid X)} = X\beta,$$
+
+which corresponds to logistic regression. The form of the link function is the canonical link of the Bernoulli distribution. 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Logistic Regression}
+
+\begin{itemize}
+\item The outcome $Y$ follows a Bernoulli distribution and is a special case of the Binomial distribution with $n=1,$ which we showed is in the exponential family.
+\item We assume the function form of the predictors is a linear combination. 
+\item We will use the canonical link function, known as the logit link, which has the following form
+\end{itemize}
+
+\begin{align}
+g \Big( E(Y \mid X) \Big) &= X \beta \\
+\log \frac{E(Y \mid X)}{1 - E(Y \mid X)} &= X\beta \\
+ \text{logit} \Big( E(Y \mid X) \Big) &= X \beta
+\end{align}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Why a non-canonical link?}
+
+Why would we perhaps choose a non-canonical link over a canonical link? 
+
+\vspace*{1em}
+
+Choosing a non-canonical link can sometimes improve the fit of the model to the data, especially when the underlying theoretical relationship is better captured by that transformation. This should always be done with care and understanding of the data and application at hand. 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Why a non-canonical link?}
+
+While the canonical link for a Poisson distribution is the log link, sometimes a logit-link might be used if the data shows over-dispersion (variance greater than the mean).
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Why a non-canonical link?}
+
+
+\begin{itemize}
+\item The probit link function is the inverse of the cumulative distribution function (CDF) of the standard normal distribution, meaning it converts a probability value into a "standard normal deviate" (z-score). 
+\item When analyzing binary outcomes (like yes/no) where you believe the underlying latent variable (the "true" continuous variable that determines the binary outcome) follows a normal distribution, using the probit link can be more theoretically appropriate than the canonical logit link. 
+\end{itemize}
+
+
+%It is important to not that different link functions give rise to different interpretations of the parameter estimates. We will not delve into this too much in this lecture (beyond what I have covered here), however, it's good to be aware that there are both canonical and non-canonical links as we are moving forward in the class. 
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Probit regression}
+
+
+
+\begin{itemize}
+\item The outcome $Y$ follows a Bernoulli distribution and is a special case of the Binomial distribution with $n=1,$ which we showed is in the exponential family.
+\item We assume the function form of the predictors is a linear combination. 
+\item We will use a non-canonical link function, $\Phi^{-1}$ (the inverse of the normal CDF) to link the conditional mean of $Y$ with $X\beta.$
+\end{itemize}
+
+\begin{align}
+g \Big( E(Y \mid X) \Big) &= X \beta \\
+\Phi^{-1}\frac{E(Y \mid X)}{1 - E(Y \mid X)} &= X\beta \\
+% \text{logit} \Big( E(Y \mid X) \Big) &= X \beta
+\end{align}
+This is called probit regression and $\Phi$ is the probit link.
+
+%It is important to not that different link functions give rise to different interpretations of the parameter estimates. We will not delve into this too much in this lecture (beyond what I have covered here), however, it's good to be aware that there are both canonical and non-canonical links as we are moving forward in the class. 
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Probit regression}
+
+The use of the probit regression model
+dates back to Bliss (1934). 
+
+\vspace*{1em}
+
+Bliss was interested
+in finding an effective pesticide to control
+insects that fed on grape leaves (Greenberg,
+1980). 
+
+\vspace*{1em}
+
+
+He applied the probit transformation to transform
+the shape of the dose-response curve to a
+linear relationship. 
+
+\vspace*{1em}
+
+His ideas were later
+generalized in a book by Finney (1985) where
+the applications of probit analysis in
+toxicological experiments were explored.
+
+\vspace*{1em}
+
+According to some sources, probit analysis
+remains the preferred method in understanding
+dose-response relationships. 
+
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Summary}
+
+\begin{itemize}
+\item We have introduced the exponential family of distributions.
+\item We have provided the connection with exponential families to GLMs through the link function. 
+\item We have introduced some convenient properties under GLMs that belong the the exponential family with the canonical link.
+\item Now, that you have seen these, you can proceed with either frequent or Bayesian methods for a generalized framework. 
+\end{itemize}
+
+
+
+\end{frame}
+
+
+
+%% Slide 24: Random Closing Comments
+%\begin{frame}
+%\frametitle{Random Closing Comments}
+%\begin{itemize}
+%  \item A key property of the exponential family is that the expectation of the sufficient statistic equals its empirical average.
+%  \item This equality implies that the maximum likelihood estimator (MLE) is also a method-of-moments estimator.
+%  \item Exponential family distributions have many nice properties, including the existence of conjugate priors, connections to estimation theory, and guaranteed log-concave likelihoods.
+%\end{itemize}
+%\end{frame}
+%
+
+\begin{frame}
+\frametitle{Exercise 1}
+\textbf{1.} Consider a uniform distribution on $(0,\theta)$, i.e., 
+\[
+f(x)=\frac{1}{\theta}\quad\text{for } x\in (0,\theta).
+\]
+\begin{itemize}
+  \item Is this a member of the exponential family?
+  \item If so, identify the components in canonical form and use the log-partition function to calculate the MLE for $\theta$ from an i.i.d. sample.
+  \item If not, explain why not.
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+% Slide 26: Homework (Question 2)
+\begin{frame}
+\frametitle{Exercise 2}
+\textbf{2.} Consider a normal distribution $N(\mu,\mu)$ for $\mu > 0$ (i.e., the variance equals the mean).
+\begin{itemize}
+  \item Is this a member of the exponential family?
+  \item If so, identify the components in canonical form and use the log-partition function to calculate the MLE for $\mu$ from an i.i.d. sample.
+  \item If not, explain why not.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exercise 3}
+\textbf{3.} Consider a distribution with
+\[
+f(x|\lambda) = \lambda\, x^{-1-\lambda} \quad \text{for } \lambda>0,\; x>1.
+\]
+\begin{itemize}
+  \item Is this a member of the exponential family?
+  \item If so, identify the components in canonical form and use the log-partition function to calculate the MLE for $\lambda$ from an i.i.d. sample.
+  \item If not, explain why not.
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{Solution: Exercise 1}
+Consider a uniform distribution on \((0, \theta)\), that is,
+\[
+f_X(x) = \frac{1}{\theta} \, I(0 < x < \theta).
+\]
+
+No, this is not a member of the exponential family. There is no way to disentangle \(x\) from \(\theta\) in the term \(I(0 < x < \theta)\); there is no possible function \(h(x)\) that can be free of \(\theta\) as required by the exponential family form.
+\end{frame}
+
+
+%% Solution Exercise 2 
+\begin{frame}
+\frametitle{Solution: Exercise 2}
+The density is given by:
+\[
+\begin{aligned}
+f_X(x) &= \frac{1}{\sqrt{2\pi\mu}} \exp\left(-\frac{(x - \mu)^2}{2\mu} \right) I(x \in \mathbb{R})\\[1mm]
+&= I(x \in \mathbb{R}) \frac{\exp(x)}{\sqrt{2\pi}} \exp\left(-\frac{x^2}{2\mu} - \frac{\mu}{2} - \frac{1}{2}\log \mu \right).
+\end{aligned}
+\]
+
+Yes, this is a member of the one-parameter exponential family. The components in canonical form are:
+\[
+\begin{aligned}
+h(x) &= I(x \in \mathbb{R})\frac{\exp(x)}{\sqrt{2\pi}},\\[1mm]
+\eta(\mu) &= -\frac{1}{2\mu},\\[1mm]
+T(x) &= x^2,\\[1mm]
+\psi(\mu) &= \frac{1}{2}\left(\mu + \log \mu\right).
+\end{aligned}
+\]
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Solution: Exercise 2 (Continued)}
+In canonical form, if we let \(\eta = -\frac{1}{2\mu}\), then \(\mu = -\frac{1}{2\eta}\) and the log-partition function (or cumulant function) is given by:
+\[
+A(\eta) = \frac{1}{2}\left(-\frac{1}{2\eta} + \log\left(-\frac{1}{2\eta}\right)\right).
+\]
+
+Note that 
+
+$$
+\nabla_{\eta} A(\eta) = \frac{1}{4 \eta^2} - \frac{1}{2 \eta}.
+$$
+
+Recall \(\eta = -\frac{1}{2\mu}\) and plug this in the expression above to find
+
+$$\mu^2 + \mu = \frac{1}{n} \sum_i x_i^2.$$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Solution: Exercise 2 (Continued)}
+
+We have a quadratic form in terms of $\mu$ as follows:
+$$\mu^2 + \mu = \frac{1}{n} \sum_i x_i^2$$
+
+The general solution for a quadratic equation is:
+
+\[
+\mu = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\]
+
+This is a quadratic equation:
+\[
+a\mu^2 + b\mu + c = 0
+\]
+
+where:
+\begin{itemize}
+    \item \( a = 1 \)
+    \item \( b = 1 \)
+    \item \( c = -\frac{1}{n} \sum_{i=1}^{n} x_i^2 \)
+\end{itemize}
+
+
+
+\[
+\mu = \frac{-1 + \sqrt{1^2 - 4 \left(1\right) \left(-\frac{1}{n} \sum_{i=1}^{n} x_i^2\right)}}{2}
+\]
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Solution: Exercise 3 (Continued)}
+
+We can rewrite the density as:
+\[
+\begin{aligned}
+f_X(x) &= \lambda \, x^{-\lambda - 1} I(x > 1)\\[1mm]
+&= \exp\Bigl( -(\lambda+1)\log(x) + \log(\lambda) \Bigr) I(x > 1).
+\end{aligned}
+\]
+
+Yes, this is a member of the one-parameter exponential family with components:
+\[
+\begin{aligned}
+h(x) &= I(x > 1),\\[1mm]
+\eta(\lambda) &= -(\lambda + 1),\\[1mm]
+T(x) &= \log(x),\\[1mm]
+\psi(\lambda) &= -\log(\lambda).
+\end{aligned}
+\]
+
+\end{frame}
+
+%\begin{frame}
+%
+%\begin{verbatim}
+%# Set seed for reproducibility
+%set.seed(42)
+%
+%# Parameters
+%n <- 100
+%mu_true <- 2.5
+%
+%# Generate data
+%data <- rnorm(n, mean = mu_true, sd = sqrt(mu_true))
+%
+%# Calculate empirical second moment
+%second_moment <- mean(data^2)
+%
+%# Define the equation to solve
+%equation <- function(mu) {
+%  return(mu^2 + mu - second_moment)
+%}
+%
+%# Solve numerically using uniroot
+%mu_initial_guess <- mean(data)
+%mu_mle <- uniroot(equation, lower = 0.01, upper = 10)$root
+%
+%# Analytical MLE from quadratic solution
+%analytical_mle <- (-1 + sqrt(1 + 4 * second_moment)) / 2
+%
+%# Output results
+%cat("Numerical MLE using uniroot: ", mu_mle, "\n")
+%cat("Analytical MLE using quadratic formula: ", analytical_mle, "\n")
+%cat("Empirical second moment: ", second_moment, "\n")
+%\end{verbatim}
+%
+%\end{frame}
+
+\begin{frame}
+\frametitle{Solution: Exercise 3 (Continued)}
+
+In canonical form, let \(\eta = -(\lambda+1)\). Then, solving for \(\lambda\),
+\[
+\lambda = -\eta - 1.
+\]
+
+The log-partition function is:
+\[
+A(\eta) = -\log(-\eta - 1).
+\]
+
+To find the MLE for \(\lambda\), note that the derivative of \(A(\eta)\) with respect to \(\eta\) is:
+\[
+\nabla_\eta A(\eta) = \frac{1}{-\eta - 1} = \frac{1}{\lambda}.
+\]
+
+Thus, equating the sample average of the sufficient statistic to the derivative of the log-partition function, we have:
+\[
+\frac{1}{n}\sum_{i = 1}^n T(x_i) = \frac{1}{n}\sum_{i = 1}^n \log(x_i) = \frac{1}{\lambda}.
+\]
+
+Therefore, the MLE for \(\lambda\) is:
+\[
+\widehat{\lambda} = \frac{n}{\sum_{i=1}^n \log(x_i)}.
+\]
+\end{frame}
+
+
+
+\end{document}
