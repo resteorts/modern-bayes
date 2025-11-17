@@ -14,6 +14,9 @@ Agenda
 ===
 - Dirichlet distribution
 - The Dirichlet-Multinomial
+- The Dirichlet-Multinomial Supplement provides a more in depth treatment of this material:
+[The Dirichlet-Multinomial Supplement](https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-7/dirichlet-multinomial-supplement.pdf) 
+
 
 
 Dirichlet
