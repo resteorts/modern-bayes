@@ -18,7 +18,7 @@ font-size: 8px
 
 Professor Rebecca Steorts
 
-Old Chem 216
+Old Chem 208
 
 [rebecca.steorts\@duke.edu](mailto:rebecca.steorts@duke.edu)
 :::
@@ -27,9 +27,9 @@ Old Chem 216
 **Teaching assistants**
 
  
-Gwen Jacobson (gwen.jacobson@duke.edu)
+Yen-Chen Liu (yenchun.liu@duke.edu)
 
-Raymond Sun (raymond.sun@duke.edu)
+Yijie Huang (yijie.huang@duke.edu)
 
 
 :::
@@ -45,10 +45,10 @@ Mondays and Wednesdays, 10:00 -- 11:15 AM, Perkins 217
 
 **Labs**
 
-Lab 01: Thursday, 3:05 - 4:20 PM, Old Chemistry 116 
+Lab 01: Thursday, 3:05 - 4:20 PM, Allen 106 
 
 \vspace*{1em}
-Lab 02: Thursday, 4:44 - 5:55 PM, Social Sciences 136
+Lab 02: Thursday, 4:44 - 5:55 PM, Allen 106
 
 ------------------------------------------------------------------------
 
@@ -127,7 +127,7 @@ By the end of the semester, you will be able to ...
 
 ## Course toolkit
 
-**Course webpage**: [https://resteorts.github.io/teach/bayes-fall-25.html](https://resteorts.github.io/teach/bayes-fall-25.html)
+**Course webpage**: [https://resteorts.github.io/teach/bayes-fall-25.html](https://resteorts.github.io/teach/bayes-fall-26.html)
 
 **GitHub**: [github.com/modern-bayes](https://github.com/modern-bayes)
 
@@ -182,7 +182,7 @@ By the end of the semester, you will be able to ...
 **or**
 
 
-- Access RStudio through [Docker container](https://cmgr.oit.duke.edu/containers) provided by Duke OIT
+- Access RStudio through [Docker container](https://cmgr.oit.duke.edu/containers) provided by Duke OIT (but not supported by the courses instuctors)
 
 - Reserve a generic **RStudio** container (there is no course specific container)
 
