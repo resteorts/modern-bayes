@@ -9,22 +9,22 @@ output: pdf_document
 
 |  Role        | Name       | Office Hours         | Location              |
 |----------|-----------|---------------|-----------------------|
-| Instructor | Professor Rebecca Steorts  | MW  |    TBD     | TBD
-| Teaching Assistant   |  Yen-Chen Lu  |  TBD     |           TBD         |
-| Teaching Assistant   | Yijie Huang        |  TBD               |    TBD |
+| Instructor | Professor Rebecca Steorts  | MW   |    after class      | Old Chem 208
+| Teaching Assistant   |  Yen-Chen Lu (yenchun.liu@duke.edu) |   MW 5:00 -- 6:00 PM     |           Zoom            |
+| Teaching Assistant   | Yijie Huang (yijie.huang@duke.edu)  |   Tu 5:00 -- 7:00 PM     |    Zoom     |
 
 ## Course info
 
 |          | Day       | Time          | Location              | Zoom
 |----------|-----------|---------------|-----------------------|
-| Lectures | Mon & Wed | 10:05 am - 11:20 am | Perkins 217         |  XXXX
-| Lab01   | Thurs    | 3:05 pm - 4:20 pm | Allen 103       |  XXXX
-| Lab02   | Thurs    | 4:40 pm - 5:55 pm | Allen 103       | XXXXXX
+| Lectures | Mon & Wed | 10:05 am - 11:20 am | Perkins 217 |  972 7448 1273
+| Lab01   | Thurs    | 3:05 pm - 4:20 pm | Allen 103       |          937 1662 9115
+| Lab02   | Thurs    | 4:40 pm - 5:55 pm | Allen 103       |          937 1662 9115
 
-** Please make sure that you have zoom information organized in case this is needed. The instructor and TA's are happy to meet with students outside of office hours by appointment.**
+** Please make sure that you have zoom information organized in case this is needed. The instructor and TA's are happy to meet with students outside of office hours by appointment. **
 
-- Class Zoom and Steorts OH ID: XXXX
-- Lab Zoom ID and TA Office Hours: XXXXX
+- Class Zoom and Steorts OH ID: 972 7448 1273
+- Lab Zoom ID and TA Office Hours: 937 1662 9115
 
 ## Textbooks
 
