@@ -69,8 +69,8 @@ https://onlinecourses.science.psu.edu/stat504/node/59
 
 ## 230 Resources 
 
-- [Statistical Inference](https://mybiostats.files.wordpress.com/2015/03/casella-berger.pdf), Review Ch 1 - 5. 
-- [Statistical Inference Solutions](http://www.ams.sunysb.edu/~zhu/ams570/Solutions-Casella-Berger.pdf)
+- [Statistical Inference](https://web.archive.org/web/20241121133242/https://mybiostats.wordpress.com/wp-content/uploads/2015/03/casella-berger.pdf), Review Ch 1 - 5. 
+- [Statistical Inference Solutions](https://web.archive.org/web/20260826034115/https://www.ams.sunysb.edu/~zhu/ams570/Solutions-Casella-Berger.pdf)
 - [Review Notes](https://github.com/resteorts/modern-bayes/blob/master/reading/babybayes-master.pdf)
   
 
