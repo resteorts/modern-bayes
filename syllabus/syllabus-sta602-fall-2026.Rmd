@@ -11,7 +11,7 @@ output: pdf_document
 |----------|-----------|---------------|-----------------------|
 | Instructor | Professor Rebecca Steorts  | MW   |    after class      | Old Chem 208
 | Teaching Assistant   |  Yen-Chen Liu (yenchun.liu@duke.edu) |   MW 5:00 -- 6:00 PM     |           Zoom            |
-| Teaching Assistant   | Yijie Huang (yijie.huang@duke.edu)  |   Tu 5:00 -- 7:00 PM     |    Zoom     |
+| Teaching Assistant   | Yijie Huang (yijie.huang@duke.edu)  |   Tu 5:00 -- 7:00 PM     |    Old Chem 203A     |
 
 ## Course info
 

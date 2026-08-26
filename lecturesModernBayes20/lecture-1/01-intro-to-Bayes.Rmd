@@ -263,10 +263,10 @@ Obama Example
 ```{r}
 n <- 10
 # Fixing values of a,b. Chosen skewed Beta.
-#a = 21/8
-#b = 0.04
-a <- 2
-b <- 2
+a = 21/8
+b = 0.04
+#a <- 2
+#b <- 2
 th <- seq(0, 1, length = 500)
 x <- 6
 # we set the likelihood, prior, and posteriors with 
