@@ -27,7 +27,7 @@ Old Chem 208
 **Teaching assistants**
 
  
-Yen-Chen Liu (yenchun.liu@duke.edu)
+Yen-Chun Liu (yenchun.liu@duke.edu)
 
 Yijie Huang (yijie.huang@duke.edu)
 
@@ -127,11 +127,11 @@ By the end of the semester, you will be able to ...
 
 ## Course toolkit
 
-**Course webpage**: [https://resteorts.github.io/teach/bayes-fall-25.html](https://resteorts.github.io/teach/bayes-fall-26.html)
+**Course webpage**: [https://resteorts.github.io/teach/bayes-fall-26.html](https://resteorts.github.io/teach/bayes-fall-26.html)
 
 **GitHub**: [github.com/modern-bayes](https://github.com/modern-bayes)
 
--   Course information and course scheudle 
+-   Course information and course schedule 
 
 **Canvas**
 
