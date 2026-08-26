@@ -111,7 +111,10 @@ https://onlinecourses.science.psu.edu/stat504/node/59
 
 1. Reiter (2018): https://www.tandfonline.com/doi/pdf/10.1080/00029890.2000.12005156?casa_token=LsVoa7I-brAAAAAA:S5vvbIQyzsfnr-t1_ragnSQWdrQYv-RUl1ei0_KDn7dc25SSRXdWLgnR5dpXfJvtEB-6u2IO_DN0
 2. Guha et. al (2022): https://projecteuclid.org/journals/bayesian-analysis/volume-17/issue-4/Bayesian-Causal-Inference-with-Bipartite-Record-Linkage/10.1214/21-BA1297.full
-3. Wortman and Reiter (2018): https://onlinelibrary.wiley.com/doi/abs/10.1002/sim.7911?casa_token=iuJ2tPXV6VQAAAAA%3AjAcsrlbQSy2HztzCw4dfk1lzKYvM5gVPmoyeuoxIEoRoX2IulG8Y9EO5tX9vneFIs_-vdOIfbGtvPg 
+3. Wortman and Reiter (2018): https://onlinelibrary.wiley.com/doi/abs/10.1002/sim.7911?casa_token=iuJ2tPXV6VQAAAAA%3AjAcsrlbQSy2HztzCw4dfk1lzKYvM5gVPmoyeuoxIEoRoX2IulG8Y9EO5tX9vneFIs_-vdOIfbGtvPg
+
+- Bayesian Non-Parametric Tutorial (Peter Orbanz)
+https://www.gatsby.ucl.ac.uk/~porbanz/npb-tutorial.html
       
       
 
