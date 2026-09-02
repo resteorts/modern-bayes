@@ -652,6 +652,38 @@ Example: Resource allocation, revisited
 
 5. The constant procedure is fantastic when $\theta$ is near $0.1$, but gets very bad very quickly for larger $\theta$. The Bayes procedure is better than the sample mean for nearly all $\theta$'s. These curves reflect the usual situation---some procedures will work better for certain $\theta$'s and some will work better for others.
 
+<!-- Formal Definition -->
+<!-- === -->
+<!-- A decision rule $\delta'$ \textbf{dominates} $\delta$ if -->
+<!-- \[ -->
+<!-- R(\theta,\delta') \leq R(\theta,\delta) -->
+<!-- \qquad \text{for all } \theta, -->
+<!-- \] -->
+<!-- with strict inequality for at least one $\theta$. -->
+
+<!-- \medskip -->
+
+<!-- \begin{itemize} -->
+<!--     \item $\delta$ is \textbf{inadmissible} if there exists a decision rule -->
+<!--     $\delta'$ that dominates it. -->
+
+<!--     \item $\delta$ is \textbf{admissible} if no decision rule $\delta'$ -->
+<!--     dominates it. -->
+<!-- \end{itemize} -->
+
+<!-- \medskip -->
+
+<!-- \alert{Key point:} To prove inadmissibility, it is enough to find -->
+<!-- \emph{one} dominating rule. To prove admissibility, we must rule out -->
+<!-- \emph{all} dominating rules. -->
+
+<!-- \medskip -->
+
+<!-- {\footnotesize -->
+<!-- See, e.g., Berger (1985), \textit{Statistical Decision Theory and -->
+<!-- Bayesian Analysis}, 2nd ed., Springer. -->
+<!-- } -->
+
 Example:  Inadmissible decision procedure 
 ===
 
@@ -661,31 +693,31 @@ for all $\theta$ and $R(\theta,\delta')< R(\theta,\delta)$ for at least one $\th
 7. Bayes procedures are admissible under very general conditions.
 8. Admissibility is nice to have, but it doesn't mean a procedure is necessarily good. Silly procedures can still be admissible---e.g., in this example, the constant procedure $c = 0.1$ is admissible too!
 
-Takeaways about inadmissible decision procedures
-===
+<!-- Takeaways about inadmissible decision procedures -->
+<!-- === -->
 
-\begin{itemize}
-    \item \textbf{Inadmissibility:} It is enough to find \emph{one} estimator
-    that dominates $\delta$:
-    \[
-    R(\theta,\delta') \le R(\theta,\delta)
-    \quad \forall\,\theta,
-    \]
-    with strict inequality for at least one $\theta$.
+<!-- \begin{itemize} -->
+<!--     \item \textbf{Inadmissibility:} It is enough to find \emph{one} estimator -->
+<!--     that dominates $\delta$: -->
+<!--     \[ -->
+<!--     R(\theta,\delta') \le R(\theta,\delta) -->
+<!--     \quad \forall\,\theta, -->
+<!--     \] -->
+<!--     with strict inequality for at least one $\theta$. -->
 
-    \item \textbf{Admissibility:} We must establish that \emph{no} estimator
-    dominates $\delta$.
-\end{itemize}
+<!--     \item \textbf{Admissibility:} We must establish that \emph{no} estimator -->
+<!--     dominates $\delta$. -->
+<!-- \end{itemize} -->
 
-\begin{itemize}
-    \item A \textbf{risk plot} can establish \textbf{inadmissibility} if one plotted
-    estimator dominates another.
-    
-    \item If two risk curves \textbf{cross}, neither estimator dominates the other.
-    
-    \item But this does \textbf{not} prove either estimator is admissible:
-    an unplotted estimator could still dominate it.
-\end{itemize}
+<!-- \begin{itemize} -->
+<!--     \item A \textbf{risk plot} can establish \textbf{inadmissibility} if one plotted -->
+<!--     estimator dominates another. -->
+
+<!--     \item If two risk curves \textbf{cross}, neither estimator dominates the other. -->
+
+<!--     \item But this does \textbf{not} prove either estimator is admissible: -->
+<!--     an unplotted estimator could still dominate it. -->
+<!-- \end{itemize} -->
 
 
 Takeaways
