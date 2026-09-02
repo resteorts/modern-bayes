@@ -280,7 +280,7 @@ legend('topright', legend = c('Bayes', 'sample mean', 'constant'),
 
 # Task 5 
 
-Based on your plot of the frequentist risk, consider the three estimators— the constant, the mean, and the Bayes estimators. Which estimators are admissible? Be sure to explain.
+Based on your plot of the frequentist risk, consider the three estimators— the constant, the mean, and the Bayes estimators. From the plot, can you determine which estimators are admissible? Explain.  
 
 <!-- When $\theta$ is close to 0.1, the constant estimator has the smallest frequentist risk among all three estimators. However, the frequentist risk of the constant estimator increases very quickly and sharply when $\theta$ increases beyond 0.1.  -->
 
