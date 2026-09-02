@@ -32,7 +32,7 @@ They conduct a survey assessing the disease status of $n=30$ individuals, $x_1,\
 2.  Now perform a sensitivity analysis for the prior assumption (Beta(a,b)). What do you find? 
 3.  Consider the Bayes procedure ($c\approx 0.08$), $c=\bar{x}, c=0.1.$ 
 4.  Plot the frequentist risk $R(\theta, \delta)$ as a function of $\theta$ for the three procedures in the previous task. Report your findings. 
-5.  Based on your plot of the frequentist risk, consider the three estimators---the constant, the mean, and the Bayes estimators. Which estimators are admissible? Be sure to explain why or why they are not admissible. 
+5.  Based on your plot of the frequentist risk, consider the three estimators---the constant, the mean, and the Bayes estimators. By inspection of the plot alone, can you comment on admissibility versus inadmissibility of the estimators. Hint: this is a tough question, so do your best to figure this out! 
 
 # Task 1
 
