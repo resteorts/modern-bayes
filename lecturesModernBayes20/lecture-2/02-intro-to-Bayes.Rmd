@@ -684,7 +684,7 @@ Example: Resource allocation, revisited
 <!-- Bayesian Analysis}, 2nd ed., Springer. -->
 <!-- } -->
 
-Example:  Inadmissible decision procedure 
+Example: Resource allocation, revisited
 ===
 
 6. A decision procedure which is  \term{inadmissible} is one that is dominated everywhere.
