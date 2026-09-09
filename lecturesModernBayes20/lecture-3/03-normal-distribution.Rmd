@@ -411,3 +411,16 @@ Module 3 Class Notes can be found here:
 
 https://github.com/resteorts/modern-bayes/tree/master/lecturesModernBayes20/lecture-3/03-class-notes
 
+Supplementary Material 
+===
+
+- One illustration of how "uniform priors" can be highly informative in the context of mixture models and clustering records to the underlying true unique entity. 
+Steorts, Hall, Fienberg (2016): https://dukespace.lib.duke.edu/server/api/core/bitstreams/b67f6d5b-e458-4ca9-9140-90ddf4c917a7/content
+
+
+
+
+
+
+
+
