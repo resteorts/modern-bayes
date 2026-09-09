@@ -133,9 +133,20 @@ Assume the precision $\lambda = 1/\sigma^2$ is known and fixed, and $\theta$ is 
 $$\btheta \sim \N(\mu_0,\lambda_0^{-1})$$
 i.e., $p(\theta) = \N(\theta\mid \mu_0,\lambda_0^{-1})$. This is sometimes referred to as a **Normal--Normal** model.
 
-Posterior derivation
+Posterior derivation: Generalized preview
 ===
-We begin with the **likelihood** of the normal distribution. \textcolor{blue}{We work with proportionality with respect to $\theta$ as we will combine the **likelihood** and **prior** to find the posterior, where the parameter of interest is $\theta.$}
+
+1. We begin with the **likelihood** of the normal distribution and write this in terms of $\theta$. 
+
+2. We repeat the result for the **prior**
+
+3. Finally, we combine the **likelihood** and **prior** and notice that our **posterior** is an updated Normal distribution. 
+
+Likelihood
+===
+
+Let $x$ denote a single data point and $\ell$ denote the fixed and known precision. 
+Let $\theta$ denote the unknown parameter of interest. 
 
 \textcolor{red}{For any $x$ and $\ell$},
 \begin{align}\label{equation:prop}
@@ -150,7 +161,7 @@ Note: we drop the **constant term** and we will do this often when working with 
 
 Posterior derivation (continued)
 ===
-We now consider the **prior** distribution on $\theta.$
+We now consider the **prior** distribution on $\theta,$ where $\mu_0,\lambda_0$ are fixed and known. 
 
 Due to the symmetry of the normal p.d.f.,
 \begin{align}\label{equation:prior}
