@@ -337,6 +337,23 @@ and obtain the approximation
 
 **You will explore this more in lab 4 and homework 5.**
 
+Other commons priors for the mean/precision
+===
+
+- The NormalGamma priors induces a strong dependency between $\mu$ and $\lambda$ (which may not be warranted).
+
+- For evidence, see plots of the prior distributions. 
+
+- It is more common to assume the distributions of $\mu$ and $\lambda$ are independent. 
+
+- These are called conditionally conjugate priors and should not be confused with complete conjugacy. 
+
+- Why are these useful? They are easy to work with in situations with Markov chain Monte Carlo (soon to come) to approximate the posterior when it's not available in a closed form. 
+
+
+
+
+
 Takeaways
 ===
 
