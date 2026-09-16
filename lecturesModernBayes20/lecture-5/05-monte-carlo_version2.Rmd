@@ -1,0 +1,1014 @@
+
+---
+title: "Module 5: Introduction to Monte Carlo"
+author: "Andrea Aveni, Vincent Kubala, and Rebecca C. Steorts"
+output: 
+     beamer_presentation:
+      includes: 
+          in_header: custom2.tex
+font-size: 8px
+---
+
+<!-- Announcements -->
+<!-- === -->
+
+<!-- - Please make sure that your .Rmd files for homework compile to .pdf format moving forward -->
+<!-- - If you're having an issue with this, please talk to any member of the teaching team moving forward -->
+<!-- - The notes have been updated to hopefully make the rejection sampling material more clear from last time -->
+<!-- and I will highlight some of these points today in class.  -->
+<!-- - Information regarding the upcoming quiz will be shared soon!  -->
+
+<!-- Quiz I -->
+<!-- === -->
+
+<!-- - Open notes, open book. -->
+<!-- - This is a closed exam to speaking to others except your instructor and teaching assistants until the exam grades have been released to all students. -->
+<!-- - You will be given a cover page with distributions. -->
+<!-- - This exam will be released over Gradescope at the start of class 10:05 AM and you must complete the assignment no later than 11:20 AM.  -->
+<!-- - You will be given 30 minutes after the exam to upload one PDF document to Gradescope and assign pages. -->
+<!-- - Material covers: Modules 1--4. -->
+<!-- - Material covers lectures (slides and written material in class), labs, and homeworks. -->
+
+<!-- Quiz I -->
+<!-- === -->
+
+<!-- - You must upload a single PDF file to Gradescope and label your pages. -->
+<!-- - You can write your solutions on your own paper, a tablet, etc.  -->
+<!-- - You are not required (or expected) to type your solutions.  -->
+<!-- - You may utilize software to help pull your written solutions into a single PDF for uploading purposes.  -->
+<!-- - If you use AI software, you must cite this in your write up (or this violates the exam policy).  -->
+<!-- - You are not allowed to search for solutions to the problems (or utilize any prior solutions that have been written).  -->
+
+<!-- Quiz I -->
+<!-- === -->
+
+<!-- - On this exam, you will not be expected to do any coding/programming, however you may be asked to provide interpretations beyond derivations.  -->
+<!-- - You are not allowed to speak to anyone regarding the exam except the instructor until the results (grades) are released back to you. -->
+
+
+Agenda
+===
+- Motivation
+- Monte Carlo (The Classical or Naive Method)
+- Inverse CDF Method
+- Rejection Sampling
+
+
+Sampling Methods
+===
+
+In this module, we will talk about ways of approximating 
+
+$$\E_X[h(x)] = \textcolor{red}{\int_X h(x) f(x)\; dx}$$ which is \emph{intractable}. This means that we cannot compute the integral in closed form. 
+
+Why? This means h(x) is a complicated function or we cannot evaluate $f(x).$
+
+Sampling Methods
+===
+
+$$\E_X[h(x)] = \textcolor{red}{\int_X h(x) f(x)\; dx}$$ which is \emph{intractable}. This means that we cannot compute the integral in closed form. 
+
+\vspace*{1em}
+
+
+\textbf{Example}: Suppose $h(x)=x$ for all $x.$
+=======
+
+
+\vspace*{1em}
+
+$$\E_f[h(X)] = \E_f[X] = \textcolor{red}{\int_X x f(x)\; dx}$$
+
+
+Monte Carlo Sampling
+===
+
+Suppose that we wish to find $$\E_f[X].$$
+
+\vspace*{1em}
+
+Solution: 
+
+\begin{enumerate}
+\item Draw samples $X_1, \ldots, X_N \stackrel{iid}{\sim} f.$ 
+\item Let $\frac{1}{N}\sum_{i=1}^N X_i$ approximate $\E_f[X]$
+\end{enumerate}
+
+\vspace*{1em}
+
+This is called **Monte Carlo sampling** (and is the simplest way of producing samples). 
+
+\vspace*{1em}
+
+Generalization
+===
+
+Suppose we want to estimate $\E[h(Y) \mid Z = z].$
+
+\vspace*{1em}
+
+Solution: 
+
+\begin{enumerate}
+\item Draw samples $Y_1, \ldots, Y_N \stackrel{iid}{\sim} Y \mid Z = z.$ 
+\item Let $\frac{1}{N}\sum_{i=1}^N h(Y_i)$ approximate $\E[h(Y) \mid Z = z].$
+\end{enumerate}
+
+\vspace*{1em}
+
+Remark: The generalization is equivalent to the special case by letting $X$ have distribution $h(Y) \mid Z = z.$
+
+
+
+
+
+Monte Carlo Illustration
+===
+
+Simulate a N(0,1) histogram using Monte Carlo samples. Compare it to the standard normal density in R. Provide 10 and 10,000 simulations. 
+
+Monte Carlo Illustration
+===
+
+```{r, echo = FALSE}
+x <- seq(-3,3,length.out=10)
+hist(rnorm(x), freq=FALSE, main="", xlab = "x-values")
+## true density
+curve(dnorm(x, mean = 0, sd = 1),
+      from = -3,
+      to = 3,
+      add = TRUE,
+      col = "blue",
+      xlab = "x-values")
+```
+
+Monte Carlo Illustration
+===
+
+```{r, echo = FALSE}
+x <- seq(-3,3,length.out=10000)
+hist(rnorm(x), freq=FALSE, main="", xlab = "x-values")
+## true density
+curve(dnorm(x, mean = 0, sd = 1),
+      from = -3,
+      to = 3,
+      add = TRUE,
+      col = "blue",
+      xlab = "x-values")
+```
+
+
+
+Monte Carlo Properties
+===
+
+Suppose that $\E|X| < \infty.$
+
+\vskip 1em
+
+Then $$\frac{1}{N} \sum_{i=1}^N X_i \rightarrow \E[X] \quad \text{as} \quad N \rightarrow \infty.$$
+
+\vskip 1em
+
+Why? This is true by the Strong Law of Large Numbers. It ensures that our approximation converges to the ``true value."
+
+Monte Carlo Properties
+===
+
+$\frac{1}{N} \sum_{i=1}^N X_i$ is an **unbiased estimator** of $\E[X].$
+
+Proof:
+
+$$\E[\frac{1}{N} \sum_{i=1}^N X_i] = \frac{1}{N} \times N \times \E[X_i] = \E[X].$$
+
+Monte Carlo Properties
+===
+
+The **variance** of $\frac{1}{N} \sum_{i=1}^N X_i$ is 
+
+$$\V(\frac{1}{N} \sum_{i=1}^N X_i) = \frac{1}{N^2}\V(\sum_{i=1}^N X_i) = 
+\frac{1}{N^2}\sum_{i=1}^N \V(X_i) = \frac{1}{N} \V(X).$$
+
+
+
+
+
+Monte Carlo Properties
+===
+
+Because our estimator is unbiased, the **Root Mean Squared Error** (RMSE) is
+
+\begin{align}
+\text{RMSE} &=: \Big[\E\big(|\tfrac{1}{N}\textstyle\sum X_i - \E X|^2\big)\Big]^{1/2}\notag\\
+& = \Big[\V\big(\tfrac{1}{N}\textstyle\sum X_i\big)\Big]^{1/2}\notag\\
+&= \frac{1}{\sqrt N}\V(X)^{1/2}= \sigma(X)/{\sqrt N}.\label{equation:RMSE}
+\end{align}
+
+The RMSE tells us how far the approximation will be from the true value, on average. 
+
+Remark: $$\text{MSE} = [\sigma(X)/{\sqrt N}]^2 = \frac{1}{N}V(X).$$
+
+
+
+Return of IQ Scores
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[trim=0 0.75cm 0 0, clip, width=1\textwidth]{code/pygmalion-MC.png}
+    % Source: Original work by J. W. Miller.
+  \end{center}
+  \caption{Monte Carlo approximations for an increasing number of samples, $N$. The red, blue, and green lines indicate three repetitions of the procedure, using different sequences of samples.  The dotted lines indicate the true value $\pm$ the RMSE of the Monte Carlo estimator.}
+  \label{figure:pygmalion-MC}
+\end{figure}
+
+Return of IQ Scores
+===
+In Module 4, we saw an example involving the mean change in IQ score $\mu_S$ and $\mu_C$ of two groups of students (spurters and controls). 
+To compute the posterior probability that the spurters had a larger mean change in IQ score, we drew $N=10^6$ samples from each posterior:
+\begin{align*}
+&(\bm\mu_S^{(1)},\bm\lambda_S^{(1)}),\dotsc,(\bm\mu_S^{(N)},\bm\lambda_S^{(N)})\sim \NormalGamma(24.0,8,4,855.0)\\
+&(\bm\mu_C^{(1)},\bm\lambda_C^{(1)}),\dotsc,(\bm\mu_C^{(N)},\bm\lambda_C^{(N)})\sim\NormalGamma(11.8,49,24.5,6344.0)
+\end{align*}
+and used the Monte Carlo approximation
+\begin{align*}
+\Pr(\bm\mu_S > \bm\mu_C \mid \text{data}) 
+\approx \frac{1}{N} \sum_{i = 1}^N \I\big(\bm\mu_S^{(i)}>\bm\mu_C^{(i)}\big).
+\end{align*}
+
+Return of IQ Scores
+===
+- To visualize this, consider the sequence of approximations $\frac{1}{N} \sum_{i = 1}^N \I\big(\bm\mu_S^{(i)}>\bm\mu_C^{(i)}\big)$ for $N=1,2,\dotsc$. 
+
+- Figure \ref{figure:pygmalion-MC} shows this sequence of approximations for three different sets of random samples from the posterior.  
+
+- We can see that as the number of samples used in the approximation grows, it appears to be converging to around \textcolor{red}{0.97}.
+
+
+To visualize the theoretical rate of convergence, the figure also shows bands indicating the true value $\alpha = \Pr(\bm\mu_S > \bm\mu_C \mid \text{data})=??$ plus or minus the RMSE of the Monte Carlo estimator, that is, from Equation \ref{equation:RMSE}:
+\begin{align*}
+\alpha \pm \sigma(X)/\sqrt{N} &= ??
+\end{align*}
+Simpify this as much as possible for an ungraded exercise (exam II).
+
+Solution to the ungraded exercise
+===
+\textcolor{red}{
+\begin{align*}
+\alpha \pm \sigma(X)/\sqrt{N} &= \alpha \pm \sqrt{\alpha(1-\alpha)/N}\\
+&= 0.97 \pm \sqrt{0.97(1-0.97)/N}
+\end{align*}
+where $X$ has the posterior distribution of $\I(\bm\mu_S>\bm\mu_C)$ given the data, in other words, $X$ is a $\Bernoulli(\alpha)$ random variable. 
+Recall that the variance of a $\Bernoulli(\alpha)$ random variable is $\alpha(1-\alpha)$.
+}
+
+Return of IQ Scores
+===
+Using the same approach, we could easily approximate any number of other posterior quantities as well, for example,
+\begin{align*}
+\Pr\big(\bm\lambda_S>\bm\lambda_C \,\big\vert\, \text{data}\big) 
+&\approx \frac{1}{N}\sum_{i = 1}^N \I\big(\bm\lambda_S^{(i)}>\bm\lambda_C^{(i)}\big)\\
+\E\big(|\bm\mu_S-\bm\mu_C| \,\big\vert\, \text{data}\big) 
+&\approx \frac{1}{N}\sum_{i = 1}^N |\bm\mu_S^{(i)}-\bm\mu_C^{(i)}|\\
+\E\big(\bm\mu_S/\bm\mu_C \,\big\vert\, \text{data}\big) 
+&\approx \frac{1}{N}\sum_{i = 1}^N \bm\mu_S^{(i)}/\bm\mu_C^{(i)}.
+\end{align*}
+
+Other approaches for generating samples
+===
+
+- Inverse CDF methods
+- Rejection sampling
+
+Inverse CDF Method
+===
+
+The inverse CDF method is a common way to generate samples from a univariate probability distribution when the inverse of the cdf cannot be easily computed. 
+
+Basic Idea: Suppose $F^{-1}$ is the inverse cdf of $F$ and $U \sim \text{Uniform}(0,1)$. It follows that $F^{-1}(U)$ is a random variable with cdf F. 
+
+Precise statement of inverse cdf method
+===
+
+For a random variable $X$ with c.d.f. $F,$ define the generalized CDF as
+$$F^{-1}(u) = \text{min}\{x: F(x) \geq u\}.$$
+If $$U \sim Uniform(0,1)$$ then $$F^{-1}(U) \sim X.$$
+
+Illustration
+===
+
+$$X \sim Exponential(1).\footnote{\text{Applications include the length of time, in minutes, of long distance business telephone calls, and the amount of time, in months, a car battery lasts.}}$$Then
+
+$$f(x) = \exp(-x) \implies F(x) = 1 - \exp(-x).$$
+Let $u = 1- \exp^{-x}$ and solve for $u.$ Then
+$x = -log(1-u).$
+
+Let $U \sim Uniform(0,1) \implies 1-U \sim Uniform(0,1).$
+
+Thus, $$X \sim -log(U).$$
+
+Illustration
+===
+
+```{r, echo=FALSE}
+nsim <- 1000
+U <- runif(nsim)
+X <- -log(U)
+Y <- rexp(nsim)
+par(mfrow=(c(1,2)))
+hist(X, freq=FALSE, main="Exponenial via inverse CDF method")
+hist(Y, freq=FALSE, main="Exponenial distn directly")
+```
+
+Rejection Sampling
+===
+
+Rejection sampling is a method for drawing random samples from a distribution whose p.d.f. can be evaluated up to a constant of proportionality. 
+
+\vskip 1 em
+Compared with the inverse c.d.f. method, rejection sampling has the advantage of working on complicated multivariate distributions. 
+
+\vskip 1 em
+
+Difficulties? You must design a good proposal distribution (which can be difficult, especially in high-dimensional settings).
+
+Uniform Sampler
+===
+Goal: Generate samples from Uniform(A), where A is complicated. 
+
+- $X \sim  Uniform(Mandelbrot).$
+- Consider $I_{X(A)}.$
+
+The Mandelbrot
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.45\textwidth]{figures/madel}
+%    \hspace{0.05\textwidth}
+%    \includegraphics[width=0.45\textwidth]{code/reject-w-samples.png}
+%    % Source: Original work by Jeffrey W. Miller
+%    % Date: 2/1/2014
+  \end{center}
+  \caption{A complicated function $A,$ called the Mandelbrot!}
+%  \label{figure:reject}
+\end{figure}
+
+
+
+
+The Mandelbrot
+===
+
+The Mandelbrot set is a set of points in the complex plane.\footnote{The complex plane is a two-dimensional space with the a vertical imaginary
+axis, and a horizontal real axis.}
+
+A point in this plane can be defined using a complex number $c \in C$ such that
+$$c=a+bi,$$ where a,b are real numbers and $i = \sqrt{-1}.$
+
+Formally, $c\in C$ belongs to the Mandelbrot set iff 
+
+$$lim_{n\rightarrow \infty}  ||z_{n+1} = z_n^2 + c|| \nrightarrow \infty \quad  \text{where} \quad z_o = 0. $$
+
+- Note that $||\cdot||$ is the  Euclidean norm\footnote{This measures how far a point is from it's origin.} 
+
+
+The Mandelbrot
+===
+
+Formally, $c\in C$ belongs to the Mandelbrot set iff 
+
+$$lim_{n\rightarrow \infty}  ||z_{n+1} = z_n^2 + c|| \nrightarrow \infty \quad  \text{where} \quad z_o = 0. $$
+
+- We have a re-cursive function.\footnote{To read more about fractals, see \url{https://www.kth.se/social/files/5504b42ff276543e4aa5f5a1/An_introduction_to_the_Mandelbrot_Set.pdf}.}  
+- Conjugate distributions -- out the window! 
+- We're going to need to do something numerical! 
+
+Proposition
+===
+\begin{itemize}
+\item Suppose $A \subset B.$ 
+\item Let $Y_1,Y_2,\ldots \sim$ Uniform(B) iid and
+\item  $X = Y_k$
+where $k= \min \{k: Y_k \in A\},$ 
+\end{itemize}
+Then it follows that
+$$X \sim \text{Uniform}(A).$$
+
+
+
+Drawing Uniform Samples
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.45\textwidth]{code/reject-wo-samples.png}
+    \hspace{0.05\textwidth}
+    \includegraphics[width=0.45\textwidth]{code/reject-w-samples.png}
+    % Source: Original work by Jeffrey W. Miller
+    % Date: 2/1/2014
+  \end{center}
+  \caption{(Left) How to draw uniform samples from region $A$? (Right) Draw uniform samples from $B$ and keep only those that are in $A$.}
+  \label{figure:reject}
+\end{figure}
+
+General Rejection Sampling Algorithm
+===
+Goal: Sample from a \textcolor{red}{complicated pdf $f(x).$}
+\vskip 0.5 em
+Suppose that $$\textcolor{red}{f(x)} = \tilde{f}(x)/\alpha, \alpha>0$$.
+
+\textbf{Assumption: $f$ is difficult to evaluate, $\tilde{f}$ is easy! Why? $\alpha$ may be very difficult to calculate even computationally.}
+
+<!-- Suppose there exists a density $g(x)$ and constant $M>0$ such that -->
+<!-- $$Mg(x) \geq \ell(x)$$ for all $x.$  -->
+
+\begin{enumerate}
+\item Choose a \textcolor{blue}{proposal distribution $q$} such that $c>0$ with 
+$$c \textcolor{blue}{q(x)} \geq \tilde{f}(x).$$
+\item Sample $X \sim \textcolor{blue}{q}$, sample $Y \sim \text{Unif}(0, c\; \textcolor{blue}{q(X)})$ (given X)
+\item If $Y \leq \tilde{f}(X), Z=X,$ \textcolor{blue}{otherwise we reject and return to step (2)}. 
+%Generate $X \sim g,$ and calculate $r(X) = \dfrac{\ell(X)}{M\; g(X)}.$
+%\item Flip a coin with probability of success $r(X).$ If we have a success,
+%retain X. Else return to (1).
+\end{enumerate}
+Output: $Z \sim f(x)$
+
+Intuition for the General Rejection Sampling Algorithm
+===
+
+\begin{enumerate}
+\item Choose a \textcolor{blue}{proposal distribution $q$} such that $c>0$ with 
+$$c \textcolor{blue}{q(x)} \geq \tilde{f}(x).$$
+\item Sample $X \sim \textcolor{blue}{q}$, sample $Y \sim \text{Unif}(0, c\; \textcolor{blue}{q(X)})$ (given X)
+Intuition: We draw uniform samples $(X,Y)$ that fall under the curve \textcolor{blue}{cq.}
+\item If $Y \leq \tilde{f}(X), Z=X,$ \textcolor{blue}{otherwise we reject and return to step (2)}. 
+Intuition: We keep the points that fall below $\tilde(f).$
+%Generate $X \sim g,$ and calculate $r(X) = \dfrac{\ell(X)}{M\; g(X)}.$
+%\item Flip a coin with probability of success $r(X).$ If we have a success,
+%retain X. Else return to (1).
+\end{enumerate}
+Output: $Z \sim f(x)$
+Intuition: If we accept, The output of the algorithm is the projection onto the 
+x-axis of accepted points (and the y-axis is used only for acceptance or rejection). Note that our x samples are random samples from f. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Visualizing just f
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/f}
+  \end{center}
+  \caption{Visualizing just f.}
+\end{figure}
+
+Visualizing just f and $\tilde{f}$
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/bothf}
+  \end{center}
+  \caption{Visualizing just f and $\tilde{f}.$}
+\end{figure}
+
+Enveloping $q$ over $f$
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/q}
+  \end{center}
+  \caption{Visualizing f and $\tilde{f}.$ Now we look at enveloping $q$ over $f.$}
+\end{figure}
+
+Enveloping $cq$ over $\tilde{f}$
+===
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/cq}
+  \end{center}
+  \caption{Visualizing f and $\tilde{f}.$ Now we look at enveloping $cq$ over $\tilde{f}.$}
+\end{figure}
+
+Recalling the sampling method and accept/reject step
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/rejectionAccept}
+  \end{center}
+  \caption{Recalling the sampling method and accept/reject step.}
+\end{figure}
+
+Entire picture and an example point $X$ and $Y$
+===
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/rejectionAccept2}
+  \end{center}
+  \caption{Entire picture and an example point $X$ and $Y.$}
+\end{figure}
+
+Proof of the General Rejection Sampler
+===
+
+The appendix provides the proof of the general rejection sampler, which should provide more insight regarding why it works. 
+
+
+
+
+Lemma 1
+===
+
+Lemma: If $$X \sim q \quad Y \mid X \sim \text{Unif}(0,cq) \implies
+ (X,Y) \sim Unif(B),$$ where $B = \{(x,y), \quad x\in R^d, \quad 0< y < cq(x)\}.$
+
+\vspace*{1em}
+
+Proof: 
+
+a.) If $y \notin (0,cq),$ then $p(x,y) = p(y \mid x) p(x) = 0.$
+
+\vspace*{1em}
+
+b.) Else, $p(x,y) = p(y \mid x) p(x) = \frac{1}{cq(x)} \times q(x) = \frac{1}{c}.$
+
+
+
+
+
+Lemma 2
+===
+If $(X,Y) \sim Unif(A),$ where $A = \{(x,y): x\in R^d, 0 < y< \tilde{f}(x)\},$ then $X \sim f.$
+
+\vspace*{1em}
+
+Proof: It follows that 
+$m(A) = \int \tilde{f}(x) dx = \int \alpha f(x) dx
+= \alpha.$
+
+Consider $1 = \int_{A} b\; dx dy = b\int [\int_{0}^{\tilde{f}(x)} dy] dx = b \int \tilde{f}(x) dx = b \alpha \implies
+b = 1/\alpha.$
+
+Then $p(x) = \int p(x,y) dy = 
+\int \frac{1}{\alpha} I(0 < y < \tilde{f}(x)) dy 
+= \frac{1}{\alpha} \int_{0}^{\tilde{f}(x)} dy
+= \frac{1}{\alpha} \tilde{f}(x) = f(x).$
+
+<!-- Proposition -->
+<!-- === -->
+
+<!-- Suppose f and q are pdfs on $\mathbb{R}^d$ such that  -->
+<!-- $$f(x) = \tilde{f}(x) / \alpha, \alpha > 0$$ and  -->
+<!-- $$cq(x) \geq \tilde{f}(x) \forall x \in \mathbb{R}^d.$$  -->
+
+<!-- \vspace*{1em} -->
+
+<!-- If $$X_1, X_2, \ldots, \sim q,$$ -->
+<!-- $$Y_k \mid X_k \sim Unif(0, cq(X_k)),$$ and  -->
+<!-- $$Z = X_k \; \text{where} \;  K=min\{k: Y_k \leq \tilde{f}(X_k)\}$$ then $$Z \sim f.$$ -->
+
+Proposition
+===
+
+Suppose $f$ and $q$ are pdfs on $R^d$ such that
+$$f(x) = \frac{\tilde{f}(x)}{\alpha}, \alpha > 0$$
+and $cq(x) \geq \tilde{f}(x)$ for all $x \in R^d, c>0.$
+
+If $$X_1, X_2, \ldots \sim q,$$
+$$Y_k \mid X_k \sim \text{Uniform}(0, cq(X_k))$$
+and $$Z = X_K \quad \text{where} \quad
+K = \min\{k: Y_k \leq \tilde{f}(X_k) \}$$ then
+$Z \sim f.$
+
+The proposition follows by Lemma 1 and Lemma 2.
+
+Efficiency of the Rejection Sampler
+===
+
+\textbf{Recall}: $$f(x) = \frac{\tilde{f}(x)}{\alpha}, \alpha > 0$$ (typically don't know $\alpha$ in practice.)
+
+\vspace*{1em}
+
+\textbf{Constraint}: $$cq(x) \geq \tilde{f}(x).$$ (We can choose c to make our rejection sampler efficient.)
+
+\vspace*{1em}
+
+\textbf{Recall}: $q(x)$ is our **proposal distribution** or **enveloping function** (Uniform, Beta, etc.).
+
+Efficiency of the Rejection Sampler
+===
+
+\textbf{Result}: The **acceptance ratio** is inversely proportional to $c.$
+
+\begin{align}
+\text{eff}(q(x)) &= Pr(\text{samples accepted}) \\
+&= \int Pr(x \; \text{accepted}) \times q(x) \; dx \\
+&= \int \frac{\tilde{f}(x)}{c q(x)} \times q(x) dx \\
+&= \frac{1}{c}\int  \tilde{f}(x) dx \\
+&= \frac{\alpha}{c} \\
+& \propto \frac{1}{c}.
+\end{align}
+
+Efficiency of the Rejection Sampler
+===
+
+Note that for all $x \in \mathcal{X}$:
+
+\begin{align}
+cq(x) &\geq \tilde{f}(x) \implies \\
+c &\geq \frac{\tilde{f}(x)}{q(x)}.
+\end{align}
+
+It follows that the optimal value of $c,$ denoted by $\hat{c}$ is
+
+\begin{align}
+\hat{c} = \max_x \frac{\tilde{f}(x)}{q(x)}. 
+\end{align}
+
+<!-- Bayesian inference (exercise) -->
+<!-- === -->
+
+
+<!-- Suppose we want to sample from the posterior distribution of a parameter $\theta$ given data $x_{1:n}$: -->
+<!-- \[ -->
+<!-- \pi(\theta \mid x_{1:n}) \propto f(x_{1:n} \mid \theta)\,\pi(\theta), -->
+<!-- \] -->
+<!-- where $f(x_{1:n} \mid \theta)$ is the likelihood and $\pi(\theta)$ is the prior.  Assume we can calculate $\hat{\theta}_{MLE}$. -->
+
+<!-- \begin{enumerate} -->
+<!--   \item Write a rejection sampler that samples points from the posterior distribution.  -->
+<!--   \item Explain why this your sampler works.  -->
+<!--   \item Remark on a major limitation/challenge of rejection sampling here. -->
+<!-- \end{enumerate} -->
+
+
+
+
+<!-- Equivalent to Andrea's Lab -->
+<!-- === -->
+
+<!-- This result is equivalent to what Andrea did in lab, where he assumed that $f(x) = \tilde{f}(x)$ and $\alpha = \frac{1}{c}.$  -->
+
+<!-- In Andrea's lab, the optimal $\alpha$ will be $\min(q/f).$  -->
+
+<!-- It's fine to use either formulation, but I would recommend choosing one or the other for consistency.  -->
+
+
+Takeaways
+===
+
+- What is Monte Carlo (The naive method)
+- Rejection sampling
+- Inverse CDF method
+
+Detailed Takeaways
+===
+
+- Why do we use Monte Carlo? 
+- Why do we use rejection sampling?
+- In the next modules, we will learn about Markov chain Monte Carlo algorithms (MCMC), which are used for working in high dimensional parameters spaces. 
+
+
+
+
+Exercise (Lab 5)
+===
+Consider the function
+$$ f(x) \propto \sin^2(\pi x), x \in [0,1]$$
+
+\begin{enumerate}
+\item Plot the densities of $f(x)$ and the Unif(0,1) on the same plot. 
+\item According to the rejection sampling approach sample from $f(x)$ using the Unif(0,1) pdf as an enveloping function.
+\item Plot a histogram of the points that fall in the acceptance region. Do this for a simulation size of $10^2$ and $10^5$ and report your acceptance ratio. Compare the ratios and histograms.
+\item Repeat Tasks 1 - 3 for  Beta(2,2) as an enveloping function. Compare your results with results in Task 3.
+\item Do you recommend the Uniform or the Beta(2,2) as a better enveloping function (or are they about the
+same)? If you were to try and find an enveloping function that had a high acceptance ratio, which one would you try and why?
+\end{enumerate}
+
+
+Task 1
+===
+```{r}
+# density function for f(x)
+densFun <- function(x) { 
+  return(sin(pi*x)^2)
+}
+x <- seq(0, 1, 10^-2)
+```
+
+Task 1
+===
+```{r, echo=FALSE}
+plot(x, densFun(x), 
+     xlab = "x", ylab = "pdf(x)",
+     type = "l", lty = 1, lwd = 2, col = "blue",
+     main = "Densities comparison")
+lines(x, dunif(x, 0, 1), lwd = 2, col="red")
+legend('bottom',
+       c(expression(sin(pi*x)^2), "uniform(0,1)"), 
+       lty = 1, lwd = 2, col = c("blue", "red"))
+```  
+
+
+Task 2 
+===
+```{r}
+numSim=10^2
+samples = NULL
+for (i in 1:numSim) {
+  # get a uniform proposal
+  proposal <- runif(1) 
+  # calculate the ratio
+  densRat <- densFun(proposal)/dunif(proposal)  
+  #accept the sample with p=densRat
+  if ( runif(1) < densRat ){ 
+    #fill our vector with accepted samples
+    samples <- c(samples, proposal) 
+  }
+}
+```
+
+Task 3 (Partial solution)
+===
+```{r, echo=FALSE}
+hist(samples, freq=FALSE) #construct density hist
+print(paste("Acceptance Ratio:", length(samples)/numSim))
+```
+
+Task 2 -- 4 (Partial Solution)
+===
+\footnotesize
+```{r}
+sim_fun <- function(f, envelope = "unif", par1 = 0, 
+                    par2 = 1, n = 10^2, plot = TRUE){
+  
+  r_envelope <- match.fun(paste0("r", envelope))
+  d_envelope <- match.fun(paste0("d", envelope))
+  proposal <- r_envelope(n, par1, par2)
+  density_ratio <- f(proposal) / d_envelope(proposal, par1, par2)
+  samples <- proposal[runif(n) < density_ratio]
+  acceptance_ratio <- length(samples) / n
+  if (plot) {
+    hist(samples, probability = TRUE, 
+         main = paste0("Histogram of ", n, " samples from ", 
+                       envelope, "(", par1, ",", par2, ").\n 
+                       Acceptance ratio: ", 
+                       round(acceptance_ratio,2)), cex.main = 0.75)
+  }
+  list(x = samples, acceptance_ratio = acceptance_ratio)
+}
+```
+
+Task 2 -- 4 (Partial Solution)
+===
+```{r,echo=FALSE}
+par(mfrow = c(2,2), mar = rep(4, 4))
+unif_1 <- sim_fun(f=densFun , envelope = "unif", par1 = 0, par2 = 1, n = 10^2) 
+unif_2 <- sim_fun(f=densFun, envelope = "unif", par1 = 0, par2 = 1, n = 10^5)
+beta_1 <- sim_fun(f=densFun, envelope = "beta", par1 = 2, par2 = 2, n = 10^2)
+beta_2 <- sim_fun(f=densFun, envelope = "beta", par1 = 2, par2 = 2, n = 10^5)
+```
+
+Figure 2: Rejection sampling for 100 versus 100,000 simulations with uniform and beta distributions as envelope functions.
+
+Takeaways
+===
+
+1. What do you notice about the enveloping functions and the acceptance ratio as the number of samples is large? 
+
+2. What does this tell you about the uniform proposal versus the beta proposal in this specific application? 
+
+
+
+
+<!-- Exercise (Lab 6) -->
+<!-- === -->
+<!-- Consider  -->
+<!-- $$ I = \int_{-\infty}^{\infty} \exp(-x^4) \; dx.$$  -->
+
+<!-- Tasks (Lab 6) -->
+<!-- === -->
+
+<!-- 1. Task 1: Find a closed form solution to $I$ and evaluate this.  -->
+<!-- 2. Task 2: Approximate $I$ using Monte carlo.  -->
+<!-- 3. Task 3: Approximate $I$ using importance sampling.  -->
+
+<!-- Gamma density -->
+<!-- === -->
+
+<!-- Before proceeding with the tasks, let's recall that one variant of the Gamma(a,b) density can be written as follows:  -->
+
+<!-- $$\Ga(x|a,b=\text{rate}) = \frac{b^a}{\Gamma(a)}x^{a-1}e^{-b x}\,\I(x>0)$$ for $a,b>0,$ -->
+
+<!-- Task 1 -->
+<!-- === -->
+<!-- For the sake of comparison, we can derive the true value using substitution and the gamma function.  We will use the substitution $u = x^4$ and $\Ga(x|a,b=\text{rate}) = \frac{b^a}{\Gamma(a)}x^{a-1}e^{-b x}\,\I(x>0)$ for $a,b>0,$ -->
+
+<!-- \begin{align*} -->
+<!-- \int_{-\infty}^\infty \exp(-x^{4})\,dx &= 2\int_0^\infty \exp(-x^{4})\,dx \\ -->
+<!-- &= 2\int_0^\infty \frac{\exp(-u)}{4u^{3/4}} \, du \\ -->
+<!-- &= 2^{-1}\int_0^\infty u^{1/4-1}e^{-u}\,du \\ -->
+<!-- &=  \frac{\Gamma(1/4)}{1^{1/4}}\times 2^{-1} \textcolor{red}{\int_0^\infty u^{1/4-1}e^{-u} \times \frac{1^{1/4}}{\Gamma(1/4)}\,du} \\ -->
+<!-- &= \frac{\Gamma(1/4)}{2} \\ -->
+<!-- &= 1.813. -->
+<!-- \end{align*} -->
+
+<!-- Task 2 (Monte Carlo) -->
+<!-- === -->
+
+<!-- In this task, we perform Monte carlo. Let $y=\sqrt{2}x^{2}$.  We will perform $u$-substitution to evaluate the integral with Monte Carlo (verify this calculation on your own)\footnote{The details of this derivation are in lab 6.} -->
+
+<!-- \begin{align*} -->
+<!-- I &=  2^{-5/4} \int_0^\infty\sqrt{\frac{2\pi}{y}}2\phi(y)\,dy. -->
+<!-- \end{align*} -->
+
+<!-- The function $2\phi(y)$ is the density of the normal distribution truncated (or folded) at zero.  We can sample from this distribution by taking samples from the standard normal distribution and then taking their absolute value.  Note that if $X \sim N(0,1)$ we see for any $c > 0$ -->
+
+<!-- \begin{align*} -->
+<!-- P(|X| < c) &= P(-c < X < c) \\ -->
+<!-- &= 2(\Phi(c) - 1/2) \\ -->
+<!-- &= 2\Phi(c) - 1, -->
+<!-- \end{align*} -->
+
+<!-- the derivative of which is the pdf we are sampling from.  -->
+
+
+<!-- Task 3 (Importance Sampling) -->
+<!-- === -->
+
+<!-- We can multiply and divide the integral by a density that has a support equal to the area over which we are integrating.  An obvious and easy choice is the standard normal density, $\phi$: -->
+
+<!-- \begin{align*} -->
+<!-- \int_{-\infty}^\infty \exp(-x^4)\,dx &= \int_{-\infty}^\infty \frac{\exp(-x^4)}{\phi(x)}\phi(x)\,dx. -->
+<!-- \end{align*} -->
+
+<!-- We can therefore evaluate the integral by sampling from a standard normal and averaging the values evaluated in $\exp(-x^4)/\phi(x).$ Thus, we will perform re-weighting, and thus, utilizing importance sampling.   -->
+
+<!-- Comparison of Methods -->
+<!-- === -->
+
+<!-- The results of 10,000 simulations using the three methods described above are summarized in Table \ref{ex1table}; the true value is included for comparison.  Of these methods, multiplying and dividing by the standard normal density and then sampling from this density seems to yield the best estimate, which is both closer to the true value and has lower standard error.  The other two methods are comparable in both their estimates and standard errors.   -->
+<!-- \begin{table}[ht] -->
+<!-- \centering -->
+<!-- \begin{tabular}{rrr} -->
+<!--   \hline -->
+<!--  & Mean & SE \\  -->
+<!--   \hline -->
+<!-- True value & 1.81 &  \\  -->
+<!--   Truncated Normal (Monte Carlo) & 1.79 & 0.06 \\  -->
+<!--   Full Normal (IS) & 1.81 & 0.01 \\  -->
+<!--    \hline -->
+<!-- \end{tabular} -->
+<!-- \caption{\label{ex1table} Comparison of the Monte Carlo estimate for the value of the integral using various methods with 10,000 draws for each method. As we can see under importance sampling, the estimate is closer to the true value and the SE is also lower.} -->
+<!-- \end{table} -->
+
+<!-- Comparison of Methods -->
+<!-- === -->
+
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::opts_chunk$set(cache=TRUE) -->
+<!-- library(xtable) -->
+<!-- # define target functions for MC estimate -->
+<!-- mc1 <- function(x){ -->
+<!--   # folded normal target -->
+<!--   return(sqrt(2*pi/abs(x))) -->
+<!-- } -->
+
+<!-- mc2 <- function(x){ -->
+<!--   # normal target -->
+<!--   exp(-x^4)/dnorm(x) -->
+<!-- } -->
+
+<!-- mc3 <- function(x){ -->
+<!--   # uniform target -->
+<!--   return(20*exp(-x^4)) -->
+<!-- } -->
+<!-- mcSE <- function(values){ -->
+<!--   # this function calculates the standard error -->
+<!--   # of an MC estimate with target function values -->
+<!--   # eg values should be vector of f(x_i) -->
+<!--   return(sqrt(var(values)/length(values))) -->
+<!-- } -->
+<!-- # folded normal -->
+<!-- draws <- rnorm(10000) -->
+<!-- values <- sapply(draws,mc1) -->
+<!-- # normal -->
+<!-- draws2 <- rnorm(10000) -->
+<!-- values2 <- sapply(draws2,mc2) -->
+<!-- # uniform -->
+<!-- draws3 <- runif(10000,min=-10,max=10) -->
+<!-- values3 <- sapply(draws3,mc3) -->
+<!-- # plot histograms -->
+<!-- pdf(file="mc1hist.pdf") -->
+<!-- hist(values*2^(-5/4), xlab = expression(f(X)), -->
+<!--      main = "Folded Normal") -->
+<!-- dev.off() -->
+<!-- pdf(file="mc2hist.pdf") -->
+<!-- hist(values2, xlab = expression(f(X)), -->
+<!--      main = "Normal") -->
+<!-- dev.off() -->
+<!-- pdf(file="mc3hist.pdf") -->
+<!-- hist(values3, xlab = expression(f(X)), -->
+<!--      main = "Uniform") -->
+<!-- dev.off() -->
+<!-- # put results in a data frame and display with xtable -->
+<!-- mc.mean <- mean(values)*2^(-5/4) -->
+<!-- mc.sd<- 2^(-10/4)*sd(values)/sqrt(length(values)) -->
+<!-- means <- c(gamma(1/4)/2,mc.mean,mean(values2),mean(values3)) -->
+<!-- SEs <- c(NA, mcSE(values),mcSE(values2),mcSE(values3)) -->
+<!-- mc.df <- data.frame(Mean = means, SE = SEs,  -->
+<!--                     row.names = c("True value", "row.names -->
+<!--                                   Normal", "Full Normal",   -->
+<!--                                   "Truncated Uniform")) -->
+<!-- xtable(mc.df) -->
+<!-- ``` -->
+
+<!-- Histograms -->
+<!-- === -->
+
+<!-- \begin{figure}[!ht] -->
+<!-- \centering -->
+<!-- \includegraphics[width = .45\textwidth]{mc1hist.pdf} -->
+<!-- \includegraphics[width = .45\textwidth]{mc2hist.pdf} -->
+<!-- \caption{\label{ex1hist} Histograms for the various Monte Carlo simulations.} -->
+<!-- \end{figure} -->
+<!-- An ideal histogram would be highly centered around the true value of 1.81.  For the folded normal, we see that there are some very large observations that skew the distribution.  The normal method also results in a strange histogram, with values concentrated near the edges. -->
+
+
+
+
+
+
+Module I (Recap)
+===
+- Bayes Theorem 
+- Cast of characters
+- Conjugacy 
+- Marginal and posterior predictive distributions
+- Here, we looked at very simple applied examples regarding polling and sleep to motivate the use of conjugacy. 
+
+Module II (Recap)
+===
+
+- Decision Theory
+- Loss functions
+- Bayes Risk
+- Frequentist Risk
+- Here, we looked at a resource allocation problem with a non-trivial loss function. 
+
+Module III (Recap)
+===
+
+- Univariate Normal distribution 
+- Properties of the normal distribution
+- Normal-Uniform 
+- The uniform is an example of an imporoper prior
+- Normal-Normal conjugacy 
+- The precision
+- What happens to the Normal-Normal posterior as the sample size gets large? 
+- The applied example here was about Dutch heights of women and men and looking at bi-modality. 
+
+
+Module IV (Recap)
+===
+
+- The Normal-Gamma conjugacy
+- This module was the first time we saw a three-layer hierarhical model 
+- This was a very long derivation
+- The applied example that went with this model was IQ scores since we had two different populations with different means and precisions. 
+
+Review Materials 
+===
+
+- Practice exercises: https://github.com/resteorts/modern-bayes/tree/master/exercises
+- Review homework exercises
+- I highly recommend that you work all these problems on your own and make sure that you understand the solutions (which are provided). 
+
+
+In class notes
+===
+
+Derivation of bounds can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-class-notes/derivation-of-bounds.pdf}
+
+Notes on importance sampling can be found here: \url{https://github.com/resteorts/modern-bayes/blob/master/lecturesModernBayes20/lecture-5/05-class-notes/importance-sampling.pdf}
+
+
+
+Video on Rejection Sampling 
+===
+
+https://www.youtube.com/watch?v=OXDqjdVVePY
+
+Thank you to Mona Su, Class of 2023 for the recommendation! 
+
+
