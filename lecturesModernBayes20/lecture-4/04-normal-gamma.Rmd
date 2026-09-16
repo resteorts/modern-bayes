@@ -142,9 +142,21 @@ The change in IQ score for the first-grade students was:\footnote{The original d
 
 **This applied example corresponds to lab 4 and homework 5.**
 
+The Pygmalion effect
+===
+
+**Do a teacher's expectations influence student achievement?**
+
+
+- At the start of the year, students are given an IQ test.
+- Researchers randomly selected 20 percent of students in each class. 
+- Students have been grouped in sputers (outstanding) versus control. 
+- The test was given at the end of the year. 
+- The change in IQ score is measured for spurters versus control groups. 
+
 Do a teacher's expectations influence student achievement?
 ===
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning = FALSE}
 library(plyr)
 library(ggplot2)
 library(dplyr)
@@ -170,10 +182,18 @@ iqData <- data.frame(Treatment =
       Gain = c(x, y))
 ```
 
-An initial exploratory analysis
+The Pygmalion effect
 ===
-Plot the **number of students** versus the **change in IQ score** for the two groups. How strongly does this data support the hypothesis that the teachers' expectations caused the
-spurters to perform better than their classmates? 
+
+The average increase in IQ score is larger for the spurters (see previous plot). 
+
+How strongly do these data support the hypothesis taht the teachers' expectations caused the spurters to perform better than their classmates? 
+
+The Pygmalion effect
+===
+Plot the **number of students** versus the **change in IQ score** for the two groups. 
+
+How strongly do these data support the hypothesis that the teachers' expectations caused the spurters to perform better than their classmates (i.e., the Pygmalion effect)? 
 
 Histogram of Change in IQ Scores
 ===
@@ -228,34 +248,41 @@ IQ tests are purposefully calibrated to make the scores normally distributed, so
 \text{spurters: } X_1,\dotsc,X_{n_S}\iid \N(\mu_S,\lambda_S^{-1})\\
 \text{controls: } Y_1,\dotsc,Y_{n_C}\iid \N(\mu_C,\lambda_C^{-1}).
 \end{align*}
+where $(\mu_C, \mu_S, \lambda_S^{-1}, \lambda_C^{-1})$ are unknown parameters. 
 
 - We are interested in the difference between the means---in particular, is $\mu_S>\mu_C$?
 
-- We don't know the standard deviations $\sigma_S=\lambda_S^{-1/2}$ and $\sigma_C=\lambda_C^{-1/2}$, and the sample seems too small to estimate them very well.
+The Bayesian approach computes the posterior probability that $\mu_S>\mu_C$:
+$$ \Pr(\bm\mu_S > \bm\mu_C \mid x_{1:n_S},y_{1:n_C}). $$
+- To finalize our model, we need to specify priors on the parameters. 
+
+
 
 
 IQ Tests and Modeling
 ===
-On the other hand, it is easy using a Bayesian approach: we just need to compute the posterior probability that $\mu_S>\mu_C$:
-$$ \Pr(\bm\mu_S > \bm\mu_C \mid x_{1:n_S},y_{1:n_C}). $$
+
+- We don't know the standard deviations $\sigma_S=\lambda_S^{-1/2}$ and $\sigma_C=\lambda_C^{-1/2}$, and the sample seems too small to estimate them very well.
+
 Let's use independent NormalGamma priors:
 \begin{align*}
 \text{spurters: } (\bm\mu_S,\bm\lambda_S) \sim \NormalGamma(m,c,a,b)\\
-\text{controls: } (\bm\mu_C,\bm\lambda_C) \sim \NormalGamma(m,c,a,b)
+\text{controls: } (\bm\mu_C,\bm\lambda_C) \sim \NormalGamma(m,c,a,b),
 \end{align*}
+where we assume $(m,c,a,b)$ are fixed and known. 
 
-Hyperparameter settings
+Hyper-parameter settings
 ===
 \begin{itemize}
 \item $m = 0$ (Don't know whether students will improve or not, on average.)
-\item $c = 1$ (Unsure about how big the mean change will be---prior certainty in our choice of $m$ assessed to be equivalent to one datapoint.)
-\item $a = 1/2$ (Unsure about how big the standard deviation of the changes will be.)
+\item $c = 1$ (Prior certainty is equivalent to $c$ data points.)
+\item $a = 1/2$ (Prior certainty is equivalent to $2a$ data points.)
 \item $b = 10^2 a$ (Standard deviation of the changes expected to be around $10 = \sqrt{b/a} = \E(\lambda)^{-1/2}$.)
 \end{itemize}
 
 
 
-```{r,echo=FALSE}
+```{r,echo=FALSE , warning = FALSE}
 prior = data.frame(m = 0, c = 1, a = 0.5, b = 50)
 findParam = function(prior, data){
   postParam = NULL
@@ -337,18 +364,26 @@ and obtain the approximation
 
 **You will explore this more in lab 4 and homework 5.**
 
+
 Other commons priors for the mean/precision
 ===
 
-- The NormalGamma priors induces a strong dependency between $\mu$ and $\lambda$ (which may not be warranted).
+- The Normal-Gamma priors induces a strong dependency between $\mu$ and $\lambda$ (which may not be warranted). See the plot of the samples from the prior regarding the Pygmalion effect. 
 
-- For evidence, see plots of the prior distributions. 
+- It is more common to assume the distributions of $\mu$ and $\lambda$ are independent apriori:
 
-- It is more common to assume the distributions of $\mu$ and $\lambda$ are independent. 
+$$\lambda \sim \text{Gamma}(a,b) \quad \text{and}, \quad \mu \sim N(\mu, s^2).$$
 
-- These are called conditionally conjugate priors and should not be confused with complete conjugacy. 
 
-- Why are these useful? They are easy to work with in situations with Markov chain Monte Carlo (soon to come) to approximate the posterior when it's not available in a closed form. 
+\begin{itemize}
+\item These are not conjugate priors, but conditionally conjugate in the sense that:
+\begin{itemize}
+\item for any fixed $\lambda$, it is conjugate for $\mu$
+\item for any fixed, $\mu$, it is conjugate for $\lambda$.
+\end{itemize}
+\end{itemize}
+
+- Why are these useful? They are easy to work with in situations with Markov chain Monte Carlo (soon to come) to approximate the posterior.
 
 
 
