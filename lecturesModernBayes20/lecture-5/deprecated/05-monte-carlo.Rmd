@@ -9,41 +9,41 @@ output:
 font-size: 8px
 ---
 
-<!-- Announcements -->
-<!-- === -->
+Announcements
+===
 
-<!-- - Please make sure that your .Rmd files for homework compile to .pdf format moving forward -->
-<!-- - If you're having an issue with this, please talk to any member of the teaching team moving forward -->
-<!-- - The notes have been updated to hopefully make the rejection sampling material more clear from last time -->
-<!-- and I will highlight some of these points today in class.  -->
-<!-- - Information regarding the upcoming quiz will be shared soon!  -->
+- Please make sure that your .Rmd files for homework compile to .pdf format moving forward
+- If you're having an issue with this, please talk to any member of the teaching team moving forward
+- The notes have been updated to hopefully make the rejection sampling material more clear from last time
+and I will highlight some of these points today in class. 
+- Information regarding the upcoming quiz will be shared soon! 
 
-<!-- Quiz I -->
-<!-- === -->
+Quiz I
+===
 
-<!-- - Open notes, open book. -->
-<!-- - This is a closed exam to speaking to others except your instructor and teaching assistants until the exam grades have been released to all students. -->
-<!-- - You will be given a cover page with distributions. -->
-<!-- - This exam will be released over Gradescope at the start of class 10:05 AM and you must complete the assignment no later than 11:20 AM.  -->
-<!-- - You will be given 30 minutes after the exam to upload one PDF document to Gradescope and assign pages. -->
-<!-- - Material covers: Modules 1--4. -->
-<!-- - Material covers lectures (slides and written material in class), labs, and homeworks. -->
+- Open notes, open book.
+- This is a closed exam to speaking to others except your instructor and teaching assistants until the exam grades have been released to all students.
+- You will be given a cover page with distributions.
+- This exam will be released over Gradescope at the start of class 10:05 AM and you must complete the assignment no later than 11:20 AM. 
+- You will be given 30 minutes after the exam to upload one PDF document to Gradescope and assign pages.
+- Material covers: Modules 1--4.
+- Material covers lectures (slides and written material in class), labs, and homeworks.
 
-<!-- Quiz I -->
-<!-- === -->
+Quiz I
+===
 
-<!-- - You must upload a single PDF file to Gradescope and label your pages. -->
-<!-- - You can write your solutions on your own paper, a tablet, etc.  -->
-<!-- - You are not required (or expected) to type your solutions.  -->
-<!-- - You may utilize software to help pull your written solutions into a single PDF for uploading purposes.  -->
-<!-- - If you use AI software, you must cite this in your write up (or this violates the exam policy).  -->
-<!-- - You are not allowed to search for solutions to the problems (or utilize any prior solutions that have been written).  -->
+- You must upload a single PDF file to Gradescope and label your pages.
+- You can write your solutions on your own paper, a tablet, etc. 
+- You are not required (or expected) to type your solutions. 
+- You may utilize software to help pull your written solutions into a single PDF for uploading purposes. 
+- If you use AI software, you must cite this in your write up (or this violates the exam policy). 
+- You are not allowed to search for solutions to the problems (or utilize any prior solutions that have been written). 
 
-<!-- Quiz I -->
-<!-- === -->
+Quiz I
+===
 
-<!-- - On this exam, you will not be expected to do any coding/programming, however you may be asked to provide interpretations beyond derivations.  -->
-<!-- - You are not allowed to speak to anyone regarding the exam except the instructor until the results (grades) are released back to you. -->
+- On this exam, you will not be expected to do any coding/programming, however you may be asked to provide interpretations beyond derivations. 
+- You are not allowed to speak to anyone regarding the exam except the instructor until the results (grades) are released back to you.
 
 
 Agenda
@@ -273,20 +273,7 @@ Using the same approach, we could easily approximate any number of other posteri
 &\approx \frac{1}{N}\sum_{i = 1}^N \bm\mu_S^{(i)}/\bm\mu_C^{(i)}.
 \end{align*}
 
-Other approaches for generating samples
-===
-
-- Inverse CDF methods
-- Rejection sampling
-
-Inverse CDF Method
-===
-
-The inverse CDF method is a common way to generate samples from a univariate probability distribution when the inverse of the cdf cannot be easily computed. 
-
-Basic Idea: Suppose $F^{-1}$ is the inverse cdf of $F$ and $U \sim \text{Uniform}(0,1)$. It follows that $F^{-1}(U)$ is a random variable with cdf F. 
-
-Precise statement of inverse cdf method
+Background: inverse CDF method
 ===
 
 For a random variable $X$ with c.d.f. $F,$ define the generalized CDF as
@@ -325,7 +312,7 @@ Rejection Sampling
 Rejection sampling is a method for drawing random samples from a distribution whose p.d.f. can be evaluated up to a constant of proportionality. 
 
 \vskip 1 em
-Compared with the inverse c.d.f. method, rejection sampling has the advantage of working on complicated multivariate distributions. 
+Compared with the inverse c.d.f. method, rejection sampling has the advantage of working on complicated multivariate distributions. (see homework)
 
 \vskip 1 em
 
