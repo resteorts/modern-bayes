@@ -115,6 +115,12 @@ https://onlinecourses.science.psu.edu/stat504/node/59
 
 - Bayesian Non-Parametric Tutorial (Peter Orbanz)
 https://www.gatsby.ucl.ac.uk/~porbanz/npb-tutorial.html
+
+- Small Area Estimation 
+
+0. Rao and Molina (2015): https://onlinelibrary.wiley.com/doi/book/10.1002/9781118735855
+1. Porter et al. (2013): https://arxiv.org/abs/1303.6668
+2. Steorts et al. (2020): https://onlinelibrary.wiley.com/doi/epdf/10.1111/insr.12373
       
       
 
